@@ -15,10 +15,10 @@ AppUpdatesURL={#MyAppURL}/releases/latest
 DefaultDirName={autopf}\Workday Island
 DefaultGroupName=Workday Island
 DisableProgramGroupPage=yes
-LicenseFile=LICENSE
-OutputDir=build\bin
+LicenseFile=..\..\LICENSE
+OutputDir=..\..\build\bin
 OutputBaseFilename=Workday-Island-v{#MyAppVersion}-windows-x64-Setup
-SetupIconFile=build\windows\appicon.ico
+SetupIconFile=..\..\build\windows\appicon.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
@@ -41,8 +41,8 @@ Name: "chinesesimplified"; MessagesFile: "compiler:Languages\ChineseSimplified.i
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "build\bin\Workday-Island-windows-amd64.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}"; Flags: ignoreversion
-Source: "build\windows\appicon.ico"; DestDir: "{app}"; DestName: "appicon.ico"; Flags: ignoreversion
+Source: "..\..\build\bin\Workday-Island-windows-amd64.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}"; Flags: ignoreversion
+Source: "..\..\build\windows\appicon.ico"; DestDir: "{app}"; DestName: "appicon.ico"; Flags: ignoreversion
 
 [Icons]
 Name: "{autoprograms}\Workday Island"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\appicon.ico"
