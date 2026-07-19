@@ -1,0 +1,46 @@
+name: Bug report / 缺陷报告
+description: Report reproducible incorrect behaviour / 报告可复现的异常行为
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove private todo, salary, and path information before submitting. / 提交前请移除待办、薪资和个人路径等隐私信息。
+  - type: input
+    id: version
+    attributes:
+      label: Version / 版本
+      placeholder: v0.5.0
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform / 平台
+      options: [macOS Apple Silicon, macOS Intel, Windows 11, Windows 10, Other]
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce / 复现步骤
+      placeholder: List the smallest reliable sequence. / 请列出最小且稳定的复现步骤。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour / 预期行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour / 实际行为
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context / 补充信息
+      description: Screenshots and logs are helpful after private data is removed. / 可附上已脱敏截图和日志。

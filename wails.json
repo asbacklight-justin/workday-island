@@ -1,0 +1,19 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Workday Island",
+  "outputfilename": "Workday Island",
+  "frontend:install": "",
+  "frontend:build": "",
+  "frontend:dev:watcher": "",
+  "author": {
+    "name": "Backlight Studio",
+    "email": "asbacklight@gmail.com"
+  },
+  "info": {
+    "companyName": "Backlight Studio",
+    "productName": "Workday Island",
+    "productVersion": "0.5.0",
+    "copyright": "Copyright © 2026 Backlight Studio",
+    "comments": "A quiet desktop island for todos and workday countdowns."
+  }
+}

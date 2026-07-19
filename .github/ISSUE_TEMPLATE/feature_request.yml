@@ -1,0 +1,22 @@
+name: Feature request / 功能建议
+description: Propose a focused improvement / 提出范围清晰的改进建议
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / 要解决的问题
+      description: Describe the workflow or pain point before the proposed solution. / 请先描述使用场景和痛点。
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution / 建议方案
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives / 其他方案

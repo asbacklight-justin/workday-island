@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b101b">
+  <title>工位岛 · Workday Island</title>
+  <link rel="icon" href="./logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css?v=6">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="titlebar">
+      <div class="traffic-space" aria-hidden="true"></div>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="./logo.svg" alt="">
+        </span>
+        <span data-i18n="appName">工位岛</span>
+        <span class="brand-en">WORKDAY ISLAND</span>
+        <span id="app-version-badge" class="version-badge">v0.5.0</span>
+      </div>
+      <div class="top-actions no-drag">
+        <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
+        <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
+          <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
+        </button>
+        <label class="pin-control" title="让窗口保持在其他窗口前面">
+          <input id="always-on-top" type="checkbox" checked>
+          <span class="switch"><span></span></span>
+          <span data-i18n="pin">置顶</span>
+        </label>
+        <button id="open-settings" class="icon-btn" aria-label="设置" title="设置">
+          <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
+        </button>
+        <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="island-grid" aria-label="工作日概览">
+        <article class="glass-card clock-card">
+          <div class="eyebrow"><span class="live-dot"></span><span id="work-status">工作中</span></div>
+          <div class="clock-line"><strong id="clock">10:34</strong><span id="ampm">AM</span></div>
+          <div id="date" class="date-line">7月19日 · 星期日</div>
+        </article>
+
+        <article class="glass-card earnings-card" title="根据月薪、月计薪天数和今日工作进度估算">
+          <div class="eyebrow earnings-label" data-i18n="earnedToday">今日已赚</div>
+          <div id="earned-amount" class="earned-amount">¥0.00</div>
+          <div id="earning-caption" class="earning-caption">设置月薪后开始计算</div>
+        </article>
+
+        <article class="glass-card countdown-card">
+          <div class="card-heading">
+            <div>
+              <div class="eyebrow teal" data-i18n="offworkCountdown">下班倒计时</div>
+              <div id="offwork-time" class="countdown-value">07:26:18</div>
+            </div>
+            <span id="end-badge" class="end-badge">18:00</span>
+          </div>
+          <div class="progress-track"><span id="work-progress"></span></div>
+          <div class="progress-meta"><span id="work-range">09:00 — 18:00</span><span id="progress-percent">18%</span></div>
+        </article>
+
+        <article class="glass-card focus-card weather-card" title="天气数据：Open-Meteo">
+          <div class="weather-main"><span id="weather-icon" class="weather-icon">🌤️</span><strong id="weather-temp">--°</strong></div>
+          <div id="weather-desc" class="weather-desc">天气加载中</div>
+          <div class="weather-footer"><span id="weather-city">上海</span><span><b id="pending-count">0</b> <span data-i18n="pending">待办</span></span></div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <article class="panel todo-panel">
+          <div class="panel-header">
+            <div>
+              <div class="section-kicker" data-i18n="todayKicker">TODAY</div>
+              <h1 data-i18n="myTodos">我的待办</h1>
+            </div>
+            <button id="add-todo" class="primary-btn"><span>＋</span> <b data-i18n="addTodo">新建待办</b></button>
+          </div>
+          <div class="filter-row no-drag" role="tablist">
+            <button class="filter active" data-filter="pending"><b data-i18n="pendingFilter">待处理</b> <span id="pending-pill">0</span></button>
+            <button class="filter" data-filter="all" data-i18n="allFilter">全部</button>
+            <button class="filter" data-filter="done" data-i18n="doneFilter">已完成</button>
+          </div>
+          <div id="todo-list" class="todo-list"></div>
+        </article>
+
+        <aside class="panel side-panel">
+          <div class="side-heading">
+            <div><div class="section-kicker">NEXT UP</div><h2 data-i18n="nextReminder">最近提醒</h2></div>
+            <span class="mini-bell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg></span>
+          </div>
+          <div id="next-reminder" class="next-reminder empty">
+            <div class="calendar-tile"><span>--</span><strong>--</strong></div>
+            <div><strong data-i18n="noReminder">暂无提醒</strong><p data-i18n="reminderHint">新建待办时可以指定时间</p></div>
+          </div>
+          <section id="focus-widget" class="focus-widget">
+            <div class="focus-widget-head"><span class="focus-symbol">◎</span><div><div class="section-kicker">FOCUS</div><strong data-i18n="focusMode">专注模式</strong></div></div>
+            <div id="focus-idle">
+              <p data-i18n="focusHint">选择一段不被打扰的时间，结束后提醒你休息。</p>
+              <div class="focus-presets" role="group" aria-label="专注时长">
+                <button type="button" data-minutes="25"><span>25</span><small data-i18n="minuteShort">分</small></button><button type="button" class="active" data-minutes="50"><span>50</span><small data-i18n="minuteShort">分</small></button><button type="button" data-minutes="90"><span>90</span><small data-i18n="minuteShort">分</small></button>
+              </div>
+              <button id="start-focus" type="button" class="focus-start"><span>▶</span><b data-i18n="startFocus">开始专注</b></button>
+            </div>
+            <div id="focus-active" class="hidden">
+              <div class="focus-active-row"><div><small data-i18n="focusing">专注中</small><strong id="focus-time">50:00</strong></div><span class="focus-live-dot"></span></div>
+              <div class="focus-progress"><span id="focus-progress"></span></div>
+              <div class="focus-active-footer"><span id="focus-end-time">18:50 结束</span><button id="stop-focus" type="button" data-i18n="stopFocus">结束专注</button></div>
+            </div>
+          </section>
+          <button id="quick-test" class="ghost-btn" data-i18n="testReminder">测试系统提醒</button>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <div id="todo-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="todo-modal-title">
+    <form id="todo-form" class="modal-card">
+      <div class="modal-head"><div><div class="section-kicker">QUICK CAPTURE</div><h2 id="todo-modal-title" data-i18n="newTodo">新建待办</h2></div><button type="button" class="close-btn" data-close="todo-modal">×</button></div>
+      <input id="editing-id" type="hidden">
+      <label class="field"><span data-i18n="todoContent">待办内容</span><input id="todo-title" maxlength="120" autocomplete="off" placeholder="比如：下午三点提交周报" data-i18n-placeholder="todoPlaceholder" required></label>
+      <div class="field-grid">
+        <label class="field"><span><b data-i18n="reminderAt">提醒时间</b> <em data-i18n="optional">可选</em></span><span class="datetime-pair"><input id="todo-due-date" type="date" aria-label="提醒日期"><input id="todo-due-time" type="time" step="60" aria-label="提醒时间"></span></label>
+        <label class="field"><span><b data-i18n="note">备注</b> <em data-i18n="optional">可选</em></span><input id="todo-note" maxlength="240" placeholder="补充一点上下文" data-i18n-placeholder="notePlaceholder"></label>
+      </div>
+      <div class="modal-actions"><button type="button" class="text-btn" data-close="todo-modal" data-i18n="cancel">取消</button><button type="submit" class="primary-btn" data-i18n="saveTodo">保存待办</button></div>
+    </form>
+  </div>
+
+  <div id="settings-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <form id="settings-form" class="modal-card settings-card">
+      <div class="modal-head"><div><div class="section-kicker">PREFERENCES</div><h2 id="settings-title" data-i18n="settingsTitle">工作时间设置</h2></div><button type="button" class="close-btn" data-close="settings-modal">×</button></div>
+      <div class="field-grid">
+        <label class="field"><span data-i18n="workStart">上班时间</span><input id="work-start" type="time" required></label>
+        <label class="field"><span data-i18n="workEnd">下班时间</span><input id="work-end" type="time" required></label>
+      </div>
+      <div class="field-grid finance-grid">
+        <label class="field"><span><b data-i18n="monthlySalary">月薪</b> <em data-i18n="localOnly">仅保存在本机</em></span><input id="monthly-salary" type="number" min="0" step="0.01" placeholder="例如 15000" data-i18n-placeholder="salaryPlaceholder"></label>
+        <label class="field"><span data-i18n="salaryWorkdays">月计薪天数</span><input id="salary-workdays" type="number" min="1" max="31" step="0.25" value="21.75"></label>
+      </div>
+      <label class="field"><span data-i18n="weatherCity">天气城市</span><input id="weather-city-input" maxlength="60" placeholder="例如：上海、杭州、Shenzhen" data-i18n-placeholder="weatherPlaceholder"></label>
+      <label class="field"><span data-i18n="workdays">工作日</span><div id="weekday-picker" class="weekday-picker"></div></label>
+      <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
+      <label class="setting-row"><div><strong data-i18n="keepOnTop">窗口保持置顶</strong><p data-i18n="keepOnTopDesc">让倒计时和待办始终触手可及</p></div><input id="settings-top" type="checkbox"><span class="switch"><span></span></span></label>
+      <div class="modal-actions"><button type="button" class="text-btn" data-close="settings-modal" data-i18n="cancel">取消</button><button type="submit" class="primary-btn" data-i18n="saveSettings">保存设置</button></div>
+    </form>
+  </div>
+  <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
+    <section class="modal-card about-card">
+      <button type="button" class="close-btn about-close" data-close="about-modal">×</button>
+      <img src="./logo.svg" class="about-logo" alt="Workday Island">
+      <div class="section-kicker">WORKDAY ISLAND</div>
+      <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
+      <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.5.0</strong></div>
+      <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
+      <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
+    </section>
+  </div>
+  <button id="reminder-alert" class="reminder-alert" aria-label="停止提醒闪烁">
+    <span id="alert-bell" class="alert-bell">!</span><span><small id="reminder-alert-kicker" data-i18n="reminderDue">待办到时间了</small><strong id="reminder-alert-title">该处理待办啦</strong></span><em data-i18n="clickStop">点击停止</em>
+  </button>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <script src="./app.js?v=9" type="module"></script>
+</body>
+</html>

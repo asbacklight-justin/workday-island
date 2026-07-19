@@ -1,0 +1,89 @@
+name: Release installers
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  macos:
+    name: macOS universal DMG
+    runs-on: macos-14
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - name: Verify tag matches VERSION
+        shell: bash
+        run: test "${GITHUB_REF_NAME#v}" = "$(tr -d '[:space:]' < VERSION)"
+      - name: Build universal installer
+        run: ./scripts/package-macos.sh
+      - name: Upload macOS installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: macos-installer
+          path: build/bin/*.dmg
+          if-no-files-found: error
+          compression-level: 0
+
+  windows:
+    name: Windows x64 Setup
+    runs-on: windows-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+      - name: Verify tag matches VERSION
+        shell: pwsh
+        run: |
+          $version = (Get-Content VERSION -Raw).Trim()
+          if ($env:GITHUB_REF_NAME -ne "v$version") { throw "Tag and VERSION do not match" }
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --no-progress -y
+      - name: Build Windows installer
+        shell: pwsh
+        run: ./scripts/build-windows-installer.ps1
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v7
+        with:
+          name: windows-installer
+          path: build/bin/*-Setup.exe
+          if-no-files-found: error
+          compression-level: 0
+
+  publish:
+    name: Publish GitHub Release
+    needs: [macos, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v6
+      - name: Download installers
+        uses: actions/download-artifact@v7
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Generate SHA-256 checksums
+        working-directory: dist
+        run: sha256sum * > SHA256SUMS.txt
+      - name: Publish release
+        uses: softprops/action-gh-release@v3
+        with:
+          body_path: docs/RELEASE_NOTES_v0.5.0.md
+          files: |
+            dist/*.dmg
+            dist/*-Setup.exe
+            dist/SHA256SUMS.txt
+          fail_on_unmatched_files: true

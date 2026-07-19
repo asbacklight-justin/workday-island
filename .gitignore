@@ -1,0 +1,14 @@
+# Generated packages and bundles
+/build/bin/
+/build/windows/*.ico
+/*.syso
+/installer/windows/*.syso
+
+# Local app data and temporary files
+/data.json
+*.log
+.DS_Store
+
+# Editors
+.idea/
+.vscode/

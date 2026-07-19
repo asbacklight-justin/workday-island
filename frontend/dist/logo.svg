@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="900" y2="940" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#243B68"/>
+      <stop offset=".5" stop-color="#15243F"/>
+      <stop offset="1" stop-color="#0A1222"/>
+    </linearGradient>
+    <linearGradient id="island" x1="250" y1="330" x2="790" y2="770" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#63F0CC"/>
+      <stop offset="1" stop-color="#5E9DFF"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="24" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="62" y="62" width="900" height="900" rx="230" fill="url(#bg)"/>
+  <rect x="78" y="78" width="868" height="868" rx="214" fill="none" stroke="#8CAFFF" stroke-opacity=".18" stroke-width="10"/>
+  <circle cx="742" cy="286" r="76" fill="#FFD760" filter="url(#glow)"/>
+  <path d="M259 585c-67-32-82-113-30-157 31-26 71-30 105-14 20-60 81-95 141-78 57 15 93 70 83 127 42 13 69 51 64 93-6 51-48 88-99 88H294" fill="none" stroke="url(#island)" stroke-width="62" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+  <path d="M290 742h444" stroke="url(#island)" stroke-width="52" stroke-linecap="round"/>
+  <path d="M377 816h270" stroke="#7387AE" stroke-opacity=".55" stroke-width="24" stroke-linecap="round"/>
+</svg>

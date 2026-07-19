@@ -1,0 +1,231 @@
+package main
+
+import (
+	"context"
+	"fmt"
+	"net/http"
+	"os"
+	"path/filepath"
+	"sync"
+	"sync/atomic"
+	"time"
+
+	"github.com/wailsapp/wails/v2/pkg/runtime"
+)
+
+const appVersion = "0.5.0"
+
+type App struct {
+	ctx          context.Context
+	store        *Store
+	cancel       context.CancelFunc
+	startupMu    sync.Mutex
+	alertSeq     atomic.Uint64
+	alertMu      sync.RWMutex
+	activeAlert  *ReminderAlert
+	weatherMu    sync.Mutex
+	weatherCache weatherCache
+	httpClient   *http.Client
+}
+
+func NewApp() *App {
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		configDir = "."
+	}
+	return &App{
+		store:      NewStore(filepath.Join(configDir, "WorkdayIsland", "data.json")),
+		httpClient: &http.Client{Timeout: 10 * time.Second},
+	}
+}
+
+func (a *App) startup(ctx context.Context) {
+	a.startupMu.Lock()
+	defer a.startupMu.Unlock()
+	a.ctx = ctx
+	_ = a.store.Load()
+	state := a.store.Snapshot()
+	runtime.WindowSetAlwaysOnTop(ctx, state.Settings.AlwaysOnTop)
+	a.applyWindowMode(state.Settings.CompactMode)
+	schedulerCtx, cancel := context.WithCancel(ctx)
+	a.cancel = cancel
+	go a.runScheduler(schedulerCtx)
+}
+
+func (a *App) shutdown(context.Context) {
+	if a.cancel != nil {
+		a.cancel()
+	}
+}
+
+func (a *App) GetState() State {
+	return a.store.Snapshot()
+}
+
+func (a *App) GetAppInfo() AppInfo {
+	return AppInfo{
+		Name:        "Workday Island",
+		Version:     appVersion,
+		Author:      "Backlight Studio",
+		Email:       "asbacklight@gmail.com",
+		Description: "A quiet desktop island for workday focus.",
+	}
+}
+
+func (a *App) AddTodo(input TodoInput) (Todo, error) {
+	return a.store.Add(input)
+}
+
+func (a *App) UpdateTodo(id string, input TodoInput) (Todo, error) {
+	return a.store.Update(id, input)
+}
+
+func (a *App) ToggleTodo(id string, completed bool) error {
+	return a.store.Toggle(id, completed)
+}
+
+func (a *App) DeleteTodo(id string) error {
+	return a.store.Delete(id)
+}
+
+func (a *App) StartFocus(minutes int) (FocusSession, error) {
+	return a.store.StartFocus(minutes, time.Now())
+}
+
+func (a *App) StopFocus() (FocusSession, error) {
+	return a.store.StopFocus()
+}
+
+func (a *App) SaveSettings(settings Settings) (Settings, error) {
+	saved, err := a.store.SaveSettings(settings)
+	if err == nil && a.ctx != nil {
+		runtime.WindowSetAlwaysOnTop(a.ctx, saved.AlwaysOnTop)
+		a.applyWindowMode(saved.CompactMode)
+	}
+	return saved, err
+}
+
+func (a *App) SetCompactMode(compact bool) (Settings, error) {
+	settings := a.store.Snapshot().Settings
+	settings.CompactMode = compact
+	saved, err := a.store.SaveSettings(settings)
+	if err == nil {
+		a.applyWindowMode(compact)
+	}
+	return saved, err
+}
+
+func (a *App) TestNotification() error {
+	todo := Todo{ID: "notification-test", Title: "提醒功能测试", Note: "窗口置前与多色提醒工作正常"}
+	a.triggerReminder(todo)
+	go func() {
+		_ = sendNotification("工位岛提醒", "提醒功能工作正常，别忘了给自己留一点休息时间。")
+	}()
+	return nil
+}
+
+func (a *App) PlayReminderSound() {
+	playReminderSound()
+}
+
+func (a *App) GetActiveReminder() *ReminderAlert {
+	a.alertMu.RLock()
+	alert := a.activeAlert
+	a.alertMu.RUnlock()
+	if alert == nil {
+		return nil
+	}
+	copyAlert := *alert
+	return &copyAlert
+}
+
+func (a *App) AcknowledgeReminder(sequence uint64) {
+	a.alertMu.Lock()
+	if a.activeAlert != nil && a.activeAlert.Sequence == sequence {
+		a.activeAlert = nil
+	}
+	a.alertMu.Unlock()
+	a.alertSeq.Add(1)
+	if a.ctx != nil && !a.store.Snapshot().Settings.AlwaysOnTop {
+		runtime.WindowSetAlwaysOnTop(a.ctx, false)
+	}
+}
+
+func (a *App) DataPath() string {
+	return a.store.path
+}
+
+func (a *App) runScheduler(ctx context.Context) {
+	check := func() {
+		now := time.Now()
+		due, err := a.store.Due(now)
+		if err == nil {
+			for _, todo := range due {
+				body := todo.Title
+				if todo.Note != "" {
+					body = fmt.Sprintf("%s\n%s", todo.Title, todo.Note)
+				}
+				a.triggerReminder(todo)
+				go func(message string) { _ = sendNotification("待办到时间了", message) }(body)
+			}
+		}
+		focus, err := a.store.FocusDue(now)
+		if err == nil && focus != nil {
+			title := "专注完成，请休息一下"
+			body := "起身活动、喝点水，让眼睛和肩颈放松一下。"
+			if a.store.Snapshot().Settings.Language == "en" {
+				title = "Focus complete — take a break"
+				body = "Stand up, drink some water, and rest your eyes and shoulders."
+			}
+			a.triggerAlert(Todo{ID: "focus-complete", Title: title, Note: body}, "focus")
+			go func() { _ = sendNotification(title, body) }()
+		}
+	}
+	check()
+	ticker := time.NewTicker(5 * time.Second)
+	defer ticker.Stop()
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		case <-ticker.C:
+			check()
+		}
+	}
+}
+
+func (a *App) applyWindowMode(compact bool) {
+	if a.ctx == nil {
+		return
+	}
+	if compact {
+		runtime.WindowSetMinSize(a.ctx, 400, 270)
+		runtime.WindowSetMaxSize(a.ctx, 900, 600)
+		runtime.WindowSetSize(a.ctx, 520, 350)
+		return
+	}
+	runtime.WindowSetMaxSize(a.ctx, 940, 650)
+	runtime.WindowSetMinSize(a.ctx, 940, 650)
+	runtime.WindowSetSize(a.ctx, 940, 650)
+}
+
+func (a *App) triggerReminder(todo Todo) {
+	a.triggerAlert(todo, "todo")
+}
+
+func (a *App) triggerAlert(todo Todo, kind string) {
+	sequence := a.alertSeq.Add(1)
+	now := time.Now()
+	alert := &ReminderAlert{Sequence: sequence, Kind: kind, Todo: todo, TriggeredAt: now}
+	a.alertMu.Lock()
+	a.activeAlert = alert
+	a.alertMu.Unlock()
+	if a.ctx == nil {
+		return
+	}
+	runtime.WindowShow(a.ctx)
+	runtime.WindowUnminimise(a.ctx)
+	runtime.WindowSetAlwaysOnTop(a.ctx, true)
+	bringAppToFront()
+	runtime.EventsEmit(a.ctx, "reminder:due", alert)
+}
