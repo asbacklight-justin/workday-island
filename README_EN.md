@@ -102,6 +102,7 @@ Issues and pull requests are welcome. Please read:
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [Changelog](CHANGELOG.md)
+- [Third-party notices](THIRD_PARTY_NOTICES.md)
 
 ## Roadmap
 

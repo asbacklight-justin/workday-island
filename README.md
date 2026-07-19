@@ -102,6 +102,7 @@ go run .
 - [中文贡献指南](CONTRIBUTING.zh-CN.md)
 - [安全政策](SECURITY.md)
 - [更新日志](CHANGELOG.md)
+- [第三方声明](THIRD_PARTY_NOTICES.md)
 
 ## 路线图
 
