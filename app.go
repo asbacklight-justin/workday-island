@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -13,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.5.0"
+const appVersion = "0.6.0"
 
 type App struct {
 	ctx          context.Context
@@ -34,8 +35,17 @@ func NewApp() *App {
 		configDir = "."
 	}
 	return &App{
-		store:      NewStore(filepath.Join(configDir, "WorkdayIsland", "data.json")),
-		httpClient: &http.Client{Timeout: 10 * time.Second},
+		store: NewStore(filepath.Join(configDir, "WorkdayIsland", "data.json")),
+		httpClient: &http.Client{
+			Timeout: 15 * time.Second,
+			Transport: &http.Transport{
+				Proxy:                 http.ProxyFromEnvironment,
+				DialContext:           (&net.Dialer{Timeout: 5 * time.Second, KeepAlive: 30 * time.Second}).DialContext,
+				TLSHandshakeTimeout:   5 * time.Second,
+				ResponseHeaderTimeout: 7 * time.Second,
+				IdleConnTimeout:       60 * time.Second,
+			},
+		},
 	}
 }
 
@@ -46,6 +56,7 @@ func (a *App) startup(ctx context.Context) {
 	_ = a.store.Load()
 	state := a.store.Snapshot()
 	runtime.WindowSetAlwaysOnTop(ctx, state.Settings.AlwaysOnTop)
+	a.applyNativeTheme(state.Settings.Theme)
 	a.applyWindowMode(state.Settings.CompactMode)
 	schedulerCtx, cancel := context.WithCancel(ctx)
 	a.cancel = cancel
@@ -97,22 +108,43 @@ func (a *App) StopFocus() (FocusSession, error) {
 }
 
 func (a *App) SaveSettings(settings Settings) (Settings, error) {
+	previous := a.store.Snapshot().Settings
 	saved, err := a.store.SaveSettings(settings)
 	if err == nil && a.ctx != nil {
 		runtime.WindowSetAlwaysOnTop(a.ctx, saved.AlwaysOnTop)
-		a.applyWindowMode(saved.CompactMode)
+		a.applyNativeTheme(saved.Theme)
+		if previous.CompactMode != saved.CompactMode {
+			a.applyWindowMode(saved.CompactMode)
+		}
 	}
 	return saved, err
 }
 
 func (a *App) SetCompactMode(compact bool) (Settings, error) {
 	settings := a.store.Snapshot().Settings
+	if settings.CompactMode && !compact && a.ctx != nil {
+		width, height := runtime.WindowGetSize(a.ctx)
+		settings.CompactWidth = width
+		settings.CompactHeight = height
+	}
 	settings.CompactMode = compact
 	saved, err := a.store.SaveSettings(settings)
 	if err == nil {
 		a.applyWindowMode(compact)
 	}
 	return saved, err
+}
+
+func (a *App) MinimiseWindow() {
+	if a.ctx != nil {
+		runtime.WindowMinimise(a.ctx)
+	}
+}
+
+func (a *App) QuitApp() {
+	if a.ctx != nil {
+		runtime.Quit(a.ctx)
+	}
 }
 
 func (a *App) TestNotification() error {
@@ -199,14 +231,29 @@ func (a *App) applyWindowMode(compact bool) {
 		return
 	}
 	if compact {
+		settings := a.store.Snapshot().Settings
 		runtime.WindowSetMinSize(a.ctx, 400, 270)
 		runtime.WindowSetMaxSize(a.ctx, 900, 600)
-		runtime.WindowSetSize(a.ctx, 520, 350)
+		runtime.WindowSetSize(a.ctx, settings.CompactWidth, settings.CompactHeight)
 		return
 	}
 	runtime.WindowSetMaxSize(a.ctx, 940, 650)
 	runtime.WindowSetMinSize(a.ctx, 940, 650)
 	runtime.WindowSetSize(a.ctx, 940, 650)
+}
+
+func (a *App) applyNativeTheme(theme string) {
+	if a.ctx == nil {
+		return
+	}
+	switch theme {
+	case "light":
+		runtime.WindowSetLightTheme(a.ctx)
+	case "dark":
+		runtime.WindowSetDarkTheme(a.ctx)
+	default:
+		runtime.WindowSetSystemDefaultTheme(a.ctx)
+	}
 }
 
 func (a *App) triggerReminder(todo Todo) {

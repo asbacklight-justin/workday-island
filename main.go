@@ -23,6 +23,7 @@ func main() {
 		MaxWidth:      940,
 		MaxHeight:     650,
 		DisableResize: false,
+		Frameless:     true,
 		AlwaysOnTop:   true,
 		AssetServer:   &assetserver.Options{Assets: assets},
 		BackgroundColour: &options.RGBA{
@@ -32,8 +33,6 @@ func main() {
 		OnShutdown: app.shutdown,
 		Bind:       []interface{}{app},
 		Mac: &mac.Options{
-			TitleBar:             mac.TitleBarHiddenInset(),
-			Appearance:           mac.NSAppearanceNameDarkAqua,
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  true,
 			DisableZoom:          true,

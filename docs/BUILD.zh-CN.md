@@ -34,7 +34,7 @@ gofmt -w .
 go test ./...
 ```
 
-建议在提交前至少验证：完整模式、精简模式缩放、中文/英文切换、待办提醒置前、专注结束提醒、月薪为空时隐藏收入卡片。
+建议在提交前至少验证：完整/精简模式的无边框窗口控制、精简窗口拖动与尺寸恢复、深色/浅色/跟随系统主题、精简待办开关、中文/英文切换、待办提醒置前、专注结束提醒、天气离线回退、自定义货币符号、测试 Release 响应下的版本检测，以及月薪为空时隐藏收入卡片。
 
 ## 3. macOS Universal DMG
 
@@ -46,7 +46,7 @@ chmod +x scripts/build-macos.sh scripts/package-macos.sh
 流程会分别为 `amd64/x86_64` 和 `arm64` 编译，再通过 `lipo` 合并为 Universal Binary，生成 App Bundle、ICNS 图标、临时签名和 DMG。产物：
 
 ```text
-build/bin/Workday-Island-v0.5.0-macOS-universal.dmg
+build/bin/Workday-Island-v0.6.0-macOS-universal.dmg
 ```
 
 验证架构和签名：
@@ -78,7 +78,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 产物：
 
 ```text
-build/bin/Workday-Island-v0.5.0-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.6.0-windows-x64-Setup.exe
 ```
 
 正式分发建议在生成 Setup 后使用组织的 Authenticode 证书签名应用 EXE 和安装包，并通过 `Get-AuthenticodeSignature` 验证。
@@ -97,7 +97,7 @@ build/bin/Workday-Island-v0.5.0-windows-x64-Setup.exe
 ```bash
 git status --short
 go test ./...
-git tag v0.5.0
+git tag v0.6.0
 git push origin main --tags
 ```
 

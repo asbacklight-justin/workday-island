@@ -1,6 +1,15 @@
 package main
 
-import "testing"
+import (
+	"context"
+	"io"
+	"net/http"
+	"path/filepath"
+	"strings"
+	"sync/atomic"
+	"testing"
+	"time"
+)
 
 func TestDescribeWeather(t *testing.T) {
 	tests := []struct {
@@ -19,5 +28,65 @@ func TestDescribeWeather(t *testing.T) {
 		if got != test.want || icon == "" {
 			t.Fatalf("describeWeather(%d) = %q, %q", test.code, got, icon)
 		}
+	}
+}
+
+func TestWeatherRequestRetriesServerErrors(t *testing.T) {
+	var attempts atomic.Int32
+	client := &http.Client{Transport: roundTripFunc(func(request *http.Request) (*http.Response, error) {
+		if attempts.Add(1) < 3 {
+			return testResponse(request, http.StatusServiceUnavailable, "temporary"), nil
+		}
+		return testResponse(request, http.StatusOK, `{"ok":true}`), nil
+	})}
+	app := NewApp()
+	app.httpClient = client
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+	var result struct {
+		Ok bool `json:"ok"`
+	}
+	if err := app.getJSON(ctx, "https://weather.test", &result); err != nil {
+		t.Fatal(err)
+	}
+	if !result.Ok || attempts.Load() != 3 {
+		t.Fatalf("result=%#v attempts=%d", result, attempts.Load())
+	}
+}
+
+func TestWeatherFallsBackToPersistedCache(t *testing.T) {
+	oldEndpoint := geocodingEndpoint
+	defer func() { geocodingEndpoint = oldEndpoint }()
+	geocodingEndpoint = "https://weather.test/geocode"
+	app := NewApp()
+	app.store = NewStore(filepath.Join(t.TempDir(), "data.json"))
+	app.httpClient = &http.Client{Transport: roundTripFunc(func(request *http.Request) (*http.Response, error) {
+		return testResponse(request, http.StatusServiceUnavailable, "offline"), nil
+	})}
+	if err := app.store.SaveWeather(Weather{QueryCity: "上海", City: "上海", Temperature: 26, WeatherCode: 2, UpdatedAt: time.Now()}); err != nil {
+		t.Fatal(err)
+	}
+	weather, err := app.GetWeather("上海")
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !weather.Stale || weather.Temperature != 26 || weather.Error == "" {
+		t.Fatalf("unexpected fallback: %#v", weather)
+	}
+}
+
+type roundTripFunc func(*http.Request) (*http.Response, error)
+
+func (function roundTripFunc) RoundTrip(request *http.Request) (*http.Response, error) {
+	return function(request)
+}
+
+func testResponse(request *http.Request, status int, body string) *http.Response {
+	return &http.Response{
+		StatusCode: status,
+		Status:     http.StatusText(status),
+		Body:       io.NopCloser(strings.NewReader(body)),
+		Header:     make(http.Header),
+		Request:    request,
 	}
 }

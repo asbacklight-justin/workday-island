@@ -1,6 +1,6 @@
 const translations = {
   zh: {
-    appName: '工位岛', compact: '精简', expand: '展开', pin: '置顶', settings: '设置', about: '关于',
+    appName: '工位岛', compact: '精简', expand: '展开', pin: '置顶', settings: '设置', about: '关于', minimize: '最小化', closeApp: '关闭应用', windowControls: '窗口控制',
     overview: '工作日概览', earningEstimate: '根据月薪、月计薪天数和今日工作进度估算', weatherData: '天气数据：Open-Meteo',
     earnedToday: '今日已赚', offworkCountdown: '下班倒计时', todayKicker: 'TODAY', myTodos: '我的待办',
     addTodo: '新建待办', pendingFilter: '待处理', allFilter: '全部', doneFilter: '已完成', nextReminder: '最近提醒',
@@ -12,17 +12,23 @@ const translations = {
     localOnly: '仅保存在本机', salaryPlaceholder: '例如 15000', salaryWorkdays: '月计薪天数', weatherCity: '天气城市',
     weatherPlaceholder: '例如：上海、杭州、Shenzhen', workdays: '工作日', language: '界面语言', followSystem: '跟随系统',
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
+    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', currency: '货币符号', compactTodos: '未完成待办',
+    showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱',
+    updates: '应用更新', autoUpdateHint: '每天自动检查一次', updateIdle: '可手动检查 GitHub Releases 中的新版本',
+    checkUpdates: '检查更新', checkingUpdates: '正在检查更新…', latestVersion: '已是最新版 v{version}',
+    updateAvailable: '发现新版本 v{version}', downloadUpdate: '下载更新', openRelease: '查看发布页',
+    updateAsset: '{name} · {size}', updateCheckFailed: '检查更新失败', noReleaseNotes: '本次更新暂无说明。',
     reminderDue: '待办到时间了', clickStop: '点击停止', stopReminder: '停止提醒闪烁', reminderDate: '提醒日期',
     reminderTime: '提醒时间', compactTitle: '切换精简模式', expandTitle: '展开完整面板', pinTitle: '让窗口保持在其他窗口前面',
     pending: '待办', emptyDoneTitle: '还没有已完成事项', emptyDoneText: '完成一个目标，再回来看看',
     emptyPendingTitle: '今天很轻盈', emptyPendingText: '点击「新建待办」记下一件事', noDue: '无提醒',
     restoreTodo: '恢复待办', completeTodo: '完成待办', edit: '编辑', delete: '删除', today: '今天',
     working: '工作中', restDay: '休息日', restWell: '好好休息', waiting: '等待开工', finished: '今日收工', offWork: '已下班',
-    dailyLimit: '今日上限 ¥{amount}', salaryPrompt: '在设置中填写月薪', chooseTime: '请选择具体提醒时间',
+    dailyLimit: '今日上限 {currency}{amount}', salaryPrompt: '在设置中填写月薪', chooseTime: '请选择具体提醒时间',
     chooseDate: '请选择提醒日期', todoUpdated: '待办已更新', todoAdded: '待办已添加', chooseWorkday: '请至少选择一个工作日',
     settingsSaved: '工作、天气与语言设置已保存', compactOn: '已切换到精简模式', compactOff: '已展开完整面板',
-    timeToTodo: '该处理待办啦', weatherUpdating: '天气更新中', currentWeather: '当前天气', weatherUnavailable: '天气暂不可用',
+    timeToTodo: '该处理待办啦', weatherUpdating: '天气更新中', currentWeather: '当前天气', weatherUnavailable: '天气暂不可用', weatherCached: '离线缓存',
     notificationTest: '提醒功能测试', notificationSent: '系统提醒已发送', operationFailed: '操作失败',
     focusMode: '专注模式', focusHint: '选择一段不被打扰的时间，结束后提醒你休息。', focusing: '专注中',
     startFocus: '开始专注', stopFocus: '结束专注', focusStarted: '已开始 {minutes} 分钟专注', focusStopped: '本次专注已结束',
@@ -30,7 +36,7 @@ const translations = {
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
-    appName: 'Workday Island', compact: 'Compact', expand: 'Expand', pin: 'Pin', settings: 'Settings', about: 'About',
+    appName: 'Workday Island', compact: 'Compact', expand: 'Expand', pin: 'Pin', settings: 'Settings', about: 'About', minimize: 'Minimize', closeApp: 'Quit', windowControls: 'Window controls',
     overview: 'Workday overview', earningEstimate: 'Estimated from salary, paid days, and today’s progress', weatherData: 'Weather data: Open-Meteo',
     earnedToday: 'EARNED TODAY', offworkCountdown: 'OFF-WORK COUNTDOWN', todayKicker: 'TODAY', myTodos: 'My Todos',
     addTodo: 'New Todo', pendingFilter: 'Pending', allFilter: 'All', doneFilter: 'Completed', nextReminder: 'Next Reminder',
@@ -42,17 +48,23 @@ const translations = {
     localOnly: 'Stored locally', salaryPlaceholder: 'e.g. 15000', salaryWorkdays: 'Paid days / month', weatherCity: 'Weather city',
     weatherPlaceholder: 'e.g. Shanghai, Hangzhou, Shenzhen', workdays: 'Workdays', language: 'Language', followSystem: 'Follow system',
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
+    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', currency: 'Currency symbol', compactTodos: 'Pending todos',
+    showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email',
+    updates: 'App updates', autoUpdateHint: 'Checked automatically once a day', updateIdle: 'Check GitHub Releases for a newer version',
+    checkUpdates: 'Check for Updates', checkingUpdates: 'Checking for updates…', latestVersion: 'You’re up to date — v{version}',
+    updateAvailable: 'Version v{version} is available', downloadUpdate: 'Download Update', openRelease: 'View Release',
+    updateAsset: '{name} · {size}', updateCheckFailed: 'Unable to check for updates', noReleaseNotes: 'No release notes were provided.',
     reminderDue: 'A TODO IS DUE', clickStop: 'Click to stop', stopReminder: 'Stop reminder flashing', reminderDate: 'Reminder date',
     reminderTime: 'Reminder time', compactTitle: 'Switch to compact mode', expandTitle: 'Expand the full panel', pinTitle: 'Keep this window above other windows',
     pending: 'todos', emptyDoneTitle: 'Nothing completed yet', emptyDoneText: 'Finish a goal, then come back here',
     emptyPendingTitle: 'A light day so far', emptyPendingText: 'Click “New Todo” to capture something', noDue: 'No reminder',
     restoreTodo: 'Restore todo', completeTodo: 'Complete todo', edit: 'Edit', delete: 'Delete', today: 'Today',
     working: 'Working', restDay: 'Rest day', restWell: 'Enjoy your day', waiting: 'Starts in', finished: 'Finished', offWork: 'Off work',
-    dailyLimit: 'Daily limit ¥{amount}', salaryPrompt: 'Add your monthly salary in Settings', chooseTime: 'Choose a reminder time',
+    dailyLimit: 'Daily limit {currency}{amount}', salaryPrompt: 'Add your monthly salary in Settings', chooseTime: 'Choose a reminder time',
     chooseDate: 'Choose a reminder date', todoUpdated: 'Todo updated', todoAdded: 'Todo added', chooseWorkday: 'Select at least one workday',
     settingsSaved: 'Work, weather, and language settings saved', compactOn: 'Compact mode enabled', compactOff: 'Full panel restored',
-    timeToTodo: 'Time to handle this todo', weatherUpdating: 'Updating weather', currentWeather: 'Current weather', weatherUnavailable: 'Weather unavailable',
+    timeToTodo: 'Time to handle this todo', weatherUpdating: 'Updating weather', currentWeather: 'Current weather', weatherUnavailable: 'Weather unavailable', weatherCached: 'Offline cache',
     notificationTest: 'Reminder test', notificationSent: 'System reminder sent', operationFailed: 'Operation failed',
     focusMode: 'Focus Mode', focusHint: 'Choose an uninterrupted block. We’ll remind you to rest when it ends.', focusing: 'Focusing',
     startFocus: 'Start Focus', stopFocus: 'End Focus', focusStarted: '{minutes}-minute focus started', focusStopped: 'Focus session ended',
@@ -63,8 +75,8 @@ const translations = {
 
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, weatherCity: '上海', language: 'system' },
-  appInfo: {name: 'Workday Island', version: '0.5.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system' },
+  appInfo: {name: 'Workday Island', version: '0.6.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending'
@@ -77,6 +89,10 @@ let lastReminderSequence = 0;
 let reminderSoundTimer = 0;
 let reminderAudioContext = null;
 let selectedFocusMinutes = 50;
+let compactResizeTimer = 0;
+let availableUpdate = null;
+let updateCheckResult = null;
+const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -105,6 +121,16 @@ function applyTranslations() {
   $('#open-settings').title = t('settings');
   $('#open-about').setAttribute('aria-label', t('about'));
   $('#open-about').title = t('about');
+  ['#minimize-window', '#compact-minimize'].forEach(selector => {
+    $(selector).setAttribute('aria-label', t('minimize'));
+    $(selector).title = t('minimize');
+  });
+  $('#compact-expand').setAttribute('aria-label', t('expandTitle'));
+  $('#compact-expand').title = t('expandTitle');
+  $('#compact-window-controls').setAttribute('aria-label', t('windowControls'));
+  $('#compact-todos').setAttribute('aria-label', t('compactTodos'));
+  $('#close-window').setAttribute('aria-label', t('closeApp'));
+  $('#close-window').title = t('closeApp');
   $('.pin-control').title = t('pinTitle');
   $('#todo-due-date').setAttribute('aria-label', t('reminderDate'));
   $('#todo-due-time').setAttribute('aria-label', t('reminderTime'));
@@ -116,6 +142,7 @@ function applyTranslations() {
   $('#app-version-badge').textContent = `v${state.appInfo.version}`;
   $('#about-version').textContent = state.appInfo.version;
   $('#email-author strong').textContent = state.appInfo.email;
+  if (updateCheckResult) renderUpdateInfo(updateCheckResult);
 }
 
 async function boot() {
@@ -125,6 +152,7 @@ async function boot() {
     state.settings = {...state.settings, ...(loaded.settings ?? {})};
     state.focus = {...state.focus, ...(loaded.focus ?? {})};
     state.appInfo = {...state.appInfo, ...(appInfo ?? {})};
+    applyTheme();
     bindEvents();
     applyTranslations();
     renderAll();
@@ -133,6 +161,7 @@ async function boot() {
     setInterval(refreshWeather, 20 * 60 * 1000);
     checkActiveReminder();
     setInterval(checkActiveReminder, 700);
+    checkForUpdates(false);
     window.runtime?.EventsOn?.('reminder:due', payload => {
       const alert = payload?.todo ? payload : {todo: payload, sequence: 0};
       if (alert.sequence) lastReminderSequence = alert.sequence;
@@ -154,6 +183,12 @@ function bindEvents() {
     if (window.runtime?.BrowserOpenURL) window.runtime.BrowserOpenURL(url); else window.location.href = url;
   });
   $('#compact-toggle').addEventListener('click', toggleCompactMode);
+  $('#compact-expand').addEventListener('click', toggleCompactMode);
+  $('#minimize-window').addEventListener('click', minimiseWindow);
+  $('#compact-minimize').addEventListener('click', minimiseWindow);
+  $('#close-window').addEventListener('click', quitApp);
+  $('#check-update').addEventListener('click', () => checkForUpdates(true));
+  $('#download-update').addEventListener('click', openUpdateDownload);
   $$('.focus-presets button').forEach(button => button.addEventListener('click', () => selectFocusDuration(Number(button.dataset.minutes))));
   $('#start-focus').addEventListener('click', startFocus);
   $('#stop-focus').addEventListener('click', stopFocus);
@@ -184,7 +219,89 @@ function bindEvents() {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
   });
   $('#todo-list').addEventListener('click', handleTodoAction);
-  window.addEventListener('resize', updateCompactScale);
+  window.addEventListener('resize', handleWindowResize);
+  systemTheme?.addEventListener?.('change', () => { if (state.settings.theme === 'system') applyTheme(); });
+}
+
+function handleWindowResize() {
+  updateCompactScale();
+  if (!state.settings.compactMode || !hasNativeAPI) return;
+  window.clearTimeout(compactResizeTimer);
+  compactResizeTimer = window.setTimeout(async () => {
+    if (!state.settings.compactMode) return;
+    state.settings.compactWidth = Math.max(400, Math.min(900, Math.round(window.innerWidth)));
+    state.settings.compactHeight = Math.max(270, Math.min(600, Math.round(window.innerHeight)));
+    try {
+      state.settings = {...state.settings, ...(await api.SaveSettings(state.settings))};
+    } catch (_) { /* The next compact exit also persists the native window size. */ }
+  }, 450);
+}
+
+function minimiseWindow() {
+  if (api.MinimiseWindow) api.MinimiseWindow();
+  else window.runtime?.WindowMinimise?.();
+}
+
+function quitApp() {
+  if (api.QuitApp) api.QuitApp();
+  else window.close();
+}
+
+async function checkForUpdates(force) {
+  const status = $('#update-status');
+  const checkButton = $('#check-update');
+  if (force) {
+    status.textContent = t('checkingUpdates');
+    checkButton.disabled = true;
+  }
+  try {
+    const info = await api.CheckForUpdates(force);
+    if (info?.skipped) return;
+    updateCheckResult = info;
+    availableUpdate = info?.available ? info : null;
+    renderUpdateInfo(info);
+    if (info?.available && !force) {
+      openModal('about-modal');
+      showToast(t('updateAvailable', {version: info.latestVersion}));
+    }
+  } catch (error) {
+    if (force) {
+      status.textContent = `${t('updateCheckFailed')}：${readError(error)}`;
+      showToast(t('updateCheckFailed'), true);
+    }
+  } finally {
+    if (force) checkButton.disabled = false;
+  }
+}
+
+function renderUpdateInfo(info) {
+  const current = info?.currentVersion || state.appInfo.version;
+  const latest = info?.latestVersion || current;
+  $('#update-version-chip').textContent = `v${info?.available ? latest : current}`;
+  $('#update-status').textContent = info?.available
+    ? t('updateAvailable', {version: latest})
+    : t('latestVersion', {version: current});
+  const details = $('#update-details');
+  details.classList.toggle('hidden', !info?.available);
+  const downloadButton = $('#download-update');
+  downloadButton.classList.toggle('hidden', !info?.available);
+  downloadButton.textContent = info?.downloadURL ? t('downloadUpdate') : t('openRelease');
+  if (!info?.available) return;
+  const notes = String(info.releaseNotes || t('noReleaseNotes'));
+  $('#update-notes').textContent = notes.length > 1600 ? `${notes.slice(0, 1600)}…` : notes;
+  $('#update-asset').textContent = info.assetName
+    ? t('updateAsset', {name: info.assetName, size: formatBytes(info.assetSize)})
+    : '';
+}
+
+async function openUpdateDownload() {
+  const target = availableUpdate?.downloadURL || availableUpdate?.releaseURL;
+  if (!target) return;
+  try {
+    await api.OpenUpdateURL(target);
+  } catch (error) {
+    showToast(readError(error), true);
+  }
 }
 
 async function refresh() {
@@ -200,6 +317,7 @@ function renderAll() {
   $('#always-on-top').checked = state.settings.alwaysOnTop;
   applyCompactUI();
   renderTodos();
+  renderCompactTodos();
   renderSummary();
   updateClock();
 }
@@ -223,6 +341,20 @@ function renderTodos() {
       <div class="todo-main"><div class="todo-title">${escapeHTML(todo.title)}</div><div class="todo-meta"><span class="${overdue ? 'overdue' : ''}">${due ? '◷ ' : ''}${dueText}</span>${todo.note ? `<span>· ${escapeHTML(todo.note)}</span>` : ''}</div></div>
       <div class="todo-actions"><button class="tiny-btn" data-action="edit">${t('edit')}</button><button class="tiny-btn" data-action="delete">${t('delete')}</button></div>
     </div>`;
+  }).join('');
+}
+
+function renderCompactTodos() {
+  const pending = sortedTodos().filter(todo => !todo.completed);
+  $('#compact-todo-count').textContent = pending.length;
+  const list = $('#compact-todo-list');
+  if (!pending.length) {
+    list.innerHTML = `<div class="compact-todo-empty">${t('noCompactTodos')}</div>`;
+    return;
+  }
+  list.innerHTML = pending.slice(0, 3).map(todo => {
+    const due = todo.dueAt ? formatDue(new Date(todo.dueAt)) : t('noDue');
+    return `<div class="compact-todo-item"><span></span><strong>${escapeHTML(todo.title)}</strong><time>${escapeHTML(due)}</time></div>`;
   }).join('');
 }
 
@@ -276,8 +408,9 @@ function updateClock() {
   document.body.classList.toggle('no-salary', monthlySalary <= 0);
   const dailySalary = monthlySalary / salaryWorkdays;
   const earned = isWorkday ? dailySalary * progress / 100 : 0;
-  $('#earned-amount').textContent = `¥${formatMoney(earned)}`;
-  $('#earning-caption').textContent = t('dailyLimit', {amount: formatMoney(dailySalary)});
+  const currency = state.settings.currency || '¥';
+  $('#earned-amount').textContent = `${currency}${formatMoney(earned)}`;
+  $('#earning-caption').textContent = t('dailyLimit', {currency, amount: formatMoney(dailySalary)});
   renderFocus(now);
 }
 
@@ -309,6 +442,7 @@ function renderFocus(now = new Date()) {
   $('#focus-idle').classList.toggle('hidden', active);
   $('#focus-active').classList.toggle('hidden', !active);
   $('#focus-mini').classList.toggle('active', active);
+  $('#compact-focus-mini').classList.toggle('active', active);
   document.body.classList.toggle('focus-running', active);
   if (!active) return;
   const remaining = Math.max(0, endsAt.getTime() - now.getTime());
@@ -318,6 +452,7 @@ function renderFocus(now = new Date()) {
   const value = formatFocusDuration(remaining);
   $('#focus-time').textContent = value;
   $('#focus-mini-time').textContent = value;
+  $('#compact-focus-time').textContent = value;
   $('#focus-progress').style.width = `${progress}%`;
   const endTime = endsAt.toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit', hour12:false});
   $('#focus-end-time').textContent = t('focusEndsAt', {time: endTime});
@@ -343,7 +478,7 @@ function openTodoModal(todo = null) {
   $('#todo-title').value = todo?.title ?? '';
   $('#todo-note').value = todo?.note ?? '';
   const due = todo?.dueAt ? new Date(todo.dueAt) : null;
-  $('#todo-due-date').value = due ? toLocalDate(due) : '';
+  $('#todo-due-date').value = due ? toLocalDate(due) : toLocalDate(new Date());
   $('#todo-due-time').value = due ? toLocalTime(due) : '';
   openModal('todo-modal');
   setTimeout(() => $('#todo-title').focus(), 50);
@@ -354,7 +489,6 @@ async function submitTodo(event) {
   const id = $('#editing-id').value;
   const dueDate = $('#todo-due-date').value;
   const dueTime = $('#todo-due-time').value;
-  if (dueDate && !dueTime) { showToast(t('chooseTime'), true); return; }
   if (!dueDate && dueTime) { showToast(t('chooseDate'), true); return; }
   const localDue = dueDate && dueTime ? `${dueDate}T${dueTime}` : '';
   const input = {title: $('#todo-title').value, note: $('#todo-note').value, dueAt: localDue ? new Date(localDue).toISOString() : ''};
@@ -373,6 +507,9 @@ function openSettings() {
   $('#salary-workdays').value = state.settings.salaryWorkdays || 21.75;
   $('#weather-city-input').value = state.settings.weatherCity || '上海';
   $('#language-select').value = state.settings.language || 'system';
+  $('#theme-select').value = state.settings.theme || 'system';
+  $('#currency-symbol').value = state.settings.currency || '¥';
+  $('#show-compact-todos').checked = Boolean(state.settings.showCompactTodos);
   $('#settings-top').checked = state.settings.alwaysOnTop;
   $('#weekday-picker').innerHTML = t('weekdays').map((name, i) => `<button type="button" class="weekday ${state.settings.workdays.includes(i+1) ? 'active' : ''}" data-day="${i+1}">${name}</button>`).join('');
   $$('.weekday').forEach(button => button.addEventListener('click', () => button.classList.toggle('active')));
@@ -391,8 +528,13 @@ async function submitSettings(event) {
     workdays,
     monthlySalary: Number($('#monthly-salary').value) || 0,
     salaryWorkdays: Number($('#salary-workdays').value) || 21.75,
+    currency: $('#currency-symbol').value.trim() || '¥',
     weatherCity: $('#weather-city-input').value.trim() || '上海',
-    language: $('#language-select').value
+    language: $('#language-select').value,
+    theme: $('#theme-select').value,
+    showCompactTodos: $('#show-compact-todos').checked,
+    compactWidth: state.settings.compactWidth || 520,
+    compactHeight: state.settings.compactHeight || 350
   };
   try {
     await saveSettings();
@@ -404,6 +546,7 @@ async function submitSettings(event) {
 
 async function saveSettings() {
   state.settings = {...state.settings, ...(await api.SaveSettings(state.settings))};
+  applyTheme();
   applyTranslations();
   renderAll();
 }
@@ -420,10 +563,20 @@ async function toggleCompactMode() {
 function applyCompactUI() {
   const compact = Boolean(state.settings.compactMode);
   document.body.classList.toggle('compact', compact);
+  document.body.classList.toggle('show-compact-todos', compact && Boolean(state.settings.showCompactTodos));
   updateCompactScale();
   $('#compact-label').textContent = compact ? t('expand') : t('compact');
   $('#compact-toggle').title = compact ? t('expandTitle') : t('compactTitle');
   $('#compact-toggle').setAttribute('aria-label', $('#compact-toggle').title);
+}
+
+function applyTheme() {
+  const requested = state.settings.theme || 'system';
+  const resolved = requested === 'system' ? (systemTheme?.matches ? 'light' : 'dark') : requested;
+  document.documentElement.dataset.theme = resolved;
+  document.documentElement.style.colorScheme = resolved;
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : '#0b101b';
 }
 
 function updateCompactScale() {
@@ -507,12 +660,19 @@ async function refreshWeather(force = false) {
     state.weather = weather;
     $('#weather-icon').textContent = weather.icon || '🌡️';
     $('#weather-temp').textContent = `${Math.round(weather.temperature)}°`;
-    $('#weather-desc').textContent = weatherLabel(weather.weatherCode) || weather.description || t('currentWeather');
+    const label = weatherLabel(weather.weatherCode) || weather.description || t('currentWeather');
+    $('#weather-desc').textContent = weather.stale ? `${label} · ${t('weatherCached')}` : label;
     $('#weather-city').textContent = weather.city || city;
+    $('.weather-card').title = weather.stale && weather.error ? `${t('weatherData')}\n${weather.error}` : t('weatherData');
   } catch (error) {
-    $('#weather-icon').textContent = '🌡️';
-    $('#weather-temp').textContent = '--°';
-    $('#weather-desc').textContent = t('weatherUnavailable');
+    if (state.weather) {
+      $('#weather-desc').textContent = `${weatherLabel(state.weather.weatherCode) || state.weather.description || t('currentWeather')} · ${t('weatherCached')}`;
+    } else {
+      $('#weather-icon').textContent = '🌡️';
+      $('#weather-temp').textContent = '--°';
+      $('#weather-desc').textContent = t('weatherUnavailable');
+    }
+    $('.weather-card').title = `${t('weatherData')}\n${readError(error)}`;
   }
 }
 
@@ -531,6 +691,7 @@ function clockOnDate(date, value) { const [hour, minute] = value.split(':').map(
 function formatDuration(ms) { const seconds = Math.max(0, Math.floor(ms/1000)); return [Math.floor(seconds/3600), Math.floor((seconds%3600)/60), seconds%60].map(value => String(value).padStart(2,'0')).join(':'); }
 function formatFocusDuration(ms) { const seconds = Math.max(0, Math.ceil(ms/1000)); return `${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`; }
 function formatMoney(value) { return Number(value || 0).toLocaleString(locale(),{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function formatBytes(value) { const bytes = Number(value) || 0; if (!bytes) return '—'; const megabytes = bytes / 1024 / 1024; return `${megabytes.toLocaleString(locale(),{minimumFractionDigits:1,maximumFractionDigits:1})} MB`; }
 function formatDue(date) { const today = new Date(); const same = date.toDateString() === today.toDateString(); const time = date.toLocaleTimeString(locale(),{hour:'2-digit',minute:'2-digit',hour12:false}); return same ? `${t('today')} ${time}` : date.toLocaleString(locale(),{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}); }
 function toLocalDate(date) { const local = new Date(date.getTime() - date.getTimezoneOffset()*60000); return local.toISOString().slice(0,10); }
 function toLocalTime(date) { return `${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`; }
@@ -556,11 +717,15 @@ function createPreviewAPI() {
     async StopFocus(){ previewState.focus={...previewState.focus,active:false,completedAt:null}; return structuredClone(previewState.focus); },
     async SaveSettings(settings){ previewState.settings={...settings}; return structuredClone(settings); },
     async SetCompactMode(compact){ previewState.settings.compactMode=compact; return structuredClone(previewState.settings); },
-    async GetWeather(city){ return {city,temperature:23.6,apparentTemperature:24.1,weatherCode:2,description:'多云',icon:'⛅',updatedAt:new Date().toISOString()}; },
+    async GetWeather(city){ return {queryCity:city,city,temperature:23.6,apparentTemperature:24.1,weatherCode:2,description:'多云',icon:'⛅',updatedAt:new Date().toISOString(),stale:false}; },
     async GetActiveReminder(){ return null; },
     async AcknowledgeReminder(){ return true; },
     async PlayReminderSound(){ return true; },
-    async TestNotification(){ return true; }
+    async TestNotification(){ return true; },
+    async MinimiseWindow(){ return true; },
+    async QuitApp(){ return true; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.6.0',latestVersion:'0.6.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.6.1/Workday-Island-v0.6.1-macOS-universal.dmg',assetName:'Workday-Island-v0.6.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增在线更新检查。\nAdded online update checking.'} : {currentVersion:'0.6.0',skipped:true}; },
+    async OpenUpdateURL(){ return true; }
   };
 }
 

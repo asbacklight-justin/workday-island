@@ -25,7 +25,11 @@ func NewStore(path string) *Store {
 }
 
 func defaultSettings() Settings {
-	return Settings{AlwaysOnTop: true, WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5}, SalaryWorkdays: 21.75, WeatherCity: "上海", Language: "system"}
+	return Settings{
+		AlwaysOnTop: true, CompactWidth: 520, CompactHeight: 350,
+		WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5},
+		SalaryWorkdays: 21.75, Currency: "¥", WeatherCity: "上海", Language: "system", Theme: "system",
+	}
 }
 
 func (s *Store) Load() error {
@@ -143,6 +147,50 @@ func (s *Store) SaveSettings(settings Settings) (Settings, error) {
 	return settings, err
 }
 
+func (s *Store) SaveWeather(weather Weather) error {
+	weather.Stale = false
+	weather.Error = ""
+	s.mu.Lock()
+	s.state.LastWeather = &weather
+	err := s.saveLocked()
+	s.mu.Unlock()
+	return err
+}
+
+func (s *Store) CachedWeather(city string) (Weather, bool) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.state.LastWeather == nil {
+		return Weather{}, false
+	}
+	lookup := s.state.LastWeather.QueryCity
+	if lookup == "" {
+		lookup = s.state.LastWeather.City
+	}
+	if !strings.EqualFold(strings.TrimSpace(lookup), strings.TrimSpace(city)) {
+		return Weather{}, false
+	}
+	return *s.state.LastWeather, true
+}
+
+func (s *Store) LastUpdateCheck() *time.Time {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.state.LastUpdateCheckAt == nil {
+		return nil
+	}
+	value := *s.state.LastUpdateCheckAt
+	return &value
+}
+
+func (s *Store) MarkUpdateChecked(at time.Time) error {
+	s.mu.Lock()
+	s.state.LastUpdateCheckAt = &at
+	err := s.saveLocked()
+	s.mu.Unlock()
+	return err
+}
+
 func (s *Store) StartFocus(minutes int, now time.Time) (FocusSession, error) {
 	if minutes < 1 || minutes > 180 {
 		return FocusSession{}, errors.New("专注时长需要在 1 到 180 分钟之间")
@@ -231,6 +279,19 @@ func normaliseSettings(settings Settings) Settings {
 	if settings.SalaryWorkdays <= 0 || settings.SalaryWorkdays > 31 {
 		settings.SalaryWorkdays = 21.75
 	}
+	settings.Currency = strings.TrimSpace(settings.Currency)
+	if settings.Currency == "" {
+		settings.Currency = "¥"
+	}
+	if len([]rune(settings.Currency)) > 8 {
+		settings.Currency = string([]rune(settings.Currency)[:8])
+	}
+	if settings.CompactWidth < 400 || settings.CompactWidth > 900 {
+		settings.CompactWidth = 520
+	}
+	if settings.CompactHeight < 270 || settings.CompactHeight > 600 {
+		settings.CompactHeight = 350
+	}
 	settings.WeatherCity = strings.TrimSpace(settings.WeatherCity)
 	if settings.WeatherCity == "" {
 		settings.WeatherCity = "上海"
@@ -240,6 +301,9 @@ func normaliseSettings(settings Settings) Settings {
 	}
 	if settings.Language != "zh" && settings.Language != "en" && settings.Language != "system" {
 		settings.Language = "system"
+	}
+	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "system" {
+		settings.Theme = "system"
 	}
 	seen := map[int]bool{}
 	var workdays []int
@@ -303,6 +367,14 @@ func cloneState(state State) State {
 	if state.Focus.CompletedAt != nil {
 		value := *state.Focus.CompletedAt
 		copyState.Focus.CompletedAt = &value
+	}
+	if state.LastWeather != nil {
+		value := *state.LastWeather
+		copyState.LastWeather = &value
+	}
+	if state.LastUpdateCheckAt != nil {
+		value := *state.LastUpdateCheckAt
+		copyState.LastUpdateCheckAt = &value
 	}
 	return copyState
 }
