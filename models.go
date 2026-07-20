@@ -14,21 +14,28 @@ type Todo struct {
 }
 
 type Settings struct {
-	AlwaysOnTop    bool    `json:"alwaysOnTop"`
-	CompactMode    bool    `json:"compactMode"`
-	WorkStart      string  `json:"workStart"`
-	WorkEnd        string  `json:"workEnd"`
-	Workdays       []int   `json:"workdays"`
-	MonthlySalary  float64 `json:"monthlySalary"`
-	SalaryWorkdays float64 `json:"salaryWorkdays"`
-	WeatherCity    string  `json:"weatherCity"`
-	Language       string  `json:"language"`
+	AlwaysOnTop      bool    `json:"alwaysOnTop"`
+	CompactMode      bool    `json:"compactMode"`
+	ShowCompactTodos bool    `json:"showCompactTodos"`
+	CompactWidth     int     `json:"compactWidth"`
+	CompactHeight    int     `json:"compactHeight"`
+	WorkStart        string  `json:"workStart"`
+	WorkEnd          string  `json:"workEnd"`
+	Workdays         []int   `json:"workdays"`
+	MonthlySalary    float64 `json:"monthlySalary"`
+	SalaryWorkdays   float64 `json:"salaryWorkdays"`
+	Currency         string  `json:"currency"`
+	WeatherCity      string  `json:"weatherCity"`
+	Language         string  `json:"language"`
+	Theme            string  `json:"theme"`
 }
 
 type State struct {
-	Todos    []Todo       `json:"todos"`
-	Settings Settings     `json:"settings"`
-	Focus    FocusSession `json:"focus"`
+	Todos             []Todo       `json:"todos"`
+	Settings          Settings     `json:"settings"`
+	Focus             FocusSession `json:"focus"`
+	LastWeather       *Weather     `json:"lastWeather,omitempty"`
+	LastUpdateCheckAt *time.Time   `json:"lastUpdateCheckAt,omitempty"`
 }
 
 type FocusSession struct {
@@ -53,6 +60,7 @@ type ReminderAlert struct {
 }
 
 type Weather struct {
+	QueryCity           string    `json:"queryCity,omitempty"`
 	City                string    `json:"city"`
 	Temperature         float64   `json:"temperature"`
 	ApparentTemperature float64   `json:"apparentTemperature"`
@@ -60,6 +68,8 @@ type Weather struct {
 	Description         string    `json:"description"`
 	Icon                string    `json:"icon"`
 	UpdatedAt           time.Time `json:"updatedAt"`
+	Stale               bool      `json:"stale,omitempty"`
+	Error               string    `json:"error,omitempty"`
 }
 
 type AppInfo struct {
@@ -68,4 +78,18 @@ type AppInfo struct {
 	Author      string `json:"author"`
 	Email       string `json:"email"`
 	Description string `json:"description"`
+}
+
+type UpdateInfo struct {
+	CurrentVersion string    `json:"currentVersion"`
+	LatestVersion  string    `json:"latestVersion"`
+	Available      bool      `json:"available"`
+	Skipped        bool      `json:"skipped"`
+	ReleaseURL     string    `json:"releaseURL"`
+	DownloadURL    string    `json:"downloadURL,omitempty"`
+	AssetName      string    `json:"assetName,omitempty"`
+	AssetSize      int64     `json:"assetSize,omitempty"`
+	Digest         string    `json:"digest,omitempty"`
+	ReleaseNotes   string    `json:"releaseNotes,omitempty"`
+	PublishedAt    time.Time `json:"publishedAt,omitempty"`
 }

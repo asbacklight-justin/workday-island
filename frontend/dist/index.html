@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=6">
+  <link rel="stylesheet" href="./style.css?v=13">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,13 +18,15 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.5.0</span>
+        <span id="app-version-badge" class="version-badge">v0.6.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
         <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
           <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
         </button>
+        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><span>−</span></button>
+        <button id="close-window" class="icon-btn close-window-btn" aria-label="关闭应用" title="关闭应用"><span>×</span></button>
         <label class="pin-control" title="让窗口保持在其他窗口前面">
           <input id="always-on-top" type="checkbox" checked>
           <span class="switch"><span></span></span>
@@ -36,6 +38,14 @@
         <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
       </div>
     </header>
+
+    <div id="compact-window-controls" class="compact-window-controls no-drag" aria-label="窗口控制">
+      <div id="compact-focus-mini" class="compact-focus-mini" aria-live="polite"><span></span><strong id="compact-focus-time">50:00</strong></div>
+      <button id="compact-minimize" class="compact-window-btn" aria-label="最小化" title="最小化"><span>−</span></button>
+      <button id="compact-expand" class="compact-window-btn" aria-label="展开完整面板" title="展开完整面板">
+        <svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg>
+      </button>
+    </div>
 
     <main>
       <section class="island-grid" aria-label="工作日概览">
@@ -68,6 +78,11 @@
           <div id="weather-desc" class="weather-desc">天气加载中</div>
           <div class="weather-footer"><span id="weather-city">上海</span><span><b id="pending-count">0</b> <span data-i18n="pending">待办</span></span></div>
         </article>
+      </section>
+
+      <section id="compact-todos" class="compact-todos" aria-label="未完成待办">
+        <div class="compact-todos-head"><span data-i18n="compactTodos">未完成待办</span><b id="compact-todo-count">0</b></div>
+        <div id="compact-todo-list" class="compact-todo-list"></div>
       </section>
 
       <section class="workspace">
@@ -144,6 +159,11 @@
       <label class="field"><span data-i18n="weatherCity">天气城市</span><input id="weather-city-input" maxlength="60" placeholder="例如：上海、杭州、Shenzhen" data-i18n-placeholder="weatherPlaceholder"></label>
       <label class="field"><span data-i18n="workdays">工作日</span><div id="weekday-picker" class="weekday-picker"></div></label>
       <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
+      <div class="field-grid preference-grid">
+        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option></select></label>
+        <label class="field"><span data-i18n="currency">货币符号</span><input id="currency-symbol" maxlength="8" placeholder="¥ / $ / €"></label>
+      </div>
+      <label class="setting-row"><div><strong data-i18n="showCompactTodos">精简模式展示待办</strong><p data-i18n="showCompactTodosDesc">在核心面板下方展示未完成事项</p></div><input id="show-compact-todos" type="checkbox"><span class="switch"><span></span></span></label>
       <label class="setting-row"><div><strong data-i18n="keepOnTop">窗口保持置顶</strong><p data-i18n="keepOnTopDesc">让倒计时和待办始终触手可及</p></div><input id="settings-top" type="checkbox"><span class="switch"><span></span></span></label>
       <div class="modal-actions"><button type="button" class="text-btn" data-close="settings-modal" data-i18n="cancel">取消</button><button type="submit" class="primary-btn" data-i18n="saveSettings">保存设置</button></div>
     </form>
@@ -155,15 +175,27 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.5.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.6.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
+      <section class="update-box" aria-labelledby="update-heading">
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.6.0</span></div>
+        <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
+        <div id="update-details" class="update-details hidden">
+          <pre id="update-notes"></pre>
+          <div id="update-asset" class="update-asset"></div>
+        </div>
+        <div class="update-actions">
+          <button id="check-update" type="button" class="ghost-btn" data-i18n="checkUpdates">检查更新</button>
+          <button id="download-update" type="button" class="primary-btn hidden" data-i18n="downloadUpdate">下载更新</button>
+        </div>
+      </section>
     </section>
   </div>
   <button id="reminder-alert" class="reminder-alert" aria-label="停止提醒闪烁">
     <span id="alert-bell" class="alert-bell">!</span><span><small id="reminder-alert-kicker" data-i18n="reminderDue">待办到时间了</small><strong id="reminder-alert-title">该处理待办啦</strong></span><em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=9" type="module"></script>
+  <script src="./app.js?v=15" type="module"></script>
 </body>
 </html>

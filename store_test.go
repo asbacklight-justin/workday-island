@@ -17,7 +17,11 @@ func TestStorePersistsTodoAndSettings(t *testing.T) {
 	if todo.ID == "" || todo.DueAt == nil {
 		t.Fatalf("unexpected todo: %#v", todo)
 	}
-	_, err = store.SaveSettings(Settings{AlwaysOnTop: false, CompactMode: true, WorkStart: "08:30", WorkEnd: "17:45", Workdays: []int{1, 2, 3, 4, 5}})
+	_, err = store.SaveSettings(Settings{
+		AlwaysOnTop: false, CompactMode: true, ShowCompactTodos: true,
+		CompactWidth: 688, CompactHeight: 422, WorkStart: "08:30", WorkEnd: "17:45",
+		Workdays: []int{1, 2, 3, 4, 5}, Theme: "light", Currency: "$",
+	})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -28,6 +32,9 @@ func TestStorePersistsTodoAndSettings(t *testing.T) {
 	state := reloaded.Snapshot()
 	if len(state.Todos) != 1 || state.Settings.WorkEnd != "17:45" || !state.Settings.CompactMode {
 		t.Fatalf("state not persisted: %#v", state)
+	}
+	if !state.Settings.ShowCompactTodos || state.Settings.CompactWidth != 688 || state.Settings.CompactHeight != 422 || state.Settings.Theme != "light" || state.Settings.Currency != "$" {
+		t.Fatalf("new preferences not persisted: %#v", state.Settings)
 	}
 }
 
@@ -75,11 +82,45 @@ func TestFocusSessionPersistsAndCompletesOnce(t *testing.T) {
 
 func TestInvalidSettingsFallBack(t *testing.T) {
 	settings := normaliseSettings(Settings{WorkStart: "bad", WorkEnd: "25:00", Workdays: []int{9}})
-	if settings.WorkStart != "09:00" || settings.WorkEnd != "18:00" || len(settings.Workdays) != 5 || settings.SalaryWorkdays != 21.75 || settings.WeatherCity != "上海" || settings.Language != "system" {
+	if settings.WorkStart != "09:00" || settings.WorkEnd != "18:00" || len(settings.Workdays) != 5 || settings.SalaryWorkdays != 21.75 || settings.WeatherCity != "上海" || settings.Language != "system" || settings.Theme != "system" || settings.Currency != "¥" || settings.CompactWidth != 520 || settings.CompactHeight != 350 {
 		t.Fatalf("unexpected defaults: %#v", settings)
 	}
 	if got := normaliseSettings(Settings{Language: "en", Workdays: []int{1}}).Language; got != "en" {
 		t.Fatalf("language selection was not preserved: %q", got)
+	}
+}
+
+func TestWeatherCachePersistsWithoutTransientError(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "data.json")
+	store := NewStore(path)
+	weather := Weather{QueryCity: "上海", City: "上海", Temperature: 27, UpdatedAt: time.Now(), Stale: true, Error: "temporary"}
+	if err := store.SaveWeather(weather); err != nil {
+		t.Fatal(err)
+	}
+	reloaded := NewStore(path)
+	if err := reloaded.Load(); err != nil {
+		t.Fatal(err)
+	}
+	cached, ok := reloaded.CachedWeather("上海")
+	if !ok || cached.Temperature != 27 || cached.Stale || cached.Error != "" {
+		t.Fatalf("unexpected cached weather: %#v, %v", cached, ok)
+	}
+}
+
+func TestUpdateCheckTimePersists(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "data.json")
+	store := NewStore(path)
+	checkedAt := time.Now().Truncate(time.Second)
+	if err := store.MarkUpdateChecked(checkedAt); err != nil {
+		t.Fatal(err)
+	}
+	reloaded := NewStore(path)
+	if err := reloaded.Load(); err != nil {
+		t.Fatal(err)
+	}
+	last := reloaded.LastUpdateCheck()
+	if last == nil || !last.Equal(checkedAt) {
+		t.Fatalf("update check time not persisted: %#v", last)
 	}
 }
 

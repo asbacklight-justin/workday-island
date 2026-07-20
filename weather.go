@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-const (
+var (
 	geocodingEndpoint = "https://geocoding-api.open-meteo.com/v1/search"
 	forecastEndpoint  = "https://api.open-meteo.com/v1/forecast"
 )
@@ -41,20 +41,40 @@ func (a *App) GetWeather(city string) (Weather, error) {
 	}
 	a.weatherMu.Unlock()
 
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	location, err := a.lookupCity(ctx, city)
 	if err != nil {
-		return Weather{}, err
+		return a.weatherFallback(city, err)
 	}
 	weather, err := a.fetchWeather(ctx, location)
 	if err != nil {
-		return Weather{}, err
+		return a.weatherFallback(city, err)
 	}
+	weather.QueryCity = city
 	a.weatherMu.Lock()
 	a.weatherCache = weatherCache{city: city, weather: weather, expiresAt: time.Now().Add(20 * time.Minute)}
 	a.weatherMu.Unlock()
+	_ = a.store.SaveWeather(weather)
 	return weather, nil
+}
+
+func (a *App) weatherFallback(city string, cause error) (Weather, error) {
+	a.weatherMu.Lock()
+	if strings.EqualFold(a.weatherCache.city, city) && !a.weatherCache.weather.UpdatedAt.IsZero() {
+		cached := a.weatherCache.weather
+		a.weatherMu.Unlock()
+		cached.Stale = true
+		cached.Error = cause.Error()
+		return cached, nil
+	}
+	a.weatherMu.Unlock()
+	if cached, ok := a.store.CachedWeather(city); ok {
+		cached.Stale = true
+		cached.Error = cause.Error()
+		return cached, nil
+	}
+	return Weather{}, cause
 }
 
 type weatherLocation struct {
@@ -108,20 +128,42 @@ func (a *App) fetchWeather(ctx context.Context, location weatherLocation) (Weath
 }
 
 func (a *App) getJSON(ctx context.Context, target string, result interface{}) error {
-	request, err := http.NewRequestWithContext(ctx, http.MethodGet, target, nil)
-	if err != nil {
-		return err
+	var lastErr error
+	for attempt := 0; attempt < 3; attempt++ {
+		request, err := http.NewRequestWithContext(ctx, http.MethodGet, target, nil)
+		if err != nil {
+			return err
+		}
+		request.Header.Set("User-Agent", "Workday-Island/0.6")
+		request.Header.Set("Accept", "application/json")
+		response, err := a.httpClient.Do(request)
+		if err == nil {
+			if response.StatusCode >= 200 && response.StatusCode < 300 {
+				decodeErr := json.NewDecoder(io.LimitReader(response.Body, 1<<20)).Decode(result)
+				response.Body.Close()
+				return decodeErr
+			}
+			lastErr = fmt.Errorf("天气服务返回 HTTP %d", response.StatusCode)
+			retryable := response.StatusCode == http.StatusTooManyRequests || response.StatusCode >= 500
+			response.Body.Close()
+			if !retryable {
+				return lastErr
+			}
+		} else {
+			lastErr = err
+		}
+		if attempt < 2 {
+			delay := time.Duration(250+attempt*350) * time.Millisecond
+			timer := time.NewTimer(delay)
+			select {
+			case <-ctx.Done():
+				timer.Stop()
+				return ctx.Err()
+			case <-timer.C:
+			}
+		}
 	}
-	request.Header.Set("User-Agent", "Workday-Island/0.3")
-	response, err := a.httpClient.Do(request)
-	if err != nil {
-		return err
-	}
-	defer response.Body.Close()
-	if response.StatusCode < 200 || response.StatusCode >= 300 {
-		return fmt.Errorf("天气服务返回 HTTP %d", response.StatusCode)
-	}
-	return json.NewDecoder(io.LimitReader(response.Body, 1<<20)).Decode(result)
+	return lastErr
 }
 
 func describeWeather(code int) (string, string) {

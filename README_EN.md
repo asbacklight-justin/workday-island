@@ -12,22 +12,24 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.5.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.5.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.6.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.6.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
 ## Highlights
 
 - **Always on top:** Keep the dashboard, countdown, and todos within reach.
-- **Resizable compact mode:** A focused 2×2 card layout that scales proportionally from 400×270 to 900×600.
+- **Resizable compact mode:** A header-free 2×2 card layout that scales proportionally from 400×270 to 900×600, remembers its size, and can optionally show pending todos.
 - **Off-work countdown:** Configure work hours and workdays, then see remaining time and daily progress live.
-- **Earned today:** Estimate earnings from monthly salary, paid days, and today's progress. The card disappears when salary is empty or zero.
+- **Earned today:** Estimate earnings from monthly salary, paid days, and today's progress with a configurable currency symbol. The card disappears when salary is empty or zero.
 - **Todos and reminders:** Create, edit, complete, filter, and delete todos with separate reminder date and time controls.
 - **Persistent alerts:** A due reminder restores and raises the window, flashes multiple colours, and repeats a short sound until acknowledged.
 - **Focus mode:** Start 25, 50, or 90-minute sessions. Sessions persist locally and end with a foreground break reminder that continues until acknowledged.
-- **Weather:** Current conditions for a configurable city through Open-Meteo, with no API key required.
+- **Weather:** Current conditions through Open-Meteo, with automatic retries and a last-known local fallback when the network is unavailable.
+- **Light and dark themes:** Follow the system appearance or choose light/dark explicitly.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
+- **Online update checks:** Query GitHub Releases at most once per day, or check manually from About and open the matching platform package in one click.
 - **Local-first storage:** Settings, todos, and focus state stay on the device. No account or custom backend is required.
 
 ## Screenshots
@@ -59,7 +61,8 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 3. Enter a weather city. The city query is sent to Open-Meteo only when weather data is refreshed.
 4. Create a todo and optionally add a reminder date and time. Click the alert when it fires to stop the flashing and sound.
 5. Choose a 25, 50, or 90-minute focus session. When it ends, Workday Island keeps reminding you to take a break until you acknowledge it.
-6. Use **Compact** in the title bar to switch to the 2×2 window. Drag any edge to resize it.
+6. Use **Compact** to switch to the 2×2 window. Drag anywhere on its non-control surface to move it and drag an edge to resize it; the size is remembered.
+7. Choose **Check for Updates** in About. When a release is available, open the matching GitHub package; installation still requires user confirmation and never silently replaces the app.
 
 ## Stack and architecture
 
@@ -93,7 +96,7 @@ See the [build and release guide](docs/BUILD.md) for complete packaging instruct
 
 ## Privacy and network access
 
-Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather requests send the configured city name and resolved coordinates to Open-Meteo. The app has no account system, telemetry, advertising SDK, or first-party server. Read the full [privacy note](docs/PRIVACY.md).
+Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather uses Open-Meteo, and update checks use this project's GitHub Releases API. The app has no account system, telemetry, advertising SDK, or first-party server. Read the full [privacy note](docs/PRIVACY.md).
 
 ## Contributing
 
@@ -116,7 +119,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.5.0`
+- Current version: `v0.6.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

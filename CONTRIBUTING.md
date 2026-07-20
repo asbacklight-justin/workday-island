@@ -32,7 +32,7 @@ Frontend assets are plain files under `frontend/dist/` and are embedded directly
 - Keep the change scoped to one problem or feature.
 - Add or update Go tests for business logic.
 - Run `gofmt` on changed Go files and `go test ./...`.
-- Test both full and compact modes when UI layout changes.
+- Test both full and compact modes, resizable compact windows, and dark/light appearances when UI layout changes.
 - Check Chinese, English, and system-language modes when text changes.
 - Update README, build/privacy documentation, and CHANGELOG when user-visible behaviour changes.
 - Do not commit generated installers, app bundles, personal data files, credentials, or signing certificates.
