@@ -12,15 +12,15 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.6.0-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.6.0-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.6.1-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.6.1-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
 ## 核心功能
 
 - **桌面置顶**：主窗口可随时置顶，让倒计时与待办始终触手可及。
-- **精简模式**：隐藏标题头，采用 2×2 核心卡片布局；窗口可在 400×270 至 900×600 之间调整并记住尺寸，内部字号、间距与组件同比缩放；可选展示未完成待办。
+- **精简模式**：隐藏标题头，采用 2×2 核心卡片布局；窗口可在 400×270 至 900×600 之间调整并记住尺寸，内部字号、间距与组件同比缩放；支持 30%–100% 透明度并可选展示未完成待办。
 - **下班倒计时**：自定义上下班时间与每周工作日，实时展示剩余时间和当日进度。
 - **今日已赚**：根据月薪、月计薪天数与当天工作进度估算；支持自定义货币符号；不填写月薪时自动隐藏，不收集薪资数据。
 - **待办与提醒**：创建、编辑、完成、筛选和删除待办，可分别选择提醒日期与时间。
@@ -119,7 +119,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.6.0`
+- 当前版本：`v0.6.1`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

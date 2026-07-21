@@ -26,7 +26,7 @@ func NewStore(path string) *Store {
 
 func defaultSettings() Settings {
 	return Settings{
-		AlwaysOnTop: true, CompactWidth: 520, CompactHeight: 350,
+		AlwaysOnTop: true, CompactOpacity: 100, CompactWidth: 520, CompactHeight: 350,
 		WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5},
 		SalaryWorkdays: 21.75, Currency: "¥", WeatherCity: "上海", Language: "system", Theme: "system",
 	}
@@ -291,6 +291,9 @@ func normaliseSettings(settings Settings) Settings {
 	}
 	if settings.CompactHeight < 270 || settings.CompactHeight > 600 {
 		settings.CompactHeight = 350
+	}
+	if settings.CompactOpacity < 30 || settings.CompactOpacity > 100 {
+		settings.CompactOpacity = 100
 	}
 	settings.WeatherCity = strings.TrimSpace(settings.WeatherCity)
 	if settings.WeatherCity == "" {

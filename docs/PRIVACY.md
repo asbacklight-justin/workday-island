@@ -2,7 +2,7 @@
 
 [中文](PRIVACY.zh-CN.md) · [English](PRIVACY.md)
 
-Last updated: 2026-07-20
+Last updated: 2026-07-21
 
 Workday Island is local-first. It does not require an account and has no first-party cloud service.
 
@@ -12,7 +12,7 @@ The following data is stored in `WorkdayIsland/data.json` under the user's confi
 
 - todo titles, notes, completion state, and reminder times;
 - work hours, workdays, monthly salary, and paid days per month;
-- weather city, interface language, theme, currency symbol, always-on-top, compact-mode options, and the remembered compact-window size;
+- weather city, interface language, theme, currency symbol, always-on-top, compact-mode opacity and todo options, and the remembered compact-window size;
 - the most recent successful weather result, used only as an offline fallback;
 - the last successful update-check time, used to limit automatic checks to once per day;
 - the current focus session's start, end, and running state.
