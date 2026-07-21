@@ -3,6 +3,16 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [0.6.1] - 2026-07-21
+
+### 中文
+
+- 精简模式新增 30%–100% 原生窗口透明度设置，Windows 与 macOS 均支持；拖动滑块时实时预览，提醒触发时会临时恢复为完全不透明。
+
+### English
+
+- Added native 30%–100% compact-window opacity on Windows and macOS, with live slider previews and temporary full opacity during active reminders.
+
 ## [0.6.0] - 2026-07-20
 
 ### 中文
@@ -59,5 +69,6 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.6.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1
 [0.6.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.0
 [0.5.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.5.0

@@ -14,6 +14,7 @@ const translations = {
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
     theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
+    compactOpacity: '精简模式透明度', compactOpacityDesc: '拖动时实时预览；保存后仅在精简模式生效',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱',
     updates: '应用更新', autoUpdateHint: '每天自动检查一次', updateIdle: '可手动检查 GitHub Releases 中的新版本',
     checkUpdates: '检查更新', checkingUpdates: '正在检查更新…', latestVersion: '已是最新版 v{version}',
@@ -50,6 +51,7 @@ const translations = {
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
     theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
+    compactOpacity: 'Compact mode opacity', compactOpacityDesc: 'Drag to preview live; after saving, it only affects compact mode',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email',
     updates: 'App updates', autoUpdateHint: 'Checked automatically once a day', updateIdle: 'Check GitHub Releases for a newer version',
     checkUpdates: 'Check for Updates', checkingUpdates: 'Checking for updates…', latestVersion: 'You’re up to date — v{version}',
@@ -75,8 +77,8 @@ const translations = {
 
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system' },
-  appInfo: {name: 'Workday Island', version: '0.6.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system' },
+  appInfo: {name: 'Workday Island', version: '0.6.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending'
@@ -206,6 +208,7 @@ function bindEvents() {
   });
   $('#todo-form').addEventListener('submit', submitTodo);
   $('#settings-form').addEventListener('submit', submitSettings);
+  $('#compact-opacity').addEventListener('input', previewCompactOpacity);
   $$('.filter').forEach(button => button.addEventListener('click', () => {
     state.filter = button.dataset.filter;
     renderTodos();
@@ -510,6 +513,8 @@ function openSettings() {
   $('#theme-select').value = state.settings.theme || 'system';
   $('#currency-symbol').value = state.settings.currency || '¥';
   $('#show-compact-todos').checked = Boolean(state.settings.showCompactTodos);
+  $('#compact-opacity').value = normaliseCompactOpacity(state.settings.compactOpacity);
+  updateCompactOpacityLabel();
   $('#settings-top').checked = state.settings.alwaysOnTop;
   $('#weekday-picker').innerHTML = t('weekdays').map((name, i) => `<button type="button" class="weekday ${state.settings.workdays.includes(i+1) ? 'active' : ''}" data-day="${i+1}">${name}</button>`).join('');
   $$('.weekday').forEach(button => button.addEventListener('click', () => button.classList.toggle('active')));
@@ -533,6 +538,7 @@ async function submitSettings(event) {
     language: $('#language-select').value,
     theme: $('#theme-select').value,
     showCompactTodos: $('#show-compact-todos').checked,
+    compactOpacity: normaliseCompactOpacity($('#compact-opacity').value),
     compactWidth: state.settings.compactWidth || 520,
     compactHeight: state.settings.compactHeight || 350
   };
@@ -568,6 +574,21 @@ function applyCompactUI() {
   $('#compact-label').textContent = compact ? t('expand') : t('compact');
   $('#compact-toggle').title = compact ? t('expandTitle') : t('compactTitle');
   $('#compact-toggle').setAttribute('aria-label', $('#compact-toggle').title);
+}
+
+function normaliseCompactOpacity(value) {
+  const percentage = Number(value);
+  return Number.isFinite(percentage) ? Math.max(30, Math.min(100, Math.round(percentage / 5) * 5)) : 100;
+}
+
+function updateCompactOpacityLabel() {
+  $('#compact-opacity-value').textContent = `${normaliseCompactOpacity($('#compact-opacity').value)}%`;
+}
+
+function previewCompactOpacity() {
+  const percentage = normaliseCompactOpacity($('#compact-opacity').value);
+  $('#compact-opacity-value').textContent = `${percentage}%`;
+  api.PreviewWindowOpacity?.(percentage);
 }
 
 function applyTheme() {
@@ -684,7 +705,10 @@ function weatherLabel(code) {
 }
 
 function openModal(id) { $(`#${id}`).classList.remove('hidden'); }
-function closeModal(id) { $(`#${id}`).classList.add('hidden'); }
+function closeModal(id) {
+  $(`#${id}`).classList.add('hidden');
+  if (id === 'settings-modal') api.RestoreWindowOpacity?.();
+}
 function sortedTodos() { return [...state.todos].sort((a,b) => Number(a.completed)-Number(b.completed) || dueValue(a)-dueValue(b) || new Date(b.createdAt)-new Date(a.createdAt)); }
 function dueValue(todo) { return todo.dueAt ? new Date(todo.dueAt).getTime() : Number.MAX_SAFE_INTEGER; }
 function clockOnDate(date, value) { const [hour, minute] = value.split(':').map(Number); const result = new Date(date); result.setHours(hour, minute, 0, 0); return result; }
@@ -717,6 +741,8 @@ function createPreviewAPI() {
     async StopFocus(){ previewState.focus={...previewState.focus,active:false,completedAt:null}; return structuredClone(previewState.focus); },
     async SaveSettings(settings){ previewState.settings={...settings}; return structuredClone(settings); },
     async SetCompactMode(compact){ previewState.settings.compactMode=compact; return structuredClone(previewState.settings); },
+    async PreviewWindowOpacity(){ return true; },
+    async RestoreWindowOpacity(){ return true; },
     async GetWeather(city){ return {queryCity:city,city,temperature:23.6,apparentTemperature:24.1,weatherCode:2,description:'多云',icon:'⛅',updatedAt:new Date().toISOString(),stale:false}; },
     async GetActiveReminder(){ return null; },
     async AcknowledgeReminder(){ return true; },
@@ -724,7 +750,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.6.0',latestVersion:'0.6.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.6.1/Workday-Island-v0.6.1-macOS-universal.dmg',assetName:'Workday-Island-v0.6.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增在线更新检查。\nAdded online update checking.'} : {currentVersion:'0.6.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.6.1',latestVersion:'0.6.2',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.2',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.6.2/Workday-Island-v0.6.2-macOS-universal.dmg',assetName:'Workday-Island-v0.6.2-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.6.1',skipped:true}; },
     async OpenUpdateURL(){ return true; }
   };
 }

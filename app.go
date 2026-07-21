@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.6.0"
+const appVersion = "0.6.1"
 
 type App struct {
 	ctx          context.Context
@@ -58,6 +58,7 @@ func (a *App) startup(ctx context.Context) {
 	runtime.WindowSetAlwaysOnTop(ctx, state.Settings.AlwaysOnTop)
 	a.applyNativeTheme(state.Settings.Theme)
 	a.applyWindowMode(state.Settings.CompactMode)
+	a.applyWindowOpacity()
 	schedulerCtx, cancel := context.WithCancel(ctx)
 	a.cancel = cancel
 	go a.runScheduler(schedulerCtx)
@@ -116,6 +117,7 @@ func (a *App) SaveSettings(settings Settings) (Settings, error) {
 		if previous.CompactMode != saved.CompactMode {
 			a.applyWindowMode(saved.CompactMode)
 		}
+		a.applyWindowOpacity()
 	}
 	return saved, err
 }
@@ -131,8 +133,23 @@ func (a *App) SetCompactMode(compact bool) (Settings, error) {
 	saved, err := a.store.SaveSettings(settings)
 	if err == nil {
 		a.applyWindowMode(compact)
+		a.applyWindowOpacity()
 	}
 	return saved, err
+}
+
+func (a *App) PreviewWindowOpacity(percent int) {
+	if percent < 30 {
+		percent = 30
+	}
+	if percent > 100 {
+		percent = 100
+	}
+	setWindowOpacity(float64(percent) / 100)
+}
+
+func (a *App) RestoreWindowOpacity() {
+	a.applyWindowOpacity()
 }
 
 func (a *App) MinimiseWindow() {
@@ -181,6 +198,7 @@ func (a *App) AcknowledgeReminder(sequence uint64) {
 	if a.ctx != nil && !a.store.Snapshot().Settings.AlwaysOnTop {
 		runtime.WindowSetAlwaysOnTop(a.ctx, false)
 	}
+	a.applyWindowOpacity()
 }
 
 func (a *App) DataPath() string {
@@ -256,6 +274,15 @@ func (a *App) applyNativeTheme(theme string) {
 	}
 }
 
+func (a *App) applyWindowOpacity() {
+	opacity := 1.0
+	settings := a.store.Snapshot().Settings
+	if settings.CompactMode {
+		opacity = float64(settings.CompactOpacity) / 100
+	}
+	setWindowOpacity(opacity)
+}
+
 func (a *App) triggerReminder(todo Todo) {
 	a.triggerAlert(todo, "todo")
 }
@@ -272,6 +299,7 @@ func (a *App) triggerAlert(todo Todo, kind string) {
 	}
 	runtime.WindowShow(a.ctx)
 	runtime.WindowUnminimise(a.ctx)
+	setWindowOpacity(1)
 	runtime.WindowSetAlwaysOnTop(a.ctx, true)
 	bringAppToFront()
 	runtime.EventsEmit(a.ctx, "reminder:due", alert)

@@ -27,7 +27,6 @@ body {
     linear-gradient(145deg, #111828 0%, var(--bg) 58%, #0c1220 100%);
 }
 body::before { content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .05; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-
 .app-shell { height: 100%; min-width: 760px; }
 .titlebar {
   height: 58px; display: flex; align-items: center; padding: 0 24px 0 18px;
@@ -200,6 +199,13 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .setting-row div { flex: 1; }
 .setting-row strong { font-size: 13px; }
 .setting-row p { margin: 3px 0 0; color: #7a879c; font-size: 11px; }
+.compact-opacity-setting { display: flex; align-items: center; gap: 18px; padding: 12px 0 15px; border-top: 1px solid rgba(255,255,255,.06); }
+.compact-opacity-setting > div:first-child { flex: 1; min-width: 0; }
+.compact-opacity-setting strong { font-size: 13px; }
+.compact-opacity-setting p { margin: 3px 0 0; color: #7a879c; font-size: 11px; line-height: 1.4; }
+.opacity-control { flex: 0 0 152px; display: flex; align-items: center; gap: 9px; }
+.opacity-control input { width: 108px; accent-color: var(--teal); cursor: pointer; }
+.opacity-control output { min-width: 35px; color: #6ce1c4; font-size: 11px; font-variant-numeric: tabular-nums; text-align: right; }
 .compact-todos { display: none; }
 .toast-region { position: fixed; z-index: 50; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 8px; }
 .toast { min-width: 220px; max-width: 360px; border: 1px solid rgba(255,255,255,.12); background: rgba(24,33,50,.94); box-shadow: 0 15px 40px rgba(0,0,0,.35); border-radius: 12px; padding: 12px 14px; font-size: 12px; color: #dbe4f2; animation: toast-in .2s; }
@@ -329,7 +335,7 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 :root[data-theme="light"] .version-badge, :root[data-theme="light"] .compact-btn, :root[data-theme="light"] .icon-btn, :root[data-theme="light"] .close-btn { background: rgba(255,255,255,.58); }
 :root[data-theme="light"] .compact-btn, :root[data-theme="light"] .pin-control, :root[data-theme="light"] .icon-btn svg, :root[data-theme="light"] .about-button span, :root[data-theme="light"] .minimize-btn span, :root[data-theme="light"] .close-window-btn span { color: #58667c; stroke: #58667c; }
 :root[data-theme="light"] .glass-card, :root[data-theme="light"] .panel { box-shadow: inset 0 1px 0 rgba(255,255,255,.8), 0 18px 48px rgba(59,76,103,.11); }
-:root[data-theme="light"] .eyebrow, :root[data-theme="light"] .date-line, :root[data-theme="light"] .clock-line span, :root[data-theme="light"] .earning-caption, :root[data-theme="light"] .progress-meta, :root[data-theme="light"] .weather-footer, :root[data-theme="light"] .todo-meta, :root[data-theme="light"] .next-reminder p, :root[data-theme="light"] .section-kicker, :root[data-theme="light"] .setting-row p { color: #65738a; }
+:root[data-theme="light"] .eyebrow, :root[data-theme="light"] .date-line, :root[data-theme="light"] .clock-line span, :root[data-theme="light"] .earning-caption, :root[data-theme="light"] .progress-meta, :root[data-theme="light"] .weather-footer, :root[data-theme="light"] .todo-meta, :root[data-theme="light"] .next-reminder p, :root[data-theme="light"] .section-kicker, :root[data-theme="light"] .setting-row p, :root[data-theme="light"] .compact-opacity-setting p { color: #65738a; }
 :root[data-theme="light"] .clock-line strong, :root[data-theme="light"] .countdown-value, :root[data-theme="light"] h1, :root[data-theme="light"] h2, :root[data-theme="light"] .todo-title, :root[data-theme="light"] .next-reminder strong, :root[data-theme="light"] .focus-widget-head strong, :root[data-theme="light"] .about-meta strong { color: #172238; }
 :root[data-theme="light"] .weather-desc, :root[data-theme="light"] .field > span { color: #536177; }
 :root[data-theme="light"] .progress-track, :root[data-theme="light"] .focus-progress { background: #d8e1ee; }

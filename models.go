@@ -17,6 +17,7 @@ type Settings struct {
 	AlwaysOnTop      bool    `json:"alwaysOnTop"`
 	CompactMode      bool    `json:"compactMode"`
 	ShowCompactTodos bool    `json:"showCompactTodos"`
+	CompactOpacity   int     `json:"compactOpacity"`
 	CompactWidth     int     `json:"compactWidth"`
 	CompactHeight    int     `json:"compactHeight"`
 	WorkStart        string  `json:"workStart"`
