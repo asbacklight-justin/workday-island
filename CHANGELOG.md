@@ -3,6 +3,22 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [0.6.2] - 2026-07-22
+
+### 中文
+
+- 修复浅色主题下工作日已选状态被覆盖、看起来没有回显的问题，并增强旧数据的工作日归一化。
+- 点击窗口叉号改为隐藏到系统托盘；隐藏后待办与专注提醒继续运行，左键托盘图标恢复窗口，右键菜单可彻底退出。
+- macOS 菜单栏空间不足、托盘图标被系统遮挡时保留 Dock 入口；点击 Dock 图标会自动恢复隐藏窗口。
+- 改进天气城市候选排序、设置保存后的强制刷新和异常雷暴校正；离线缓存超过 3 小时后不再继续展示，并显示缓存时间。
+
+### English
+
+- Fixed selected workdays looking unselected in the light theme and hardened workday normalisation for older data.
+- The window close button now hides to the system tray while reminders keep running; left-click restores the window and the right-click menu provides the explicit Quit action.
+- macOS keeps a Dock fallback when a crowded menu bar obscures the tray item; activating the Dock icon restores the hidden window.
+- Improved weather location ranking, forced refresh after settings changes, and inconsistent thunderstorm correction; offline data now expires after three hours and shows its cache time.
+
 ## [0.6.1] - 2026-07-21
 
 ### 中文
@@ -69,6 +85,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.6.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.2
 [0.6.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1
 [0.6.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.0
 [0.5.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.5.0
