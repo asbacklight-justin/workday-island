@@ -46,7 +46,7 @@ chmod +x scripts/build-macos.sh scripts/package-macos.sh
 The scripts compile `amd64/x86_64` and `arm64` separately, merge them with `lipo`, then create the app bundle, ICNS icon, ad-hoc signature, and DMG. Output:
 
 ```text
-build/bin/Workday-Island-v0.6.1-macOS-universal.dmg
+build/bin/Workday-Island-v0.6.2-macOS-universal.dmg
 ```
 
 Verify architectures and the signature:
@@ -78,7 +78,7 @@ The script:
 Output:
 
 ```text
-build/bin/Workday-Island-v0.6.1-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.6.2-windows-x64-Setup.exe
 ```
 
 For production distribution, sign both the application EXE and Setup package with the organisation's Authenticode certificate and validate them with `Get-AuthenticodeSignature`.
@@ -97,7 +97,7 @@ Pre-release checklist:
 ```bash
 git status --short
 go test ./...
-git tag v0.6.1
+git tag v0.6.2
 git push origin main --tags
 ```
 

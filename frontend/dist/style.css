@@ -194,7 +194,7 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .text-btn { border: 0; background: transparent; color: #96a3b6; font-size: 13px; cursor: pointer; padding: 9px 12px; }
 .weekday-picker { display: grid; grid-template-columns: repeat(7,1fr); gap: 6px; }
 .weekday { border: 1px solid rgba(255,255,255,.07); color: #8794a8; background: #101726; height: 34px; border-radius: 9px; cursor: pointer; font-size: 12px; }
-.weekday.active { color: #68e1c3; border-color: rgba(62,230,189,.28); background: rgba(62,230,189,.09); }
+.weekday.active { color: #08261f; border-color: rgba(62,230,189,.78); background: #68e1c3; box-shadow: 0 0 0 2px rgba(62,230,189,.12); font-weight: 750; }
 .setting-row { display: flex; align-items: center; cursor: pointer; padding: 12px 0 17px; border-top: 1px solid rgba(255,255,255,.06); }
 .setting-row div { flex: 1; }
 .setting-row strong { font-size: 13px; }
@@ -345,6 +345,7 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 :root[data-theme="light"] .todo-item:hover, :root[data-theme="light"] .ghost-btn:hover { background: rgba(40,61,92,.045); }
 :root[data-theme="light"] .calendar-tile { background: #e5eaf5; }
 :root[data-theme="light"] .focus-presets button, :root[data-theme="light"] .weekday { background: rgba(236,242,250,.9); border-color: rgba(35,55,85,.1); color: #617087; }
+:root[data-theme="light"] .weekday.active { color: #073e32; border-color: rgba(22,168,137,.72); background: #9aead6; box-shadow: 0 0 0 2px rgba(22,168,137,.10); }
 :root[data-theme="light"] .focus-active-row strong { color: #164d42; }
 :root[data-theme="light"] .modal-backdrop { background: rgba(221,229,240,.64); }
 :root[data-theme="light"] .modal-card { background: #f8fbff; border-color: rgba(35,55,85,.14); box-shadow: 0 30px 90px rgba(50,66,91,.22); }

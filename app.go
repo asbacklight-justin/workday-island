@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.6.1"
+const appVersion = "0.6.2"
 
 type App struct {
 	ctx          context.Context
@@ -62,9 +62,11 @@ func (a *App) startup(ctx context.Context) {
 	schedulerCtx, cancel := context.WithCancel(ctx)
 	a.cancel = cancel
 	go a.runScheduler(schedulerCtx)
+	startTray(a)
 }
 
 func (a *App) shutdown(context.Context) {
+	stopTray()
 	if a.cancel != nil {
 		a.cancel()
 	}
@@ -156,6 +158,28 @@ func (a *App) MinimiseWindow() {
 	if a.ctx != nil {
 		runtime.WindowMinimise(a.ctx)
 	}
+}
+
+// HideToTray keeps the process and scheduler alive while removing the main
+// window from the desktop. The tray menu is the intentional exit path.
+func (a *App) HideToTray() {
+	if a.ctx == nil {
+		return
+	}
+	runtime.WindowHide(a.ctx)
+	setTrayWindowHidden(true)
+}
+
+// ShowFromTray restores a hidden or minimised window.
+func (a *App) ShowFromTray() {
+	if a.ctx == nil {
+		return
+	}
+	setTrayWindowHidden(false)
+	runtime.WindowShow(a.ctx)
+	runtime.WindowUnminimise(a.ctx)
+	a.applyWindowOpacity()
+	bringAppToFront()
 }
 
 func (a *App) QuitApp() {
@@ -297,6 +321,7 @@ func (a *App) triggerAlert(todo Todo, kind string) {
 	if a.ctx == nil {
 		return
 	}
+	setTrayWindowHidden(false)
 	runtime.WindowShow(a.ctx)
 	runtime.WindowUnminimise(a.ctx)
 	setWindowOpacity(1)
