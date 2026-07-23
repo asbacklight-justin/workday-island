@@ -34,6 +34,14 @@ const translations = {
     focusMode: '专注模式', focusHint: '选择一段不被打扰的时间，结束后提醒你休息。', focusing: '专注中',
     startFocus: '开始专注', stopFocus: '结束专注', focusStarted: '已开始 {minutes} 分钟专注', focusStopped: '本次专注已结束',
     focusEndsAt: '{time} 结束', focusFinished: '专注完成', takeBreak: '专注完成，请休息一下', focusDuration: '专注时长', minuteShort: '分',
+    realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
+    myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
+    myUserId: '我的用户 ID', goOnline: '一键上线', goOffline: '下线', resetIdentity: '重置实时身份', resetConfirm: '重置后会创建新的用户 ID，当前本地聊天记录也会清除。确定继续吗？',
+    peerUserId: '对方用户 ID', peerHint: '输入对方分享的用户 ID，即可聊天和发送窗口互动。', effectMessage: '互动提示语（可选）', effectMessagePlaceholder: '例如：该起来活动一下啦', shakeWindow: '抖一抖', flashWindow: '闪一闪',
+    conversation: '会话', offlineDeliveryHint: '对方离线时消息会在其下次上线后送达', choosePeer: '输入用户 ID 开始会话', noMessages: '和用户 #{id} 还没有消息', chatPrivacy: '消息经远程实时服务传输，并保存在本机聊天记录中。',
+    chatPlaceholder: '输入消息，Enter 发送，Shift+Enter 换行', send: '发送', idCopied: '用户 ID 已复制', identityReset: '实时身份已重置', connectedRealtime: '实时服务已上线', disconnectedRealtime: '已从实时服务下线',
+    invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
+    incomingShake: '用户 {id} 抖了抖你的窗口', incomingFlash: '用户 {id} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
@@ -71,6 +79,14 @@ const translations = {
     focusMode: 'Focus Mode', focusHint: 'Choose an uninterrupted block. We’ll remind you to rest when it ends.', focusing: 'Focusing',
     startFocus: 'Start Focus', stopFocus: 'End Focus', focusStarted: '{minutes}-minute focus started', focusStopped: 'Focus session ended',
     focusEndsAt: 'Ends at {time}', focusFinished: 'FOCUS COMPLETE', takeBreak: 'Focus complete — take a break', focusDuration: 'Focus duration', minuteShort: 'min',
+    realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
+    myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
+    myUserId: 'My user ID', goOnline: 'Go Online', goOffline: 'Go Offline', resetIdentity: 'Reset realtime identity', resetConfirm: 'Resetting creates a new user ID and clears local chat history. Continue?',
+    peerUserId: 'Peer user ID', peerHint: 'Enter the user ID shared by the other person to chat or send a window interaction.', effectMessage: 'Interaction message (optional)', effectMessagePlaceholder: 'e.g. Time to stand up and stretch', shakeWindow: 'Shake', flashWindow: 'Flash',
+    conversation: 'Conversation', offlineDeliveryHint: 'Offline messages are delivered the next time the other person connects', choosePeer: 'Enter a user ID to start', noMessages: 'No messages with user #{id} yet', chatPrivacy: 'Messages pass through the remote realtime service and are kept in local chat history.',
+    chatPlaceholder: 'Type a message. Enter to send; Shift+Enter for a new line', send: 'Send', idCopied: 'User ID copied', identityReset: 'Realtime identity reset', connectedRealtime: 'Realtime service is online', disconnectedRealtime: 'Realtime service is offline',
+    invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
+    incomingShake: 'User {id} shook your window', incomingFlash: 'User {id} flashed your window', stopWindowEffect: 'Stop window interaction',
     weekdays: ['M','T','W','T','F','S','S']
   }
 };
@@ -78,10 +94,14 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system' },
-  appInfo: {name: 'Workday Island', version: '0.6.2', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.7.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
-  filter: 'pending'
+  filter: 'pending',
+  realtime: {status: 'offline', desiredOnline: false, lastError: '', identity: null, messages: []},
+  chatOpen: false,
+  chatUnread: 0,
+  latestIncomingPeer: 0
 };
 
 const api = window.go?.main?.App ?? createPreviewAPI();
@@ -94,6 +114,8 @@ let selectedFocusMinutes = 50;
 let compactResizeTimer = 0;
 let availableUpdate = null;
 let updateCheckResult = null;
+let remoteEffectTimer = 0;
+let realtimeBusy = false;
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
 
 const $ = selector => document.querySelector(selector);
@@ -128,6 +150,8 @@ function applyTranslations() {
   $('#open-settings').title = t('settings');
   $('#open-about').setAttribute('aria-label', t('about'));
   $('#open-about').title = t('about');
+  $('#open-chat').setAttribute('aria-label', t('chat'));
+  $('#open-chat').title = t('chat');
   ['#minimize-window', '#compact-minimize'].forEach(selector => {
     $(selector).setAttribute('aria-label', t('minimize'));
     $(selector).title = t('minimize');
@@ -142,6 +166,7 @@ function applyTranslations() {
   $('#todo-due-date').setAttribute('aria-label', t('reminderDate'));
   $('#todo-due-time').setAttribute('aria-label', t('reminderTime'));
   $('#reminder-alert').setAttribute('aria-label', t('stopReminder'));
+  $('#remote-effect-alert').setAttribute('aria-label', t('stopWindowEffect'));
   $('.focus-presets').setAttribute('aria-label', t('focusDuration'));
   $('.island-grid').setAttribute('aria-label', t('overview'));
   $('.earnings-card').title = t('earningEstimate');
@@ -149,16 +174,25 @@ function applyTranslations() {
   $('#app-version-badge').textContent = `v${state.appInfo.version}`;
   $('#about-version').textContent = state.appInfo.version;
   $('#email-author strong').textContent = state.appInfo.email;
+  renderRealtime();
   if (updateCheckResult) renderUpdateInfo(updateCheckResult);
 }
 
 async function boot() {
   try {
-    const [loaded, appInfo] = await Promise.all([api.GetState(), api.GetAppInfo()]);
+    const [loaded, appInfo, realtime, defaultNickname] = await Promise.all([
+      api.GetState(),
+      api.GetAppInfo(),
+      api.GetRealtimeState(),
+      api.GetDefaultRealtimeNickname()
+    ]);
     state.todos = loaded.todos ?? [];
     state.settings = {...state.settings, ...(loaded.settings ?? {})};
     state.focus = {...state.focus, ...(loaded.focus ?? {})};
     state.appInfo = {...state.appInfo, ...(appInfo ?? {})};
+    state.realtime = {...state.realtime, ...(realtime ?? {})};
+    $('#realtime-nickname').value = defaultNickname || '';
+    $('#peer-user-id').value = localStorage.getItem('workdayIsland.chatPeer') || '';
     applyTheme();
     bindEvents();
     applyTranslations();
@@ -176,6 +210,16 @@ async function boot() {
       showToast(`⏰ ${alert.todo.title}`);
       refresh();
     });
+    window.runtime?.EventsOn?.('realtime:state', payload => {
+      state.realtime = {...state.realtime, ...(payload ?? {})};
+      renderRealtime();
+    });
+    window.runtime?.EventsOn?.('realtime:message', message => {
+      receiveRealtimeMessage(message);
+    });
+    window.runtime?.EventsOn?.('realtime:effect', payload => {
+      handleRemoteWindowEffect(payload);
+    });
   } catch (error) {
     showToast(readError(error), true);
   }
@@ -185,6 +229,22 @@ function bindEvents() {
   $('#add-todo').addEventListener('click', () => openTodoModal());
   $('#open-settings').addEventListener('click', openSettings);
   $('#open-about').addEventListener('click', () => openModal('about-modal'));
+  $('#open-chat').addEventListener('click', openChatPage);
+  $('#close-chat').addEventListener('click', closeChatPage);
+  $('#realtime-toggle').addEventListener('click', toggleRealtimeConnection);
+  $('#reset-realtime').addEventListener('click', resetRealtimeIdentity);
+  $('#copy-user-id').addEventListener('click', copyRealtimeUserID);
+  $('#peer-user-id').addEventListener('input', handlePeerChange);
+  $('#send-shake').addEventListener('click', () => sendWindowEffect('shake'));
+  $('#send-flash').addEventListener('click', () => sendWindowEffect('flash'));
+  $('#chat-form').addEventListener('submit', submitChatMessage);
+  $('#chat-input').addEventListener('keydown', event => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      $('#chat-form').requestSubmit();
+    }
+  });
+  $('#remote-effect-alert').addEventListener('click', stopRemoteWindowEffect);
   $('#email-author').addEventListener('click', () => {
     const url = `mailto:${state.appInfo.email}`;
     if (window.runtime?.BrowserOpenURL) window.runtime.BrowserOpenURL(url); else window.location.href = url;
@@ -327,6 +387,7 @@ function renderAll() {
   renderTodos();
   renderCompactTodos();
   renderSummary();
+  renderRealtime();
   updateClock();
 }
 
@@ -478,6 +539,296 @@ async function handleTodoAction(event) {
     if (button.dataset.action === 'edit') { openTodoModal(todo); return; }
     await refresh();
   } catch (error) { showToast(readError(error), true); }
+}
+
+function openChatPage() {
+  const pendingPeer = Number(state.latestIncomingPeer) || (state.chatUnread > 0 ? latestIncomingChatPeer() : 0);
+  if (pendingPeer) setActiveRealtimePeer(pendingPeer);
+  state.chatOpen = true;
+  state.chatUnread = 0;
+  state.latestIncomingPeer = 0;
+  document.body.classList.add('chat-open');
+  $('#chat-page').classList.remove('hidden');
+  renderRealtime();
+  markCurrentConversationRead();
+  setTimeout(() => $('#peer-user-id').focus(), 40);
+}
+
+function closeChatPage() {
+  state.chatOpen = false;
+  document.body.classList.remove('chat-open');
+  $('#chat-page').classList.add('hidden');
+  renderRealtimeUnread();
+}
+
+function realtimeStatusLabel(status) {
+  return {
+    online: t('online'),
+    connecting: t('connecting'),
+    authenticating: t('authenticating'),
+    reconnecting: t('reconnecting'),
+    auth_failed: t('authFailed'),
+    offline: t('offline')
+  }[status] || t('offline');
+}
+
+function currentPeerUserID() {
+  const value = Number($('#peer-user-id').value);
+  return Number.isSafeInteger(value) && value > 0 ? value : 0;
+}
+
+function setActiveRealtimePeer(peerID) {
+  peerID = Number(peerID);
+  if (!Number.isSafeInteger(peerID) || peerID <= 0) return;
+  $('#peer-user-id').value = String(peerID);
+  localStorage.setItem('workdayIsland.chatPeer', String(peerID));
+}
+
+function latestIncomingChatPeer() {
+  const incoming = (state.realtime.messages || [])
+    .filter(message => !message.outgoing && message.eventType === 'chat.text' && Number(message.peerUserId) > 0)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return Number(incoming[0]?.peerUserId) || 0;
+}
+
+function renderRealtime() {
+  const realtime = state.realtime || {};
+  const status = realtime.status || 'offline';
+  const identity = realtime.identity || null;
+  const statusElement = $('#realtime-status');
+  statusElement.className = `realtime-status ${status}`;
+  statusElement.querySelector('b').textContent = realtimeStatusLabel(status);
+  statusElement.title = realtime.lastError || realtimeStatusLabel(status);
+
+  $('#identity-empty').classList.toggle('hidden', Boolean(identity));
+  $('#identity-card').classList.toggle('hidden', !identity);
+  $('#reset-realtime').classList.toggle('hidden', !identity);
+  $('#copy-user-id').disabled = !identity;
+  if (identity) {
+    $('#identity-name').textContent = identity.displayName || t('appName');
+    $('#identity-username').textContent = identity.username || '';
+    $('#identity-user-id').textContent = String(identity.userId || '--');
+  }
+
+  const wantsOnline = Boolean(realtime.desiredOnline);
+  const online = status === 'online';
+  const toggle = $('#realtime-toggle');
+  toggle.textContent = wantsOnline ? t('goOffline') : t('goOnline');
+  toggle.classList.toggle('offline-action', wantsOnline);
+  toggle.disabled = realtimeBusy;
+
+  const peerID = currentPeerUserID();
+  const validPeer = Boolean(peerID && (!identity || peerID !== Number(identity.userId)));
+  $('#conversation-peer').textContent = validPeer ? `#${peerID}` : '—';
+  $('#chat-input').disabled = !online || !validPeer || realtimeBusy;
+  $('#send-chat').disabled = !online || !validPeer || realtimeBusy;
+  $('#send-shake').disabled = !online || !validPeer || realtimeBusy;
+  $('#send-flash').disabled = !online || !validPeer || realtimeBusy;
+  renderChatMessages(peerID);
+  renderRealtimeUnread();
+}
+
+function renderRealtimeUnread() {
+  const badge = $('#chat-unread');
+  badge.textContent = String(Math.min(99, state.chatUnread));
+  badge.classList.toggle('hidden', state.chatUnread < 1);
+}
+
+function renderChatMessages(peerID) {
+  const list = $('#chat-messages');
+  if (!peerID) {
+    list.innerHTML = `<div class="chat-empty"><span>💬</span><strong>${escapeHTML(t('choosePeer'))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
+    return;
+  }
+  const messages = (state.realtime.messages || [])
+    .filter(message => message.eventType === 'chat.text' && Number(message.peerUserId) === peerID)
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+  if (!messages.length) {
+    list.innerHTML = `<div class="chat-empty"><span>✉️</span><strong>${escapeHTML(t('noMessages', {id: peerID}))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
+    return;
+  }
+  list.innerHTML = messages.map(message => {
+    const created = new Date(message.createdAt);
+    const time = Number.isNaN(created.getTime()) ? '' : created.toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit', hour12: false});
+    const delivery = message.outgoing
+      ? `<span class="${Number(message.onlineDeliveries) > 0 ? 'online' : ''}">${escapeHTML(t(Number(message.onlineDeliveries) > 0 ? 'sentOnline' : 'savedOffline'))}</span>`
+      : '';
+    return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
+      <div class="chat-bubble">${escapeHTML(message.text)}</div>
+      <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+    </article>`;
+  }).join('');
+  requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
+}
+
+async function toggleRealtimeConnection() {
+  if (realtimeBusy) return;
+  realtimeBusy = true;
+  renderRealtime();
+  try {
+    if (state.realtime.desiredOnline) {
+      state.realtime = {...state.realtime, ...(await api.DisconnectRealtime())};
+      showToast(t('disconnectedRealtime'));
+    } else {
+      state.realtime = {...state.realtime, ...(await api.ConnectRealtime($('#realtime-nickname').value.trim()))};
+    }
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    realtimeBusy = false;
+    renderRealtime();
+  }
+}
+
+async function resetRealtimeIdentity() {
+  if (!window.confirm(t('resetConfirm'))) return;
+  realtimeBusy = true;
+  renderRealtime();
+  try {
+    state.realtime = {...state.realtime, ...(await api.ResetRealtimeIdentity())};
+    state.chatUnread = 0;
+    showToast(t('identityReset'));
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    realtimeBusy = false;
+    renderRealtime();
+  }
+}
+
+async function copyRealtimeUserID() {
+  const userID = state.realtime.identity?.userId;
+  if (!userID) return;
+  try {
+    if (window.runtime?.ClipboardSetText) await window.runtime.ClipboardSetText(String(userID));
+    else await navigator.clipboard.writeText(String(userID));
+    showToast(t('idCopied'));
+  } catch (error) {
+    showToast(readError(error), true);
+  }
+}
+
+function handlePeerChange() {
+  const peerID = currentPeerUserID();
+  if (peerID) localStorage.setItem('workdayIsland.chatPeer', String(peerID));
+  else localStorage.removeItem('workdayIsland.chatPeer');
+  renderRealtime();
+  markCurrentConversationRead();
+}
+
+async function submitChatMessage(event) {
+  event.preventDefault();
+  const peerID = currentPeerUserID();
+  const input = $('#chat-input');
+  const text = input.value.trim();
+  if (!peerID) { showToast(t('invalidPeer'), true); return; }
+  if (!text || realtimeBusy) return;
+  realtimeBusy = true;
+  renderRealtime();
+  try {
+    const message = await api.SendRealtimeChat(peerID, text);
+    receiveRealtimeMessage(message);
+    input.value = '';
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    realtimeBusy = false;
+    renderRealtime();
+    input.focus();
+  }
+}
+
+async function sendWindowEffect(effect) {
+  const peerID = currentPeerUserID();
+  if (!peerID) { showToast(t('invalidPeer'), true); return; }
+  if (realtimeBusy) return;
+  realtimeBusy = true;
+  renderRealtime();
+  try {
+    const text = $('#effect-message').value.trim();
+    const message = await api.SendRealtimeWindowEffect(peerID, effect, text);
+    const delivered = Number(message?.onlineDeliveries) > 0;
+    $('#effect-message').value = '';
+    showToast(delivered ? t('effectSent') : t('queuedForPeer'));
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    realtimeBusy = false;
+    renderRealtime();
+  }
+}
+
+function receiveRealtimeMessage(message) {
+  if (!message?.messageId) return;
+  const messages = state.realtime.messages ||= [];
+  const added = !messages.some(item => item.messageId === message.messageId);
+  if (added) {
+    messages.push(message);
+    if (messages.length > 500) messages.splice(0, messages.length - 500);
+  }
+  if (added && !message.outgoing && message.eventType === 'chat.text') {
+    const incomingPeer = Number(message.peerUserId) || Number(message.senderUserId) || 0;
+    state.latestIncomingPeer = incomingPeer;
+    if (state.chatOpen && incomingPeer) {
+      setActiveRealtimePeer(incomingPeer);
+      state.chatUnread = 0;
+      state.latestIncomingPeer = 0;
+      api.MarkRealtimeMessageRead?.(message.messageId).catch(() => {});
+    } else {
+      state.chatUnread += 1;
+    }
+    showToast(`💬 #${message.senderUserId}: ${message.text}`);
+  }
+  renderRealtime();
+}
+
+function markCurrentConversationRead() {
+  if (!state.chatOpen) return;
+  const peerID = currentPeerUserID();
+  if (!peerID) return;
+  state.chatUnread = 0;
+  (state.realtime.messages || [])
+    .filter(message => !message.outgoing && message.eventType === 'chat.text' && Number(message.peerUserId) === peerID)
+    .forEach(message => api.MarkRealtimeMessageRead?.(message.messageId).catch(() => {}));
+  renderRealtimeUnread();
+}
+
+function handleRemoteWindowEffect(payload) {
+  const effect = payload?.effect === 'shake' ? 'shake' : 'flash';
+  const senderUserID = Number(payload?.senderUserId) || 0;
+  const text = String(payload?.text || '').trim();
+  stopRemoteWindowEffect();
+  const alert = $('#remote-effect-alert');
+  alert.classList.add('active', effect);
+  $('#remote-effect-icon').textContent = effect === 'shake' ? '〰' : '✦';
+  $('#remote-effect-title').textContent = t(effect === 'shake' ? 'incomingShake' : 'incomingFlash', {id: senderUserID || '?'});
+  $('#remote-effect-message').textContent = text;
+  $('#remote-effect-message').classList.toggle('hidden', !text);
+  if (effect === 'shake') shakeNativeWindow();
+  playReminderChime();
+  remoteEffectTimer = window.setTimeout(stopRemoteWindowEffect, 10000);
+}
+
+function stopRemoteWindowEffect() {
+  window.clearTimeout(remoteEffectTimer);
+  remoteEffectTimer = 0;
+  $('#remote-effect-alert').classList.remove('active', 'shake', 'flash');
+  $('#remote-effect-message').textContent = '';
+  $('#remote-effect-message').classList.add('hidden');
+  api.RestoreWindowOpacity?.();
+}
+
+async function shakeNativeWindow() {
+  try {
+    if (!window.runtime?.WindowGetPosition || !window.runtime?.WindowSetPosition) return;
+    const origin = await window.runtime.WindowGetPosition();
+    const offsets = [-18, 18, -15, 15, -12, 12, -9, 9, -6, 6, -3, 3, 0];
+    for (const offset of offsets) {
+      window.runtime.WindowSetPosition(origin.x + offset, origin.y);
+      await new Promise(resolve => setTimeout(resolve, 42));
+    }
+    window.runtime.WindowSetPosition(origin.x, origin.y);
+  } catch (_) { /* The full-window interaction remains visible if native movement is unavailable. */ }
 }
 
 function openTodoModal(todo = null) {
@@ -756,9 +1107,18 @@ function createPreviewAPI() {
     {id:'demo-3',title:'回复客户邮件',note:'',dueAt:null,completed:true,createdAt:now.toISOString()}
   ];
   const previewState = {todos:sample, settings:{...state.settings}, focus:{...state.focus}};
+  const previewRealtime = {status:'offline', desiredOnline:false, identity:null, messages:[]};
   return {
     async GetState(){ return structuredClone(previewState); },
     async GetAppInfo(){ return structuredClone(state.appInfo); },
+    async GetRealtimeState(){ return structuredClone(previewRealtime); },
+    async GetDefaultRealtimeNickname(){ return '我的工位岛'; },
+    async ConnectRealtime(nickname){ previewRealtime.identity ||= {userId:123,username:'client_demo123',displayName:nickname||'我的工位岛',deviceId:'demo-device',credentialId:'cred_demo',publicKey:'demo'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; return structuredClone(previewRealtime); },
+    async DisconnectRealtime(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; return structuredClone(previewRealtime); },
+    async ResetRealtimeIdentity(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.messages=[]; return structuredClone(previewRealtime); },
+    async SendRealtimeChat(toUserId,text){ const message={messageId:crypto.randomUUID(),channelId:`direct:123:${toUserId}`,senderUserId:123,peerUserId:toUserId,eventType:'chat.text',text,createdAt:new Date().toISOString(),onlineDeliveries:1,outgoing:true}; previewRealtime.messages.push(message); return structuredClone(message); },
+    async SendRealtimeWindowEffect(toUserId,effect,text){ return {messageId:crypto.randomUUID(),senderUserId:123,peerUserId:toUserId,eventType:`window.${effect}`,text,createdAt:new Date().toISOString(),onlineDeliveries:1,outgoing:true}; },
+    async MarkRealtimeMessageRead(){ return true; },
     async AddTodo(input){ previewState.todos.push({id:crypto.randomUUID(),...input,dueAt:input.dueAt||null,completed:false,createdAt:new Date().toISOString()}); },
     async UpdateTodo(id,input){ Object.assign(previewState.todos.find(todo=>todo.id===id),input,{dueAt:input.dueAt||null}); },
     async ToggleTodo(id,value){ previewState.todos.find(todo=>todo.id===id).completed=value; },
@@ -777,7 +1137,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.6.2',latestVersion:'0.6.3',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.3',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.6.3/Workday-Island-v0.6.3-macOS-universal.dmg',assetName:'Workday-Island-v0.6.3-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.6.2',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.7.0',latestVersion:'0.7.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.7.1/Workday-Island-v0.7.1-macOS-universal.dmg',assetName:'Workday-Island-v0.7.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.7.0',skipped:true}; },
     async OpenUpdateURL(){ return true; }
   };
 }

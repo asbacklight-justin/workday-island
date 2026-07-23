@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.6.2-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.6.2-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.7.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.7.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -31,7 +31,8 @@ The public packages are not currently signed with commercial distribution certif
 - **Light and dark themes:** Follow the system appearance or choose light/dark explicitly.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
 - **Online update checks:** Query GitHub Releases at most once per day, or check manually from About and open the matching platform package in one click.
-- **Local-first storage:** Settings, todos, and focus state stay on the device. No account or custom backend is required.
+- **Realtime chat and window interactions:** Open a dedicated page from the chat button, create an anonymous device identity with one click, send messages by user ID, or bring the peer's window forward with a shake or flash.
+- **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Realtime chat is optional and does not use a username or password login.
 
 ## Screenshots
 
@@ -65,6 +66,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 6. Use **Compact** to switch to the 2×2 window. Drag anywhere on its non-control surface to move it and drag an edge to resize it; the size is remembered.
 7. Choose **Check for Updates** in About. When a release is available, open the matching GitHub package; installation still requires user confirmation and never silently replaces the app.
 8. The close button hides Workday Island to the system tray without stopping reminders. Left-click the tray icon to restore it, or right-click and choose **Quit** to end the app. If macOS hides the tray item because the menu bar is full, click Workday Island in the Dock to restore it.
+9. Select the chat button, enter a nickname, and choose **Go Online**. Share your own user ID, enter a peer user ID, and then chat, shake, or flash the peer's window. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
 
 ## Stack and architecture
 
@@ -74,6 +76,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 - Local JSON persistence
 - Native AppKit and Windows Shell system trays, plus platform foreground activation, notification, and sound adapters
 - Open-Meteo geocoding and weather APIs
+- Ed25519 device signing and realtime WebSocket communication
 
 This project is independent of the Backlight monorepo's Go API and Vue admin application. The `workday-island` directory can be built and released on its own.
 
@@ -98,7 +101,7 @@ See the [build and release guide](docs/BUILD.md) for complete packaging instruct
 
 ## Privacy and network access
 
-Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather uses Open-Meteo, and update checks use this project's GitHub Releases API. The app has no account system, telemetry, advertising SDK, or first-party server. Read the full [privacy note](docs/PRIVACY.md).
+Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather uses Open-Meteo and update checks use GitHub. When the user explicitly enables chat, an anonymous device identity, messages, and window-interaction commands are sent to the Backlight realtime service. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
 
 ## Contributing
 
@@ -121,7 +124,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.6.2`
+- Current version: `v0.7.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)
