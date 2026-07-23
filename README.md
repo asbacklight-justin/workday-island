@@ -12,8 +12,8 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.6.2-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.6.2-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.7.0-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.7.0-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
@@ -31,7 +31,8 @@
 - **深浅主题**：支持跟随系统、深色与浅色主题。
 - **中英双语**：支持跟随系统、简体中文与 English，可在设置中随时切换。
 - **在线检查更新**：每天最多查询一次 GitHub Releases，也可在“关于”页手动检查并一键打开对应平台安装包。
-- **本地优先**：设置、待办和专注状态只保存在本机，不需要账号和自建服务端。
+- **实时聊天与窗口互动**：点击聊天按钮进入独立页面，一键创建匿名设备身份并上线；通过用户 ID 发送消息，也可让对方窗口置前抖动或闪烁。
+- **本地优先**：设置、待办、薪资和专注状态只保存在本机；实时聊天为可选联网功能，不使用用户名或密码登录。
 
 ## 界面预览
 
@@ -65,6 +66,7 @@
 6. 点击顶部“精简”切换 2×2 小窗；拖动窗口任意空白区域移动，拖动窗口边缘缩放，应用会记住精简尺寸。
 7. 在“关于”页点击“检查更新”；发现新版后可打开 GitHub 下载对应平台安装包。更新仍由用户确认安装，不会静默替换应用。
 8. 点击叉号会隐藏到系统托盘而不会结束提醒；左键托盘图标恢复窗口，右键选择“退出”才会彻底结束应用。macOS 若因菜单栏空间不足看不到托盘图标，可点击 Dock 中的工位岛恢复。
+9. 点击顶部聊天按钮，填写昵称后选择“一键上线”。把自己的用户 ID 发给对方，输入对方用户 ID 后即可聊天、抖动或闪烁对方窗口。详情见[实时聊天说明](docs/REALTIME_CHAT.zh-CN.md)。
 
 ## 技术栈与架构
 
@@ -74,6 +76,7 @@
 - JSON 本地持久化
 - macOS AppKit 与 Windows Shell 原生系统托盘；平台原生窗口激活、通知与声音适配
 - Open-Meteo 地理编码与天气接口
+- Ed25519 设备签名与 WebSocket 实时通信
 
 项目不依赖 Backlight 主仓库的 Go 后端或 Vue 管理端，`workday-island` 目录可独立构建与发布。
 
@@ -98,7 +101,7 @@ go run .
 
 ## 隐私与联网
 
-待办、提醒、薪资、工作时间和专注记录只写入本机 JSON 文件。天气功能会访问 Open-Meteo；版本检查会访问本项目的 GitHub Releases API。应用没有账号系统、遥测、广告 SDK 或自有服务端。详情见 [隐私说明](docs/PRIVACY.zh-CN.md)。
+待办、提醒、薪资、工作时间和专注记录只写入本机 JSON 文件。天气功能会访问 Open-Meteo，版本检查会访问 GitHub；用户主动使用聊天功能时，匿名设备身份、消息和窗口互动指令会发送到 Backlight 实时服务。应用没有遥测或广告 SDK。详情见 [隐私说明](docs/PRIVACY.zh-CN.md)。
 
 ## 参与贡献
 
@@ -121,7 +124,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.6.2`
+- 当前版本：`v0.7.0`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

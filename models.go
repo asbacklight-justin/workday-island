@@ -32,11 +32,13 @@ type Settings struct {
 }
 
 type State struct {
-	Todos             []Todo       `json:"todos"`
-	Settings          Settings     `json:"settings"`
-	Focus             FocusSession `json:"focus"`
-	LastWeather       *Weather     `json:"lastWeather,omitempty"`
-	LastUpdateCheckAt *time.Time   `json:"lastUpdateCheckAt,omitempty"`
+	Todos             []Todo            `json:"todos"`
+	Settings          Settings          `json:"settings"`
+	Focus             FocusSession      `json:"focus"`
+	LastWeather       *Weather          `json:"lastWeather,omitempty"`
+	LastUpdateCheckAt *time.Time        `json:"lastUpdateCheckAt,omitempty"`
+	RealtimeIdentity  *RealtimeIdentity `json:"realtimeIdentity,omitempty"`
+	RealtimeMessages  []RealtimeMessage `json:"realtimeMessages,omitempty"`
 }
 
 type FocusSession struct {
@@ -93,4 +95,33 @@ type UpdateInfo struct {
 	Digest         string    `json:"digest,omitempty"`
 	ReleaseNotes   string    `json:"releaseNotes,omitempty"`
 	PublishedAt    time.Time `json:"publishedAt,omitempty"`
+}
+
+type RealtimeIdentity struct {
+	UserID       int64  `json:"userId"`
+	Username     string `json:"username"`
+	DisplayName  string `json:"displayName"`
+	DeviceID     string `json:"deviceId"`
+	CredentialID string `json:"credentialId"`
+	PublicKey    string `json:"publicKey"`
+}
+
+type RealtimeMessage struct {
+	MessageID        string    `json:"messageId"`
+	ChannelID        string    `json:"channelId,omitempty"`
+	SenderUserID     int64     `json:"senderUserId"`
+	PeerUserID       int64     `json:"peerUserId"`
+	EventType        string    `json:"eventType"`
+	Text             string    `json:"text,omitempty"`
+	CreatedAt        time.Time `json:"createdAt"`
+	OnlineDeliveries int       `json:"onlineDeliveries,omitempty"`
+	Outgoing         bool      `json:"outgoing"`
+}
+
+type RealtimeSnapshot struct {
+	Status        string            `json:"status"`
+	DesiredOnline bool              `json:"desiredOnline"`
+	LastError     string            `json:"lastError,omitempty"`
+	Identity      *RealtimeIdentity `json:"identity,omitempty"`
+	Messages      []RealtimeMessage `json:"messages"`
 }

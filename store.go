@@ -53,6 +53,9 @@ func (s *Store) Load() error {
 	if state.Todos == nil {
 		state.Todos = []Todo{}
 	}
+	if state.RealtimeMessages == nil {
+		state.RealtimeMessages = []RealtimeMessage{}
+	}
 	s.state = state
 	return nil
 }
@@ -189,6 +192,39 @@ func (s *Store) MarkUpdateChecked(at time.Time) error {
 	err := s.saveLocked()
 	s.mu.Unlock()
 	return err
+}
+
+func (s *Store) SaveRealtimeIdentity(identity RealtimeIdentity) error {
+	s.mu.Lock()
+	value := identity
+	s.state.RealtimeIdentity = &value
+	err := s.saveLocked()
+	s.mu.Unlock()
+	return err
+}
+
+func (s *Store) ClearRealtimeIdentity() error {
+	s.mu.Lock()
+	s.state.RealtimeIdentity = nil
+	s.state.RealtimeMessages = []RealtimeMessage{}
+	err := s.saveLocked()
+	s.mu.Unlock()
+	return err
+}
+
+func (s *Store) AddRealtimeMessage(message RealtimeMessage) (bool, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	for i := range s.state.RealtimeMessages {
+		if s.state.RealtimeMessages[i].MessageID == message.MessageID {
+			return false, nil
+		}
+	}
+	s.state.RealtimeMessages = append(s.state.RealtimeMessages, message)
+	if len(s.state.RealtimeMessages) > 500 {
+		s.state.RealtimeMessages = append([]RealtimeMessage(nil), s.state.RealtimeMessages[len(s.state.RealtimeMessages)-500:]...)
+	}
+	return true, s.saveLocked()
 }
 
 func (s *Store) StartFocus(minutes int, now time.Time) (FocusSession, error) {
@@ -379,5 +415,10 @@ func cloneState(state State) State {
 		value := *state.LastUpdateCheckAt
 		copyState.LastUpdateCheckAt = &value
 	}
+	if state.RealtimeIdentity != nil {
+		value := *state.RealtimeIdentity
+		copyState.RealtimeIdentity = &value
+	}
+	copyState.RealtimeMessages = append([]RealtimeMessage(nil), state.RealtimeMessages...)
 	return copyState
 }

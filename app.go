@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.6.2"
+const appVersion = "0.7.0"
 
 type App struct {
 	ctx          context.Context
@@ -27,6 +27,7 @@ type App struct {
 	weatherMu    sync.Mutex
 	weatherCache weatherCache
 	httpClient   *http.Client
+	realtime     *RealtimeClient
 }
 
 func NewApp() *App {
@@ -34,7 +35,7 @@ func NewApp() *App {
 	if err != nil {
 		configDir = "."
 	}
-	return &App{
+	app := &App{
 		store: NewStore(filepath.Join(configDir, "WorkdayIsland", "data.json")),
 		httpClient: &http.Client{
 			Timeout: 15 * time.Second,
@@ -47,6 +48,8 @@ func NewApp() *App {
 			},
 		},
 	}
+	app.realtime = NewRealtimeClient(app)
+	return app
 }
 
 func (a *App) startup(ctx context.Context) {
@@ -67,6 +70,9 @@ func (a *App) startup(ctx context.Context) {
 
 func (a *App) shutdown(context.Context) {
 	stopTray()
+	if a.realtime != nil {
+		a.realtime.Shutdown()
+	}
 	if a.cancel != nil {
 		a.cancel()
 	}
@@ -186,6 +192,38 @@ func (a *App) QuitApp() {
 	if a.ctx != nil {
 		runtime.Quit(a.ctx)
 	}
+}
+
+func (a *App) GetRealtimeState() RealtimeSnapshot {
+	return a.realtime.Snapshot()
+}
+
+func (a *App) GetDefaultRealtimeNickname() string {
+	return defaultRealtimeNickname()
+}
+
+func (a *App) ConnectRealtime(nickname string) (RealtimeSnapshot, error) {
+	return a.realtime.Connect(nickname)
+}
+
+func (a *App) DisconnectRealtime() RealtimeSnapshot {
+	return a.realtime.Disconnect()
+}
+
+func (a *App) ResetRealtimeIdentity() (RealtimeSnapshot, error) {
+	return a.realtime.ResetIdentity()
+}
+
+func (a *App) SendRealtimeChat(toUserID int64, text string) (RealtimeMessage, error) {
+	return a.realtime.SendChat(toUserID, text)
+}
+
+func (a *App) SendRealtimeWindowEffect(toUserID int64, effect, text string) (RealtimeMessage, error) {
+	return a.realtime.SendWindowCommand(toUserID, effect, text)
+}
+
+func (a *App) MarkRealtimeMessageRead(messageID string) error {
+	return a.realtime.AckRead(messageID)
 }
 
 func (a *App) TestNotification() error {
@@ -328,4 +366,21 @@ func (a *App) triggerAlert(todo Todo, kind string) {
 	runtime.WindowSetAlwaysOnTop(a.ctx, true)
 	bringAppToFront()
 	runtime.EventsEmit(a.ctx, "reminder:due", alert)
+}
+
+func (a *App) showRealtimeEffect(effect string, senderUserID int64, text string) {
+	if a.ctx == nil {
+		return
+	}
+	setTrayWindowHidden(false)
+	runtime.WindowShow(a.ctx)
+	runtime.WindowUnminimise(a.ctx)
+	setWindowOpacity(1)
+	bringAppToFront()
+	runtime.EventsEmit(a.ctx, "realtime:effect", map[string]any{
+		"effect":       effect,
+		"senderUserId": senderUserID,
+		"text":         text,
+		"timestamp":    time.Now().UnixMilli(),
+	})
 }

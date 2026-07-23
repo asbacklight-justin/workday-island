@@ -3,6 +3,28 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [0.7.0] - 2026-07-23
+
+### 中文
+
+- 新增独立实时聊天页面，通过用户 ID 发送文字消息并显示在线送达或离线待送达状态。
+- 新增无用户名密码的一键匿名设备身份；首次生成 Ed25519 密钥，macOS 使用系统钥匙串、Windows 使用 DPAPI 保护私钥。
+- 新增抖动与多色闪烁窗口互动，可携带最多 120 个字符的提示语；收到后自动恢复并置前窗口，支持立即停止。
+- 支持离线消息、窗口互动补发、接收/已读确认、本地最近消息记录和自动断线重连。
+- 修复未读红点出现但页面仍停留在旧用户的问题，新消息会立即定位到最近发信人的会话。
+- 修复重连退避在成功上线后未清零的问题，后续短断线重新从 1 秒开始恢复。
+- 补充中英文实时聊天指南与隐私说明，明确远程传输、本机数据边界和设备密钥存储方式。
+
+### English
+
+- Added a dedicated realtime chat page for user-ID messaging with online-delivery and queued-offline states.
+- Added one-click anonymous device identity without username/password login; the app generates an Ed25519 key and protects it with macOS Keychain or Windows DPAPI.
+- Added shake and multicolour-flash window interactions with an optional 120-character prompt; incoming effects restore and raise the window and can be stopped immediately.
+- Added offline delivery, received/read acknowledgements, recent local message history, and automatic WebSocket reconnection.
+- Fixed unread badges appearing while the page remained on an older peer; new messages now select the latest sender immediately.
+- Fixed reconnect backoff remaining cumulative after a successful connection; later transient disconnects restart at a one-second retry.
+- Added bilingual realtime-chat and privacy documentation covering remote transfer, local-data boundaries, and device-key storage.
+
 ## [0.6.2] - 2026-07-22
 
 ### 中文
@@ -85,6 +107,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.7.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.0
 [0.6.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.2
 [0.6.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1
 [0.6.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.0
