@@ -3,6 +3,28 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [0.8.0] - 2026-07-25
+
+### 中文
+
+- 新增“今日英语学习”模块，可从主界面一键打开独立的紧凑学习窗口。
+- 新增中英学习、英译中四选一、中译英四选一和完整单词拼写四种练习模式。
+- 选择或提交答案后立即显示对错，并保留上一词的中英文结果作为复习提示。
+- 学习窗口按当前单词和选项内容自动收缩，控制项靠左、最小化靠右，减少多余留白。
+- 接入词灵在线词库和游客身份，按批次取词并提交单题练习结果。
+- 设置中新增词库选择，默认《新概念英语》第二册，并支持新概念三、四级、六级、雅思及全部公共词库。
+- 修复 macOS 应用包图标在 Dock 中可能显示为默认占位图的问题，完善 ICNS 多尺寸资源生成。
+
+### English
+
+- Added the Today English Learning module with a dedicated compact learning window opened from the main dashboard.
+- Added four modes: bilingual study, English-to-Chinese multiple choice, Chinese-to-English multiple choice, and full-word spelling.
+- Answers now show immediate correct/wrong feedback and keep the previous word with its bilingual result for review.
+- The learning window automatically fits the current word and options, keeps controls left-aligned and Minimize on the right, and removes excess whitespace.
+- Connected to the Word Spirit online library with one-click guest access, batched word loading, and per-question result submission.
+- Added a word-library preference that defaults to New Concept English 2 and also supports NCE 3, CET-4, CET-6, IELTS, and all public words.
+- Fixed the macOS app bundle icon occasionally appearing as a generic Dock placeholder by generating a complete multi-size ICNS resource.
+
 ## [0.7.0] - 2026-07-23
 
 ### 中文
@@ -107,6 +129,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.8.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.0
 [0.7.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.0
 [0.6.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.2
 [0.6.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.1

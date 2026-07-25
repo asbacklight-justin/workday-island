@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=18">
+  <link rel="stylesheet" href="./style.css?v=25">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.7.0</span>
+        <span id="app-version-badge" class="version-badge">v0.8.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -26,6 +26,7 @@
           <svg viewBox="0 0 24 24"><path d="M20 15a3 3 0 0 1-3 3H9l-5 3v-6a3 3 0 0 1-1-2.2V7a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3Z"/><path d="M7 9h10M7 13h6"/></svg>
           <span id="chat-unread" class="chat-unread hidden">0</span>
         </button>
+        <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
         <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
           <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
         </button>
@@ -184,6 +185,48 @@
         </section>
       </div>
     </section>
+
+    <section id="english-page" class="english-page hidden" aria-label="英语学习">
+      <div class="english-strip">
+        <div class="english-toolbar">
+          <button id="close-english" class="english-icon-btn no-drag" type="button" aria-label="返回工作台" title="返回工作台">×</button>
+          <select id="english-mode" class="english-mode no-drag" aria-label="学习模式">
+            <option value="study" data-i18n="englishStudyMode">中英学习</option>
+            <option value="quiz" data-i18n="englishQuizMode">英译中 4选1</option>
+            <option value="chinese" data-i18n="englishChineseMode">中译英 4选1</option>
+            <option value="spelling" data-i18n="englishSpellingMode">拼完整单词</option>
+          </select>
+          <div id="english-loading" class="english-status"><span></span><b data-i18n="englishLoading">正在取词…</b></div>
+          <div id="english-error" class="english-status english-error hidden"><b id="english-error-text">加载失败</b><button id="retry-english" type="button" class="no-drag" data-i18n="retry">重试</button></div>
+          <div id="english-study" class="english-prompt english-study hidden">
+            <strong id="english-word">serendipity</strong>
+          </div>
+          <div id="english-quiz" class="english-prompt english-quiz hidden">
+            <strong id="english-quiz-word">serendipity</strong>
+          </div>
+          <div id="english-spelling" class="english-prompt english-spelling hidden">
+            <strong id="english-spelling-meaning">简明的，简洁的</strong>
+          </div>
+          <div id="english-previous" class="english-previous hidden" aria-live="polite"></div>
+          <small id="english-score" class="english-score hidden">0 / 0</small>
+          <button id="minimize-english" class="english-icon-btn no-drag" type="button" aria-label="最小化" title="最小化">−</button>
+        </div>
+        <div id="english-study-stage" class="english-study-stage hidden">
+          <span id="english-phonetic">/ˌserənˈdɪpəti/</span>
+          <b id="english-translation">意外发现美好事物的能力</b>
+          <small id="english-countdown">60s</small>
+          <button id="next-english" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个">›</button>
+        </div>
+        <div id="english-options" class="english-options no-drag hidden"></div>
+        <div id="english-spelling-stage" class="english-spelling-stage hidden">
+          <span id="english-spelling-mask" class="english-spelling-mask">_ _ _ _ _ _ _</span>
+          <form id="english-spelling-form" class="english-spelling-form no-drag">
+            <input id="english-spelling-input" type="text" maxlength="80" autocomplete="off" autocapitalize="none" spellcheck="false" data-i18n-placeholder="englishSpellingPlaceholder" placeholder="输入完整英文单词">
+            <button id="submit-english-spelling" type="submit" data-i18n="checkAnswer">检查</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </div>
 
   <div id="todo-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="todo-modal-title">
@@ -212,6 +255,7 @@
       </div>
       <label class="field"><span data-i18n="weatherCity">天气城市</span><input id="weather-city-input" maxlength="60" placeholder="例如：上海、杭州、Shenzhen" data-i18n-placeholder="weatherPlaceholder"></label>
       <label class="field"><span data-i18n="workdays">工作日</span><div id="weekday-picker" class="weekday-picker"></div></label>
+      <label class="field"><span data-i18n="englishSource">单词词库</span><select id="english-source-select"><option value="nce2" data-i18n="englishSourceNCE2">新概念英语第二册</option><option value="nce3" data-i18n="englishSourceNCE3">新概念英语第三册</option><option value="cet4" data-i18n="englishSourceCET4">大学英语四级</option><option value="cet6" data-i18n="englishSourceCET6">大学英语六级</option><option value="ielts" data-i18n="englishSourceIELTS">雅思核心词汇</option><option value="all" data-i18n="englishSourceAll">全部公共词库</option></select></label>
       <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
       <div class="field-grid preference-grid">
         <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option></select></label>
@@ -233,11 +277,11 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.7.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.8.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.7.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.8.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -260,6 +304,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=18" type="module"></script>
+  <script src="./app.js?v=26" type="module"></script>
 </body>
 </html>

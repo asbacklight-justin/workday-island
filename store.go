@@ -29,6 +29,7 @@ func defaultSettings() Settings {
 		AlwaysOnTop: true, CompactOpacity: 100, CompactWidth: 520, CompactHeight: 350,
 		WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5},
 		SalaryWorkdays: 21.75, Currency: "¥", WeatherCity: "上海", Language: "system", Theme: "system",
+		EnglishMode: "study", EnglishSource: "nce2",
 	}
 }
 
@@ -344,6 +345,12 @@ func normaliseSettings(settings Settings) Settings {
 	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "system" {
 		settings.Theme = "system"
 	}
+	if settings.EnglishMode != "study" && settings.EnglishMode != "quiz" && settings.EnglishMode != "chinese" && settings.EnglishMode != "spelling" {
+		settings.EnglishMode = "study"
+	}
+	if !validEnglishSource(settings.EnglishSource) {
+		settings.EnglishSource = "nce2"
+	}
 	seen := map[int]bool{}
 	var workdays []int
 	for _, day := range settings.Workdays {
@@ -358,6 +365,15 @@ func normaliseSettings(settings Settings) Settings {
 	sort.Ints(workdays)
 	settings.Workdays = workdays
 	return settings
+}
+
+func validEnglishSource(source string) bool {
+	switch source {
+	case "all", "nce2", "nce3", "cet4", "cet6", "ielts":
+		return true
+	default:
+		return false
+	}
 }
 
 func validClock(value string) bool {

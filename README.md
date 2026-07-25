@@ -12,8 +12,8 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.7.0-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.7.0-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.8.0-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.8.0-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
@@ -30,6 +30,8 @@
 - **天气**：通过 Open-Meteo 查询指定城市的当前天气，无需 API Key；网络波动时自动重试并回退到三小时内的本地缓存，避免长期展示过期天气。
 - **深浅主题**：支持跟随系统、深色与浅色主题。
 - **中英双语**：支持跟随系统、简体中文与 English，可在设置中随时切换。
+- **今日英语学习**：点击顶部 `EN` 按钮打开紧凑学习窗，支持中英学习、英译中四选一、中译英四选一和完整单词拼写，并即时显示答案对错与上一词。
+- **可选单词词库**：英语学习默认使用《新概念英语》第二册，也可在设置中切换到新概念三、四级、六级、雅思或全部公共词库。
 - **在线检查更新**：每天最多查询一次 GitHub Releases，也可在“关于”页手动检查并一键打开对应平台安装包。
 - **实时聊天与窗口互动**：点击聊天按钮进入独立页面，一键创建匿名设备身份并上线；通过用户 ID 发送消息，也可让对方窗口置前抖动或闪烁。
 - **本地优先**：设置、待办、薪资和专注状态只保存在本机；实时聊天为可选联网功能，不使用用户名或密码登录。
@@ -50,9 +52,21 @@
 
 ### 设置
 
-配置上下班时间、月薪、计薪天数、天气城市、工作日、语言和窗口置顶。
+配置上下班时间、月薪、计薪天数、天气城市、工作日、英语词库、语言和窗口置顶。
 
 ![中文设置](docs/screenshots/zh-settings.png)
+
+### 今日英语学习
+
+在自动贴合内容的小窗口中完成学习、四选一和拼写练习，答案结果与上一词会立即显示。
+
+![中文英语学习模式](docs/screenshots/zh-english.png)
+
+### 实时聊天
+
+通过匿名设备身份和用户 ID 上线聊天，并支持抖动、闪烁与提示语等窗口互动。
+
+![中文实时聊天模式](docs/screenshots/zh-chat.png)
 
 英文界面截图请查看 [English README](README_EN.md#screenshots)。
 
@@ -67,6 +81,7 @@
 7. 在“关于”页点击“检查更新”；发现新版后可打开 GitHub 下载对应平台安装包。更新仍由用户确认安装，不会静默替换应用。
 8. 点击叉号会隐藏到系统托盘而不会结束提醒；左键托盘图标恢复窗口，右键选择“退出”才会彻底结束应用。macOS 若因菜单栏空间不足看不到托盘图标，可点击 Dock 中的工位岛恢复。
 9. 点击顶部聊天按钮，填写昵称后选择“一键上线”。把自己的用户 ID 发给对方，输入对方用户 ID 后即可聊天、抖动或闪烁对方窗口。详情见[实时聊天说明](docs/REALTIME_CHAT.zh-CN.md)。
+10. 点击顶部 `EN` 按钮进入今日英语学习；可切换四种练习模式，并在设置中选择所用词库。
 
 ## 技术栈与架构
 
@@ -124,7 +139,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.7.0`
+- 当前版本：`v0.8.0`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

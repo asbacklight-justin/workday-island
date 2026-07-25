@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.7.0"
+const appVersion = "0.8.0"
 
 type App struct {
 	ctx          context.Context
@@ -28,6 +28,8 @@ type App struct {
 	weatherCache weatherCache
 	httpClient   *http.Client
 	realtime     *RealtimeClient
+	english      *EnglishClient
+	englishMode  atomic.Bool
 }
 
 func NewApp() *App {
@@ -49,6 +51,7 @@ func NewApp() *App {
 		},
 	}
 	app.realtime = NewRealtimeClient(app)
+	app.english = NewEnglishClient(app.httpClient, englishAPIBaseURL)
 	return app
 }
 
@@ -226,6 +229,42 @@ func (a *App) MarkRealtimeMessageRead(messageID string) error {
 	return a.realtime.AckRead(messageID)
 }
 
+func (a *App) StartEnglishLearning(mode string) (EnglishStudyBatch, error) {
+	return a.english.Start(mode, a.store.Snapshot().Settings.EnglishSource)
+}
+
+func (a *App) SubmitEnglishAnswer(sessionID, wordID uint64, answer string) (EnglishAnswerResult, error) {
+	return a.english.SubmitAnswer(sessionID, wordID, answer)
+}
+
+func (a *App) SetEnglishWindow(active bool) {
+	a.englishMode.Store(active)
+	if a.ctx == nil {
+		return
+	}
+	if active {
+		runtime.WindowSetMinSize(a.ctx, 420, 72)
+		runtime.WindowSetMaxSize(a.ctx, 1200, 90)
+		runtime.WindowSetSize(a.ctx, 720, 72)
+	} else {
+		a.applyWindowMode(a.store.Snapshot().Settings.CompactMode)
+	}
+	a.applyWindowOpacity()
+}
+
+func (a *App) SetEnglishWindowContentWidth(width int) {
+	if a.ctx == nil || !a.englishMode.Load() {
+		return
+	}
+	if width < 420 {
+		width = 420
+	}
+	if width > 1200 {
+		width = 1200
+	}
+	runtime.WindowSetSize(a.ctx, width, 72)
+}
+
 func (a *App) TestNotification() error {
 	todo := Todo{ID: "notification-test", Title: "提醒功能测试", Note: "窗口置前与多色提醒工作正常"}
 	a.triggerReminder(todo)
@@ -339,7 +378,7 @@ func (a *App) applyNativeTheme(theme string) {
 func (a *App) applyWindowOpacity() {
 	opacity := 1.0
 	settings := a.store.Snapshot().Settings
-	if settings.CompactMode {
+	if settings.CompactMode || a.englishMode.Load() {
 		opacity = float64(settings.CompactOpacity) / 100
 	}
 	setWindowOpacity(opacity)

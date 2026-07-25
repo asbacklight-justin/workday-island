@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.7.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.7.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.8.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.8.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -30,6 +30,8 @@ The public packages are not currently signed with commercial distribution certif
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
 - **Light and dark themes:** Follow the system appearance or choose light/dark explicitly.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
+- **Today English Learning:** Open the compact learning window from the `EN` button and choose bilingual study, EN → CN, CN → EN, or full-word spelling with immediate feedback and the previous word.
+- **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
 - **Online update checks:** Query GitHub Releases at most once per day, or check manually from About and open the matching platform package in one click.
 - **Realtime chat and window interactions:** Open a dedicated page from the chat button, create an anonymous device identity with one click, send messages by user ID, or bring the peer's window forward with a shake or flash.
 - **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Realtime chat is optional and does not use a username or password login.
@@ -50,9 +52,21 @@ The 2×2 layout fits in a corner of the desktop and remains freely resizable.
 
 ### Preferences
 
-Configure work hours, salary, paid days, weather city, workdays, language, and always-on-top behaviour.
+Configure work hours, salary, paid days, weather city, workdays, the English word library, language, and always-on-top behaviour.
 
 ![English preferences](docs/screenshots/en-settings.png)
+
+### Today English Learning
+
+Study, answer four-choice questions, and practise spelling in a content-fitting window with immediate results and the previous word.
+
+![English learning mode](docs/screenshots/en-english.png)
+
+### Realtime chat
+
+Go online with an anonymous device identity, chat by user ID, and send shake, flash, or prompt-based window interactions.
+
+![English realtime chat mode](docs/screenshots/en-chat.png)
 
 See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 
@@ -67,6 +81,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 7. Choose **Check for Updates** in About. When a release is available, open the matching GitHub package; installation still requires user confirmation and never silently replaces the app.
 8. The close button hides Workday Island to the system tray without stopping reminders. Left-click the tray icon to restore it, or right-click and choose **Quit** to end the app. If macOS hides the tray item because the menu bar is full, click Workday Island in the Dock to restore it.
 9. Select the chat button, enter a nickname, and choose **Go Online**. Share your own user ID, enter a peer user ID, and then chat, shake, or flash the peer's window. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
+10. Select the `EN` button for Today English Learning. Choose one of the four practice modes and select the word library in Settings.
 
 ## Stack and architecture
 
@@ -124,7 +139,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.7.0`
+- Current version: `v0.8.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

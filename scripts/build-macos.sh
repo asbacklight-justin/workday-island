@@ -10,6 +10,7 @@ work_dir="$(mktemp -d "${TMPDIR:-/tmp}/workday-island-universal.XXXXXX")"
 
 cleanup() { rm -rf "$work_dir"; }
 trap cleanup EXIT
+rm -rf "$app_bundle"
 mkdir -p "$macos_dir" "$resources_dir"
 
 cd "$project_dir"
@@ -30,7 +31,9 @@ build_arch arm64 arm64
 lipo -create "$work_dir/Workday Island-x86_64" "$work_dir/Workday Island-arm64" -output "$macos_dir/Workday Island"
 cp "$project_dir/build/darwin/Info.plist" "$contents_dir/Info.plist"
 env GOCACHE="${TMPDIR:-/tmp}/workday-island-go-cache-tools" \
-  go run ./cmd/iconpack "$project_dir/build/appicon.png" "$resources_dir/iconfile.icns"
+  go run ./cmd/iconpack "$project_dir/build/appicon.png" "$resources_dir/WorkdayIsland.icns"
+
 codesign --force --deep --sign - "$app_bundle" >/dev/null
+touch "$app_bundle"
 lipo -info "$macos_dir/Workday Island"
 echo "$app_bundle"

@@ -10,7 +10,6 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/jackmordaunt/icns"
 	"github.com/nfnt/resize"
 )
 
@@ -35,7 +34,7 @@ func main() {
 	defer output.Close()
 	ext := strings.ToLower(filepath.Ext(os.Args[2]))
 	if ext == ".icns" {
-		err = icns.Encode(output, img)
+		err = encodeICNS(output, img)
 	} else if ext == ".ico" {
 		err = encodeICO(output, img)
 	} else {
@@ -44,6 +43,62 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+type icnsImage struct {
+	id   string
+	size uint
+}
+
+// encodeICNS writes every standard and Retina representation used by macOS.
+// Keeping the 16, 32, 128, 256, 512, and 1024 pixel entries prevents Finder
+// and Dock from falling back to the generic application icon.
+func encodeICNS(output *os.File, source image.Image) error {
+	representations := []icnsImage{
+		{id: "ic10", size: 1024},
+		{id: "ic09", size: 512},
+		{id: "ic14", size: 512},
+		{id: "ic08", size: 256},
+		{id: "ic13", size: 256},
+		{id: "ic07", size: 128},
+		{id: "ic12", size: 64},
+		{id: "icp5", size: 32},
+		{id: "ic11", size: 32},
+		{id: "icp4", size: 16},
+	}
+	encodedBySize := make(map[uint][]byte)
+	totalSize := uint32(8)
+	for _, representation := range representations {
+		if _, ok := encodedBySize[representation.size]; !ok {
+			resized := resize.Resize(representation.size, representation.size, source, resize.Lanczos3)
+			var encoded bytes.Buffer
+			if err := png.Encode(&encoded, resized); err != nil {
+				return err
+			}
+			encodedBySize[representation.size] = encoded.Bytes()
+		}
+		totalSize += uint32(8 + len(encodedBySize[representation.size]))
+	}
+
+	if _, err := output.Write([]byte("icns")); err != nil {
+		return err
+	}
+	if err := binary.Write(output, binary.BigEndian, totalSize); err != nil {
+		return err
+	}
+	for _, representation := range representations {
+		data := encodedBySize[representation.size]
+		if _, err := output.Write([]byte(representation.id)); err != nil {
+			return err
+		}
+		if err := binary.Write(output, binary.BigEndian, uint32(8+len(data))); err != nil {
+			return err
+		}
+		if _, err := output.Write(data); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 type icoImage struct {
