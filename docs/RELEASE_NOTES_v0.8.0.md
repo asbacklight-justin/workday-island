@@ -18,9 +18,9 @@
 
 ### 新版截图
 
-![今日英语学习](screenshots/zh-english.png)
+![今日英语学习](https://raw.githubusercontent.com/asbacklight-justin/workday-island/v0.8.0/docs/screenshots/zh-english.png)
 
-![实时聊天模式](screenshots/zh-chat.png)
+![实时聊天模式](https://raw.githubusercontent.com/asbacklight-justin/workday-island/v0.8.0/docs/screenshots/zh-chat.png)
 
 ### 安装包
 
@@ -48,9 +48,9 @@ This release adds Today English Learning: a small content-fitting window for dai
 
 ### Screenshots
 
-![Today English Learning](screenshots/en-english.png)
+![Today English Learning](https://raw.githubusercontent.com/asbacklight-justin/workday-island/v0.8.0/docs/screenshots/en-english.png)
 
-![Realtime chat mode](screenshots/en-chat.png)
+![Realtime chat mode](https://raw.githubusercontent.com/asbacklight-justin/workday-island/v0.8.0/docs/screenshots/en-chat.png)
 
 ### Packages
 
