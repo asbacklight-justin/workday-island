@@ -29,6 +29,8 @@ type Settings struct {
 	WeatherCity      string  `json:"weatherCity"`
 	Language         string  `json:"language"`
 	Theme            string  `json:"theme"`
+	EnglishMode      string  `json:"englishMode"`
+	EnglishSource    string  `json:"englishSource"`
 }
 
 type State struct {
@@ -81,6 +83,27 @@ type AppInfo struct {
 	Author      string `json:"author"`
 	Email       string `json:"email"`
 	Description string `json:"description"`
+}
+
+type EnglishQuestion struct {
+	Word          string   `json:"word"`
+	WordID        uint64   `json:"wordId"`
+	Translation   string   `json:"translation"`
+	Phonetic      string   `json:"phonetic,omitempty"`
+	Example       string   `json:"example,omitempty"`
+	Options       []string `json:"options,omitempty"`
+	CorrectAnswer string   `json:"correctAnswer,omitempty"`
+}
+
+type EnglishStudyBatch struct {
+	SessionID uint64            `json:"sessionId"`
+	Mode      string            `json:"mode"`
+	Questions []EnglishQuestion `json:"questions"`
+}
+
+type EnglishAnswerResult struct {
+	Correct       bool   `json:"correct"`
+	CorrectAnswer string `json:"correctAnswer"`
 }
 
 type UpdateInfo struct {

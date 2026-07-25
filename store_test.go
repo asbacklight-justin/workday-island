@@ -82,7 +82,7 @@ func TestFocusSessionPersistsAndCompletesOnce(t *testing.T) {
 
 func TestInvalidSettingsFallBack(t *testing.T) {
 	settings := normaliseSettings(Settings{WorkStart: "bad", WorkEnd: "25:00", Workdays: []int{9}})
-	if settings.WorkStart != "09:00" || settings.WorkEnd != "18:00" || len(settings.Workdays) != 5 || settings.SalaryWorkdays != 21.75 || settings.WeatherCity != "上海" || settings.Language != "system" || settings.Theme != "system" || settings.Currency != "¥" || settings.CompactOpacity != 100 || settings.CompactWidth != 520 || settings.CompactHeight != 350 {
+	if settings.WorkStart != "09:00" || settings.WorkEnd != "18:00" || len(settings.Workdays) != 5 || settings.SalaryWorkdays != 21.75 || settings.WeatherCity != "上海" || settings.Language != "system" || settings.Theme != "system" || settings.Currency != "¥" || settings.CompactOpacity != 100 || settings.CompactWidth != 520 || settings.CompactHeight != 350 || settings.EnglishSource != "nce2" {
 		t.Fatalf("unexpected defaults: %#v", settings)
 	}
 	if got := normaliseSettings(Settings{CompactOpacity: 55, Workdays: []int{1}}).CompactOpacity; got != 55 {
@@ -90,6 +90,11 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 	}
 	if got := normaliseSettings(Settings{Language: "en", Workdays: []int{1}}).Language; got != "en" {
 		t.Fatalf("language selection was not preserved: %q", got)
+	}
+	for _, source := range []string{"all", "nce2", "nce3", "cet4", "cet6", "ielts"} {
+		if got := normaliseSettings(Settings{EnglishSource: source, Workdays: []int{1}}).EnglishSource; got != source {
+			t.Fatalf("English source %q was not preserved: %q", source, got)
+		}
 	}
 }
 

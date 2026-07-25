@@ -14,7 +14,7 @@ const translations = {
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
     theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
-    compactOpacity: '精简模式透明度', compactOpacityDesc: '拖动时实时预览；保存后仅在精简模式生效',
+    compactOpacity: '精简模式透明度', compactOpacityDesc: '拖动时实时预览；精简模式和英语学习页共用',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱',
     updates: '应用更新', autoUpdateHint: '每天自动检查一次', updateIdle: '可手动检查 GitHub Releases 中的新版本',
     checkUpdates: '检查更新', checkingUpdates: '正在检查更新…', latestVersion: '已是最新版 v{version}',
@@ -28,12 +28,14 @@ const translations = {
     working: '工作中', restDay: '休息日', restWell: '好好休息', waiting: '等待开工', finished: '今日收工', offWork: '已下班',
     dailyLimit: '今日上限 {currency}{amount}', salaryPrompt: '在设置中填写月薪', chooseTime: '请选择具体提醒时间',
     chooseDate: '请选择提醒日期', todoUpdated: '待办已更新', todoAdded: '待办已添加', chooseWorkday: '请至少选择一个工作日',
-    settingsSaved: '工作、天气与语言设置已保存', compactOn: '已切换到精简模式', compactOff: '已展开完整面板',
+    settingsSaved: '工作、词库、天气与语言设置已保存', compactOn: '已切换到精简模式', compactOff: '已展开完整面板',
     timeToTodo: '该处理待办啦', weatherUpdating: '天气更新中', currentWeather: '当前天气', weatherUnavailable: '天气暂不可用', weatherCached: '缓存于 {time}',
     notificationTest: '提醒功能测试', notificationSent: '系统提醒已发送', operationFailed: '操作失败',
     focusMode: '专注模式', focusHint: '选择一段不被打扰的时间，结束后提醒你休息。', focusing: '专注中',
     startFocus: '开始专注', stopFocus: '结束专注', focusStarted: '已开始 {minutes} 分钟专注', focusStopped: '本次专注已结束',
     focusEndsAt: '{time} 结束', focusFinished: '专注完成', takeBreak: '专注完成，请休息一下', focusDuration: '专注时长', minuteShort: '分',
+    englishSource: '单词词库', englishSourceAll: '全部公共词库', englishSourceNCE2: '新概念英语第二册', englishSourceNCE3: '新概念英语第三册',
+    englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     myUserId: '我的用户 ID', goOnline: '一键上线', goOffline: '下线', resetIdentity: '重置实时身份', resetConfirm: '重置后会创建新的用户 ID，当前本地聊天记录也会清除。确定继续吗？',
@@ -42,6 +44,9 @@ const translations = {
     chatPlaceholder: '输入消息，Enter 发送，Shift+Enter 换行', send: '发送', idCopied: '用户 ID 已复制', identityReset: '实时身份已重置', connectedRealtime: '实时服务已上线', disconnectedRealtime: '已从实时服务下线',
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
     incomingShake: '用户 {id} 抖了抖你的窗口', incomingFlash: '用户 {id} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
+    englishLearning: '偷偷学英语', englishStudyMode: '中英学习', englishQuizMode: '英译中 4选1', englishChineseMode: '中译英 4选1', englishSpellingMode: '拼完整单词', englishLoading: '正在取词…',
+    englishLoadFailed: '取词失败', retry: '重试', nextWord: '下一个', answerCorrect: '回答正确', answerWrong: '回答错误', previousWord: '上一词',
+    englishSpellingPlaceholder: '输入完整英文单词', checkAnswer: '检查', enterSpelling: '请输入完整英文单词',
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
@@ -59,7 +64,7 @@ const translations = {
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
     theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
-    compactOpacity: 'Compact mode opacity', compactOpacityDesc: 'Drag to preview live; after saving, it only affects compact mode',
+    compactOpacity: 'Compact mode opacity', compactOpacityDesc: 'Live preview; shared by compact mode and English learning',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email',
     updates: 'App updates', autoUpdateHint: 'Checked automatically once a day', updateIdle: 'Check GitHub Releases for a newer version',
     checkUpdates: 'Check for Updates', checkingUpdates: 'Checking for updates…', latestVersion: 'You’re up to date — v{version}',
@@ -73,12 +78,14 @@ const translations = {
     working: 'Working', restDay: 'Rest day', restWell: 'Enjoy your day', waiting: 'Starts in', finished: 'Finished', offWork: 'Off work',
     dailyLimit: 'Daily limit {currency}{amount}', salaryPrompt: 'Add your monthly salary in Settings', chooseTime: 'Choose a reminder time',
     chooseDate: 'Choose a reminder date', todoUpdated: 'Todo updated', todoAdded: 'Todo added', chooseWorkday: 'Select at least one workday',
-    settingsSaved: 'Work, weather, and language settings saved', compactOn: 'Compact mode enabled', compactOff: 'Full panel restored',
+    settingsSaved: 'Work, vocabulary, weather, and language settings saved', compactOn: 'Compact mode enabled', compactOff: 'Full panel restored',
     timeToTodo: 'Time to handle this todo', weatherUpdating: 'Updating weather', currentWeather: 'Current weather', weatherUnavailable: 'Weather unavailable', weatherCached: 'Cached at {time}',
     notificationTest: 'Reminder test', notificationSent: 'System reminder sent', operationFailed: 'Operation failed',
     focusMode: 'Focus Mode', focusHint: 'Choose an uninterrupted block. We’ll remind you to rest when it ends.', focusing: 'Focusing',
     startFocus: 'Start Focus', stopFocus: 'End Focus', focusStarted: '{minutes}-minute focus started', focusStopped: 'Focus session ended',
     focusEndsAt: 'Ends at {time}', focusFinished: 'FOCUS COMPLETE', takeBreak: 'Focus complete — take a break', focusDuration: 'Focus duration', minuteShort: 'min',
+    englishSource: 'Word library', englishSourceAll: 'All public words', englishSourceNCE2: 'New Concept English 2', englishSourceNCE3: 'New Concept English 3',
+    englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     myUserId: 'My user ID', goOnline: 'Go Online', goOffline: 'Go Offline', resetIdentity: 'Reset realtime identity', resetConfirm: 'Resetting creates a new user ID and clears local chat history. Continue?',
@@ -87,21 +94,26 @@ const translations = {
     chatPlaceholder: 'Type a message. Enter to send; Shift+Enter for a new line', send: 'Send', idCopied: 'User ID copied', identityReset: 'Realtime identity reset', connectedRealtime: 'Realtime service is online', disconnectedRealtime: 'Realtime service is offline',
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
     incomingShake: 'User {id} shook your window', incomingFlash: 'User {id} flashed your window', stopWindowEffect: 'Stop window interaction',
+    englishLearning: 'Quiet English', englishStudyMode: 'EN + CN', englishQuizMode: 'EN → CN · 4 choices', englishChineseMode: 'CN → EN · 4 choices', englishSpellingMode: 'Spell the word', englishLoading: 'Fetching words…',
+    englishLoadFailed: 'Unable to fetch words', retry: 'Retry', nextWord: 'Next word', answerCorrect: 'Correct', answerWrong: 'Wrong', previousWord: 'Previous',
+    englishSpellingPlaceholder: 'Type the complete English word', checkAnswer: 'Check', enterSpelling: 'Type the complete English word',
     weekdays: ['M','T','W','T','F','S','S']
   }
 };
 
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system' },
-  appInfo: {name: 'Workday Island', version: '0.7.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
+  appInfo: {name: 'Workday Island', version: '0.8.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
   realtime: {status: 'offline', desiredOnline: false, lastError: '', identity: null, messages: []},
   chatOpen: false,
   chatUnread: 0,
-  latestIncomingPeer: 0
+  latestIncomingPeer: 0,
+  englishOpen: false,
+  english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
 
 const api = window.go?.main?.App ?? createPreviewAPI();
@@ -116,6 +128,7 @@ let availableUpdate = null;
 let updateCheckResult = null;
 let remoteEffectTimer = 0;
 let realtimeBusy = false;
+let englishFitTimer = 0;
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
 
 const $ = selector => document.querySelector(selector);
@@ -132,6 +145,9 @@ function normaliseWorkdays(value) {
   const days = Array.isArray(value) ? value : [];
   const valid = [...new Set(days.map(Number).filter(day => Number.isInteger(day) && day >= 1 && day <= 7))];
   return valid.length ? valid.sort((a, b) => a - b) : [1, 2, 3, 4, 5];
+}
+function normaliseEnglishMode(value) {
+  return ['study', 'quiz', 'chinese', 'spelling'].includes(value) ? value : 'study';
 }
 function t(key, replacements = {}) {
   let value = translations[currentLanguage()][key] ?? translations.zh[key] ?? key;
@@ -152,7 +168,9 @@ function applyTranslations() {
   $('#open-about').title = t('about');
   $('#open-chat').setAttribute('aria-label', t('chat'));
   $('#open-chat').title = t('chat');
-  ['#minimize-window', '#compact-minimize'].forEach(selector => {
+  $('#open-english').setAttribute('aria-label', t('englishLearning'));
+  $('#open-english').title = t('englishLearning');
+  ['#minimize-window', '#compact-minimize', '#minimize-english'].forEach(selector => {
     $(selector).setAttribute('aria-label', t('minimize'));
     $(selector).title = t('minimize');
   });
@@ -160,6 +178,11 @@ function applyTranslations() {
   $('#compact-expand').title = t('expandTitle');
   $('#compact-window-controls').setAttribute('aria-label', t('windowControls'));
   $('#compact-todos').setAttribute('aria-label', t('compactTodos'));
+  $('#english-page').setAttribute('aria-label', t('englishLearning'));
+  $('#close-english').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-english').title = t('backToDashboard');
+  $('#next-english').setAttribute('aria-label', t('nextWord'));
+  $('#next-english').title = t('nextWord');
   $('#close-window').setAttribute('aria-label', t('hideToTray'));
   $('#close-window').title = t('hideToTray');
   $('.pin-control').title = t('pinTitle');
@@ -230,6 +253,14 @@ function bindEvents() {
   $('#open-settings').addEventListener('click', openSettings);
   $('#open-about').addEventListener('click', () => openModal('about-modal'));
   $('#open-chat').addEventListener('click', openChatPage);
+  $('#open-english').addEventListener('click', openEnglishPage);
+  $('#close-english').addEventListener('click', closeEnglishPage);
+  $('#minimize-english').addEventListener('click', minimiseWindow);
+  $('#retry-english').addEventListener('click', loadEnglishBatch);
+  $('#next-english').addEventListener('click', nextEnglishWord);
+  $('#english-mode').addEventListener('change', changeEnglishMode);
+  $('#english-options').addEventListener('click', answerEnglishQuestion);
+  $('#english-spelling-form').addEventListener('submit', submitEnglishSpelling);
   $('#close-chat').addEventListener('click', closeChatPage);
   $('#realtime-toggle').addEventListener('click', toggleRealtimeConnection);
   $('#reset-realtime').addEventListener('click', resetRealtimeIdentity);
@@ -283,7 +314,11 @@ function bindEvents() {
     if (event.target === modal) closeModal(modal.id);
   }));
   document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && state.englishOpen) { closeEnglishPage(); return; }
     if (event.key === 'Escape') $$('.modal-backdrop:not(.hidden)').forEach(modal => closeModal(modal.id));
+    if (state.englishOpen && ['quiz', 'chinese'].includes(state.english.mode) && /^[1-4]$/.test(event.key)) {
+      $('#english-options').querySelector(`[data-option-index="${Number(event.key) - 1}"]`)?.click();
+    }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
   });
   $('#todo-list').addEventListener('click', handleTodoAction);
@@ -445,6 +480,7 @@ function renderSummary() {
 
 function updateClock() {
   const now = new Date();
+  updateEnglishLearning(now.getTime());
   $('#clock').textContent = now.toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit', hour12:false});
   $('#ampm').textContent = now.getHours() < 12 ? 'AM' : 'PM';
   const dateText = now.toLocaleDateString(locale(), {month:'long', day:'numeric', weekday:'long'});
@@ -559,6 +595,289 @@ function closeChatPage() {
   document.body.classList.remove('chat-open');
   $('#chat-page').classList.add('hidden');
   renderRealtimeUnread();
+}
+
+async function openEnglishPage() {
+  if (state.chatOpen) closeChatPage();
+  state.englishOpen = true;
+  state.english.mode = normaliseEnglishMode(state.settings.englishMode);
+  state.english.answered = 0;
+  state.english.correct = 0;
+  state.english.previous = null;
+  $('#english-mode').value = state.english.mode;
+  document.body.classList.add('english-open');
+  $('#english-page').classList.remove('hidden');
+  try {
+    await api.SetEnglishWindow?.(true);
+    await loadEnglishBatch();
+  } catch (error) {
+    showEnglishError(error);
+  }
+}
+
+async function closeEnglishPage() {
+  state.englishOpen = false;
+  state.english.busy = false;
+  $('#english-mode').disabled = false;
+  document.body.classList.remove('english-open');
+  $('#english-page').classList.add('hidden');
+  try {
+    await api.SetEnglishWindow?.(false);
+  } catch (error) {
+    showToast(readError(error), true);
+  }
+  applyCompactUI();
+}
+
+async function changeEnglishMode() {
+  state.english.mode = normaliseEnglishMode($('#english-mode').value);
+  state.english.answered = 0;
+  state.english.correct = 0;
+  state.english.previous = null;
+  state.settings.englishMode = state.english.mode;
+  try {
+    state.settings = {...state.settings, ...(await api.SaveSettings(state.settings))};
+  } catch (_) { /* Learning remains available even if the preference cannot be persisted. */ }
+  await loadEnglishBatch();
+}
+
+function setEnglishView(view) {
+  $('#english-loading').classList.toggle('hidden', view !== 'loading');
+  $('#english-error').classList.toggle('hidden', view !== 'error');
+  $('#english-study').classList.toggle('hidden', view !== 'study');
+  $('#english-study-stage').classList.toggle('hidden', view !== 'study');
+  $('#english-quiz').classList.toggle('hidden', view !== 'quiz');
+  $('#english-options').classList.toggle('hidden', view !== 'quiz');
+  $('#english-spelling').classList.toggle('hidden', view !== 'spelling');
+  $('#english-spelling-stage').classList.toggle('hidden', view !== 'spelling');
+  const exercise = view === 'quiz' || view === 'spelling';
+  $('#english-score').classList.toggle('hidden', !exercise);
+  if (!exercise) $('#english-previous').classList.add('hidden');
+  scheduleEnglishWindowFit();
+}
+
+function scheduleEnglishWindowFit() {
+  if (!state.englishOpen || !hasNativeAPI || typeof api.SetEnglishWindowContentWidth !== 'function') return;
+  window.clearTimeout(englishFitTimer);
+  englishFitTimer = window.setTimeout(async () => {
+    if (!state.englishOpen) return;
+    const toolbar = $('.english-toolbar');
+    const toolbarItems = [...toolbar.children].filter(element => !element.classList.contains('hidden'));
+    const toolbarGap = Number.parseFloat(getComputedStyle(toolbar).columnGap) || 0;
+    const toolbarWidth = toolbarItems.reduce((total, element) => {
+      if (element.classList.contains('english-previous')) return total + Math.min(element.scrollWidth, 190);
+      const content = element.classList.contains('english-prompt') ? element.querySelector('strong') : element;
+      return total + Math.ceil(Math.max(content?.scrollWidth || 0, element.getBoundingClientRect().width));
+    }, Math.max(0, toolbarItems.length - 1) * toolbarGap);
+
+    let stageWidth = 0;
+    const options = $$('#english-options .english-option');
+    if (options.length && !$('#english-options').classList.contains('hidden')) {
+      const optionGap = Number.parseFloat(getComputedStyle($('#english-options')).columnGap) || 0;
+      stageWidth = options.reduce((total, option) => total + Math.min(option.scrollWidth + 2, 280), Math.max(0, options.length - 1) * optionGap);
+    } else if (!$('#english-study-stage').classList.contains('hidden')) {
+      const stage = $('#english-study-stage');
+      const gap = Number.parseFloat(getComputedStyle(stage).columnGap) || 0;
+      const children = [...stage.children];
+      stageWidth = children.reduce((total, element, index) => {
+        const limit = index === 1 ? 320 : 160;
+        return total + Math.min(Math.max(element.scrollWidth, element.getBoundingClientRect().width), limit);
+      }, Math.max(0, children.length - 1) * gap);
+    } else if (!$('#english-spelling-stage').classList.contains('hidden')) {
+      stageWidth = Math.min($('#english-spelling-mask').scrollWidth, 190) + 310 + 3;
+    }
+    const width = Math.max(420, Math.min(1200, Math.ceil(Math.max(toolbarWidth, stageWidth) + 14)));
+    try { await api.SetEnglishWindowContentWidth(width); } catch (_) { /* Keep learning usable if resizing is unavailable. */ }
+  }, 24);
+}
+
+async function loadEnglishBatch() {
+  if (!state.englishOpen || state.english.busy) return;
+  state.english.busy = true;
+  $('#english-mode').disabled = true;
+  setEnglishView('loading');
+  try {
+    const batch = await api.StartEnglishLearning(state.english.mode);
+    if (!state.englishOpen) return;
+    state.english.sessionId = Number(batch?.sessionId) || 0;
+    state.english.questions = Array.isArray(batch?.questions) ? batch.questions : [];
+    state.english.index = 0;
+    state.english.shownAt = Date.now();
+    if (!state.english.questions.length) throw new Error(t('englishLoadFailed'));
+    renderEnglishQuestion();
+  } catch (error) {
+    if (state.englishOpen) showEnglishError(error);
+  } finally {
+    state.english.busy = false;
+    $('#english-mode').disabled = false;
+  }
+}
+
+function showEnglishError(error) {
+  setEnglishView('error');
+  $('#english-error-text').textContent = readError(error) || t('englishLoadFailed');
+}
+
+function currentEnglishQuestion() {
+  return state.english.questions[state.english.index] || null;
+}
+
+function renderEnglishQuestion() {
+  const question = currentEnglishQuestion();
+  if (!question) { loadEnglishBatch(); return; }
+  state.english.shownAt = Date.now();
+  if (state.english.mode === 'study') {
+    setEnglishView('study');
+    $('#english-word').textContent = question.word;
+    $('#english-phonetic').textContent = question.phonetic || '';
+    $('#english-translation').textContent = question.translation;
+    $('#english-countdown').textContent = '60s';
+    return;
+  }
+  if (state.english.mode === 'spelling') {
+    setEnglishView('spelling');
+    renderEnglishPrevious();
+    $('#english-spelling-meaning').textContent = question.translation;
+    $('#english-spelling-meaning').title = question.translation;
+    $('#english-spelling-mask').textContent = maskEnglishWord(question.word);
+    const input = $('#english-spelling-input');
+    input.value = '';
+    input.disabled = false;
+    input.classList.remove('correct', 'wrong');
+    $('#submit-english-spelling').disabled = false;
+    $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+    window.setTimeout(() => { if (state.englishOpen && state.english.mode === 'spelling') input.focus(); }, 20);
+    return;
+  }
+  setEnglishView('quiz');
+  const chineseToEnglish = state.english.mode === 'chinese';
+  $('#english-quiz-word').textContent = chineseToEnglish ? question.translation : question.word;
+  $('#english-quiz-word').title = chineseToEnglish ? question.translation : question.word;
+  $('#english-quiz-word').classList.toggle('chinese-prompt', chineseToEnglish);
+  renderEnglishPrevious();
+  const options = Array.isArray(question.options) ? question.options.slice(0, 4) : [];
+  $('#english-options').innerHTML = options.map((option, index) =>
+    `<button type="button" class="english-option" data-option-index="${index}" title="${escapeHTML(option)}"><span>${index + 1}</span>${escapeHTML(option)}</button>`
+  ).join('');
+  $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+}
+
+function maskEnglishWord(word) {
+  return [...String(word || '')].map(character => /[A-Za-z]/.test(character) ? '_' : character).join(' ');
+}
+
+function renderEnglishPrevious() {
+  const previous = state.english.previous;
+  const element = $('#english-previous');
+  element.classList.toggle('hidden', !previous);
+  element.classList.toggle('correct', Boolean(previous?.correct));
+  element.classList.toggle('wrong', Boolean(previous && !previous.correct));
+  if (!previous) return;
+  const label = previous.justAnswered
+    ? t(previous.correct ? 'answerCorrect' : 'answerWrong')
+    : t('previousWord');
+  const text = `${label} · ${previous.word} = ${previous.translation}`;
+  element.textContent = text;
+  element.title = text;
+  scheduleEnglishWindowFit();
+}
+
+function updateEnglishLearning(now = Date.now()) {
+  if (!state.englishOpen || state.english.mode !== 'study' || state.english.busy || !currentEnglishQuestion()) return;
+  const elapsed = now - state.english.shownAt;
+  const remaining = Math.max(0, Math.ceil((60000 - elapsed) / 1000));
+  $('#english-countdown').textContent = `${remaining}s`;
+  if (elapsed >= 60000) nextEnglishWord();
+}
+
+async function nextEnglishWord() {
+  if (!state.englishOpen || state.english.busy) return;
+  if (state.english.previous) state.english.previous.justAnswered = false;
+  if (state.english.index + 1 >= state.english.questions.length) {
+    await loadEnglishBatch();
+    return;
+  }
+  state.english.index += 1;
+  renderEnglishQuestion();
+}
+
+async function answerEnglishQuestion(event) {
+  const button = event.target.closest('.english-option');
+  const question = currentEnglishQuestion();
+  if (!button || !question || state.english.busy) return;
+  state.english.busy = true;
+  $('#english-mode').disabled = true;
+  const answer = question.options[Number(button.dataset.optionIndex)] || '';
+  const buttons = $$('#english-options .english-option');
+  buttons.forEach(item => { item.disabled = true; });
+  try {
+    const result = await api.SubmitEnglishAnswer(state.english.sessionId, Number(question.wordId), answer);
+    state.english.answered += 1;
+    if (result?.correct) state.english.correct += 1;
+    state.english.previous = {
+      word: question.word,
+      translation: question.translation,
+      correct: Boolean(result?.correct),
+      justAnswered: true
+    };
+    const correctAnswer = result?.correctAnswer || question.correctAnswer;
+    buttons.forEach(item => {
+      const itemAnswer = question.options[Number(item.dataset.optionIndex)] || '';
+      if (itemAnswer === correctAnswer) item.classList.add('correct');
+    });
+    if (!result?.correct) button.classList.add('wrong');
+    renderEnglishPrevious();
+    $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+    window.setTimeout(() => {
+      state.english.busy = false;
+      $('#english-mode').disabled = false;
+      if (state.englishOpen) nextEnglishWord();
+    }, 1600);
+  } catch (error) {
+    state.english.busy = false;
+    $('#english-mode').disabled = false;
+    buttons.forEach(item => { item.disabled = false; });
+    showToast(readError(error), true);
+  }
+}
+
+async function submitEnglishSpelling(event) {
+  event.preventDefault();
+  const question = currentEnglishQuestion();
+  const input = $('#english-spelling-input');
+  const answer = input.value.trim();
+  if (!question || state.english.busy) return;
+  if (!answer) { showToast(t('enterSpelling'), true); input.focus(); return; }
+  state.english.busy = true;
+  $('#english-mode').disabled = true;
+  input.disabled = true;
+  $('#submit-english-spelling').disabled = true;
+  try {
+    const result = await api.SubmitEnglishAnswer(state.english.sessionId, Number(question.wordId), answer);
+    state.english.answered += 1;
+    if (result?.correct) state.english.correct += 1;
+    state.english.previous = {
+      word: question.word,
+      translation: question.translation,
+      correct: Boolean(result?.correct),
+      justAnswered: true
+    };
+    input.value = question.word;
+    input.classList.add(result?.correct ? 'correct' : 'wrong');
+    renderEnglishPrevious();
+    $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+    window.setTimeout(() => {
+      state.english.busy = false;
+      $('#english-mode').disabled = false;
+      if (state.englishOpen) nextEnglishWord();
+    }, 1600);
+  } catch (error) {
+    state.english.busy = false;
+    $('#english-mode').disabled = false;
+    input.disabled = false;
+    $('#submit-english-spelling').disabled = false;
+    showToast(readError(error), true);
+  }
 }
 
 function realtimeStatusLabel(status) {
@@ -867,6 +1186,7 @@ function openSettings() {
   $('#weather-city-input').value = state.settings.weatherCity || '上海';
   $('#language-select').value = state.settings.language || 'system';
   $('#theme-select').value = state.settings.theme || 'system';
+  $('#english-source-select').value = state.settings.englishSource || 'nce2';
   $('#currency-symbol').value = state.settings.currency || '¥';
   $('#show-compact-todos').checked = Boolean(state.settings.showCompactTodos);
   $('#compact-opacity').value = normaliseCompactOpacity(state.settings.compactOpacity);
@@ -901,6 +1221,8 @@ async function submitSettings(event) {
     weatherCity: $('#weather-city-input').value.trim() || '上海',
     language: $('#language-select').value,
     theme: $('#theme-select').value,
+    englishMode: state.settings.englishMode || 'study',
+    englishSource: $('#english-source-select').value || 'nce2',
     showCompactTodos: $('#show-compact-todos').checked,
     compactOpacity: normaliseCompactOpacity($('#compact-opacity').value),
     compactWidth: state.settings.compactWidth || 520,
@@ -1127,6 +1449,26 @@ function createPreviewAPI() {
     async StopFocus(){ previewState.focus={...previewState.focus,active:false,completedAt:null}; return structuredClone(previewState.focus); },
     async SaveSettings(settings){ previewState.settings={...settings}; return structuredClone(settings); },
     async SetCompactMode(compact){ previewState.settings.compactMode=compact; return structuredClone(previewState.settings); },
+    async SetEnglishWindow(){ return true; },
+    async SetEnglishWindowContentWidth(){ return true; },
+    async StartEnglishLearning(mode){
+      const source = [
+        {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/'},
+        {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/'}
+      ];
+      const questions = source.map((question, index) => {
+        if (mode === 'chinese') return {...question, options:index ? ['vague','concise','expensive','silent'] : ['effort','serendipity','caution','rest'], correctAnswer:question.word};
+        if (mode === 'spelling') return {...question, options:[], correctAnswer:question.word};
+        const options = index ? ['模糊的','简明的，简洁的','昂贵的','安静的'] : ['意外发现美好事物的能力','持续的努力','谨慎的决定','短暂的休息'];
+        return {...question, options, correctAnswer:question.translation};
+      });
+      return {sessionId:7,mode,questions};
+    },
+    async SubmitEnglishAnswer(sessionId,wordId,answer){
+      const question=[{wordId:1,word:'serendipity',translation:'意外发现美好事物的能力'},{wordId:2,word:'concise',translation:'简明的，简洁的'}].find(item=>item.wordId===wordId);
+      const expected = state.english.mode === 'quiz' ? question.translation : question.word;
+      return {correct:answer.toLowerCase()===expected.toLowerCase(),correctAnswer:expected};
+    },
     async PreviewWindowOpacity(){ return true; },
     async RestoreWindowOpacity(){ return true; },
     async GetWeather(city){ return {queryCity:city,city,temperature:23.6,apparentTemperature:24.1,weatherCode:2,description:'多云',icon:'⛅',updatedAt:new Date().toISOString(),stale:false}; },
@@ -1137,7 +1479,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.7.0',latestVersion:'0.7.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.7.1/Workday-Island-v0.7.1-macOS-universal.dmg',assetName:'Workday-Island-v0.7.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.7.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.8.0',latestVersion:'0.8.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.8.1/Workday-Island-v0.8.1-macOS-universal.dmg',assetName:'Workday-Island-v0.8.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.8.0',skipped:true}; },
     async OpenUpdateURL(){ return true; }
   };
 }
