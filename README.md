@@ -12,8 +12,8 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.8.0-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.8.0-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.8.1-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.8.1-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
@@ -30,7 +30,7 @@
 - **天气**：通过 Open-Meteo 查询指定城市的当前天气，无需 API Key；网络波动时自动重试并回退到三小时内的本地缓存，避免长期展示过期天气。
 - **深浅主题**：支持跟随系统、深色与浅色主题。
 - **中英双语**：支持跟随系统、简体中文与 English，可在设置中随时切换。
-- **今日英语学习**：点击顶部 `EN` 按钮打开紧凑学习窗，支持中英学习、英译中四选一、中译英四选一和完整单词拼写，并即时显示答案对错与上一词。
+- **今日英语学习**：点击顶部 `EN` 按钮打开紧凑学习窗，支持中英学习、英译中四选一、中译英四选一和完整单词拼写，并即时显示答案对错与上一词；透明度仅影响背景，学习内容始终清晰。
 - **可选单词词库**：英语学习默认使用《新概念英语》第二册，也可在设置中切换到新概念三、四级、六级、雅思或全部公共词库。
 - **在线检查更新**：每天最多查询一次 GitHub Releases，也可在“关于”页手动检查并一键打开对应平台安装包。
 - **实时聊天与窗口互动**：点击聊天按钮进入独立页面，一键创建匿名设备身份并上线；通过用户 ID 发送消息，也可让对方窗口置前抖动或闪烁。
@@ -139,7 +139,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.8.0`
+- 当前版本：`v0.8.1`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

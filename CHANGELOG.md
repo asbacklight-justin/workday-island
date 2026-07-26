@@ -3,6 +3,16 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [0.8.1] - 2026-07-26
+
+### 中文
+
+- 优化英语学习窗口透明度：透明度仅作用于深浅主题背景，单词、释义、选项、成绩和操作控件保持完全清晰；Windows 与 macOS 行为一致。
+
+### English
+
+- Improved English-learning opacity: only the dark/light background becomes translucent, while words, meanings, choices, scores, and controls remain fully opaque on both Windows and macOS.
+
 ## [0.8.0] - 2026-07-25
 
 ### 中文
@@ -129,6 +139,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.8.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1
 [0.8.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.0
 [0.7.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.0
 [0.6.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.6.2
