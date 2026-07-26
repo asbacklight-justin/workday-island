@@ -7,6 +7,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/mac"
+	windowsoptions "github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
 //go:embed all:frontend/dist
@@ -27,15 +28,21 @@ func main() {
 		AlwaysOnTop:   true,
 		AssetServer:   &assetserver.Options{Assets: assets},
 		BackgroundColour: &options.RGBA{
-			R: 11, G: 16, B: 27, A: 1,
+			R: 11, G: 16, B: 27, A: 0,
 		},
 		OnStartup:  app.startup,
 		OnShutdown: app.shutdown,
 		Bind:       []interface{}{app},
 		Mac: &mac.Options{
 			WebviewIsTransparent: true,
-			WindowIsTranslucent:  true,
+			WindowIsTranslucent:  false,
 			DisableZoom:          true,
+		},
+		Windows: &windowsoptions.Options{
+			WebviewIsTransparent: true,
+			WindowIsTranslucent:  true,
+			BackdropType:         windowsoptions.None,
+			DisablePinchZoom:     true,
 		},
 		SingleInstanceLock: &options.SingleInstanceLock{
 			UniqueId: "com.backlight.workday-island",

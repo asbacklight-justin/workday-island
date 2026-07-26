@@ -104,7 +104,7 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.8.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.8.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -217,6 +217,7 @@ async function boot() {
     $('#realtime-nickname').value = defaultNickname || '';
     $('#peer-user-id').value = localStorage.getItem('workdayIsland.chatPeer') || '';
     applyTheme();
+    applyEnglishBackgroundOpacity();
     bindEvents();
     applyTranslations();
     renderAll();
@@ -418,6 +419,7 @@ async function refresh() {
 
 function renderAll() {
   $('#always-on-top').checked = state.settings.alwaysOnTop;
+  applyEnglishBackgroundOpacity();
   applyCompactUI();
   renderTodos();
   renderCompactTodos();
@@ -605,7 +607,9 @@ async function openEnglishPage() {
   state.english.correct = 0;
   state.english.previous = null;
   $('#english-mode').value = state.english.mode;
+  document.documentElement.classList.add('english-window');
   document.body.classList.add('english-open');
+  applyEnglishBackgroundOpacity();
   $('#english-page').classList.remove('hidden');
   try {
     await api.SetEnglishWindow?.(true);
@@ -619,6 +623,7 @@ async function closeEnglishPage() {
   state.englishOpen = false;
   state.english.busy = false;
   $('#english-mode').disabled = false;
+  document.documentElement.classList.remove('english-window');
   document.body.classList.remove('english-open');
   $('#english-page').classList.add('hidden');
   try {
@@ -1274,7 +1279,13 @@ function updateCompactOpacityLabel() {
 function previewCompactOpacity() {
   const percentage = normaliseCompactOpacity($('#compact-opacity').value);
   $('#compact-opacity-value').textContent = `${percentage}%`;
+  applyEnglishBackgroundOpacity(percentage);
   api.PreviewWindowOpacity?.(percentage);
+}
+
+function applyEnglishBackgroundOpacity(value = state.settings.compactOpacity) {
+  const opacity = normaliseCompactOpacity(value) / 100;
+  document.documentElement.style.setProperty('--english-background-opacity', opacity.toFixed(2));
 }
 
 function applyTheme() {
@@ -1284,6 +1295,7 @@ function applyTheme() {
   document.documentElement.style.colorScheme = resolved;
   const themeColor = document.querySelector('meta[name="theme-color"]');
   if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : '#0b101b';
+  applyEnglishBackgroundOpacity();
 }
 
 function updateCompactScale() {
@@ -1406,7 +1418,10 @@ function weatherLabel(code) {
 function openModal(id) { $(`#${id}`).classList.remove('hidden'); }
 function closeModal(id) {
   $(`#${id}`).classList.add('hidden');
-  if (id === 'settings-modal') api.RestoreWindowOpacity?.();
+  if (id === 'settings-modal') {
+    applyEnglishBackgroundOpacity();
+    api.RestoreWindowOpacity?.();
+  }
 }
 function sortedTodos() { return [...state.todos].sort((a,b) => Number(a.completed)-Number(b.completed) || dueValue(a)-dueValue(b) || new Date(b.createdAt)-new Date(a.createdAt)); }
 function dueValue(todo) { return todo.dueAt ? new Date(todo.dueAt).getTime() : Number.MAX_SAFE_INTEGER; }
@@ -1479,7 +1494,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.8.0',latestVersion:'0.8.1',available:true,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1',downloadURL:'https://github.com/asbacklight-justin/workday-island/releases/download/v0.8.1/Workday-Island-v0.8.1-macOS-universal.dmg',assetName:'Workday-Island-v0.8.1-macOS-universal.dmg',assetSize:18432000,digest:'sha256:demo',releaseNotes:'新增功能与体验优化。\nNew features and experience improvements.'} : {currentVersion:'0.8.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.8.1',latestVersion:'0.8.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'英语学习窗口背景透明度修复。\nEnglish learning window background-opacity fix.'} : {currentVersion:'0.8.1',skipped:true}; },
     async OpenUpdateURL(){ return true; }
   };
 }

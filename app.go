@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.8.0"
+const appVersion = "0.8.1"
 
 type App struct {
 	ctx          context.Context
@@ -156,6 +156,12 @@ func (a *App) PreviewWindowOpacity(percent int) {
 	if percent > 100 {
 		percent = 100
 	}
+	if a.englishMode.Load() {
+		// English learning renders transparency in the web background so that
+		// words, meanings and controls remain fully opaque and readable.
+		setWindowOpacity(1)
+		return
+	}
 	setWindowOpacity(float64(percent) / 100)
 }
 
@@ -242,6 +248,7 @@ func (a *App) SetEnglishWindow(active bool) {
 	if a.ctx == nil {
 		return
 	}
+	setWindowBackgroundTransparent(active)
 	if active {
 		runtime.WindowSetMinSize(a.ctx, 420, 72)
 		runtime.WindowSetMaxSize(a.ctx, 1200, 90)
@@ -376,12 +383,22 @@ func (a *App) applyNativeTheme(theme string) {
 }
 
 func (a *App) applyWindowOpacity() {
-	opacity := 1.0
 	settings := a.store.Snapshot().Settings
-	if settings.CompactMode || a.englishMode.Load() {
-		opacity = float64(settings.CompactOpacity) / 100
+	setWindowOpacity(windowOpacityForMode(settings, a.englishMode.Load()))
+}
+
+func windowOpacityForMode(settings Settings, englishMode bool) float64 {
+	if englishMode || !settings.CompactMode {
+		return 1
 	}
-	setWindowOpacity(opacity)
+	opacity := float64(settings.CompactOpacity) / 100
+	if opacity < 0.3 {
+		return 0.3
+	}
+	if opacity > 1 {
+		return 1
+	}
+	return opacity
 }
 
 func (a *App) triggerReminder(todo Todo) {
