@@ -37,10 +37,33 @@ type State struct {
 	Todos             []Todo            `json:"todos"`
 	Settings          Settings          `json:"settings"`
 	Focus             FocusSession      `json:"focus"`
+	StockWatchlist    []string          `json:"stockWatchlist"`
 	LastWeather       *Weather          `json:"lastWeather,omitempty"`
 	LastUpdateCheckAt *time.Time        `json:"lastUpdateCheckAt,omitempty"`
 	RealtimeIdentity  *RealtimeIdentity `json:"realtimeIdentity,omitempty"`
 	RealtimeMessages  []RealtimeMessage `json:"realtimeMessages,omitempty"`
+}
+
+type StockQuote struct {
+	Symbol        string    `json:"symbol"`
+	Code          string    `json:"code"`
+	Name          string    `json:"name"`
+	Price         float64   `json:"price"`
+	Change        float64   `json:"change"`
+	ChangePercent float64   `json:"changePercent"`
+	Open          float64   `json:"open"`
+	High          float64   `json:"high"`
+	Low           float64   `json:"low"`
+	PreviousClose float64   `json:"previousClose"`
+	UpdatedAt     time.Time `json:"updatedAt"`
+}
+
+type StockSnapshot struct {
+	Quotes    []StockQuote `json:"quotes"`
+	UpdatedAt time.Time    `json:"updatedAt"`
+	Source    string       `json:"source"`
+	Stale     bool         `json:"stale,omitempty"`
+	Error     string       `json:"error,omitempty"`
 }
 
 type FocusSession struct {
@@ -127,6 +150,23 @@ type RealtimeIdentity struct {
 	DeviceID     string `json:"deviceId"`
 	CredentialID string `json:"credentialId"`
 	PublicKey    string `json:"publicKey"`
+	AuthMode     string `json:"authMode,omitempty"`
+}
+
+type RealtimeRegistrationInput struct {
+	Username        string `json:"username"`
+	Nickname        string `json:"nickname"`
+	Password        string `json:"password"`
+	ConfirmPassword string `json:"confirmPassword"`
+	Email           string `json:"email,omitempty"`
+	Phone           string `json:"phone,omitempty"`
+	InviteCode      string `json:"inviteCode"`
+}
+
+type RealtimeRegistrationResult struct {
+	UserID   uint64 `json:"userId"`
+	Username string `json:"username"`
+	Nickname string `json:"nickname"`
 }
 
 type RealtimeMessage struct {
@@ -142,9 +182,36 @@ type RealtimeMessage struct {
 }
 
 type RealtimeSnapshot struct {
-	Status        string            `json:"status"`
-	DesiredOnline bool              `json:"desiredOnline"`
-	LastError     string            `json:"lastError,omitempty"`
-	Identity      *RealtimeIdentity `json:"identity,omitempty"`
-	Messages      []RealtimeMessage `json:"messages"`
+	Status         string                  `json:"status"`
+	DesiredOnline  bool                    `json:"desiredOnline"`
+	LastError      string                  `json:"lastError"`
+	AuthMode       string                  `json:"authMode"`
+	Identity       *RealtimeIdentity       `json:"identity"`
+	Messages       []RealtimeMessage       `json:"messages"`
+	Friends        []RealtimeFriend        `json:"friends"`
+	FriendRequests []RealtimeFriendRequest `json:"friendRequests"`
+}
+
+type RealtimeUserSummary struct {
+	UserID      int64  `json:"userId"`
+	Username    string `json:"username"`
+	DisplayName string `json:"displayName"`
+	AvatarURL   string `json:"avatarUrl,omitempty"`
+	Online      bool   `json:"online"`
+}
+
+type RealtimeFriend struct {
+	User         RealtimeUserSummary `json:"user"`
+	FriendsSince time.Time           `json:"friendsSince"`
+}
+
+type RealtimeFriendRequest struct {
+	FriendRequestID string              `json:"friendRequestId"`
+	Requester       RealtimeUserSummary `json:"requester"`
+	Addressee       RealtimeUserSummary `json:"addressee"`
+	Message         string              `json:"message,omitempty"`
+	Status          string              `json:"status"`
+	RespondedAt     *time.Time          `json:"respondedAt,omitempty"`
+	CreateTime      time.Time           `json:"createTime"`
+	ModifyTime      time.Time           `json:"modifyTime"`
 }

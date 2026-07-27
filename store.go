@@ -21,7 +21,7 @@ type Store struct {
 }
 
 func NewStore(path string) *Store {
-	return &Store{path: path, state: State{Settings: defaultSettings(), Todos: []Todo{}}}
+	return &Store{path: path, state: State{Settings: defaultSettings(), Todos: []Todo{}, StockWatchlist: defaultStockWatchlist()}}
 }
 
 func defaultSettings() Settings {
@@ -56,6 +56,11 @@ func (s *Store) Load() error {
 	}
 	if state.RealtimeMessages == nil {
 		state.RealtimeMessages = []RealtimeMessage{}
+	}
+	if state.StockWatchlist == nil {
+		state.StockWatchlist = defaultStockWatchlist()
+	} else {
+		state.StockWatchlist = normaliseStockWatchlist(state.StockWatchlist)
 	}
 	s.state = state
 	return nil
@@ -149,6 +154,15 @@ func (s *Store) SaveSettings(settings Settings) (Settings, error) {
 	err := s.saveLocked()
 	s.mu.Unlock()
 	return settings, err
+}
+
+func (s *Store) SaveStockWatchlist(symbols []string) ([]string, error) {
+	symbols = normaliseStockWatchlist(symbols)
+	s.mu.Lock()
+	s.state.StockWatchlist = append([]string(nil), symbols...)
+	err := s.saveLocked()
+	s.mu.Unlock()
+	return symbols, err
 }
 
 func (s *Store) SaveWeather(weather Weather) error {
@@ -411,6 +425,7 @@ func cloneState(state State) State {
 	copyState := state
 	copyState.Todos = append([]Todo(nil), state.Todos...)
 	copyState.Settings.Workdays = append([]int(nil), state.Settings.Workdays...)
+	copyState.StockWatchlist = append([]string(nil), state.StockWatchlist...)
 	if state.Focus.StartedAt != nil {
 		value := *state.Focus.StartedAt
 		copyState.Focus.StartedAt = &value

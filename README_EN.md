@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.8.1-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.8.1-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.9.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.9.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -32,9 +32,10 @@ The public packages are not currently signed with commercial distribution certif
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
 - **Today English Learning:** Open the compact learning window from the `EN` button and choose bilingual study, EN → CN, CN → EN, or full-word spelling with immediate feedback and the previous word. Opacity affects only the background, so learning content stays crisp.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
+- **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Online update checks:** Query GitHub Releases at most once per day, or check manually from About and open the matching platform package in one click.
-- **Realtime chat and window interactions:** Open a dedicated page from the chat button, create an anonymous device identity with one click, send messages by user ID, or bring the peer's window forward with a shake or flash.
-- **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Realtime chat is optional and does not use a username or password login.
+- **Realtime chat, friends, and window interactions:** Use a one-click anonymous device, register an account with an optional invite code, or sign in with an existing username/password; then add friends by exact username/user ID, process requests, see online status, and send chat, shake, or flash events.
+- **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Account passwords are used only for the current WebSocket session and are never written to the local data file.
 
 ## Screenshots
 
@@ -64,9 +65,15 @@ Study, answer four-choice questions, and practise spelling in a content-fitting 
 
 ### Realtime chat
 
-Go online with an anonymous device identity, chat by user ID, and send shake, flash, or prompt-based window interactions.
+Choose anonymous-device login, create an account, or sign in with username/password; then open conversations from the friend list, process requests, see online status, and send shake, flash, or prompt-based window interactions.
 
 ![English realtime chat mode](docs/screenshots/en-chat.png)
+
+### Floating stock ticker
+
+Track the three default indices and optional A-share codes in a compact ticker that refreshes every five seconds, follows the floating-window opacity preference, and recentres the dashboard when closed.
+
+![English floating stock ticker](docs/screenshots/en-stocks.png)
 
 See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 
@@ -80,7 +87,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 6. Use **Compact** to switch to the 2×2 window. Drag anywhere on its non-control surface to move it and drag an edge to resize it; the size is remembered.
 7. Choose **Check for Updates** in About. When a release is available, open the matching GitHub package; installation still requires user confirmation and never silently replaces the app.
 8. The close button hides Workday Island to the system tray without stopping reminders. Left-click the tray icon to restore it, or right-click and choose **Quit** to end the app. If macOS hides the tray item because the menu bar is full, click Workday Island in the Dock to restore it.
-9. Select the chat button, enter a nickname, and choose **Go Online**. Share your own user ID, enter a peer user ID, and then chat, shake, or flash the peer's window. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
+9. Select the chat button and use one-click anonymous login, create an account with an optional invite code, or sign in with username/password. Add friends by exact username/user ID and open a conversation from the friend list; manual user-ID chat, shake, and flash actions remain available. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
 10. Select the `EN` button for Today English Learning. Choose one of the four practice modes and select the word library in Settings.
 
 ## Stack and architecture
@@ -91,7 +98,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 - Local JSON persistence
 - Native AppKit and Windows Shell system trays, plus platform foreground activation, notification, and sound adapters
 - Open-Meteo geocoding and weather APIs
-- Ed25519 device signing and realtime WebSocket communication
+- Ed25519 device signing, password challenge authentication, friend protocol, and realtime WebSocket communication
 
 This project is independent of the Backlight monorepo's Go API and Vue admin application. The `workday-island` directory can be built and released on its own.
 
@@ -139,7 +146,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.8.1`
+- Current version: `v0.9.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

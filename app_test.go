@@ -7,6 +7,7 @@ func TestWindowOpacityForMode(t *testing.T) {
 		name        string
 		settings    Settings
 		englishMode bool
+		stockMode   bool
 		want        float64
 	}{
 		{
@@ -14,6 +15,12 @@ func TestWindowOpacityForMode(t *testing.T) {
 			settings:    Settings{CompactMode: true, CompactOpacity: 30},
 			englishMode: true,
 			want:        1,
+		},
+		{
+			name:      "stock window inherits configured opacity",
+			settings:  Settings{CompactOpacity: 55},
+			stockMode: true,
+			want:      0.55,
 		},
 		{
 			name:     "compact uses configured opacity",
@@ -39,7 +46,7 @@ func TestWindowOpacityForMode(t *testing.T) {
 
 	for _, test := range tests {
 		t.Run(test.name, func(t *testing.T) {
-			if got := windowOpacityForMode(test.settings, test.englishMode); got != test.want {
+			if got := windowOpacityForMode(test.settings, test.englishMode, test.stockMode); got != test.want {
 				t.Fatalf("windowOpacityForMode() = %v, want %v", got, test.want)
 			}
 		})

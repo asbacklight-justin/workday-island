@@ -2,6 +2,9 @@
 set -euo pipefail
 
 project_dir="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
+version="$(tr -d '[:space:]' < "$project_dir/VERSION")"
+IFS=. read -r version_major version_minor version_patch <<< "$version"
+build_number=$((10#$version_major * 10000 + 10#$version_minor * 10 + 10#$version_patch))
 app_bundle="$project_dir/build/bin/Workday Island.app"
 contents_dir="$app_bundle/Contents"
 macos_dir="$contents_dir/MacOS"
@@ -30,6 +33,8 @@ build_arch amd64 x86_64
 build_arch arm64 arm64
 lipo -create "$work_dir/Workday Island-x86_64" "$work_dir/Workday Island-arm64" -output "$macos_dir/Workday Island"
 cp "$project_dir/build/darwin/Info.plist" "$contents_dir/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" "$contents_dir/Info.plist"
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $build_number" "$contents_dir/Info.plist"
 env GOCACHE="${TMPDIR:-/tmp}/workday-island-go-cache-tools" \
   go run ./cmd/iconpack "$project_dir/build/appicon.png" "$resources_dir/WorkdayIsland.icns"
 

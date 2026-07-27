@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=25">
+  <link rel="stylesheet" href="./style.css?v=31">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.8.1</span>
+        <span id="app-version-badge" class="version-badge">v0.9.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -26,12 +26,17 @@
           <svg viewBox="0 0 24 24"><path d="M20 15a3 3 0 0 1-3 3H9l-5 3v-6a3 3 0 0 1-1-2.2V7a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3Z"/><path d="M7 9h10M7 13h6"/></svg>
           <span id="chat-unread" class="chat-unread hidden">0</span>
         </button>
+        <button id="open-stocks" class="icon-btn stock-button" aria-label="股市行情" title="股市行情">
+          <svg class="stock-button-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 17.5 9 12l3.4 3.4L20 7.8"></path>
+            <path d="M14.5 7.8H20v5.5"></path>
+            <path d="M4 20h16"></path>
+          </svg>
+        </button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
         <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
           <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
         </button>
-        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><span>−</span></button>
-        <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><span>×</span></button>
         <label class="pin-control" title="让窗口保持在其他窗口前面">
           <input id="always-on-top" type="checkbox" checked>
           <span class="switch"><span></span></span>
@@ -41,6 +46,8 @@
           <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
         </button>
         <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
+        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><span>−</span></button>
+        <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><span>×</span></button>
       </div>
     </header>
 
@@ -146,28 +153,50 @@
         <div id="realtime-status" class="realtime-status offline"><span></span><b data-i18n="offline">已下线</b></div>
       </div>
 
-      <div class="chat-layout">
+      <nav id="chat-section-tabs" class="chat-section-tabs" aria-label="聊天页面">
+        <button type="button" class="active" data-chat-section="conversation"><span>💬</span><b data-i18n="chatTab">聊天</b></button>
+        <button type="button" data-chat-section="friends"><span>👥</span><b data-i18n="friendManagement">好友管理</b><em id="friend-tab-badge" class="hidden">0</em></button>
+      </nav>
+
+      <div id="chat-conversation-view" class="chat-layout">
         <aside class="panel chat-sidebar">
-          <div class="chat-section-title"><span data-i18n="myRealtimeIdentity">我的实时身份</span><button id="copy-user-id" type="button" class="tiny-btn" data-i18n="copyId">复制 ID</button></div>
-          <div id="identity-empty" class="identity-empty">
-            <p data-i18n="identityHint">首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。</p>
-            <label class="chat-field"><span data-i18n="nickname">昵称</span><input id="realtime-nickname" maxlength="40" data-i18n-placeholder="nicknamePlaceholder" placeholder="例如：小明的桌面"></label>
-          </div>
-          <div id="identity-card" class="identity-card hidden">
-            <strong id="identity-name">我的工位岛</strong>
-            <span id="identity-username">client_...</span>
-            <div><small data-i18n="myUserId">我的用户 ID</small><code id="identity-user-id">--</code></div>
-          </div>
-          <button id="realtime-toggle" type="button" class="primary-btn realtime-toggle" data-i18n="goOnline">一键上线</button>
-          <button id="reset-realtime" type="button" class="text-btn reset-realtime hidden" data-i18n="resetIdentity">重置实时身份</button>
+          <section class="chat-account-panel">
+            <div class="chat-section-title"><span data-i18n="myRealtimeIdentity">我的实时身份</span><button id="copy-user-id" type="button" class="tiny-btn" data-i18n="copyId">复制 ID</button></div>
+            <div id="realtime-auth-modes" class="auth-mode-tabs">
+              <button type="button" class="active" data-auth-mode="password" data-i18n="passwordLogin">账号密码</button>
+              <button type="button" data-auth-mode="device" data-i18n="deviceLogin">一键登录</button>
+            </div>
+            <div id="identity-empty" class="identity-empty">
+              <div id="device-auth-fields" class="hidden">
+                <p data-i18n="identityHint">首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。</p>
+                <label class="chat-field"><span data-i18n="nickname">昵称</span><input id="realtime-nickname" maxlength="40" data-i18n-placeholder="nicknamePlaceholder" placeholder="例如：小明的桌面"></label>
+              </div>
+              <div id="password-auth-fields" class="password-auth-fields">
+                <p data-i18n="passwordLoginHint">使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。</p>
+                <label class="chat-field"><span data-i18n="accountUsername">用户名</span><input id="realtime-username" maxlength="100" autocomplete="off" autocapitalize="none" spellcheck="false" data-i18n-placeholder="accountUsernamePlaceholder" placeholder="请输入用户名"></label>
+                <label class="chat-field"><span data-i18n="accountPassword">密码</span><input id="realtime-password" type="password" maxlength="512" autocomplete="off" data-lpignore="true" data-i18n-placeholder="accountPasswordPlaceholder" placeholder="请输入密码"></label>
+                <button id="open-account-register" type="button" class="account-register-link"><span data-i18n="noAccountYet">还没有账号？</span><b data-i18n="registerNow">立即注册</b></button>
+              </div>
+            </div>
+            <div id="identity-card" class="identity-card hidden">
+              <div class="identity-heading"><strong id="identity-name">我的工位岛</strong><em id="identity-auth-mode">设备登录</em></div>
+              <span id="identity-username">client_...</span>
+              <div><small data-i18n="myUserId">我的用户 ID</small><code id="identity-user-id">--</code></div>
+            </div>
+            <button id="realtime-toggle" type="button" class="primary-btn realtime-toggle" data-i18n="goOnline">一键上线</button>
+            <button id="reset-realtime" type="button" class="text-btn reset-realtime hidden" data-i18n="resetIdentity">重置实时身份</button>
+          </section>
           <div class="chat-divider"></div>
-          <label class="chat-field target-field"><span data-i18n="peerUserId">对方用户 ID</span><input id="peer-user-id" type="number" min="1" step="1" inputmode="numeric" placeholder="123"></label>
-          <p class="peer-hint" data-i18n="peerHint">输入对方分享的用户 ID，即可聊天和发送窗口互动。</p>
-          <label class="chat-field effect-message-field"><span data-i18n="effectMessage">互动提示语（可选）</span><input id="effect-message" maxlength="120" data-i18n-placeholder="effectMessagePlaceholder" placeholder="例如：该起来活动一下啦"></label>
-          <div class="window-effects">
-            <button id="send-shake" type="button" disabled><span>〰</span><b data-i18n="shakeWindow">抖一抖</b></button>
-            <button id="send-flash" type="button" disabled><span>✦</span><b data-i18n="flashWindow">闪一闪</b></button>
+          <div class="chat-friends-head">
+            <div class="chat-section-title"><span data-i18n="friendChats">好友会话</span><button id="open-friend-management" type="button" class="tiny-btn" data-i18n="manageFriends">管理</button></div>
+            <p data-i18n="chooseFriendHint">选择一位好友开始聊天。</p>
           </div>
+          <div id="chat-friend-list" class="friend-list chat-friend-list"></div>
+          <details class="temporary-chat">
+            <summary data-i18n="temporaryChat">通过用户 ID 临时会话</summary>
+            <label class="chat-field target-field"><span data-i18n="peerUserId">对方用户 ID</span><input id="peer-user-id" type="number" min="1" step="1" inputmode="numeric" placeholder="123"></label>
+            <p class="peer-hint" data-i18n="temporaryChatHint">未添加好友时，也可以输入用户 ID 发起临时会话。</p>
+          </details>
         </aside>
 
         <section class="panel chat-conversation">
@@ -178,10 +207,52 @@
           <div id="chat-messages" class="chat-messages">
             <div class="chat-empty"><span>💬</span><strong data-i18n="choosePeer">输入用户 ID 开始会话</strong><p data-i18n="chatPrivacy">消息经远程实时服务传输，并保存在本机聊天记录中。</p></div>
           </div>
+          <div class="conversation-effects">
+            <input id="effect-message" maxlength="120" data-i18n-placeholder="effectMessagePlaceholder" placeholder="窗口互动提示语（可选）">
+            <button id="send-shake" type="button" disabled title="抖一抖"><span>〰</span><b data-i18n="shakeWindow">抖一抖</b></button>
+            <button id="send-flash" type="button" disabled title="闪一闪"><span>✦</span><b data-i18n="flashWindow">闪一闪</b></button>
+          </div>
           <form id="chat-form" class="chat-compose">
             <textarea id="chat-input" maxlength="4000" rows="2" data-i18n-placeholder="chatPlaceholder" placeholder="输入消息，Enter 发送，Shift+Enter 换行" disabled></textarea>
             <button id="send-chat" type="submit" class="primary-btn" disabled><span>➤</span><b data-i18n="send">发送</b></button>
           </form>
+        </section>
+      </div>
+
+      <div id="friends-view" class="friends-view hidden">
+        <aside class="panel friend-add-panel">
+          <div class="friend-view-icon">＋</div>
+          <div>
+            <div class="section-kicker">CONNECT</div>
+            <h2 data-i18n="addFriend">添加好友</h2>
+            <p data-i18n="friendManagementHint">使用精确用户名或用户 ID 查找并发送好友申请。</p>
+          </div>
+          <form id="friend-request-form" class="friend-request-form">
+            <label><span data-i18n="friendAccount">用户名或用户 ID</span><input id="friend-target" maxlength="100" data-i18n-placeholder="friendTargetPlaceholder" placeholder="精确用户名或用户 ID"></label>
+            <label><span data-i18n="requestMessage">申请留言</span><input id="friend-request-message" maxlength="255" data-i18n-placeholder="friendRequestMessagePlaceholder" placeholder="申请留言（可选）"></label>
+            <button id="send-friend-request" type="submit" class="primary-btn" data-i18n="sendFriendRequest">发送申请</button>
+          </form>
+          <div id="friends-offline-notice" class="friends-offline-notice"><span>◌</span><p data-i18n="friendsRequireOnline">上线后即可管理好友和处理申请。</p></div>
+        </aside>
+
+        <section id="friends-panel" class="panel friend-management-panel">
+          <div class="friend-management-head">
+            <div>
+              <div class="section-kicker">CONTACTS</div>
+              <h2 data-i18n="friendManagement">好友管理</h2>
+            </div>
+            <button id="refresh-friends" type="button" class="tiny-btn" data-i18n="refreshFriends">刷新</button>
+          </div>
+          <div class="friend-management-columns">
+            <section class="friend-column requests-column">
+              <div class="friend-subheading"><span data-i18n="pendingFriendRequests">收到的申请</span><b id="friend-request-count">0</b></div>
+              <div id="friend-requests" class="friend-list"></div>
+            </section>
+            <section class="friend-column">
+              <div class="friend-subheading"><span data-i18n="friendList">好友列表</span><b id="friend-count">0</b></div>
+              <div id="friend-list" class="friend-list"></div>
+            </section>
+          </div>
         </section>
       </div>
     </section>
@@ -227,6 +298,28 @@
         </div>
       </div>
     </section>
+
+    <section id="stock-page" class="stock-page hidden" aria-label="股市行情">
+      <div class="stock-window">
+        <header class="stock-head">
+          <div class="stock-title"><span class="stock-live-dot"></span><div><strong data-i18n="stockMarket">股市</strong><small data-i18n="stockWatchlist">自选行情</small></div></div>
+          <div class="stock-window-actions no-drag">
+            <button id="refresh-stocks" type="button" aria-label="刷新" title="刷新">↻</button>
+            <button id="minimize-stocks" type="button" aria-label="最小化" title="最小化">−</button>
+            <button id="close-stocks" type="button" aria-label="返回工作台" title="返回工作台">×</button>
+          </div>
+        </header>
+        <form id="stock-add-form" class="stock-add no-drag">
+          <input id="stock-code" maxlength="8" autocomplete="off" inputmode="text" data-i18n-placeholder="stockCodePlaceholder" placeholder="股票代码，如 600519">
+          <button type="submit" data-i18n="addStock">添加</button>
+        </form>
+        <div id="stock-list" class="stock-list no-drag"></div>
+        <footer class="stock-footer">
+          <span id="stock-status" data-i18n="stockLoading">正在刷新行情…</span>
+          <small data-i18n="stockDisclaimer">东方财富 · 数据仅供参考</small>
+        </footer>
+      </div>
+    </section>
   </div>
 
   <div id="todo-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="todo-modal-title">
@@ -262,12 +355,36 @@
         <label class="field"><span data-i18n="currency">货币符号</span><input id="currency-symbol" maxlength="8" placeholder="¥ / $ / €"></label>
       </div>
       <div class="compact-opacity-setting">
-        <div><strong data-i18n="compactOpacity">精简模式透明度</strong><p data-i18n="compactOpacityDesc">拖动时实时预览；保存后仅在精简模式生效</p></div>
+        <div><strong data-i18n="compactOpacity">悬浮窗透明度</strong><p data-i18n="compactOpacityDesc">拖动时实时预览；精简模式、英语学习和股市小窗共用</p></div>
         <div class="opacity-control"><input id="compact-opacity" type="range" min="30" max="100" step="5" value="100"><output id="compact-opacity-value" for="compact-opacity">100%</output></div>
       </div>
       <label class="setting-row"><div><strong data-i18n="showCompactTodos">精简模式展示待办</strong><p data-i18n="showCompactTodosDesc">在核心面板下方展示未完成事项</p></div><input id="show-compact-todos" type="checkbox"><span class="switch"><span></span></span></label>
       <label class="setting-row"><div><strong data-i18n="keepOnTop">窗口保持置顶</strong><p data-i18n="keepOnTopDesc">让倒计时和待办始终触手可及</p></div><input id="settings-top" type="checkbox"><span class="switch"><span></span></span></label>
       <div class="modal-actions"><button type="button" class="text-btn" data-close="settings-modal" data-i18n="cancel">取消</button><button type="submit" class="primary-btn" data-i18n="saveSettings">保存设置</button></div>
+    </form>
+  </div>
+  <div id="account-register-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="account-register-title">
+    <form id="account-register-form" class="modal-card account-register-card">
+      <div class="modal-head">
+        <div><div class="section-kicker">CREATE ACCOUNT</div><h2 id="account-register-title" data-i18n="registerAccount">注册聊天账号</h2><p data-i18n="registerAccountHint">注册后可使用账号密码登录，并使用好友与聊天功能。</p></div>
+        <button type="button" class="close-btn" data-close="account-register-modal">×</button>
+      </div>
+      <div class="field-grid">
+        <label class="field"><span data-i18n="accountUsername">用户名</span><input id="register-username" maxlength="20" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="registerUsernamePlaceholder" placeholder="3–20 位字母、数字或下划线" required></label>
+        <label class="field"><span data-i18n="nickname">昵称</span><input id="register-nickname" maxlength="20" autocomplete="nickname" data-i18n-placeholder="registerNicknamePlaceholder" placeholder="2–20 个字符" required></label>
+      </div>
+      <div class="field-grid">
+        <label class="field"><span data-i18n="accountPassword">密码</span><input id="register-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="registerPasswordPlaceholder" placeholder="6–20 个字符" required></label>
+        <label class="field"><span data-i18n="confirmPassword">确认密码</span><input id="register-confirm-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="再次输入密码" required></label>
+      </div>
+      <div class="field-grid">
+        <label class="field"><span><b data-i18n="email">邮箱</b> <em data-i18n="optional">可选</em></span><input id="register-email" type="email" maxlength="120" autocomplete="email" data-i18n-placeholder="emailPlaceholder" placeholder="name@example.com"></label>
+        <label class="field"><span><b data-i18n="phone">手机号</b> <em data-i18n="optional">可选</em></span><input id="register-phone" type="tel" maxlength="11" autocomplete="tel" inputmode="tel" data-i18n-placeholder="phonePlaceholder" placeholder="中国大陆手机号"></label>
+      </div>
+      <label class="field"><span><b data-i18n="inviteCode">邀请码</b> <em data-i18n="optional">可选</em></span><input id="register-invite-code" maxlength="100" autocomplete="off" data-i18n-placeholder="inviteCodePlaceholder" placeholder="有邀请码时填写"></label>
+      <div class="registration-tip"><span>i</span><p data-i18n="inviteHint">邀请码不必填写；填写后会关联邀请人。</p></div>
+      <div class="registration-privacy" data-i18n="registrationPrivacy">注册资料会提交到 Backlight 账号服务；密码不会保存在本机。</div>
+      <div class="modal-actions"><button type="button" class="text-btn" data-close="account-register-modal" data-i18n="cancel">取消</button><button id="submit-account-register" type="submit" class="primary-btn" data-i18n="createAccount">创建账号</button></div>
     </form>
   </div>
   <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
@@ -277,11 +394,11 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.8.1</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.9.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.8.1</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.9.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -304,6 +421,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=26" type="module"></script>
+  <script src="./app.js?v=31" type="module"></script>
 </body>
 </html>
