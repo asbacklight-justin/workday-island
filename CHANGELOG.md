@@ -3,6 +3,40 @@
 本项目遵循 [Semantic Versioning](https://semver.org/)；中英文内容保持同步。
 This project follows [Semantic Versioning](https://semver.org/); Chinese and English entries are kept in sync.
 
+## [Unreleased]
+
+## [0.9.0] - 2026-07-27
+
+### 中文
+
+- 实时聊天新增用户名密码登录，并保留原有一键匿名设备登录。
+- 账号登录区域新增注册入口，复用 Backlight 账号服务，支持用户名、昵称、密码及可选邮箱、手机号和邀请码；注册后自动回填用户名。
+- 聊天登录默认使用账号密码，并调整为左侧账号密码、右侧一键登录；已手动选择的登录方式继续保留。
+- 工作台最小化与退出按钮移动到顶部操作区最右侧。
+- 修复实时消息已推送但聊天页面不更新：缺少频道 ID 时使用发送者 ID 关联会话，并在消息到达时立即切换和重绘对应聊天。
+- 新增好友申请、同意/拒绝、好友列表、在线状态、删除好友和好友点击会话。
+- 好友管理调整为聊天页内独立标签，添加好友、申请处理和联系人列表不再挤占聊天侧栏。
+- 聊天页改为左侧好友列表、右侧会话的好友优先结构，窗口抖动与闪烁操作整合到当前会话。
+- 新增股市悬浮小窗，默认关注上证指数、深证成指和创业板指，支持添加 A 股自选、5 秒刷新、断网缓存和悬浮窗透明度。
+- 股市小窗进一步压缩为桌面组件尺寸，关闭后完整工作台自动恢复到屏幕中央。
+- 认证成功与断线重连后自动同步好友状态，实时推送按申请 ID 和用户 ID 幂等合并。
+- 账号密码仅保留于当前在线会话内存，主动下线、认证失败或退出应用后清除。
+
+### English
+
+- Added username/password authentication to realtime chat while retaining one-click anonymous-device login.
+- Added account registration beside chat sign-in using the Backlight account service, with username, nickname, password, optional email, phone and invite code, followed by automatic username fill-in.
+- Made username/password the default chat authentication choice, placed it on the left of one-click login, and continued remembering explicit user selections.
+- Moved the dashboard Minimize and Exit controls to the far right of the top action bar.
+- Fixed pushed chat messages not appearing immediately by falling back to the sender when a channel ID is absent and instantly selecting and redrawing the matching conversation.
+- Added friend requests, accept/reject actions, friend lists, online presence, friend removal, and click-to-chat.
+- Moved friend management into its own chat-page tab so adding friends, handling requests, and browsing contacts no longer crowd the conversation sidebar.
+- Reworked chat around a friend-first contact list on the left and conversation on the right, with shake and flash actions integrated into the active conversation.
+- Added a compact floating stock ticker with the SSE Composite, Shenzhen Component, and ChiNext defaults, A-share watchlists, five-second refreshes, offline caching, and floating-window opacity.
+- Reduced the stock ticker to a tighter desktop-widget size and automatically recentred the restored dashboard when it closes.
+- Friend state reloads after authentication and reconnects, with realtime pushes merged idempotently by request and user ID.
+- Account passwords stay only in memory for the current online session and are cleared after explicit offline, authentication failure, or application exit.
+
 ## [0.8.1] - 2026-07-26
 
 ### 中文
@@ -139,6 +173,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.9.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.9.0
 [0.8.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1
 [0.8.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.0
 [0.7.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.7.0

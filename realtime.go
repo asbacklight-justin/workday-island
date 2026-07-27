@@ -48,6 +48,8 @@ type realtimeAuthUser struct {
 	DisplayName  string `json:"display_name"`
 	DeviceID     string `json:"device_id"`
 	CredentialID string `json:"credential_id"`
+	AuthMode     string `json:"auth_mode"`
+	IsAdmin      bool   `json:"is_admin"`
 }
 
 type realtimeAuthOK struct {
@@ -86,12 +88,18 @@ type realtimeBootstrapResponse struct {
 type RealtimeClient struct {
 	app *App
 
-	mu            sync.RWMutex
-	status        string
-	desiredOnline bool
-	lastError     string
-	conn          *websocket.Conn
-	cancel        context.CancelFunc
+	mu             sync.RWMutex
+	status         string
+	desiredOnline  bool
+	lastError      string
+	conn           *websocket.Conn
+	cancel         context.CancelFunc
+	authMode       string
+	authUsername   string
+	authPassword   string
+	activeIdentity *RealtimeIdentity
+	friends        []RealtimeFriend
+	friendRequests []RealtimeFriendRequest
 
 	connectMu sync.Mutex
 	writeMu   sync.Mutex
@@ -101,22 +109,32 @@ type RealtimeClient struct {
 
 func NewRealtimeClient(app *App) *RealtimeClient {
 	return &RealtimeClient{
-		app:     app,
-		status:  "offline",
-		pending: make(map[string]chan realtimeWire),
+		app:      app,
+		status:   "offline",
+		authMode: "device",
+		pending:  make(map[string]chan realtimeWire),
 	}
 }
 
 func (client *RealtimeClient) Snapshot() RealtimeSnapshot {
 	client.mu.RLock()
 	snapshot := RealtimeSnapshot{
-		Status:        client.status,
-		DesiredOnline: client.desiredOnline,
-		LastError:     client.lastError,
+		Status:         client.status,
+		DesiredOnline:  client.desiredOnline,
+		LastError:      client.lastError,
+		AuthMode:       client.authMode,
+		Friends:        append([]RealtimeFriend(nil), client.friends...),
+		FriendRequests: append([]RealtimeFriendRequest(nil), client.friendRequests...),
+	}
+	if client.activeIdentity != nil {
+		value := *client.activeIdentity
+		snapshot.Identity = &value
 	}
 	client.mu.RUnlock()
 	state := client.app.store.Snapshot()
-	snapshot.Identity = state.RealtimeIdentity
+	if snapshot.Identity == nil && snapshot.AuthMode != "password" {
+		snapshot.Identity = state.RealtimeIdentity
+	}
 	snapshot.Messages = state.RealtimeMessages
 	if snapshot.Messages == nil {
 		snapshot.Messages = []RealtimeMessage{}
@@ -127,6 +145,9 @@ func (client *RealtimeClient) Snapshot() RealtimeSnapshot {
 func (client *RealtimeClient) Connect(nickname string) (RealtimeSnapshot, error) {
 	client.connectMu.Lock()
 	defer client.connectMu.Unlock()
+	if client.isDesiredOnline() {
+		return client.Snapshot(), nil
+	}
 
 	identity, err := client.ensureIdentity(nickname)
 	if err != nil {
@@ -138,7 +159,48 @@ func (client *RealtimeClient) Connect(nickname string) (RealtimeSnapshot, error)
 		client.setStatus("auth_failed", err.Error())
 		return client.Snapshot(), err
 	}
+	identity.AuthMode = "device"
+	client.mu.Lock()
+	client.authMode = "device"
+	client.authUsername = ""
+	client.authPassword = ""
+	client.activeIdentity = identity
+	client.mu.Unlock()
+	return client.startConnection()
+}
 
+func (client *RealtimeClient) ConnectPassword(username, password string) (RealtimeSnapshot, error) {
+	client.connectMu.Lock()
+	defer client.connectMu.Unlock()
+	if client.isDesiredOnline() {
+		return client.Snapshot(), nil
+	}
+
+	username = strings.TrimSpace(username)
+	if username == "" {
+		return client.Snapshot(), errors.New("请输入用户名")
+	}
+	if len([]rune(username)) > 100 {
+		return client.Snapshot(), errors.New("用户名不能超过 100 个字符")
+	}
+	if password == "" {
+		return client.Snapshot(), errors.New("请输入密码")
+	}
+	if len([]rune(password)) > 512 {
+		return client.Snapshot(), errors.New("密码长度无效")
+	}
+	client.mu.Lock()
+	client.authMode = "password"
+	client.authUsername = username
+	client.authPassword = password
+	client.activeIdentity = nil
+	client.friends = nil
+	client.friendRequests = nil
+	client.mu.Unlock()
+	return client.startConnection()
+}
+
+func (client *RealtimeClient) startConnection() (RealtimeSnapshot, error) {
 	client.mu.Lock()
 	if client.desiredOnline {
 		client.mu.Unlock()
@@ -157,6 +219,13 @@ func (client *RealtimeClient) Connect(nickname string) (RealtimeSnapshot, error)
 func (client *RealtimeClient) Disconnect() RealtimeSnapshot {
 	client.mu.Lock()
 	client.desiredOnline = false
+	passwordMode := client.authMode == "password"
+	client.authPassword = ""
+	client.friends = nil
+	client.friendRequests = nil
+	if passwordMode {
+		client.activeIdentity = nil
+	}
 	cancel := client.cancel
 	client.cancel = nil
 	conn := client.conn
@@ -177,6 +246,10 @@ func (client *RealtimeClient) ResetIdentity() (RealtimeSnapshot, error) {
 	client.connectMu.Lock()
 	defer client.connectMu.Unlock()
 	client.Disconnect()
+	client.mu.Lock()
+	client.authMode = "device"
+	client.activeIdentity = nil
+	client.mu.Unlock()
 	state := client.app.store.Snapshot()
 	if state.RealtimeIdentity != nil && state.RealtimeIdentity.DeviceID != "" {
 		if err := deleteRealtimePrivateKey(state.RealtimeIdentity.DeviceID); err != nil {
@@ -260,6 +333,10 @@ func (client *RealtimeClient) run(ctx context.Context) {
 		if errors.Is(err, errRealtimeAuth) {
 			client.mu.Lock()
 			client.desiredOnline = false
+			client.authPassword = ""
+			if client.authMode == "password" {
+				client.activeIdentity = nil
+			}
 			client.mu.Unlock()
 			client.setStatus("auth_failed", strings.TrimSpace(strings.TrimPrefix(err.Error(), errRealtimeAuth.Error()+":")))
 			return
@@ -328,27 +405,45 @@ func (client *RealtimeClient) connectAndServe(ctx context.Context) error {
 	if err := json.Unmarshal(challengeFrame.Data, &challenge); err != nil || challenge.Challenge == "" {
 		return fmt.Errorf("%w: 认证挑战格式无效", errRealtimeAuth)
 	}
-	identity := client.app.store.Snapshot().RealtimeIdentity
-	if identity == nil || identity.CredentialID == "" {
-		return fmt.Errorf("%w: 缺少设备凭据", errRealtimeAuth)
-	}
-	privateKey, err := loadRealtimePrivateKey(identity.DeviceID)
-	if err != nil || len(privateKey) != ed25519.PrivateKeySize {
-		return fmt.Errorf("%w: 无法读取本机设备私钥", errRealtimeAuth)
-	}
-	timestamp := time.Now().Unix()
-	signature, err := signRealtimeChallenge(ed25519.PrivateKey(privateKey), challenge.Challenge, identity.CredentialID, timestamp)
-	if err != nil {
-		return fmt.Errorf("%w: %s", errRealtimeAuth, err.Error())
-	}
-	if err := client.writeJSONTo(conn, map[string]any{
-		"action":        "auth.device",
-		"request_id":    "auth_" + newID(),
-		"credential_id": identity.CredentialID,
-		"timestamp":     timestamp,
-		"signature":     base64.StdEncoding.EncodeToString(signature),
-	}); err != nil {
-		return err
+	authMode, username, password := client.authCredentials()
+	var expectedUserID int64
+	switch authMode {
+	case "password":
+		if username == "" || password == "" {
+			return fmt.Errorf("%w: 用户名或密码为空", errRealtimeAuth)
+		}
+		if err := client.writeJSONTo(conn, realtimePasswordAuthFrame(
+			username,
+			password,
+			defaultRealtimeDeviceName(),
+			"auth_"+newID(),
+		)); err != nil {
+			return err
+		}
+	default:
+		identity := client.app.store.Snapshot().RealtimeIdentity
+		if identity == nil || identity.CredentialID == "" {
+			return fmt.Errorf("%w: 缺少设备凭据", errRealtimeAuth)
+		}
+		privateKey, err := loadRealtimePrivateKey(identity.DeviceID)
+		if err != nil || len(privateKey) != ed25519.PrivateKeySize {
+			return fmt.Errorf("%w: 无法读取本机设备私钥", errRealtimeAuth)
+		}
+		timestamp := time.Now().Unix()
+		signature, err := signRealtimeChallenge(ed25519.PrivateKey(privateKey), challenge.Challenge, identity.CredentialID, timestamp)
+		if err != nil {
+			return fmt.Errorf("%w: %s", errRealtimeAuth, err.Error())
+		}
+		if err := client.writeJSONTo(conn, map[string]any{
+			"action":        "auth.device",
+			"request_id":    "auth_" + newID(),
+			"credential_id": identity.CredentialID,
+			"timestamp":     timestamp,
+			"signature":     base64.StdEncoding.EncodeToString(signature),
+		}); err != nil {
+			return err
+		}
+		expectedUserID = identity.UserID
 	}
 	var authFrame realtimeWire
 	if err := conn.ReadJSON(&authFrame); err != nil {
@@ -364,15 +459,31 @@ func (client *RealtimeClient) connectAndServe(ctx context.Context) error {
 	if err := json.Unmarshal(authFrame.Data, &authOK); err != nil {
 		return fmt.Errorf("%w: 认证响应格式无效", errRealtimeAuth)
 	}
-	if authOK.User.UserID != 0 && authOK.User.UserID != identity.UserID {
+	if expectedUserID != 0 && authOK.User.UserID != 0 && authOK.User.UserID != expectedUserID {
 		return fmt.Errorf("%w: 服务端身份与本地身份不一致", errRealtimeAuth)
 	}
+	if authOK.User.UserID == 0 {
+		return fmt.Errorf("%w: 认证响应缺少用户 ID", errRealtimeAuth)
+	}
+	resolvedMode := firstNonEmpty(authOK.User.AuthMode, authMode)
+	client.mu.Lock()
+	client.activeIdentity = &RealtimeIdentity{
+		UserID:       authOK.User.UserID,
+		Username:     authOK.User.Username,
+		DisplayName:  authOK.User.DisplayName,
+		DeviceID:     authOK.User.DeviceID,
+		CredentialID: authOK.User.CredentialID,
+		AuthMode:     resolvedMode,
+	}
+	client.authMode = resolvedMode
+	client.mu.Unlock()
 
 	_ = conn.SetReadDeadline(time.Now().Add(90 * time.Second))
 	conn.SetPongHandler(func(string) error {
 		return conn.SetReadDeadline(time.Now().Add(90 * time.Second))
 	})
 	client.setStatus("online", "")
+	client.refreshFriendStateAsync()
 	for {
 		var frame realtimeWire
 		if err := conn.ReadJSON(&frame); err != nil {
@@ -385,16 +496,22 @@ func (client *RealtimeClient) connectAndServe(ctx context.Context) error {
 }
 
 func (client *RealtimeClient) handleFrame(frame realtimeWire) error {
+	if frame.RequestID != "" && client.resolvePending(frame.RequestID, frame) {
+		return nil
+	}
 	switch frame.Action {
-	case "event.accepted", "error":
-		if frame.RequestID != "" && client.resolvePending(frame.RequestID, frame) {
-			return nil
-		}
+	case "error":
 		if frame.Action == "error" {
 			return errors.New(firstNonEmpty(frame.Message, frame.Code, "实时服务返回错误"))
 		}
 	case "event.message":
 		return client.handleIncomingEvent(frame.Data)
+	case "friend.request.received", "friend.request.updated":
+		return client.handleFriendRequestPush(frame.Data)
+	case "friend.added":
+		return client.handleFriendAdded(frame.Data)
+	case "friend.removed":
+		return client.handleFriendRemoved(frame.Data)
 	case "ping":
 		return client.writeJSON(map[string]any{"action": "pong", "request_id": frame.RequestID})
 	}
@@ -409,7 +526,7 @@ func (client *RealtimeClient) handleIncomingEvent(data json.RawMessage) error {
 	if incoming.MessageID == "" {
 		return errors.New("实时消息缺少 message_id")
 	}
-	identity := client.app.store.Snapshot().RealtimeIdentity
+	identity := client.currentIdentity()
 	if identity == nil {
 		return errors.New("本地实时身份不存在")
 	}
@@ -446,7 +563,7 @@ func (client *RealtimeClient) handleIncomingEvent(data json.RawMessage) error {
 }
 
 func (client *RealtimeClient) publish(toUserID int64, eventType string, payload map[string]any) (RealtimeMessage, error) {
-	identity := client.app.store.Snapshot().RealtimeIdentity
+	identity := client.currentIdentity()
 	if identity == nil || identity.UserID == 0 {
 		return RealtimeMessage{}, errors.New("请先创建并上线实时身份")
 	}
@@ -514,16 +631,23 @@ func (client *RealtimeClient) convertMessage(source realtimeEventMessage, online
 	if createdAt.IsZero() {
 		createdAt = time.Now()
 	}
+	outgoing := source.SenderUserID == ownUserID
+	peerUserID := peerFromDirectChannel(source.ChannelID, ownUserID)
+	if peerUserID == 0 && !outgoing {
+		// Some push frames omit channel_id. The sender is authoritative for an
+		// incoming direct event, so keep the message attached to its live chat.
+		peerUserID = source.SenderUserID
+	}
 	return RealtimeMessage{
 		MessageID:        source.MessageID,
 		ChannelID:        source.ChannelID,
 		SenderUserID:     source.SenderUserID,
-		PeerUserID:       peerFromDirectChannel(source.ChannelID, ownUserID),
+		PeerUserID:       peerUserID,
 		EventType:        source.EventType,
 		Text:             payload.Text,
 		CreatedAt:        createdAt,
 		OnlineDeliveries: onlineDeliveries,
-		Outgoing:         source.SenderUserID == ownUserID,
+		Outgoing:         outgoing,
 	}
 }
 
@@ -534,7 +658,9 @@ func (client *RealtimeClient) ensureIdentity(nickname string) (*RealtimeIdentity
 		if err != nil || len(privateKey) != ed25519.PrivateKeySize {
 			return nil, errors.New("本机设备私钥不可用，请重置实时身份后重新连接")
 		}
-		return state.RealtimeIdentity, nil
+		value := *state.RealtimeIdentity
+		value.AuthMode = "device"
+		return &value, nil
 	}
 
 	var identity RealtimeIdentity
@@ -554,6 +680,7 @@ func (client *RealtimeClient) ensureIdentity(nickname string) (*RealtimeIdentity
 		identity = RealtimeIdentity{
 			DeviceID:  uuid.NewString(),
 			PublicKey: base64.StdEncoding.EncodeToString(publicKey),
+			AuthMode:  "device",
 		}
 		privateKey = generatedPrivateKey
 		if err := saveRealtimePrivateKey(identity.DeviceID, privateKey); err != nil {
@@ -606,6 +733,7 @@ func (client *RealtimeClient) ensureIdentity(nickname string) (*RealtimeIdentity
 		return nil, errors.New("设备注册响应中的 device_id 与本机不一致")
 	}
 	identity.CredentialID = envelope.Data.CredentialID
+	identity.AuthMode = "device"
 	if err := client.app.store.SaveRealtimeIdentity(identity); err != nil {
 		return nil, err
 	}
@@ -702,6 +830,22 @@ func (client *RealtimeClient) lastConnectionError() string {
 	return client.lastError
 }
 
+func (client *RealtimeClient) authCredentials() (mode, username, password string) {
+	client.mu.RLock()
+	defer client.mu.RUnlock()
+	return client.authMode, client.authUsername, client.authPassword
+}
+
+func (client *RealtimeClient) currentIdentity() *RealtimeIdentity {
+	client.mu.RLock()
+	defer client.mu.RUnlock()
+	if client.activeIdentity == nil {
+		return nil
+	}
+	value := *client.activeIdentity
+	return &value
+}
+
 func peerFromDirectChannel(channelID string, ownUserID int64) int64 {
 	parts := strings.Split(channelID, ":")
 	if len(parts) != 3 || parts[0] != "direct" {
@@ -732,6 +876,16 @@ func signRealtimeChallenge(privateKey ed25519.PrivateKey, challenge, credentialI
 	}
 	signingText := fmt.Sprintf("%s\n%s\n%d", challenge, credentialID, timestamp)
 	return ed25519.Sign(privateKey, []byte(signingText)), nil
+}
+
+func realtimePasswordAuthFrame(username, password, deviceName, requestID string) map[string]any {
+	return map[string]any{
+		"action":      "auth.password",
+		"request_id":  requestID,
+		"username":    strings.TrimSpace(username),
+		"password":    password,
+		"device_name": strings.TrimSpace(deviceName),
+	}
 }
 
 func defaultRealtimeNickname() string {

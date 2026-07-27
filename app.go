@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.8.1"
+const appVersion = "0.9.0"
 
 type App struct {
 	ctx          context.Context
@@ -30,6 +30,9 @@ type App struct {
 	realtime     *RealtimeClient
 	english      *EnglishClient
 	englishMode  atomic.Bool
+	stockMode    atomic.Bool
+	stockMu      sync.Mutex
+	stockCache   StockSnapshot
 }
 
 func NewApp() *App {
@@ -215,6 +218,10 @@ func (a *App) ConnectRealtime(nickname string) (RealtimeSnapshot, error) {
 	return a.realtime.Connect(nickname)
 }
 
+func (a *App) ConnectRealtimePassword(username, password string) (RealtimeSnapshot, error) {
+	return a.realtime.ConnectPassword(username, password)
+}
+
 func (a *App) DisconnectRealtime() RealtimeSnapshot {
 	return a.realtime.Disconnect()
 }
@@ -233,6 +240,22 @@ func (a *App) SendRealtimeWindowEffect(toUserID int64, effect, text string) (Rea
 
 func (a *App) MarkRealtimeMessageRead(messageID string) error {
 	return a.realtime.AckRead(messageID)
+}
+
+func (a *App) CreateRealtimeFriendRequest(target, message string) (RealtimeFriendRequest, error) {
+	return a.realtime.CreateFriendRequest(target, message)
+}
+
+func (a *App) RespondRealtimeFriendRequest(friendRequestID, decision string) (RealtimeFriendRequest, error) {
+	return a.realtime.RespondFriendRequest(friendRequestID, decision)
+}
+
+func (a *App) RemoveRealtimeFriend(friendUserID int64) error {
+	return a.realtime.RemoveFriend(friendUserID)
+}
+
+func (a *App) RefreshRealtimeFriends() (RealtimeSnapshot, error) {
+	return a.realtime.RefreshFriends()
 }
 
 func (a *App) StartEnglishLearning(mode string) (EnglishStudyBatch, error) {
@@ -255,6 +278,25 @@ func (a *App) SetEnglishWindow(active bool) {
 		runtime.WindowSetSize(a.ctx, 720, 72)
 	} else {
 		a.applyWindowMode(a.store.Snapshot().Settings.CompactMode)
+	}
+	a.applyWindowOpacity()
+}
+
+func (a *App) SetStockWindow(active bool) {
+	a.stockMode.Store(active)
+	if a.ctx == nil {
+		return
+	}
+	setWindowBackgroundTransparent(active)
+	if active {
+		runtime.WindowSetMinSize(a.ctx, 300, 220)
+		runtime.WindowSetMaxSize(a.ctx, 460, 500)
+		runtime.WindowSetSize(a.ctx, 330, 245)
+		runtime.WindowSetAlwaysOnTop(a.ctx, true)
+	} else {
+		a.applyWindowMode(a.store.Snapshot().Settings.CompactMode)
+		runtime.WindowCenter(a.ctx)
+		runtime.WindowSetAlwaysOnTop(a.ctx, a.store.Snapshot().Settings.AlwaysOnTop)
 	}
 	a.applyWindowOpacity()
 }
@@ -384,11 +426,11 @@ func (a *App) applyNativeTheme(theme string) {
 
 func (a *App) applyWindowOpacity() {
 	settings := a.store.Snapshot().Settings
-	setWindowOpacity(windowOpacityForMode(settings, a.englishMode.Load()))
+	setWindowOpacity(windowOpacityForMode(settings, a.englishMode.Load(), a.stockMode.Load()))
 }
 
-func windowOpacityForMode(settings Settings, englishMode bool) float64 {
-	if englishMode || !settings.CompactMode {
+func windowOpacityForMode(settings Settings, englishMode, stockMode bool) float64 {
+	if englishMode || (!settings.CompactMode && !stockMode) {
 		return 1
 	}
 	opacity := float64(settings.CompactOpacity) / 100
