@@ -359,7 +359,7 @@ func normaliseSettings(settings Settings) Settings {
 	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "system" {
 		settings.Theme = "system"
 	}
-	if settings.EnglishMode != "study" && settings.EnglishMode != "quiz" && settings.EnglishMode != "chinese" && settings.EnglishMode != "spelling" {
+	if settings.EnglishMode != "study" && settings.EnglishMode != "sentence" && settings.EnglishMode != "quiz" && settings.EnglishMode != "chinese" && settings.EnglishMode != "spelling" {
 		settings.EnglishMode = "study"
 	}
 	if !validEnglishSource(settings.EnglishSource) {

@@ -116,15 +116,33 @@ func TestRealtimeMessagesPersistAndDeduplicate(t *testing.T) {
 func TestConvertWindowEffectPreservesPromptText(t *testing.T) {
 	client := &RealtimeClient{}
 	message := client.convertMessage(realtimeEventMessage{
-		MessageID:    "msg-effect",
+		MessageID:         "msg-effect",
+		ChannelID:         "direct:12:45",
+		SenderUserID:      45,
+		SenderDisplayName: "李四",
+		EventType:         "window.shake",
+		Payload:           json.RawMessage(`{"source":"workday-island","text":"起来活动一下"}`),
+		CreatedAt:         time.Now(),
+	}, 1, 12)
+	if message.PeerUserID != 45 || message.Text != "起来活动一下" || message.SenderDisplayName != "李四" {
+		t.Fatalf("unexpected converted effect: %#v", message)
+	}
+}
+
+func TestConvertWindowEffectFallsBackToFriendDisplayName(t *testing.T) {
+	client := &RealtimeClient{friends: []RealtimeFriend{{
+		User: RealtimeUserSummary{UserID: 45, Username: "lisi", DisplayName: "李四"},
+	}}}
+	message := client.convertMessage(realtimeEventMessage{
+		MessageID:    "msg-effect-friend",
 		ChannelID:    "direct:12:45",
 		SenderUserID: 45,
-		EventType:    "window.shake",
-		Payload:      json.RawMessage(`{"source":"workday-island","text":"起来活动一下"}`),
+		EventType:    "window.flash",
+		Payload:      json.RawMessage(`{"text":""}`),
 		CreatedAt:    time.Now(),
 	}, 1, 12)
-	if message.PeerUserID != 45 || message.Text != "起来活动一下" {
-		t.Fatalf("unexpected converted effect: %#v", message)
+	if message.SenderDisplayName != "李四" {
+		t.Fatalf("friend nickname was not used: %#v", message)
 	}
 }
 

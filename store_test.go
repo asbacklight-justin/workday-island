@@ -96,6 +96,9 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 			t.Fatalf("English source %q was not preserved: %q", source, got)
 		}
 	}
+	if got := normaliseSettings(Settings{EnglishMode: "sentence", Workdays: []int{1}}).EnglishMode; got != "sentence" {
+		t.Fatalf("sentence learning mode was not preserved: %q", got)
+	}
 }
 
 func TestWeatherCachePersistsWithoutTransientError(t *testing.T) {

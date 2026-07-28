@@ -58,12 +58,13 @@ type realtimeAuthOK struct {
 }
 
 type realtimeEventMessage struct {
-	MessageID    string          `json:"message_id"`
-	ChannelID    string          `json:"channel_id"`
-	SenderUserID int64           `json:"sender_user_id"`
-	EventType    string          `json:"event_type"`
-	Payload      json.RawMessage `json:"payload"`
-	CreatedAt    time.Time       `json:"created_at"`
+	MessageID         string          `json:"message_id"`
+	ChannelID         string          `json:"channel_id"`
+	SenderUserID      int64           `json:"sender_user_id"`
+	SenderDisplayName string          `json:"sender_display_name"`
+	EventType         string          `json:"event_type"`
+	Payload           json.RawMessage `json:"payload"`
+	CreatedAt         time.Time       `json:"created_at"`
 }
 
 type realtimeAccepted struct {
@@ -547,16 +548,17 @@ func (client *RealtimeClient) handleIncomingEvent(data json.RawMessage) error {
 	switch incoming.EventType {
 	case "chat.text":
 		client.emitMessage(message)
-		title := fmt.Sprintf("工位岛 · 用户 %d", message.SenderUserID)
+		senderName := firstNonEmpty(message.SenderDisplayName, fmt.Sprintf("用户 %d", message.SenderUserID))
+		title := "工位岛 · " + senderName
 		body := message.Text
 		if len([]rune(body)) > 80 {
 			body = string([]rune(body)[:80]) + "…"
 		}
 		go func() { _ = sendNotification(title, body) }()
 	case "window.shake":
-		client.app.showRealtimeEffect("shake", message.SenderUserID, message.Text)
+		client.app.showRealtimeEffect("shake", message.SenderUserID, message.SenderDisplayName, message.Text)
 	case "window.flash":
-		client.app.showRealtimeEffect("flash", message.SenderUserID, message.Text)
+		client.app.showRealtimeEffect("flash", message.SenderUserID, message.SenderDisplayName, message.Text)
 	}
 	client.emitState()
 	return nil
@@ -639,16 +641,34 @@ func (client *RealtimeClient) convertMessage(source realtimeEventMessage, online
 		peerUserID = source.SenderUserID
 	}
 	return RealtimeMessage{
-		MessageID:        source.MessageID,
-		ChannelID:        source.ChannelID,
-		SenderUserID:     source.SenderUserID,
-		PeerUserID:       peerUserID,
-		EventType:        source.EventType,
-		Text:             payload.Text,
-		CreatedAt:        createdAt,
-		OnlineDeliveries: onlineDeliveries,
-		Outgoing:         outgoing,
+		MessageID:         source.MessageID,
+		ChannelID:         source.ChannelID,
+		SenderUserID:      source.SenderUserID,
+		SenderDisplayName: firstNonEmpty(source.SenderDisplayName, client.displayNameForUserID(source.SenderUserID)),
+		PeerUserID:        peerUserID,
+		EventType:         source.EventType,
+		Text:              payload.Text,
+		CreatedAt:         createdAt,
+		OnlineDeliveries:  onlineDeliveries,
+		Outgoing:          outgoing,
 	}
+}
+
+func (client *RealtimeClient) displayNameForUserID(userID int64) string {
+	if userID <= 0 {
+		return ""
+	}
+	client.mu.RLock()
+	defer client.mu.RUnlock()
+	if client.activeIdentity != nil && client.activeIdentity.UserID == userID {
+		return firstNonEmpty(client.activeIdentity.DisplayName, client.activeIdentity.Username)
+	}
+	for _, friend := range client.friends {
+		if friend.User.UserID == userID {
+			return firstNonEmpty(friend.User.DisplayName, friend.User.Username)
+		}
+	}
+	return ""
 }
 
 func (client *RealtimeClient) ensureIdentity(nickname string) (*RealtimeIdentity, error) {

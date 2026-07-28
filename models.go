@@ -170,15 +170,16 @@ type RealtimeRegistrationResult struct {
 }
 
 type RealtimeMessage struct {
-	MessageID        string    `json:"messageId"`
-	ChannelID        string    `json:"channelId,omitempty"`
-	SenderUserID     int64     `json:"senderUserId"`
-	PeerUserID       int64     `json:"peerUserId"`
-	EventType        string    `json:"eventType"`
-	Text             string    `json:"text,omitempty"`
-	CreatedAt        time.Time `json:"createdAt"`
-	OnlineDeliveries int       `json:"onlineDeliveries,omitempty"`
-	Outgoing         bool      `json:"outgoing"`
+	MessageID         string    `json:"messageId"`
+	ChannelID         string    `json:"channelId,omitempty"`
+	SenderUserID      int64     `json:"senderUserId"`
+	SenderDisplayName string    `json:"senderDisplayName,omitempty"`
+	PeerUserID        int64     `json:"peerUserId"`
+	EventType         string    `json:"eventType"`
+	Text              string    `json:"text,omitempty"`
+	CreatedAt         time.Time `json:"createdAt"`
+	OnlineDeliveries  int       `json:"onlineDeliveries,omitempty"`
+	Outgoing          bool      `json:"outgoing"`
 }
 
 type RealtimeSnapshot struct {
