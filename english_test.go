@@ -62,6 +62,47 @@ func TestEnglishClientStartsQuizAndMapsQuestions(t *testing.T) {
 	}
 }
 
+func TestEnglishClientTranslatesAndCachesExample(t *testing.T) {
+	var translateCalls atomic.Int32
+	server := httptest.NewServer(http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
+		response.Header().Set("Content-Type", "application/json")
+		switch request.URL.Path {
+		case "/user/login":
+			_, _ = response.Write([]byte(`{"code":200,"message":"success","data":{"token":"test-token"}}`))
+		case "/ai/translate":
+			translateCalls.Add(1)
+			if request.Header.Get("Authorization") != "Bearer test-token" {
+				t.Fatalf("unexpected authorization header: %q", request.Header.Get("Authorization"))
+			}
+			var payload map[string]string
+			if err := json.NewDecoder(request.Body).Decode(&payload); err != nil {
+				t.Fatal(err)
+			}
+			if payload["text"] != "Keep it concise." || payload["source"] != "en" || payload["target"] != "zh" {
+				t.Fatalf("unexpected translation payload: %#v", payload)
+			}
+			_, _ = response.Write([]byte(`{"code":200,"message":"success","data":{"translated":"保持简洁。"}}`))
+		default:
+			http.NotFound(response, request)
+		}
+	}))
+	defer server.Close()
+
+	client := NewEnglishClient(&http.Client{Timeout: time.Second}, server.URL)
+	for i := 0; i < 2; i++ {
+		got, err := client.TranslateExample(" Keep it concise. ")
+		if err != nil {
+			t.Fatal(err)
+		}
+		if got != "保持简洁。" {
+			t.Fatalf("unexpected translation: %q", got)
+		}
+	}
+	if translateCalls.Load() != 1 {
+		t.Fatalf("translation was not cached: calls=%d", translateCalls.Load())
+	}
+}
+
 func TestEnglishAPISource(t *testing.T) {
 	tests := map[string]string{
 		"":        "nce2",
@@ -126,6 +167,7 @@ func TestEnglishGameTypeForMode(t *testing.T) {
 		gameType string
 	}{
 		{input: "study", mode: "study", gameType: "flash_card"},
+		{input: "sentence", mode: "sentence", gameType: "flash_card"},
 		{input: "quiz", mode: "quiz", gameType: "multiple_choice"},
 		{input: "chinese", mode: "chinese", gameType: "chinese_picker"},
 		{input: "spelling", mode: "spelling", gameType: "spelling"},

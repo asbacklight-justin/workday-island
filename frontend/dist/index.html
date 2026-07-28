@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=31">
+  <link rel="stylesheet" href="./style.css?v=33">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.9.0</span>
+        <span id="app-version-badge" class="version-badge">v0.10.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -33,7 +33,16 @@
             <path d="M4 20h16"></path>
           </svg>
         </button>
+        <button id="open-cloud" class="icon-btn cloud-button" aria-label="工作云盘" title="工作云盘">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 18.5h10.4a4.4 4.4 0 0 0 .5-8.8A6.3 6.3 0 0 0 6 8.6a5 5 0 0 0 1.2 9.9Z"/><path d="M12 11v6M9.7 13.3 12 11l2.3 2.3"/></svg>
+        </button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
+        <button id="open-account" class="account-nav-button" type="button" aria-label="账号" title="账号">
+          <span class="account-nav-avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          </span>
+          <b id="account-home-name" data-i18n="accountLogin">登录</b>
+        </button>
         <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
           <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
         </button>
@@ -143,6 +152,137 @@
       </section>
     </main>
 
+    <section id="account-page" class="account-page hidden" aria-labelledby="account-title">
+      <div class="account-page-head">
+        <button id="close-account" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="account-title-group">
+          <div class="section-kicker">WORKDAY ACCOUNT</div>
+          <h1 id="account-title" data-i18n="accountCenter">账号中心</h1>
+        </div>
+        <div id="account-status-chip" class="account-status-chip"><span></span><b data-i18n="signedOut">未登录</b></div>
+      </div>
+
+      <div class="account-page-body">
+        <section class="panel account-card">
+          <div id="account-auth-view">
+            <nav id="account-mode-tabs" class="account-mode-tabs" aria-label="账号入口">
+              <button type="button" class="active" data-account-mode="login" data-i18n="accountLogin">登录</button>
+              <button type="button" data-account-mode="register" data-i18n="registerNow">注册</button>
+            </nav>
+
+            <form id="account-login-form" class="account-form">
+              <div class="account-form-heading">
+                <div class="account-hero-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+                </div>
+                <div><div class="section-kicker">WELCOME BACK</div><h2 data-i18n="accountLoginTitle">登录工位岛</h2><p data-i18n="accountLoginHint">一次登录即可使用聊天、好友和工作云盘。</p></div>
+              </div>
+              <label class="field"><span data-i18n="accountUsername">用户名</span><input id="account-username" maxlength="100" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="accountUsernamePlaceholder" placeholder="请输入用户名" required></label>
+              <label class="field"><span data-i18n="accountPassword">密码</span><input id="account-password" type="password" maxlength="512" autocomplete="current-password" data-i18n-placeholder="accountPasswordPlaceholder" placeholder="请输入密码" required></label>
+              <p class="account-security-hint" data-i18n="accountSecurityHint">密码仅用于本次登录，不会保存在本机。</p>
+              <button id="submit-account-login" type="submit" class="primary-btn account-submit"><span>→</span><b data-i18n="signIn">登录账号</b></button>
+            </form>
+
+            <form id="account-register-form" class="account-form hidden">
+              <div class="account-form-heading compact">
+                <div><div class="section-kicker">CREATE ACCOUNT</div><h2 data-i18n="registerAccount">注册工位岛账号</h2><p data-i18n="registerAccountHint">注册后可使用聊天、好友和工作云盘。</p></div>
+              </div>
+              <div class="field-grid">
+                <label class="field"><span data-i18n="accountUsername">用户名</span><input id="register-username" maxlength="20" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="registerUsernamePlaceholder" placeholder="3–20 位字母、数字或下划线" required></label>
+                <label class="field"><span data-i18n="nickname">昵称</span><input id="register-nickname" maxlength="20" autocomplete="nickname" data-i18n-placeholder="registerNicknamePlaceholder" placeholder="2–20 个字符" required></label>
+              </div>
+              <div class="field-grid">
+                <label class="field"><span data-i18n="accountPassword">密码</span><input id="register-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="registerPasswordPlaceholder" placeholder="6–20 个字符" required></label>
+                <label class="field"><span data-i18n="confirmPassword">确认密码</span><input id="register-confirm-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="再次输入密码" required></label>
+              </div>
+              <div class="field-grid">
+                <label class="field"><span><b data-i18n="email">邮箱</b> <em data-i18n="optional">可选</em></span><input id="register-email" type="email" maxlength="120" autocomplete="email" data-i18n-placeholder="emailPlaceholder" placeholder="name@example.com"></label>
+                <label class="field"><span><b data-i18n="phone">手机号</b> <em data-i18n="optional">可选</em></span><input id="register-phone" type="tel" maxlength="11" autocomplete="tel" inputmode="tel" data-i18n-placeholder="phonePlaceholder" placeholder="中国大陆手机号"></label>
+              </div>
+              <label class="field"><span><b data-i18n="inviteCode">邀请码</b> <em data-i18n="optional">可选</em></span><input id="register-invite-code" maxlength="100" autocomplete="off" data-i18n-placeholder="inviteCodePlaceholder" placeholder="有邀请码时填写"></label>
+              <div class="registration-tip"><span>i</span><p data-i18n="inviteHint">邀请码不必填写；填写后会关联邀请人。</p></div>
+              <div class="registration-privacy" data-i18n="registrationPrivacy">注册资料会提交到 Backlight 账号服务；密码不会保存在本机。</div>
+              <button id="submit-account-register" type="submit" class="primary-btn account-submit" data-i18n="createAccount">创建账号</button>
+            </form>
+          </div>
+
+          <div id="account-profile-view" class="account-profile-view hidden">
+            <div class="account-profile-avatar" id="account-profile-avatar">W</div>
+            <div class="section-kicker">SIGNED IN</div>
+            <h2 id="account-profile-name">—</h2>
+            <p id="account-profile-username">—</p>
+            <div id="account-service-grid" class="account-service-grid">
+              <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
+              <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
+            </div>
+            <button id="account-logout" type="button" class="account-logout-btn" data-i18n="signOutAll">退出账号</button>
+            <p class="account-logout-hint" data-i18n="signOutHint">退出后，实时聊天和工作云盘会同时退出。</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="cloud-page" class="cloud-page hidden" aria-labelledby="cloud-title">
+      <div class="cloud-page-head">
+        <button id="close-cloud" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="cloud-title-group">
+          <div class="section-kicker">MY CLOUD</div>
+          <h1 id="cloud-title" data-i18n="workCloud">工作云盘</h1>
+        </div>
+        <div id="cloud-account-chip" class="cloud-account-chip"><span></span><b data-i18n="cloudNotLoggedIn">未登录</b></div>
+      </div>
+
+      <section id="cloud-login-required" class="cloud-login-required panel hidden">
+        <div class="cloud-login-symbol">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 18.5h10.4a4.4 4.4 0 0 0 .5-8.8A6.3 6.3 0 0 0 6 8.6a5 5 0 0 0 1.2 9.9Z"/><path d="M12 11v6M9.7 13.3 12 11l2.3 2.3"/></svg>
+        </div>
+        <div><div class="section-kicker">ACCOUNT REQUIRED</div><h2 data-i18n="cloudLoginTitle">登录后使用工作云盘</h2><p data-i18n="cloudLoginHint">与实时聊天共享账号，请先使用账号密码登录。</p></div>
+        <button id="cloud-open-login" type="button" class="primary-btn" data-i18n="goToAccountLogin">前往账号登录</button>
+      </section>
+
+      <div id="cloud-workspace" class="cloud-workspace hidden">
+        <aside class="cloud-sidebar">
+          <section class="cloud-storage-card panel">
+            <div class="cloud-storage-ring"><strong id="cloud-storage-percent">0%</strong><span data-i18n="used">已使用</span></div>
+            <div class="cloud-storage-copy">
+              <span data-i18n="personalStorage">个人存储空间</span>
+              <h2><strong id="cloud-used">0 B</strong><small>/ <span id="cloud-limit">5 GB</span></small></h2>
+              <p><span data-i18n="remaining">剩余</span> <b id="cloud-remaining">5 GB</b></p>
+              <em id="cloud-policy">5GB PRO</em>
+            </div>
+          </section>
+          <section class="cloud-actions-card panel">
+            <button id="cloud-upload" type="button" class="primary-btn"><span>↑</span><b data-i18n="uploadFile">上传文件</b></button>
+            <button id="cloud-new-folder" type="button" class="ghost-btn"><span>＋</span><b data-i18n="newFolder">新建目录</b></button>
+            <p data-i18n="cloudIsolationHint">文件按当前账号独立存储，并与 Backlight 网盘保持一致。</p>
+          </section>
+        </aside>
+
+        <section class="cloud-browser panel">
+          <div class="cloud-browser-top">
+            <nav id="cloud-breadcrumbs" class="cloud-breadcrumbs" aria-label="当前目录"></nav>
+            <div class="cloud-browser-actions">
+              <form id="cloud-search-form" class="cloud-search-form">
+                <input id="cloud-search" maxlength="100" data-i18n-placeholder="searchCurrentFolder" placeholder="搜索当前目录">
+                <button type="submit" aria-label="搜索">⌕</button>
+              </form>
+              <button id="cloud-refresh" type="button" class="tiny-btn" data-i18n="refresh">刷新</button>
+            </div>
+          </div>
+          <div class="cloud-list-caption"><div><strong id="cloud-folder-name" data-i18n="allFiles">全部文件</strong><span id="cloud-total">0 项</span></div><span data-i18n="recentlyModified">最近修改优先</span></div>
+          <div id="cloud-file-list" class="cloud-file-list"></div>
+          <div id="cloud-pagination" class="cloud-pagination hidden">
+            <button id="cloud-prev" type="button">←</button><span id="cloud-page-number">1</span><button id="cloud-next" type="button">→</button>
+          </div>
+        </section>
+      </div>
+
+      <div id="cloud-transfer" class="cloud-transfer hidden">
+        <div><span id="cloud-transfer-name">—</span><strong id="cloud-transfer-percent">0%</strong></div>
+        <div class="progress-track"><span id="cloud-transfer-bar"></span></div>
+      </div>
+    </section>
+
     <section id="chat-page" class="chat-page hidden" aria-labelledby="chat-title">
       <div class="chat-page-head">
         <button id="close-chat" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
@@ -161,30 +301,17 @@
       <div id="chat-conversation-view" class="chat-layout">
         <aside class="panel chat-sidebar">
           <section class="chat-account-panel">
-            <div class="chat-section-title"><span data-i18n="myRealtimeIdentity">我的实时身份</span><button id="copy-user-id" type="button" class="tiny-btn" data-i18n="copyId">复制 ID</button></div>
-            <div id="realtime-auth-modes" class="auth-mode-tabs">
-              <button type="button" class="active" data-auth-mode="password" data-i18n="passwordLogin">账号密码</button>
-              <button type="button" data-auth-mode="device" data-i18n="deviceLogin">一键登录</button>
-            </div>
-            <div id="identity-empty" class="identity-empty">
-              <div id="device-auth-fields" class="hidden">
-                <p data-i18n="identityHint">首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。</p>
-                <label class="chat-field"><span data-i18n="nickname">昵称</span><input id="realtime-nickname" maxlength="40" data-i18n-placeholder="nicknamePlaceholder" placeholder="例如：小明的桌面"></label>
-              </div>
-              <div id="password-auth-fields" class="password-auth-fields">
-                <p data-i18n="passwordLoginHint">使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。</p>
-                <label class="chat-field"><span data-i18n="accountUsername">用户名</span><input id="realtime-username" maxlength="100" autocomplete="off" autocapitalize="none" spellcheck="false" data-i18n-placeholder="accountUsernamePlaceholder" placeholder="请输入用户名"></label>
-                <label class="chat-field"><span data-i18n="accountPassword">密码</span><input id="realtime-password" type="password" maxlength="512" autocomplete="off" data-lpignore="true" data-i18n-placeholder="accountPasswordPlaceholder" placeholder="请输入密码"></label>
-                <button id="open-account-register" type="button" class="account-register-link"><span data-i18n="noAccountYet">还没有账号？</span><b data-i18n="registerNow">立即注册</b></button>
-              </div>
+            <div class="chat-section-title"><span data-i18n="myAccount">我的账号</span><button id="copy-user-id" type="button" class="tiny-btn" data-i18n="copyId">复制 ID</button></div>
+            <div id="identity-empty" class="chat-login-required">
+              <span aria-hidden="true">◎</span>
+              <p data-i18n="chatLoginRequired">登录账号后即可使用好友和实时聊天。</p>
+              <button id="chat-open-account" type="button" class="tiny-primary-btn" data-i18n="goToAccountLogin">前往账号登录</button>
             </div>
             <div id="identity-card" class="identity-card hidden">
-              <div class="identity-heading"><strong id="identity-name">我的工位岛</strong><em id="identity-auth-mode">设备登录</em></div>
+              <div class="identity-heading"><strong id="identity-name">我的工位岛</strong><em data-i18n="accountSignedIn">已登录</em></div>
               <span id="identity-username">client_...</span>
               <div><small data-i18n="myUserId">我的用户 ID</small><code id="identity-user-id">--</code></div>
             </div>
-            <button id="realtime-toggle" type="button" class="primary-btn realtime-toggle" data-i18n="goOnline">一键上线</button>
-            <button id="reset-realtime" type="button" class="text-btn reset-realtime hidden" data-i18n="resetIdentity">重置实时身份</button>
           </section>
           <div class="chat-divider"></div>
           <div class="chat-friends-head">
@@ -262,7 +389,8 @@
         <div class="english-toolbar">
           <button id="close-english" class="english-icon-btn no-drag" type="button" aria-label="返回工作台" title="返回工作台">×</button>
           <select id="english-mode" class="english-mode no-drag" aria-label="学习模式">
-            <option value="study" data-i18n="englishStudyMode">中英学习</option>
+            <option value="study" data-i18n="englishStudyMode">单词学习</option>
+            <option value="sentence" data-i18n="englishSentenceMode">例句学习</option>
             <option value="quiz" data-i18n="englishQuizMode">英译中 4选1</option>
             <option value="chinese" data-i18n="englishChineseMode">中译英 4选1</option>
             <option value="spelling" data-i18n="englishSpellingMode">拼完整单词</option>
@@ -271,6 +399,9 @@
           <div id="english-error" class="english-status english-error hidden"><b id="english-error-text">加载失败</b><button id="retry-english" type="button" class="no-drag" data-i18n="retry">重试</button></div>
           <div id="english-study" class="english-prompt english-study hidden">
             <strong id="english-word">serendipity</strong>
+          </div>
+          <div id="english-sentence" class="english-prompt english-sentence hidden">
+            <strong id="english-sentence-word">serendipity</strong>
           </div>
           <div id="english-quiz" class="english-prompt english-quiz hidden">
             <strong id="english-quiz-word">serendipity</strong>
@@ -287,6 +418,11 @@
           <b id="english-translation">意外发现美好事物的能力</b>
           <small id="english-countdown">60s</small>
           <button id="next-english" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个">›</button>
+        </div>
+        <div id="english-sentence-stage" class="english-sentence-stage hidden">
+          <p><span>EN</span><b id="english-example-en">Keep it concise.</b></p>
+          <p><span>中</span><b id="english-example-cn">保持简洁。</b></p>
+          <button id="next-english-sentence" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个">›</button>
         </div>
         <div id="english-options" class="english-options no-drag hidden"></div>
         <div id="english-spelling-stage" class="english-spelling-stage hidden">
@@ -363,29 +499,34 @@
       <div class="modal-actions"><button type="button" class="text-btn" data-close="settings-modal" data-i18n="cancel">取消</button><button type="submit" class="primary-btn" data-i18n="saveSettings">保存设置</button></div>
     </form>
   </div>
-  <div id="account-register-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="account-register-title">
-    <form id="account-register-form" class="modal-card account-register-card">
+  <div id="cloud-editor-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cloud-editor-title">
+    <form id="cloud-editor-form" class="modal-card cloud-editor-card">
       <div class="modal-head">
-        <div><div class="section-kicker">CREATE ACCOUNT</div><h2 id="account-register-title" data-i18n="registerAccount">注册聊天账号</h2><p data-i18n="registerAccountHint">注册后可使用账号密码登录，并使用好友与聊天功能。</p></div>
-        <button type="button" class="close-btn" data-close="account-register-modal">×</button>
+        <div><div class="section-kicker">WORK CLOUD</div><h2 id="cloud-editor-title">新建目录</h2></div>
+        <button type="button" class="close-btn" data-close="cloud-editor-modal">×</button>
       </div>
-      <div class="field-grid">
-        <label class="field"><span data-i18n="accountUsername">用户名</span><input id="register-username" maxlength="20" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="registerUsernamePlaceholder" placeholder="3–20 位字母、数字或下划线" required></label>
-        <label class="field"><span data-i18n="nickname">昵称</span><input id="register-nickname" maxlength="20" autocomplete="nickname" data-i18n-placeholder="registerNicknamePlaceholder" placeholder="2–20 个字符" required></label>
+      <label class="field">
+        <span id="cloud-editor-label">目录名称</span>
+        <input id="cloud-editor-input" maxlength="255" autocomplete="off" required>
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="text-btn" data-close="cloud-editor-modal" data-i18n="cancel">取消</button>
+        <button id="cloud-editor-submit" type="submit" class="primary-btn">创建</button>
       </div>
-      <div class="field-grid">
-        <label class="field"><span data-i18n="accountPassword">密码</span><input id="register-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="registerPasswordPlaceholder" placeholder="6–20 个字符" required></label>
-        <label class="field"><span data-i18n="confirmPassword">确认密码</span><input id="register-confirm-password" type="password" minlength="6" maxlength="20" autocomplete="new-password" data-i18n-placeholder="confirmPasswordPlaceholder" placeholder="再次输入密码" required></label>
-      </div>
-      <div class="field-grid">
-        <label class="field"><span><b data-i18n="email">邮箱</b> <em data-i18n="optional">可选</em></span><input id="register-email" type="email" maxlength="120" autocomplete="email" data-i18n-placeholder="emailPlaceholder" placeholder="name@example.com"></label>
-        <label class="field"><span><b data-i18n="phone">手机号</b> <em data-i18n="optional">可选</em></span><input id="register-phone" type="tel" maxlength="11" autocomplete="tel" inputmode="tel" data-i18n-placeholder="phonePlaceholder" placeholder="中国大陆手机号"></label>
-      </div>
-      <label class="field"><span><b data-i18n="inviteCode">邀请码</b> <em data-i18n="optional">可选</em></span><input id="register-invite-code" maxlength="100" autocomplete="off" data-i18n-placeholder="inviteCodePlaceholder" placeholder="有邀请码时填写"></label>
-      <div class="registration-tip"><span>i</span><p data-i18n="inviteHint">邀请码不必填写；填写后会关联邀请人。</p></div>
-      <div class="registration-privacy" data-i18n="registrationPrivacy">注册资料会提交到 Backlight 账号服务；密码不会保存在本机。</div>
-      <div class="modal-actions"><button type="button" class="text-btn" data-close="account-register-modal" data-i18n="cancel">取消</button><button id="submit-account-register" type="submit" class="primary-btn" data-i18n="createAccount">创建账号</button></div>
     </form>
+  </div>
+  <div id="cloud-delete-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cloud-delete-title">
+    <section class="modal-card cloud-delete-card">
+      <div class="modal-head">
+        <div><div class="section-kicker">WORK CLOUD</div><h2 id="cloud-delete-title" data-i18n="cloudDeleteTitle">删除项目</h2></div>
+        <button type="button" class="close-btn" data-close="cloud-delete-modal">×</button>
+      </div>
+      <p id="cloud-delete-message" class="cloud-delete-message"></p>
+      <div class="modal-actions">
+        <button type="button" class="text-btn" data-close="cloud-delete-modal" data-i18n="cancel">取消</button>
+        <button id="cloud-delete-confirm" type="button" class="primary-btn danger-primary-btn" data-i18n="delete">删除</button>
+      </div>
+    </section>
   </div>
   <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
     <section class="modal-card about-card">
@@ -394,11 +535,11 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.9.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.10.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.9.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.10.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -421,6 +562,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=31" type="module"></script>
+  <script src="./app.js?v=34" type="module"></script>
 </body>
 </html>

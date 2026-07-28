@@ -38,11 +38,19 @@ const translations = {
     englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     stockMarket: '股市', stockWatchlist: '自选行情', stockCodePlaceholder: '股票代码，如 600519', addStock: '添加', stockLoading: '正在刷新行情…',
     stockUpdated: '{time} 更新', stockCached: '缓存于 {time}', stockNoData: '暂无自选股票', stockDisclaimer: '东方财富 · 数据仅供参考', removeStock: '删除自选股', stockAdded: '已添加自选股',
+    workCloud: '工作云盘', cloudNotLoggedIn: '未登录', cloudLoginTitle: '登录后使用工作云盘', cloudLoginHint: '工作云盘与实时聊天共享工位岛账号。', goToAccountLogin: '前往账号登录',
+    used: '已使用', personalStorage: '个人存储空间', remaining: '剩余', uploadFile: '上传文件', newFolder: '新建目录', cloudIsolationHint: '文件按当前账号独立存储，并与 Backlight 网盘保持一致。',
+    searchCurrentFolder: '搜索当前目录', refresh: '刷新', allFiles: '全部文件', recentlyModified: '最近修改优先', folder: '文件夹', file: '文件',
+    rename: '重命名', delete: '删除', download: '下载', cloudEmpty: '这个目录还是空的', cloudLoading: '正在读取云盘…', cloudItems: '{count} 项', cloudUploadSuccess: '文件上传成功',
+    cloudDownloadSuccess: '文件已保存', cloudFolderCreated: '目录创建成功', cloudRenamed: '重命名成功', cloudDeleted: '删除成功', cloudFolderName: '目录名称', cloudNewName: '新名称',
+    cloudCreateFolderTitle: '新建目录', cloudRenameTitle: '重命名', cloudCreate: '创建', cloudSave: '保存', cloudNameRequired: '请输入名称',
+    cloudDeleteTitle: '删除项目', cloudDeleteConfirm: '确定删除“{name}”吗？目录必须为空才能删除。', cloudLoginExpired: '登录已过期，请重新登录', unlimited: '不限容量',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用聊天、好友和工作云盘。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，实时聊天和工作云盘会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
     accountUsernamePlaceholder: '请输入用户名', accountPasswordPlaceholder: '请输入密码', loginOnline: '登录并上线', deviceAuth: '设备登录', passwordAuth: '账号登录',
-    noAccountYet: '还没有账号？', registerNow: '立即注册', registerAccount: '注册聊天账号', registerAccountHint: '注册后可使用账号密码登录，并使用好友与聊天功能。',
+    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用聊天、好友和工作云盘。',
     registerUsernamePlaceholder: '3–20 位字母、数字或下划线', registerNicknamePlaceholder: '2–20 个字符', registerPasswordPlaceholder: '6–20 个字符',
     confirmPassword: '确认密码', confirmPasswordPlaceholder: '再次输入密码', phone: '手机号', emailPlaceholder: 'name@example.com', phonePlaceholder: '中国大陆手机号',
     inviteCode: '邀请码', inviteCodePlaceholder: '有邀请码时填写', inviteHint: '邀请码不必填写；填写后会关联邀请人。',
@@ -59,10 +67,12 @@ const translations = {
     conversation: '会话', offlineDeliveryHint: '对方离线时消息会在其下次上线后送达', choosePeer: '从左侧选择好友开始聊天', noMessages: '和 {name} 还没有消息', chatPrivacy: '消息经远程实时服务传输，并保存在本机聊天记录中。',
     chatPlaceholder: '输入消息，Enter 发送，Shift+Enter 换行', send: '发送', idCopied: '用户 ID 已复制', identityReset: '实时身份已重置', connectedRealtime: '实时服务已上线', disconnectedRealtime: '已从实时服务下线',
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
-    incomingShake: '用户 {id} 抖了抖你的窗口', incomingFlash: '用户 {id} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
-    englishLearning: '偷偷学英语', englishStudyMode: '中英学习', englishQuizMode: '英译中 4选1', englishChineseMode: '中译英 4选1', englishSpellingMode: '拼完整单词', englishLoading: '正在取词…',
+    incomingShake: '{name} 抖了抖你的窗口', incomingFlash: '{name} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
+    shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
+    englishLearning: '偷偷学英语', englishStudyMode: '单词学习', englishSentenceMode: '例句学习', englishQuizMode: '英译中 4选1', englishChineseMode: '中译英 4选1', englishSpellingMode: '拼完整单词', englishLoading: '正在取词…',
     englishLoadFailed: '取词失败', retry: '重试', nextWord: '下一个', answerCorrect: '回答正确', answerWrong: '回答错误', previousWord: '上一词',
-    englishSpellingPlaceholder: '输入完整英文单词', checkAnswer: '检查', enterSpelling: '请输入完整英文单词',
+    englishSpellingPlaceholder: '输入完整英文单词', checkAnswer: '检查', enterSpelling: '请输入完整英文单词', translatingExample: '正在获取中文例句…',
+    exampleUnavailable: '暂无英文例句', exampleTranslationUnavailable: '中文释义：{meaning}',
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
@@ -104,11 +114,19 @@ const translations = {
     englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     stockMarket: 'Stocks', stockWatchlist: 'Watchlist', stockCodePlaceholder: 'A-share code, e.g. 600519', addStock: 'Add', stockLoading: 'Refreshing quotes…',
     stockUpdated: 'Updated {time}', stockCached: 'Cached at {time}', stockNoData: 'No watched stocks', stockDisclaimer: 'Eastmoney · For reference only', removeStock: 'Remove from watchlist', stockAdded: 'Stock added',
+    workCloud: 'Work Cloud', cloudNotLoggedIn: 'Signed out', cloudLoginTitle: 'Sign in to use Work Cloud', cloudLoginHint: 'Work Cloud and realtime chat share your Workday Island account.', goToAccountLogin: 'Go to account login',
+    used: 'Used', personalStorage: 'Personal storage', remaining: 'Remaining', uploadFile: 'Upload file', newFolder: 'New folder', cloudIsolationHint: 'Files are isolated by account and stay in sync with your Backlight drive.',
+    searchCurrentFolder: 'Search this folder', refresh: 'Refresh', allFiles: 'All files', recentlyModified: 'Recently modified first', folder: 'Folder', file: 'File',
+    rename: 'Rename', delete: 'Delete', download: 'Download', cloudEmpty: 'This folder is empty', cloudLoading: 'Loading cloud drive…', cloudItems: '{count} items', cloudUploadSuccess: 'File uploaded',
+    cloudDownloadSuccess: 'File saved', cloudFolderCreated: 'Folder created', cloudRenamed: 'Renamed', cloudDeleted: 'Deleted', cloudFolderName: 'Folder name', cloudNewName: 'New name',
+    cloudCreateFolderTitle: 'New folder', cloudRenameTitle: 'Rename', cloudCreate: 'Create', cloudSave: 'Save', cloudNameRequired: 'Enter a name',
+    cloudDeleteTitle: 'Delete item', cloudDeleteConfirm: 'Delete “{name}”? Folders must be empty before deletion.', cloudLoginExpired: 'Your session expired. Please sign in again.', unlimited: 'Unlimited',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks chat, friends, and Work Cloud.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects both realtime chat and Work Cloud.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
     accountUsernamePlaceholder: 'Enter username', accountPasswordPlaceholder: 'Enter password', loginOnline: 'Sign In & Go Online', deviceAuth: 'Device login', passwordAuth: 'Account login',
-    noAccountYet: 'No account yet?', registerNow: 'Create one', registerAccount: 'Create a chat account', registerAccountHint: 'Use the new account to sign in and access friends and realtime chat.',
+    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for chat, friends, and Work Cloud.',
     registerUsernamePlaceholder: '3–20 letters, numbers, or underscores', registerNicknamePlaceholder: '2–20 characters', registerPasswordPlaceholder: '6–20 characters',
     confirmPassword: 'Confirm password', confirmPasswordPlaceholder: 'Enter the password again', phone: 'Phone', emailPlaceholder: 'name@example.com', phonePlaceholder: 'Mainland China mobile number',
     inviteCode: 'Invite code', inviteCodePlaceholder: 'Enter one if you have it', inviteHint: 'The invite code is optional. If supplied, it links your inviter.',
@@ -125,10 +143,12 @@ const translations = {
     conversation: 'Conversation', offlineDeliveryHint: 'Offline messages are delivered the next time the other person connects', choosePeer: 'Choose a friend on the left to start chatting', noMessages: 'No messages with {name} yet', chatPrivacy: 'Messages pass through the remote realtime service and are kept in local chat history.',
     chatPlaceholder: 'Type a message. Enter to send; Shift+Enter for a new line', send: 'Send', idCopied: 'User ID copied', identityReset: 'Realtime identity reset', connectedRealtime: 'Realtime service is online', disconnectedRealtime: 'Realtime service is offline',
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
-    incomingShake: 'User {id} shook your window', incomingFlash: 'User {id} flashed your window', stopWindowEffect: 'Stop window interaction',
-    englishLearning: 'Quiet English', englishStudyMode: 'EN + CN', englishQuizMode: 'EN → CN · 4 choices', englishChineseMode: 'CN → EN · 4 choices', englishSpellingMode: 'Spell the word', englishLoading: 'Fetching words…',
+    incomingShake: '{name} shook your window', incomingFlash: '{name} flashed your window', stopWindowEffect: 'Stop window interaction',
+    shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
+    englishLearning: 'Quiet English', englishStudyMode: 'Word study', englishSentenceMode: 'Example sentences', englishQuizMode: 'EN → CN · 4 choices', englishChineseMode: 'CN → EN · 4 choices', englishSpellingMode: 'Spell the word', englishLoading: 'Fetching words…',
     englishLoadFailed: 'Unable to fetch words', retry: 'Retry', nextWord: 'Next word', answerCorrect: 'Correct', answerWrong: 'Wrong', previousWord: 'Previous',
-    englishSpellingPlaceholder: 'Type the complete English word', checkAnswer: 'Check', enterSpelling: 'Type the complete English word',
+    englishSpellingPlaceholder: 'Type the complete English word', checkAnswer: 'Check', enterSpelling: 'Type the complete English word', translatingExample: 'Fetching the Chinese sentence…',
+    exampleUnavailable: 'No example sentence', exampleTranslationUnavailable: 'Meaning: {meaning}',
     weekdays: ['M','T','W','T','F','S','S']
   }
 };
@@ -136,10 +156,13 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.9.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.10.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
+  accountOpen: false,
+  accountMode: 'login',
+  account: {loggedIn: false, user: null},
   realtime: {status: 'offline', desiredOnline: false, lastError: '', authMode: 'device', identity: null, messages: [], friends: [], friendRequests: []},
   chatOpen: false,
   chatSection: 'conversation',
@@ -147,6 +170,8 @@ const state = {
   latestIncomingPeer: 0,
   stockOpen: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
+  cloudOpen: false,
+  cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   englishOpen: false,
   english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
@@ -158,13 +183,13 @@ let lastReminderSequence = 0;
 let reminderSoundTimer = 0;
 let reminderAudioContext = null;
 let selectedFocusMinutes = 50;
-let selectedRealtimeAuthMode = localStorage.getItem('workdayIsland.realtimeAuthMode') === 'device' ? 'device' : 'password';
 let selectedRealtimePeerMode = ['friend', 'temporary'].includes(localStorage.getItem('workdayIsland.chatPeerMode')) ? localStorage.getItem('workdayIsland.chatPeerMode') : '';
 let compactResizeTimer = 0;
 let availableUpdate = null;
 let updateCheckResult = null;
 let remoteEffectTimer = 0;
 let realtimeBusy = false;
+let accountBusy = false;
 let realtimeRegistrationBusy = false;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
@@ -188,7 +213,7 @@ function normaliseWorkdays(value) {
   return valid.length ? valid.sort((a, b) => a - b) : [1, 2, 3, 4, 5];
 }
 function normaliseEnglishMode(value) {
-  return ['study', 'quiz', 'chinese', 'spelling'].includes(value) ? value : 'study';
+  return ['study', 'sentence', 'quiz', 'chinese', 'spelling'].includes(value) ? value : 'study';
 }
 function t(key, replacements = {}) {
   let value = translations[currentLanguage()][key] ?? translations.zh[key] ?? key;
@@ -211,8 +236,12 @@ function applyTranslations() {
   $('#open-chat').title = t('chat');
   $('#open-stocks').setAttribute('aria-label', t('stockMarket'));
   $('#open-stocks').title = t('stockMarket');
+  $('#open-cloud').setAttribute('aria-label', t('workCloud'));
+  $('#open-cloud').title = t('workCloud');
   $('#open-english').setAttribute('aria-label', t('englishLearning'));
   $('#open-english').title = t('englishLearning');
+  $('#open-account').setAttribute('aria-label', t('account'));
+  $('#open-account').title = t('account');
   ['#minimize-window', '#compact-minimize', '#minimize-english', '#minimize-stocks'].forEach(selector => {
     $(selector).setAttribute('aria-label', t('minimize'));
     $(selector).title = t('minimize');
@@ -223,10 +252,16 @@ function applyTranslations() {
   $('#compact-todos').setAttribute('aria-label', t('compactTodos'));
   $('#english-page').setAttribute('aria-label', t('englishLearning'));
   $('#stock-page').setAttribute('aria-label', t('stockMarket'));
+  $('#cloud-page').setAttribute('aria-label', t('workCloud'));
+  $('#account-page').setAttribute('aria-label', t('accountCenter'));
   $('#close-english').setAttribute('aria-label', t('backToDashboard'));
   $('#close-english').title = t('backToDashboard');
   $('#close-stocks').setAttribute('aria-label', t('backToDashboard'));
   $('#close-stocks').title = t('backToDashboard');
+  $('#close-cloud').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-cloud').title = t('backToDashboard');
+  $('#close-account').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-account').title = t('backToDashboard');
   $('#next-english').setAttribute('aria-label', t('nextWord'));
   $('#next-english').title = t('nextWord');
   $('#close-window').setAttribute('aria-label', t('hideToTray'));
@@ -243,6 +278,7 @@ function applyTranslations() {
   $('#app-version-badge').textContent = `v${state.appInfo.version}`;
   $('#about-version').textContent = state.appInfo.version;
   $('#email-author strong').textContent = state.appInfo.email;
+  renderAccountSession();
   renderRealtime();
   renderStocks();
   if (updateCheckResult) renderUpdateInfo(updateCheckResult);
@@ -250,22 +286,22 @@ function applyTranslations() {
 
 async function boot() {
   try {
-    const [loaded, appInfo, realtime, defaultNickname] = await Promise.all([
+    const [loaded, appInfo, account] = await Promise.all([
       api.GetState(),
       api.GetAppInfo(),
-      api.GetRealtimeState(),
-      api.GetDefaultRealtimeNickname()
+      api.GetAccountSession()
     ]);
     state.todos = loaded.todos ?? [];
     state.settings = {...state.settings, ...(loaded.settings ?? {})};
     state.focus = {...state.focus, ...(loaded.focus ?? {})};
     state.appInfo = {...state.appInfo, ...(appInfo ?? {})};
-    state.realtime = {...state.realtime, ...(realtime ?? {})};
+    state.account = {...state.account, loggedIn: Boolean(account?.loggedIn), user: account?.user || null};
+    state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
+    state.realtime = {...state.realtime, ...(account?.realtime ?? {})};
     (state.realtime.messages || []).forEach(message => {
       if (message?.messageId) receivedRealtimePushIDs.add(message.messageId);
     });
-    $('#realtime-nickname').value = defaultNickname || '';
-    $('#realtime-username').value = localStorage.getItem('workdayIsland.realtimeUsername') || '';
+    $('#account-username').value = localStorage.getItem('workdayIsland.accountUsername') || '';
     $('#peer-user-id').value = selectedRealtimePeerMode ? (localStorage.getItem('workdayIsland.chatPeer') || '') : '';
     applyTheme();
     applyEnglishBackgroundOpacity();
@@ -293,6 +329,7 @@ async function boot() {
         item.status === 'pending' && Number(item.addressee?.userId) === identityID && !existingRequestIDs.has(item.friendRequestId)
       );
       if (incoming) showToast(`👋 ${t('friendRequestReceived', {name: friendDisplayName(incoming.requester)})}`);
+      renderAccountSession();
       renderRealtime();
     });
     window.runtime?.EventsOn?.('realtime:message', message => {
@@ -301,6 +338,7 @@ async function boot() {
     window.runtime?.EventsOn?.('realtime:effect', payload => {
       handleRemoteWindowEffect(payload);
     });
+    window.runtime?.EventsOn?.('cloud:transfer-progress', renderCloudTransferProgress);
   } catch (error) {
     showToast(readError(error), true);
   }
@@ -311,6 +349,29 @@ function bindEvents() {
   $('#open-settings').addEventListener('click', openSettings);
   $('#open-about').addEventListener('click', () => openModal('about-modal'));
   $('#open-chat').addEventListener('click', openChatPage);
+  $('#open-account').addEventListener('click', () => openAccountPage('login'));
+  $('#close-account').addEventListener('click', closeAccountPage);
+  $('#account-mode-tabs').addEventListener('click', changeAccountMode);
+  $('#account-login-form').addEventListener('submit', submitAccountLogin);
+  $('#account-register-form').addEventListener('submit', submitRealtimeRegistration);
+  $('#account-logout').addEventListener('click', logoutAccount);
+  $('#chat-open-account').addEventListener('click', () => {
+    closeChatPage();
+    openAccountPage('login');
+  });
+  $('#open-cloud').addEventListener('click', openCloudPage);
+  $('#close-cloud').addEventListener('click', closeCloudPage);
+  $('#cloud-open-login').addEventListener('click', openCloudAccountLogin);
+  $('#cloud-upload').addEventListener('click', uploadCloudFile);
+  $('#cloud-new-folder').addEventListener('click', openCloudFolderEditor);
+  $('#cloud-editor-form').addEventListener('submit', submitCloudEditor);
+  $('#cloud-delete-confirm').addEventListener('click', confirmCloudDelete);
+  $('#cloud-refresh').addEventListener('click', refreshCloudDisk);
+  $('#cloud-search-form').addEventListener('submit', searchCloudDisk);
+  $('#cloud-breadcrumbs').addEventListener('click', navigateCloudBreadcrumb);
+  $('#cloud-file-list').addEventListener('click', handleCloudFileAction);
+  $('#cloud-prev').addEventListener('click', () => changeCloudPage(-1));
+  $('#cloud-next').addEventListener('click', () => changeCloudPage(1));
   $('#open-stocks').addEventListener('click', openStockPage);
   $('#close-stocks').addEventListener('click', closeStockPage);
   $('#minimize-stocks').addEventListener('click', minimiseWindow);
@@ -322,22 +383,12 @@ function bindEvents() {
   $('#minimize-english').addEventListener('click', minimiseWindow);
   $('#retry-english').addEventListener('click', loadEnglishBatch);
   $('#next-english').addEventListener('click', nextEnglishWord);
+  $('#next-english-sentence').addEventListener('click', nextEnglishWord);
   $('#english-mode').addEventListener('change', changeEnglishMode);
   $('#english-options').addEventListener('click', answerEnglishQuestion);
   $('#english-spelling-form').addEventListener('submit', submitEnglishSpelling);
   $('#close-chat').addEventListener('click', closeChatPage);
   $('#chat-section-tabs').addEventListener('click', changeChatSection);
-  $('#realtime-toggle').addEventListener('click', toggleRealtimeConnection);
-  $('#realtime-auth-modes').addEventListener('click', changeRealtimeAuthMode);
-  $('#open-account-register').addEventListener('click', openRealtimeRegistration);
-  $('#account-register-form').addEventListener('submit', submitRealtimeRegistration);
-  $('#realtime-password').addEventListener('keydown', event => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      toggleRealtimeConnection();
-    }
-  });
-  $('#reset-realtime').addEventListener('click', resetRealtimeIdentity);
   $('#copy-user-id').addEventListener('click', copyRealtimeUserID);
   $('#friend-request-form').addEventListener('submit', submitFriendRequest);
   $('#refresh-friends').addEventListener('click', refreshRealtimeFriends);
@@ -398,9 +449,17 @@ function bindEvents() {
     if (event.target === modal) closeModal(modal.id);
   }));
   document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      const openModals = $$('.modal-backdrop:not(.hidden)');
+      if (openModals.length) {
+        openModals.forEach(modal => closeModal(modal.id));
+        return;
+      }
+    }
+    if (event.key === 'Escape' && state.accountOpen) { closeAccountPage(); return; }
+    if (event.key === 'Escape' && state.cloudOpen) { closeCloudPage(); return; }
     if (event.key === 'Escape' && state.stockOpen) { closeStockPage(); return; }
     if (event.key === 'Escape' && state.englishOpen) { closeEnglishPage(); return; }
-    if (event.key === 'Escape') $$('.modal-backdrop:not(.hidden)').forEach(modal => closeModal(modal.id));
     if (state.englishOpen && ['quiz', 'chinese'].includes(state.english.mode) && /^[1-4]$/.test(event.key)) {
       $('#english-options').querySelector(`[data-option-index="${Number(event.key) - 1}"]`)?.click();
     }
@@ -508,6 +567,7 @@ function renderAll() {
   renderTodos();
   renderCompactTodos();
   renderSummary();
+  renderAccountSession();
   renderRealtime();
   updateClock();
 }
@@ -663,7 +723,138 @@ async function handleTodoAction(event) {
   } catch (error) { showToast(readError(error), true); }
 }
 
+function accountDisplayName() {
+  return String(state.account?.user?.nickname || state.account?.user?.username || '');
+}
+
+function renderAccountSession() {
+  const loggedIn = Boolean(state.account?.loggedIn);
+  const user = state.account?.user || null;
+  const displayName = accountDisplayName();
+  const nav = $('#open-account');
+  nav.classList.toggle('logged-in', loggedIn);
+  $('#account-home-name').textContent = loggedIn ? displayName : t('accountLogin');
+
+  const chip = $('#account-status-chip');
+  chip.classList.toggle('logged-in', loggedIn);
+  chip.querySelector('b').textContent = loggedIn ? t('accountSignedIn') : t('signedOut');
+  $('#account-auth-view').classList.toggle('hidden', loggedIn);
+  $('#account-profile-view').classList.toggle('hidden', !loggedIn);
+
+  if (loggedIn) {
+    $('#account-profile-avatar').textContent = [...displayName][0]?.toUpperCase() || 'W';
+    $('#account-profile-name').textContent = displayName;
+    $('#account-profile-username').textContent = user?.username ? `@${user.username}` : '';
+    $('#account-chat-status').textContent = realtimeStatusLabel(state.realtime?.status || 'offline');
+    $('#account-service-grid').classList.toggle('chat-online', state.realtime?.status === 'online');
+  } else {
+    const registerMode = state.accountMode === 'register';
+    $('#account-login-form').classList.toggle('hidden', registerMode);
+    $('#account-register-form').classList.toggle('hidden', !registerMode);
+    $$('#account-mode-tabs [data-account-mode]').forEach(button => {
+      button.classList.toggle('active', button.dataset.accountMode === state.accountMode);
+    });
+  }
+}
+
+function openAccountPage(mode = 'login') {
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
+  if (state.stockOpen) closeStockPage();
+  if (state.englishOpen) closeEnglishPage();
+  state.accountMode = mode === 'register' ? 'register' : 'login';
+  state.accountOpen = true;
+  document.body.classList.add('account-open');
+  $('#account-page').classList.remove('hidden');
+  renderAccountSession();
+  if (!state.account.loggedIn) {
+    setTimeout(() => $(state.accountMode === 'register' ? '#register-username' : '#account-username').focus(), 40);
+  }
+}
+
+function closeAccountPage() {
+  state.accountOpen = false;
+  document.body.classList.remove('account-open');
+  $('#account-page').classList.add('hidden');
+}
+
+function changeAccountMode(event) {
+  const button = event.target.closest('[data-account-mode]');
+  if (!button || state.account?.loggedIn || accountBusy || realtimeRegistrationBusy) return;
+  state.accountMode = button.dataset.accountMode === 'register' ? 'register' : 'login';
+  if (state.accountMode === 'register' && !$('#register-username').value) {
+    $('#register-username').value = $('#account-username').value.trim();
+  }
+  renderAccountSession();
+  setTimeout(() => $(state.accountMode === 'register' ? '#register-username' : '#account-username').focus(), 30);
+}
+
+async function submitAccountLogin(event) {
+  event.preventDefault();
+  if (accountBusy) return;
+  const username = $('#account-username').value.trim();
+  const password = $('#account-password').value;
+  if (!username || !password) {
+    showToast(t('accountUsernamePlaceholder'), true);
+    return;
+  }
+  accountBusy = true;
+  const submit = $('#submit-account-login');
+  submit.disabled = true;
+  submit.querySelector('b').textContent = t('signingIn');
+  try {
+    const session = await api.LoginAccount(username, password);
+    state.account = {loggedIn: Boolean(session?.loggedIn), user: session?.user || null};
+    state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
+    state.realtime = {...state.realtime, ...(session?.realtime || {})};
+    localStorage.setItem('workdayIsland.accountUsername', username);
+    $('#account-password').value = '';
+    renderAccountSession();
+    renderCloudSession();
+    renderRealtime();
+    showToast(t('loginSuccess'));
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    accountBusy = false;
+    submit.disabled = false;
+    submit.querySelector('b').textContent = t('signIn');
+  }
+}
+
+async function logoutAccount() {
+  if (accountBusy) return;
+  accountBusy = true;
+  const button = $('#account-logout');
+  button.disabled = true;
+  button.textContent = t('signingOut');
+  try {
+    const session = await api.LogoutAccount();
+    state.account = {loggedIn: false, user: null};
+    state.cloud.session = {loggedIn: false, user: null};
+    state.cloud.items = [];
+    state.cloud.total = 0;
+    state.cloud.quota = {};
+    state.cloud.folders = [];
+    state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
+    state.accountMode = 'login';
+    renderAccountSession();
+    renderCloudSession();
+    renderRealtime();
+    showToast(t('logoutSuccess'));
+    setTimeout(() => $('#account-username').focus(), 40);
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    accountBusy = false;
+    button.disabled = false;
+    button.textContent = t('signOutAll');
+  }
+}
+
 function openChatPage() {
+  if (state.accountOpen) closeAccountPage();
+  if (state.cloudOpen) closeCloudPage();
   const pendingPeer = Number(state.latestIncomingPeer) || (state.chatUnread > 0 ? latestIncomingChatPeer() : 0);
   if (pendingPeer) {
     setActiveRealtimePeer(pendingPeer, friendByUserID(pendingPeer) ? 'friend' : 'temporary');
@@ -712,8 +903,301 @@ function renderChatSection() {
   });
 }
 
-async function openStockPage() {
+async function openCloudPage() {
+  if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
+  if (state.stockOpen) await closeStockPage();
+  if (state.englishOpen) await closeEnglishPage();
+  state.cloudOpen = true;
+  document.body.classList.add('cloud-open');
+  $('#cloud-page').classList.remove('hidden');
+  try {
+    state.cloud.session = await api.GetCloudDiskSession();
+  } catch (error) {
+    state.cloud.session = {loggedIn: false, user: null};
+    showToast(readError(error), true);
+  }
+  renderCloudSession();
+  if (state.cloud.session?.loggedIn) await refreshCloudDisk();
+}
+
+function closeCloudPage() {
+  state.cloudOpen = false;
+  document.body.classList.remove('cloud-open');
+  $('#cloud-page').classList.add('hidden');
+  $('#cloud-transfer').classList.add('hidden');
+  closeModal('cloud-editor-modal');
+  closeModal('cloud-delete-modal');
+}
+
+function openCloudAccountLogin() {
+  closeCloudPage();
+  openAccountPage('login');
+}
+
+function renderCloudSession() {
+  const loggedIn = Boolean(state.cloud.session?.loggedIn);
+  $('#cloud-login-required').classList.toggle('hidden', loggedIn);
+  $('#cloud-workspace').classList.toggle('hidden', !loggedIn);
+  const chip = $('#cloud-account-chip');
+  chip.classList.toggle('logged-in', loggedIn);
+  const user = state.cloud.session?.user;
+  chip.querySelector('b').textContent = loggedIn ? (user?.nickname || user?.username || t('online')) : t('cloudNotLoggedIn');
+  if (loggedIn) renderCloudDisk();
+}
+
+async function refreshCloudDisk() {
+  if (!state.cloud.session?.loggedIn || state.cloud.busy) return;
+  state.cloud.busy = true;
+  renderCloudDisk();
+  try {
+    const parentID = Number(state.cloud.folders.at(-1)?.id) || 0;
+    const [page, quota] = await Promise.all([
+      api.ListCloudDiskItems(parentID, state.cloud.page, state.cloud.pageSize, state.cloud.keyword),
+      api.GetCloudDiskQuota()
+    ]);
+    state.cloud.items = page?.list || [];
+    state.cloud.total = Number(page?.total) || 0;
+    state.cloud.quota = quota || {};
+  } catch (error) {
+    const message = readError(error);
+    if (/登录|expired|sign in/i.test(message)) {
+      let session = null;
+      try { session = await api.LogoutAccount(); } catch {}
+      state.account = {loggedIn: false, user: null};
+      state.cloud.session = {loggedIn: false, user: null};
+      state.cloud.items = [];
+      state.cloud.total = 0;
+      state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
+      renderAccountSession();
+      renderRealtime();
+      renderCloudSession();
+    }
+    showToast(message, true);
+  } finally {
+    state.cloud.busy = false;
+    renderCloudDisk();
+  }
+}
+
+function renderCloudDisk() {
+  renderCloudQuota();
+  renderCloudBreadcrumbs();
+  const list = $('#cloud-file-list');
+  const current = state.cloud.folders.at(-1);
+  $('#cloud-folder-name').textContent = current?.name || t('allFiles');
+  $('#cloud-total').textContent = t('cloudItems', {count: state.cloud.total});
+  if (state.cloud.busy) {
+    list.innerHTML = `<div class="cloud-loading"><span>◌</span><b>${escapeHTML(t('cloudLoading'))}</b></div>`;
+  } else if (!state.cloud.items.length) {
+    list.innerHTML = `<div class="cloud-empty"><span>☁</span><b>${escapeHTML(t('cloudEmpty'))}</b></div>`;
+  } else {
+    list.innerHTML = state.cloud.items.map(item => {
+      const folder = Number(item.node_type) === 1;
+      const icon = folder
+        ? '<svg viewBox="0 0 24 24"><path d="M3 6.5h6l2 2h10v10H3Z"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6Z"/><path d="M14 3v5h5"/></svg>';
+      const detail = folder ? t('folder') : `${formatCloudBytes(item.size)} · ${escapeHTML(item.content_type || t('file'))}`;
+      return `<article class="cloud-file-row" data-cloud-id="${Number(item.id)}" data-cloud-type="${folder ? 'folder' : 'file'}">
+        <span class="cloud-file-icon ${folder ? 'folder' : ''}">${icon}</span>
+        <span class="cloud-file-copy"><strong>${escapeHTML(item.name)}</strong><small>${detail}</small></span>
+        <time class="cloud-file-time">${escapeHTML(formatCloudDate(item.modify_time || item.create_time))}</time>
+        <span class="cloud-file-actions">
+          ${folder ? '' : `<button type="button" data-cloud-action="download">${escapeHTML(t('download'))}</button>`}
+          <button type="button" data-cloud-action="rename">${escapeHTML(t('rename'))}</button>
+          <button type="button" class="danger" data-cloud-action="delete">${escapeHTML(t('delete'))}</button>
+        </span>
+      </article>`;
+    }).join('');
+  }
+  const pages = Math.max(1, Math.ceil(state.cloud.total / state.cloud.pageSize));
+  $('#cloud-pagination').classList.toggle('hidden', pages <= 1);
+  $('#cloud-page-number').textContent = `${state.cloud.page} / ${pages}`;
+  $('#cloud-prev').disabled = state.cloud.page <= 1;
+  $('#cloud-next').disabled = state.cloud.page >= pages;
+}
+
+function renderCloudQuota() {
+  const quota = state.cloud.quota || {};
+  const used = Number(quota.used_bytes) || 0;
+  const limit = Number(quota.total_storage_limit) || 0;
+  const remaining = Number(quota.storage_remaining);
+  const percent = limit > 0 ? Math.min(100, Math.round(used * 100 / limit)) : 0;
+  const ring = $('#cloud-storage-percent').parentElement;
+  ring.style.setProperty('--cloud-progress', `${percent * 3.6}deg`);
+  $('#cloud-storage-percent').textContent = `${percent}%`;
+  $('#cloud-used').textContent = formatCloudBytes(used);
+  $('#cloud-limit').textContent = limit > 0 ? formatCloudBytes(limit) : t('unlimited');
+  $('#cloud-remaining').textContent = remaining >= 0 ? formatCloudBytes(remaining) : t('unlimited');
+  $('#cloud-policy').textContent = quota.source_name || (limit === 5 * 1024 ** 3 ? '5GB PRO' : 'CLOUD');
+}
+
+function renderCloudBreadcrumbs() {
+  $('#cloud-breadcrumbs').innerHTML = [
+    `<button type="button" data-cloud-level="-1">⌂ ${escapeHTML(t('allFiles'))}</button>`,
+    ...state.cloud.folders.map((folder, index) => `<span>›</span><button type="button" data-cloud-level="${index}">${escapeHTML(folder.name)}</button>`)
+  ].join('');
+}
+
+function navigateCloudBreadcrumb(event) {
+  const button = event.target.closest('[data-cloud-level]');
+  if (!button) return;
+  const level = Number(button.dataset.cloudLevel);
+  state.cloud.folders = level < 0 ? [] : state.cloud.folders.slice(0, level + 1);
+  state.cloud.page = 1;
+  state.cloud.keyword = '';
+  $('#cloud-search').value = '';
+  refreshCloudDisk();
+}
+
+async function handleCloudFileAction(event) {
+  const row = event.target.closest('[data-cloud-id]');
+  if (!row || state.cloud.busy) return;
+  const item = state.cloud.items.find(entry => Number(entry.id) === Number(row.dataset.cloudId));
+  if (!item) return;
+  const action = event.target.closest('[data-cloud-action]')?.dataset.cloudAction;
+  if (!action) {
+    if (row.dataset.cloudType === 'folder') {
+      state.cloud.folders.push({id: item.id, name: item.name});
+      state.cloud.page = 1;
+      state.cloud.keyword = '';
+      $('#cloud-search').value = '';
+      await refreshCloudDisk();
+    } else {
+      await downloadCloudFile(item);
+    }
+    return;
+  }
+  event.stopPropagation();
+  if (action === 'download') await downloadCloudFile(item);
+  if (action === 'rename') openCloudRenameEditor(item);
+  if (action === 'delete') openCloudDeleteConfirm(item);
+}
+
+function openCloudFolderEditor() {
+  state.cloud.editorMode = 'create';
+  state.cloud.editorTarget = null;
+  $('#cloud-editor-title').textContent = t('cloudCreateFolderTitle');
+  $('#cloud-editor-label').textContent = t('cloudFolderName');
+  $('#cloud-editor-submit').textContent = t('cloudCreate');
+  $('#cloud-editor-input').value = '';
+  openModal('cloud-editor-modal');
+  window.setTimeout(() => $('#cloud-editor-input').focus(), 30);
+}
+
+function openCloudRenameEditor(item) {
+  state.cloud.editorMode = 'rename';
+  state.cloud.editorTarget = item;
+  $('#cloud-editor-title').textContent = t('cloudRenameTitle');
+  $('#cloud-editor-label').textContent = t('cloudNewName');
+  $('#cloud-editor-submit').textContent = t('cloudSave');
+  $('#cloud-editor-input').value = item.name;
+  openModal('cloud-editor-modal');
+  window.setTimeout(() => {
+    $('#cloud-editor-input').focus();
+    $('#cloud-editor-input').select();
+  }, 30);
+}
+
+async function submitCloudEditor(event) {
+  event.preventDefault();
+  const input = $('#cloud-editor-input');
+  const submit = $('#cloud-editor-submit');
+  const name = input.value.trim();
+  if (!name) {
+    showToast(t('cloudNameRequired'), true);
+    input.focus();
+    return;
+  }
+  if (state.cloud.editorMode === 'rename' && name === state.cloud.editorTarget?.name) {
+    closeModal('cloud-editor-modal');
+    return;
+  }
+  submit.disabled = true;
+  try {
+    if (state.cloud.editorMode === 'rename') {
+      await api.RenameCloudDiskItem(Number(state.cloud.editorTarget.id), name);
+      showToast(t('cloudRenamed'));
+    } else {
+      const parentID = Number(state.cloud.folders.at(-1)?.id) || 0;
+      await api.CreateCloudDiskFolder(parentID, name);
+      showToast(t('cloudFolderCreated'));
+    }
+    closeModal('cloud-editor-modal');
+    await refreshCloudDisk();
+  } catch (error) { showToast(readError(error), true); }
+  finally { submit.disabled = false; }
+}
+
+function openCloudDeleteConfirm(item) {
+  state.cloud.deleteTarget = item;
+  $('#cloud-delete-message').textContent = t('cloudDeleteConfirm', {name: item.name});
+  openModal('cloud-delete-modal');
+  window.setTimeout(() => $('#cloud-delete-confirm').focus(), 30);
+}
+
+async function confirmCloudDelete() {
+  const item = state.cloud.deleteTarget;
+  if (!item) return;
+  const button = $('#cloud-delete-confirm');
+  button.disabled = true;
+  try {
+    await api.DeleteCloudDiskItem(Number(item.id));
+    closeModal('cloud-delete-modal');
+    state.cloud.deleteTarget = null;
+    showToast(t('cloudDeleted'));
+    await refreshCloudDisk();
+  } catch (error) { showToast(readError(error), true); }
+  finally { button.disabled = false; }
+}
+
+async function uploadCloudFile() {
+  if (state.cloud.busy) return;
+  try {
+    const parentID = Number(state.cloud.folders.at(-1)?.id) || 0;
+    const result = await api.UploadCloudDiskFile(parentID);
+    if (!result?.cancelled) {
+      showToast(t('cloudUploadSuccess'));
+      await refreshCloudDisk();
+    }
+  } catch (error) { showToast(readError(error), true); }
+  finally { window.setTimeout(() => $('#cloud-transfer').classList.add('hidden'), 700); }
+}
+
+async function downloadCloudFile(item) {
+  try {
+    const result = await api.DownloadCloudDiskFile(Number(item.id), item.name);
+    if (!result?.cancelled) showToast(t('cloudDownloadSuccess'));
+  } catch (error) { showToast(readError(error), true); }
+  finally { window.setTimeout(() => $('#cloud-transfer').classList.add('hidden'), 700); }
+}
+
+function searchCloudDisk(event) {
+  event.preventDefault();
+  state.cloud.keyword = $('#cloud-search').value.trim();
+  state.cloud.page = 1;
+  refreshCloudDisk();
+}
+
+function changeCloudPage(direction) {
+  const pages = Math.max(1, Math.ceil(state.cloud.total / state.cloud.pageSize));
+  state.cloud.page = Math.max(1, Math.min(pages, state.cloud.page + direction));
+  refreshCloudDisk();
+}
+
+function renderCloudTransferProgress(payload = {}) {
+  if (!state.cloudOpen) return;
+  const percent = Math.max(0, Math.min(100, Number(payload.percent) || 0));
+  $('#cloud-transfer').classList.remove('hidden');
+  $('#cloud-transfer-name').textContent = payload.name || t(payload.direction === 'download' ? 'download' : 'uploadFile');
+  $('#cloud-transfer-percent').textContent = `${percent}%`;
+  $('#cloud-transfer-bar').style.width = `${percent}%`;
+}
+
+async function openStockPage() {
+  if (state.accountOpen) closeAccountPage();
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
   if (state.englishOpen) await closeEnglishPage();
   state.stockOpen = true;
   document.documentElement.classList.add('stock-window');
@@ -825,8 +1309,10 @@ function formatStockNumber(value) {
 }
 
 async function openEnglishPage() {
+  if (state.accountOpen) closeAccountPage();
   if (state.stockOpen) await closeStockPage();
   if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
   state.englishOpen = true;
   state.english.mode = normaliseEnglishMode(state.settings.englishMode);
   state.english.answered = 0;
@@ -877,6 +1363,8 @@ function setEnglishView(view) {
   $('#english-error').classList.toggle('hidden', view !== 'error');
   $('#english-study').classList.toggle('hidden', view !== 'study');
   $('#english-study-stage').classList.toggle('hidden', view !== 'study');
+  $('#english-sentence').classList.toggle('hidden', view !== 'sentence');
+  $('#english-sentence-stage').classList.toggle('hidden', view !== 'sentence');
   $('#english-quiz').classList.toggle('hidden', view !== 'quiz');
   $('#english-options').classList.toggle('hidden', view !== 'quiz');
   $('#english-spelling').classList.toggle('hidden', view !== 'spelling');
@@ -888,7 +1376,9 @@ function setEnglishView(view) {
 }
 
 function scheduleEnglishWindowFit() {
-  if (!state.englishOpen || !hasNativeAPI || typeof api.SetEnglishWindowContentWidth !== 'function') return;
+  const canFitSize = typeof api.SetEnglishWindowContentSize === 'function';
+  const canFitWidth = typeof api.SetEnglishWindowContentWidth === 'function';
+  if (!state.englishOpen || !hasNativeAPI || (!canFitSize && !canFitWidth)) return;
   window.clearTimeout(englishFitTimer);
   englishFitTimer = window.setTimeout(async () => {
     if (!state.englishOpen) return;
@@ -914,11 +1404,18 @@ function scheduleEnglishWindowFit() {
         const limit = index === 1 ? 320 : 160;
         return total + Math.min(Math.max(element.scrollWidth, element.getBoundingClientRect().width), limit);
       }, Math.max(0, children.length - 1) * gap);
+    } else if (!$('#english-sentence-stage').classList.contains('hidden')) {
+      const stage = $('#english-sentence-stage');
+      stageWidth = Math.min(Math.max(stage.scrollWidth, stage.getBoundingClientRect().width), 1180);
     } else if (!$('#english-spelling-stage').classList.contains('hidden')) {
       stageWidth = Math.min($('#english-spelling-mask').scrollWidth, 190) + 310 + 3;
     }
     const width = Math.max(420, Math.min(1200, Math.ceil(Math.max(toolbarWidth, stageWidth) + 14)));
-    try { await api.SetEnglishWindowContentWidth(width); } catch (_) { /* Keep learning usable if resizing is unavailable. */ }
+    const height = state.english.mode === 'sentence' ? 112 : 80;
+    try {
+      if (canFitSize) await api.SetEnglishWindowContentSize(width, height);
+      else await api.SetEnglishWindowContentWidth(width);
+    } catch (_) { /* Keep learning usable if resizing is unavailable. */ }
   }, 24);
 }
 
@@ -965,6 +1462,19 @@ function renderEnglishQuestion() {
     $('#english-countdown').textContent = '60s';
     return;
   }
+  if (state.english.mode === 'sentence') {
+    setEnglishView('sentence');
+    $('#english-sentence-word').textContent = question.word;
+    $('#english-sentence-word').title = question.word;
+    const example = String(question.example || '').trim();
+    $('#english-example-en').textContent = example || t('exampleUnavailable');
+    $('#english-example-en').title = example;
+    $('#english-example-cn').textContent = example ? t('translatingExample') : t('exampleTranslationUnavailable', {meaning: question.translation});
+    $('#english-example-cn').title = '';
+    scheduleEnglishWindowFit();
+    if (example) translateEnglishExample(question, example);
+    return;
+  }
   if (state.english.mode === 'spelling') {
     setEnglishView('spelling');
     renderEnglishPrevious();
@@ -991,6 +1501,27 @@ function renderEnglishQuestion() {
     `<button type="button" class="english-option" data-option-index="${index}" title="${escapeHTML(option)}"><span>${index + 1}</span>${escapeHTML(option)}</button>`
   ).join('');
   $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+}
+
+async function translateEnglishExample(question, example) {
+  const index = state.english.index;
+  const wordID = Number(question.wordId) || 0;
+  try {
+    const translated = await api.TranslateEnglishExample(example);
+    const current = currentEnglishQuestion();
+    if (!state.englishOpen || state.english.mode !== 'sentence' || state.english.index !== index || Number(current?.wordId) !== wordID) return;
+    const text = String(translated || '').trim() || t('exampleTranslationUnavailable', {meaning: question.translation});
+    $('#english-example-cn').textContent = text;
+    $('#english-example-cn').title = text;
+    scheduleEnglishWindowFit();
+  } catch (_) {
+    const current = currentEnglishQuestion();
+    if (!state.englishOpen || state.english.mode !== 'sentence' || state.english.index !== index || Number(current?.wordId) !== wordID) return;
+    const fallback = t('exampleTranslationUnavailable', {meaning: question.translation});
+    $('#english-example-cn').textContent = fallback;
+    $('#english-example-cn').title = fallback;
+    scheduleEnglishWindowFit();
+  }
 }
 
 function maskEnglishWord(word) {
@@ -1147,37 +1678,27 @@ function renderRealtime() {
   const realtime = state.realtime || {};
   const status = realtime.status || 'offline';
   const identity = realtime.identity || null;
-  const wantsOnline = Boolean(realtime.desiredOnline);
-  const activeAuthMode = wantsOnline ? (realtime.authMode || selectedRealtimeAuthMode) : selectedRealtimeAuthMode;
-  const identityAuthMode = identity?.authMode || realtime.authMode || 'device';
-  const displayIdentity = identity && identityAuthMode === activeAuthMode ? identity : null;
+  const accountUser = state.account?.user || null;
+  const displayIdentity = state.account?.loggedIn ? (identity || {
+    userId: accountUser?.id,
+    username: accountUser?.username,
+    displayName: accountUser?.nickname
+  }) : null;
   const statusElement = $('#realtime-status');
   statusElement.className = `realtime-status ${status}`;
   statusElement.querySelector('b').textContent = realtimeStatusLabel(status);
   statusElement.title = realtime.lastError || realtimeStatusLabel(status);
 
-  $('#realtime-auth-modes').classList.toggle('hidden', wantsOnline);
-  $('#realtime-auth-modes').classList.toggle('locked', wantsOnline);
-  $$('#realtime-auth-modes [data-auth-mode]').forEach(button => button.classList.toggle('active', button.dataset.authMode === activeAuthMode));
-  $('#device-auth-fields').classList.toggle('hidden', activeAuthMode !== 'device');
-  $('#password-auth-fields').classList.toggle('hidden', activeAuthMode !== 'password');
   $('#identity-empty').classList.toggle('hidden', Boolean(displayIdentity));
   $('#identity-card').classList.toggle('hidden', !displayIdentity);
-  $('#reset-realtime').classList.toggle('hidden', !displayIdentity || activeAuthMode !== 'device');
   $('#copy-user-id').disabled = !displayIdentity;
   if (displayIdentity) {
     $('#identity-name').textContent = displayIdentity.displayName || t('appName');
     $('#identity-username').textContent = displayIdentity.username || '';
     $('#identity-user-id').textContent = String(displayIdentity.userId || '--');
-    $('#identity-auth-mode').textContent = t(activeAuthMode === 'password' ? 'passwordAuth' : 'deviceAuth');
   }
 
   const online = status === 'online';
-  const toggle = $('#realtime-toggle');
-  toggle.textContent = wantsOnline ? t('goOffline') : t(activeAuthMode === 'password' ? 'loginOnline' : 'goOnline');
-  toggle.classList.toggle('offline-action', wantsOnline);
-  toggle.disabled = realtimeBusy;
-
   if (online && !currentPeerUserID() && (realtime.friends || []).length) {
     setActiveRealtimePeer(realtime.friends[0].user.userId);
   }
@@ -1198,28 +1719,6 @@ function renderRealtime() {
   renderChatMessages(peerID);
   renderRealtimeUnread();
   renderChatSection();
-}
-
-function changeRealtimeAuthMode(event) {
-  const button = event.target.closest('[data-auth-mode]');
-  if (!button || state.realtime.desiredOnline || realtimeBusy) return;
-  selectedRealtimeAuthMode = button.dataset.authMode === 'password' ? 'password' : 'device';
-  localStorage.setItem('workdayIsland.realtimeAuthMode', selectedRealtimeAuthMode);
-  renderRealtime();
-  setTimeout(() => $(selectedRealtimeAuthMode === 'password' ? '#realtime-username' : '#realtime-nickname').focus(), 20);
-}
-
-function openRealtimeRegistration() {
-  if (state.realtime.desiredOnline || realtimeBusy) return;
-  $('#register-username').value = $('#realtime-username').value.trim();
-  $('#register-nickname').value = '';
-  $('#register-password').value = '';
-  $('#register-confirm-password').value = '';
-  $('#register-email').value = '';
-  $('#register-phone').value = '';
-  $('#register-invite-code').value = '';
-  openModal('account-register-modal');
-  setTimeout(() => ($('#register-username').value ? $('#register-nickname') : $('#register-username')).focus(), 40);
 }
 
 function validateRealtimeRegistration(input) {
@@ -1257,17 +1756,16 @@ async function submitRealtimeRegistration(event) {
   submit.textContent = t('registering');
   try {
     const account = await api.RegisterRealtimeAccount(input);
-    selectedRealtimeAuthMode = 'password';
-    localStorage.setItem('workdayIsland.realtimeAuthMode', 'password');
-    localStorage.setItem('workdayIsland.realtimeUsername', account?.username || input.username);
-    $('#realtime-username').value = account?.username || input.username;
-    $('#realtime-password').value = '';
+    const username = account?.username || input.username;
+    localStorage.setItem('workdayIsland.accountUsername', username);
+    $('#account-username').value = username;
+    $('#account-password').value = '';
     $('#register-password').value = '';
     $('#register-confirm-password').value = '';
-    closeModal('account-register-modal');
-    renderRealtime();
+    state.accountMode = 'login';
+    renderAccountSession();
     showToast(t('registrationSuccess'));
-    setTimeout(() => $('#realtime-password').focus(), 50);
+    setTimeout(() => $('#account-password').focus(), 50);
   } catch (error) {
     showToast(readError(error), true);
   } finally {
@@ -1364,7 +1862,7 @@ function renderChatMessages(peerID) {
     return;
   }
   const messages = (state.realtime.messages || [])
-    .filter(message => message.eventType === 'chat.text' && Number(message.peerUserId) === peerID)
+    .filter(message => ['chat.text', 'window.shake', 'window.flash'].includes(message.eventType) && Number(message.peerUserId) === peerID)
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
   if (!messages.length) {
     const friend = friendByUserID(peerID);
@@ -1377,6 +1875,18 @@ function renderChatMessages(peerID) {
     const delivery = message.outgoing
       ? `<span class="${Number(message.onlineDeliveries) > 0 ? 'online' : ''}">${escapeHTML(t(Number(message.onlineDeliveries) > 0 ? 'sentOnline' : 'savedOffline'))}</span>`
       : '';
+    if (message.eventType === 'window.shake' || message.eventType === 'window.flash') {
+      const effect = t(message.eventType === 'window.shake' ? 'shakeRecord' : 'flashRecord');
+      const senderName = realtimeMessageSenderName(message);
+      const label = message.outgoing
+        ? t('youSentEffect', {effect})
+        : t('peerSentEffect', {name: senderName, effect});
+      const detail = String(message.text || '').trim();
+      return `<article class="chat-interaction ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
+        <div class="chat-interaction-label"><span>${message.eventType === 'window.shake' ? '〰' : '✦'}</span><b>${escapeHTML(label)}</b>${detail ? `<em>${escapeHTML(detail)}</em>` : ''}</div>
+        <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+      </article>`;
+    }
     return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
       <div class="chat-bubble">${escapeHTML(message.text)}</div>
       <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
@@ -1385,29 +1895,9 @@ function renderChatMessages(peerID) {
   requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
 }
 
-async function toggleRealtimeConnection() {
-  if (realtimeBusy) return;
-  realtimeBusy = true;
-  renderRealtime();
-  try {
-    if (state.realtime.desiredOnline) {
-      state.realtime = {...state.realtime, ...(await api.DisconnectRealtime())};
-      showToast(t('disconnectedRealtime'));
-    } else if (selectedRealtimeAuthMode === 'password') {
-      const username = $('#realtime-username').value.trim();
-      const password = $('#realtime-password').value;
-      localStorage.setItem('workdayIsland.realtimeUsername', username);
-      state.realtime = {...state.realtime, ...(await api.ConnectRealtimePassword(username, password))};
-      $('#realtime-password').value = '';
-    } else {
-      state.realtime = {...state.realtime, ...(await api.ConnectRealtime($('#realtime-nickname').value.trim()))};
-    }
-  } catch (error) {
-    showToast(readError(error), true);
-  } finally {
-    realtimeBusy = false;
-    renderRealtime();
-  }
+function realtimeMessageSenderName(message) {
+  const friend = friendByUserID(Number(message?.senderUserId));
+  return String(message?.senderDisplayName || (friend ? friendDisplayName(friend.user) : '') || `#${message?.senderUserId || '?'}`);
 }
 
 async function submitFriendRequest(event) {
@@ -1594,6 +2084,7 @@ async function sendWindowEffect(effect) {
   try {
     const text = $('#effect-message').value.trim();
     const message = await api.SendRealtimeWindowEffect(peerID, effect, text);
+    receiveRealtimeMessage(message);
     const delivered = Number(message?.onlineDeliveries) > 0;
     $('#effect-message').value = '';
     showToast(delivered ? t('effectSent') : t('queuedForPeer'));
@@ -1630,7 +2121,7 @@ function receiveRealtimeMessage(message) {
     } else {
       state.chatUnread += 1;
     }
-    showToast(`💬 #${normalisedMessage.senderUserId}: ${normalisedMessage.text}`);
+    showToast(`💬 ${realtimeMessageSenderName(normalisedMessage)}: ${normalisedMessage.text}`);
   }
   renderRealtime();
 }
@@ -1649,12 +2140,14 @@ function markCurrentConversationRead() {
 function handleRemoteWindowEffect(payload) {
   const effect = payload?.effect === 'shake' ? 'shake' : 'flash';
   const senderUserID = Number(payload?.senderUserId) || 0;
+  const friend = friendByUserID(senderUserID);
+  const senderName = String(payload?.senderDisplayName || (friend ? friendDisplayName(friend.user) : '') || `#${senderUserID || '?'}`);
   const text = String(payload?.text || '').trim();
   stopRemoteWindowEffect();
   const alert = $('#remote-effect-alert');
   alert.classList.add('active', effect);
   $('#remote-effect-icon').textContent = effect === 'shake' ? '〰' : '✦';
-  $('#remote-effect-title').textContent = t(effect === 'shake' ? 'incomingShake' : 'incomingFlash', {id: senderUserID || '?'});
+  $('#remote-effect-title').textContent = t(effect === 'shake' ? 'incomingShake' : 'incomingFlash', {name: senderName});
   $('#remote-effect-message').textContent = text;
   $('#remote-effect-message').classList.toggle('hidden', !text);
   if (effect === 'shake') shakeNativeWindow();
@@ -1947,6 +2440,8 @@ function weatherLabel(code) {
 function openModal(id) { $(`#${id}`).classList.remove('hidden'); }
 function closeModal(id) {
   $(`#${id}`).classList.add('hidden');
+  if (id === 'cloud-editor-modal') state.cloud.editorTarget = null;
+  if (id === 'cloud-delete-modal') state.cloud.deleteTarget = null;
   if (id === 'settings-modal') {
     applyEnglishBackgroundOpacity();
     api.RestoreWindowOpacity?.();
@@ -1959,6 +2454,15 @@ function formatDuration(ms) { const seconds = Math.max(0, Math.floor(ms/1000)); 
 function formatFocusDuration(ms) { const seconds = Math.max(0, Math.ceil(ms/1000)); return `${String(Math.floor(seconds/60)).padStart(2,'0')}:${String(seconds%60).padStart(2,'0')}`; }
 function formatMoney(value) { return Number(value || 0).toLocaleString(locale(),{minimumFractionDigits:2,maximumFractionDigits:2}); }
 function formatBytes(value) { const bytes = Number(value) || 0; if (!bytes) return '—'; const megabytes = bytes / 1024 / 1024; return `${megabytes.toLocaleString(locale(),{minimumFractionDigits:1,maximumFractionDigits:1})} MB`; }
+function formatCloudBytes(value) {
+  const bytes = Math.max(0, Number(value) || 0);
+  if (!bytes) return '0 B';
+  const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+  const index = Math.min(units.length - 1, Math.floor(Math.log(bytes) / Math.log(1024)));
+  const digits = index === 0 ? 0 : (bytes / 1024 ** index >= 100 ? 0 : 1);
+  return `${(bytes / 1024 ** index).toLocaleString(locale(), {minimumFractionDigits: digits, maximumFractionDigits: digits})} ${units[index]}`;
+}
+function formatCloudDate(value) { return value ? new Date(value).toLocaleString(locale(), {month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}) : '—'; }
 function formatDue(date) { const today = new Date(); const same = date.toDateString() === today.toDateString(); const time = date.toLocaleTimeString(locale(),{hour:'2-digit',minute:'2-digit',hour12:false}); return same ? `${t('today')} ${time}` : date.toLocaleString(locale(),{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}); }
 function toLocalDate(date) { const local = new Date(date.getTime() - date.getTimezoneOffset()*60000); return local.toISOString().slice(0,10); }
 function toLocalTime(date) { return `${String(date.getHours()).padStart(2,'0')}:${String(date.getMinutes()).padStart(2,'0')}`; }
@@ -1979,23 +2483,43 @@ function createPreviewAPI() {
     {symbol:'0.399001',code:'399001',name:'深证成指',price:14148.73,change:374.05,changePercent:2.72,updatedAt:now.toISOString()},
     {symbol:'0.399006',code:'399006',name:'创业板指',price:3590.79,change:109.92,changePercent:3.16,updatedAt:now.toISOString()}
   ],updatedAt:now.toISOString(),source:'东方财富',stale:false,error:''};
+  const previewCloud = {
+    session:{loggedIn:false,user:null},
+    quota:{used_bytes:186646528,total_storage_limit:5368709120,storage_remaining:5182062592,source_type:'default',source_name:'5GB Pro'},
+    items:[
+      {id:1,parent_id:0,node_type:1,name:'工作资料',size:0,content_type:'',modify_time:now.toISOString()},
+      {id:2,parent_id:0,node_type:2,name:'项目周报.docx',size:486400,content_type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',modify_time:now.toISOString()}
+    ]
+  };
   return {
     async GetState(){ return structuredClone(previewState); },
     async GetAppInfo(){ return structuredClone(state.appInfo); },
+    async GetAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
+    async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
+    async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
     async GetRealtimeState(){ return structuredClone(previewRealtime); },
     async GetDefaultRealtimeNickname(){ return '我的工位岛'; },
     async ConnectRealtime(nickname){ previewRealtime.authMode='device'; previewRealtime.identity ||= {userId:123,username:'client_demo123',displayName:nickname||'我的工位岛',deviceId:'demo-device',credentialId:'cred_demo',publicKey:'demo',authMode:'device'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; return structuredClone(previewRealtime); },
-    async ConnectRealtimePassword(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; return structuredClone(previewRealtime); },
+    async ConnectRealtimePassword(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:username}}; return structuredClone(previewRealtime); },
     async RegisterRealtimeAccount(input){ if(!input?.username) throw new Error('请输入用户名'); return {userId:789,username:input.username,nickname:input.nickname}; },
     async DisconnectRealtime(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; if(previewRealtime.authMode==='password') previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; return structuredClone(previewRealtime); },
     async ResetRealtimeIdentity(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.messages=[]; return structuredClone(previewRealtime); },
     async SendRealtimeChat(toUserId,text){ const message={messageId:crypto.randomUUID(),channelId:`direct:123:${toUserId}`,senderUserId:123,peerUserId:toUserId,eventType:'chat.text',text,createdAt:new Date().toISOString(),onlineDeliveries:1,outgoing:true}; previewRealtime.messages.push(message); return structuredClone(message); },
-    async SendRealtimeWindowEffect(toUserId,effect,text){ return {messageId:crypto.randomUUID(),senderUserId:123,peerUserId:toUserId,eventType:`window.${effect}`,text,createdAt:new Date().toISOString(),onlineDeliveries:1,outgoing:true}; },
+    async SendRealtimeWindowEffect(toUserId,effect,text){ return {messageId:crypto.randomUUID(),senderUserId:123,senderDisplayName:'我',peerUserId:toUserId,eventType:`window.${effect}`,text,createdAt:new Date().toISOString(),onlineDeliveries:1,outgoing:true}; },
     async MarkRealtimeMessageRead(){ return true; },
     async CreateRealtimeFriendRequest(){ return {friendRequestId:crypto.randomUUID(),status:'pending'}; },
     async RespondRealtimeFriendRequest(friendRequestId,decision){ previewRealtime.friendRequests=previewRealtime.friendRequests.filter(item=>item.friendRequestId!==friendRequestId); return {friendRequestId,status:decision==='accept'?'accepted':'rejected'}; },
     async RemoveRealtimeFriend(userId){ previewRealtime.friends=previewRealtime.friends.filter(item=>Number(item.user.userId)!==Number(userId)); return true; },
     async RefreshRealtimeFriends(){ return structuredClone(previewRealtime); },
+    async GetCloudDiskSession(){ return structuredClone(previewCloud.session); },
+    async ListCloudDiskItems(parentId,page,pageSize,keyword){ const list=previewCloud.items.filter(item=>Number(item.parent_id)===Number(parentId)&&(!keyword||item.name.includes(keyword))); return {total:list.length,list:structuredClone(list),page,pageSize}; },
+    async GetCloudDiskQuota(){ return structuredClone(previewCloud.quota); },
+    async CreateCloudDiskFolder(parentId,name){ const item={id:Date.now(),parent_id:parentId,node_type:1,name,size:0,content_type:'',modify_time:new Date().toISOString()}; previewCloud.items.push(item); return structuredClone(item); },
+    async RenameCloudDiskItem(id,name){ const item=previewCloud.items.find(entry=>Number(entry.id)===Number(id)); if(item)item.name=name; return structuredClone(item); },
+    async MoveCloudDiskItem(id,parentId){ const item=previewCloud.items.find(entry=>Number(entry.id)===Number(id)); if(item)item.parent_id=parentId; return structuredClone(item); },
+    async DeleteCloudDiskItem(id){ previewCloud.items=previewCloud.items.filter(entry=>Number(entry.id)!==Number(id)); return true; },
+    async UploadCloudDiskFile(parentId){ const item={id:Date.now(),parent_id:parentId,node_type:2,name:'模拟上传文件.pdf',size:1245184,content_type:'application/pdf',modify_time:new Date().toISOString()}; previewCloud.items.push(item); return {cancelled:false,name:item.name}; },
+    async DownloadCloudDiskFile(id,name){ return {cancelled:false,name,path:`/Downloads/${name}`}; },
     async GetStockQuotes(){ previewStocks.updatedAt=new Date().toISOString(); previewStocks.quotes.forEach(item=>item.updatedAt=previewStocks.updatedAt); return structuredClone(previewStocks); },
     async AddStock(code){ previewStocks.quotes.push({symbol:`1.${code}`,code,name:'模拟自选股',price:1888.88,change:-12.34,changePercent:-0.65,updatedAt:new Date().toISOString()}); return structuredClone(previewStocks); },
     async RemoveStock(symbol){ previewStocks.quotes=previewStocks.quotes.filter(item=>item.symbol!==symbol); return structuredClone(previewStocks); },
@@ -2010,10 +2534,12 @@ function createPreviewAPI() {
     async SetCompactMode(compact){ previewState.settings.compactMode=compact; return structuredClone(previewState.settings); },
     async SetEnglishWindow(){ return true; },
     async SetEnglishWindowContentWidth(){ return true; },
+    async SetEnglishWindowContentSize(){ return true; },
+    async TranslateEnglishExample(text){ return text === 'Keep it concise.' ? '保持简洁。' : '偶然发现美好事物，是生活中的惊喜。'; },
     async StartEnglishLearning(mode){
       const source = [
-        {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/'},
-        {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/'}
+        {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/',example:'Serendipity brought the old friends together again.'},
+        {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/',example:'Keep it concise.'}
       ];
       const questions = source.map((question, index) => {
         if (mode === 'chinese') return {...question, options:index ? ['vague','concise','expensive','silent'] : ['effort','serendipity','caution','rest'], correctAnswer:question.word};
@@ -2038,7 +2564,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.9.0',latestVersion:'0.9.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.9.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增好友优先聊天与股市悬浮窗。\nFriend-first chat and a floating stock ticker.'} : {currentVersion:'0.9.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.10.0',latestVersion:'0.10.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增统一账号、工作云盘和英语例句学习。\nUnified accounts, Work Cloud, and example-sentence study.'} : {currentVersion:'0.10.0',skipped:true}; },
     async OpenUpdateURL(){ return true; }
   };
 }

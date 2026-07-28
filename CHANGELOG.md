@@ -5,6 +5,28 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-07-28
+
+### 中文
+
+- 新增独立统一账号入口，登录、注册和退出不再放在聊天页面；隐藏一键登录入口，账号登录后工作台展示昵称。
+- 聊天、好友与工作云盘共享同一登录会话；退出账号会同时断开实时聊天并清除云盘令牌。
+- 新增工作云盘，支持目录浏览与搜索、新建目录、重命名、移动、删除、文件上传下载和存储配额展示。
+- 抖一抖和闪一闪现在会作为系统互动消息写入聊天记录，并优先使用发送者昵称；昵称缺失时才回退到用户 ID。
+- 英语学习第一个模式更名为“单词学习”，新增“例句学习”，展示单词对应英文例句及在线中文翻译。
+- 修复 Windows 英语悬浮窗高度不足导致音标、释义或底部边缘被裁切的问题，并让窗口根据实际内容尺寸收缩。
+- 补充账号、云盘、在线英语和对象存储的数据边界与联网隐私说明。
+
+### English
+
+- Added a standalone unified account centre so sign-in, registration, and sign-out no longer live inside chat; the one-click entry is hidden and the dashboard shows the signed-in nickname.
+- Chat, friends, and Work Cloud now share one account session. Signing out disconnects realtime chat and clears the cloud token together.
+- Added Work Cloud with folder browsing and search, directory creation, rename, move, delete, file upload/download, and live storage quota.
+- Shake and flash actions are now written into conversation history as interaction messages and prefer the sender nickname, falling back to the user ID only when needed.
+- Renamed the first English mode to Word Study and added Example Sentences with the source sentence and an online Chinese translation.
+- Fixed the Windows English widget clipping phonetics, meanings, or its lower edge, and tightened the window to the measured content size.
+- Documented the network and privacy boundaries for accounts, Work Cloud, online English, and direct object-storage transfers.
+
 ## [0.9.0] - 2026-07-27
 
 ### 中文
@@ -173,6 +195,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.10.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0
 [0.9.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.9.0
 [0.8.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1
 [0.8.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.0

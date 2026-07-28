@@ -14,7 +14,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.9.0"
+const appVersion = "0.10.0"
 
 type App struct {
 	ctx          context.Context
@@ -28,6 +28,7 @@ type App struct {
 	weatherCache weatherCache
 	httpClient   *http.Client
 	realtime     *RealtimeClient
+	cloudDisk    *CloudDiskClient
 	english      *EnglishClient
 	englishMode  atomic.Bool
 	stockMode    atomic.Bool
@@ -54,6 +55,7 @@ func NewApp() *App {
 		},
 	}
 	app.realtime = NewRealtimeClient(app)
+	app.cloudDisk = NewCloudDiskClient(app, cloudDiskAPIBaseURL)
 	app.english = NewEnglishClient(app.httpClient, englishAPIBaseURL)
 	return app
 }
@@ -219,7 +221,51 @@ func (a *App) ConnectRealtime(nickname string) (RealtimeSnapshot, error) {
 }
 
 func (a *App) ConnectRealtimePassword(username, password string) (RealtimeSnapshot, error) {
-	return a.realtime.ConnectPassword(username, password)
+	session, err := a.LoginAccount(username, password)
+	return session.Realtime, err
+}
+
+func (a *App) GetAccountSession() AccountSession {
+	return a.accountSession()
+}
+
+func (a *App) LoginAccount(username, password string) (AccountSession, error) {
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	cloudSession, err := a.cloudDisk.Login(ctx, username, password)
+	if err != nil {
+		return a.accountSession(), err
+	}
+	if a.realtime.Snapshot().DesiredOnline {
+		a.realtime.Disconnect()
+	}
+	realtime, err := a.realtime.ConnectPassword(username, password)
+	if err != nil {
+		a.cloudDisk.Logout()
+		return a.accountSession(), err
+	}
+	return AccountSession{
+		LoggedIn: cloudSession.LoggedIn,
+		User:     cloudSession.User,
+		Realtime: realtime,
+	}, nil
+}
+
+func (a *App) LogoutAccount() AccountSession {
+	realtime := a.realtime.Disconnect()
+	a.cloudDisk.Logout()
+	return AccountSession{Realtime: realtime}
+}
+
+func (a *App) accountSession() AccountSession {
+	cloudSession := a.cloudDisk.Session()
+	return AccountSession{
+		LoggedIn: cloudSession.LoggedIn,
+		User:     cloudSession.User,
+		Realtime: a.realtime.Snapshot(),
+	}
 }
 
 func (a *App) DisconnectRealtime() RealtimeSnapshot {
@@ -258,12 +304,52 @@ func (a *App) RefreshRealtimeFriends() (RealtimeSnapshot, error) {
 	return a.realtime.RefreshFriends()
 }
 
+func (a *App) GetCloudDiskSession() CloudDiskSession {
+	return a.cloudDisk.Session()
+}
+
+func (a *App) ListCloudDiskItems(parentID uint64, page, pageSize int, keyword string) (CloudDiskPage, error) {
+	return a.cloudDisk.List(context.Background(), parentID, page, pageSize, keyword)
+}
+
+func (a *App) GetCloudDiskQuota() (CloudDiskQuota, error) {
+	return a.cloudDisk.Quota(context.Background())
+}
+
+func (a *App) CreateCloudDiskFolder(parentID uint64, name string) (CloudDiskNode, error) {
+	return a.cloudDisk.CreateFolder(context.Background(), parentID, name)
+}
+
+func (a *App) RenameCloudDiskItem(id uint64, name string) (CloudDiskNode, error) {
+	return a.cloudDisk.Update(context.Background(), id, &name, nil)
+}
+
+func (a *App) MoveCloudDiskItem(id, parentID uint64) (CloudDiskNode, error) {
+	return a.cloudDisk.Update(context.Background(), id, nil, &parentID)
+}
+
+func (a *App) DeleteCloudDiskItem(id uint64) error {
+	return a.cloudDisk.Delete(context.Background(), id)
+}
+
+func (a *App) UploadCloudDiskFile(parentID uint64) (CloudDiskTransfer, error) {
+	return a.cloudDisk.UploadSelected(parentID)
+}
+
+func (a *App) DownloadCloudDiskFile(id uint64, name string) (CloudDiskTransfer, error) {
+	return a.cloudDisk.DownloadSelected(id, name)
+}
+
 func (a *App) StartEnglishLearning(mode string) (EnglishStudyBatch, error) {
 	return a.english.Start(mode, a.store.Snapshot().Settings.EnglishSource)
 }
 
 func (a *App) SubmitEnglishAnswer(sessionID, wordID uint64, answer string) (EnglishAnswerResult, error) {
 	return a.english.SubmitAnswer(sessionID, wordID, answer)
+}
+
+func (a *App) TranslateEnglishExample(text string) (string, error) {
+	return a.english.TranslateExample(text)
 }
 
 func (a *App) SetEnglishWindow(active bool) {
@@ -273,9 +359,9 @@ func (a *App) SetEnglishWindow(active bool) {
 	}
 	setWindowBackgroundTransparent(active)
 	if active {
-		runtime.WindowSetMinSize(a.ctx, 420, 72)
-		runtime.WindowSetMaxSize(a.ctx, 1200, 90)
-		runtime.WindowSetSize(a.ctx, 720, 72)
+		runtime.WindowSetMinSize(a.ctx, 420, 80)
+		runtime.WindowSetMaxSize(a.ctx, 1200, 128)
+		runtime.WindowSetSize(a.ctx, 720, 80)
 	} else {
 		a.applyWindowMode(a.store.Snapshot().Settings.CompactMode)
 	}
@@ -302,6 +388,10 @@ func (a *App) SetStockWindow(active bool) {
 }
 
 func (a *App) SetEnglishWindowContentWidth(width int) {
+	a.SetEnglishWindowContentSize(width, 80)
+}
+
+func (a *App) SetEnglishWindowContentSize(width, height int) {
 	if a.ctx == nil || !a.englishMode.Load() {
 		return
 	}
@@ -311,7 +401,13 @@ func (a *App) SetEnglishWindowContentWidth(width int) {
 	if width > 1200 {
 		width = 1200
 	}
-	runtime.WindowSetSize(a.ctx, width, 72)
+	if height < 80 {
+		height = 80
+	}
+	if height > 128 {
+		height = 128
+	}
+	runtime.WindowSetSize(a.ctx, width, height)
 }
 
 func (a *App) TestNotification() error {
@@ -466,7 +562,7 @@ func (a *App) triggerAlert(todo Todo, kind string) {
 	runtime.EventsEmit(a.ctx, "reminder:due", alert)
 }
 
-func (a *App) showRealtimeEffect(effect string, senderUserID int64, text string) {
+func (a *App) showRealtimeEffect(effect string, senderUserID int64, senderDisplayName, text string) {
 	if a.ctx == nil {
 		return
 	}
@@ -476,9 +572,10 @@ func (a *App) showRealtimeEffect(effect string, senderUserID int64, text string)
 	setWindowOpacity(1)
 	bringAppToFront()
 	runtime.EventsEmit(a.ctx, "realtime:effect", map[string]any{
-		"effect":       effect,
-		"senderUserId": senderUserID,
-		"text":         text,
-		"timestamp":    time.Now().UnixMilli(),
+		"effect":            effect,
+		"senderUserId":      senderUserID,
+		"senderDisplayName": senderDisplayName,
+		"text":              text,
+		"timestamp":         time.Now().UnixMilli(),
 	})
 }

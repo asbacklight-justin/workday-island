@@ -2,7 +2,7 @@
 
 [中文](README.md) · [English](README_EN.md)
 
-A lightweight desktop companion that keeps time, the off-work countdown, weather, todos, persistent reminders, focus sessions, and today's estimated earnings on one quiet “island.”
+A lightweight desktop companion that keeps time, the off-work countdown, weather, todos, persistent reminders, focus sessions, English practice, friend chat, and Work Cloud on one quiet “island.”
 
 ![Workday Island English dashboard](docs/screenshots/en-main.png)
 
@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.9.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.9.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.10.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.10.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -30,12 +30,14 @@ The public packages are not currently signed with commercial distribution certif
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
 - **Light and dark themes:** Follow the system appearance or choose light/dark explicitly.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
-- **Today English Learning:** Open the compact learning window from the `EN` button and choose bilingual study, EN → CN, CN → EN, or full-word spelling with immediate feedback and the previous word. Opacity affects only the background, so learning content stays crisp.
+- **Today English Learning:** Open the compact learning window from the `EN` button and choose word study, bilingual example sentences, EN → CN, CN → EN, or full-word spelling with immediate feedback and the previous word. Opacity affects only the background, so learning content stays crisp.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Online update checks:** Query GitHub Releases at most once per day, or check manually from About and open the matching platform package in one click.
-- **Realtime chat, friends, and window interactions:** Use a one-click anonymous device, register an account with an optional invite code, or sign in with an existing username/password; then add friends by exact username/user ID, process requests, see online status, and send chat, shake, or flash events.
-- **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Account passwords are used only for the current WebSocket session and are never written to the local data file.
+- **Unified account centre:** Sign-in and registration now live outside chat. One account session unlocks friends, chat, and Work Cloud; signing out disconnects them together and the dashboard shows the account nickname.
+- **Realtime chat, friends, and window interactions:** Add friends by exact username/user ID, process requests, see presence, and send text, shake, or flash events. Shake and flash events appear in conversation history and prefer the sender's nickname.
+- **Work Cloud:** Browse and search folders, create directories, rename, move, delete, upload, and download files while viewing the account's live storage quota.
+- **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Account passwords and access tokens remain only in the current process and are never written to the local data file.
 
 ## Screenshots
 
@@ -59,13 +61,13 @@ Configure work hours, salary, paid days, weather city, workdays, the English wor
 
 ### Today English Learning
 
-Study, answer four-choice questions, and practise spelling in a content-fitting window with immediate results and the previous word.
+Study words and bilingual example sentences, answer four-choice questions, and practise spelling in a content-fitting window with immediate results and the previous word.
 
 ![English learning mode](docs/screenshots/en-english.png)
 
 ### Realtime chat
 
-Choose anonymous-device login, create an account, or sign in with username/password; then open conversations from the friend list, process requests, see online status, and send shake, flash, or prompt-based window interactions.
+After signing in through the unified account centre, open conversations from the friend list, process requests, see online status, and send shake, flash, or prompt-based window interactions. Interaction events are also kept in the conversation history.
 
 ![English realtime chat mode](docs/screenshots/en-chat.png)
 
@@ -87,8 +89,10 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 6. Use **Compact** to switch to the 2×2 window. Drag anywhere on its non-control surface to move it and drag an edge to resize it; the size is remembered.
 7. Choose **Check for Updates** in About. When a release is available, open the matching GitHub package; installation still requires user confirmation and never silently replaces the app.
 8. The close button hides Workday Island to the system tray without stopping reminders. Left-click the tray icon to restore it, or right-click and choose **Quit** to end the app. If macOS hides the tray item because the menu bar is full, click Workday Island in the Dock to restore it.
-9. Select the chat button and use one-click anonymous login, create an account with an optional invite code, or sign in with username/password. Add friends by exact username/user ID and open a conversation from the friend list; manual user-ID chat, shake, and flash actions remain available. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
-10. Select the `EN` button for Today English Learning. Choose one of the four practice modes and select the word library in Settings.
+9. Select the account button to sign in or register. The invite code is optional; chat and Work Cloud share the signed-in session and disconnect together when you sign out.
+10. Select the chat button and open a conversation from the friend list. Manual user-ID chat, shake, and flash actions remain available. See the [realtime chat guide](docs/REALTIME_CHAT.md) for details.
+11. Select the cloud button to browse Work Cloud and create folders or upload, download, rename, move, and delete files.
+12. Select the `EN` button for Today English Learning. Choose one of the five learning modes and select the word library in Settings.
 
 ## Stack and architecture
 
@@ -98,9 +102,9 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 - Local JSON persistence
 - Native AppKit and Windows Shell system trays, plus platform foreground activation, notification, and sound adapters
 - Open-Meteo geocoding and weather APIs
-- Ed25519 device signing, password challenge authentication, friend protocol, and realtime WebSocket communication
+- Backlight account authentication, friend protocol, realtime WebSocket communication, and direct object-storage transfers
 
-This project is independent of the Backlight monorepo's Go API and Vue admin application. The `workday-island` directory can be built and released on its own.
+The desktop client can be built and released independently from the `workday-island` directory. Local features such as todos and countdowns do not require a server; accounts, chat, online English libraries, and Work Cloud use Backlight services.
 
 ## Local development
 
@@ -123,7 +127,7 @@ See the [build and release guide](docs/BUILD.md) for complete packaging instruct
 
 ## Privacy and network access
 
-Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather uses Open-Meteo and update checks use GitHub. When the user explicitly enables chat, an anonymous device identity, messages, and window-interaction commands are sent to the Backlight realtime service. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
+Todos, reminders, salary, work schedules, and focus sessions are written only to a local JSON file. Weather uses Open-Meteo, quotes use Eastmoney's public endpoint, and update checks use GitHub. When the user uses accounts, chat, English learning, or Work Cloud, the corresponding data is sent to Backlight services. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
 
 ## Contributing
 
@@ -146,7 +150,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.9.0`
+- Current version: `v0.10.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

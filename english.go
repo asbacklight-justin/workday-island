@@ -21,11 +21,13 @@ const (
 )
 
 type EnglishClient struct {
-	httpClient *http.Client
-	baseURL    string
-	mu         sync.Mutex
-	token      string
-	tokenAt    time.Time
+	httpClient   *http.Client
+	baseURL      string
+	mu           sync.Mutex
+	token        string
+	tokenAt      time.Time
+	cacheMu      sync.RWMutex
+	translations map[string]string
 }
 
 type englishEnvelope struct {
@@ -60,8 +62,9 @@ type englishAnswerData struct {
 
 func NewEnglishClient(httpClient *http.Client, baseURL string) *EnglishClient {
 	return &EnglishClient{
-		httpClient: httpClient,
-		baseURL:    strings.TrimRight(baseURL, "/"),
+		httpClient:   httpClient,
+		baseURL:      strings.TrimRight(baseURL, "/"),
+		translations: make(map[string]string),
 	}
 }
 
@@ -116,9 +119,40 @@ func englishGameTypeForMode(mode string) (string, string) {
 		return mode, "chinese_picker"
 	case "spelling":
 		return mode, "spelling"
+	case "sentence":
+		return mode, "flash_card"
 	default:
 		return "study", "flash_card"
 	}
+}
+
+func (c *EnglishClient) TranslateExample(text string) (string, error) {
+	text = strings.TrimSpace(text)
+	if text == "" {
+		return "", errors.New("英文例句为空")
+	}
+	c.cacheMu.RLock()
+	cached := c.translations[text]
+	c.cacheMu.RUnlock()
+	if cached != "" {
+		return cached, nil
+	}
+	var data struct {
+		Translated string `json:"translated"`
+	}
+	if err := c.authorizedJSON(http.MethodPost, "/ai/translate", map[string]string{
+		"text": text, "source": "en", "target": "zh",
+	}, &data); err != nil {
+		return "", err
+	}
+	data.Translated = strings.TrimSpace(data.Translated)
+	if data.Translated == "" {
+		return "", errors.New("例句翻译服务未返回内容")
+	}
+	c.cacheMu.Lock()
+	c.translations[text] = data.Translated
+	c.cacheMu.Unlock()
+	return data.Translated, nil
 }
 
 func (c *EnglishClient) SubmitAnswer(sessionID, wordID uint64, answer string) (EnglishAnswerResult, error) {
