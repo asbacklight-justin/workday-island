@@ -57,6 +57,12 @@ func (s *Store) Load() error {
 	if state.RealtimeMessages == nil {
 		state.RealtimeMessages = []RealtimeMessage{}
 	}
+	if state.EnglishWords == nil {
+		state.EnglishWords = []EnglishWordRecord{}
+	}
+	if state.EnglishWrongWords == nil {
+		state.EnglishWrongWords = []EnglishWrongRecord{}
+	}
 	if state.StockWatchlist == nil {
 		state.StockWatchlist = defaultStockWatchlist()
 	} else {
@@ -163,6 +169,67 @@ func (s *Store) SaveStockWatchlist(symbols []string) ([]string, error) {
 	err := s.saveLocked()
 	s.mu.Unlock()
 	return symbols, err
+}
+
+func (s *Store) EnglishNotebook() EnglishNotebook {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	return EnglishNotebook{
+		Words:      cloneEnglishWords(s.state.EnglishWords),
+		WrongWords: cloneEnglishWrongWords(s.state.EnglishWrongWords),
+	}
+}
+
+func (s *Store) RecordEnglishWord(question EnglishQuestion, mode string, at time.Time) error {
+	question, mode, err := normaliseEnglishRecord(question, mode)
+	if err != nil {
+		return err
+	}
+	s.mu.Lock()
+	upsertEnglishWord(&s.state.EnglishWords, question, mode, at, true)
+	trimEnglishWords(&s.state.EnglishWords, 3000)
+	err = s.saveLocked()
+	s.mu.Unlock()
+	return err
+}
+
+func (s *Store) RecordEnglishWrong(question EnglishQuestion, mode, answer, correctAnswer string, at time.Time) error {
+	question, mode, err := normaliseEnglishRecord(question, mode)
+	if err != nil {
+		return err
+	}
+	if mode != "quiz" && mode != "chinese" && mode != "spelling" {
+		return errors.New("当前学习模式不记录错题")
+	}
+	answer = strings.TrimSpace(answer)
+	correctAnswer = strings.TrimSpace(correctAnswer)
+	if correctAnswer == "" {
+		correctAnswer = strings.TrimSpace(question.CorrectAnswer)
+	}
+	s.mu.Lock()
+	upsertEnglishWord(&s.state.EnglishWords, question, mode, at, false)
+	index := findEnglishWrongRecord(s.state.EnglishWrongWords, question)
+	if index < 0 {
+		s.state.EnglishWrongWords = append(s.state.EnglishWrongWords, EnglishWrongRecord{
+			WordID: question.WordID, Word: question.Word, Translation: question.Translation,
+			Phonetic: question.Phonetic, Example: question.Example, Source: question.Source,
+			Modes: []string{mode}, WrongCount: 1, LastAnswer: answer,
+			CorrectAnswer: correctAnswer, LastWrongAt: at,
+		})
+	} else {
+		record := &s.state.EnglishWrongWords[index]
+		mergeEnglishWrongRecord(record, question)
+		record.Modes = appendEnglishMode(record.Modes, mode)
+		record.WrongCount++
+		record.LastAnswer = answer
+		record.CorrectAnswer = correctAnswer
+		record.LastWrongAt = at
+	}
+	trimEnglishWords(&s.state.EnglishWords, 3000)
+	trimEnglishWrongWords(&s.state.EnglishWrongWords, 1500)
+	err = s.saveLocked()
+	s.mu.Unlock()
+	return err
 }
 
 func (s *Store) SaveWeather(weather Weather) error {
@@ -390,6 +457,119 @@ func validEnglishSource(source string) bool {
 	}
 }
 
+func normaliseEnglishRecord(question EnglishQuestion, mode string) (EnglishQuestion, string, error) {
+	mode = strings.TrimSpace(mode)
+	switch mode {
+	case "study", "sentence", "quiz", "chinese", "spelling":
+	default:
+		return EnglishQuestion{}, "", errors.New("英语学习模式无效")
+	}
+	question.Word = strings.TrimSpace(question.Word)
+	question.Translation = strings.TrimSpace(question.Translation)
+	question.Phonetic = strings.TrimSpace(question.Phonetic)
+	question.Example = strings.TrimSpace(question.Example)
+	question.Source = strings.TrimSpace(question.Source)
+	question.CorrectAnswer = strings.TrimSpace(question.CorrectAnswer)
+	if question.Word == "" || question.Translation == "" {
+		return EnglishQuestion{}, "", errors.New("单词或释义为空")
+	}
+	if len([]rune(question.Word)) > 100 || len([]rune(question.Translation)) > 500 ||
+		len([]rune(question.Phonetic)) > 160 || len([]rune(question.Example)) > 1000 {
+		return EnglishQuestion{}, "", errors.New("单词信息长度异常")
+	}
+	return question, mode, nil
+}
+
+func findEnglishWordRecord(records []EnglishWordRecord, question EnglishQuestion) int {
+	for index := range records {
+		if question.WordID > 0 && records[index].WordID == question.WordID {
+			return index
+		}
+		if strings.EqualFold(strings.TrimSpace(records[index].Word), question.Word) {
+			return index
+		}
+	}
+	return -1
+}
+
+func findEnglishWrongRecord(records []EnglishWrongRecord, question EnglishQuestion) int {
+	for index := range records {
+		if question.WordID > 0 && records[index].WordID == question.WordID {
+			return index
+		}
+		if strings.EqualFold(strings.TrimSpace(records[index].Word), question.Word) {
+			return index
+		}
+	}
+	return -1
+}
+
+func upsertEnglishWord(records *[]EnglishWordRecord, question EnglishQuestion, mode string, at time.Time, increment bool) {
+	index := findEnglishWordRecord(*records, question)
+	if index < 0 {
+		*records = append(*records, EnglishWordRecord{
+			WordID: question.WordID, Word: question.Word, Translation: question.Translation,
+			Phonetic: question.Phonetic, Example: question.Example, Source: question.Source,
+			Modes: []string{mode}, SeenCount: 1, LastSeenAt: at,
+		})
+		return
+	}
+	record := &(*records)[index]
+	mergeEnglishWordRecord(record, question)
+	record.Modes = appendEnglishMode(record.Modes, mode)
+	if increment {
+		record.SeenCount++
+		record.LastSeenAt = at
+	}
+}
+
+func mergeEnglishWordRecord(record *EnglishWordRecord, question EnglishQuestion) {
+	if question.WordID > 0 {
+		record.WordID = question.WordID
+	}
+	record.Word = firstNonEmpty(question.Word, record.Word)
+	record.Translation = firstNonEmpty(question.Translation, record.Translation)
+	record.Phonetic = firstNonEmpty(question.Phonetic, record.Phonetic)
+	record.Example = firstNonEmpty(question.Example, record.Example)
+	record.Source = firstNonEmpty(question.Source, record.Source)
+}
+
+func mergeEnglishWrongRecord(record *EnglishWrongRecord, question EnglishQuestion) {
+	if question.WordID > 0 {
+		record.WordID = question.WordID
+	}
+	record.Word = firstNonEmpty(question.Word, record.Word)
+	record.Translation = firstNonEmpty(question.Translation, record.Translation)
+	record.Phonetic = firstNonEmpty(question.Phonetic, record.Phonetic)
+	record.Example = firstNonEmpty(question.Example, record.Example)
+	record.Source = firstNonEmpty(question.Source, record.Source)
+}
+
+func appendEnglishMode(modes []string, mode string) []string {
+	for _, existing := range modes {
+		if existing == mode {
+			return modes
+		}
+	}
+	return append(modes, mode)
+}
+
+func trimEnglishWords(records *[]EnglishWordRecord, limit int) {
+	if len(*records) <= limit {
+		return
+	}
+	sort.Slice(*records, func(i, j int) bool { return (*records)[i].LastSeenAt.After((*records)[j].LastSeenAt) })
+	*records = append([]EnglishWordRecord(nil), (*records)[:limit]...)
+}
+
+func trimEnglishWrongWords(records *[]EnglishWrongRecord, limit int) {
+	if len(*records) <= limit {
+		return
+	}
+	sort.Slice(*records, func(i, j int) bool { return (*records)[i].LastWrongAt.After((*records)[j].LastWrongAt) })
+	*records = append([]EnglishWrongRecord(nil), (*records)[:limit]...)
+}
+
 func validClock(value string) bool {
 	_, err := time.Parse("15:04", value)
 	return err == nil
@@ -426,6 +606,8 @@ func cloneState(state State) State {
 	copyState.Todos = append([]Todo(nil), state.Todos...)
 	copyState.Settings.Workdays = append([]int(nil), state.Settings.Workdays...)
 	copyState.StockWatchlist = append([]string(nil), state.StockWatchlist...)
+	copyState.EnglishWords = cloneEnglishWords(state.EnglishWords)
+	copyState.EnglishWrongWords = cloneEnglishWrongWords(state.EnglishWrongWords)
 	if state.Focus.StartedAt != nil {
 		value := *state.Focus.StartedAt
 		copyState.Focus.StartedAt = &value
@@ -452,4 +634,20 @@ func cloneState(state State) State {
 	}
 	copyState.RealtimeMessages = append([]RealtimeMessage(nil), state.RealtimeMessages...)
 	return copyState
+}
+
+func cloneEnglishWords(records []EnglishWordRecord) []EnglishWordRecord {
+	result := append([]EnglishWordRecord(nil), records...)
+	for index := range result {
+		result[index].Modes = append([]string(nil), result[index].Modes...)
+	}
+	return result
+}
+
+func cloneEnglishWrongWords(records []EnglishWrongRecord) []EnglishWrongRecord {
+	result := append([]EnglishWrongRecord(nil), records...)
+	for index := range result {
+		result[index].Modes = append([]string(nil), result[index].Modes...)
+	}
+	return result
 }

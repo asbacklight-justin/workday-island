@@ -50,6 +50,7 @@ type englishStartData struct {
 		Translation   string   `json:"translation"`
 		Phonetic      string   `json:"phonetic"`
 		Example       string   `json:"example"`
+		Source        string   `json:"source"`
 		Options       []string `json:"options"`
 		CorrectAnswer string   `json:"correct_answer"`
 	} `json:"questions"`
@@ -91,6 +92,7 @@ func (c *EnglishClient) Start(mode, source string) (EnglishStudyBatch, error) {
 			Translation:   question.Translation,
 			Phonetic:      question.Phonetic,
 			Example:       question.Example,
+			Source:        question.Source,
 			Options:       append([]string(nil), question.Options...),
 			CorrectAnswer: question.CorrectAnswer,
 		})
@@ -225,6 +227,7 @@ func (c *EnglishClient) doJSON(method, path string, payload any, token string, r
 	}
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
+	setBacklightClientHeaders(request.Header)
 	if token != "" {
 		request.Header.Set("Authorization", "Bearer "+token)
 	}

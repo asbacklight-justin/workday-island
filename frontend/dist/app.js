@@ -15,7 +15,7 @@ const translations = {
     theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
     compactOpacity: '悬浮窗透明度', compactOpacityDesc: '拖动时实时预览；精简模式、英语学习和股市小窗共用',
-    aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱',
+    aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱', webApp: 'Web 端',
     updates: '应用更新', autoUpdateHint: '每天自动检查一次', updateIdle: '可手动检查 GitHub Releases 中的新版本',
     checkUpdates: '检查更新', checkingUpdates: '正在检查更新…', latestVersion: '已是最新版 v{version}',
     updateAvailable: '发现新版本 v{version}', downloadUpdate: '下载更新', openRelease: '查看发布页',
@@ -45,12 +45,21 @@ const translations = {
     cloudDownloadSuccess: '文件已保存', cloudFolderCreated: '目录创建成功', cloudRenamed: '重命名成功', cloudDeleted: '删除成功', cloudFolderName: '目录名称', cloudNewName: '新名称',
     cloudCreateFolderTitle: '新建目录', cloudRenameTitle: '重命名', cloudCreate: '创建', cloudSave: '保存', cloudNameRequired: '请输入名称',
     cloudDeleteTitle: '删除项目', cloudDeleteConfirm: '确定删除“{name}”吗？目录必须为空才能删除。', cloudLoginExpired: '登录已过期，请重新登录', unlimited: '不限容量',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用聊天、好友和工作云盘。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，实时聊天和工作云盘会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。',
+    universalTranslator: '全能翻译', translatorPage: '翻译页面', translatorLoginTitle: '登录后使用全能翻译', translatorLoginHint: '翻译额度和历史记录与当前工位岛账号绑定。', textTranslation: '文本翻译', translationHistory: '翻译历史',
+    todayTranslationQuota: '今日翻译额度', usedToday: '今日已用', dailyQuota: '今日总额度', remainingToday: '今日剩余', sourceLanguage: '源语言', targetLanguage: '目标语言',
+    sourceText: '原文', clear: '清空', translationPlaceholder: '输入要翻译的文本，支持多段落和自动检测源语言', translationQuotaInsufficient: '超过今日剩余额度',
+    translationResult: '翻译结果', copyResult: '复制结果', noTranslationResult: '暂无翻译结果', translationPrivacyHint: '文本会发送到 Backlight 翻译服务，并保存到当前账号的翻译历史。',
+    startTranslation: '开始翻译', translating: '翻译中…', translationComplete: '翻译完成', translationCopied: '译文已复制', swapLanguages: '交换语言', autoDetectCannotSwap: '自动检测不能直接交换，请先选择具体源语言',
+    translationHistorySearch: '搜索原文或译文', search: '搜索', batchDelete: '批量删除', exportExcel: '导出 Excel', selectAll: '全选', languagePair: '语言', time: '时间', operation: '操作',
+    translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
+    confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
+    languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用聊天、好友、工作云盘和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，实时聊天、工作云盘和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
     accountUsernamePlaceholder: '请输入用户名', accountPasswordPlaceholder: '请输入密码', loginOnline: '登录并上线', deviceAuth: '设备登录', passwordAuth: '账号登录',
-    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用聊天、好友和工作云盘。',
+    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用聊天、好友、工作云盘和全能翻译。',
     registerUsernamePlaceholder: '3–20 位字母、数字或下划线', registerNicknamePlaceholder: '2–20 个字符', registerPasswordPlaceholder: '6–20 个字符',
     confirmPassword: '确认密码', confirmPasswordPlaceholder: '再次输入密码', phone: '手机号', emailPlaceholder: 'name@example.com', phonePlaceholder: '中国大陆手机号',
     inviteCode: '邀请码', inviteCodePlaceholder: '有邀请码时填写', inviteHint: '邀请码不必填写；填写后会关联邀请人。',
@@ -69,7 +78,12 @@ const translations = {
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
     incomingShake: '{name} 抖了抖你的窗口', incomingFlash: '{name} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
     shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
-    englishLearning: '偷偷学英语', englishStudyMode: '单词学习', englishSentenceMode: '例句学习', englishQuizMode: '英译中 4选1', englishChineseMode: '中译英 4选1', englishSpellingMode: '拼完整单词', englishLoading: '正在取词…',
+    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', compactEnglishStudy: '精简学习',
+    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。',
+    wordsStudied: '已学单词', wrongWords: '错题单词', totalViews: '累计学习', searchEnglishWord: '搜索单词、释义或例句', allModes: '全部模式',
+    seenTimes: '学习 {count} 次', wrongTimes: '答错 {count} 次', lastStudied: '最近学习', lastAnswer: '上次答案', correctAnswerLabel: '正确答案',
+    noEnglishWords: '单词本还是空的，点击“精简学习”开始刷词。', noEnglishWrongWords: '还没有错题，继续保持。', filterMode: '学习模式',
+    englishStudyMode: '单词学习', englishSentenceMode: '例句学习', englishQuizMode: '英译中 4选1', englishChineseMode: '中译英 4选1', englishSpellingMode: '拼完整单词', englishLoading: '正在取词…',
     englishLoadFailed: '取词失败', retry: '重试', nextWord: '下一个', answerCorrect: '回答正确', answerWrong: '回答错误', previousWord: '上一词',
     englishSpellingPlaceholder: '输入完整英文单词', checkAnswer: '检查', enterSpelling: '请输入完整英文单词', translatingExample: '正在获取中文例句…',
     exampleUnavailable: '暂无英文例句', exampleTranslationUnavailable: '中文释义：{meaning}',
@@ -91,7 +105,7 @@ const translations = {
     theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
     compactOpacity: 'Floating window opacity', compactOpacityDesc: 'Live preview; shared by compact mode, English learning, and the stock ticker',
-    aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email',
+    aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email', webApp: 'Web App',
     updates: 'App updates', autoUpdateHint: 'Checked automatically once a day', updateIdle: 'Check GitHub Releases for a newer version',
     checkUpdates: 'Check for Updates', checkingUpdates: 'Checking for updates…', latestVersion: 'You’re up to date — v{version}',
     updateAvailable: 'Version v{version} is available', downloadUpdate: 'Download Update', openRelease: 'View Release',
@@ -121,12 +135,21 @@ const translations = {
     cloudDownloadSuccess: 'File saved', cloudFolderCreated: 'Folder created', cloudRenamed: 'Renamed', cloudDeleted: 'Deleted', cloudFolderName: 'Folder name', cloudNewName: 'New name',
     cloudCreateFolderTitle: 'New folder', cloudRenameTitle: 'Rename', cloudCreate: 'Create', cloudSave: 'Save', cloudNameRequired: 'Enter a name',
     cloudDeleteTitle: 'Delete item', cloudDeleteConfirm: 'Delete “{name}”? Folders must be empty before deletion.', cloudLoginExpired: 'Your session expired. Please sign in again.', unlimited: 'Unlimited',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks chat, friends, and Work Cloud.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects both realtime chat and Work Cloud.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.',
+    universalTranslator: 'Universal Translator', translatorPage: 'Translator sections', translatorLoginTitle: 'Sign in to use Universal Translator', translatorLoginHint: 'Translation quota and history belong to your current Workday Island account.', textTranslation: 'Text translation', translationHistory: 'Translation history',
+    todayTranslationQuota: 'Today’s translation quota', usedToday: 'Used today', dailyQuota: 'Daily quota', remainingToday: 'Remaining today', sourceLanguage: 'Source language', targetLanguage: 'Target language',
+    sourceText: 'Source', clear: 'Clear', translationPlaceholder: 'Enter text to translate. Multiple paragraphs and automatic language detection are supported.', translationQuotaInsufficient: 'Exceeds today’s remaining quota',
+    translationResult: 'Translation', copyResult: 'Copy result', noTranslationResult: 'No translation yet', translationPrivacyHint: 'Text is sent to the Backlight translation service and saved in this account’s translation history.',
+    startTranslation: 'Translate', translating: 'Translating…', translationComplete: 'Translation complete', translationCopied: 'Translation copied', swapLanguages: 'Swap languages', autoDetectCannotSwap: 'Automatic detection cannot be swapped. Choose a specific source language first.',
+    translationHistorySearch: 'Search source or translation', search: 'Search', batchDelete: 'Delete selected', exportExcel: 'Export Excel', selectAll: 'Select all', languagePair: 'Languages', time: 'Time', operation: 'Action',
+    translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
+    confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
+    languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks chat, friends, Work Cloud, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects realtime chat, Work Cloud, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
     accountUsernamePlaceholder: 'Enter username', accountPasswordPlaceholder: 'Enter password', loginOnline: 'Sign In & Go Online', deviceAuth: 'Device login', passwordAuth: 'Account login',
-    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for chat, friends, and Work Cloud.',
+    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for chat, friends, Work Cloud, and Universal Translator.',
     registerUsernamePlaceholder: '3–20 letters, numbers, or underscores', registerNicknamePlaceholder: '2–20 characters', registerPasswordPlaceholder: '6–20 characters',
     confirmPassword: 'Confirm password', confirmPasswordPlaceholder: 'Enter the password again', phone: 'Phone', emailPlaceholder: 'name@example.com', phonePlaceholder: 'Mainland China mobile number',
     inviteCode: 'Invite code', inviteCodePlaceholder: 'Enter one if you have it', inviteHint: 'The invite code is optional. If supplied, it links your inviter.',
@@ -145,7 +168,12 @@ const translations = {
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
     incomingShake: '{name} shook your window', incomingFlash: '{name} flashed your window', stopWindowEffect: 'Stop window interaction',
     shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
-    englishLearning: 'Quiet English', englishStudyMode: 'Word study', englishSentenceMode: 'Example sentences', englishQuizMode: 'EN → CN · 4 choices', englishChineseMode: 'CN → EN · 4 choices', englishSpellingMode: 'Spell the word', englishLoading: 'Fetching words…',
+    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', compactEnglishStudy: 'Compact Study',
+    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.',
+    wordsStudied: 'Words studied', wrongWords: 'Wrong words', totalViews: 'Total views', searchEnglishWord: 'Search word, meaning, or example', allModes: 'All modes',
+    seenTimes: 'Studied {count} times', wrongTimes: '{count} wrong', lastStudied: 'Last studied', lastAnswer: 'Last answer', correctAnswerLabel: 'Correct answer',
+    noEnglishWords: 'Your word book is empty. Start with Compact Study.', noEnglishWrongWords: 'No wrong answers yet. Keep it up.', filterMode: 'Study mode',
+    englishStudyMode: 'Word study', englishSentenceMode: 'Example sentences', englishQuizMode: 'EN → CN · 4 choices', englishChineseMode: 'CN → EN · 4 choices', englishSpellingMode: 'Spell the word', englishLoading: 'Fetching words…',
     englishLoadFailed: 'Unable to fetch words', retry: 'Retry', nextWord: 'Next word', answerCorrect: 'Correct', answerWrong: 'Wrong', previousWord: 'Previous',
     englishSpellingPlaceholder: 'Type the complete English word', checkAnswer: 'Check', enterSpelling: 'Type the complete English word', translatingExample: 'Fetching the Chinese sentence…',
     exampleUnavailable: 'No example sentence', exampleTranslationUnavailable: 'Meaning: {meaning}',
@@ -156,7 +184,7 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.10.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.11.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -172,6 +200,10 @@ const state = {
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
+  translatorOpen: false,
+  translator: {tab: 'text', quota: {}, result: '', history: [], total: 0, page: 1, pageSize: 20, keyword: '', busy: false, historyBusy: false, selected: []},
+  englishCenterOpen: false,
+  englishNotebook: {tab: 'words', words: [], wrongWords: [], keyword: '', mode: 'all', busy: false},
   englishOpen: false,
   english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
@@ -186,6 +218,7 @@ let selectedFocusMinutes = 50;
 let selectedRealtimePeerMode = ['friend', 'temporary'].includes(localStorage.getItem('workdayIsland.chatPeerMode')) ? localStorage.getItem('workdayIsland.chatPeerMode') : '';
 let compactResizeTimer = 0;
 let availableUpdate = null;
+let englishRecordWrites = Promise.resolve();
 let updateCheckResult = null;
 let remoteEffectTimer = 0;
 let realtimeBusy = false;
@@ -196,6 +229,12 @@ let stockBusy = false;
 let stockRefreshTimer = 0;
 let englishFitTimer = 0;
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
+const translatorLanguages = [
+  {value:'auto', key:'languageAuto'}, {value:'zh', key:'languageZh'}, {value:'en', key:'languageEn'},
+  {value:'ja', key:'languageJa'}, {value:'ko', key:'languageKo'}, {value:'fr', key:'languageFr'},
+  {value:'de', key:'languageDe'}, {value:'es', key:'languageEs'}, {value:'ru', key:'languageRu'},
+  {value:'pt', key:'languagePt'}, {value:'ar', key:'languageAr'}
+];
 
 const $ = selector => document.querySelector(selector);
 const $$ = selector => [...document.querySelectorAll(selector)];
@@ -238,6 +277,8 @@ function applyTranslations() {
   $('#open-stocks').title = t('stockMarket');
   $('#open-cloud').setAttribute('aria-label', t('workCloud'));
   $('#open-cloud').title = t('workCloud');
+  $('#open-translator').setAttribute('aria-label', t('universalTranslator'));
+  $('#open-translator').title = t('universalTranslator');
   $('#open-english').setAttribute('aria-label', t('englishLearning'));
   $('#open-english').title = t('englishLearning');
   $('#open-account').setAttribute('aria-label', t('account'));
@@ -253,13 +294,26 @@ function applyTranslations() {
   $('#english-page').setAttribute('aria-label', t('englishLearning'));
   $('#stock-page').setAttribute('aria-label', t('stockMarket'));
   $('#cloud-page').setAttribute('aria-label', t('workCloud'));
+  $('#translator-page').setAttribute('aria-label', t('universalTranslator'));
+  $('#translator-tabs').setAttribute('aria-label', t('translatorPage'));
   $('#account-page').setAttribute('aria-label', t('accountCenter'));
+  $('#english-center-page').setAttribute('aria-label', t('englishCenterTitle'));
+  $('#english-center-tabs').setAttribute('aria-label', t('englishCenterTitle'));
+  $('#english-center-mode').setAttribute('aria-label', t('filterMode'));
+  $('#close-english-center').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-english-center').title = t('backToDashboard');
+  $('#open-english-compact').setAttribute('aria-label', t('compactEnglishStudy'));
+  $('#open-english-compact').title = t('compactEnglishStudy');
   $('#close-english').setAttribute('aria-label', t('backToDashboard'));
   $('#close-english').title = t('backToDashboard');
   $('#close-stocks').setAttribute('aria-label', t('backToDashboard'));
   $('#close-stocks').title = t('backToDashboard');
   $('#close-cloud').setAttribute('aria-label', t('backToDashboard'));
   $('#close-cloud').title = t('backToDashboard');
+  $('#close-translator').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-translator').title = t('backToDashboard');
+  $('#swap-translation-languages').setAttribute('aria-label', t('swapLanguages'));
+  $('#swap-translation-languages').title = t('swapLanguages');
   $('#close-account').setAttribute('aria-label', t('backToDashboard'));
   $('#close-account').title = t('backToDashboard');
   $('#next-english').setAttribute('aria-label', t('nextWord'));
@@ -278,7 +332,13 @@ function applyTranslations() {
   $('#app-version-badge').textContent = `v${state.appInfo.version}`;
   $('#about-version').textContent = state.appInfo.version;
   $('#email-author strong').textContent = state.appInfo.email;
+  $('#open-web-app').setAttribute('aria-label', `${t('webApp')}: https://admin.asbacklight.cn/`);
+  $('#open-web-app').title = 'https://admin.asbacklight.cn/';
   renderAccountSession();
+  renderTranslatorLanguageOptions();
+  renderTranslatorSession();
+  renderTranslator();
+  renderEnglishNotebook();
   renderRealtime();
   renderStocks();
   if (updateCheckResult) renderUpdateInfo(updateCheckResult);
@@ -294,6 +354,8 @@ async function boot() {
     state.todos = loaded.todos ?? [];
     state.settings = {...state.settings, ...(loaded.settings ?? {})};
     state.focus = {...state.focus, ...(loaded.focus ?? {})};
+    state.englishNotebook.words = loaded.englishWords ?? [];
+    state.englishNotebook.wrongWords = loaded.englishWrongWords ?? [];
     state.appInfo = {...state.appInfo, ...(appInfo ?? {})};
     state.account = {...state.account, loggedIn: Boolean(account?.loggedIn), user: account?.user || null};
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
@@ -372,6 +434,33 @@ function bindEvents() {
   $('#cloud-file-list').addEventListener('click', handleCloudFileAction);
   $('#cloud-prev').addEventListener('click', () => changeCloudPage(-1));
   $('#cloud-next').addEventListener('click', () => changeCloudPage(1));
+  $('#open-translator').addEventListener('click', openTranslatorPage);
+  $('#close-translator').addEventListener('click', closeTranslatorPage);
+  $('#translator-open-login').addEventListener('click', openTranslatorAccountLogin);
+  $('#translator-tabs').addEventListener('click', changeTranslatorTab);
+  $('#refresh-translation-quota').addEventListener('click', refreshTranslationQuota);
+  $('#swap-translation-languages').addEventListener('click', swapTranslationLanguages);
+  $('#translation-input').addEventListener('input', updateTranslationCharacterCount);
+  $('#translation-input').addEventListener('paste', autoTranslatePastedText);
+  $('#translation-input').addEventListener('keydown', event => {
+    if ((event.metaKey || event.ctrlKey) && event.key === 'Enter') {
+      event.preventDefault();
+      submitTranslation();
+    }
+  });
+  $('#translation-target').addEventListener('change', renderTranslationResult);
+  $('#clear-translation').addEventListener('click', clearTranslation);
+  $('#copy-translation').addEventListener('click', copyTranslationResult);
+  $('#submit-translation').addEventListener('click', submitTranslation);
+  $('#translation-history-search').addEventListener('submit', searchTranslationHistory);
+  $('#refresh-translation-history').addEventListener('click', refreshTranslationHistory);
+  $('#translation-history-list').addEventListener('click', handleTranslationHistoryAction);
+  $('#translation-history-list').addEventListener('change', updateTranslationHistorySelection);
+  $('#select-all-translation-history').addEventListener('change', toggleAllTranslationHistory);
+  $('#delete-translation-history-batch').addEventListener('click', deleteSelectedTranslationHistory);
+  $('#export-translation-history').addEventListener('click', exportTranslationHistory);
+  $('#translation-history-prev').addEventListener('click', () => changeTranslationHistoryPage(-1));
+  $('#translation-history-next').addEventListener('click', () => changeTranslationHistoryPage(1));
   $('#open-stocks').addEventListener('click', openStockPage);
   $('#close-stocks').addEventListener('click', closeStockPage);
   $('#minimize-stocks').addEventListener('click', minimiseWindow);
@@ -379,7 +468,12 @@ function bindEvents() {
   $('#stock-add-form').addEventListener('submit', addStock);
   $('#stock-list').addEventListener('click', removeStock);
   $('#open-english').addEventListener('click', openEnglishPage);
-  $('#close-english').addEventListener('click', closeEnglishPage);
+  $('#close-english-center').addEventListener('click', closeEnglishCenterPage);
+  $('#open-english-compact').addEventListener('click', openEnglishCompactPage);
+  $('#english-center-tabs').addEventListener('click', changeEnglishNotebookTab);
+  $('#english-center-search').addEventListener('input', filterEnglishNotebook);
+  $('#english-center-mode').addEventListener('change', filterEnglishNotebook);
+  $('#close-english').addEventListener('click', () => closeEnglishCompactPage(true));
   $('#minimize-english').addEventListener('click', minimiseWindow);
   $('#retry-english').addEventListener('click', loadEnglishBatch);
   $('#next-english').addEventListener('click', nextEnglishWord);
@@ -414,6 +508,13 @@ function bindEvents() {
   $('#email-author').addEventListener('click', () => {
     const url = `mailto:${state.appInfo.email}`;
     if (window.runtime?.BrowserOpenURL) window.runtime.BrowserOpenURL(url); else window.location.href = url;
+  });
+  $('#open-web-app').addEventListener('click', async () => {
+    try {
+      await api.OpenWebApp();
+    } catch (error) {
+      showToast(readError(error), true);
+    }
   });
   $('#compact-toggle').addEventListener('click', toggleCompactMode);
   $('#compact-expand').addEventListener('click', toggleCompactMode);
@@ -458,8 +559,10 @@ function bindEvents() {
     }
     if (event.key === 'Escape' && state.accountOpen) { closeAccountPage(); return; }
     if (event.key === 'Escape' && state.cloudOpen) { closeCloudPage(); return; }
+    if (event.key === 'Escape' && state.translatorOpen) { closeTranslatorPage(); return; }
     if (event.key === 'Escape' && state.stockOpen) { closeStockPage(); return; }
-    if (event.key === 'Escape' && state.englishOpen) { closeEnglishPage(); return; }
+    if (event.key === 'Escape' && state.englishOpen) { closeEnglishCompactPage(true); return; }
+    if (event.key === 'Escape' && state.englishCenterOpen) { closeEnglishCenterPage(); return; }
     if (state.englishOpen && ['quiz', 'chinese'].includes(state.english.mode) && /^[1-4]$/.test(event.key)) {
       $('#english-options').querySelector(`[data-option-index="${Number(event.key) - 1}"]`)?.click();
     }
@@ -556,6 +659,8 @@ async function refresh() {
   state.todos = loaded.todos ?? [];
   state.settings = {...state.settings, ...(loaded.settings ?? {})};
   state.focus = {...state.focus, ...(loaded.focus ?? {})};
+  state.englishNotebook.words = loaded.englishWords ?? [];
+  state.englishNotebook.wrongWords = loaded.englishWrongWords ?? [];
   applyTranslations();
   renderAll();
 }
@@ -760,8 +865,9 @@ function renderAccountSession() {
 function openAccountPage(mode = 'login') {
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
   if (state.stockOpen) closeStockPage();
-  if (state.englishOpen) closeEnglishPage();
+  if (state.englishOpen || state.englishCenterOpen) closeEnglishPage();
   state.accountMode = mode === 'register' ? 'register' : 'login';
   state.accountOpen = true;
   document.body.classList.add('account-open');
@@ -811,6 +917,7 @@ async function submitAccountLogin(event) {
     $('#account-password').value = '';
     renderAccountSession();
     renderCloudSession();
+    renderTranslatorSession();
     renderRealtime();
     showToast(t('loginSuccess'));
   } catch (error) {
@@ -836,10 +943,17 @@ async function logoutAccount() {
     state.cloud.total = 0;
     state.cloud.quota = {};
     state.cloud.folders = [];
+    state.translator.quota = {};
+    state.translator.result = '';
+    state.translator.history = [];
+    state.translator.total = 0;
+    state.translator.selected = [];
     state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
     state.accountMode = 'login';
     renderAccountSession();
     renderCloudSession();
+    renderTranslatorSession();
+    renderTranslator();
     renderRealtime();
     showToast(t('logoutSuccess'));
     setTimeout(() => $('#account-username').focus(), 40);
@@ -855,6 +969,9 @@ async function logoutAccount() {
 function openChatPage() {
   if (state.accountOpen) closeAccountPage();
   if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.stockOpen) closeStockPage();
+  if (state.englishOpen || state.englishCenterOpen) closeEnglishPage();
   const pendingPeer = Number(state.latestIncomingPeer) || (state.chatUnread > 0 ? latestIncomingChatPeer() : 0);
   if (pendingPeer) {
     setActiveRealtimePeer(pendingPeer, friendByUserID(pendingPeer) ? 'friend' : 'temporary');
@@ -906,8 +1023,9 @@ function renderChatSection() {
 async function openCloudPage() {
   if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
+  if (state.translatorOpen) closeTranslatorPage();
   if (state.stockOpen) await closeStockPage();
-  if (state.englishOpen) await closeEnglishPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
   state.cloudOpen = true;
   document.body.classList.add('cloud-open');
   $('#cloud-page').classList.remove('hidden');
@@ -933,6 +1051,360 @@ function closeCloudPage() {
 function openCloudAccountLogin() {
   closeCloudPage();
   openAccountPage('login');
+}
+
+function renderTranslatorLanguageOptions() {
+  const source = $('#translation-source');
+  const target = $('#translation-target');
+  const sourceValue = source.value || 'auto';
+  const targetValue = target.value || 'en';
+  source.innerHTML = translatorLanguages.map(item => `<option value="${item.value}">${escapeHTML(t(item.key))}</option>`).join('');
+  target.innerHTML = translatorLanguages.filter(item => item.value !== 'auto').map(item => `<option value="${item.value}">${escapeHTML(t(item.key))}</option>`).join('');
+  source.value = translatorLanguages.some(item => item.value === sourceValue) ? sourceValue : 'auto';
+  target.value = translatorLanguages.some(item => item.value === targetValue && item.value !== 'auto') ? targetValue : 'en';
+}
+
+function translatorLanguageLabel(value) {
+  const item = translatorLanguages.find(language => language.value === value);
+  return item ? t(item.key) : String(value || '—').toUpperCase();
+}
+
+async function openTranslatorPage() {
+  if (state.accountOpen) closeAccountPage();
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.stockOpen) await closeStockPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
+  state.translatorOpen = true;
+  document.body.classList.add('translator-open');
+  $('#translator-page').classList.remove('hidden');
+  renderTranslatorSession();
+  renderTranslator();
+  if (state.account.loggedIn) {
+    await refreshTranslationQuota();
+    if (state.translator.tab === 'history') await refreshTranslationHistory();
+    else setTimeout(() => $('#translation-input').focus(), 30);
+  }
+}
+
+function closeTranslatorPage() {
+  state.translatorOpen = false;
+  document.body.classList.remove('translator-open');
+  $('#translator-page').classList.add('hidden');
+}
+
+function openTranslatorAccountLogin() {
+  closeTranslatorPage();
+  openAccountPage('login');
+}
+
+function renderTranslatorSession() {
+  const loggedIn = Boolean(state.account?.loggedIn);
+  $('#translator-login-required').classList.toggle('hidden', loggedIn);
+  $('#translator-workspace').classList.toggle('hidden', !loggedIn);
+  const chip = $('#translator-account-chip');
+  chip.classList.toggle('logged-in', loggedIn);
+  chip.querySelector('b').textContent = loggedIn ? (accountDisplayName() || t('online')) : t('cloudNotLoggedIn');
+}
+
+async function changeTranslatorTab(event) {
+  const button = event.target.closest('[data-translator-tab]');
+  if (!button || !state.account.loggedIn) return;
+  state.translator.tab = button.dataset.translatorTab === 'history' ? 'history' : 'text';
+  renderTranslator();
+  if (state.translator.tab === 'history') await refreshTranslationHistory();
+  else setTimeout(() => $('#translation-input').focus(), 30);
+}
+
+function renderTranslator() {
+  const historyActive = state.translator.tab === 'history';
+  $('#translator-text-view').classList.toggle('hidden', historyActive);
+  $('#translator-history-view').classList.toggle('hidden', !historyActive);
+  $$('#translator-tabs [data-translator-tab]').forEach(button => {
+    button.classList.toggle('active', button.dataset.translatorTab === state.translator.tab);
+  });
+  renderTranslationQuota();
+  renderTranslationResult();
+  renderTranslationHistory();
+  updateTranslationCharacterCount();
+}
+
+function formatTranslationCharacters(value) {
+  const count = Math.max(0, Number(value) || 0).toLocaleString(locale());
+  return currentLanguage() === 'zh' ? `${count} 字符` : `${count} chars`;
+}
+
+function renderTranslationQuota() {
+  const quota = state.translator.quota || {};
+  const loaded = Object.keys(quota).length > 0;
+  const unlimited = Boolean(quota.unlimited);
+  const limit = Number(quota.daily_char_limit) || 0;
+  const used = Number(quota.used_characters) || 0;
+  const remaining = Number(quota.remaining_characters) || 0;
+  $('#translation-used').textContent = loaded ? formatTranslationCharacters(used) : '—';
+  $('#translation-limit').textContent = loaded ? (unlimited ? t('unlimited') : formatTranslationCharacters(limit)) : '—';
+  $('#translation-remaining').textContent = loaded ? (unlimited ? t('unlimited') : formatTranslationCharacters(remaining)) : '—';
+  const percent = !unlimited && limit > 0 ? Math.min(100, Math.round(used * 100 / limit)) : 0;
+  const progress = $('#translation-quota-progress');
+  progress.style.width = `${percent}%`;
+  progress.classList.toggle('exhausted', Boolean(quota.quota_exceeded) || (!unlimited && loaded && remaining <= 0));
+  $('#translation-quota-policy').textContent = quota.source_name || '—';
+  updateTranslationCharacterCount();
+}
+
+async function refreshTranslationQuota() {
+  if (!state.account.loggedIn) return;
+  try {
+    state.translator.quota = await api.GetTranslationQuota();
+    renderTranslationQuota();
+  } catch (error) {
+    await handleTranslatorError(error);
+  }
+}
+
+function updateTranslationCharacterCount() {
+  const length = [...$('#translation-input').value.trim()].length;
+  $('#translation-character-count').textContent = `${length.toLocaleString(locale())} / 4,000`;
+  const quota = state.translator.quota || {};
+  const insufficient = Boolean(Object.keys(quota).length && !quota.unlimited && length > Number(quota.remaining_characters || 0));
+  $('#translation-quota-warning').classList.toggle('hidden', !insufficient);
+  $('#submit-translation').disabled = state.translator.busy || !state.account.loggedIn || !length || insufficient || Boolean(quota.quota_exceeded);
+}
+
+function swapTranslationLanguages() {
+  const source = $('#translation-source');
+  const target = $('#translation-target');
+  if (source.value === 'auto') {
+    showToast(t('autoDetectCannotSwap'), true);
+    return;
+  }
+  const previous = source.value;
+  source.value = target.value;
+  target.value = previous;
+  const input = $('#translation-input').value;
+  if (state.translator.result) {
+    $('#translation-input').value = state.translator.result;
+    state.translator.result = input;
+    renderTranslationResult();
+    updateTranslationCharacterCount();
+  }
+}
+
+function clearTranslation() {
+  $('#translation-input').value = '';
+  state.translator.result = '';
+  renderTranslationResult();
+  updateTranslationCharacterCount();
+  $('#translation-input').focus();
+}
+
+function renderTranslationResult() {
+  const result = $('#translation-result');
+  const translated = String(state.translator.result || '');
+  result.classList.toggle('translator-result-empty', !translated);
+  result.textContent = translated || t('noTranslationResult');
+  $('#copy-translation').disabled = !translated;
+  $('#translation-result-language').textContent = translated ? translatorLanguageLabel($('#translation-target').value) : '—';
+}
+
+async function submitTranslation() {
+  if (!state.account.loggedIn || state.translator.busy) return;
+  const text = $('#translation-input').value.trim();
+  const source = $('#translation-source').value;
+  const target = $('#translation-target').value;
+  if (!text) {
+    showToast(t('translationPlaceholder'), true);
+    return;
+  }
+  if (source !== 'auto' && source === target) {
+    showToast(currentLanguage() === 'zh' ? '源语言与目标语言不能相同' : 'Source and target languages must differ', true);
+    return;
+  }
+  state.translator.busy = true;
+  const button = $('#submit-translation');
+  button.disabled = true;
+  button.querySelector('b').textContent = t('translating');
+  try {
+    const result = await api.TranslateText(text, source, target);
+    state.translator.result = result?.translated || '';
+    renderTranslationResult();
+    showToast(t('translationComplete'));
+    await refreshTranslationQuota();
+  } catch (error) {
+    await handleTranslatorError(error);
+    if (/额度|quota|429/i.test(readError(error))) await refreshTranslationQuota();
+  } finally {
+    state.translator.busy = false;
+    button.querySelector('b').textContent = t('startTranslation');
+    updateTranslationCharacterCount();
+  }
+}
+
+function autoTranslatePastedText() {
+  setTimeout(() => {
+    const text = $('#translation-input').value.trim();
+    if (!text) return;
+    if (/[\u4e00-\u9fff]/.test(text)) $('#translation-target').value = 'en';
+    else if (/[a-zA-Z]/.test(text)) $('#translation-target').value = 'zh';
+    updateTranslationCharacterCount();
+    submitTranslation();
+  }, 120);
+}
+
+async function copyTranslationResult() {
+  if (!state.translator.result) return;
+  try {
+    await navigator.clipboard.writeText(state.translator.result);
+    showToast(t('translationCopied'));
+  } catch (_) {
+    showToast(currentLanguage() === 'zh' ? '复制失败，请手动选择译文' : 'Copy failed. Select the translation manually.', true);
+  }
+}
+
+async function refreshTranslationHistory() {
+  if (!state.account.loggedIn || state.translator.historyBusy) return;
+  state.translator.historyBusy = true;
+  renderTranslationHistory();
+  try {
+    const page = await api.ListTranslationHistory(state.translator.page, state.translator.pageSize, state.translator.keyword);
+    state.translator.history = page?.list || [];
+    state.translator.total = Number(page?.total) || 0;
+    state.translator.selected = [];
+  } catch (error) {
+    await handleTranslatorError(error);
+  } finally {
+    state.translator.historyBusy = false;
+    renderTranslationHistory();
+  }
+}
+
+function renderTranslationHistory() {
+  const list = $('#translation-history-list');
+  const items = state.translator.history || [];
+  if (state.translator.historyBusy) {
+    list.innerHTML = `<div class="translator-history-empty"><span>◌</span><b>${escapeHTML(t('translationHistoryLoading'))}</b></div>`;
+  } else if (!items.length) {
+    list.innerHTML = `<div class="translator-history-empty"><span>文A</span><b>${escapeHTML(t('noTranslationHistory'))}</b></div>`;
+  } else {
+    list.innerHTML = items.map(item => {
+      const checked = state.translator.selected.includes(Number(item.id)) ? ' checked' : '';
+      return `<article class="translator-history-row" data-translation-history-id="${Number(item.id)}">
+        <label><input type="checkbox" data-translation-history-select${checked}></label>
+        <span class="language-pair">${escapeHTML(translatorLanguageLabel(item.source_lang))} → ${escapeHTML(translatorLanguageLabel(item.target_lang))}</span>
+        <p title="${escapeHTML(item.source_text)}">${escapeHTML(item.source_text)}</p>
+        <p title="${escapeHTML(item.target_text)}">${escapeHTML(item.target_text)}</p>
+        <small>${escapeHTML(formatTranslationDate(item.translate_time || item.create_time))}</small>
+        <button type="button" data-translation-history-action="delete">${escapeHTML(t('delete'))}</button>
+      </article>`;
+    }).join('');
+  }
+  const pages = Math.max(1, Math.ceil(state.translator.total / state.translator.pageSize));
+  $('#translation-history-page').textContent = `${state.translator.page} / ${pages}`;
+  $('#translation-history-total').textContent = t('totalRecords', {count: state.translator.total});
+  $('#translation-history-prev').disabled = state.translator.page <= 1 || state.translator.historyBusy;
+  $('#translation-history-next').disabled = state.translator.page >= pages || state.translator.historyBusy;
+  const allSelected = items.length > 0 && items.every(item => state.translator.selected.includes(Number(item.id)));
+  $('#select-all-translation-history').checked = allSelected;
+  $('#select-all-translation-history').indeterminate = !allSelected && state.translator.selected.length > 0;
+  $('#delete-translation-history-batch').disabled = state.translator.selected.length === 0 || state.translator.historyBusy;
+}
+
+function formatTranslationDate(value) {
+  if (!value) return '—';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '—';
+  return date.toLocaleString(locale(), {year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false});
+}
+
+function updateTranslationHistorySelection(event) {
+  const checkbox = event.target.closest('[data-translation-history-select]');
+  if (!checkbox) return;
+  const row = checkbox.closest('[data-translation-history-id]');
+  const id = Number(row?.dataset.translationHistoryId);
+  if (!id) return;
+  const selected = new Set(state.translator.selected);
+  if (checkbox.checked) selected.add(id); else selected.delete(id);
+  state.translator.selected = [...selected];
+  renderTranslationHistory();
+}
+
+function toggleAllTranslationHistory(event) {
+  state.translator.selected = event.target.checked ? state.translator.history.map(item => Number(item.id)).filter(Boolean) : [];
+  renderTranslationHistory();
+}
+
+async function handleTranslationHistoryAction(event) {
+  const button = event.target.closest('[data-translation-history-action="delete"]');
+  if (!button) return;
+  const id = Number(button.closest('[data-translation-history-id]')?.dataset.translationHistoryId);
+  if (!id || !window.confirm(t('confirmDeleteTranslation'))) return;
+  try {
+    await api.DeleteTranslationHistory(id);
+    showToast(t('translationHistoryDeleted'));
+    if (state.translator.history.length === 1 && state.translator.page > 1) state.translator.page--;
+    await refreshTranslationHistory();
+  } catch (error) {
+    await handleTranslatorError(error);
+  }
+}
+
+async function deleteSelectedTranslationHistory() {
+  const ids = [...state.translator.selected];
+  if (!ids.length || !window.confirm(t('confirmBatchDeleteTranslation', {count: ids.length}))) return;
+  try {
+    await api.DeleteTranslationHistoryBatch(ids);
+    showToast(t('translationHistoryBatchDeleted'));
+    if (state.translator.history.length <= ids.length && state.translator.page > 1) state.translator.page--;
+    await refreshTranslationHistory();
+  } catch (error) {
+    await handleTranslatorError(error);
+  }
+}
+
+async function searchTranslationHistory(event) {
+  event.preventDefault();
+  state.translator.keyword = $('#translation-history-keyword').value.trim();
+  state.translator.page = 1;
+  await refreshTranslationHistory();
+}
+
+async function changeTranslationHistoryPage(delta) {
+  const pages = Math.max(1, Math.ceil(state.translator.total / state.translator.pageSize));
+  const next = Math.max(1, Math.min(pages, state.translator.page + delta));
+  if (next === state.translator.page) return;
+  state.translator.page = next;
+  await refreshTranslationHistory();
+}
+
+async function exportTranslationHistory() {
+  if (!state.account.loggedIn) return;
+  const button = $('#export-translation-history');
+  button.disabled = true;
+  try {
+    const result = await api.ExportTranslationHistory(state.translator.keyword);
+    if (!result?.cancelled) showToast(t('translationHistoryExported'));
+  } catch (error) {
+    await handleTranslatorError(error);
+  } finally {
+    button.disabled = false;
+  }
+}
+
+async function handleTranslatorError(error) {
+  const message = readError(error);
+  if (/登录|expired|sign in|unauthorized/i.test(message)) {
+    let session = null;
+    try { session = await api.LogoutAccount(); } catch {}
+    state.account = {loggedIn: false, user: null};
+    state.cloud.session = {loggedIn: false, user: null};
+    state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
+    renderAccountSession();
+    renderCloudSession();
+    renderRealtime();
+    renderTranslatorSession();
+  }
+  showToast(message, true);
 }
 
 function renderCloudSession() {
@@ -1198,7 +1670,8 @@ async function openStockPage() {
   if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
-  if (state.englishOpen) await closeEnglishPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
   state.stockOpen = true;
   document.documentElement.classList.add('stock-window');
   document.body.classList.add('stock-open');
@@ -1313,6 +1786,23 @@ async function openEnglishPage() {
   if (state.stockOpen) await closeStockPage();
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.englishOpen) await closeEnglishCompactPage(false);
+  if (state.englishCenterOpen) return;
+  state.englishCenterOpen = true;
+  document.body.classList.add('english-center-open');
+  $('#english-center-page').classList.remove('hidden');
+  await refreshEnglishNotebook();
+}
+
+function closeEnglishCenterPage() {
+  state.englishCenterOpen = false;
+  document.body.classList.remove('english-center-open');
+  $('#english-center-page').classList.add('hidden');
+}
+
+async function openEnglishCompactPage() {
+  closeEnglishCenterPage();
   state.englishOpen = true;
   state.english.mode = normaliseEnglishMode(state.settings.englishMode);
   state.english.answered = 0;
@@ -1331,7 +1821,7 @@ async function openEnglishPage() {
   }
 }
 
-async function closeEnglishPage() {
+async function closeEnglishCompactPage(returnToCenter = true) {
   state.englishOpen = false;
   state.english.busy = false;
   $('#english-mode').disabled = false;
@@ -1343,7 +1833,147 @@ async function closeEnglishPage() {
   } catch (error) {
     showToast(readError(error), true);
   }
+  await englishRecordWrites;
   applyCompactUI();
+  if (returnToCenter) {
+    state.englishCenterOpen = true;
+    document.body.classList.add('english-center-open');
+    $('#english-center-page').classList.remove('hidden');
+    await refreshEnglishNotebook();
+  }
+}
+
+async function closeEnglishPage() {
+  if (state.englishOpen) await closeEnglishCompactPage(false);
+  closeEnglishCenterPage();
+}
+
+async function refreshEnglishNotebook() {
+  state.englishNotebook.busy = true;
+  renderEnglishNotebook();
+  try {
+    const notebook = await api.GetEnglishNotebook();
+    state.englishNotebook.words = Array.isArray(notebook?.words) ? notebook.words : [];
+    state.englishNotebook.wrongWords = Array.isArray(notebook?.wrongWords) ? notebook.wrongWords : [];
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    state.englishNotebook.busy = false;
+    renderEnglishNotebook();
+  }
+}
+
+function changeEnglishNotebookTab(event) {
+  const button = event.target.closest('[data-english-book-tab]');
+  if (!button) return;
+  state.englishNotebook.tab = button.dataset.englishBookTab === 'wrong' ? 'wrong' : 'words';
+  state.englishNotebook.mode = 'all';
+  $('#english-center-mode').value = 'all';
+  renderEnglishNotebook();
+}
+
+function filterEnglishNotebook() {
+  state.englishNotebook.keyword = $('#english-center-search').value.trim().toLowerCase();
+  state.englishNotebook.mode = $('#english-center-mode').value || 'all';
+  renderEnglishNotebook();
+}
+
+function englishModeLabel(mode) {
+  return {
+    study: t('englishStudyMode'),
+    sentence: t('englishSentenceMode'),
+    quiz: t('englishQuizMode'),
+    chinese: t('englishChineseMode'),
+    spelling: t('englishSpellingMode')
+  }[mode] || mode;
+}
+
+function englishSourceLabel(source) {
+  return {
+    nce2: t('englishSourceNCE2'),
+    nce3: t('englishSourceNCE3'),
+    cet4: t('englishSourceCET4'),
+    cet6: t('englishSourceCET6'),
+    ielts: t('englishSourceIELTS'),
+    all: t('englishSourceAll')
+  }[source] || source || '—';
+}
+
+function renderEnglishNotebook() {
+  const notebook = state.englishNotebook;
+  const words = Array.isArray(notebook.words) ? notebook.words : [];
+  const wrongWords = Array.isArray(notebook.wrongWords) ? notebook.wrongWords : [];
+  $('#english-word-count').textContent = words.length.toLocaleString(locale());
+  $('#english-wrong-count').textContent = wrongWords.length.toLocaleString(locale());
+  $('#english-view-count').textContent = words.reduce((total, item) => total + Math.max(0, Number(item.seenCount) || 0), 0).toLocaleString(locale());
+  $('#english-word-tab-count').textContent = words.length.toLocaleString(locale());
+  $('#english-wrong-tab-count').textContent = wrongWords.length.toLocaleString(locale());
+  $$('#english-center-tabs [data-english-book-tab]').forEach(button => {
+    button.classList.toggle('active', button.dataset.englishBookTab === notebook.tab);
+  });
+  const wrongActive = notebook.tab === 'wrong';
+  $('#english-center-description-text').textContent = t(wrongActive ? 'englishWrongBookHint' : 'englishNotebookHint');
+  const allowedModes = wrongActive ? new Set(['all', 'quiz', 'chinese', 'spelling']) : new Set(['all', 'study', 'sentence', 'quiz', 'chinese', 'spelling']);
+  $$('#english-center-mode option').forEach(option => {
+    const allowed = allowedModes.has(option.value);
+    option.hidden = !allowed;
+    option.disabled = !allowed;
+  });
+  if (!allowedModes.has(notebook.mode)) {
+    notebook.mode = 'all';
+    $('#english-center-mode').value = 'all';
+  }
+  let records = wrongActive ? wrongWords : words;
+  const keyword = notebook.keyword;
+  records = records.filter(item => {
+    const modes = Array.isArray(item.modes) ? item.modes : [];
+    if (notebook.mode !== 'all' && !modes.includes(notebook.mode)) return false;
+    if (!keyword) return true;
+    return [item.word, item.translation, item.phonetic, item.example, item.lastAnswer, item.correctAnswer]
+      .some(value => String(value || '').toLowerCase().includes(keyword));
+  }).sort((left, right) => {
+    const leftTime = new Date(wrongActive ? left.lastWrongAt : left.lastSeenAt).getTime() || 0;
+    const rightTime = new Date(wrongActive ? right.lastWrongAt : right.lastSeenAt).getTime() || 0;
+    return rightTime - leftTime;
+  });
+  const list = $('#english-center-list');
+  if (notebook.busy) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('englishLoading'))}</b></div>`;
+    return;
+  }
+  if (!records.length) {
+    list.innerHTML = `<div class="english-center-empty${wrongActive ? ' wrong' : ''}"><span>${wrongActive ? '×' : 'Aa'}</span><b>${escapeHTML(t(wrongActive ? 'noEnglishWrongWords' : 'noEnglishWords'))}</b></div>`;
+    return;
+  }
+  list.innerHTML = records.map(item => renderEnglishBookCard(item, wrongActive)).join('');
+}
+
+function renderEnglishBookCard(item, wrong) {
+  const modes = (Array.isArray(item.modes) ? item.modes : []).map(mode =>
+    `<span class="mode">${escapeHTML(englishModeLabel(mode))}</span>`
+  ).join('');
+  const timestamp = wrong ? item.lastWrongAt : item.lastSeenAt;
+  const count = wrong
+    ? t('wrongTimes', {count: Math.max(1, Number(item.wrongCount) || 1)})
+    : t('seenTimes', {count: Math.max(1, Number(item.seenCount) || 1)});
+  const answers = wrong ? `<div class="english-wrong-answer">
+    <p>${escapeHTML(t('lastAnswer'))}<span title="${escapeHTML(item.lastAnswer || '—')}">${escapeHTML(item.lastAnswer || '—')}</span></p>
+    <p>${escapeHTML(t('correctAnswerLabel'))}<span title="${escapeHTML(item.correctAnswer || item.translation || '—')}">${escapeHTML(item.correctAnswer || item.translation || '—')}</span></p>
+  </div>` : '';
+  return `<article class="english-book-card${wrong ? ' wrong' : ''}">
+    <div class="english-book-card-head"><div><strong>${escapeHTML(item.word)}</strong><em>${escapeHTML(item.phonetic || '')}</em></div><time>${escapeHTML(formatEnglishRecordDate(timestamp))}</time></div>
+    <p class="english-book-meaning" title="${escapeHTML(item.translation)}">${escapeHTML(item.translation)}</p>
+    <p class="english-book-example" title="${escapeHTML(item.example || '')}">${escapeHTML(item.example || '—')}</p>
+    ${answers}
+    <div class="english-book-meta"><div class="english-book-tags">${modes}<span>${escapeHTML(englishSourceLabel(item.source))}</span></div><small>${escapeHTML(count)}</small></div>
+  </article>`;
+}
+
+function formatEnglishRecordDate(value) {
+  if (!value) return '—';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '—';
+  return date.toLocaleString(locale(), {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', hour12:false});
 }
 
 async function changeEnglishMode() {
@@ -1454,6 +2084,7 @@ function renderEnglishQuestion() {
   const question = currentEnglishQuestion();
   if (!question) { loadEnglishBatch(); return; }
   state.english.shownAt = Date.now();
+  recordEnglishQuestion(question);
   if (state.english.mode === 'study') {
     setEnglishView('study');
     $('#english-word').textContent = question.word;
@@ -1501,6 +2132,24 @@ function renderEnglishQuestion() {
     `<button type="button" class="english-option" data-option-index="${index}" title="${escapeHTML(option)}"><span>${index + 1}</span>${escapeHTML(option)}</button>`
   ).join('');
   $('#english-score').textContent = `${state.english.correct} / ${state.english.answered}`;
+}
+
+function recordEnglishQuestion(question) {
+  if (!question) return;
+  const mode = state.english.mode;
+  const record = {...question, source: question.source || state.settings.englishSource};
+  englishRecordWrites = englishRecordWrites
+    .then(() => api.RecordEnglishWord?.(record, mode))
+    .catch(() => {});
+}
+
+function recordEnglishWrongAnswer(question, answer, correctAnswer) {
+  if (!question || !['quiz', 'chinese', 'spelling'].includes(state.english.mode)) return;
+  const mode = state.english.mode;
+  const record = {...question, source: question.source || state.settings.englishSource};
+  englishRecordWrites = englishRecordWrites
+    .then(() => api.RecordEnglishWrong?.(record, mode, answer, correctAnswer || question.correctAnswer || ''))
+    .catch(error => showToast(readError(error), true));
 }
 
 async function translateEnglishExample(question, example) {
@@ -1583,6 +2232,7 @@ async function answerEnglishQuestion(event) {
       justAnswered: true
     };
     const correctAnswer = result?.correctAnswer || question.correctAnswer;
+    if (!result?.correct) recordEnglishWrongAnswer(question, answer, correctAnswer);
     buttons.forEach(item => {
       const itemAnswer = question.options[Number(item.dataset.optionIndex)] || '';
       if (itemAnswer === correctAnswer) item.classList.add('correct');
@@ -1624,6 +2274,7 @@ async function submitEnglishSpelling(event) {
       correct: Boolean(result?.correct),
       justAnswered: true
     };
+    if (!result?.correct) recordEnglishWrongAnswer(question, answer, result?.correctAnswer || question.correctAnswer || question.word);
     input.value = question.word;
     input.classList.add(result?.correct ? 'correct' : 'wrong');
     renderEnglishPrevious();
@@ -2476,7 +3127,22 @@ function createPreviewAPI() {
     {id:'demo-2',title:'预约明天下午的会议室',note:'',dueAt:null,completed:false,createdAt:now.toISOString()},
     {id:'demo-3',title:'回复客户邮件',note:'',dueAt:null,completed:true,createdAt:now.toISOString()}
   ];
-  const previewState = {todos:sample, settings:{...state.settings}, focus:{...state.focus}};
+  const previewEnglishWords = [
+    {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/',example:'Serendipity brought the old friends together again.',source:'nce2',modes:['study','sentence'],seenCount:4,lastSeenAt:new Date(now.getTime()-18*60000).toISOString()},
+    {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/',example:'Keep it concise.',source:'nce2',modes:['quiz','spelling'],seenCount:3,lastSeenAt:new Date(now.getTime()-52*60000).toISOString()},
+    {wordId:3,word:'gracious',translation:'亲切的；和蔼的；优雅的',phonetic:'/ˈɡreɪʃəs/',example:'She was gracious to every guest.',source:'nce2',modes:['chinese'],seenCount:2,lastSeenAt:new Date(now.getTime()-86*60000).toISOString()}
+  ];
+  const previewEnglishWrongWords = [
+    {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/',example:'Keep it concise.',source:'nce2',modes:['quiz','spelling'],wrongCount:2,lastAnswer:'consize',correctAnswer:'concise',lastWrongAt:new Date(now.getTime()-48*60000).toISOString()},
+    {wordId:3,word:'gracious',translation:'亲切的；和蔼的；优雅的',phonetic:'/ˈɡreɪʃəs/',example:'She was gracious to every guest.',source:'nce2',modes:['chinese'],wrongCount:1,lastAnswer:'generous',correctAnswer:'gracious',lastWrongAt:new Date(now.getTime()-82*60000).toISOString()}
+  ];
+  const previewState = {
+    todos:sample,
+    settings:{...state.settings},
+    focus:{...state.focus},
+    englishWords:previewEnglishWords,
+    englishWrongWords:previewEnglishWrongWords
+  };
   const previewRealtime = {status:'offline', desiredOnline:false, authMode:'device', identity:null, messages:[], friends:[], friendRequests:[]};
   const previewStocks = {quotes:[
     {symbol:'1.000001',code:'000001',name:'上证指数',price:3858.25,change:44.05,changePercent:1.15,updatedAt:now.toISOString()},
@@ -2490,6 +3156,44 @@ function createPreviewAPI() {
       {id:1,parent_id:0,node_type:1,name:'工作资料',size:0,content_type:'',modify_time:now.toISOString()},
       {id:2,parent_id:0,node_type:2,name:'项目周报.docx',size:486400,content_type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',modify_time:now.toISOString()}
     ]
+  };
+  const previewTranslation = {
+    used: 128,
+    limit: 10000,
+    history: [
+      {id:1,source_text:'今天也要高效工作。',source_lang:'zh',target_text:'Let’s work efficiently today as well.',target_lang:'en',word_count:10,translate_time:now.toISOString()},
+      {id:2,source_text:'Keep it concise and clear.',source_lang:'en',target_text:'保持简洁清晰。',target_lang:'zh',word_count:25,translate_time:new Date(now.getTime()-3600000).toISOString()}
+    ]
+  };
+  const previewEnglishQuestionRecord = question => ({
+    wordId:Number(question?.wordId) || 0,
+    word:String(question?.word || ''),
+    translation:String(question?.translation || ''),
+    phonetic:String(question?.phonetic || ''),
+    example:String(question?.example || ''),
+    source:String(question?.source || previewState.settings.englishSource || 'nce2')
+  });
+  const findPreviewEnglishRecord = (records, question) => records.find(item =>
+    (Number(question.wordId) > 0 && Number(item.wordId) === Number(question.wordId)) ||
+    item.word.toLowerCase() === question.word.toLowerCase()
+  );
+  const addPreviewEnglishMode = (record, mode) => {
+    record.modes = Array.isArray(record.modes) ? record.modes : [];
+    if (!record.modes.includes(mode)) record.modes.push(mode);
+  };
+  const recordPreviewEnglishWord = (question, mode, increment = true) => {
+    const value = previewEnglishQuestionRecord(question);
+    if (!value.word) return;
+    let record = findPreviewEnglishRecord(previewState.englishWords, value);
+    if (!record) {
+      record = {...value,modes:[],seenCount:0,lastSeenAt:new Date().toISOString()};
+      previewState.englishWords.push(record);
+    }
+    Object.assign(record, Object.fromEntries(Object.entries(value).filter(([, item]) => item !== '' && item !== 0)));
+    addPreviewEnglishMode(record, mode);
+    if (increment) record.seenCount = Math.max(0, Number(record.seenCount) || 0) + 1;
+    else if (!record.seenCount) record.seenCount = 1;
+    record.lastSeenAt = new Date().toISOString();
   };
   return {
     async GetState(){ return structuredClone(previewState); },
@@ -2520,6 +3224,12 @@ function createPreviewAPI() {
     async DeleteCloudDiskItem(id){ previewCloud.items=previewCloud.items.filter(entry=>Number(entry.id)!==Number(id)); return true; },
     async UploadCloudDiskFile(parentId){ const item={id:Date.now(),parent_id:parentId,node_type:2,name:'模拟上传文件.pdf',size:1245184,content_type:'application/pdf',modify_time:new Date().toISOString()}; previewCloud.items.push(item); return {cancelled:false,name:item.name}; },
     async DownloadCloudDiskFile(id,name){ return {cancelled:false,name,path:`/Downloads/${name}`}; },
+    async GetTranslationQuota(){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); return {daily_char_limit:previewTranslation.limit,used_characters:previewTranslation.used,reserved_characters:0,remaining_characters:previewTranslation.limit-previewTranslation.used,unlimited:false,quota_exceeded:false,source_type:'default',source_name:'系统默认'}; },
+    async TranslateText(text,source,target){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); const translated=target==='zh'?'这是一段模拟的中文翻译结果。':'This is a simulated English translation result.'; previewTranslation.used += [...text].length; previewTranslation.history.unshift({id:Date.now(),source_text:text,source_lang:source,target_text:translated,target_lang:target,word_count:[...text].length,translate_time:new Date().toISOString()}); return {translated}; },
+    async ListTranslationHistory(page,pageSize,keyword){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); const filtered=previewTranslation.history.filter(item=>!keyword||item.source_text.includes(keyword)||item.target_text.includes(keyword)); const start=(page-1)*pageSize; return {total:filtered.length,list:structuredClone(filtered.slice(start,start+pageSize)),page,pageSize}; },
+    async DeleteTranslationHistory(id){ previewTranslation.history=previewTranslation.history.filter(item=>Number(item.id)!==Number(id)); return true; },
+    async DeleteTranslationHistoryBatch(ids){ const selected=new Set(ids.map(Number)); previewTranslation.history=previewTranslation.history.filter(item=>!selected.has(Number(item.id))); return true; },
+    async ExportTranslationHistory(){ return {cancelled:false,name:'translate_history.xlsx',path:'/Downloads/translate_history.xlsx'}; },
     async GetStockQuotes(){ previewStocks.updatedAt=new Date().toISOString(); previewStocks.quotes.forEach(item=>item.updatedAt=previewStocks.updatedAt); return structuredClone(previewStocks); },
     async AddStock(code){ previewStocks.quotes.push({symbol:`1.${code}`,code,name:'模拟自选股',price:1888.88,change:-12.34,changePercent:-0.65,updatedAt:new Date().toISOString()}); return structuredClone(previewStocks); },
     async RemoveStock(symbol){ previewStocks.quotes=previewStocks.quotes.filter(item=>item.symbol!==symbol); return structuredClone(previewStocks); },
@@ -2535,11 +3245,30 @@ function createPreviewAPI() {
     async SetEnglishWindow(){ return true; },
     async SetEnglishWindowContentWidth(){ return true; },
     async SetEnglishWindowContentSize(){ return true; },
+    async GetEnglishNotebook(){ return {words:structuredClone(previewState.englishWords),wrongWords:structuredClone(previewState.englishWrongWords)}; },
+    async RecordEnglishWord(question,mode){ recordPreviewEnglishWord(question,mode,true); return true; },
+    async RecordEnglishWrong(question,mode,answer,correctAnswer){
+      if (!['quiz','chinese','spelling'].includes(mode)) return true;
+      const value = previewEnglishQuestionRecord(question);
+      recordPreviewEnglishWord(question,mode,false);
+      let record = findPreviewEnglishRecord(previewState.englishWrongWords,value);
+      if (!record) {
+        record = {...value,modes:[],wrongCount:0,lastAnswer:'',correctAnswer:'',lastWrongAt:new Date().toISOString()};
+        previewState.englishWrongWords.push(record);
+      }
+      Object.assign(record,Object.fromEntries(Object.entries(value).filter(([, item]) => item !== '' && item !== 0)));
+      addPreviewEnglishMode(record,mode);
+      record.wrongCount = Math.max(0,Number(record.wrongCount) || 0) + 1;
+      record.lastAnswer = String(answer || '');
+      record.correctAnswer = String(correctAnswer || question?.correctAnswer || '');
+      record.lastWrongAt = new Date().toISOString();
+      return true;
+    },
     async TranslateEnglishExample(text){ return text === 'Keep it concise.' ? '保持简洁。' : '偶然发现美好事物，是生活中的惊喜。'; },
     async StartEnglishLearning(mode){
       const source = [
-        {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/',example:'Serendipity brought the old friends together again.'},
-        {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/',example:'Keep it concise.'}
+        {wordId:1,word:'serendipity',translation:'意外发现美好事物的能力',phonetic:'/ˌserənˈdɪpəti/',example:'Serendipity brought the old friends together again.',source:'nce2'},
+        {wordId:2,word:'concise',translation:'简明的，简洁的',phonetic:'/kənˈsaɪs/',example:'Keep it concise.',source:'nce2'}
       ];
       const questions = source.map((question, index) => {
         if (mode === 'chinese') return {...question, options:index ? ['vague','concise','expensive','silent'] : ['effort','serendipity','caution','rest'], correctAnswer:question.word};
@@ -2564,8 +3293,9 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.10.0',latestVersion:'0.10.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增统一账号、工作云盘和英语例句学习。\nUnified accounts, Work Cloud, and example-sentence study.'} : {currentVersion:'0.10.0',skipped:true}; },
-    async OpenUpdateURL(){ return true; }
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.11.0',latestVersion:'0.11.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增英语学习中心与全能翻译，并优化 Windows 悬浮窗透明度。\nEnglish Learning Centre, Universal Translator, and improved Windows widget opacity.'} : {currentVersion:'0.11.0',skipped:true}; },
+    async OpenUpdateURL(){ return true; },
+    async OpenWebApp(){ return true; }
   };
 }
 

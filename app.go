@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 	"sync"
 	"sync/atomic"
 	"time"
@@ -14,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.10.0"
+const appVersion = "0.11.0"
 
 type App struct {
 	ctx          context.Context
@@ -29,6 +30,7 @@ type App struct {
 	httpClient   *http.Client
 	realtime     *RealtimeClient
 	cloudDisk    *CloudDiskClient
+	translator   *TranslationClient
 	english      *EnglishClient
 	englishMode  atomic.Bool
 	stockMode    atomic.Bool
@@ -56,6 +58,7 @@ func NewApp() *App {
 	}
 	app.realtime = NewRealtimeClient(app)
 	app.cloudDisk = NewCloudDiskClient(app, cloudDiskAPIBaseURL)
+	app.translator = NewTranslationClient(app.cloudDisk)
 	app.english = NewEnglishClient(app.httpClient, englishAPIBaseURL)
 	return app
 }
@@ -340,6 +343,30 @@ func (a *App) DownloadCloudDiskFile(id uint64, name string) (CloudDiskTransfer, 
 	return a.cloudDisk.DownloadSelected(id, name)
 }
 
+func (a *App) TranslateText(text, source, target string) (TranslationResult, error) {
+	return a.translator.Translate(context.Background(), text, source, target)
+}
+
+func (a *App) GetTranslationQuota() (TranslationQuota, error) {
+	return a.translator.Quota(context.Background())
+}
+
+func (a *App) ListTranslationHistory(page, pageSize int, keyword string) (TranslationHistoryPage, error) {
+	return a.translator.History(context.Background(), page, pageSize, keyword)
+}
+
+func (a *App) DeleteTranslationHistory(id uint64) error {
+	return a.translator.DeleteHistory(context.Background(), id)
+}
+
+func (a *App) DeleteTranslationHistoryBatch(ids []uint64) error {
+	return a.translator.DeleteHistoryBatch(context.Background(), ids)
+}
+
+func (a *App) ExportTranslationHistory(keyword string) (CloudDiskTransfer, error) {
+	return a.translator.ExportSelected(keyword)
+}
+
 func (a *App) StartEnglishLearning(mode string) (EnglishStudyBatch, error) {
 	return a.english.Start(mode, a.store.Snapshot().Settings.EnglishSource)
 }
@@ -350,6 +377,24 @@ func (a *App) SubmitEnglishAnswer(sessionID, wordID uint64, answer string) (Engl
 
 func (a *App) TranslateEnglishExample(text string) (string, error) {
 	return a.english.TranslateExample(text)
+}
+
+func (a *App) GetEnglishNotebook() EnglishNotebook {
+	return a.store.EnglishNotebook()
+}
+
+func (a *App) RecordEnglishWord(question EnglishQuestion, mode string) error {
+	if strings.TrimSpace(question.Source) == "" {
+		question.Source = a.store.Snapshot().Settings.EnglishSource
+	}
+	return a.store.RecordEnglishWord(question, mode, time.Now())
+}
+
+func (a *App) RecordEnglishWrong(question EnglishQuestion, mode, answer, correctAnswer string) error {
+	if strings.TrimSpace(question.Source) == "" {
+		question.Source = a.store.Snapshot().Settings.EnglishSource
+	}
+	return a.store.RecordEnglishWrong(question, mode, answer, correctAnswer, time.Now())
 }
 
 func (a *App) SetEnglishWindow(active bool) {

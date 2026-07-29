@@ -364,7 +364,9 @@ func (client *RealtimeClient) connectAndServe(ctx context.Context) error {
 		Proxy:             http.ProxyFromEnvironment,
 		EnableCompression: true,
 	}
-	conn, response, err := dialer.DialContext(ctx, realtimeWebSocketURL, nil)
+	headers := make(http.Header)
+	setBacklightClientHeaders(headers)
+	conn, response, err := dialer.DialContext(ctx, realtimeWebSocketURL, headers)
 	if err != nil {
 		if response != nil {
 			if response.StatusCode == http.StatusBadRequest {
@@ -731,6 +733,7 @@ func (client *RealtimeClient) ensureIdentity(nickname string) (*RealtimeIdentity
 	}
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
+	setBacklightClientHeaders(request.Header)
 	response, err := client.app.httpClient.Do(request)
 	if err != nil {
 		return nil, fmt.Errorf("注册实时设备失败: %w", err)

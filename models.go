@@ -34,14 +34,16 @@ type Settings struct {
 }
 
 type State struct {
-	Todos             []Todo            `json:"todos"`
-	Settings          Settings          `json:"settings"`
-	Focus             FocusSession      `json:"focus"`
-	StockWatchlist    []string          `json:"stockWatchlist"`
-	LastWeather       *Weather          `json:"lastWeather,omitempty"`
-	LastUpdateCheckAt *time.Time        `json:"lastUpdateCheckAt,omitempty"`
-	RealtimeIdentity  *RealtimeIdentity `json:"realtimeIdentity,omitempty"`
-	RealtimeMessages  []RealtimeMessage `json:"realtimeMessages,omitempty"`
+	Todos             []Todo               `json:"todos"`
+	Settings          Settings             `json:"settings"`
+	Focus             FocusSession         `json:"focus"`
+	StockWatchlist    []string             `json:"stockWatchlist"`
+	EnglishWords      []EnglishWordRecord  `json:"englishWords,omitempty"`
+	EnglishWrongWords []EnglishWrongRecord `json:"englishWrongWords,omitempty"`
+	LastWeather       *Weather             `json:"lastWeather,omitempty"`
+	LastUpdateCheckAt *time.Time           `json:"lastUpdateCheckAt,omitempty"`
+	RealtimeIdentity  *RealtimeIdentity    `json:"realtimeIdentity,omitempty"`
+	RealtimeMessages  []RealtimeMessage    `json:"realtimeMessages,omitempty"`
 }
 
 type StockQuote struct {
@@ -114,6 +116,7 @@ type EnglishQuestion struct {
 	Translation   string   `json:"translation"`
 	Phonetic      string   `json:"phonetic,omitempty"`
 	Example       string   `json:"example,omitempty"`
+	Source        string   `json:"source,omitempty"`
 	Options       []string `json:"options,omitempty"`
 	CorrectAnswer string   `json:"correctAnswer,omitempty"`
 }
@@ -127,6 +130,37 @@ type EnglishStudyBatch struct {
 type EnglishAnswerResult struct {
 	Correct       bool   `json:"correct"`
 	CorrectAnswer string `json:"correctAnswer"`
+}
+
+type EnglishWordRecord struct {
+	WordID      uint64    `json:"wordId"`
+	Word        string    `json:"word"`
+	Translation string    `json:"translation"`
+	Phonetic    string    `json:"phonetic,omitempty"`
+	Example     string    `json:"example,omitempty"`
+	Source      string    `json:"source,omitempty"`
+	Modes       []string  `json:"modes"`
+	SeenCount   int       `json:"seenCount"`
+	LastSeenAt  time.Time `json:"lastSeenAt"`
+}
+
+type EnglishWrongRecord struct {
+	WordID        uint64    `json:"wordId"`
+	Word          string    `json:"word"`
+	Translation   string    `json:"translation"`
+	Phonetic      string    `json:"phonetic,omitempty"`
+	Example       string    `json:"example,omitempty"`
+	Source        string    `json:"source,omitempty"`
+	Modes         []string  `json:"modes"`
+	WrongCount    int       `json:"wrongCount"`
+	LastAnswer    string    `json:"lastAnswer,omitempty"`
+	CorrectAnswer string    `json:"correctAnswer,omitempty"`
+	LastWrongAt   time.Time `json:"lastWrongAt"`
+}
+
+type EnglishNotebook struct {
+	Words      []EnglishWordRecord  `json:"words"`
+	WrongWords []EnglishWrongRecord `json:"wrongWords"`
 }
 
 type UpdateInfo struct {

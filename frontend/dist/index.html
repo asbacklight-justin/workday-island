@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=33">
+  <link rel="stylesheet" href="./style.css?v=34">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.10.0</span>
+        <span id="app-version-badge" class="version-badge">v0.11.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -36,6 +36,7 @@
         <button id="open-cloud" class="icon-btn cloud-button" aria-label="工作云盘" title="工作云盘">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 18.5h10.4a4.4 4.4 0 0 0 .5-8.8A6.3 6.3 0 0 0 6 8.6a5 5 0 0 0 1.2 9.9Z"/><path d="M12 11v6M9.7 13.3 12 11l2.3 2.3"/></svg>
         </button>
+        <button id="open-translator" class="icon-btn translate-button" aria-label="全能翻译" title="全能翻译"><span>文A</span></button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
         <button id="open-account" class="account-nav-button" type="button" aria-label="账号" title="账号">
           <span class="account-nav-avatar" aria-hidden="true">
@@ -214,9 +215,99 @@
             <div id="account-service-grid" class="account-service-grid">
               <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
+              <div><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p></div>
             </div>
             <button id="account-logout" type="button" class="account-logout-btn" data-i18n="signOutAll">退出账号</button>
             <p class="account-logout-hint" data-i18n="signOutHint">退出后，实时聊天和工作云盘会同时退出。</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section id="translator-page" class="translator-page hidden" aria-labelledby="translator-title">
+      <div class="translator-page-head">
+        <button id="close-translator" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="translator-title-group">
+          <div class="section-kicker">UNIVERSAL TRANSLATOR</div>
+          <h1 id="translator-title" data-i18n="universalTranslator">全能翻译</h1>
+        </div>
+        <div id="translator-account-chip" class="cloud-account-chip"><span></span><b data-i18n="cloudNotLoggedIn">未登录</b></div>
+      </div>
+
+      <section id="translator-login-required" class="panel translator-login-required">
+        <div class="translator-login-icon" aria-hidden="true">文A</div>
+        <div><div class="section-kicker">ACCOUNT REQUIRED</div><h2 data-i18n="translatorLoginTitle">登录后使用全能翻译</h2><p data-i18n="translatorLoginHint">翻译额度和历史记录与当前工位岛账号绑定。</p></div>
+        <button id="translator-open-login" type="button" class="primary-btn" data-i18n="goToAccountLogin">前往账号登录</button>
+      </section>
+
+      <div id="translator-workspace" class="translator-workspace hidden">
+        <nav id="translator-tabs" class="translator-tabs" aria-label="翻译页面">
+          <button type="button" class="active" data-translator-tab="text"><span>文A</span><b data-i18n="textTranslation">文本翻译</b></button>
+          <button type="button" data-translator-tab="history"><span>⌚</span><b data-i18n="translationHistory">翻译历史</b></button>
+        </nav>
+
+        <section id="translator-text-view" class="translator-text-view">
+          <aside class="panel translator-quota-card">
+            <div class="translator-quota-head">
+              <div><div class="section-kicker">DAILY QUOTA</div><h2 data-i18n="todayTranslationQuota">今日翻译额度</h2></div>
+              <button id="refresh-translation-quota" type="button" class="tiny-btn" data-i18n="refresh">刷新</button>
+            </div>
+            <div class="translator-quota-metrics">
+              <div><span data-i18n="usedToday">今日已用</span><strong id="translation-used">—</strong></div>
+              <div><span data-i18n="dailyQuota">今日总额度</span><strong id="translation-limit">—</strong></div>
+              <div><span data-i18n="remainingToday">今日剩余</span><strong id="translation-remaining">—</strong></div>
+            </div>
+            <div class="translator-quota-track"><span id="translation-quota-progress"></span></div>
+            <small id="translation-quota-policy">—</small>
+          </aside>
+
+          <section class="panel translator-editor">
+            <div class="translator-language-row">
+              <label><span data-i18n="sourceLanguage">源语言</span><select id="translation-source"></select></label>
+              <button id="swap-translation-languages" type="button" class="translator-swap" aria-label="交换语言" title="交换语言">⇄</button>
+              <label><span data-i18n="targetLanguage">目标语言</span><select id="translation-target"></select></label>
+            </div>
+            <div class="translator-panels">
+              <section class="translator-input-card">
+                <div class="translator-card-head"><strong data-i18n="sourceText">原文</strong><button id="clear-translation" type="button" data-i18n="clear">清空</button></div>
+                <textarea id="translation-input" maxlength="4000" data-i18n-placeholder="translationPlaceholder" placeholder="输入要翻译的文本，支持多段落和自动检测源语言"></textarea>
+                <div class="translator-card-foot"><span id="translation-character-count">0 / 4000</span><small id="translation-quota-warning" class="hidden" data-i18n="translationQuotaInsufficient">超过今日剩余额度</small></div>
+              </section>
+              <section class="translator-result-card">
+                <div class="translator-card-head"><strong data-i18n="translationResult">翻译结果</strong><button id="copy-translation" type="button" disabled data-i18n="copyResult">复制结果</button></div>
+                <div id="translation-result" class="translator-result-empty" data-i18n="noTranslationResult">暂无翻译结果</div>
+                <div class="translator-card-foot"><span id="translation-result-language">—</span></div>
+              </section>
+            </div>
+            <div class="translator-actions">
+              <small data-i18n="translationPrivacyHint">文本会发送到 Backlight 翻译服务，并保存到当前账号的翻译历史。</small>
+              <button id="submit-translation" type="button" class="primary-btn"><span>✦</span><b data-i18n="startTranslation">开始翻译</b></button>
+            </div>
+          </section>
+        </section>
+
+        <section id="translator-history-view" class="panel translator-history-view hidden">
+          <div class="translator-history-toolbar">
+            <form id="translation-history-search">
+              <input id="translation-history-keyword" maxlength="120" data-i18n-placeholder="translationHistorySearch" placeholder="搜索原文或译文">
+              <button type="submit" class="tiny-primary-btn" data-i18n="search">搜索</button>
+            </form>
+            <div>
+              <button id="refresh-translation-history" type="button" class="tiny-btn" data-i18n="refresh">刷新</button>
+              <button id="delete-translation-history-batch" type="button" class="tiny-btn danger" disabled data-i18n="batchDelete">批量删除</button>
+              <button id="export-translation-history" type="button" class="tiny-btn" data-i18n="exportExcel">导出 Excel</button>
+            </div>
+          </div>
+          <div class="translator-history-head">
+            <label><input id="select-all-translation-history" type="checkbox"><span data-i18n="selectAll">全选</span></label>
+            <span data-i18n="languagePair">语言</span><span data-i18n="sourceText">原文</span><span data-i18n="translationResult">译文</span><span data-i18n="time">时间</span><span data-i18n="operation">操作</span>
+          </div>
+          <div id="translation-history-list" class="translator-history-list"></div>
+          <div class="translator-history-pagination">
+            <span id="translation-history-total">0</span>
+            <button id="translation-history-prev" type="button">‹</button>
+            <b id="translation-history-page">1 / 1</b>
+            <button id="translation-history-next" type="button">›</button>
           </div>
         </section>
       </div>
@@ -384,6 +475,47 @@
       </div>
     </section>
 
+    <section id="english-center-page" class="english-center-page hidden" aria-labelledby="english-center-title">
+      <div class="english-center-head">
+        <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="english-center-title-group">
+          <div class="section-kicker">ENGLISH LEARNING</div>
+          <h1 id="english-center-title" data-i18n="englishCenterTitle">英语学习中心</h1>
+        </div>
+        <button id="open-english-compact" type="button" class="primary-btn english-compact-launch"><span>↗</span><b data-i18n="compactEnglishStudy">精简学习</b></button>
+      </div>
+
+      <div class="english-center-summary">
+        <article class="panel"><span>Aa</span><div><small data-i18n="wordsStudied">已学单词</small><strong id="english-word-count">0</strong></div></article>
+        <article class="panel"><span>×</span><div><small data-i18n="wrongWords">错题单词</small><strong id="english-wrong-count">0</strong></div></article>
+        <article class="panel"><span>↻</span><div><small data-i18n="totalViews">累计学习</small><strong id="english-view-count">0</strong></div></article>
+      </div>
+
+      <section class="panel english-center-content">
+        <div class="english-center-content-head">
+          <nav id="english-center-tabs" class="english-center-tabs" aria-label="英语学习记录">
+            <button type="button" class="active" data-english-book-tab="words"><span>Aa</span><b data-i18n="englishNotebook">单词本</b><small id="english-word-tab-count">0</small></button>
+            <button type="button" data-english-book-tab="wrong"><span>×</span><b data-i18n="englishWrongBook">错题本</b><small id="english-wrong-tab-count">0</small></button>
+          </nav>
+          <div class="english-center-filters">
+            <label><span class="sr-only" data-i18n="searchEnglishWord">搜索单词、释义或例句</span><input id="english-center-search" type="search" maxlength="100" data-i18n-placeholder="searchEnglishWord" placeholder="搜索单词、释义或例句"></label>
+            <label><span class="sr-only" data-i18n="filterMode">学习模式</span><select id="english-center-mode" aria-label="学习模式">
+              <option value="all" data-i18n="allModes">全部模式</option>
+              <option value="study" data-i18n="englishStudyMode">单词学习</option>
+              <option value="sentence" data-i18n="englishSentenceMode">例句学习</option>
+              <option value="quiz" data-i18n="englishQuizMode">英译中 4选1</option>
+              <option value="chinese" data-i18n="englishChineseMode">中译英 4选1</option>
+              <option value="spelling" data-i18n="englishSpellingMode">拼完整单词</option>
+            </select></label>
+          </div>
+        </div>
+        <div class="english-center-description">
+          <p id="english-center-description-text" data-i18n="englishNotebookHint">五种学习模式中已经刷过的单词都会保存在这里。</p>
+        </div>
+        <div id="english-center-list" class="english-center-list"></div>
+      </section>
+    </section>
+
     <section id="english-page" class="english-page hidden" aria-label="英语学习">
       <div class="english-strip">
         <div class="english-toolbar">
@@ -535,11 +667,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.10.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.11.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
+      <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.10.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.11.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -562,6 +695,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=34" type="module"></script>
+  <script src="./app.js?v=38" type="module"></script>
 </body>
 </html>

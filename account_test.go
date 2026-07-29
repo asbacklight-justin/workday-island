@@ -19,6 +19,9 @@ func TestRegisterRealtimeAccount(t *testing.T) {
 		if request.Header.Get("Content-Type") != "application/json" {
 			t.Fatalf("content type = %q", request.Header.Get("Content-Type"))
 		}
+		if request.Header.Get("X-Client-Source") != clientSource || request.Header.Get("X-Client-Version") != appVersion {
+			t.Fatalf("missing client headers: source=%q version=%q", request.Header.Get("X-Client-Source"), request.Header.Get("X-Client-Version"))
+		}
 		if err := json.NewDecoder(request.Body).Decode(&received); err != nil {
 			t.Fatalf("decode request: %v", err)
 		}

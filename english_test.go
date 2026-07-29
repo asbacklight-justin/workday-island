@@ -15,6 +15,9 @@ func TestEnglishClientStartsQuizAndMapsQuestions(t *testing.T) {
 	var startSource string
 	server := httptest.NewServer(http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
 		response.Header().Set("Content-Type", "application/json")
+		if request.Header.Get("X-Client-Source") != clientSource || request.Header.Get("X-Client-Version") != appVersion {
+			t.Fatalf("missing client headers: source=%q version=%q", request.Header.Get("X-Client-Source"), request.Header.Get("X-Client-Version"))
+		}
 		switch request.URL.Path {
 		case "/user/login":
 			loginCalls.Add(1)
@@ -35,7 +38,7 @@ func TestEnglishClientStartsQuizAndMapsQuestions(t *testing.T) {
 				t.Fatal(err)
 			}
 			startSource, _ = payload["source"].(string)
-			_, _ = response.Write([]byte(`{"code":200,"message":"success","data":{"session":{"id":42},"questions":[{"word_id":7,"word":"concise","translation":"简明的","phonetic":"/kənˈsaɪs/","example":"Keep it concise.","options":["模糊的","昂贵的","简明的","安静的"],"correct_answer":"简明的"}]}}`))
+			_, _ = response.Write([]byte(`{"code":200,"message":"success","data":{"session":{"id":42},"questions":[{"word_id":7,"word":"concise","translation":"简明的","phonetic":"/kənˈsaɪs/","example":"Keep it concise.","source":"nce2","options":["模糊的","昂贵的","简明的","安静的"],"correct_answer":"简明的"}]}}`))
 		default:
 			http.NotFound(response, request)
 		}
@@ -57,7 +60,7 @@ func TestEnglishClientStartsQuizAndMapsQuestions(t *testing.T) {
 		t.Fatalf("unexpected batch: %#v", batch)
 	}
 	question := batch.Questions[0]
-	if question.WordID != 7 || question.Word != "concise" || question.CorrectAnswer != "简明的" || len(question.Options) != 4 {
+	if question.WordID != 7 || question.Word != "concise" || question.Source != "nce2" || question.CorrectAnswer != "简明的" || len(question.Options) != 4 {
 		t.Fatalf("unexpected question: %#v", question)
 	}
 }

@@ -65,6 +65,7 @@ func registerRealtimeAccount(ctx context.Context, client *http.Client, endpoint 
 	}
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
+	setBacklightClientHeaders(request.Header)
 	response, err := client.Do(request)
 	if err != nil {
 		return RealtimeRegistrationResult{}, fmt.Errorf("连接注册服务失败: %w", err)

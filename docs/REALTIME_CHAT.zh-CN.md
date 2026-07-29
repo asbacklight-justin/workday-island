@@ -8,7 +8,7 @@
 2. 如果尚未登录，点击账号入口使用用户名和密码登录，或进入注册页面创建账号；邀请码为选填。
 3. 登录后可输入精确用户名或用户 ID 发送好友申请；收到申请时可同意或拒绝，好友列表会展示当前在线状态。
 4. 点击好友即可开始会话，也可继续手动输入用户 ID。文字消息和“抖动窗口”“闪烁窗口”指令都支持离线补发；窗口互动可附带最多 120 个字符的提示语，并会写入聊天记录。
-5. 从账号中心退出会关闭实时连接，并同时退出工作云盘。密码和访问令牌会从应用内存中清除，下次使用在线服务需要重新登录。
+5. 从账号中心退出会关闭实时连接，并同时退出工作云盘和全能翻译。密码和访问令牌会从应用内存中清除，下次使用在线服务需要重新登录。
 
 对方暂时离线时，文字消息和窗口互动由服务端记录，并在对方下一次上线后补发。新消息到达时，聊天页会自动定位到最近发信人的会话。接收窗口互动时，工位岛会恢复、置前，优先展示发送者昵称和提示语，并执行短暂抖动或彩色闪烁；昵称不可用时才回退到用户 ID，用户可立即停止效果。
 
@@ -31,7 +31,7 @@
 
 ## 网络与故障排查
 
-桌面端通过 `wss://admin.asbacklight.cn/api/realtime/ws` 建立加密 WebSocket 连接；账号登录使用 `https://admin.asbacklight.cn/api/user/login`，注册使用 `https://admin.asbacklight.cn/api/user/register`。
+桌面端通过 `wss://admin.asbacklight.cn/api/realtime/ws` 建立加密 WebSocket 连接；账号登录使用 `https://admin.asbacklight.cn/api/user/login`，注册使用 `https://admin.asbacklight.cn/api/user/register`。这些握手和业务请求会携带 `X-Client-Source: workday-island` 与当前 `X-Client-Version`。
 
 如果界面提示“实时服务网关暂未启用 WebSocket”，说明 HTTPS 网关没有正确转发 WebSocket Upgrade，而不是账号密码错误。Nginx 代理至少需要：
 

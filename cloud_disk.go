@@ -137,6 +137,12 @@ func (client *CloudDiskClient) Session() CloudDiskSession {
 	return session
 }
 
+func (client *CloudDiskClient) accountToken() string {
+	client.mu.RLock()
+	defer client.mu.RUnlock()
+	return client.token
+}
+
 func (client *CloudDiskClient) Login(ctx context.Context, username, password string) (CloudDiskSession, error) {
 	username = strings.TrimSpace(username)
 	if username == "" || password == "" {
@@ -154,6 +160,7 @@ func (client *CloudDiskClient) Login(ctx context.Context, username, password str
 	}
 	request.Header.Set("Content-Type", "application/json")
 	request.Header.Set("Accept", "application/json")
+	setBacklightClientHeaders(request.Header)
 	response, err := client.apiClient.Do(request)
 	if err != nil {
 		return client.Session(), fmt.Errorf("连接账号服务失败: %w", err)
@@ -342,9 +349,11 @@ func (client *CloudDiskClient) DownloadSelected(id uint64, name string) (CloudDi
 }
 
 func (client *CloudDiskClient) requestJSON(ctx context.Context, method, path string, payload any, output any) error {
-	client.mu.RLock()
-	token := client.token
-	client.mu.RUnlock()
+	return client.requestAccountJSON(ctx, method, path, payload, output, "工作云盘")
+}
+
+func (client *CloudDiskClient) requestAccountJSON(ctx context.Context, method, path string, payload any, output any, serviceName string) error {
+	token := client.accountToken()
 	if token == "" {
 		return ErrCloudDiskLoginRequired
 	}
@@ -362,30 +371,31 @@ func (client *CloudDiskClient) requestJSON(ctx context.Context, method, path str
 	}
 	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Authorization", "Bearer "+token)
+	setBacklightClientHeaders(request.Header)
 	if payload != nil {
 		request.Header.Set("Content-Type", "application/json")
 	}
 	response, err := client.apiClient.Do(request)
 	if err != nil {
-		return fmt.Errorf("连接工作云盘失败: %w", err)
+		return fmt.Errorf("连接%s失败: %w", serviceName, err)
 	}
 	defer response.Body.Close()
 	var envelope cloudEnvelope
 	if err := json.NewDecoder(io.LimitReader(response.Body, 8<<20)).Decode(&envelope); err != nil {
-		return fmt.Errorf("工作云盘响应无效: %w", err)
+		return fmt.Errorf("%s响应无效: %w", serviceName, err)
 	}
 	if response.StatusCode == http.StatusUnauthorized || envelope.Code == http.StatusUnauthorized {
 		client.Logout()
 		return errors.New("账号登录已过期，请重新登录")
 	}
 	if response.StatusCode < 200 || response.StatusCode >= 300 || envelope.Code != http.StatusOK {
-		return errors.New(firstNonEmpty(strings.TrimSpace(envelope.Message), fmt.Sprintf("工作云盘请求失败（HTTP %d）", response.StatusCode)))
+		return errors.New(firstNonEmpty(strings.TrimSpace(envelope.Message), fmt.Sprintf("%s请求失败（HTTP %d）", serviceName, response.StatusCode)))
 	}
 	if output == nil || len(envelope.Data) == 0 || string(envelope.Data) == "null" {
 		return nil
 	}
 	if err := json.Unmarshal(envelope.Data, output); err != nil {
-		return fmt.Errorf("解析工作云盘数据失败: %w", err)
+		return fmt.Errorf("解析%s数据失败: %w", serviceName, err)
 	}
 	return nil
 }

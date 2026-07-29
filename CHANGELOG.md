@@ -5,6 +5,28 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-07-29
+
+### 中文
+
+- 新增“全能翻译”模块，登录统一账号后可使用自动语言检测及中、英、日、韩、法、德、西、俄、葡、阿多语言互译。
+- 翻译模块支持每日额度展示、译文复制、历史搜索、单条或批量删除，以及 Excel 导出。
+- 英语学习升级为独立学习中心，新增跨天保存的“单词本”和“错题本”；五种模式学过的单词会进入单词本，后三种答题模式的错词会进入错题本。
+- 英语精简学习窗改为从学习中心按需打开，并继续支持词库选择、双语例句、即时答案反馈与上一词复习。
+- 统一账号会话现在同时服务于聊天、好友、工作云盘和全能翻译；所有 Backlight HTTP 与 WebSocket 请求补充客户端来源及版本请求头。
+- 修复 Windows 英语学习精简窗口不跟随悬浮窗透明度：恢复原生 100% 不透明时会移除残留的分层窗口样式，并在英语模式下启用透明 WebView 宿主背景，使透明度只作用于学习背景，文字与控件保持清晰。
+- “关于”中新增 Web 端入口，可通过系统默认浏览器打开 `https://admin.asbacklight.cn/`。
+
+### English
+
+- Added Universal Translator for signed-in accounts, with automatic language detection and translation among Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Portuguese, and Arabic.
+- Added daily translation quota, result copying, history search, individual or batch deletion, and Excel export.
+- Upgraded English practice into a dedicated learning centre with a cross-day Word Book and Wrong Book. Words viewed in all five modes enter the Word Book, while mistakes from the three answer modes enter the Wrong Book.
+- Compact English study now opens on demand from the learning centre and keeps word-library selection, bilingual examples, immediate answer feedback, and previous-word review.
+- The unified account session now serves chat, friends, Work Cloud, and Universal Translator. All Backlight HTTP and WebSocket requests include client-source and client-version headers.
+- Fixed the compact English-learning window ignoring floating-window opacity on Windows. Returning native opacity to 100% now removes the stale layered-window style, while English mode enables a transparent WebView host so opacity affects only the learning background and keeps text and controls crisp.
+- Added a Web App entry to About that opens `https://admin.asbacklight.cn/` in the system default browser.
+
 ## [0.10.0] - 2026-07-28
 
 ### 中文
@@ -195,6 +217,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.11.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.0
 [0.10.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0
 [0.9.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.9.0
 [0.8.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.8.1

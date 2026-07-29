@@ -12,6 +12,9 @@ import (
 func TestCloudDiskLoginAndListShareAccountToken(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		writer.Header().Set("Content-Type", "application/json")
+		if request.Header.Get("X-Client-Source") != clientSource || request.Header.Get("X-Client-Version") != appVersion {
+			t.Fatalf("missing client headers: source=%q version=%q", request.Header.Get("X-Client-Source"), request.Header.Get("X-Client-Version"))
+		}
 		switch request.URL.Path {
 		case "/user/login":
 			if request.Method != http.MethodPost {

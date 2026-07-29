@@ -105,3 +105,13 @@ func TestCheckForUpdatesFallsBackWhenAPIRateLimited(t *testing.T) {
 		t.Fatalf("unexpected fallback result: attempts=%d info=%#v", attempts.Load(), info)
 	}
 }
+
+func TestWebAppURLIsFixedAndRequiresStartup(t *testing.T) {
+	if workdayIslandWebURL != "https://admin.asbacklight.cn/" {
+		t.Fatalf("unexpected web app URL: %q", workdayIslandWebURL)
+	}
+
+	if err := NewApp().OpenWebApp(); err == nil {
+		t.Fatal("expected OpenWebApp to fail before app startup")
+	}
+}

@@ -135,6 +135,58 @@ func TestUpdateCheckTimePersists(t *testing.T) {
 	}
 }
 
+func TestEnglishNotebookPersistsModesAndWrongAnswers(t *testing.T) {
+	path := filepath.Join(t.TempDir(), "data.json")
+	store := NewStore(path)
+	question := EnglishQuestion{
+		WordID: 7, Word: "concise", Translation: "简明的，简洁的",
+		Phonetic: "/kənˈsaɪs/", Example: "Keep it concise.", Source: "nce2",
+	}
+	firstSeen := time.Now().Add(-time.Minute).Truncate(time.Second)
+	if err := store.RecordEnglishWord(question, "study", firstSeen); err != nil {
+		t.Fatal(err)
+	}
+	for index, mode := range []string{"sentence", "quiz", "chinese", "spelling"} {
+		if err := store.RecordEnglishWord(question, mode, firstSeen.Add(time.Duration(index+1)*time.Second)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	if err := store.RecordEnglishWrong(question, "quiz", "模糊的", "简明的，简洁的", firstSeen.Add(6*time.Second)); err != nil {
+		t.Fatal(err)
+	}
+	if err := store.RecordEnglishWrong(question, "spelling", "consize", "concise", firstSeen.Add(7*time.Second)); err != nil {
+		t.Fatal(err)
+	}
+
+	reloaded := NewStore(path)
+	if err := reloaded.Load(); err != nil {
+		t.Fatal(err)
+	}
+	notebook := reloaded.EnglishNotebook()
+	if len(notebook.Words) != 1 || notebook.Words[0].SeenCount != 5 {
+		t.Fatalf("unexpected word notebook: %#v", notebook.Words)
+	}
+	if got := notebook.Words[0].Modes; len(got) != 5 ||
+		got[0] != "study" || got[1] != "sentence" || got[2] != "quiz" || got[3] != "chinese" || got[4] != "spelling" {
+		t.Fatalf("unexpected word modes: %v", got)
+	}
+	if len(notebook.WrongWords) != 1 || notebook.WrongWords[0].WrongCount != 2 ||
+		notebook.WrongWords[0].LastAnswer != "consize" || notebook.WrongWords[0].CorrectAnswer != "concise" {
+		t.Fatalf("unexpected wrong notebook: %#v", notebook.WrongWords)
+	}
+}
+
+func TestEnglishWrongNotebookOnlyAcceptsExerciseModes(t *testing.T) {
+	store := NewStore(filepath.Join(t.TempDir(), "data.json"))
+	question := EnglishQuestion{WordID: 1, Word: "hello", Translation: "你好"}
+	if err := store.RecordEnglishWrong(question, "study", "", "", time.Now()); err == nil {
+		t.Fatal("study mode should not create a wrong-book record")
+	}
+	if notebook := store.EnglishNotebook(); len(notebook.WrongWords) != 0 {
+		t.Fatalf("wrong-book changed after invalid mode: %#v", notebook.WrongWords)
+	}
+}
+
 func TestReminderAlertCanBePolledAndAcknowledged(t *testing.T) {
 	app := NewApp()
 	app.triggerReminder(Todo{ID: "todo-1", Title: "到点提醒"})

@@ -23,6 +23,7 @@ var latestReleasePage = "https://github.com/asbacklight-justin/workday-island/re
 var releaseTagPattern = regexp.MustCompile(`/asbacklight-justin/workday-island/releases/tag/(v?[0-9]+\.[0-9]+\.[0-9]+)`)
 
 const updateCheckInterval = 24 * time.Hour
+const workdayIslandWebURL = "https://admin.asbacklight.cn/"
 
 type githubRelease struct {
 	TagName     string        `json:"tag_name"`
@@ -179,6 +180,14 @@ func (a *App) OpenUpdateURL(target string) error {
 		return errors.New("应用尚未完成启动")
 	}
 	wailsRuntime.BrowserOpenURL(a.ctx, parsed.String())
+	return nil
+}
+
+func (a *App) OpenWebApp() error {
+	if a.ctx == nil {
+		return errors.New("应用尚未完成启动")
+	}
+	wailsRuntime.BrowserOpenURL(a.ctx, workdayIslandWebURL)
 	return nil
 }
 
