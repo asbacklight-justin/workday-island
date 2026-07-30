@@ -493,6 +493,11 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .datetime-pair { display: grid; grid-template-columns: 1.15fr .85fr; gap: 7px; }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 4px; }
+.app-dialog-backdrop { z-index: 80; }
+.app-dialog-card { width:min(420px,100%); }
+.app-dialog-message { margin:0 0 16px; color:#96a3b7; font-size:12px; line-height:1.65; white-space:pre-wrap; }
+.app-dialog-card .field { margin-bottom:16px; }
+.danger-primary-btn { border-color:#d94e60 !important; background:#d94e60 !important; }
 .text-btn { border: 0; background: transparent; color: #96a3b6; font-size: 13px; cursor: pointer; padding: 9px 12px; }
 .cloud-editor-card, .cloud-delete-card { width: min(430px, 100%); }
 .cloud-delete-message { margin: -2px 0 22px; color: #aeb9ca; font-size: 13px; line-height: 1.65; }
@@ -559,7 +564,7 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .account-status-chip.logged-in { color: #7de3c9; border-color: rgba(62,230,189,.18); background: rgba(62,230,189,.065); }
 .account-status-chip.logged-in > span { background: var(--teal); box-shadow: 0 0 0 4px rgba(62,230,189,.09); }
 .account-page-body { flex: 1 1 auto; min-height: 0; display: grid; place-items: center; overflow: auto; padding: 5px; }
-.account-card { width: min(560px, 100%); max-height: 100%; padding: 19px 21px; overflow: auto; scrollbar-width: thin; scrollbar-color: #364057 transparent; }
+.account-card { width: min(680px, 100%); max-height: 100%; padding: 19px 21px; overflow: auto; scrollbar-width: thin; scrollbar-color: #364057 transparent; }
 .account-mode-tabs { width: min(270px, 100%); margin: 0 auto 17px; padding: 3px; border: 1px solid rgba(255,255,255,.07); border-radius: 11px; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: rgba(5,10,19,.22); }
 .account-mode-tabs button { height: 31px; border: 0; border-radius: 8px; background: transparent; color: #748299; font-size: 10px; font-weight: 700; cursor: pointer; }
 .account-mode-tabs button.active { color: #7fe6cd; background: rgba(62,230,189,.1); box-shadow: inset 0 0 0 1px rgba(62,230,189,.13); }
@@ -582,13 +587,14 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .account-profile-avatar { position: relative; width: 72px; height: 72px; margin: 0 auto 15px; overflow: hidden; border: 1px solid rgba(62,230,189,.2); border-radius: 23px; display: grid; place-items: center; color: #102a25; background: linear-gradient(145deg, #6fe1c5, #76aef5); box-shadow: 0 18px 42px rgba(47,149,147,.17); font-size: 28px; font-weight: 800; }
 .account-profile-view h2 { margin: 4px 0 0; color: #e7edf7; font-size: 21px; }
 .account-profile-view > p { margin: 5px 0 0; color: #75849a; font-size: 11px; }
-.account-service-grid { margin: 22px 0 18px; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.account-service-grid { margin: 22px 0 18px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 .account-service-grid > div { min-height: 58px; padding: 12px; border: 1px solid rgba(255,255,255,.07); border-radius: 12px; display: flex; align-items: center; gap: 10px; text-align: left; background: rgba(255,255,255,.025); }
 .service-dot { flex: 0 0 9px; width: 9px; height: 9px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 0 4px rgba(62,230,189,.09); }
 .account-service-grid > div:first-child .service-dot { background: #f3bd58; box-shadow: 0 0 0 4px rgba(243,189,88,.09); }
 .account-service-grid.chat-online > div:first-child .service-dot { background: var(--teal); box-shadow: 0 0 0 4px rgba(62,230,189,.09); }
 .account-service-grid .ai-service-card .service-dot { background: #9d7bff; box-shadow: 0 0 0 4px rgba(139,92,246,.1); }
 .account-service-grid .notes-service-card .service-dot { background: #67a6ff; box-shadow: 0 0 0 4px rgba(76,145,245,.1); }
+.account-service-grid .share-service-card .service-dot { background: #8f7cf2; box-shadow: 0 0 0 4px rgba(143,124,242,.1); }
 .account-service-grid p { margin: 0; min-width: 0; }
 .account-service-grid b, .account-service-grid small { display: block; }
 .account-service-grid b { color: #cfd9e7; font-size: 10px; }
@@ -1126,10 +1132,21 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 .note-dialog header button { width: 27px; height: 27px; border: 0; border-radius: 7px; color: #8d97a7; background: #f3f5f8; display: grid; place-items: center; cursor: pointer; }
 .note-dialog header button svg, .share-dialog header button svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .note-dialog label { display: grid; gap: 6px; color: #778398; font-size: 9px; }
-.note-dialog select { height: 35px; padding: 0 9px; border: 1px solid var(--note-line); border-radius: 8px; outline: 0; color: var(--note-text); background: #fafbfc; }
+.note-dialog select,.note-dialog input { height: 35px; padding: 0 9px; border: 1px solid var(--note-line); border-radius: 8px; outline: 0; color: var(--note-text); background: #fafbfc; }
+.note-dialog input:focus { border-color:#4e8fe9; box-shadow:0 0 0 3px rgba(78,143,233,.12); }
 .note-dialog footer { margin-top: 15px; display: flex; justify-content: flex-end; gap: 7px; }
 .note-dialog footer button { min-width: 64px; height: 31px; border: 1px solid var(--note-line); border-radius: 8px; color: #718095; background: #fff; cursor: pointer; }
 .note-dialog footer button.primary { border-color: #4e8fe9; color: #fff; background: #4e8fe9; }
+.note-dialog footer button.danger { border-color:rgba(225,93,108,.38); color:#d94e60; background:rgba(225,93,108,.06); }
+.note-dialog footer button.permanent { border-color:#d94e60; color:#fff; background:#d94e60; }
+.note-dialog footer button:disabled { cursor:wait; opacity:.55; }
+.note-dialog-spacer { flex:1; }
+.note-password-dialog > p,.note-delete-dialog > p { margin:0 0 13px; color:#778398; font-size:10px; line-height:1.6; }
+.note-password-dialog form { display:grid; gap:10px; }
+.note-info-dialog dl { margin:0; display:grid; gap:6px; }
+.note-info-dialog dl > div { padding:8px 9px; border:1px solid var(--note-line); border-radius:8px; display:grid; grid-template-columns:78px minmax(0,1fr); gap:10px; background:#fafbfc; }
+.note-info-dialog dt { color:#8995a7; font-size:9px; }
+.note-info-dialog dd { margin:0; color:var(--note-text); font-size:9px; overflow-wrap:anywhere; text-align:right; }
 .note-history-dialog { width: min(500px,calc(100% - 30px)); }
 .note-history-list { display: grid; gap: 7px; }
 .note-history-item { padding: 10px; border: 1px solid var(--note-line); border-radius: 9px; display: grid; grid-template-columns: 1fr auto; gap: 6px; background: #fafbfc; }
@@ -1144,7 +1161,8 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 :root[data-theme="dark"] .note-tree-row:hover,:root[data-theme="dark"] .note-content-editor,:root[data-theme="dark"] .note-context-menu,:root[data-theme="dark"] .note-more-menu,:root[data-theme="dark"] .note-dialog { background:#171c25; color:#dce4ef; }
 :root[data-theme="dark"] .note-format-toolbar { background:#1b212b; }
 :root[data-theme="dark"] .note-content-editor { color:#dce4ef; }
-:root[data-theme="dark"] .note-history-item { background:#202630; }
+:root[data-theme="dark"] .note-history-item,:root[data-theme="dark"] .note-info-dialog dl > div { background:#202630; }
+:root[data-theme="dark"] .note-dialog input,:root[data-theme="dark"] .note-dialog select { color:#dce4ef; background:#11151d; }
 
 @media (max-width: 760px) {
   .notes-shell { grid-template-columns: 220px minmax(0,1fr); }

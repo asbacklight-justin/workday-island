@@ -100,6 +100,21 @@ func TestCloudNotesListAndDetailAlwaysComeFromServer(t *testing.T) {
 	}
 }
 
+func TestNoteNodePreservesPasswordMetadata(t *testing.T) {
+	now := time.Date(2026, 7, 30, 10, 0, 0, 0, time.UTC)
+	node := noteNodeFromDetail(cloudNoteDetail{
+		ID:          91,
+		Title:       "受保护笔记",
+		HasPassword: true,
+		IsLocked:    true,
+		CreateTime:  now,
+		ModifyTime:  now,
+	})
+	if !node.HasPassword || !node.Locked {
+		t.Fatalf("password metadata was lost: %+v", node)
+	}
+}
+
 func TestCloudNotesUseCurrentAccountTokenWithoutLocalLeak(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
 		if request.URL.Path != "/cloud_note/note/1" {

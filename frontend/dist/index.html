@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.11.3</span>
+        <span id="app-version-badge" class="version-badge">v0.12.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -229,11 +229,12 @@
               <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
               <div class="notes-service-card"><span class="service-dot"></span><p><b data-i18n="cloudNotes">云笔记</b><small data-i18n="ready">已就绪</small></p></div>
+              <div class="share-service-card"><span class="service-dot"></span><p><b data-i18n="linkSharing">链接分享</b><small data-i18n="ready">已就绪</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p></div>
               <div class="ai-service-card"><span class="service-dot"></span><p><b data-i18n="aiChat">AI 对话</b><small data-i18n="ready">已就绪</small></p></div>
             </div>
             <button id="account-logout" type="button" class="account-logout-btn" data-i18n="signOutAll">退出账号</button>
-            <p class="account-logout-hint" data-i18n="signOutHint">退出后，AI 对话、实时聊天、工作云盘和全能翻译会同时退出。</p>
+            <p class="account-logout-hint" data-i18n="signOutHint">退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。</p>
           </div>
         </section>
       </div>
@@ -367,6 +368,41 @@
           <section class="note-dialog note-history-dialog">
             <header><div><small>VERSION HISTORY</small><h2>历史版本</h2></div><button type="button" data-close-note-dialog="note-history-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
             <div id="note-history-list" class="note-history-list"></div>
+          </section>
+        </div>
+
+        <div id="note-password-dialog" class="note-dialog-mask hidden">
+          <section class="note-dialog note-password-dialog">
+            <header><div><small>READING PASSWORD</small><h2 id="note-password-dialog-title">设置阅读密码</h2></div><button type="button" data-close-note-dialog="note-password-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+            <p id="note-password-description">设置后，下次打开这篇笔记时需要输入密码。</p>
+            <form id="note-password-form">
+              <label><span id="note-password-label">阅读密码</span><input id="note-reading-password" type="password" minlength="4" maxlength="72" autocomplete="new-password" placeholder="至少 4 个字符" required></label>
+              <label id="note-password-confirm-row"><span>确认密码</span><input id="note-reading-password-confirm" type="password" minlength="4" maxlength="72" autocomplete="new-password" placeholder="再次输入阅读密码"></label>
+              <footer><button id="remove-note-password" type="button" class="danger hidden">取消阅读密码</button><span class="note-dialog-spacer"></span><button type="button" data-close-note-dialog="note-password-dialog">取消</button><button id="save-note-password" type="submit" class="primary">保存密码</button></footer>
+            </form>
+          </section>
+        </div>
+
+        <div id="note-info-dialog" class="note-dialog-mask hidden">
+          <section class="note-dialog note-info-dialog">
+            <header><div><small>NOTE INFORMATION</small><h2>笔记信息</h2></div><button type="button" data-close-note-dialog="note-info-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+            <dl>
+              <div><dt>标题</dt><dd id="note-info-title">—</dd></div>
+              <div><dt>位置</dt><dd id="note-info-path">—</dd></div>
+              <div><dt>字数</dt><dd id="note-info-words">0</dd></div>
+              <div><dt>创建时间</dt><dd id="note-info-created">—</dd></div>
+              <div><dt>更新时间</dt><dd id="note-info-updated">—</dd></div>
+              <div><dt>阅读密码</dt><dd id="note-info-password">未设置</dd></div>
+            </dl>
+            <footer><button type="button" data-close-note-dialog="note-info-dialog" class="primary">知道了</button></footer>
+          </section>
+        </div>
+
+        <div id="note-delete-dialog" class="note-dialog-mask hidden">
+          <section class="note-dialog note-delete-dialog">
+            <header><div><small>DELETE NOTE</small><h2 id="note-delete-title">删除笔记</h2></div><button type="button" data-close-note-dialog="note-delete-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+            <p id="note-delete-description">确定要将这篇笔记移到回收站吗？</p>
+            <footer><button type="button" data-close-note-dialog="note-delete-dialog">取消</button><button id="confirm-note-delete" type="button" class="danger">删除</button></footer>
           </section>
         </div>
       </div>
@@ -1008,6 +1044,23 @@
       </div>
     </section>
   </div>
+  <div id="app-dialog-modal" class="modal-backdrop app-dialog-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="app-dialog-title">
+    <form id="app-dialog-form" class="modal-card app-dialog-card">
+      <div class="modal-head">
+        <div><div id="app-dialog-kicker" class="section-kicker">CONFIRM</div><h2 id="app-dialog-title">请确认</h2></div>
+        <button type="button" class="close-btn" data-close="app-dialog-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </div>
+      <p id="app-dialog-message" class="app-dialog-message"></p>
+      <label id="app-dialog-input-row" class="field hidden">
+        <span id="app-dialog-input-label">请输入内容</span>
+        <input id="app-dialog-input" maxlength="255" autocomplete="off">
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="text-btn" data-close="app-dialog-modal">取消</button>
+        <button id="app-dialog-submit" type="submit" class="primary-btn">确定</button>
+      </div>
+    </form>
+  </div>
   <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
     <section class="modal-card about-card">
       <button type="button" class="close-btn about-close" data-close="about-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
@@ -1015,12 +1068,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.11.3</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.12.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.11.3</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.12.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>

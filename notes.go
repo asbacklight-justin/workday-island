@@ -38,6 +38,7 @@ type NoteNode struct {
 	ContentType string     `json:"contentType,omitempty"`
 	Favorite    bool       `json:"favorite,omitempty"`
 	Pinned      bool       `json:"pinned,omitempty"`
+	HasPassword bool       `json:"hasPassword,omitempty"`
 	Locked      bool       `json:"locked,omitempty"`
 	WordCount   int        `json:"wordCount,omitempty"`
 	Revision    uint64     `json:"revision,omitempty"`
@@ -242,7 +243,7 @@ func (client *CloudDiskClient) ListNoteNodes(ctx context.Context) ([]NoteNode, e
 			nodes = append(nodes, NoteNode{
 				ID: noteNodeID(item.ID), ParentID: parentID, Kind: noteKindNote,
 				Title: item.Title, Content: item.Snippet, ContentType: item.ContentType, Favorite: item.IsFavorite != 0,
-				Pinned: item.IsPinned != 0, Locked: item.IsLocked || item.HasPassword,
+				Pinned: item.IsPinned != 0, HasPassword: item.HasPassword, Locked: item.IsLocked || item.HasPassword,
 				WordCount: item.WordCount, Revision: item.Revision,
 				CreatedAt: item.CreateTime, UpdatedAt: item.ModifyTime,
 			})
@@ -280,7 +281,7 @@ func noteNodeFromDetail(detail cloudNoteDetail) NoteNode {
 	return NoteNode{
 		ID: noteNodeID(detail.ID), ParentID: parentID, Kind: noteKindNote,
 		Title: detail.Title, Content: detail.Content, ContentType: detail.ContentType, Favorite: detail.IsFavorite != 0,
-		Pinned: detail.IsPinned != 0, Locked: detail.IsLocked || detail.HasPassword,
+		Pinned: detail.IsPinned != 0, HasPassword: detail.HasPassword, Locked: detail.IsLocked || detail.HasPassword,
 		WordCount: detail.WordCount, Revision: detail.Revision,
 		CreatedAt: detail.CreateTime, UpdatedAt: detail.ModifyTime,
 	}

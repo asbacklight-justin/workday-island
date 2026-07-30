@@ -5,6 +5,28 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-07-30
+
+### 中文
+
+- 新增桌面 AI 对话模块，支持统一账号登录、会话搜索/置顶/归档/重命名/删除、模型与思考模式选择、系统提示、Markdown、代码复制、流式回答、停止生成和使用额度。
+- 新增云笔记模块，支持文件夹、搜索、收藏、置顶、富文本自动保存、移动、回收站、历史版本、阅读密码、AI/翻译联动及 Word/文本导出。
+- 新增链接分享模块，可创建快照或实时笔记分享，配置密码、有效期、复制和评论权限，并在独立页面管理额度、访问次数和分享生命周期。
+- 统一账号会话扩展至 AI 对话、聊天、好友、工作云盘、云笔记、链接分享和全能翻译，退出账号时同步退出所有在线模块。
+- 修复桌面 WebView 不显示原生输入/确认框导致新建文件夹、阅读密码、笔记信息和删除等操作无响应；相关交互统一改为应用内弹窗。
+- 修复文件夹内普通笔记省略 `pinned=false` 后导致排序失效的问题，置顶笔记现在始终排在普通笔记之前。
+- 补充云笔记密码状态、分享登录边界、账号隔离与服务端数据源测试，并更新中英文隐私和使用文档。
+
+### English
+
+- Added desktop AI Chat with unified sign-in, conversation search/pin/archive/rename/delete, model and thinking controls, system prompts, Markdown, code copying, streaming, stop generation, and usage quotas.
+- Added Cloud Notes with folders, search, favourites, pinning, rich-text autosave, move, recycle bin, versions, reading passwords, AI/translation hand-off, and Word/text export.
+- Added Link Sharing for snapshot or live-note publishing with passwords, validity, copy/comment policies, plus a dedicated manager for quotas, views, and lifecycle actions.
+- Extended the unified account session across AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator, with coordinated sign-out.
+- Replaced unreliable native WebView prompts with in-app dialogs, fixing unresponsive folder creation, reading-password, note-information, delete, and related actions.
+- Fixed pinned-note ordering when ordinary notes omit `pinned=false`; pinned notes now always appear first within their folder.
+- Added tests for note password metadata, sharing authentication boundaries, account isolation, and cloud source-of-truth behaviour, with updated bilingual privacy and usage documentation.
+
 ## [0.11.0] - 2026-07-29
 
 ### 中文
@@ -217,6 +239,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.12.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0
 [0.11.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.0
 [0.10.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0
 [0.9.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.9.0

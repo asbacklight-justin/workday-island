@@ -2,9 +2,9 @@
 
 [中文](PRIVACY.zh-CN.md) · [English](PRIVACY.md)
 
-Last updated: 2026-07-29
+Last updated: 2026-07-30
 
-Workday Island is local-first. Core features such as todos require no account. Chat, friends, Work Cloud, and Universal Translator share one signed-in Backlight account session.
+Workday Island is local-first. Core features such as todos require no account. AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator share one signed-in Backlight account session.
 
 ## Data stored on the device
 
@@ -31,13 +31,19 @@ When the user submits the registration form, the app sends the username, nicknam
 
 After account sign-in, the app connects to `admin.asbacklight.cn`. Chat content, sender/recipient user IDs and nicknames, timestamps, delivery/read states, friend requests and relationships, online status, and shake/flash commands pass through the realtime service and may be retained server-side. Shake and flash actions are also kept as interaction records in recent local conversation history. Blocking network access does not affect local core features outside chat.
 
+When AI Chat is used, conversation titles, system prompts, selected models, thinking settings, user messages, AI responses, token usage, and creation/modification times are sent to the Backlight AI service and associated with the current account. Responses stream to the desktop and generation can be stopped; conversations can be archived or deleted. The app does not automatically attach todos, salary, or other local data. Only content explicitly entered by the user or sent from Cloud Notes is submitted.
+
+Opening Cloud Notes uses the current account to retrieve folders, note bodies, favourite/pinned states, word counts, versions, recycle-bin entries, and reading-password status. Creating, editing, moving, restoring, deleting, setting a reading password, exporting, translating, or sending a note to AI is user-initiated; edited content autosaves to the Backlight Cloud Notes service. Reading passwords are submitted over HTTPS for server-side verification, while the unlock token remains only in the running session.
+
+Creating a note share sends its title, description, snapshot or source-note reference, password status, validity period, copy/comment policies, and view statistics to the Backlight sharing service. The dedicated manager can inspect, edit, revoke, regenerate, or delete links. Anyone holding a public link and any required access password may be able to view it, so sensitive information should not be shared.
+
 When Universal Translator is used, the source text and selected source/target languages are sent to the Backlight translation service. The service counts daily characters per account and stores source text, translated text, languages, and translation time so the user can search, delete, or export translation history. The app keeps the account token and current page results only in the running process; the token is cleared on sign-out or exit.
 
 Opening compact English learning requests words, phonetics, meanings, examples, and choices from the selected public Backlight word library, and submits per-question results. Words actually shown are written to the local Word Book; mistakes in EN → CN, CN → EN, and spelling modes are written to the local Wrong Book and are not synced to other devices. In Example Sentences mode, the English sentence is sent to the translation endpoint for a Chinese translation. The Chinese example translation is cached only in the running process and is not written to the local data file.
 
 Opening Work Cloud uses the current account token to read folders and storage quota. The app reads and uploads a local file only after the user selects it, using an object-storage URL issued by the service. Downloads are also explicitly initiated by the user. The Backlight service stores file metadata such as name, size, content type, folder relationships, and object key, while file contents live in the configured object storage. The app does not crawl or scan local files that the user did not select.
 
-Requests from Workday Island to account, chat, English, translation, and Work Cloud business endpoints on `admin.asbacklight.cn` include `X-Client-Source: workday-island` and the current application version. These fields identify the client for compatibility and troubleshooting. Presigned object-storage upload/download requests do not receive these headers.
+Requests from Workday Island to account, AI Chat, realtime chat, Cloud Notes, Link Sharing, English, translation, and Work Cloud business endpoints on `admin.asbacklight.cn` include `X-Client-Source: workday-island` and the current application version. These fields identify the client for compatibility and troubleshooting. Presigned object-storage upload/download requests do not receive these headers.
 
 ## Operating-system capabilities
 

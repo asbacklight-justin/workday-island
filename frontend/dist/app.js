@@ -54,12 +54,12 @@ const translations = {
     translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
     confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
     languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
     accountUsernamePlaceholder: '请输入用户名', accountPasswordPlaceholder: '请输入密码', loginOnline: '登录并上线', deviceAuth: '设备登录', passwordAuth: '账号登录',
-    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用 AI 对话、实时聊天、好友、工作云盘和全能翻译。',
+    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。',
     registerUsernamePlaceholder: '3–20 位字母、数字或下划线', registerNicknamePlaceholder: '2–20 个字符', registerPasswordPlaceholder: '6–20 个字符',
     confirmPassword: '确认密码', confirmPasswordPlaceholder: '再次输入密码', phone: '手机号', emailPlaceholder: 'name@example.com', phonePlaceholder: '中国大陆手机号',
     inviteCode: '邀请码', inviteCodePlaceholder: '有邀请码时填写', inviteHint: '邀请码不必填写；填写后会关联邀请人。',
@@ -144,12 +144,12 @@ const translations = {
     translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
     confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
     languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
     accountUsernamePlaceholder: 'Enter username', accountPasswordPlaceholder: 'Enter password', loginOnline: 'Sign In & Go Online', deviceAuth: 'Device login', passwordAuth: 'Account login',
-    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for AI Chat, realtime chat, friends, Work Cloud, and Universal Translator.',
+    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.',
     registerUsernamePlaceholder: '3–20 letters, numbers, or underscores', registerNicknamePlaceholder: '2–20 characters', registerPasswordPlaceholder: '6–20 characters',
     confirmPassword: 'Confirm password', confirmPasswordPlaceholder: 'Enter the password again', phone: 'Phone', emailPlaceholder: 'name@example.com', phonePlaceholder: 'Mainland China mobile number',
     inviteCode: 'Invite code', inviteCodePlaceholder: 'Enter one if you have it', inviteHint: 'The invite code is optional. If supplied, it links your inviter.',
@@ -184,7 +184,7 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.11.3', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.12.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -195,7 +195,7 @@ const state = {
   notes: {
     nodes: [], selectedId: '', filter: 'all', query: '', expanded: new Set(),
     menuTargetId: '', movingId: '', saving: false, creating: false, unlocked: new Set(), fullscreen: false,
-    selectionRevision: 0
+    selectionRevision: 0, deleteTargetId: '', deletePermanent: false, passwordMode: 'set'
   },
   shareManagementOpen: false,
   noteShares: {
@@ -255,6 +255,8 @@ let englishFitTimer = 0;
 let aiSearchTimer = 0;
 let aiRenderFrame = 0;
 let noteSaveTimer = 0;
+let appDialogResolve = null;
+let appDialogMode = 'confirm';
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
 const translatorLanguages = [
   {value:'auto', key:'languageAuto'}, {value:'zh', key:'languageZh'}, {value:'en', key:'languageEn'},
@@ -546,6 +548,9 @@ function bindEvents() {
   $('#note-context-menu').addEventListener('click', handleNoteContextAction);
   $('#unlock-note').addEventListener('click', unlockCurrentNote);
   $('#confirm-note-move').addEventListener('click', confirmNoteMove);
+  $('#note-password-form').addEventListener('submit', submitNotePassword);
+  $('#remove-note-password').addEventListener('click', removeCurrentNotePassword);
+  $('#confirm-note-delete').addEventListener('click', confirmNoteDelete);
   $('#note-history-list').addEventListener('click', restoreNoteHistoryVersion);
   $$('[data-close-note-dialog]').forEach(button => button.addEventListener('click', () => closeNoteDialog(button.dataset.closeNoteDialog)));
   $$('.note-dialog-mask').forEach(mask => mask.addEventListener('mousedown', event => {
@@ -568,6 +573,7 @@ function bindEvents() {
   $('#cloud-new-folder').addEventListener('click', openCloudFolderEditor);
   $('#cloud-editor-form').addEventListener('submit', submitCloudEditor);
   $('#cloud-delete-confirm').addEventListener('click', confirmCloudDelete);
+  $('#app-dialog-form').addEventListener('submit', submitAppDialog);
   $('#cloud-refresh').addEventListener('click', refreshCloudDisk);
   $('#cloud-search-form').addEventListener('submit', searchCloudDisk);
   $('#cloud-breadcrumbs').addEventListener('click', navigateCloudBreadcrumb);
@@ -1168,18 +1174,18 @@ async function handleNoteShareListAction(event) {
       return;
     }
     if (action === 'revoke') {
-      if (!window.confirm(`撤销“${share.title}”的分享链接？撤销后链接会立即失效。`)) return;
+      if (!await showAppConfirm(`撤销“${share.title}”的分享链接？撤销后链接会立即失效。`, {title:'撤销分享',danger:true})) return;
       await api.RevokeNoteShare(id);
       showToast('分享已撤销');
     }
     if (action === 'regenerate') {
-      if (!window.confirm(`重新生成“${share.title}”的分享链接？旧链接会失效。`)) return;
+      if (!await showAppConfirm(`重新生成“${share.title}”的分享链接？旧链接会失效。`, {title:'重新生成链接'})) return;
       const updated = await api.RegenerateNoteShare(id);
       await copyShareURL(updated.public_url);
       showToast('新分享链接已生成并复制');
     }
     if (action === 'delete') {
-      if (!window.confirm(`删除“${share.title}”的分享记录？`)) return;
+      if (!await showAppConfirm(`删除“${share.title}”的分享记录？`, {title:'删除分享记录',danger:true})) return;
       await api.DeleteNoteShare(id);
       showToast('分享记录已删除');
     }
@@ -1402,7 +1408,7 @@ function renderNotesTree() {
     byParent.get(parent).push(node);
   });
   const sortNodes = nodes => nodes.sort((a,b) =>
-    Number(b.pinned) - Number(a.pinned) ||
+    Number(Boolean(b.pinned)) - Number(Boolean(a.pinned)) ||
     Number(a.kind !== 'folder') - Number(b.kind !== 'folder') ||
     new Date(b.updatedAt) - new Date(a.updatedAt) ||
     String(a.title).localeCompare(String(b.title), locale())
@@ -1585,7 +1591,7 @@ async function createNoteNode(kind, requestedParentId = '') {
   const selected = noteNodeById(state.notes.selectedId);
   if (!parentId && selected) parentId = selected.kind === 'folder' ? selected.id : selected.parentId;
   if (state.notes.filter === 'trash') parentId = '';
-  const title = kind === 'folder' ? window.prompt('文件夹名称', '新建文件夹') : '无标题笔记';
+  const title = kind === 'folder' ? await showAppPrompt('文件夹名称', '新建文件夹', {title:'新建文件夹',label:'文件夹名称'}) : '无标题笔记';
   if (title === null) return;
   state.notes.creating = true;
   const createButtons = ['#create-note','#create-note-folder','#notes-empty-create','#notes-folder-new-note','#notes-folder-new-folder']
@@ -1686,15 +1692,24 @@ async function flushNoteSave() {
   }
 }
 
-function applyNoteFormat(event) {
+async function applyNoteFormat(event) {
   const button = event.target.closest('button');
   if (!button || !currentNoteNode()) return;
   $('#note-content-editor').focus();
   if (button.dataset.noteBlock) {
     document.execCommand('formatBlock', false, button.dataset.noteBlock);
   } else if (button.dataset.noteCommand === 'createLink') {
-    const url = window.prompt('输入链接地址', 'https://');
-    if (url) document.execCommand('createLink', false, url);
+    const selection = window.getSelection();
+    const range = selection?.rangeCount ? selection.getRangeAt(0).cloneRange() : null;
+    const url = await showAppPrompt('请输入要插入的链接地址。', 'https://', {title:'插入链接',label:'链接地址'});
+    if (url) {
+      $('#note-content-editor').focus();
+      if (range && selection) {
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
+      document.execCommand('createLink', false, url);
+    }
   } else if (button.dataset.noteCommand) {
     document.execCommand(button.dataset.noteCommand, false, button.dataset.noteValue || null);
   }
@@ -1751,7 +1766,10 @@ async function handleNoteContextAction(event) {
 async function renameNoteNode(id) {
   const node = noteNodeById(id);
   if (!node) return;
-  const title = window.prompt(node.kind === 'folder' ? '文件夹名称' : '笔记标题', node.title);
+  const title = await showAppPrompt(node.kind === 'folder' ? '请输入新的文件夹名称。' : '请输入新的笔记标题。', node.title, {
+    title: node.kind === 'folder' ? '重命名文件夹' : '重命名笔记',
+    label: node.kind === 'folder' ? '文件夹名称' : '笔记标题'
+  });
   if (title === null || !title.trim()) return;
   try {
     const updated = await api.RenameNoteNode(id, title.trim());
@@ -1776,18 +1794,16 @@ async function toggleNoteNodeFlag(id, flag) {
   }
 }
 
-async function trashNoteNode(id) {
+function trashNoteNode(id) {
   const node = noteNodeById(id);
-  if (!node || !window.confirm(`将“${node.title}”移到回收站？${node.kind === 'folder' ? '其下内容也会一并移入。' : ''}`)) return;
-  await flushNoteSave();
-  try {
-    await api.TrashNoteNode(id);
-    if (state.notes.selectedId === id || isNoteDescendant(state.notes.selectedId, id)) state.notes.selectedId = '';
-    await loadNotes();
-    showToast('已移到回收站');
-  } catch (error) {
-    showToast(readError(error), true);
-  }
+  if (!node) return;
+  state.notes.deleteTargetId = id;
+  state.notes.deletePermanent = false;
+  $('#note-delete-title').textContent = node.kind === 'folder' ? '删除文件夹' : '删除笔记';
+  $('#note-delete-description').textContent = `将“${node.title}”移到回收站？${node.kind === 'folder' ? '文件夹中的内容也会一并移入。' : '之后可以从回收站恢复。'}`;
+  $('#confirm-note-delete').textContent = '移到回收站';
+  $('#confirm-note-delete').classList.remove('permanent');
+  $('#note-delete-dialog').classList.remove('hidden');
 }
 
 async function restoreNoteNode(id) {
@@ -1800,16 +1816,35 @@ async function restoreNoteNode(id) {
   }
 }
 
-async function deleteNoteNodeForever(id) {
+function deleteNoteNodeForever(id) {
   const node = noteNodeById(id);
-  if (!node || !window.confirm(`彻底删除“${node.title}”？此操作无法撤销。`)) return;
+  if (!node) return;
+  state.notes.deleteTargetId = id;
+  state.notes.deletePermanent = true;
+  $('#note-delete-title').textContent = '彻底删除';
+  $('#note-delete-description').textContent = `彻底删除“${node.title}”？此操作无法撤销。`;
+  $('#confirm-note-delete').textContent = '彻底删除';
+  $('#confirm-note-delete').classList.add('permanent');
+  $('#note-delete-dialog').classList.remove('hidden');
+}
+
+async function confirmNoteDelete() {
+  const id = state.notes.deleteTargetId;
+  const permanent = state.notes.deletePermanent;
+  if (!id) return;
+  $('#confirm-note-delete').disabled = true;
   try {
-    await api.DeleteNoteNodeForever(id);
+    if (!permanent) await flushNoteSave();
+    if (permanent) await api.DeleteNoteNodeForever(id);
+    else await api.TrashNoteNode(id);
     if (state.notes.selectedId === id || isNoteDescendant(state.notes.selectedId, id)) state.notes.selectedId = '';
+    closeNoteDialog('note-delete-dialog');
     await loadNotes();
-    showToast('已彻底删除');
+    showToast(permanent ? '已彻底删除' : '已移到回收站');
   } catch (error) {
     showToast(readError(error), true);
+  } finally {
+    $('#confirm-note-delete').disabled = false;
   }
 }
 
@@ -1851,20 +1886,93 @@ async function confirmNoteMove() {
 function closeNoteDialog(id) {
   $(`#${id}`)?.classList.add('hidden');
   if (id === 'note-move-dialog') state.notes.movingId = '';
+  if (id === 'note-delete-dialog') {
+    state.notes.deleteTargetId = '';
+    state.notes.deletePermanent = false;
+  }
+  if (id === 'note-password-dialog') {
+    state.notes.passwordMode = 'set';
+    $('#note-password-form')?.reset();
+  }
 }
 
-async function unlockCurrentNote() {
+function unlockCurrentNote() {
   const node = noteNodeById(state.notes.selectedId);
   if (!node?.locked) return;
-  const password = window.prompt('请输入阅读密码');
-  if (password === null) return;
+  openNotePasswordDialog('unlock');
+}
+
+function openNotePasswordDialog(mode) {
+  const node = currentNoteNode();
+  if (!node) return;
+  state.notes.passwordMode = mode;
+  $('#note-password-form').reset();
+  const unlock = mode === 'unlock';
+  $('#note-password-dialog-title').textContent = unlock ? '解锁笔记' : '设置阅读密码';
+  $('#note-password-description').textContent = unlock ? `请输入“${node.title}”的阅读密码。` : '设置后，下次打开这篇笔记时需要输入密码。';
+  $('#note-password-label').textContent = unlock ? '阅读密码' : '新阅读密码';
+  $('#note-reading-password').placeholder = unlock ? '请输入阅读密码' : '至少 4 个字符';
+  $('#note-reading-password').autocomplete = unlock ? 'current-password' : 'new-password';
+  $('#note-password-confirm-row').classList.toggle('hidden', unlock);
+  $('#note-reading-password-confirm').required = !unlock;
+  $('#remove-note-password').classList.toggle('hidden', unlock || !(node.hasPassword || node.locked));
+  $('#save-note-password').textContent = unlock ? '解锁笔记' : '保存密码';
+  $('#note-password-dialog').classList.remove('hidden');
+  requestAnimationFrame(() => $('#note-reading-password').focus());
+}
+
+async function submitNotePassword(event) {
+  event.preventDefault();
+  const node = currentNoteNode();
+  if (!node) return;
+  const password = $('#note-reading-password').value;
+  const unlock = state.notes.passwordMode === 'unlock';
+  if (!unlock) {
+    if (password.trim().length < 4) {
+      showToast('阅读密码至少需要 4 个字符', true);
+      return;
+    }
+    if (password !== $('#note-reading-password-confirm').value) {
+      showToast('两次输入的密码不一致', true);
+      return;
+    }
+  }
+  $('#save-note-password').disabled = true;
   try {
-    const unlocked = await api.UnlockNote(node.id, password);
-    Object.assign(node, unlocked, {locked:false,savedTitle:unlocked.title,savedContent:unlocked.content});
+    if (unlock) {
+      const unlocked = await api.UnlockNote(node.id, password);
+      Object.assign(node, unlocked, {hasPassword:true,locked:false,savedTitle:unlocked.title,savedContent:unlocked.content});
+    } else {
+      await flushNoteSave();
+      await api.SetNotePassword(node.id, password);
+      Object.assign(node, {hasPassword:true,locked:false});
+    }
     state.notes.unlocked.add(node.id);
+    closeNoteDialog('note-password-dialog');
     renderNotes();
+    showToast(unlock ? '笔记已解锁' : '阅读密码已设置');
   } catch (error) {
     showToast(readError(error), true);
+  } finally {
+    $('#save-note-password').disabled = false;
+  }
+}
+
+async function removeCurrentNotePassword() {
+  const node = currentNoteNode();
+  if (!node) return;
+  $('#remove-note-password').disabled = true;
+  try {
+    await api.SetNotePassword(node.id, '');
+    Object.assign(node, {hasPassword:false,locked:false});
+    state.notes.unlocked.delete(node.id);
+    closeNoteDialog('note-password-dialog');
+    renderNotes();
+    showToast('阅读密码已取消');
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    $('#remove-note-password').disabled = false;
   }
 }
 
@@ -1910,7 +2018,7 @@ async function openNoteHistory() {
 async function restoreNoteHistoryVersion(event) {
   const button = event.target.closest('[data-note-version-id]');
   const node = currentNoteNode();
-  if (!button || !node || !window.confirm('恢复此历史版本？当前内容会保留为历史快照。')) return;
+  if (!button || !node || !await showAppConfirm('恢复此历史版本？当前内容会保留为历史快照。', {title:'恢复历史版本'})) return;
   try {
     const restored = await api.RestoreNoteVersion(node.id, button.dataset.noteVersionId);
     Object.assign(node, restored, {savedTitle:restored.title,savedContent:restored.content});
@@ -1922,21 +2030,10 @@ async function restoreNoteHistoryVersion(event) {
   }
 }
 
-async function setCurrentNotePassword() {
+function setCurrentNotePassword() {
   const node = currentNoteNode();
   if (!node) return;
-  const value = window.prompt(node.locked ? '输入新密码；留空将取消阅读密码' : '设置阅读密码（至少 4 个字符）', '');
-  if (value === null) return;
-  try {
-    await api.SetNotePassword(node.id, value);
-    node.locked = Boolean(value.trim());
-    if (node.locked) state.notes.unlocked.add(node.id);
-    else state.notes.unlocked.delete(node.id);
-    renderNotesTree();
-    showToast(node.locked ? '阅读密码已设置' : '阅读密码已取消');
-  } catch (error) {
-    showToast(readError(error), true);
-  }
+  openNotePasswordDialog('set');
 }
 
 async function exportCurrentNote(format) {
@@ -1996,7 +2093,13 @@ function showCurrentNoteInfo() {
   const node = currentNoteNode();
   if (!node) return;
   const words = notePlainTextFromHTML($('#note-content-editor').innerHTML).length;
-  window.alert(`标题：${node.title}\n位置：${noteNodePath(node)}\n字数：${words.toLocaleString(locale())}\n创建：${formatNoteDate(node.createdAt)}\n更新：${formatNoteDate(node.updatedAt)}\n阅读密码：${node.locked ? '已设置' : '未设置'}`);
+  $('#note-info-title').textContent = node.title;
+  $('#note-info-path').textContent = noteNodePath(node);
+  $('#note-info-words').textContent = words.toLocaleString(locale());
+  $('#note-info-created').textContent = formatNoteDate(node.createdAt);
+  $('#note-info-updated').textContent = formatNoteDate(node.updatedAt);
+  $('#note-info-password').textContent = node.hasPassword || node.locked ? '已设置' : '未设置';
+  $('#note-info-dialog').classList.remove('hidden');
 }
 
 function toggleNoteFullscreen() {
@@ -2236,7 +2339,7 @@ function renameAIConversationFromList(event) {
 }
 
 async function renameAIConversation(item) {
-  const title = window.prompt('给这段对话起一个清晰的名字', item.title || '新对话');
+  const title = await showAppPrompt('给这段对话起一个清晰的名字。', item.title || '新对话', {title:'重命名对话',label:'对话名称'});
   if (title === null) return;
   const value = title.trim();
   if (!value || [...value].length > 160) {
@@ -2266,7 +2369,7 @@ async function patchAIConversation(item, data) {
 }
 
 async function removeAIConversation(item) {
-  if (!window.confirm(`删除“${item.title || '新对话'}”后将无法在界面中恢复，确定继续吗？`)) return;
+  if (!await showAppConfirm(`删除“${item.title || '新对话'}”后将无法在界面中恢复，确定继续吗？`, {title:'删除对话',danger:true})) return;
   try {
     await api.DeleteAIChatConversation(item.id);
     state.aiChat.conversations = state.aiChat.conversations.filter(value => value.id !== item.id);
@@ -3326,7 +3429,7 @@ async function handleTranslationHistoryAction(event) {
   const button = event.target.closest('[data-translation-history-action="delete"]');
   if (!button) return;
   const id = Number(button.closest('[data-translation-history-id]')?.dataset.translationHistoryId);
-  if (!id || !window.confirm(t('confirmDeleteTranslation'))) return;
+  if (!id || !await showAppConfirm(t('confirmDeleteTranslation'), {title:t('delete'),danger:true})) return;
   try {
     await api.DeleteTranslationHistory(id);
     showToast(t('translationHistoryDeleted'));
@@ -3339,7 +3442,7 @@ async function handleTranslationHistoryAction(event) {
 
 async function deleteSelectedTranslationHistory() {
   const ids = [...state.translator.selected];
-  if (!ids.length || !window.confirm(t('confirmBatchDeleteTranslation', {count: ids.length}))) return;
+  if (!ids.length || !await showAppConfirm(t('confirmBatchDeleteTranslation', {count: ids.length}), {title:t('batchDelete'),danger:true})) return;
   try {
     await api.DeleteTranslationHistoryBatch(ids);
     showToast(t('translationHistoryBatchDeleted'));
@@ -4625,7 +4728,7 @@ async function handleFriendListAction(event) {
     event.stopPropagation();
     const userID = Number(removeButton.dataset.removeFriend);
     const friend = friendByUserID(userID);
-    if (!userID || !window.confirm(t('removeFriendConfirm', {name: friendDisplayName(friend?.user)}))) return;
+    if (!userID || !await showAppConfirm(t('removeFriendConfirm', {name: friendDisplayName(friend?.user)}), {title:t('removeFriend'),danger:true})) return;
     realtimeBusy = true;
     renderRealtime();
     try {
@@ -4656,7 +4759,7 @@ async function handleFriendListAction(event) {
 }
 
 async function resetRealtimeIdentity() {
-  if (!window.confirm(t('resetConfirm'))) return;
+  if (!await showAppConfirm(t('resetConfirm'), {title:t('resetIdentity'),danger:true})) return;
   realtimeBusy = true;
   renderRealtime();
   try {
@@ -5083,8 +5186,53 @@ function weatherLabel(code) {
 }
 
 function openModal(id) { $(`#${id}`).classList.remove('hidden'); }
+
+function showAppConfirm(message, options = {}) {
+  return openAppDialog('confirm', message, '', options);
+}
+
+function showAppPrompt(message, value = '', options = {}) {
+  return openAppDialog('prompt', message, value, options);
+}
+
+function openAppDialog(mode, message, value, options) {
+  if (appDialogResolve) appDialogResolve(appDialogMode === 'confirm' ? false : null);
+  appDialogMode = mode;
+  $('#app-dialog-kicker').textContent = mode === 'prompt' ? 'INPUT' : 'CONFIRM';
+  $('#app-dialog-title').textContent = options.title || (mode === 'prompt' ? '请输入' : '请确认');
+  $('#app-dialog-message').textContent = message || '';
+  $('#app-dialog-message').classList.toggle('hidden', !message);
+  $('#app-dialog-input-row').classList.toggle('hidden', mode !== 'prompt');
+  $('#app-dialog-input-label').textContent = options.label || '请输入内容';
+  $('#app-dialog-input').value = value || '';
+  $('#app-dialog-submit').textContent = options.confirmText || '确定';
+  $('#app-dialog-submit').classList.toggle('danger-primary-btn', Boolean(options.danger));
+  $('#app-dialog-modal').classList.remove('hidden');
+  if (mode === 'prompt') requestAnimationFrame(() => {
+    $('#app-dialog-input').focus();
+    $('#app-dialog-input').select();
+  });
+  else requestAnimationFrame(() => $('#app-dialog-submit').focus());
+  return new Promise(resolve => { appDialogResolve = resolve; });
+}
+
+function submitAppDialog(event) {
+  event.preventDefault();
+  const value = appDialogMode === 'prompt' ? $('#app-dialog-input').value : true;
+  settleAppDialog(value);
+}
+
+function settleAppDialog(value) {
+  const resolve = appDialogResolve;
+  appDialogResolve = null;
+  $('#app-dialog-modal').classList.add('hidden');
+  $('#app-dialog-submit').classList.remove('danger-primary-btn');
+  resolve?.(value);
+}
+
 function closeModal(id) {
   $(`#${id}`).classList.add('hidden');
+  if (id === 'app-dialog-modal' && appDialogResolve) settleAppDialog(appDialogMode === 'confirm' ? false : null);
   if (id === 'cloud-editor-modal') state.cloud.editorTarget = null;
   if (id === 'cloud-delete-modal') state.cloud.deleteTarget = null;
   if (id === 'settings-modal') {
@@ -5138,11 +5286,11 @@ function createPreviewAPI() {
     englishWrongWords:previewEnglishWrongWords
   };
   let previewNotes = [
-    {id:'folder-work',parentId:'',kind:'folder',title:'工作',content:'',favorite:false,pinned:false,locked:false,createdAt:new Date(now.getTime()-18*86400000).toISOString(),updatedAt:now.toISOString()},
-    {id:'note-report',parentId:'folder-work',kind:'note',title:'日报-2026年7月',content:'<h1>0702　周四</h1><p><strong>1、开发</strong>，通用报表项目与客户画像规则配置维护；完成接口联调、筛选配置和批量操作。</p><p>2、日常，整理项目文档与会议纪要，持续跟进问题闭环。</p><blockquote>记录每天的进展，也记录下一步要解决的问题。</blockquote><h2>0703　周五</h2><ul><li>完善云笔记编辑体验</li><li>补充自动保存与历史版本</li><li>完成 Windows 构建验证</li></ul>',favorite:true,pinned:true,locked:false,createdAt:new Date(now.getTime()-12*86400000).toISOString(),updatedAt:now.toISOString()},
-    {id:'note-plan',parentId:'folder-work',kind:'note',title:'下半年产品规划',content:'<h1>目标</h1><p>让工位岛成为安静、可靠、随手可用的桌面工作空间。</p><h2>重点功能</h2><ol><li>AI 对话</li><li>云笔记</li><li>跨端文件与翻译</li></ol>',favorite:false,pinned:false,locked:false,createdAt:new Date(now.getTime()-8*86400000).toISOString(),updatedAt:new Date(now.getTime()-2*3600000).toISOString()},
-    {id:'folder-study',parentId:'',kind:'folder',title:'学习',content:'',favorite:false,pinned:false,locked:false,createdAt:new Date(now.getTime()-7*86400000).toISOString(),updatedAt:new Date(now.getTime()-86400000).toISOString()},
-    {id:'note-reading',parentId:'folder-study',kind:'note',title:'本周阅读清单',content:'<p>Keep it concise and clear.</p>',favorite:true,pinned:false,locked:false,createdAt:new Date(now.getTime()-4*86400000).toISOString(),updatedAt:new Date(now.getTime()-86400000).toISOString()}
+    {id:'folder-work',parentId:'',kind:'folder',title:'工作',content:'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:new Date(now.getTime()-18*86400000).toISOString(),updatedAt:now.toISOString()},
+    {id:'note-report',parentId:'folder-work',kind:'note',title:'日报-2026年7月',content:'<h1>0702　周四</h1><p><strong>1、开发</strong>，通用报表项目与客户画像规则配置维护；完成接口联调、筛选配置和批量操作。</p><p>2、日常，整理项目文档与会议纪要，持续跟进问题闭环。</p><blockquote>记录每天的进展，也记录下一步要解决的问题。</blockquote><h2>0703　周五</h2><ul><li>完善云笔记编辑体验</li><li>补充自动保存与历史版本</li><li>完成 Windows 构建验证</li></ul>',favorite:true,pinned:true,hasPassword:false,locked:false,createdAt:new Date(now.getTime()-12*86400000).toISOString(),updatedAt:now.toISOString()},
+    {id:'note-plan',parentId:'folder-work',kind:'note',title:'下半年产品规划',content:'<h1>目标</h1><p>让工位岛成为安静、可靠、随手可用的桌面工作空间。</p><h2>重点功能</h2><ol><li>AI 对话</li><li>云笔记</li><li>跨端文件与翻译</li></ol>',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:new Date(now.getTime()-8*86400000).toISOString(),updatedAt:new Date(now.getTime()-2*3600000).toISOString()},
+    {id:'folder-study',parentId:'',kind:'folder',title:'学习',content:'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:new Date(now.getTime()-7*86400000).toISOString(),updatedAt:new Date(now.getTime()-86400000).toISOString()},
+    {id:'note-reading',parentId:'folder-study',kind:'note',title:'本周阅读清单',content:'<p>Keep it concise and clear.</p>',favorite:true,pinned:false,hasPassword:false,locked:false,createdAt:new Date(now.getTime()-4*86400000).toISOString(),updatedAt:new Date(now.getTime()-86400000).toISOString()}
   ];
   const previewNoteVersions = new Map();
   let previewNoteShares = [];
@@ -5216,7 +5364,7 @@ function createPreviewAPI() {
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
     async ListNoteNodes(){ return structuredClone(previewNotes); },
     async GetNoteNode(id){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); return structuredClone(node); },
-    async CreateNoteNode(input){ const timestamp=new Date().toISOString(); const node={id:crypto.randomUUID(),parentId:input.parentId||'',kind:input.kind,title:input.title||(input.kind==='folder'?'新建文件夹':'无标题笔记'),content:'',favorite:false,pinned:false,locked:false,createdAt:timestamp,updatedAt:timestamp}; previewNotes.push(node); return structuredClone(node); },
+    async CreateNoteNode(input){ const timestamp=new Date().toISOString(); const node={id:crypto.randomUUID(),parentId:input.parentId||'',kind:input.kind,title:input.title||(input.kind==='folder'?'新建文件夹':'无标题笔记'),content:'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:timestamp,updatedAt:timestamp}; previewNotes.push(node); return structuredClone(node); },
     async UpdateNote(id,input){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); const versions=previewNoteVersions.get(id)||[]; if(node.content&&node.content!==input.content&&!versions.length)versions.push({id:crypto.randomUUID(),noteId:id,title:node.title,content:node.content,createdAt:new Date().toISOString()}); previewNoteVersions.set(id,versions); Object.assign(node,input,{updatedAt:new Date().toISOString()}); return structuredClone(node); },
     async RenameNoteNode(id,title){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('内容不存在'); node.title=title; node.updatedAt=new Date().toISOString(); return structuredClone(node); },
     async MoveNoteNode(id,parentId){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('内容不存在'); node.parentId=parentId||''; node.updatedAt=new Date().toISOString(); return structuredClone(node); },
@@ -5227,8 +5375,8 @@ function createPreviewAPI() {
     async DeleteNoteNodeForever(id){ const ids=new Set([id]); let changed=true; while(changed){changed=false;previewNotes.forEach(node=>{if(!ids.has(node.id)&&ids.has(node.parentId)){ids.add(node.id);changed=true;}});} previewNotes=previewNotes.filter(node=>!ids.has(node.id)); return true; },
     async ListNoteVersions(id){ return structuredClone(previewNoteVersions.get(id)||[]); },
     async RestoreNoteVersion(id,versionId){ const node=previewNotes.find(item=>item.id===id); const version=(previewNoteVersions.get(id)||[]).find(item=>item.id===versionId); if(!node||!version)throw new Error('历史版本不存在'); Object.assign(node,{title:version.title,content:version.content,updatedAt:new Date().toISOString()}); return structuredClone(node); },
-    async SetNotePassword(id,password){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); node.locked=Boolean(password); return true; },
-    async UnlockNote(id){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); return structuredClone({...node,locked:false}); },
+    async SetNotePassword(id,password){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); node.hasPassword=Boolean(password); node.locked=false; return true; },
+    async UnlockNote(id){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); return structuredClone({...node,hasPassword:true,locked:false}); },
     async ExportNote(id,format){ const node=previewNotes.find(item=>item.id===id); return {cancelled:false,name:`${node?.title||'笔记'}.${format==='word'?'doc':'txt'}`,path:'/Downloads'}; },
     async GetNoteShareQuota(){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); return {daily_share_limit:20,total_share_limit:200,daily_used:previewNoteShares.length,total_used:previewNoteShares.length,daily_remaining:Math.max(0,20-previewNoteShares.length),total_remaining:Math.max(0,200-previewNoteShares.length),source_type:'default',source_name:'系统默认',quota_exceeded:false,quota_message:'',unlimited_daily:false,unlimited_total:false}; },
     async CreateNoteShare(input){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); const timestamp=new Date().toISOString(); const id=Date.now(); const item={id,share_code:`preview-${id}`,share_uri:`/share/public/preview-${id}`,public_url:`https://admin.asbacklight.cn/share/preview-${id}`,title:input.title,description:input.description||'',content_mode:input.contentMode||'snapshot',allow_copy:Boolean(input.allowCopy),allow_edit:false,allow_comment:Boolean(input.allowComment),comment_count:0,is_encrypted:Boolean(input.isEncrypted),status:1,valid_type:Number(input.validType)||0,valid_start_time:input.validStartTime||null,valid_end_time:input.validEndTime||null,share_time:timestamp,source:input.source||'Workday Island',show_source:Boolean(input.showSource),show_creator:Boolean(input.showCreator),ref_type:'note',ref_id:input.noteId,view_count:0,lifecycle_state:'active',create_time:timestamp,modify_time:timestamp}; previewNoteShares.unshift(item); return structuredClone(item); },
@@ -5340,7 +5488,7 @@ function createPreviewAPI() {
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.11.3',latestVersion:'0.11.3',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.3',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'为云笔记增加清晰可见的图标加文字分享入口。\nAdded a clearly visible icon-and-text Share action to Cloud Notes.'} : {currentVersion:'0.11.3',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.12.0',latestVersion:'0.12.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增桌面 AI 对话、云笔记与链接分享，并完善云笔记跨平台交互。\nAdded desktop AI Chat, Cloud Notes, and Link Sharing with reliable cross-platform note interactions.'} : {currentVersion:'0.12.0',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; }
   };

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -9,6 +10,30 @@ import (
 	"testing"
 	"time"
 )
+
+func TestNoteShareManagementRequiresUnifiedAccountLogin(t *testing.T) {
+	app := NewApp()
+	checks := []struct {
+		name string
+		call func() error
+	}{
+		{name: "quota", call: func() error { _, err := app.GetNoteShareQuota(); return err }},
+		{name: "list", call: func() error { _, err := app.ListNoteShares(1, 20, "", ""); return err }},
+		{name: "detail", call: func() error { _, err := app.GetNoteShare(1); return err }},
+		{name: "create", call: func() error { _, err := app.CreateNoteShare(CreateNoteShareInput{}); return err }},
+		{name: "update", call: func() error { _, err := app.UpdateNoteShare(1, UpdateNoteShareInput{}); return err }},
+		{name: "revoke", call: func() error { _, err := app.RevokeNoteShare(1); return err }},
+		{name: "regenerate", call: func() error { _, err := app.RegenerateNoteShare(1); return err }},
+		{name: "delete", call: func() error { return app.DeleteNoteShare(1) }},
+	}
+	for _, check := range checks {
+		t.Run(check.name, func(t *testing.T) {
+			if err := check.call(); !errors.Is(err, ErrCloudDiskLoginRequired) {
+				t.Fatalf("expected login-required error, got %v", err)
+			}
+		})
+	}
+}
 
 func TestCreateNoteShareUsesCloudNoteReferenceAndCurrentAccount(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
