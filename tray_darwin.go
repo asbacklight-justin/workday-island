@@ -147,3 +147,5 @@ func setTrayWindowHidden(hidden bool) {
 	}
 	C.set_workday_island_tray_hidden(value)
 }
+
+func setTrayLanguage(_ string) {}

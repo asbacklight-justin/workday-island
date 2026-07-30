@@ -54,12 +54,12 @@ const translations = {
     translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
     confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
     languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用聊天、好友、工作云盘和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，实时聊天、工作云盘和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
     accountUsernamePlaceholder: '请输入用户名', accountPasswordPlaceholder: '请输入密码', loginOnline: '登录并上线', deviceAuth: '设备登录', passwordAuth: '账号登录',
-    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用聊天、好友、工作云盘和全能翻译。',
+    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用 AI 对话、实时聊天、好友、工作云盘和全能翻译。',
     registerUsernamePlaceholder: '3–20 位字母、数字或下划线', registerNicknamePlaceholder: '2–20 个字符', registerPasswordPlaceholder: '6–20 个字符',
     confirmPassword: '确认密码', confirmPasswordPlaceholder: '再次输入密码', phone: '手机号', emailPlaceholder: 'name@example.com', phonePlaceholder: '中国大陆手机号',
     inviteCode: '邀请码', inviteCodePlaceholder: '有邀请码时填写', inviteHint: '邀请码不必填写；填写后会关联邀请人。',
@@ -144,12 +144,12 @@ const translations = {
     translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
     confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
     languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks chat, friends, Work Cloud, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects realtime chat, Work Cloud, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
     accountUsernamePlaceholder: 'Enter username', accountPasswordPlaceholder: 'Enter password', loginOnline: 'Sign In & Go Online', deviceAuth: 'Device login', passwordAuth: 'Account login',
-    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for chat, friends, Work Cloud, and Universal Translator.',
+    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for AI Chat, realtime chat, friends, Work Cloud, and Universal Translator.',
     registerUsernamePlaceholder: '3–20 letters, numbers, or underscores', registerNicknamePlaceholder: '2–20 characters', registerPasswordPlaceholder: '6–20 characters',
     confirmPassword: 'Confirm password', confirmPasswordPlaceholder: 'Enter the password again', phone: 'Phone', emailPlaceholder: 'name@example.com', phonePlaceholder: 'Mainland China mobile number',
     inviteCode: 'Invite code', inviteCodePlaceholder: 'Enter one if you have it', inviteHint: 'The invite code is optional. If supplied, it links your inviter.',
@@ -191,6 +191,19 @@ const state = {
   accountOpen: false,
   accountMode: 'login',
   account: {loggedIn: false, user: null},
+  aiChatOpen: false,
+  aiChat: {
+    conversations: [], messages: [], current: null, keyword: '', archived: false,
+    models: [
+      {id:'deepseek-v4-flash',name:'DeepSeek V4 Flash',badge:'极速',configured:false,allowed:true,available:false},
+      {id:'deepseek-v4-pro',name:'DeepSeek V4 Pro',badge:'深度',configured:false,allowed:true,available:false}
+    ],
+    usage: {conversation_count:0,message_count:0,today_tokens:0,total_tokens:0},
+    usageLoaded: false,
+    policy: {allowed_models:[],daily_token_limit:0,total_token_limit:0,daily_used:0,total_used:0,quota_exceeded:false,quota_message:'',source_type:'default',source_name:'系统默认'},
+    preferences: {model:'deepseek-v4-flash',thinking_enabled:true,system_prompt:''},
+    loadingConversations: false, loadingMessages: false, generating: false, requestId: '', settingsOpen: false
+  },
   realtime: {status: 'offline', desiredOnline: false, lastError: '', authMode: 'device', identity: null, messages: [], friends: [], friendRequests: []},
   chatOpen: false,
   chatSection: 'conversation',
@@ -228,6 +241,8 @@ const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
 let englishFitTimer = 0;
+let aiSearchTimer = 0;
+let aiRenderFrame = 0;
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
 const translatorLanguages = [
   {value:'auto', key:'languageAuto'}, {value:'zh', key:'languageZh'}, {value:'en', key:'languageEn'},
@@ -334,6 +349,7 @@ function applyTranslations() {
   $('#email-author strong').textContent = state.appInfo.email;
   $('#open-web-app').setAttribute('aria-label', `${t('webApp')}: https://admin.asbacklight.cn/`);
   $('#open-web-app').title = 'https://admin.asbacklight.cn/';
+  void api.SetTrayLanguage?.(language);
   renderAccountSession();
   renderTranslatorLanguageOptions();
   renderTranslatorSession();
@@ -401,6 +417,8 @@ async function boot() {
       handleRemoteWindowEffect(payload);
     });
     window.runtime?.EventsOn?.('cloud:transfer-progress', renderCloudTransferProgress);
+    window.runtime?.EventsOn?.('ai-chat:stream', handleAIChatStreamEvent);
+    window.runtime?.EventsOn?.('tray:navigate', navigateFromTray);
   } catch (error) {
     showToast(readError(error), true);
   }
@@ -410,6 +428,31 @@ function bindEvents() {
   $('#add-todo').addEventListener('click', () => openTodoModal());
   $('#open-settings').addEventListener('click', openSettings);
   $('#open-about').addEventListener('click', () => openModal('about-modal'));
+  $('#open-ai-chat').addEventListener('click', openAIChatPage);
+  $('#close-ai-chat').addEventListener('click', closeAIChatPage);
+  $('#ai-open-login').addEventListener('click', () => { closeAIChatPage(); openAccountPage('login'); });
+  $('#ai-new-conversation').addEventListener('click', startNewAIConversation);
+  $('#ai-conversation-keyword').addEventListener('input', scheduleAIConversationSearch);
+  $('#ai-conversation-tabs').addEventListener('click', switchAIConversationArchive);
+  $('#ai-conversation-list').addEventListener('click', handleAIConversationAction);
+  $('#ai-conversation-list').addEventListener('dblclick', renameAIConversationFromList);
+  $('#ai-model-select').addEventListener('change', changeAIModel);
+  $('#ai-thinking-toggle').addEventListener('click', toggleAIThinking);
+  $('#open-ai-settings').addEventListener('click', openAISettings);
+  $('#close-ai-settings').addEventListener('click', closeAISettings);
+  $('#cancel-ai-settings').addEventListener('click', closeAISettings);
+  $('#ai-settings-mask').addEventListener('click', closeAISettings);
+  $('#save-ai-settings').addEventListener('click', saveAISettings);
+  $('#ai-settings-models').addEventListener('click', chooseAISettingsModel);
+  $('#ai-welcome-state').addEventListener('click', useAISuggestion);
+  $('#ai-composer-input').addEventListener('input', updateAIComposer);
+  $('#ai-composer-input').addEventListener('focus', () => $('#ai-composer').classList.add('focused'));
+  $('#ai-composer-input').addEventListener('blur', () => $('#ai-composer').classList.remove('focused'));
+  $('#ai-composer-input').addEventListener('keydown', handleAIComposerKeydown);
+  $('#ai-send-message').addEventListener('click', sendAIMessage);
+  $('#ai-stop-generation').addEventListener('click', stopAIGeneration);
+  $('#ai-message-list').addEventListener('click', handleAIMessageAction);
+  $('#ai-message-list').addEventListener('dblclick', copyAICodeBlock);
   $('#open-chat').addEventListener('click', openChatPage);
   $('#open-account').addEventListener('click', () => openAccountPage('login'));
   $('#close-account').addEventListener('click', closeAccountPage);
@@ -558,6 +601,8 @@ function bindEvents() {
       }
     }
     if (event.key === 'Escape' && state.accountOpen) { closeAccountPage(); return; }
+    if (event.key === 'Escape' && state.aiChat.settingsOpen) { closeAISettings(); return; }
+    if (event.key === 'Escape' && state.aiChatOpen) { closeAIChatPage(); return; }
     if (event.key === 'Escape' && state.cloudOpen) { closeCloudPage(); return; }
     if (event.key === 'Escape' && state.translatorOpen) { closeTranslatorPage(); return; }
     if (event.key === 'Escape' && state.stockOpen) { closeStockPage(); return; }
@@ -567,6 +612,7 @@ function bindEvents() {
       $('#english-options').querySelector(`[data-option-index="${Number(event.key) - 1}"]`)?.click();
     }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
+    if (state.aiChatOpen && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); startNewAIConversation(); }
   });
   $('#todo-list').addEventListener('click', handleTodoAction);
   window.addEventListener('resize', handleWindowResize);
@@ -595,6 +641,29 @@ function minimiseWindow() {
 function hideToTray() {
   if (api.HideToTray) api.HideToTray();
   else window.close();
+}
+
+async function navigateFromTray(target) {
+  $$('.modal-backdrop:not(.hidden)').forEach(modal => closeModal(modal.id));
+  closeAISettings();
+  if (state.settings.compactMode) {
+    try {
+      state.settings = {...state.settings, ...(await api.SetCompactMode(false))};
+      applyCompactUI();
+    } catch (error) {
+      showToast(readError(error), true);
+    }
+  }
+  const destinations = {
+    chat: openChatPage,
+    english: openEnglishPage,
+    ai: openAIChatPage,
+    cloud: openCloudPage,
+    translator: openTranslatorPage,
+    stocks: openStockPage
+  };
+  const openDestination = destinations[String(target || '').toLowerCase()];
+  if (openDestination) await openDestination();
 }
 
 async function checkForUpdates(force) {
@@ -673,6 +742,7 @@ function renderAll() {
   renderCompactTodos();
   renderSummary();
   renderAccountSession();
+  renderAIChat();
   renderRealtime();
   updateClock();
 }
@@ -828,6 +898,670 @@ async function handleTodoAction(event) {
   } catch (error) { showToast(readError(error), true); }
 }
 
+function selectedAIModel() {
+  const modelID = state.aiChat.current?.model || state.aiChat.preferences.model;
+  return state.aiChat.models.find(item => item.id === modelID);
+}
+
+function aiThinkingEnabled() {
+  return state.aiChat.current?.thinking_enabled ?? state.aiChat.preferences.thinking_enabled;
+}
+
+function aiServiceDisabledReason() {
+  const selected = selectedAIModel();
+  if (selected?.disabled_reason) return selected.disabled_reason;
+  if (state.aiChat.policy?.quota_message) return state.aiChat.policy.quota_message;
+  return state.aiChat.models.some(item => item.configured) ? '当前策略没有开放可用模型' : '请联系管理员配置 DeepSeek 服务';
+}
+
+function aiServiceAvailable() {
+  return Boolean(state.account.loggedIn && selectedAIModel()?.available);
+}
+
+async function openAIChatPage() {
+  if (state.accountOpen) closeAccountPage();
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.stockOpen) await closeStockPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
+  state.aiChatOpen = true;
+  document.body.classList.add('ai-chat-open');
+  $('#ai-chat-page').classList.remove('hidden');
+  $('#open-ai-chat').classList.add('active');
+  renderAIChat();
+  if (!state.account.loggedIn) return;
+  await Promise.allSettled([loadAIModels(), loadAIConversations(), loadAIUsage()]);
+  renderAIChat();
+  setTimeout(() => $('#ai-composer-input').focus(), 30);
+}
+
+function closeAIChatPage() {
+  if (state.aiChat.generating && state.aiChat.requestId) stopAIGeneration();
+  closeAISettings();
+  state.aiChatOpen = false;
+  document.body.classList.remove('ai-chat-open');
+  $('#ai-chat-page').classList.add('hidden');
+  $('#open-ai-chat').classList.remove('active');
+}
+
+async function loadAIModels() {
+  try {
+    const result = await api.GetAIChatModels();
+    if (result?.models?.length) state.aiChat.models = result.models;
+    state.aiChat.policy = {...state.aiChat.policy, ...(result?.policy || {})};
+    if (!state.aiChat.current && !selectedAIModel()?.available) {
+      const available = state.aiChat.models.find(item => item.available);
+      if (available) state.aiChat.preferences.model = available.id;
+    }
+  } catch (error) {
+    handleAIChatError(error);
+  } finally {
+    renderAIChatChrome();
+  }
+}
+
+async function loadAIUsage() {
+  try {
+    state.aiChat.usage = {...state.aiChat.usage, ...(await api.GetAIChatUsage() || {})};
+    state.aiChat.usageLoaded = true;
+  } catch (error) {
+    if (!readError(error).includes('登录')) console.warn('AI usage unavailable', error);
+  } finally {
+    renderAIUsage();
+  }
+}
+
+async function loadAIConversations() {
+  state.aiChat.loadingConversations = true;
+  renderAIConversationList();
+  try {
+    const result = await api.ListAIChatConversations(1, 50, state.aiChat.keyword.trim(), state.aiChat.archived);
+    state.aiChat.conversations = result?.list || [];
+  } catch (error) {
+    handleAIChatError(error);
+    state.aiChat.conversations = [];
+  } finally {
+    state.aiChat.loadingConversations = false;
+    renderAIConversationList();
+  }
+}
+
+function scheduleAIConversationSearch(event) {
+  state.aiChat.keyword = event.target.value;
+  window.clearTimeout(aiSearchTimer);
+  aiSearchTimer = window.setTimeout(loadAIConversations, 280);
+}
+
+function switchAIConversationArchive(event) {
+  const button = event.target.closest('[data-ai-archived]');
+  if (!button) return;
+  state.aiChat.archived = button.dataset.aiArchived === 'true';
+  state.aiChat.current = null;
+  state.aiChat.messages = [];
+  $$('#ai-conversation-tabs button').forEach(item => item.classList.toggle('active', item === button));
+  renderAIChatChrome();
+  renderAIMessageList();
+  loadAIConversations();
+}
+
+function startNewAIConversation() {
+  if (state.aiChat.generating) stopAIGeneration();
+  state.aiChat.current = null;
+  state.aiChat.messages = [];
+  $('#ai-composer-input').value = '';
+  updateAIComposer();
+  renderAIChat();
+  setTimeout(() => $('#ai-composer-input').focus(), 30);
+}
+
+async function selectAIConversation(item) {
+  if (!item || state.aiChat.current?.id === item.id) return;
+  if (state.aiChat.generating) stopAIGeneration();
+  state.aiChat.current = {...item};
+  state.aiChat.loadingMessages = true;
+  state.aiChat.messages = [];
+  renderAIChat();
+  try {
+    state.aiChat.messages = await api.ListAIChatMessages(item.id, 200) || [];
+  } catch (error) {
+    handleAIChatError(error);
+  } finally {
+    state.aiChat.loadingMessages = false;
+    renderAIChat();
+    scrollAIChatToBottom(true);
+  }
+}
+
+async function ensureAIConversation() {
+  if (state.aiChat.current) return state.aiChat.current;
+  const input = {
+    title: '新对话',
+    model: state.aiChat.preferences.model,
+    thinking_enabled: state.aiChat.preferences.thinking_enabled,
+    system_prompt: state.aiChat.preferences.system_prompt
+  };
+  const conversation = await api.CreateAIChatConversation(input);
+  state.aiChat.current = conversation;
+  state.aiChat.conversations.unshift(conversation);
+  renderAIConversationList();
+  renderAIChatChrome();
+  return conversation;
+}
+
+async function handleAIConversationAction(event) {
+  const row = event.target.closest('[data-ai-conversation-id]');
+  if (!row) return;
+  const item = state.aiChat.conversations.find(value => Number(value.id) === Number(row.dataset.aiConversationId));
+  if (!item) return;
+  const action = event.target.closest('[data-ai-conversation-action]')?.dataset.aiConversationAction;
+  event.preventDefault();
+  event.stopPropagation();
+  if (!action) return selectAIConversation(item);
+  if (action === 'pin') return patchAIConversation(item, {pinned: !item.pinned});
+  if (action === 'archive') return patchAIConversation(item, {archived: !item.archived});
+  if (action === 'delete') return removeAIConversation(item);
+}
+
+function renameAIConversationFromList(event) {
+  const row = event.target.closest('[data-ai-conversation-id]');
+  if (!row || event.target.closest('[data-ai-conversation-action]')) return;
+  const item = state.aiChat.conversations.find(value => Number(value.id) === Number(row.dataset.aiConversationId));
+  if (item) renameAIConversation(item);
+}
+
+async function renameAIConversation(item) {
+  const title = window.prompt('给这段对话起一个清晰的名字', item.title || '新对话');
+  if (title === null) return;
+  const value = title.trim();
+  if (!value || [...value].length > 160) {
+    showToast('请输入 1–160 个字符', true);
+    return;
+  }
+  await patchAIConversation(item, {title: value});
+}
+
+async function patchAIConversation(item, data) {
+  try {
+    const updated = await api.UpdateAIChatConversation(item.id, data);
+    Object.assign(item, updated || data);
+    if (state.aiChat.current?.id === item.id) Object.assign(state.aiChat.current, updated || data);
+    if (Object.hasOwn(data, 'archived')) {
+      if (state.aiChat.current?.id === item.id) startNewAIConversation();
+      await loadAIConversations();
+    } else {
+      state.aiChat.conversations.sort((a,b) => Number(b.pinned) - Number(a.pinned));
+    }
+    renderAIChat();
+    return updated;
+  } catch (error) {
+    handleAIChatError(error);
+    throw error;
+  }
+}
+
+async function removeAIConversation(item) {
+  if (!window.confirm(`删除“${item.title || '新对话'}”后将无法在界面中恢复，确定继续吗？`)) return;
+  try {
+    await api.DeleteAIChatConversation(item.id);
+    state.aiChat.conversations = state.aiChat.conversations.filter(value => value.id !== item.id);
+    if (state.aiChat.current?.id === item.id) startNewAIConversation();
+    renderAIConversationList();
+    loadAIUsage();
+    showToast('对话已删除');
+  } catch (error) {
+    handleAIChatError(error);
+  }
+}
+
+async function changeAIModel(event) {
+  const model = event.target.value;
+  if (state.aiChat.current) {
+    try { await patchAIConversation(state.aiChat.current, {model}); } catch (_) { renderAIChatChrome(); }
+  } else {
+    state.aiChat.preferences.model = model;
+    renderAIChatChrome();
+  }
+}
+
+async function toggleAIThinking() {
+  if (state.aiChat.generating) return;
+  const value = !aiThinkingEnabled();
+  if (state.aiChat.current) {
+    try { await patchAIConversation(state.aiChat.current, {thinking_enabled: value}); } catch (_) { /* restored by render */ }
+  } else {
+    state.aiChat.preferences.thinking_enabled = value;
+    renderAIChatChrome();
+  }
+}
+
+function openAISettings() {
+  if (!state.account.loggedIn || state.aiChat.generating) return;
+  state.aiChat.settingsOpen = true;
+  state.aiChat.settingsDraft = {
+    model: state.aiChat.current?.model || state.aiChat.preferences.model,
+    thinking_enabled: aiThinkingEnabled(),
+    system_prompt: state.aiChat.current?.system_prompt || state.aiChat.preferences.system_prompt
+  };
+  $('#ai-settings-thinking').checked = state.aiChat.settingsDraft.thinking_enabled;
+  $('#ai-system-prompt').value = state.aiChat.settingsDraft.system_prompt;
+  renderAISettingsModels();
+  $('#ai-settings-mask').classList.remove('hidden');
+  $('#ai-settings-drawer').classList.remove('hidden');
+}
+
+function closeAISettings() {
+  state.aiChat.settingsOpen = false;
+  $('#ai-settings-mask')?.classList.add('hidden');
+  $('#ai-settings-drawer')?.classList.add('hidden');
+}
+
+function renderAISettingsModels() {
+  const selected = state.aiChat.settingsDraft?.model || state.aiChat.preferences.model;
+  $('#ai-settings-models').innerHTML = state.aiChat.models.map(model => `
+    <button type="button" data-ai-settings-model="${escapeHTML(model.id)}" class="${model.id === selected ? 'active' : ''}" ${model.available ? '' : 'disabled'}>
+      <span><strong>${escapeHTML(model.name)}</strong><small>${escapeHTML(model.available ? model.description : (model.disabled_reason || '当前不可用'))}</small></span>
+      <em>${model.id === selected ? '✓' : escapeHTML(model.badge || '')}</em>
+    </button>`).join('');
+}
+
+function chooseAISettingsModel(event) {
+  const button = event.target.closest('[data-ai-settings-model]');
+  if (!button || button.disabled || !state.aiChat.settingsDraft) return;
+  state.aiChat.settingsDraft.model = button.dataset.aiSettingsModel;
+  renderAISettingsModels();
+}
+
+async function saveAISettings() {
+  if (!state.aiChat.settingsDraft) return;
+  const data = {
+    model: state.aiChat.settingsDraft.model,
+    thinking_enabled: $('#ai-settings-thinking').checked,
+    system_prompt: $('#ai-system-prompt').value
+  };
+  const button = $('#save-ai-settings');
+  button.disabled = true;
+  button.textContent = '保存中…';
+  try {
+    if (state.aiChat.current) await patchAIConversation(state.aiChat.current, data);
+    else Object.assign(state.aiChat.preferences, data);
+    closeAISettings();
+    renderAIChat();
+    showToast('对话设置已保存');
+  } catch (_) {
+    // patchAIConversation has already surfaced the service error.
+  } finally {
+    button.disabled = false;
+    button.textContent = '保存设置';
+  }
+}
+
+function useAISuggestion(event) {
+  const button = event.target.closest('[data-ai-prompt]');
+  if (!button || !state.account.loggedIn) return;
+  $('#ai-composer-input').value = button.dataset.aiPrompt;
+  updateAIComposer();
+  $('#ai-composer-input').focus();
+}
+
+function updateAIComposer() {
+  const input = $('#ai-composer-input');
+  input.style.height = 'auto';
+  input.style.height = `${Math.min(input.scrollHeight, 94)}px`;
+  $('#ai-input-count').textContent = input.value.length > 45000 ? `${input.value.length}/50000` : '';
+  renderAIComposer();
+}
+
+function handleAIComposerKeydown(event) {
+  if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+    event.preventDefault();
+    sendAIMessage();
+  }
+}
+
+function canSendAIMessage() {
+  const input = $('#ai-composer-input')?.value || '';
+  return aiServiceAvailable() && !state.aiChat.generating && input.trim().length > 0 && input.length <= 50000;
+}
+
+async function sendAIMessage() {
+  if (!canSendAIMessage()) return;
+  const content = $('#ai-composer-input').value.trim();
+  let conversation;
+  try {
+    conversation = await ensureAIConversation();
+  } catch (error) {
+    handleAIChatError(error);
+    return;
+  }
+  const requestId = globalThis.crypto?.randomUUID?.() || `desktop-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  const now = new Date().toISOString();
+  const userMessage = {localId:`user-${requestId}`,role:'user',content,status:'completed',create_time:now};
+  const assistantMessage = {localId:`assistant-${requestId}`,client_request_id:requestId,role:'assistant',content:'',liveReasoning:'',status:'streaming',model:selectedAIModel()?.id,create_time:now,feedback:0};
+  state.aiChat.messages.push(userMessage, assistantMessage);
+  state.aiChat.generating = true;
+  state.aiChat.requestId = requestId;
+  $('#ai-composer-input').value = '';
+  updateAIComposer();
+  renderAIMessageList();
+  renderAIComposer();
+  scrollAIChatToBottom(true);
+
+  try {
+    const input = {content,client_request_id:requestId,model:selectedAIModel()?.id || state.aiChat.preferences.model,thinking_enabled:aiThinkingEnabled()};
+    if (hasNativeAPI) await api.StreamAIChatMessage(conversation.id, input);
+    else await simulatePreviewAIStream(requestId);
+    if (assistantMessage.status === 'streaming') assistantMessage.status = 'completed';
+  } catch (error) {
+    if (assistantMessage.status === 'cancelled' || readError(error).toLowerCase().includes('canceled')) {
+      assistantMessage.status = 'cancelled';
+      assistantMessage.error_message = '生成已停止';
+    } else {
+      assistantMessage.status = 'failed';
+      assistantMessage.error_message = readError(error) || '生成失败，请重试';
+      showToast(assistantMessage.error_message, true);
+    }
+  } finally {
+    state.aiChat.generating = false;
+    state.aiChat.requestId = '';
+    renderAIChat();
+    await Promise.allSettled([loadAIConversations(), loadAIUsage(), loadAIModels()]);
+  }
+}
+
+function stopAIGeneration() {
+  const requestId = state.aiChat.requestId;
+  if (!requestId) return;
+  const assistant = state.aiChat.messages.find(message => message.localId === `assistant-${requestId}` || (message.role === 'assistant' && message.client_request_id === requestId));
+  if (assistant) {
+    assistant.status = 'cancelled';
+    assistant.error_message = '生成已停止';
+  }
+  if (hasNativeAPI) void api.CancelAIChatStream(requestId);
+  renderAIChat();
+}
+
+async function simulatePreviewAIStream(requestId) {
+  const answer = '这是工位岛 AI 对话的预览响应。真实桌面应用会通过 Go 后端桥接 DeepSeek 流式接口，并保留会话、思考过程与用量记录。';
+  handleAIChatStreamEvent({clientRequestId:requestId,event:'meta',payload:{message:{client_request_id:requestId,role:'assistant',status:'streaming',model:'deepseek-v4-flash'}}});
+  handleAIChatStreamEvent({clientRequestId:requestId,event:'reasoning',payload:{reasoning:'先确认目标，再给出清晰、可执行的答案。'}});
+  for (const chunk of answer.match(/.{1,8}/gu) || []) {
+    await new Promise(resolve => setTimeout(resolve, 35));
+    handleAIChatStreamEvent({clientRequestId:requestId,event:'delta',payload:{delta:chunk}});
+  }
+  const assistant = state.aiChat.messages.find(message => message.localId === `assistant-${requestId}`);
+  handleAIChatStreamEvent({clientRequestId:requestId,event:'done',payload:{message:{...assistant,id:Date.now(),status:'completed',reasoning_content:assistant?.liveReasoning || '',liveReasoning:undefined}}});
+}
+
+function handleAIChatStreamEvent(event) {
+  const requestId = event?.clientRequestId;
+  if (!requestId || requestId !== state.aiChat.requestId) return;
+  const message = state.aiChat.messages.find(item => item.localId === `assistant-${requestId}` || (item.role === 'assistant' && item.client_request_id === requestId));
+  if (!message) return;
+  const payload = event.payload || {};
+  if (event.event === 'meta' && payload.message) {
+    const localId = message.localId;
+    Object.assign(message, payload.message, {localId,content:'',liveReasoning:''});
+  } else if (event.event === 'reasoning') {
+    message.liveReasoning = `${message.liveReasoning || ''}${payload.reasoning || ''}`;
+  } else if (event.event === 'delta') {
+    message.content = `${message.content || ''}${payload.delta || ''}`;
+  } else if (event.event === 'done') {
+    const localId = message.localId;
+    Object.assign(message, payload.message || {}, {localId,liveReasoning:''});
+    message.status ||= 'completed';
+  } else if (event.event === 'error') {
+    message.status = 'failed';
+    message.error_message = payload.error || '生成失败，请重试';
+  }
+  scheduleAIMessageRender();
+}
+
+function scheduleAIMessageRender() {
+  if (aiRenderFrame) return;
+  aiRenderFrame = requestAnimationFrame(() => {
+    aiRenderFrame = 0;
+    renderAIMessageList();
+    scrollAIChatToBottom();
+  });
+}
+
+function renderAIChat() {
+  renderAIAccountState();
+  renderAIChatChrome();
+  renderAIConversationList();
+  renderAIUsage();
+  renderAIMessageList();
+  renderAIComposer();
+}
+
+function renderAIAccountState() {
+  const loggedIn = Boolean(state.account.loggedIn);
+  $('#ai-login-required').classList.toggle('hidden', loggedIn);
+  $('#ai-message-stage').classList.toggle('hidden', !loggedIn);
+  $('#ai-composer-zone').classList.toggle('hidden', !loggedIn);
+  $('#ai-new-conversation').disabled = !loggedIn;
+  $('#ai-conversation-keyword').disabled = !loggedIn;
+}
+
+function renderAIChatChrome() {
+  const current = state.aiChat.current;
+  $('#ai-current-title').textContent = current?.title || '新的对话';
+  const modelID = current?.model || state.aiChat.preferences.model;
+  const select = $('#ai-model-select');
+  select.innerHTML = state.aiChat.models.map(model => `<option value="${escapeHTML(model.id)}" ${model.available ? '' : 'disabled'}>${escapeHTML(model.name)}${model.available ? '' : ' · 不可用'}</option>`).join('');
+  select.value = modelID;
+  select.disabled = !state.account.loggedIn || state.aiChat.generating;
+  const thinking = aiThinkingEnabled();
+  $('#ai-thinking-toggle').classList.toggle('active', thinking);
+  $('#ai-thinking-toggle').setAttribute('aria-pressed', String(thinking));
+  $('#ai-thinking-toggle span').textContent = thinking ? '深度思考' : '快速回答';
+  $('#ai-thinking-toggle').disabled = !state.account.loggedIn || state.aiChat.generating;
+  $('#open-ai-settings').disabled = !state.account.loggedIn || state.aiChat.generating;
+  const status = $('#ai-service-status');
+  status.classList.toggle('online', aiServiceAvailable());
+  status.querySelector('span').textContent = !state.account.loggedIn ? '登录后连接服务' : aiServiceAvailable() ? `服务在线 · ${state.aiChat.policy.source_name || '系统默认'}` : aiServiceDisabledReason();
+  $('#ai-configuration-notice').classList.toggle('hidden', aiServiceAvailable());
+  $('#ai-disabled-reason').textContent = aiServiceDisabledReason();
+}
+
+function renderAIConversationList() {
+  const container = $('#ai-conversation-list');
+  if (state.aiChat.loadingConversations) {
+    container.innerHTML = `<div class="ai-conversation-loading">${'<i></i>'.repeat(5)}</div>`;
+    return;
+  }
+  if (!state.aiChat.conversations.length) {
+    const text = state.aiChat.keyword ? '没有匹配的对话' : state.aiChat.archived ? '暂无归档对话' : '你的新想法会出现在这里';
+    container.innerHTML = `<div class="ai-empty-conversations"><span>▣</span><p>${escapeHTML(text)}</p></div>`;
+    return;
+  }
+  container.innerHTML = state.aiChat.conversations.map(item => `
+    <article class="ai-conversation-item ${state.aiChat.current?.id === item.id ? 'active' : ''}" data-ai-conversation-id="${item.id}">
+      <div class="ai-conversation-icon">◫</div>
+      <div class="ai-conversation-copy">
+        <div class="ai-conversation-title">${item.pinned ? '<i>★</i>' : ''}${escapeHTML(item.title || '新对话')}</div>
+        <div class="ai-conversation-meta">${escapeHTML(aiModelShortName(item.model))} · ${escapeHTML(formatAIRelativeTime(item.last_message_time || item.create_time))}</div>
+      </div>
+      <div class="ai-conversation-actions">
+        <button type="button" data-ai-conversation-action="pin" title="${item.pinned ? '取消置顶' : '置顶'}">${item.pinned ? '☆' : '★'}</button>
+        <button type="button" data-ai-conversation-action="archive" title="${item.archived ? '移出归档' : '归档'}">▣</button>
+        <button type="button" data-ai-conversation-action="delete" title="删除">×</button>
+      </div>
+    </article>`).join('');
+}
+
+function renderAIUsage() {
+  const usage = state.aiChat.usage || {};
+  const policy = state.aiChat.policy || {};
+  const today = state.aiChat.usageLoaded ? usage.today_tokens : (policy.daily_used ?? usage.today_tokens ?? 0);
+  const total = state.aiChat.usageLoaded ? usage.total_tokens : (policy.total_used ?? usage.total_tokens ?? 0);
+  $('#ai-usage-today').textContent = `${formatAITokens(today)} / ${formatAIPolicyLimit(policy.daily_token_limit)}`;
+  $('#ai-usage-total').textContent = `${usage.conversation_count || 0} 个会话 · 累计 ${formatAITokens(total)} / ${formatAIPolicyLimit(policy.total_token_limit)}`;
+  const progress = Number(policy.daily_token_limit) > 0 ? Math.min(100, Number(today) / Number(policy.daily_token_limit) * 100) : 0;
+  $('#ai-usage-progress').style.width = `${progress}%`;
+}
+
+function renderAIMessageList() {
+  const welcome = $('#ai-welcome-state');
+  const list = $('#ai-message-list');
+  if (state.aiChat.loadingMessages) {
+    welcome.classList.add('hidden');
+    list.classList.remove('hidden');
+    list.innerHTML = '<div class="ai-empty-conversations"><span>✦</span><p>正在载入对话…</p></div>';
+    return;
+  }
+  if (!state.aiChat.messages.length) {
+    welcome.classList.remove('hidden');
+    list.classList.add('hidden');
+    list.innerHTML = '';
+    return;
+  }
+  welcome.classList.add('hidden');
+  list.classList.remove('hidden');
+  const userInitial = [...(accountDisplayName() || '我')][0]?.toUpperCase() || '我';
+  list.innerHTML = state.aiChat.messages.map((message,index) => {
+    const assistant = message.role === 'assistant';
+    const reasoning = message.reasoning_content || message.liveReasoning || '';
+    const status = message.status || 'completed';
+    const answer = message.content
+      ? formatAIContent(message.content)
+      : status === 'streaming' ? '<div class="ai-typing"><i></i><i></i><i></i></div>'
+      : `<div class="ai-inline-state ${status === 'failed' ? 'error' : ''}">${escapeHTML(message.error_message || (status === 'cancelled' ? '已停止生成，你可以重新发送。' : ''))}</div>`;
+    return `<article class="ai-message-row role-${assistant ? 'assistant' : 'user'} status-${escapeHTML(status)}">
+      <div class="ai-message-avatar">${assistant ? '✦' : escapeHTML(userInitial)}</div>
+      <div class="ai-message-body">
+        <div class="ai-message-author"><strong>${assistant ? escapeHTML(aiModelDisplayName(message.model)) : '你'}</strong><span>${escapeHTML(formatAIMessageTime(message.create_time))}</span>${status === 'streaming' ? '<em><i></i>正在生成</em>' : ''}</div>
+        ${reasoning ? `<details class="ai-reasoning-box" ${status === 'streaming' ? 'open' : ''}><summary><span>${status === 'streaming' ? '正在思考…' : '查看思考过程'}</span><small>${[...reasoning].length} 字</small></summary><div>${escapeHTML(reasoning)}</div></details>` : ''}
+        ${assistant ? `<div class="ai-answer">${answer}</div>` : `<div class="ai-user-message">${escapeHTML(message.content || '')}</div>`}
+        ${assistant && status !== 'streaming' ? `<div class="ai-message-tools">
+          <button type="button" data-ai-message-action="copy" data-ai-message-index="${index}" title="复制">▣</button>
+          <button type="button" data-ai-message-action="retry" data-ai-message-index="${index}" title="重新生成">↻</button>
+          <button type="button" data-ai-message-action="helpful" data-ai-message-index="${index}" class="${Number(message.feedback) === 1 ? 'selected' : ''}" title="有帮助">＋</button>
+          <button type="button" data-ai-message-action="unhelpful" data-ai-message-index="${index}" class="${Number(message.feedback) === -1 ? 'selected' : ''}" title="需改进">−</button>
+          ${message.completion_tokens ? `<small>${message.completion_tokens} tokens</small>` : ''}
+        </div>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function renderAIComposer() {
+  const input = $('#ai-composer-input');
+  const enabled = aiServiceAvailable() && !state.aiChat.generating;
+  input.disabled = !enabled;
+  input.placeholder = aiServiceAvailable() ? '给 AI 发送消息…' : aiServiceDisabledReason();
+  $('#ai-composer').classList.toggle('disabled', !aiServiceAvailable());
+  $('#ai-send-message').disabled = !canSendAIMessage();
+  $('#ai-send-message').classList.toggle('hidden', state.aiChat.generating);
+  $('#ai-stop-generation').classList.toggle('hidden', !state.aiChat.generating);
+}
+
+async function handleAIMessageAction(event) {
+  const button = event.target.closest('[data-ai-message-action]');
+  if (!button) return;
+  const index = Number(button.dataset.aiMessageIndex);
+  const message = state.aiChat.messages[index];
+  if (!message) return;
+  const action = button.dataset.aiMessageAction;
+  if (action === 'copy') {
+    try { await navigator.clipboard.writeText(message.content || ''); showToast('已复制'); } catch (_) { showToast('复制失败，请手动选择', true); }
+    return;
+  }
+  if (action === 'retry') {
+    for (let i = index - 1; i >= 0; i--) {
+      if (state.aiChat.messages[i].role === 'user') {
+        $('#ai-composer-input').value = state.aiChat.messages[i].content;
+        updateAIComposer();
+        $('#ai-composer-input').focus();
+        return;
+      }
+    }
+  }
+  if (action === 'helpful' || action === 'unhelpful') {
+    if (!Number(message.id)) return;
+    const target = action === 'helpful' ? 1 : -1;
+    const feedback = Number(message.feedback) === target ? 0 : target;
+    try {
+      await api.SetAIChatFeedback(message.id, feedback);
+      message.feedback = feedback;
+      renderAIMessageList();
+    } catch (error) { handleAIChatError(error); }
+  }
+}
+
+async function copyAICodeBlock(event) {
+  const pre = event.target.closest('.ai-answer pre');
+  if (!pre) return;
+  try { await navigator.clipboard.writeText(pre.innerText); showToast('代码已复制'); } catch (_) { /* clipboard can be unavailable */ }
+}
+
+function formatAIContent(value) {
+  const source = String(value || '');
+  const pattern = /```([^\n`]*)\n?([\s\S]*?)```/g;
+  let result = '';
+  let cursor = 0;
+  let match;
+  while ((match = pattern.exec(source))) {
+    result += formatAIPlainText(source.slice(cursor, match.index));
+    const language = match[1].trim();
+    result += `<pre title="双击复制"><code${language ? ` data-language="${escapeHTML(language)}"` : ''}>${escapeHTML(match[2].replace(/\n$/, ''))}</code></pre>`;
+    cursor = pattern.lastIndex;
+  }
+  result += formatAIPlainText(source.slice(cursor));
+  return result;
+}
+
+function formatAIPlainText(value) {
+  if (!value) return '';
+  const inline = text => escapeHTML(text)
+    .replace(/`([^`\n]+)`/g, '<code>$1</code>')
+    .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+  return value.trim().split(/\n{2,}/).map(block => {
+    const lines = block.split('\n');
+    if (lines.every(line => /^\s*[-*]\s+/.test(line))) {
+      return `<ul>${lines.map(line => `<li>${inline(line.replace(/^\s*[-*]\s+/, ''))}</li>`).join('')}</ul>`;
+    }
+    const heading = lines[0].match(/^\s*(#{1,3})\s+(.+)$/);
+    if (heading && lines.length === 1) return `<h${heading[1].length}>${inline(heading[2])}</h${heading[1].length}>`;
+    if (lines.every(line => /^\s*>\s?/.test(line))) return `<blockquote>${inline(lines.map(line => line.replace(/^\s*>\s?/, '')).join('\n')).replace(/\n/g,'<br>')}</blockquote>`;
+    return `<p>${inline(block).replace(/\n/g,'<br>')}</p>`;
+  }).join('');
+}
+
+function scrollAIChatToBottom(force = false) {
+  const stage = $('#ai-message-stage');
+  if (!stage) return;
+  const nearBottom = stage.scrollHeight - stage.scrollTop - stage.clientHeight < 120;
+  if (force || nearBottom) stage.scrollTo({top:stage.scrollHeight,behavior:force ? 'auto' : 'smooth'});
+}
+
+function aiModelDisplayName(id) { return state.aiChat.models.find(item => item.id === id)?.name || 'DeepSeek V4'; }
+function aiModelShortName(id) { return String(id || '').includes('pro') ? 'V4 Pro' : 'V4 Flash'; }
+function formatAITokens(value = 0) { const number = Number(value) || 0; return number >= 1000000 ? `${(number/1000000).toFixed(1)}M` : number >= 1000 ? `${(number/1000).toFixed(1)}K` : String(number); }
+function formatAIPolicyLimit(value) { return Number(value) === 0 ? '不限' : formatAITokens(value); }
+function formatAIMessageTime(value) { return value ? new Date(value).toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit'}) : ''; }
+function formatAIRelativeTime(value) {
+  if (!value) return '刚刚';
+  const seconds = Math.max(0, (Date.now() - new Date(value).getTime()) / 1000);
+  if (seconds < 60) return '刚刚';
+  if (seconds < 3600) return `${Math.floor(seconds/60)} 分钟前`;
+  if (seconds < 86400) return `${Math.floor(seconds/3600)} 小时前`;
+  if (seconds < 604800) return `${Math.floor(seconds/86400)} 天前`;
+  return new Date(value).toLocaleDateString('zh-CN',{month:'numeric',day:'numeric'});
+}
+
+function handleAIChatError(error) {
+  const message = readError(error);
+  if (message.includes('登录已过期') || message.includes('请先登录')) {
+    state.account = {loggedIn:false,user:null};
+    state.cloud.session = {loggedIn:false,user:null};
+    renderAccountSession();
+    renderAIChat();
+  }
+  showToast(message, true);
+}
+
 function accountDisplayName() {
   return String(state.account?.user?.nickname || state.account?.user?.username || '');
 }
@@ -863,6 +1597,7 @@ function renderAccountSession() {
 }
 
 function openAccountPage(mode = 'login') {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
   if (state.translatorOpen) closeTranslatorPage();
@@ -918,6 +1653,7 @@ async function submitAccountLogin(event) {
     renderAccountSession();
     renderCloudSession();
     renderTranslatorSession();
+    renderAIChat();
     renderRealtime();
     showToast(t('loginSuccess'));
   } catch (error) {
@@ -948,12 +1684,18 @@ async function logoutAccount() {
     state.translator.history = [];
     state.translator.total = 0;
     state.translator.selected = [];
+    state.aiChat.conversations = [];
+    state.aiChat.messages = [];
+    state.aiChat.current = null;
+    state.aiChat.usage = {conversation_count:0,message_count:0,today_tokens:0,total_tokens:0};
+    state.aiChat.usageLoaded = false;
     state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
     state.accountMode = 'login';
     renderAccountSession();
     renderCloudSession();
     renderTranslatorSession();
     renderTranslator();
+    renderAIChat();
     renderRealtime();
     showToast(t('logoutSuccess'));
     setTimeout(() => $('#account-username').focus(), 40);
@@ -967,6 +1709,7 @@ async function logoutAccount() {
 }
 
 function openChatPage() {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
   if (state.cloudOpen) closeCloudPage();
   if (state.translatorOpen) closeTranslatorPage();
@@ -1021,6 +1764,7 @@ function renderChatSection() {
 }
 
 async function openCloudPage() {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
   if (state.translatorOpen) closeTranslatorPage();
@@ -1070,6 +1814,7 @@ function translatorLanguageLabel(value) {
 }
 
 async function openTranslatorPage() {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
@@ -1667,6 +2412,7 @@ function renderCloudTransferProgress(payload = {}) {
 }
 
 async function openStockPage() {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
   if (state.chatOpen) closeChatPage();
   if (state.cloudOpen) closeCloudPage();
@@ -1782,6 +2528,7 @@ function formatStockNumber(value) {
 }
 
 async function openEnglishPage() {
+  if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
   if (state.stockOpen) await closeStockPage();
   if (state.chatOpen) closeChatPage();
@@ -3165,6 +3912,16 @@ function createPreviewAPI() {
       {id:2,source_text:'Keep it concise and clear.',source_lang:'en',target_text:'保持简洁清晰。',target_lang:'zh',word_count:25,translate_time:new Date(now.getTime()-3600000).toISOString()}
     ]
   };
+  const previewAI = {
+    conversations: [],
+    messages: new Map(),
+    usage: {conversation_count:0,message_count:0,today_tokens:0,total_tokens:0},
+    models: [
+      {id:'deepseek-v4-flash',name:'DeepSeek V4 Flash',description:'快速、经济，适合日常问答与内容处理',badge:'极速',configured:true,allowed:true,available:true},
+      {id:'deepseek-v4-pro',name:'DeepSeek V4 Pro',description:'更强推理与复杂任务能力',badge:'深度',configured:true,allowed:true,available:true}
+    ],
+    policy: {allowed_models:['deepseek-v4-flash','deepseek-v4-pro'],daily_token_limit:0,total_token_limit:0,daily_used:0,total_used:0,source_type:'default',source_name:'系统默认',quota_exceeded:false,quota_message:''}
+  };
   const previewEnglishQuestionRecord = question => ({
     wordId:Number(question?.wordId) || 0,
     word:String(question?.word || ''),
@@ -3201,6 +3958,16 @@ function createPreviewAPI() {
     async GetAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
+    async GetAIChatModels(){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); return {models:structuredClone(previewAI.models),policy:structuredClone(previewAI.policy)}; },
+    async GetAIChatUsage(){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); previewAI.usage.conversation_count=previewAI.conversations.length; previewAI.usage.message_count=[...previewAI.messages.values()].reduce((sum,list)=>sum+list.length,0); return structuredClone(previewAI.usage); },
+    async ListAIChatConversations(page,pageSize,keyword,archived){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); const list=previewAI.conversations.filter(item=>Boolean(item.archived)===Boolean(archived)&&(!keyword||item.title.includes(keyword))); return {total:list.length,list:structuredClone(list),page,pageSize}; },
+    async CreateAIChatConversation(input){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); const createdAt=new Date().toISOString(); const item={id:Date.now(),title:input.title||'新对话',model:input.model||'deepseek-v4-flash',system_prompt:input.system_prompt||'',thinking_enabled:Boolean(input.thinking_enabled),pinned:false,archived:false,message_count:0,total_tokens:0,create_time:createdAt,modify_time:createdAt}; previewAI.conversations.unshift(item); previewAI.messages.set(item.id,[]); return structuredClone(item); },
+    async UpdateAIChatConversation(id,input){ const item=previewAI.conversations.find(value=>Number(value.id)===Number(id)); if(!item) throw new Error('会话不存在'); Object.assign(item,input,{modify_time:new Date().toISOString()}); return structuredClone(item); },
+    async DeleteAIChatConversation(id){ previewAI.conversations=previewAI.conversations.filter(item=>Number(item.id)!==Number(id)); previewAI.messages.delete(Number(id)); return true; },
+    async ListAIChatMessages(id){ return structuredClone(previewAI.messages.get(Number(id))||[]); },
+    async SetAIChatFeedback(messageId,feedback){ for(const messages of previewAI.messages.values()){ const message=messages.find(item=>Number(item.id)===Number(messageId)); if(message){message.feedback=feedback;break;} } return true; },
+    async StreamAIChatMessage(){ return true; },
+    async CancelAIChatStream(){ return true; },
     async GetRealtimeState(){ return structuredClone(previewRealtime); },
     async GetDefaultRealtimeNickname(){ return '我的工位岛'; },
     async ConnectRealtime(nickname){ previewRealtime.authMode='device'; previewRealtime.identity ||= {userId:123,username:'client_demo123',displayName:nickname||'我的工位岛',deviceId:'demo-device',credentialId:'cred_demo',publicKey:'demo',authMode:'device'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; return structuredClone(previewRealtime); },

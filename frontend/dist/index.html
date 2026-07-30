@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=34">
+  <link rel="stylesheet" href="./style.css?v=37">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -22,6 +22,9 @@
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
+        <button id="open-ai-chat" class="icon-btn ai-entry-button" aria-label="AI 对话" title="AI 对话">
+          <span class="ai-entry-label" aria-hidden="true">AI</span>
+        </button>
         <button id="open-chat" class="icon-btn chat-button" aria-label="实时聊天" title="实时聊天">
           <svg viewBox="0 0 24 24"><path d="M20 15a3 3 0 0 1-3 3H9l-5 3v-6a3 3 0 0 1-1-2.2V7a3 3 0 0 1 3-3h11a3 3 0 0 1 3 3Z"/><path d="M7 9h10M7 13h6"/></svg>
           <span id="chat-unread" class="chat-unread hidden">0</span>
@@ -176,7 +179,11 @@
                 <div class="account-hero-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
                 </div>
-                <div><div class="section-kicker">WELCOME BACK</div><h2 data-i18n="accountLoginTitle">登录工位岛</h2><p data-i18n="accountLoginHint">一次登录即可使用聊天、好友和工作云盘。</p></div>
+                <div><div class="section-kicker">WELCOME BACK</div><h2 data-i18n="accountLoginTitle">登录工位岛</h2><p data-i18n="accountLoginHint">一次登录即可使用 AI 对话、实时聊天、好友、工作云盘和全能翻译。</p></div>
+              </div>
+              <div class="account-ai-available">
+                <span aria-hidden="true">AI</span>
+                <p><b data-i18n="aiAvailableTitle">AI 对话现已可用</b><small data-i18n="aiAvailableHint">登录后即可使用 DeepSeek 智能助手</small></p>
               </div>
               <label class="field"><span data-i18n="accountUsername">用户名</span><input id="account-username" maxlength="100" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="accountUsernamePlaceholder" placeholder="请输入用户名" required></label>
               <label class="field"><span data-i18n="accountPassword">密码</span><input id="account-password" type="password" maxlength="512" autocomplete="current-password" data-i18n-placeholder="accountPasswordPlaceholder" placeholder="请输入密码" required></label>
@@ -186,7 +193,7 @@
 
             <form id="account-register-form" class="account-form hidden">
               <div class="account-form-heading compact">
-                <div><div class="section-kicker">CREATE ACCOUNT</div><h2 data-i18n="registerAccount">注册工位岛账号</h2><p data-i18n="registerAccountHint">注册后可使用聊天、好友和工作云盘。</p></div>
+                <div><div class="section-kicker">CREATE ACCOUNT</div><h2 data-i18n="registerAccount">注册工位岛账号</h2><p data-i18n="registerAccountHint">注册后可使用 AI 对话、实时聊天、好友、工作云盘和全能翻译。</p></div>
               </div>
               <div class="field-grid">
                 <label class="field"><span data-i18n="accountUsername">用户名</span><input id="register-username" maxlength="20" autocomplete="username" autocapitalize="none" spellcheck="false" data-i18n-placeholder="registerUsernamePlaceholder" placeholder="3–20 位字母、数字或下划线" required></label>
@@ -216,11 +223,117 @@
               <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p></div>
+              <div class="ai-service-card"><span class="service-dot"></span><p><b data-i18n="aiChat">AI 对话</b><small data-i18n="ready">已就绪</small></p></div>
             </div>
             <button id="account-logout" type="button" class="account-logout-btn" data-i18n="signOutAll">退出账号</button>
-            <p class="account-logout-hint" data-i18n="signOutHint">退出后，实时聊天和工作云盘会同时退出。</p>
+            <p class="account-logout-hint" data-i18n="signOutHint">退出后，AI 对话、实时聊天、工作云盘和全能翻译会同时退出。</p>
           </div>
         </section>
+      </div>
+    </section>
+
+    <section id="ai-chat-page" class="ai-chat-page hidden" aria-label="AI 对话">
+      <div class="ai-chat-surface">
+        <aside class="ai-conversation-panel">
+          <div class="ai-panel-brand">
+            <div class="ai-brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg>
+            </div>
+            <div><strong>AI 对话</strong><span>DeepSeek V4</span></div>
+            <button id="close-ai-chat" type="button" class="ai-icon-control ai-back-control" aria-label="返回工作台" title="返回工作台">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 6-6 6 6 6"/><path d="M9 12h8"/></svg>
+            </button>
+          </div>
+
+          <button id="ai-new-conversation" type="button" class="ai-new-chat"><span>＋</span><b>开启新对话</b><kbd>⌘ K</kbd></button>
+          <label class="ai-conversation-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+            <input id="ai-conversation-keyword" type="search" maxlength="160" placeholder="搜索对话">
+          </label>
+          <nav id="ai-conversation-tabs" class="ai-conversation-tabs" aria-label="对话分类">
+            <button type="button" class="active" data-ai-archived="false">最近</button>
+            <button type="button" data-ai-archived="true">已归档</button>
+          </nav>
+          <div id="ai-conversation-list" class="ai-conversation-list">
+            <div class="ai-empty-conversations"><span>▣</span><p>你的新想法会出现在这里</p></div>
+          </div>
+          <div class="ai-usage-card">
+            <div><span>今日用量</span><strong id="ai-usage-today">0 / 不限</strong></div>
+            <div class="ai-usage-track"><i id="ai-usage-progress"></i></div>
+            <small id="ai-usage-total">0 个会话 · 累计 0 / 不限</small>
+          </div>
+        </aside>
+
+        <div class="ai-chat-workspace">
+          <header class="ai-chat-header">
+            <div class="ai-title-block">
+              <h2 id="ai-current-title">新的对话</h2>
+              <div id="ai-service-status" class="ai-live-status"><i></i><span>登录后连接服务</span></div>
+            </div>
+            <div class="ai-header-actions">
+              <select id="ai-model-select" aria-label="对话模型">
+                <option value="deepseek-v4-flash">DeepSeek V4 Flash</option>
+                <option value="deepseek-v4-pro">DeepSeek V4 Pro</option>
+              </select>
+              <button id="ai-thinking-toggle" type="button" class="ai-thinking-toggle active" aria-pressed="true">
+                <svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
+                <span>深度思考</span>
+              </button>
+              <button id="open-ai-settings" type="button" class="ai-icon-control" aria-label="对话设置" title="对话设置">⚙</button>
+            </div>
+          </header>
+
+          <section id="ai-login-required" class="ai-login-required">
+            <div class="ai-login-orb" aria-hidden="true">✦</div>
+            <div><div class="section-kicker">ACCOUNT REQUIRED</div><h2>登录后使用 AI 对话</h2><p>模型权限、用量和历史记录与当前工位岛账号绑定。</p></div>
+            <button id="ai-open-login" type="button" class="primary-btn">前往账号登录</button>
+          </section>
+
+          <section id="ai-message-stage" class="ai-message-stage hidden">
+            <div id="ai-welcome-state" class="ai-welcome-state">
+              <div class="ai-welcome-orb"><div>✦</div></div>
+              <p class="ai-eyebrow">DEEPSEEK V4 · READY</p>
+              <h1>今天想一起解决什么？</h1>
+              <p class="ai-welcome-subtitle">从一个想法开始。我可以帮你分析问题、创作内容、编写代码，或把复杂任务拆成清晰步骤。</p>
+              <div class="ai-suggestion-grid">
+                <button type="button" data-ai-prompt="请帮我系统分析这个问题。先向我确认目标和约束，再给出结构化方案。"><span class="indigo">▣</span><span><strong>梳理一个复杂问题</strong><small>从现状到可执行方案</small></span><em>›</em></button>
+                <button type="button" data-ai-prompt="我有一段内容需要专业化改写，请先告诉我需要提供哪些背景信息。"><span class="mint">✎</span><span><strong>打磨专业内容</strong><small>报告、邮件或方案</small></span><em>›</em></button>
+                <button type="button" data-ai-prompt="请作为资深工程师协助我完成一个开发任务，先帮我梳理需求、边界和验收标准。"><span class="amber">▦</span><span><strong>编写与审查代码</strong><small>实现、调试和优化</small></span><em>›</em></button>
+                <button type="button" data-ai-prompt="围绕我的目标帮我做一次高质量头脑风暴，请给出不同方向并说明各自亮点。"><span class="pink">✦</span><span><strong>激发创意灵感</strong><small>探索更多可能性</small></span><em>›</em></button>
+              </div>
+              <div id="ai-configuration-notice" class="ai-configuration-notice hidden"><span>!</span><p><strong>当前无法发起对话</strong><small id="ai-disabled-reason">请联系管理员配置 DeepSeek 服务</small></p></div>
+            </div>
+            <div id="ai-message-list" class="ai-message-list hidden"></div>
+          </section>
+
+          <footer id="ai-composer-zone" class="ai-composer-zone hidden">
+            <div id="ai-composer" class="ai-composer">
+              <textarea id="ai-composer-input" rows="1" maxlength="50000" placeholder="给 AI 发送消息…"></textarea>
+              <div class="ai-composer-bottom">
+                <div class="ai-composer-hints"><span>Enter 发送</span><span>Shift + Enter 换行</span><em id="ai-input-count"></em></div>
+                <button id="ai-stop-generation" type="button" class="ai-stop-button hidden"><span>■</span><b>停止</b></button>
+                <button id="ai-send-message" type="button" class="ai-send-button" aria-label="发送消息" disabled>
+                  <svg viewBox="0 0 24 24"><path d="m4 4 17 8-17 8 3-8-3-8Z"/><path d="M7 12h14"/></svg>
+                </button>
+              </div>
+            </div>
+            <p>AI 可能会犯错，请核查重要信息。你的密钥只保存在服务端。</p>
+          </footer>
+        </div>
+
+        <button id="ai-settings-mask" type="button" class="ai-settings-mask hidden" aria-label="关闭对话设置"></button>
+        <aside id="ai-settings-drawer" class="ai-settings-drawer hidden" aria-label="对话设置">
+          <header><div><div class="section-kicker">CHAT PREFERENCES</div><h2>对话设置</h2></div><button id="close-ai-settings" type="button" class="ai-icon-control" aria-label="关闭">×</button></header>
+          <div class="ai-settings-content">
+            <label>对话模型</label>
+            <div id="ai-settings-models" class="ai-settings-models"></div>
+            <label class="ai-settings-switch"><span><strong>深度思考</strong><small>展示模型推理过程，复杂任务效果更佳</small></span><input id="ai-settings-thinking" type="checkbox" checked><i><b></b></i></label>
+            <label for="ai-system-prompt">系统提示词 <span>可选</span></label>
+            <textarea id="ai-system-prompt" maxlength="20000" rows="8" placeholder="例如：你是一位资深产品经理，回答时优先给出可落地的方案…"></textarea>
+            <div class="ai-settings-tip"><span>▣</span><p>设置仅作用于当前对话，不会影响后台管理中的旧“AI 助手”功能。</p></div>
+          </div>
+          <footer><button id="cancel-ai-settings" type="button" class="text-btn">取消</button><button id="save-ai-settings" type="button" class="primary-btn">保存设置</button></footer>
+        </aside>
       </div>
     </section>
 
@@ -695,6 +808,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=38" type="module"></script>
+  <script src="./app.js?v=42" type="module"></script>
 </body>
 </html>

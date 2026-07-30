@@ -13,30 +13,49 @@ import (
 )
 
 const (
-	trayWMApp          = 0x8000
-	trayCallback       = trayWMApp + 42
-	trayWMClose        = 0x0010
-	trayWMDestroy      = 0x0002
-	trayWMNull         = 0x0000
-	trayWMContextMenu  = 0x007B
-	trayWMLButtonUp    = 0x0202
-	trayWMLButtonDbl   = 0x0203
-	trayWMRButtonUp    = 0x0205
-	trayNIMAdd         = 0x00000000
-	trayNIMDelete      = 0x00000002
-	trayNIMSetVersion  = 0x00000004
-	trayNIFMessage     = 0x00000001
-	trayNIFIcon        = 0x00000002
-	trayNIFTip         = 0x00000004
-	trayIconVersion    = 4
-	trayMFString       = 0x00000000
-	trayMFSeparator    = 0x00000800
-	trayTPMRightButton = 0x0002
-	trayTPMReturnCmd   = 0x0100
-	trayShowCommand    = 1001
-	trayQuitCommand    = 1002
-	trayIDIApplication = 32512
+	trayWMApp            = 0x8000
+	trayCallback         = trayWMApp + 42
+	trayWMClose          = 0x0010
+	trayWMDestroy        = 0x0002
+	trayWMNull           = 0x0000
+	trayWMContextMenu    = 0x007B
+	trayWMLButtonUp      = 0x0202
+	trayWMLButtonDbl     = 0x0203
+	trayWMRButtonUp      = 0x0205
+	trayNIMAdd           = 0x00000000
+	trayNIMModify        = 0x00000001
+	trayNIMDelete        = 0x00000002
+	trayNIMSetVersion    = 0x00000004
+	trayNIFMessage       = 0x00000001
+	trayNIFIcon          = 0x00000002
+	trayNIFTip           = 0x00000004
+	trayIconVersion      = 4
+	trayMFString         = 0x00000000
+	trayMFSeparator      = 0x00000800
+	trayTPMRightButton   = 0x0002
+	trayTPMReturnCmd     = 0x0100
+	trayShowCommand      = 1001
+	trayQuitCommand      = 1002
+	trayChatCommand      = 1003
+	trayEnglishCommand   = 1004
+	trayAICommand        = 1005
+	trayCloudCommand     = 1006
+	trayTranslateCommand = 1007
+	trayStocksCommand    = 1008
+	trayIDIApplication   = 32512
 )
+
+type trayMenuLabels struct {
+	tooltip   string
+	show      string
+	chat      string
+	english   string
+	ai        string
+	cloud     string
+	translate string
+	stocks    string
+	quit      string
+}
 
 type trayPoint struct {
 	X int32
@@ -118,6 +137,7 @@ var (
 	trayWindowsIconOwned      bool
 	trayWindowsNotifyData     trayNotifyIconData
 	trayTaskbarCreatedMessage uint32
+	trayWindowsLanguage       = "zh"
 )
 
 func startTray(app *App) {
@@ -127,6 +147,7 @@ func startTray(app *App) {
 		return
 	}
 	trayWindowsApp = app
+	trayWindowsLanguage = normaliseTrayLanguage(app.store.Snapshot().Settings.Language)
 	trayWindowsMu.Unlock()
 	go runTrayMessageLoop()
 }
@@ -141,6 +162,42 @@ func stopTray() {
 }
 
 func setTrayWindowHidden(_ bool) {}
+
+func setTrayLanguage(language string) {
+	language = normaliseTrayLanguage(language)
+	labels := windowsTrayLabels(language)
+	tip, _ := windows.UTF16FromString(labels.tooltip)
+
+	trayWindowsMu.Lock()
+	trayWindowsLanguage = language
+	clear(trayWindowsNotifyData.Tip[:])
+	copy(trayWindowsNotifyData.Tip[:], tip)
+	if trayWindowsNotifyData.Window != 0 {
+		trayShellNotifyIcon.Call(trayNIMModify, uintptr(unsafe.Pointer(&trayWindowsNotifyData)))
+	}
+	trayWindowsMu.Unlock()
+}
+
+func normaliseTrayLanguage(language string) string {
+	if language == "en" {
+		return "en"
+	}
+	return "zh"
+}
+
+func windowsTrayLabels(language string) trayMenuLabels {
+	if normaliseTrayLanguage(language) == "en" {
+		return trayMenuLabels{
+			tooltip: "Workday Island", show: "Show Workday Island", chat: "Chat",
+			english: "English Learning", ai: "AI Chat", cloud: "Work Cloud",
+			translate: "Translator", stocks: "Stocks", quit: "Quit",
+		}
+	}
+	return trayMenuLabels{
+		tooltip: "工位岛", show: "显示工位岛", chat: "聊天", english: "英语学习",
+		ai: "AI 对话", cloud: "工作云盘", translate: "翻译", stocks: "股市", quit: "退出",
+	}
+}
 
 func runTrayMessageLoop() {
 	gorruntime.LockOSThread()
@@ -170,7 +227,10 @@ func runTrayMessageLoop() {
 	}
 	window := windows.Handle(windowValue)
 	icon, owned := loadTrayIcon()
-	tip, _ := windows.UTF16FromString("工位岛 · Workday Island")
+	trayWindowsMu.RLock()
+	labels := windowsTrayLabels(trayWindowsLanguage)
+	trayWindowsMu.RUnlock()
+	tip, _ := windows.UTF16FromString(labels.tooltip)
 	notifyData := trayNotifyIconData{
 		CbSize:          uint32(unsafe.Sizeof(trayNotifyIconData{})),
 		Window:          window,
@@ -244,11 +304,19 @@ func showWindowsTrayMenu(window windows.Handle) {
 		return
 	}
 	defer trayDestroyMenu.Call(menu)
-	showText, _ := windows.UTF16PtrFromString("显示工位岛 / Show Workday Island")
-	quitText, _ := windows.UTF16PtrFromString("退出 / Quit")
-	trayAppendMenu.Call(menu, trayMFString, trayShowCommand, uintptr(unsafe.Pointer(showText)))
+	trayWindowsMu.RLock()
+	labels := windowsTrayLabels(trayWindowsLanguage)
+	trayWindowsMu.RUnlock()
+	appendWindowsTrayMenuItem(menu, trayShowCommand, labels.show)
 	trayAppendMenu.Call(menu, trayMFSeparator, 0, 0)
-	trayAppendMenu.Call(menu, trayMFString, trayQuitCommand, uintptr(unsafe.Pointer(quitText)))
+	appendWindowsTrayMenuItem(menu, trayChatCommand, labels.chat)
+	appendWindowsTrayMenuItem(menu, trayEnglishCommand, labels.english)
+	appendWindowsTrayMenuItem(menu, trayAICommand, labels.ai)
+	appendWindowsTrayMenuItem(menu, trayCloudCommand, labels.cloud)
+	appendWindowsTrayMenuItem(menu, trayTranslateCommand, labels.translate)
+	appendWindowsTrayMenuItem(menu, trayStocksCommand, labels.stocks)
+	trayAppendMenu.Call(menu, trayMFSeparator, 0, 0)
+	appendWindowsTrayMenuItem(menu, trayQuitCommand, labels.quit)
 
 	var point trayPoint
 	trayGetCursorPos.Call(uintptr(unsafe.Pointer(&point)))
@@ -267,9 +335,26 @@ func showWindowsTrayMenu(window windows.Handle) {
 	switch command {
 	case trayShowCommand:
 		app.ShowFromTray()
+	case trayChatCommand:
+		app.showPageFromTray("chat")
+	case trayEnglishCommand:
+		app.showPageFromTray("english")
+	case trayAICommand:
+		app.showPageFromTray("ai")
+	case trayCloudCommand:
+		app.showPageFromTray("cloud")
+	case trayTranslateCommand:
+		app.showPageFromTray("translator")
+	case trayStocksCommand:
+		app.showPageFromTray("stocks")
 	case trayQuitCommand:
 		app.QuitApp()
 	}
+}
+
+func appendWindowsTrayMenuItem(menu uintptr, command uintptr, label string) {
+	text, _ := windows.UTF16PtrFromString(label)
+	trayAppendMenu.Call(menu, trayMFString, command, uintptr(unsafe.Pointer(text)))
 }
 
 func addWindowsTrayIcon() {

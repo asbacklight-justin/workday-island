@@ -30,6 +30,7 @@ type App struct {
 	httpClient   *http.Client
 	realtime     *RealtimeClient
 	cloudDisk    *CloudDiskClient
+	aiChat       *AIChatClient
 	translator   *TranslationClient
 	english      *EnglishClient
 	englishMode  atomic.Bool
@@ -58,6 +59,7 @@ func NewApp() *App {
 	}
 	app.realtime = NewRealtimeClient(app)
 	app.cloudDisk = NewCloudDiskClient(app, cloudDiskAPIBaseURL)
+	app.aiChat = NewAIChatClient(app, app.cloudDisk, cloudDiskAPIBaseURL)
 	app.translator = NewTranslationClient(app.cloudDisk)
 	app.english = NewEnglishClient(app.httpClient, englishAPIBaseURL)
 	return app
@@ -83,6 +85,9 @@ func (a *App) shutdown(context.Context) {
 	stopTray()
 	if a.realtime != nil {
 		a.realtime.Shutdown()
+	}
+	if a.aiChat != nil {
+		a.aiChat.Shutdown()
 	}
 	if a.cancel != nil {
 		a.cancel()
@@ -203,6 +208,19 @@ func (a *App) ShowFromTray() {
 	runtime.WindowUnminimise(a.ctx)
 	a.applyWindowOpacity()
 	bringAppToFront()
+}
+
+// SetTrayLanguage keeps the native tray labels aligned with the language that
+// the frontend actually resolved, including the "follow system" setting.
+func (a *App) SetTrayLanguage(language string) {
+	setTrayLanguage(language)
+}
+
+func (a *App) showPageFromTray(page string) {
+	a.ShowFromTray()
+	if a.ctx != nil {
+		runtime.EventsEmit(a.ctx, "tray:navigate", page)
+	}
 }
 
 func (a *App) QuitApp() {

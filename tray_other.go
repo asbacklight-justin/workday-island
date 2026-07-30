@@ -5,3 +5,4 @@ package main
 func startTray(_ *App)           {}
 func stopTray()                  {}
 func setTrayWindowHidden(_ bool) {}
+func setTrayLanguage(_ string)   {}
