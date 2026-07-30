@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"crypto/rand"
 	"encoding/hex"
 	"encoding/json"
@@ -43,6 +44,7 @@ func (s *Store) Load() error {
 	if err != nil {
 		return fmt.Errorf("读取本地数据失败: %w", err)
 	}
+	hadLegacyLocalNotes := bytes.Contains(data, []byte(`"noteNodes"`)) || bytes.Contains(data, []byte(`"noteVersions"`))
 	var state State
 	if err := json.Unmarshal(data, &state); err != nil {
 		return fmt.Errorf("解析本地数据失败: %w", err)
@@ -54,6 +56,10 @@ func (s *Store) Load() error {
 	if state.Todos == nil {
 		state.Todos = []Todo{}
 	}
+	// Legacy desktop builds stored note bodies here. Cloud notes now use the
+	// server as the only source of truth, so discard any old local note data.
+	state.NoteNodes = []NoteNode{}
+	state.NoteVersions = []NoteVersion{}
 	if state.RealtimeMessages == nil {
 		state.RealtimeMessages = []RealtimeMessage{}
 	}
@@ -69,6 +75,11 @@ func (s *Store) Load() error {
 		state.StockWatchlist = normaliseStockWatchlist(state.StockWatchlist)
 	}
 	s.state = state
+	if hadLegacyLocalNotes {
+		// Scrub note bodies left by older desktop builds immediately. Waiting
+		// for another settings/todo write would leave cloud-note data on disk.
+		return s.saveLocked()
+	}
 	return nil
 }
 
@@ -604,6 +615,8 @@ func newID() string {
 func cloneState(state State) State {
 	copyState := state
 	copyState.Todos = append([]Todo(nil), state.Todos...)
+	copyState.NoteNodes = cloneNoteNodes(state.NoteNodes, false)
+	copyState.NoteVersions = append([]NoteVersion(nil), state.NoteVersions...)
 	copyState.Settings.Workdays = append([]int(nil), state.Settings.Workdays...)
 	copyState.StockWatchlist = append([]string(nil), state.StockWatchlist...)
 	copyState.EnglishWords = cloneEnglishWords(state.EnglishWords)

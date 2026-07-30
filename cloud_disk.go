@@ -27,9 +27,10 @@ const cloudDiskAPIBaseURL = "https://admin.asbacklight.cn/api"
 var ErrCloudDiskLoginRequired = errors.New("请先登录工位岛账号")
 
 type CloudDiskUser struct {
-	ID       uint64 `json:"id"`
-	Username string `json:"username"`
-	Nickname string `json:"nickname"`
+	ID        uint64 `json:"id"`
+	Username  string `json:"username"`
+	Nickname  string `json:"nickname"`
+	AvatarURL string `json:"avatar_url,omitempty"`
 }
 
 type CloudDiskSession struct {
@@ -112,17 +113,19 @@ type CloudDiskClient struct {
 	apiClient *http.Client
 	xfer      *http.Client
 
-	mu    sync.RWMutex
-	token string
-	user  *CloudDiskUser
+	mu               sync.RWMutex
+	token            string
+	user             *CloudDiskUser
+	noteUnlockTokens map[uint64]string
 }
 
 func NewCloudDiskClient(app *App, baseURL string) *CloudDiskClient {
 	return &CloudDiskClient{
-		app:       app,
-		baseURL:   strings.TrimRight(baseURL, "/"),
-		apiClient: &http.Client{Timeout: 20 * time.Second},
-		xfer:      &http.Client{},
+		app:              app,
+		baseURL:          strings.TrimRight(baseURL, "/"),
+		apiClient:        &http.Client{Timeout: 20 * time.Second},
+		xfer:             &http.Client{},
+		noteUnlockTokens: make(map[uint64]string),
 	}
 }
 
@@ -177,14 +180,30 @@ func (client *CloudDiskClient) Login(ctx context.Context, username, password str
 	client.token = envelope.Data.Token
 	user := envelope.Data.User
 	client.user = &user
+	client.noteUnlockTokens = make(map[uint64]string)
 	client.mu.Unlock()
+	if err := client.RefreshProfile(ctx); err != nil && !client.Session().LoggedIn {
+		return client.Session(), err
+	}
 	return client.Session(), nil
+}
+
+func (client *CloudDiskClient) RefreshProfile(ctx context.Context) error {
+	var user CloudDiskUser
+	if err := client.requestAccountJSON(ctx, http.MethodGet, "/user/profile", nil, &user, "账号服务"); err != nil {
+		return err
+	}
+	client.mu.Lock()
+	client.user = &user
+	client.mu.Unlock()
+	return nil
 }
 
 func (client *CloudDiskClient) Logout() {
 	client.mu.Lock()
 	client.token = ""
 	client.user = nil
+	client.noteUnlockTokens = make(map[uint64]string)
 	client.mu.Unlock()
 }
 
@@ -353,6 +372,10 @@ func (client *CloudDiskClient) requestJSON(ctx context.Context, method, path str
 }
 
 func (client *CloudDiskClient) requestAccountJSON(ctx context.Context, method, path string, payload any, output any, serviceName string) error {
+	return client.requestAccountJSONWithHeaders(ctx, method, path, payload, output, serviceName, nil)
+}
+
+func (client *CloudDiskClient) requestAccountJSONWithHeaders(ctx context.Context, method, path string, payload any, output any, serviceName string, headers map[string]string) error {
 	token := client.accountToken()
 	if token == "" {
 		return ErrCloudDiskLoginRequired
@@ -372,6 +395,11 @@ func (client *CloudDiskClient) requestAccountJSON(ctx context.Context, method, p
 	request.Header.Set("Accept", "application/json")
 	request.Header.Set("Authorization", "Bearer "+token)
 	setBacklightClientHeaders(request.Header)
+	for key, value := range headers {
+		if strings.TrimSpace(value) != "" {
+			request.Header.Set(key, value)
+		}
+	}
 	if payload != nil {
 		request.Header.Set("Content-Type", "application/json")
 	}
@@ -380,9 +408,34 @@ func (client *CloudDiskClient) requestAccountJSON(ctx context.Context, method, p
 		return fmt.Errorf("连接%s失败: %w", serviceName, err)
 	}
 	defer response.Body.Close()
+	responseBody, readErr := io.ReadAll(io.LimitReader(response.Body, 8<<20))
+	if readErr != nil {
+		return fmt.Errorf("读取%s响应失败: %w", serviceName, readErr)
+	}
 	var envelope cloudEnvelope
-	if err := json.NewDecoder(io.LimitReader(response.Body, 8<<20)).Decode(&envelope); err != nil {
+	if err := json.Unmarshal(responseBody, &envelope); err != nil {
+		if response.StatusCode == http.StatusUnauthorized {
+			client.Logout()
+			return errors.New("账号登录已过期，请重新登录")
+		}
+		if response.StatusCode < 200 || response.StatusCode >= 300 {
+			return errors.New(firstNonEmpty(strings.TrimSpace(string(responseBody)), fmt.Sprintf("%s请求失败（HTTP %d）", serviceName, response.StatusCode)))
+		}
+		// Some deployed account-service endpoints still return their data as a
+		// top-level JSON value instead of the standard {code,message,data}
+		// envelope. Accept that legacy shape without weakening HTTP/auth checks.
+		if output != nil {
+			if rawErr := json.Unmarshal(responseBody, output); rawErr == nil {
+				return nil
+			}
+		}
 		return fmt.Errorf("%s响应无效: %w", serviceName, err)
+	}
+	if response.StatusCode >= 200 && response.StatusCode < 300 &&
+		envelope.Code == 0 && envelope.Message == "" && len(envelope.Data) == 0 && output != nil {
+		if rawErr := json.Unmarshal(responseBody, output); rawErr == nil {
+			return nil
+		}
 	}
 	if response.StatusCode == http.StatusUnauthorized || envelope.Code == http.StatusUnauthorized {
 		client.Logout()

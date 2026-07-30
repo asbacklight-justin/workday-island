@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.11.0"
+const appVersion = "0.11.3"
 
 type App struct {
 	ctx          context.Context
@@ -95,7 +95,12 @@ func (a *App) shutdown(context.Context) {
 }
 
 func (a *App) GetState() State {
-	return a.store.Snapshot()
+	state := a.store.Snapshot()
+	// Cloud notes are fetched directly from the account service and are never
+	// included in the local application state.
+	state.NoteNodes = []NoteNode{}
+	state.NoteVersions = []NoteVersion{}
+	return state
 }
 
 func (a *App) GetAppInfo() AppInfo {

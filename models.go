@@ -35,6 +35,8 @@ type Settings struct {
 
 type State struct {
 	Todos             []Todo               `json:"todos"`
+	NoteNodes         []NoteNode           `json:"-"`
+	NoteVersions      []NoteVersion        `json:"-"`
 	Settings          Settings             `json:"settings"`
 	Focus             FocusSession         `json:"focus"`
 	StockWatchlist    []string             `json:"stockWatchlist"`

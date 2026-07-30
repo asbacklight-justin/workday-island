@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=37">
+  <link rel="stylesheet" href="./style.css?v=41">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.11.0</span>
+        <span id="app-version-badge" class="version-badge">v0.11.3</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -38,6 +38,12 @@
         </button>
         <button id="open-cloud" class="icon-btn cloud-button" aria-label="工作云盘" title="工作云盘">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 18.5h10.4a4.4 4.4 0 0 0 .5-8.8A6.3 6.3 0 0 0 6 8.6a5 5 0 0 0 1.2 9.9Z"/><path d="M12 11v6M9.7 13.3 12 11l2.3 2.3"/></svg>
+        </button>
+        <button id="open-notes" class="icon-btn notes-button" aria-label="云笔记" title="云笔记">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V20H6z"/><path d="M15 3.5V7h3M9 11h6M9 15h6"/></svg>
+        </button>
+        <button id="open-share-management" class="icon-btn share-management-button" aria-label="分享管理" title="分享管理">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.9 7.4-4.2M8.3 13.1l7.4 4.2"/></svg>
         </button>
         <button id="open-translator" class="icon-btn translate-button" aria-label="全能翻译" title="全能翻译"><span>文A</span></button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
@@ -59,14 +65,14 @@
           <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
         </button>
         <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
-        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><span>−</span></button>
-        <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><span>×</span></button>
+        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+        <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       </div>
     </header>
 
     <div id="compact-window-controls" class="compact-window-controls no-drag" aria-label="窗口控制">
       <div id="compact-focus-mini" class="compact-focus-mini" aria-live="polite"><span></span><strong id="compact-focus-time">50:00</strong></div>
-      <button id="compact-minimize" class="compact-window-btn" aria-label="最小化" title="最小化"><span>−</span></button>
+      <button id="compact-minimize" class="compact-window-btn" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
       <button id="compact-expand" class="compact-window-btn" aria-label="展开完整面板" title="展开完整面板">
         <svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg>
       </button>
@@ -222,6 +228,7 @@
             <div id="account-service-grid" class="account-service-grid">
               <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
+              <div class="notes-service-card"><span class="service-dot"></span><p><b data-i18n="cloudNotes">云笔记</b><small data-i18n="ready">已就绪</small></p></div>
               <div><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p></div>
               <div class="ai-service-card"><span class="service-dot"></span><p><b data-i18n="aiChat">AI 对话</b><small data-i18n="ready">已就绪</small></p></div>
             </div>
@@ -231,6 +238,234 @@
         </section>
       </div>
     </section>
+
+    <section id="notes-page" class="notes-page hidden" aria-label="云笔记">
+      <div class="notes-shell">
+        <aside class="notes-sidebar">
+          <header class="notes-sidebar-head">
+            <div class="notes-brand"><span><svg viewBox="0 0 24 24"><path d="M6 3.5h9l3 3V20H6z"/><path d="M15 3.5V7h3M9 11h6M9 15h6"/></svg></span><div><strong>云笔记</strong><small>CLOUD NOTEBOOK</small></div></div>
+            <button id="close-notes" type="button" class="notes-square-button" aria-label="返回工作台" title="返回工作台">
+              <svg viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/><path d="M9 12h8"/></svg>
+            </button>
+          </header>
+          <label class="notes-search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+            <input id="notes-search-input" type="search" maxlength="160" placeholder="搜索笔记和文件夹">
+          </label>
+          <nav id="notes-smart-nav" class="notes-smart-nav">
+            <button type="button" class="active" data-notes-filter="all"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V20H6z"/><path d="M15 3.5V7h3M9 11h6M9 15h6"/></svg><b>全部笔记</b><em id="notes-all-count">0</em></button>
+            <button type="button" data-notes-filter="favorite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg><b>我的收藏</b><em id="notes-favorite-count">0</em></button>
+            <button type="button" data-notes-filter="trash"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5"/></svg><b>回收站</b><em id="notes-trash-count">0</em></button>
+          </nav>
+          <div class="notes-create-row">
+            <button id="create-note" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><b>新建笔记</b></button>
+            <button id="create-note-folder" type="button" aria-label="新建文件夹" title="新建文件夹"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6h6l2 2h9v10.5h-17z"/><path d="M15 11v5M12.5 13.5h5"/></svg></button>
+          </div>
+          <div class="notes-tree-caption"><span>文件夹与笔记</span><button id="refresh-notes" type="button" aria-label="刷新笔记" title="刷新笔记"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7 7 0 1 0 1 6"/><path d="M19 3v5h-5"/></svg></button></div>
+          <div id="notes-tree" class="notes-tree"></div>
+          <footer class="notes-sidebar-foot"><span id="notes-storage-status">云端实时同步</span><b id="notes-total-words">0 字</b></footer>
+        </aside>
+
+        <div class="notes-workspace" data-view="empty" aria-busy="false">
+          <section id="notes-login-required" class="notes-login-required hidden">
+            <div class="notes-login-symbol">
+              <svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg>
+            </div>
+            <div><small>ACCOUNT REQUIRED</small><h2>登录后使用云笔记</h2><p>云笔记需要登录工位岛账号后使用，登录成功后即可访问。</p></div>
+            <button id="notes-open-login" type="button">前往账号登录</button>
+          </section>
+          <section id="notes-empty-state" class="notes-empty-state">
+            <div class="notes-empty-icon"><svg viewBox="0 0 24 24"><path d="M6 3.5h9l3 3V20H6z"/><path d="M15 3.5V7h3M9 11h6M9 15h4"/></svg></div>
+            <h2>把想法留在这里</h2>
+            <p>创建一篇笔记，支持富文本、收藏、历史版本、翻译和导出。</p>
+            <button id="notes-empty-create" type="button">＋ 新建第一篇笔记</button>
+          </section>
+
+          <section id="notes-folder-state" class="notes-folder-state hidden">
+            <div class="notes-empty-icon folder"><svg viewBox="0 0 24 24"><path d="M3.5 6h6l2 2h9v10.5h-17z"/></svg></div>
+            <h2 id="notes-folder-title">文件夹</h2>
+            <p id="notes-folder-summary">0 篇笔记 · 0 个子文件夹</p>
+            <div><button id="notes-folder-new-note" type="button">＋ 新建笔记</button><button id="notes-folder-new-folder" type="button">新建子文件夹</button></div>
+          </section>
+
+          <article id="notes-editor" class="notes-editor hidden">
+            <header class="notes-editor-head">
+              <div class="notes-title-wrap">
+                <input id="note-title-input" maxlength="160" placeholder="无标题笔记">
+                <span id="note-save-status">已保存</span>
+              </div>
+              <div class="notes-editor-actions">
+                <button id="note-pin" class="note-action-labeled" type="button" aria-label="置顶笔记" title="置顶笔记"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M7.5 9.5 12 5l4.5 4.5"/></svg><span>置顶</span></button>
+                <button id="note-favorite" class="note-action-labeled" type="button" aria-label="收藏笔记" title="收藏笔记"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg><span id="note-favorite-label">收藏</span></button>
+                <button id="note-share" class="note-action-labeled note-share-action" type="button" aria-label="分享笔记" title="分享笔记">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.9 7.4-4.2M8.3 13.1l7.4 4.2"/></svg>
+                  <span>分享</span>
+                </button>
+                <button id="note-ai" class="note-action-labeled" type="button" aria-label="交给 AI 整理" title="交给 AI 整理"><b>AI</b><span>整理</span></button>
+                <button id="note-fullscreen" class="note-action-labeled" type="button" aria-label="全屏编辑" title="全屏编辑"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/></svg><span>全屏</span></button>
+                <button id="note-more" class="note-action-labeled" type="button" aria-label="更多操作" title="更多操作"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span>更多</span></button>
+              </div>
+            </header>
+            <div id="note-format-toolbar" class="note-format-toolbar">
+              <button type="button" data-note-command="bold" title="加粗"><b>B</b></button>
+              <button type="button" data-note-command="italic" title="斜体"><i>I</i></button>
+              <button type="button" data-note-command="underline" title="下划线"><u>U</u></button>
+              <button type="button" data-note-command="strikeThrough" title="删除线"><s>S</s></button>
+              <span></span>
+              <button type="button" data-note-block="h1" title="一级标题">H1</button>
+              <button type="button" data-note-block="h2" title="二级标题">H2</button>
+              <button type="button" data-note-command="insertUnorderedList" aria-label="无序列表" title="无序列表"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="7" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="5" cy="17" r="1"/><path d="M9 7h10M9 12h10M9 17h10"/></svg></button>
+              <button type="button" data-note-command="insertOrderedList" aria-label="有序列表" title="有序列表"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h10M9 12h10M9 17h10M4 6h1v3M4 12h2l-2 2h2M4 17h2l-2 2h2"/></svg></button>
+              <button type="button" data-note-command="formatBlock" data-note-value="blockquote" aria-label="引用" title="引用"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h5v5H6c0 3 2 4 4 4M14 7h5v5h-4c0 3 2 4 4 4"/></svg></button>
+              <button type="button" data-note-command="createLink" aria-label="插入链接" title="插入链接"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 14.5 5-5M8 17H6a4 4 0 0 1 0-8h3M16 7h2a4 4 0 0 1 0 8h-3"/></svg></button>
+              <span></span>
+              <button type="button" data-note-command="justifyLeft" aria-label="左对齐" title="左对齐"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 10h11M4 14h16M4 18h9"/></svg></button>
+              <button type="button" data-note-command="justifyCenter" aria-label="居中" title="居中"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M7 10h10M4 14h16M8 18h8"/></svg></button>
+              <button type="button" data-note-command="removeFormat" title="清除格式">Tx</button>
+            </div>
+            <div id="note-content-editor" class="note-content-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="从这里开始记录…"></div>
+            <footer class="notes-editor-foot"><span id="note-path">全部笔记</span><span id="note-updated-time">—</span><b id="note-word-count">0 字</b></footer>
+          </article>
+
+          <section id="notes-locked-state" class="notes-locked-state hidden">
+            <div class="notes-empty-icon locked"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg></div>
+            <h2>这篇笔记已加密</h2>
+            <p>输入阅读密码后即可在本次会话中查看和编辑。</p>
+            <button id="unlock-note" type="button">解锁笔记</button>
+          </section>
+        </div>
+
+        <div id="note-context-menu" class="note-context-menu hidden">
+          <button type="button" data-note-action="rename">重命名</button>
+          <button type="button" data-note-action="move">移动到…</button>
+          <button type="button" data-note-action="favorite">收藏 / 取消收藏</button>
+          <button type="button" data-note-action="pin">置顶 / 取消置顶</button>
+          <button type="button" data-note-action="trash" class="danger">移到回收站</button>
+          <button type="button" data-note-action="restore">恢复</button>
+          <button type="button" data-note-action="deleteForever" class="danger">彻底删除</button>
+        </div>
+
+        <div id="note-more-menu" class="note-more-menu hidden">
+          <button type="button" data-note-more-action="history">历史版本</button>
+          <button type="button" data-note-more-action="translate">翻译笔记</button>
+          <button type="button" data-note-more-action="exportWord">导出为 Word</button>
+          <button type="button" data-note-more-action="exportText">导出为文本</button>
+          <button type="button" data-note-more-action="password">设置阅读密码</button>
+          <button type="button" data-note-more-action="info">笔记信息</button>
+          <button type="button" data-note-more-action="trash" class="danger">删除笔记</button>
+        </div>
+
+        <div id="note-move-dialog" class="note-dialog-mask hidden">
+          <section class="note-dialog">
+            <header><div><small>MOVE NOTE</small><h2>移动到文件夹</h2></div><button type="button" data-close-note-dialog="note-move-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+            <label>目标位置<select id="note-move-target"></select></label>
+            <footer><button type="button" data-close-note-dialog="note-move-dialog">取消</button><button id="confirm-note-move" type="button" class="primary">移动</button></footer>
+          </section>
+        </div>
+
+        <div id="note-history-dialog" class="note-dialog-mask hidden">
+          <section class="note-dialog note-history-dialog">
+            <header><div><small>VERSION HISTORY</small><h2>历史版本</h2></div><button type="button" data-close-note-dialog="note-history-dialog" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+            <div id="note-history-list" class="note-history-list"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section id="share-management-page" class="share-management-page hidden" aria-labelledby="share-management-title">
+      <header class="share-management-head">
+        <button id="close-share-management" type="button" class="chat-back-btn"><span>←</span><b>返回工作台</b></button>
+        <div class="share-management-title-group">
+          <div class="section-kicker">SHARE MANAGEMENT</div>
+          <h1 id="share-management-title">分享管理</h1>
+        </div>
+        <div id="share-management-account-chip" class="cloud-account-chip"><span></span><b>未登录</b></div>
+      </header>
+
+      <section id="share-management-login-required" class="panel share-management-login-required hidden">
+        <div class="notes-login-symbol">
+          <svg viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2"/><rect x="5" y="10" width="14" height="11" rx="3"/><path d="M12 14v3"/></svg>
+        </div>
+        <div><small>ACCOUNT REQUIRED</small><h2>登录后管理云笔记分享</h2><p>分享记录、权限和访问状态均来自当前工位岛账号。</p></div>
+        <button id="share-management-open-login" type="button">前往账号登录</button>
+      </section>
+
+      <div id="share-management-content" class="share-management-content hidden">
+        <section class="share-overview-grid">
+          <article><span>已分享笔记</span><strong id="share-total-count">0</strong><small>当前筛选结果</small></article>
+          <article><span>生效中的分享</span><strong id="share-active-count">0</strong><small>可正常访问</small></article>
+          <article><span>累计访问</span><strong id="share-view-count">0</strong><small>当前列表合计</small></article>
+          <article><span>今日分享额度</span><strong id="share-daily-quota">0 / 不限</strong><small id="share-quota-source">系统默认</small></article>
+        </section>
+
+        <section class="panel share-management-panel">
+          <div class="share-management-toolbar">
+            <div>
+              <h2>云笔记分享</h2>
+              <p>查看链接状态、访问策略，并修改已分享笔记的公开设置。</p>
+            </div>
+            <div class="share-management-filters">
+              <input id="share-management-search" type="search" maxlength="160" placeholder="搜索分享标题">
+              <select id="share-management-lifecycle" aria-label="分享状态">
+                <option value="">全部状态</option>
+                <option value="active">生效中</option>
+                <option value="draft">已停用</option>
+                <option value="pending">待生效</option>
+                <option value="expired">已过期</option>
+                <option value="revoked">已撤销</option>
+                <option value="source_deleted">源笔记已删除</option>
+              </select>
+              <button id="refresh-note-shares" type="button">刷新</button>
+            </div>
+          </div>
+          <div class="share-table-head"><span>分享内容</span><span>策略</span><span>状态 / 有效期</span><span>访问</span><span>操作</span></div>
+          <div id="share-management-list" class="share-management-list"></div>
+          <footer class="share-management-pagination">
+            <span id="share-management-total">共 0 条</span>
+            <div><button id="share-management-prev" type="button">上一页</button><b id="share-management-page-number">1 / 1</b><button id="share-management-next" type="button">下一页</button></div>
+          </footer>
+        </section>
+      </div>
+    </section>
+
+    <div id="note-share-dialog" class="share-dialog-mask hidden">
+      <section class="share-dialog">
+        <header><div><small>SHARE POLICY</small><h2 id="note-share-dialog-title">分享设置</h2></div><button id="close-note-share-dialog" type="button" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+        <form id="note-share-form">
+          <input id="note-share-id" type="hidden">
+          <input id="note-share-note-id" type="hidden">
+          <label><span>分享标题</span><input id="note-share-title" maxlength="255" required></label>
+          <label><span>公开描述</span><textarea id="note-share-description" rows="2" maxlength="1000" placeholder="简要说明分享内容（可选）"></textarea></label>
+          <div class="share-form-grid">
+            <label><span>内容更新方式</span><select id="note-share-content-mode"><option value="snapshot">创建时快照</option><option value="live">随原文更新</option></select></label>
+            <label><span>分享状态</span><select id="note-share-status"><option value="1">生效</option><option value="0">停用</option></select></label>
+          </div>
+          <div class="share-policy-switches">
+            <label><input id="note-share-allow-copy" type="checkbox" checked><span>允许复制</span></label>
+            <label><input id="note-share-allow-comment" type="checkbox"><span>允许评论</span></label>
+            <label><input id="note-share-show-source" type="checkbox" checked><span>显示来源</span></label>
+            <label><input id="note-share-show-creator" type="checkbox" checked><span>显示创建者</span></label>
+          </div>
+          <label class="share-password-toggle"><input id="note-share-encrypted" type="checkbox"><span>启用访问密码</span></label>
+          <label id="note-share-password-row" class="hidden"><span>访问密码</span><input id="note-share-password" type="password" maxlength="72" autocomplete="new-password" placeholder="编辑时留空表示保留原密码"></label>
+          <label><span>有效期</span><select id="note-share-valid-type"><option value="0">永久有效</option><option value="1">指定时间</option></select></label>
+          <div id="note-share-valid-range" class="share-form-grid hidden">
+            <label><span>开始时间</span><input id="note-share-valid-start" type="datetime-local"></label>
+            <label><span>结束时间</span><input id="note-share-valid-end" type="datetime-local"></label>
+          </div>
+          <label><span>公开来源</span><input id="note-share-source" maxlength="64" value="Workday Island"></label>
+          <p id="note-share-form-hint" class="share-form-hint">创建后会生成公开链接；实时模式会始终读取云端最新正文。</p>
+          <footer><button id="cancel-note-share" type="button">取消</button><button id="submit-note-share" type="submit" class="primary">生成分享链接</button></footer>
+        </form>
+        <div id="note-share-result" class="note-share-result hidden">
+          <div class="share-success-symbol">✓</div>
+          <h3>分享链接已生成</h3>
+          <p>可复制链接或直接打开公开页面。</p>
+          <div><input id="note-share-result-link" readonly><button id="copy-note-share-link" type="button">复制</button></div>
+          <footer><button id="open-note-share-link" type="button">打开预览</button><button id="finish-note-share" type="button" class="primary">完成</button></footer>
+        </div>
+      </section>
+    </div>
 
     <section id="ai-chat-page" class="ai-chat-page hidden" aria-label="AI 对话">
       <div class="ai-chat-surface">
@@ -279,7 +514,7 @@
                 <svg viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></svg>
                 <span>深度思考</span>
               </button>
-              <button id="open-ai-settings" type="button" class="ai-icon-control" aria-label="对话设置" title="对话设置">⚙</button>
+              <button id="open-ai-settings" type="button" class="ai-icon-control" aria-label="对话设置" title="对话设置"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg></button>
             </div>
           </header>
 
@@ -323,7 +558,7 @@
 
         <button id="ai-settings-mask" type="button" class="ai-settings-mask hidden" aria-label="关闭对话设置"></button>
         <aside id="ai-settings-drawer" class="ai-settings-drawer hidden" aria-label="对话设置">
-          <header><div><div class="section-kicker">CHAT PREFERENCES</div><h2>对话设置</h2></div><button id="close-ai-settings" type="button" class="ai-icon-control" aria-label="关闭">×</button></header>
+          <header><div><div class="section-kicker">CHAT PREFERENCES</div><h2>对话设置</h2></div><button id="close-ai-settings" type="button" class="ai-icon-control" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
           <div class="ai-settings-content">
             <label>对话模型</label>
             <div id="ai-settings-models" class="ai-settings-models"></div>
@@ -377,7 +612,7 @@
           <section class="panel translator-editor">
             <div class="translator-language-row">
               <label><span data-i18n="sourceLanguage">源语言</span><select id="translation-source"></select></label>
-              <button id="swap-translation-languages" type="button" class="translator-swap" aria-label="交换语言" title="交换语言">⇄</button>
+              <button id="swap-translation-languages" type="button" class="translator-swap" aria-label="交换语言" title="交换语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h14M15 5l3 3-3 3M20 16H6M9 13l-3 3 3 3"/></svg></button>
               <label><span data-i18n="targetLanguage">目标语言</span><select id="translation-target"></select></label>
             </div>
             <div class="translator-panels">
@@ -418,9 +653,9 @@
           <div id="translation-history-list" class="translator-history-list"></div>
           <div class="translator-history-pagination">
             <span id="translation-history-total">0</span>
-            <button id="translation-history-prev" type="button">‹</button>
+            <button id="translation-history-prev" type="button" aria-label="上一页" title="上一页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
             <b id="translation-history-page">1 / 1</b>
-            <button id="translation-history-next" type="button">›</button>
+            <button id="translation-history-next" type="button" aria-label="下一页" title="下一页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
           </div>
         </section>
       </div>
@@ -468,7 +703,7 @@
             <div class="cloud-browser-actions">
               <form id="cloud-search-form" class="cloud-search-form">
                 <input id="cloud-search" maxlength="100" data-i18n-placeholder="searchCurrentFolder" placeholder="搜索当前目录">
-                <button type="submit" aria-label="搜索">⌕</button>
+                <button type="submit" aria-label="搜索" title="搜索"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg></button>
               </form>
               <button id="cloud-refresh" type="button" class="tiny-btn" data-i18n="refresh">刷新</button>
             </div>
@@ -476,7 +711,7 @@
           <div class="cloud-list-caption"><div><strong id="cloud-folder-name" data-i18n="allFiles">全部文件</strong><span id="cloud-total">0 项</span></div><span data-i18n="recentlyModified">最近修改优先</span></div>
           <div id="cloud-file-list" class="cloud-file-list"></div>
           <div id="cloud-pagination" class="cloud-pagination hidden">
-            <button id="cloud-prev" type="button">←</button><span id="cloud-page-number">1</span><button id="cloud-next" type="button">→</button>
+            <button id="cloud-prev" type="button" aria-label="上一页" title="上一页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><span id="cloud-page-number">1</span><button id="cloud-next" type="button" aria-label="下一页" title="下一页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
           </div>
         </section>
       </div>
@@ -632,7 +867,7 @@
     <section id="english-page" class="english-page hidden" aria-label="英语学习">
       <div class="english-strip">
         <div class="english-toolbar">
-          <button id="close-english" class="english-icon-btn no-drag" type="button" aria-label="返回工作台" title="返回工作台">×</button>
+          <button id="close-english" class="english-icon-btn no-drag" type="button" aria-label="返回工作台" title="返回工作台"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
           <select id="english-mode" class="english-mode no-drag" aria-label="学习模式">
             <option value="study" data-i18n="englishStudyMode">单词学习</option>
             <option value="sentence" data-i18n="englishSentenceMode">例句学习</option>
@@ -656,18 +891,18 @@
           </div>
           <div id="english-previous" class="english-previous hidden" aria-live="polite"></div>
           <small id="english-score" class="english-score hidden">0 / 0</small>
-          <button id="minimize-english" class="english-icon-btn no-drag" type="button" aria-label="最小化" title="最小化">−</button>
+          <button id="minimize-english" class="english-icon-btn no-drag" type="button" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
         </div>
         <div id="english-study-stage" class="english-study-stage hidden">
           <span id="english-phonetic">/ˌserənˈdɪpəti/</span>
           <b id="english-translation">意外发现美好事物的能力</b>
           <small id="english-countdown">60s</small>
-          <button id="next-english" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个">›</button>
+          <button id="next-english" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
         </div>
         <div id="english-sentence-stage" class="english-sentence-stage hidden">
           <p><span>EN</span><b id="english-example-en">Keep it concise.</b></p>
           <p><span>中</span><b id="english-example-cn">保持简洁。</b></p>
-          <button id="next-english-sentence" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个">›</button>
+          <button id="next-english-sentence" type="button" class="english-stage-next no-drag" aria-label="下一个" title="下一个"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
         </div>
         <div id="english-options" class="english-options no-drag hidden"></div>
         <div id="english-spelling-stage" class="english-spelling-stage hidden">
@@ -685,9 +920,9 @@
         <header class="stock-head">
           <div class="stock-title"><span class="stock-live-dot"></span><div><strong data-i18n="stockMarket">股市</strong><small data-i18n="stockWatchlist">自选行情</small></div></div>
           <div class="stock-window-actions no-drag">
-            <button id="refresh-stocks" type="button" aria-label="刷新" title="刷新">↻</button>
-            <button id="minimize-stocks" type="button" aria-label="最小化" title="最小化">−</button>
-            <button id="close-stocks" type="button" aria-label="返回工作台" title="返回工作台">×</button>
+            <button id="refresh-stocks" type="button" aria-label="刷新" title="刷新"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7 7 0 1 0 1 6"/><path d="M19 3v5h-5"/></svg></button>
+            <button id="minimize-stocks" type="button" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
+            <button id="close-stocks" type="button" aria-label="返回工作台" title="返回工作台"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
           </div>
         </header>
         <form id="stock-add-form" class="stock-add no-drag">
@@ -705,7 +940,7 @@
 
   <div id="todo-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="todo-modal-title">
     <form id="todo-form" class="modal-card">
-      <div class="modal-head"><div><div class="section-kicker">QUICK CAPTURE</div><h2 id="todo-modal-title" data-i18n="newTodo">新建待办</h2></div><button type="button" class="close-btn" data-close="todo-modal">×</button></div>
+      <div class="modal-head"><div><div class="section-kicker">QUICK CAPTURE</div><h2 id="todo-modal-title" data-i18n="newTodo">新建待办</h2></div><button type="button" class="close-btn" data-close="todo-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
       <input id="editing-id" type="hidden">
       <label class="field"><span data-i18n="todoContent">待办内容</span><input id="todo-title" maxlength="120" autocomplete="off" placeholder="比如：下午三点提交周报" data-i18n-placeholder="todoPlaceholder" required></label>
       <div class="field-grid">
@@ -718,7 +953,7 @@
 
   <div id="settings-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <form id="settings-form" class="modal-card settings-card">
-      <div class="modal-head"><div><div class="section-kicker">PREFERENCES</div><h2 id="settings-title" data-i18n="settingsTitle">工作时间设置</h2></div><button type="button" class="close-btn" data-close="settings-modal">×</button></div>
+      <div class="modal-head"><div><div class="section-kicker">PREFERENCES</div><h2 id="settings-title" data-i18n="settingsTitle">工作时间设置</h2></div><button type="button" class="close-btn" data-close="settings-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
       <div class="field-grid">
         <label class="field"><span data-i18n="workStart">上班时间</span><input id="work-start" type="time" required></label>
         <label class="field"><span data-i18n="workEnd">下班时间</span><input id="work-end" type="time" required></label>
@@ -748,7 +983,7 @@
     <form id="cloud-editor-form" class="modal-card cloud-editor-card">
       <div class="modal-head">
         <div><div class="section-kicker">WORK CLOUD</div><h2 id="cloud-editor-title">新建目录</h2></div>
-        <button type="button" class="close-btn" data-close="cloud-editor-modal">×</button>
+        <button type="button" class="close-btn" data-close="cloud-editor-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       </div>
       <label class="field">
         <span id="cloud-editor-label">目录名称</span>
@@ -764,7 +999,7 @@
     <section class="modal-card cloud-delete-card">
       <div class="modal-head">
         <div><div class="section-kicker">WORK CLOUD</div><h2 id="cloud-delete-title" data-i18n="cloudDeleteTitle">删除项目</h2></div>
-        <button type="button" class="close-btn" data-close="cloud-delete-modal">×</button>
+        <button type="button" class="close-btn" data-close="cloud-delete-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       </div>
       <p id="cloud-delete-message" class="cloud-delete-message"></p>
       <div class="modal-actions">
@@ -775,17 +1010,17 @@
   </div>
   <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="about-title">
     <section class="modal-card about-card">
-      <button type="button" class="close-btn about-close" data-close="about-modal">×</button>
+      <button type="button" class="close-btn about-close" data-close="about-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       <img src="./logo.svg" class="about-logo" alt="Workday Island">
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.11.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.11.3</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.11.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.11.3</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -808,6 +1043,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=42" type="module"></script>
+  <script src="./app.js?v=55" type="module"></script>
 </body>
 </html>

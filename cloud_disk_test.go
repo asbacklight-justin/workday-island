@@ -25,6 +25,11 @@ func TestCloudDiskLoginAndListShareAccountToken(t *testing.T) {
 				t.Fatalf("unexpected login payload: %s", body)
 			}
 			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"token":"shared-token","user":{"id":26,"username":"justin","nickname":"Justin"}}}`))
+		case "/user/profile":
+			if request.Header.Get("Authorization") != "Bearer shared-token" {
+				t.Fatalf("profile request did not share the account token: %q", request.Header.Get("Authorization"))
+			}
+			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"id":26,"username":"justin","nickname":"Justin","avatar_url":"/user/avatar/26?v=1"}}`))
 		case "/netdisk/items":
 			if request.Header.Get("Authorization") != "Bearer shared-token" {
 				t.Fatalf("cloud request did not share the account token: %q", request.Header.Get("Authorization"))
@@ -45,7 +50,7 @@ func TestCloudDiskLoginAndListShareAccountToken(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !session.LoggedIn || session.User == nil || session.User.ID != 26 {
+	if !session.LoggedIn || session.User == nil || session.User.ID != 26 || session.User.AvatarURL != "/user/avatar/26?v=1" {
 		t.Fatalf("unexpected session: %#v", session)
 	}
 	page, err := client.List(context.Background(), 7, 1, 50, "report")
@@ -62,6 +67,10 @@ func TestCloudDiskUnauthorizedClearsSession(t *testing.T) {
 		writer.Header().Set("Content-Type", "application/json")
 		if request.URL.Path == "/user/login" {
 			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"token":"expired-token","user":{"id":26,"username":"justin"}}}`))
+			return
+		}
+		if request.URL.Path == "/user/profile" {
+			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"id":26,"username":"justin"}}`))
 			return
 		}
 		writer.WriteHeader(http.StatusUnauthorized)
