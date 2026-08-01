@@ -1,6 +1,6 @@
 const translations = {
   zh: {
-    appName: '工位岛', compact: '精简', expand: '展开', pin: '置顶', settings: '设置', about: '关于', minimize: '最小化', hideToTray: '隐藏到系统托盘', windowControls: '窗口控制',
+    appName: '工位岛', compact: '精简', expand: '展开', pin: '置顶', settings: '设置', about: '关于', minimize: '最小化', fullscreen: '全屏', exitFullscreen: '退出全屏', hideToTray: '隐藏到系统托盘', windowControls: '窗口控制',
     overview: '工作日概览', earningEstimate: '根据月薪、月计薪天数和今日工作进度估算', weatherData: '天气数据：Open-Meteo',
     earnedToday: '今日已赚', offworkCountdown: '下班倒计时', todayKicker: 'TODAY', myTodos: '我的待办',
     addTodo: '新建待办', pendingFilter: '待处理', allFilter: '全部', doneFilter: '已完成', nextReminder: '最近提醒',
@@ -12,7 +12,7 @@ const translations = {
     localOnly: '仅保存在本机', salaryPlaceholder: '例如 15000', salaryWorkdays: '月计薪天数', weatherCity: '天气城市',
     weatherPlaceholder: '例如：上海、杭州、Shenzhen', workdays: '工作日', language: '界面语言', followSystem: '跟随系统',
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
-    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', currency: '货币符号', compactTodos: '未完成待办',
+    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', auroraTheme: '极光', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
     compactOpacity: '悬浮窗透明度', compactOpacityDesc: '拖动时实时预览；精简模式、英语学习和股市小窗共用',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱', webApp: 'Web 端',
@@ -90,7 +90,7 @@ const translations = {
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
-    appName: 'Workday Island', compact: 'Compact', expand: 'Expand', pin: 'Pin', settings: 'Settings', about: 'About', minimize: 'Minimize', hideToTray: 'Hide to system tray', windowControls: 'Window controls',
+    appName: 'Workday Island', compact: 'Compact', expand: 'Expand', pin: 'Pin', settings: 'Settings', about: 'About', minimize: 'Minimize', fullscreen: 'Full Screen', exitFullscreen: 'Exit Full Screen', hideToTray: 'Hide to system tray', windowControls: 'Window controls',
     overview: 'Workday overview', earningEstimate: 'Estimated from salary, paid days, and today’s progress', weatherData: 'Weather data: Open-Meteo',
     earnedToday: 'EARNED TODAY', offworkCountdown: 'OFF-WORK COUNTDOWN', todayKicker: 'TODAY', myTodos: 'My Todos',
     addTodo: 'New Todo', pendingFilter: 'Pending', allFilter: 'All', doneFilter: 'Completed', nextReminder: 'Next Reminder',
@@ -102,7 +102,7 @@ const translations = {
     localOnly: 'Stored locally', salaryPlaceholder: 'e.g. 15000', salaryWorkdays: 'Paid days / month', weatherCity: 'Weather city',
     weatherPlaceholder: 'e.g. Shanghai, Hangzhou, Shenzhen', workdays: 'Workdays', language: 'Language', followSystem: 'Follow system',
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
-    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', currency: 'Currency symbol', compactTodos: 'Pending todos',
+    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', auroraTheme: 'Aurora', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
     compactOpacity: 'Floating window opacity', compactOpacityDesc: 'Live preview; shared by compact mode, English learning, and the stock ticker',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email', webApp: 'Web App',
@@ -184,10 +184,11 @@ const translations = {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.12.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.13.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
+  windowFullscreen: false,
   accountOpen: false,
   accountMode: 'login',
   account: {loggedIn: false, user: null},
@@ -241,6 +242,7 @@ let reminderAudioContext = null;
 let selectedFocusMinutes = 50;
 let selectedRealtimePeerMode = ['friend', 'temporary'].includes(localStorage.getItem('workdayIsland.chatPeerMode')) ? localStorage.getItem('workdayIsland.chatPeerMode') : '';
 let compactResizeTimer = 0;
+let fullscreenSyncTimer = 0;
 let availableUpdate = null;
 let englishRecordWrites = Promise.resolve();
 let updateCheckResult = null;
@@ -300,6 +302,7 @@ function applyTranslations() {
   $('#open-settings').title = t('settings');
   $('#open-about').setAttribute('aria-label', t('about'));
   $('#open-about').title = t('about');
+  renderFullscreenControl();
   $('#open-chat').setAttribute('aria-label', t('chat'));
   $('#open-chat').title = t('chat');
   $('#open-stocks').setAttribute('aria-label', t('stockMarket'));
@@ -404,6 +407,7 @@ async function boot() {
     bindEvents();
     applyTranslations();
     renderAll();
+    void syncWindowFullscreen();
     setInterval(updateClock, 1000);
     refreshWeather();
     setInterval(refreshWeather, 20 * 60 * 1000);
@@ -558,6 +562,7 @@ function bindEvents() {
   }));
   $('#open-account').addEventListener('click', () => openAccountPage('login'));
   $('#close-account').addEventListener('click', closeAccountPage);
+  $('#account-service-grid').addEventListener('click', openAccountService);
   $('#account-mode-tabs').addEventListener('click', changeAccountMode);
   $('#account-login-form').addEventListener('submit', submitAccountLogin);
   $('#account-register-form').addEventListener('submit', submitRealtimeRegistration);
@@ -664,6 +669,7 @@ function bindEvents() {
   });
   $('#compact-toggle').addEventListener('click', toggleCompactMode);
   $('#compact-expand').addEventListener('click', toggleCompactMode);
+  $('#fullscreen-window').addEventListener('click', toggleWindowFullscreen);
   $('#minimize-window').addEventListener('click', minimiseWindow);
   $('#compact-minimize').addEventListener('click', minimiseWindow);
   $('#close-window').addEventListener('click', hideToTray);
@@ -714,6 +720,7 @@ function bindEvents() {
     if (event.key === 'Escape' && state.accountOpen) { closeAccountPage(); return; }
     if (event.key === 'Escape' && state.shareManagementOpen) { closeShareManagementPage(); return; }
     if (event.key === 'Escape' && state.notes.fullscreen) { toggleNoteFullscreen(); return; }
+    if (event.key === 'Escape' && state.windowFullscreen) { event.preventDefault(); void setWindowFullscreen(false); return; }
     if (event.key === 'Escape' && state.notesOpen) { closeNotesPage(); return; }
     if (event.key === 'Escape' && state.aiChat.settingsOpen) { closeAISettings(); return; }
     if (event.key === 'Escape' && state.aiChatOpen) { closeAIChatPage(); return; }
@@ -735,6 +742,8 @@ function bindEvents() {
 
 function handleWindowResize() {
   updateCompactScale();
+  window.clearTimeout(fullscreenSyncTimer);
+  fullscreenSyncTimer = window.setTimeout(() => { void syncWindowFullscreen(); }, 650);
   if (!state.settings.compactMode || !hasNativeAPI) return;
   window.clearTimeout(compactResizeTimer);
   compactResizeTimer = window.setTimeout(async () => {
@@ -745,6 +754,45 @@ function handleWindowResize() {
       state.settings = {...state.settings, ...(await api.SaveSettings(state.settings))};
     } catch (_) { /* The next compact exit also persists the native window size. */ }
   }, 450);
+}
+
+function renderFullscreenControl() {
+  const button = $('#fullscreen-window');
+  if (!button) return;
+  const label = t(state.windowFullscreen ? 'exitFullscreen' : 'fullscreen');
+  button.classList.toggle('active', state.windowFullscreen);
+  button.setAttribute('aria-label', label);
+  button.title = label;
+  document.body.classList.toggle('window-fullscreen', state.windowFullscreen);
+}
+
+async function syncWindowFullscreen() {
+  if (!hasNativeAPI || !api.IsWindowFullscreen) return;
+  try {
+    state.windowFullscreen = Boolean(await api.IsWindowFullscreen());
+    renderFullscreenControl();
+  } catch (_) { /* Keep the optimistic state if the platform cannot report it. */ }
+}
+
+async function setWindowFullscreen(fullscreen) {
+  if (state.settings.compactMode) return;
+  state.windowFullscreen = Boolean(fullscreen);
+  renderFullscreenControl();
+  try {
+    if (api.SetWindowFullscreen) await api.SetWindowFullscreen(state.windowFullscreen);
+    else if (state.windowFullscreen) window.runtime?.WindowFullscreen?.();
+    else window.runtime?.WindowUnfullscreen?.();
+    window.clearTimeout(fullscreenSyncTimer);
+    fullscreenSyncTimer = window.setTimeout(() => { void syncWindowFullscreen(); }, 1000);
+  } catch (error) {
+    state.windowFullscreen = !state.windowFullscreen;
+    renderFullscreenControl();
+    showToast(readError(error), true);
+  }
+}
+
+function toggleWindowFullscreen() {
+  return setWindowFullscreen(!state.windowFullscreen);
 }
 
 function minimiseWindow() {
@@ -3074,6 +3122,21 @@ function openChatPage() {
   }, 40);
 }
 
+function openAccountService(event) {
+  const card = event.target.closest('[data-account-service]');
+  if (!card) return;
+  const destinations = {
+    chat: openChatPage,
+    cloud: openCloudPage,
+    notes: openNotesPage,
+    sharing: openShareManagementPage,
+    translator: openTranslatorPage,
+    ai: openAIChatPage
+  };
+  const destination = destinations[card.dataset.accountService];
+  if (destination) void destination();
+}
+
 function closeChatPage() {
   state.chatOpen = false;
   document.body.classList.remove('chat-open');
@@ -3758,6 +3821,7 @@ function renderCloudTransferProgress(payload = {}) {
 }
 
 async function openStockPage() {
+  if (state.windowFullscreen) await setWindowFullscreen(false);
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -3899,6 +3963,7 @@ function closeEnglishCenterPage() {
 }
 
 async function openEnglishCompactPage() {
+  if (state.windowFullscreen) await setWindowFullscreen(false);
   closeEnglishCenterPage();
   state.englishOpen = true;
   state.english.mode = normaliseEnglishMode(state.settings.englishMode);
@@ -5021,6 +5086,7 @@ async function saveSettings() {
 async function toggleCompactMode() {
   const compact = !state.settings.compactMode;
   try {
+    if (compact && state.windowFullscreen) await setWindowFullscreen(false);
     state.settings = {...state.settings, ...(await api.SetCompactMode(compact))};
     applyCompactUI();
     showToast(compact ? t('compactOn') : t('compactOff'));
@@ -5062,9 +5128,9 @@ function applyTheme() {
   const requested = state.settings.theme || 'system';
   const resolved = requested === 'system' ? (systemTheme?.matches ? 'light' : 'dark') : requested;
   document.documentElement.dataset.theme = resolved;
-  document.documentElement.style.colorScheme = resolved;
+  document.documentElement.style.colorScheme = resolved === 'light' ? 'light' : 'dark';
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : '#0b101b';
+  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : resolved === 'aurora' ? '#071723' : '#0b101b';
   applyEnglishBackgroundOpacity();
 }
 
@@ -5487,8 +5553,10 @@ function createPreviewAPI() {
     async PlayReminderSound(){ return true; },
     async TestNotification(){ return true; },
     async MinimiseWindow(){ return true; },
+    async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
+    async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.12.0',latestVersion:'0.12.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增桌面 AI 对话、云笔记与链接分享，并完善云笔记跨平台交互。\nAdded desktop AI Chat, Cloud Notes, and Link Sharing with reliable cross-platform note interactions.'} : {currentVersion:'0.12.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.13.0',latestVersion:'0.13.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增极光主题、全局全屏、账号服务快捷入口，并完善跨平台托盘与界面可读性。\nAdded the Aurora theme, global full screen, account service shortcuts, and improved cross-platform tray behaviour and readability.'} : {currentVersion:'0.13.0',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; }
   };

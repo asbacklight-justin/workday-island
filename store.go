@@ -434,7 +434,7 @@ func normaliseSettings(settings Settings) Settings {
 	if settings.Language != "zh" && settings.Language != "en" && settings.Language != "system" {
 		settings.Language = "system"
 	}
-	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "system" {
+	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "aurora" && settings.Theme != "system" {
 		settings.Theme = "system"
 	}
 	if settings.EnglishMode != "study" && settings.EnglishMode != "sentence" && settings.EnglishMode != "quiz" && settings.EnglishMode != "chinese" && settings.EnglishMode != "spelling" {

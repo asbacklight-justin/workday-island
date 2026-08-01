@@ -91,6 +91,9 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 	if got := normaliseSettings(Settings{Language: "en", Workdays: []int{1}}).Language; got != "en" {
 		t.Fatalf("language selection was not preserved: %q", got)
 	}
+	if got := normaliseSettings(Settings{Theme: "aurora", Workdays: []int{1}}).Theme; got != "aurora" {
+		t.Fatalf("aurora theme was not preserved: %q", got)
+	}
 	for _, source := range []string{"all", "nce2", "nce3", "cet4", "cet6", "ielts"} {
 		if got := normaliseSettings(Settings{EnglishSource: source, Workdays: []int{1}}).EnglishSource; got != source {
 			t.Fatalf("English source %q was not preserved: %q", source, got)

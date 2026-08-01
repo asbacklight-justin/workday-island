@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.12.0"
+const appVersion = "0.13.0"
 
 type App struct {
 	ctx          context.Context
@@ -189,8 +189,25 @@ func (a *App) RestoreWindowOpacity() {
 
 func (a *App) MinimiseWindow() {
 	if a.ctx != nil {
+		if isPlatformWindowFullscreen(a.ctx) {
+			setPlatformWindowFullscreen(a.ctx, false)
+		}
 		runtime.WindowMinimise(a.ctx)
 	}
+}
+
+// SetWindowFullscreen enters or leaves platform fullscreen mode. macOS uses a
+// dedicated frameless implementation because its native fullscreen transition
+// ignores borderless Wails windows; Windows uses the native Wails transition.
+func (a *App) SetWindowFullscreen(fullscreen bool) bool {
+	if a.ctx == nil {
+		return false
+	}
+	return setPlatformWindowFullscreen(a.ctx, fullscreen)
+}
+
+func (a *App) IsWindowFullscreen() bool {
+	return a.ctx != nil && isPlatformWindowFullscreen(a.ctx)
 }
 
 // HideToTray keeps the process and scheduler alive while removing the main
@@ -198,6 +215,9 @@ func (a *App) MinimiseWindow() {
 func (a *App) HideToTray() {
 	if a.ctx == nil {
 		return
+	}
+	if isPlatformWindowFullscreen(a.ctx) {
+		setPlatformWindowFullscreen(a.ctx, false)
 	}
 	runtime.WindowHide(a.ctx)
 	setTrayWindowHidden(true)
@@ -582,6 +602,8 @@ func (a *App) applyNativeTheme(theme string) {
 	case "light":
 		runtime.WindowSetLightTheme(a.ctx)
 	case "dark":
+		runtime.WindowSetDarkTheme(a.ctx)
+	case "aurora":
 		runtime.WindowSetDarkTheme(a.ctx)
 	default:
 		runtime.WindowSetSystemDefaultTheme(a.ctx)

@@ -5,6 +5,37 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+暂无未发布变更。
+No unreleased changes.
+
+## [0.13.0] - 2026-08-01
+
+### 中文
+
+- 顶部全能翻译入口由容易换行的「文A」改为清晰的单字「译」图标。
+- 账号中心的六项在线服务调整为每行三项、共两行的 `2×3` 布局，服务名称保持单行显示；每张卡片均可点击并直接进入对应功能页面。
+- 设置新增「极光」主题，以深蓝夜空、青绿色与紫色光晕、玻璃卡片为核心视觉，并同步使用原生深色窗口外观。
+- 全面提升完整模式的可读性：聊天、AI 回答、笔记和翻译正文提升到舒适阅读字号，普通说明、表单、按钮、状态及时间信息建立不低于 `10–12px` 的清晰层级；精简英语与股市小窗继续保持紧凑。
+- 新增全局全屏按钮，完整工作台及各功能页面均可进入全屏；Mac 针对无边框窗口使用专用全屏实现，Windows 使用系统原生全屏，按钮会切换退出状态并支持 `Esc`。
+- Mac 菜单栏改用透明背景的单色 Template 图标，保留工位岛屏幕、浮岛与状态灯轮廓，并自动适配深浅菜单栏。
+- 修复云笔记弹窗按钮缺少独立字号时在部分 WebView 中被压缩成横线的问题。
+- 统一 macOS 与 Windows 系统托盘：Mac 菜单栏新增聊天、英语学习、AI 对话、工作云盘、翻译和股市快捷入口，菜单文案跟随应用语言，图标改用应用 Logo。
+- macOS 点击关闭后会像 Windows 一样移除 Dock/任务栏入口，同时保持托盘、提醒和后台任务运行；左键菜单栏图标恢复窗口，右键菜单可进入模块或彻底退出。
+- 抽取跨平台共享的托盘文案与命令路由并补充测试，避免两端功能再次漂移。
+
+### English
+
+- Replaced the wrapping `文A` Translator entry with a clear single-character `译` icon.
+- Changed the six Account Centre services to a two-row, three-column `2×3` grid so service names remain on one line; every card is now clickable and opens its corresponding module directly.
+- Added an Aurora theme built around a deep-blue night canvas, teal/violet glows, and glassy cards, with matching native dark-window appearance.
+- Improved readability throughout full mode: chat, AI answers, notes, and translation content now use comfortable reading sizes, while descriptions, forms, controls, status text, and timestamps follow a clear `10–12px` minimum hierarchy. Compact English and Stocks remain intentionally dense.
+- Added a global full-screen control for the dashboard and every full-page module. macOS now uses a dedicated borderless-window implementation, while Windows uses native full screen; both expose a matching exit state and `Esc` support.
+- Replaced the macOS menu-bar artwork with a transparent monochrome Template icon that preserves the Workday Island screen, island, and status-light silhouette while adapting automatically to light and dark menu bars.
+- Fixed Cloud Notes dialog labels collapsing into a tiny dash in WebViews where the buttons inherited the page's one-pixel root font size.
+- Aligned the macOS and Windows system trays. The Mac menu bar now includes Chat, English Learning, AI Chat, Work Cloud, Translator, and Stocks shortcuts, follows the app language, and uses the application logo.
+- Closing on macOS now removes the Dock/taskbar entry like Windows while keeping the tray, reminders, and background work alive. Left-click restores the window; right-click opens modules or quits explicitly.
+- Centralised cross-platform tray labels and command routing with regression tests to prevent future platform drift.
+
 ## [0.12.0] - 2026-07-30
 
 ### 中文
@@ -239,6 +270,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.13.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0
 [0.12.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0
 [0.11.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.0
 [0.10.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.10.0

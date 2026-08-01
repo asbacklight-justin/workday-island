@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=41">
+  <link rel="stylesheet" href="./style.css?v=45">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.12.0</span>
+        <span id="app-version-badge" class="version-badge">v0.13.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -45,7 +45,7 @@
         <button id="open-share-management" class="icon-btn share-management-button" aria-label="分享管理" title="分享管理">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.3 10.9 7.4-4.2M8.3 13.1l7.4 4.2"/></svg>
         </button>
-        <button id="open-translator" class="icon-btn translate-button" aria-label="全能翻译" title="全能翻译"><span>文A</span></button>
+        <button id="open-translator" class="icon-btn translate-button" aria-label="全能翻译" title="全能翻译"><span aria-hidden="true">译</span></button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
         <button id="open-account" class="account-nav-button" type="button" aria-label="账号" title="账号">
           <span class="account-nav-avatar" aria-hidden="true">
@@ -65,6 +65,12 @@
           <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
         </button>
         <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
+        <button id="fullscreen-window" class="icon-btn fullscreen-window-btn" aria-label="全屏" title="全屏">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path class="fullscreen-enter-icon" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/>
+            <path class="fullscreen-exit-icon" d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/>
+          </svg>
+        </button>
         <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
         <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       </div>
@@ -226,12 +232,12 @@
             <h2 id="account-profile-name">—</h2>
             <p id="account-profile-username">—</p>
             <div id="account-service-grid" class="account-service-grid">
-              <div><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p></div>
-              <div><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p></div>
-              <div class="notes-service-card"><span class="service-dot"></span><p><b data-i18n="cloudNotes">云笔记</b><small data-i18n="ready">已就绪</small></p></div>
-              <div class="share-service-card"><span class="service-dot"></span><p><b data-i18n="linkSharing">链接分享</b><small data-i18n="ready">已就绪</small></p></div>
-              <div><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p></div>
-              <div class="ai-service-card"><span class="service-dot"></span><p><b data-i18n="aiChat">AI 对话</b><small data-i18n="ready">已就绪</small></p></div>
+              <button type="button" data-account-service="chat"><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
+              <button type="button" data-account-service="cloud"><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
+              <button type="button" class="notes-service-card" data-account-service="notes"><span class="service-dot"></span><p><b data-i18n="cloudNotes">云笔记</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
+              <button type="button" class="share-service-card" data-account-service="sharing"><span class="service-dot"></span><p><b data-i18n="linkSharing">链接分享</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
+              <button type="button" data-account-service="translator"><span class="service-dot"></span><p><b data-i18n="universalTranslator">全能翻译</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
+              <button type="button" class="ai-service-card" data-account-service="ai"><span class="service-dot"></span><p><b data-i18n="aiChat">AI 对话</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
             </div>
             <button id="account-logout" type="button" class="account-logout-btn" data-i18n="signOutAll">退出账号</button>
             <p class="account-logout-hint" data-i18n="signOutHint">退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。</p>
@@ -1003,7 +1009,7 @@
       <label class="field"><span data-i18n="englishSource">单词词库</span><select id="english-source-select"><option value="nce2" data-i18n="englishSourceNCE2">新概念英语第二册</option><option value="nce3" data-i18n="englishSourceNCE3">新概念英语第三册</option><option value="cet4" data-i18n="englishSourceCET4">大学英语四级</option><option value="cet6" data-i18n="englishSourceCET6">大学英语六级</option><option value="ielts" data-i18n="englishSourceIELTS">雅思核心词汇</option><option value="all" data-i18n="englishSourceAll">全部公共词库</option></select></label>
       <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
       <div class="field-grid preference-grid">
-        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option></select></label>
+        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option><option value="aurora" data-i18n="auroraTheme">极光</option></select></label>
         <label class="field"><span data-i18n="currency">货币符号</span><input id="currency-symbol" maxlength="8" placeholder="¥ / $ / €"></label>
       </div>
       <div class="compact-opacity-setting">
@@ -1068,12 +1074,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.12.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.13.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.12.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.13.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1096,6 +1102,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=55" type="module"></script>
+  <script src="./app.js?v=57" type="module"></script>
 </body>
 </html>
