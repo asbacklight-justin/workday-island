@@ -31,6 +31,7 @@ func defaultSettings() Settings {
 		WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5},
 		SalaryWorkdays: 21.75, Currency: "¥", WeatherCity: "上海", Language: "system", Theme: "system",
 		EnglishMode: "study", EnglishSource: "nce2",
+		HeaderEntries: defaultHeaderEntries(),
 	}
 }
 
@@ -396,6 +397,7 @@ func (s *Store) saveLocked() error {
 }
 
 func normaliseSettings(settings Settings) Settings {
+	settings.HeaderEntries = normaliseHeaderEntries(settings.HeaderEntries)
 	if !validClock(settings.WorkStart) {
 		settings.WorkStart = "09:00"
 	}
@@ -457,6 +459,26 @@ func normaliseSettings(settings Settings) Settings {
 	sort.Ints(workdays)
 	settings.Workdays = workdays
 	return settings
+}
+
+var headerEntryKeys = []string{"ai", "chat", "stocks", "cloud", "notes", "sharing", "translator", "english"}
+
+func defaultHeaderEntries() map[string]bool {
+	entries := make(map[string]bool, len(headerEntryKeys))
+	for _, key := range headerEntryKeys {
+		entries[key] = true
+	}
+	return entries
+}
+
+func normaliseHeaderEntries(entries map[string]bool) map[string]bool {
+	normalised := defaultHeaderEntries()
+	for _, key := range headerEntryKeys {
+		if visible, ok := entries[key]; ok {
+			normalised[key] = visible
+		}
+	}
+	return normalised
 }
 
 func validEnglishSource(source string) bool {
@@ -618,6 +640,7 @@ func cloneState(state State) State {
 	copyState.NoteNodes = cloneNoteNodes(state.NoteNodes, false)
 	copyState.NoteVersions = append([]NoteVersion(nil), state.NoteVersions...)
 	copyState.Settings.Workdays = append([]int(nil), state.Settings.Workdays...)
+	copyState.Settings.HeaderEntries = normaliseHeaderEntries(state.Settings.HeaderEntries)
 	copyState.StockWatchlist = append([]string(nil), state.StockWatchlist...)
 	copyState.EnglishWords = cloneEnglishWords(state.EnglishWords)
 	copyState.EnglishWrongWords = cloneEnglishWrongWords(state.EnglishWrongWords)

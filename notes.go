@@ -56,9 +56,11 @@ type NoteVersion struct {
 }
 
 type NoteNodeInput struct {
-	ParentID string `json:"parentId"`
-	Kind     string `json:"kind"`
-	Title    string `json:"title"`
+	ParentID    string `json:"parentId"`
+	Kind        string `json:"kind"`
+	Title       string `json:"title"`
+	Content     string `json:"content,omitempty"`
+	ContentType string `json:"contentType,omitempty"`
 }
 
 type NoteUpdateInput struct {
@@ -327,9 +329,16 @@ func (client *CloudDiskClient) CreateNoteNode(ctx context.Context, input NoteNod
 	if kind != noteKindNote {
 		return NoteNode{}, errors.New("云笔记项目类型无效")
 	}
+	contentType := strings.ToLower(strings.TrimSpace(input.ContentType))
+	if contentType == "" {
+		contentType = "richtext"
+	}
+	if contentType != "richtext" && contentType != "markdown" && contentType != "spreadsheet" {
+		return NoteNode{}, errors.New("不支持的云笔记文档类型")
+	}
 	var created cloudNoteCreateResult
 	err = client.requestCloudNoteJSON(ctx, http.MethodPost, "/cloud_note/note", map[string]any{
-		"folder_id": folderID, "title": title, "content": "", "content_type": "richtext",
+		"folder_id": folderID, "title": title, "content": input.Content, "content_type": contentType,
 	}, &created, 0)
 	if err != nil {
 		return NoteNode{}, err
@@ -349,7 +358,7 @@ func (client *CloudDiskClient) CreateNoteNode(ctx context.Context, input NoteNod
 		now := time.Now()
 		return NoteNode{
 			ID: noteNodeID(detail.ID), ParentID: parentID, Kind: noteKindNote,
-			Title: title, ContentType: "richtext", CreatedAt: now, UpdatedAt: now,
+			Title: title, Content: input.Content, ContentType: contentType, CreatedAt: now, UpdatedAt: now,
 		}, nil
 	}
 	return noteNodeFromDetail(detail), nil

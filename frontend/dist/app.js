@@ -8,7 +8,7 @@ const translations = {
     breakText: '每工作 50 分钟，记得起身活动一下。', testReminder: '测试系统提醒', newTodo: '新建待办',
     editTodo: '编辑待办', todoContent: '待办内容', todoPlaceholder: '比如：下午三点提交周报', reminderAt: '提醒时间',
     optional: '可选', note: '备注', notePlaceholder: '补充一点上下文', cancel: '取消', saveTodo: '保存待办',
-    settingsTitle: '工作时间设置', workStart: '上班时间', workEnd: '下班时间', monthlySalary: '月薪',
+    settingsTitle: '工作时间设置', headerEntries: '顶部功能入口', headerEntriesDesc: '选择在工作台顶部显示的快捷入口', workStart: '上班时间', workEnd: '下班时间', monthlySalary: '月薪',
     localOnly: '仅保存在本机', salaryPlaceholder: '例如 15000', salaryWorkdays: '月计薪天数', weatherCity: '天气城市',
     weatherPlaceholder: '例如：上海、杭州、Shenzhen', workdays: '工作日', language: '界面语言', followSystem: '跟随系统',
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
@@ -98,7 +98,7 @@ const translations = {
     breakText: 'Stand up and move after every 50 minutes of work.', testReminder: 'Test Reminder', newTodo: 'New Todo',
     editTodo: 'Edit Todo', todoContent: 'Todo', todoPlaceholder: 'e.g. Submit the weekly report at 3 PM', reminderAt: 'Reminder',
     optional: 'Optional', note: 'Note', notePlaceholder: 'Add some context', cancel: 'Cancel', saveTodo: 'Save Todo',
-    settingsTitle: 'Work Settings', workStart: 'Work starts', workEnd: 'Work ends', monthlySalary: 'Monthly salary',
+    settingsTitle: 'Work Settings', headerEntries: 'Header shortcuts', headerEntriesDesc: 'Choose which shortcuts appear in the dashboard header', workStart: 'Work starts', workEnd: 'Work ends', monthlySalary: 'Monthly salary',
     localOnly: 'Stored locally', salaryPlaceholder: 'e.g. 15000', salaryWorkdays: 'Paid days / month', weatherCity: 'Weather city',
     weatherPlaceholder: 'e.g. Shanghai, Hangzhou, Shenzhen', workdays: 'Workdays', language: 'Language', followSystem: 'Follow system',
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
@@ -181,10 +181,20 @@ const translations = {
   }
 };
 
+const headerEntryDefinitions = [
+  ['ai', '#open-ai-chat'], ['chat', '#open-chat'], ['stocks', '#open-stocks'], ['cloud', '#open-cloud'],
+  ['notes', '#open-notes'], ['sharing', '#open-share-management'], ['translator', '#open-translator'], ['english', '#open-english']
+];
+
+function normaliseHeaderEntries(value) {
+  const source = value && typeof value === 'object' ? value : {};
+  return Object.fromEntries(headerEntryDefinitions.map(([key]) => [key, Object.prototype.hasOwnProperty.call(source, key) ? Boolean(source[key]) : true]));
+}
+
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2' },
-  appInfo: {name: 'Workday Island', version: '0.13.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
+  appInfo: {name: 'Workday Island', version: '0.14.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -196,7 +206,8 @@ const state = {
   notes: {
     nodes: [], selectedId: '', filter: 'all', query: '', expanded: new Set(),
     menuTargetId: '', movingId: '', saving: false, creating: false, unlocked: new Set(), fullscreen: false,
-    selectionRevision: 0, deleteTargetId: '', deletePermanent: false, passwordMode: 'set'
+    selectionRevision: 0, deleteTargetId: '', deletePermanent: false, passwordMode: 'set',
+    createParentId: '', markdownView: 'edit', workbook: null, selectedCell: 'A1'
   },
   shareManagementOpen: false,
   noteShares: {
@@ -530,16 +541,38 @@ function bindEvents() {
     renderNotesTree();
   });
   $('#notes-smart-nav').addEventListener('click', changeNotesFilter);
-  $('#create-note').addEventListener('click', () => createNoteNode('note'));
+  $('#create-note').addEventListener('click', () => openNoteCreateMenu());
   $('#create-note-folder').addEventListener('click', () => createNoteNode('folder'));
-  $('#notes-empty-create').addEventListener('click', () => createNoteNode('note'));
-  $('#notes-folder-new-note').addEventListener('click', () => createNoteNode('note', state.notes.selectedId));
+  $('#notes-empty-create').addEventListener('click', () => openNoteCreateMenu());
+  $('#notes-folder-new-note').addEventListener('click', () => openNoteCreateMenu(state.notes.selectedId));
   $('#notes-folder-new-folder').addEventListener('click', () => createNoteNode('folder', state.notes.selectedId));
+  $('#note-create-menu').addEventListener('click', event => {
+    const button = event.target.closest('[data-note-create-type]');
+    if (!button) {
+      if (event.target === $('#note-create-menu')) closeNoteCreateMenu();
+      return;
+    }
+    const parentId = state.notes.createParentId;
+    closeNoteCreateMenu();
+    createNoteNode('note', parentId, button.dataset.noteCreateType);
+  });
+  $('#close-note-create-menu').addEventListener('click', closeNoteCreateMenu);
   $('#refresh-notes').addEventListener('click', loadNotes);
   $('#notes-tree').addEventListener('click', handleNotesTreeClick);
   $('#notes-tree').addEventListener('dblclick', handleNotesTreeDoubleClick);
   $('#note-title-input').addEventListener('input', scheduleNoteSave);
   $('#note-content-editor').addEventListener('input', scheduleNoteSave);
+  $('#note-markdown-input').addEventListener('input', () => {
+    if (state.notes.markdownView === 'preview') renderMarkdownPreview();
+    scheduleNoteSave();
+  });
+  $('.note-markdown-tabs').addEventListener('click', changeMarkdownView);
+  $('#note-sheet-grid').addEventListener('focusin', selectSpreadsheetCell);
+  $('#note-sheet-grid').addEventListener('input', editSpreadsheetCell);
+  $('#note-sheet-formula').addEventListener('input', editSpreadsheetFormula);
+  $('#note-sheet-add-row').addEventListener('click', () => resizeSpreadsheet('row'));
+  $('#note-sheet-add-column').addEventListener('click', () => resizeSpreadsheet('column'));
+  $('#note-sheet-tabs').addEventListener('click', changeSpreadsheetSheet);
   $('#note-format-toolbar').addEventListener('mousedown', event => event.preventDefault());
   $('#note-format-toolbar').addEventListener('click', applyNoteFormat);
   $('#note-pin').addEventListener('click', () => toggleCurrentNoteFlag('pinned'));
@@ -898,6 +931,7 @@ async function refresh() {
 
 function renderAll() {
   $('#always-on-top').checked = state.settings.alwaysOnTop;
+  applyHeaderEntryVisibility();
   applyEnglishBackgroundOpacity();
   applyCompactUI();
   renderTodos();
@@ -1474,9 +1508,10 @@ function renderNotesTree() {
         : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V20H6z"/><path d="M15 3.5V7h3M9 11h6M9 15h6"/></svg>';
     const pinnedBadge = node.pinned ? '<i title="已置顶"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M7.5 9.5 12 5l4.5 4.5"/></svg></i>' : '';
     const favoriteBadge = node.favorite ? '<i title="已收藏"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z"/></svg></i>' : '';
+    const typeName = noteTypeLabel(node.contentType);
     const metadata = node.kind === 'folder'
       ? `${children.length} 项`
-      : `${(Number(node.wordCount) || notePlainTextFromHTML(node.content || '').length).toLocaleString(locale())} 字 · ${formatNoteRelativeTime(node.updatedAt)}`;
+      : `${typeName} · ${(Number(node.wordCount) || noteContentLength(node)).toLocaleString(locale())} ${node.contentType === 'spreadsheet' ? '格' : '字'} · ${formatNoteRelativeTime(node.updatedAt)}`;
     return `<div class="note-tree-row ${node.kind} ${node.deletedAt ? 'deleted' : ''} ${state.notes.selectedId === node.id ? 'active' : ''}" data-note-node-id="${escapeHTML(node.id)}" style="--note-depth:${Math.min(depth,8)}">
       ${toggle}
       <span class="note-tree-icon">${icon}</span>
@@ -1485,6 +1520,213 @@ function renderNotesTree() {
     </div>${node.kind === 'folder' && expanded ? renderBranch(node.id, depth + 1) : ''}`;
   }).join('');
   tree.innerHTML = renderBranch();
+}
+
+function noteTypeLabel(contentType) {
+  return contentType === 'markdown' ? 'Markdown' : contentType === 'spreadsheet' ? '表格' : '普通笔记';
+}
+
+function normalizeNoteContentType(contentType) {
+  return ['richtext','markdown','spreadsheet'].includes(contentType) ? contentType : 'richtext';
+}
+
+function spreadsheetColumnLabel(index) {
+  let value = Number(index) + 1;
+  let label = '';
+  while (value > 0) {
+    value -= 1;
+    label = String.fromCharCode(65 + value % 26) + label;
+    value = Math.floor(value / 26);
+  }
+  return label;
+}
+
+function createNoteSheet(name = '工作表1') {
+  return {id:`sheet_${Date.now()}_${Math.random().toString(36).slice(2,8)}`,name,rowCount:100,colCount:26,cells:{},rowHeights:{},colWidths:{},merges:[],hiddenRows:[],hiddenCols:[],frozenRows:0,frozenCols:0,gridlines:true};
+}
+
+function createNoteWorkbook() {
+  const sheet = createNoteSheet();
+  return {version:1,activeSheetId:sheet.id,sheets:[sheet]};
+}
+
+function parseNoteWorkbook(content) {
+  try {
+    const workbook = typeof content === 'string' ? JSON.parse(content) : content;
+    if (!workbook || !Array.isArray(workbook.sheets) || !workbook.sheets.length) return createNoteWorkbook();
+    workbook.sheets = workbook.sheets.map((sheet,index) => ({
+      ...createNoteSheet(`工作表${index + 1}`), ...sheet,
+      cells:sheet?.cells && typeof sheet.cells === 'object' ? sheet.cells : {},
+      rowCount:Math.max(20,Math.min(1000,Number(sheet?.rowCount)||100)),
+      colCount:Math.max(10,Math.min(200,Number(sheet?.colCount)||26))
+    }));
+    if (!workbook.sheets.some(sheet => sheet.id === workbook.activeSheetId)) workbook.activeSheetId = workbook.sheets[0].id;
+    return workbook;
+  } catch { return createNoteWorkbook(); }
+}
+
+function activeNoteSheet() {
+  const workbook = state.notes.workbook;
+  return workbook?.sheets?.find(sheet => sheet.id === workbook.activeSheetId) || workbook?.sheets?.[0] || null;
+}
+
+function noteContentLength(node) {
+  const type = normalizeNoteContentType(node?.contentType);
+  if (type === 'markdown') return String(node?.content || '').trim().length;
+  if (type === 'spreadsheet') {
+    const workbook = parseNoteWorkbook(node?.content || '');
+    return workbook.sheets.reduce((total,sheet) => total + Object.values(sheet.cells || {}).filter(cell => String(cell?.v ?? '').trim()).length,0);
+  }
+  return notePlainTextFromHTML(node?.content || '').length;
+}
+
+function currentNoteContent(node = currentNoteNode()) {
+  const type = normalizeNoteContentType(node?.contentType);
+  if (type === 'markdown') return $('#note-markdown-input')?.value || '';
+  if (type === 'spreadsheet') return JSON.stringify(state.notes.workbook || createNoteWorkbook());
+  return $('#note-content-editor')?.innerHTML || '';
+}
+
+function currentNotePlainText(node = currentNoteNode()) {
+  const type = normalizeNoteContentType(node?.contentType);
+  if (type === 'markdown') return $('#note-markdown-input')?.value || '';
+  if (type === 'spreadsheet') {
+    return (state.notes.workbook?.sheets || []).flatMap(sheet => Object.entries(sheet.cells || {}).filter(([,cell]) => String(cell?.v ?? '').trim()).map(([address,cell]) => `${sheet.name} ${address}: ${cell.v}`)).join('\n');
+  }
+  return notePlainTextFromHTML($('#note-content-editor')?.innerHTML || node?.content || '');
+}
+
+function renderMarkdownInline(text) {
+  return escapeHTML(text)
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g,'<em>$1</em>')
+    .replace(/~~([^~]+)~~/g,'<s>$1</s>')
+    .replace(/\[([^\]]+)]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+}
+
+function renderNoteMarkdown(source) {
+  const lines = String(source || '').replace(/\r/g,'').split('\n');
+  let html = '', inCode = false, list = '';
+  const closeList = () => { if (list) { html += `</${list}>`; list = ''; } };
+  for (const line of lines) {
+    if (/^```/.test(line)) { closeList(); html += inCode ? '</code></pre>' : '<pre><code>'; inCode = !inCode; continue; }
+    if (inCode) { html += `${escapeHTML(line)}\n`; continue; }
+    const heading = /^(#{1,6})\s+(.*)$/.exec(line);
+    if (heading) { closeList(); const level=heading[1].length; html += `<h${level}>${renderMarkdownInline(heading[2])}</h${level}>`; continue; }
+    const task = /^\s*[-*]\s+\[([ xX])]\s+(.*)$/.exec(line);
+    if (task) { if (list !== 'ul') { closeList(); html += '<ul class="task-list">'; list='ul'; } html += `<li><input type="checkbox" disabled ${task[1].toLowerCase()==='x'?'checked':''}>${renderMarkdownInline(task[2])}</li>`; continue; }
+    const unordered = /^\s*[-*+]\s+(.*)$/.exec(line);
+    if (unordered) { if (list !== 'ul') { closeList(); html += '<ul>'; list='ul'; } html += `<li>${renderMarkdownInline(unordered[1])}</li>`; continue; }
+    const ordered = /^\s*\d+[.)]\s+(.*)$/.exec(line);
+    if (ordered) { if (list !== 'ol') { closeList(); html += '<ol>'; list='ol'; } html += `<li>${renderMarkdownInline(ordered[1])}</li>`; continue; }
+    closeList();
+    if (/^>\s?/.test(line)) html += `<blockquote>${renderMarkdownInline(line.replace(/^>\s?/,''))}</blockquote>`;
+    else if (/^---+$/.test(line.trim())) html += '<hr>';
+    else if (line.trim()) html += `<p>${renderMarkdownInline(line)}</p>`;
+    else html += '<br>';
+  }
+  closeList();
+  if (inCode) html += '</code></pre>';
+  return html;
+}
+
+function renderMarkdownPreview() {
+  $('#note-markdown-preview').innerHTML = renderNoteMarkdown($('#note-markdown-input').value);
+}
+
+function changeMarkdownView(event) {
+  const button = event.target.closest('[data-markdown-view]');
+  if (!button) return;
+  state.notes.markdownView = button.dataset.markdownView;
+  $$('.note-markdown-tabs button').forEach(item => item.classList.toggle('active', item === button));
+  const preview = state.notes.markdownView === 'preview';
+  $('#note-markdown-input').classList.toggle('hidden', preview);
+  $('#note-markdown-preview').classList.toggle('hidden', !preview);
+  if (preview) renderMarkdownPreview();
+}
+
+function renderSpreadsheetEditor() {
+  const sheet = activeNoteSheet();
+  if (!sheet) return;
+  const rows = Math.min(sheet.rowCount,200);
+  const cols = Math.min(sheet.colCount,50);
+  let head = '<thead><tr><th class="sheet-corner"></th>';
+  for (let col=0; col<cols; col++) head += `<th>${spreadsheetColumnLabel(col)}</th>`;
+  head += '</tr></thead><tbody>';
+  for (let row=0; row<rows; row++) {
+    head += `<tr><th>${row + 1}</th>`;
+    for (let col=0; col<cols; col++) {
+      const address = `${spreadsheetColumnLabel(col)}${row + 1}`;
+      const value = sheet.cells?.[address]?.v ?? '';
+      head += `<td><input data-sheet-cell="${address}" value="${escapeHTML(String(value))}" spellcheck="false" aria-label="${address}"></td>`;
+    }
+    head += '</tr>';
+  }
+  $('#note-sheet-grid').innerHTML = head + '</tbody>';
+  $('#note-sheet-tabs').innerHTML = sheetTabsHTML();
+  selectSpreadsheetAddress(state.notes.selectedCell || 'A1', false);
+}
+
+function sheetTabsHTML() {
+  const workbook = state.notes.workbook;
+  return (workbook?.sheets || []).map(sheet => `<button type="button" class="${sheet.id===workbook.activeSheetId?'active':''}" data-sheet-id="${escapeHTML(sheet.id)}">${escapeHTML(sheet.name)}</button>`).join('') + '<button type="button" data-sheet-add title="新建工作表">＋</button>';
+}
+
+function selectSpreadsheetAddress(address, focus = true) {
+  state.notes.selectedCell = address;
+  $$('#note-sheet-grid [data-sheet-cell]').forEach(input => input.parentElement.classList.toggle('selected', input.dataset.sheetCell === address));
+  const input = $(`#note-sheet-grid [data-sheet-cell="${address}"]`);
+  $('#note-sheet-cell-name').textContent = address;
+  $('#note-sheet-formula').value = input?.value || '';
+  if (focus) input?.focus();
+}
+
+function selectSpreadsheetCell(event) {
+  const input = event.target.closest('[data-sheet-cell]');
+  if (input) selectSpreadsheetAddress(input.dataset.sheetCell, false);
+}
+
+function editSpreadsheetCell(event) {
+  const input = event.target.closest('[data-sheet-cell]');
+  if (!input) return;
+  const sheet = activeNoteSheet();
+  const address = input.dataset.sheetCell;
+  const value = input.value;
+  if (value === '') delete sheet.cells[address];
+  else sheet.cells[address] = {...(sheet.cells[address] || {}),v:value};
+  $('#note-sheet-formula').value = value;
+  scheduleNoteSave();
+}
+
+function editSpreadsheetFormula(event) {
+  const input = $(`#note-sheet-grid [data-sheet-cell="${state.notes.selectedCell}"]`);
+  if (!input) return;
+  input.value = event.target.value;
+  input.dispatchEvent(new Event('input',{bubbles:true}));
+}
+
+function resizeSpreadsheet(axis) {
+  const sheet = activeNoteSheet();
+  if (!sheet) return;
+  if (axis === 'row') sheet.rowCount = Math.min(1000,sheet.rowCount + 10);
+  else sheet.colCount = Math.min(200,sheet.colCount + 5);
+  renderSpreadsheetEditor();
+  scheduleNoteSave();
+}
+
+function changeSpreadsheetSheet(event) {
+  const add = event.target.closest('[data-sheet-add]');
+  const button = event.target.closest('[data-sheet-id]');
+  if (!add && !button) return;
+  if (add) {
+    const sheet = createNoteSheet(`工作表${state.notes.workbook.sheets.length + 1}`);
+    state.notes.workbook.sheets.push(sheet);
+    state.notes.workbook.activeSheetId = sheet.id;
+  } else state.notes.workbook.activeSheetId = button.dataset.sheetId;
+  state.notes.selectedCell = 'A1';
+  renderSpreadsheetEditor();
+  scheduleNoteSave();
 }
 
 function renderNotesWorkspace() {
@@ -1513,8 +1755,27 @@ function renderNotesWorkspace() {
   if (node.kind !== 'note') node.kind = 'note';
   node.savedTitle ??= node.title || '无标题笔记';
   node.savedContent ??= node.content || '';
+  node.contentType = normalizeNoteContentType(node.contentType);
   $('#note-title-input').value = node.title || '无标题笔记';
-  $('#note-content-editor').innerHTML = node.content || '';
+  $('#note-content-type-badge').textContent = noteTypeLabel(node.contentType);
+  $('#notes-editor').dataset.contentType = node.contentType;
+  $('#note-format-toolbar').classList.toggle('hidden', node.contentType !== 'richtext');
+  $('#note-content-editor').classList.toggle('hidden', node.contentType !== 'richtext');
+  $('#note-markdown-editor').classList.toggle('hidden', node.contentType !== 'markdown');
+  $('#note-spreadsheet-editor').classList.toggle('hidden', node.contentType !== 'spreadsheet');
+  if (node.contentType === 'richtext') $('#note-content-editor').innerHTML = node.content || '';
+  if (node.contentType === 'markdown') {
+    $('#note-markdown-input').value = node.content || '';
+    state.notes.markdownView = 'edit';
+    $$('.note-markdown-tabs button').forEach(button => button.classList.toggle('active', button.dataset.markdownView === 'edit'));
+    $('#note-markdown-input').classList.remove('hidden');
+    $('#note-markdown-preview').classList.add('hidden');
+  }
+  if (node.contentType === 'spreadsheet') {
+    state.notes.workbook = parseNoteWorkbook(node.content);
+    state.notes.selectedCell = 'A1';
+    renderSpreadsheetEditor();
+  }
   $('#note-save-status').textContent = '已保存';
   $('#note-save-status').classList.remove('saving');
   renderCurrentNoteMeta();
@@ -1550,8 +1811,12 @@ function renderCurrentNoteMeta() {
 }
 
 function updateCurrentNoteWordCount() {
-  const count = notePlainTextFromHTML($('#note-content-editor')?.innerHTML || '').length;
-  $('#note-word-count').textContent = `${count.toLocaleString(locale())} 字`;
+  const node = currentNoteNode();
+  if (!node) return;
+  const count = node.contentType === 'spreadsheet'
+    ? (state.notes.workbook?.sheets || []).reduce((total,sheet) => total + Object.values(sheet.cells || {}).filter(cell => String(cell?.v ?? '').trim()).length,0)
+    : currentNotePlainText(node).length;
+  $('#note-word-count').textContent = `${count.toLocaleString(locale())} ${node.contentType === 'spreadsheet' ? '个非空单元格' : '字'}`;
 }
 
 function changeNotesFilter(event) {
@@ -1632,28 +1897,47 @@ async function selectNoteNode(id) {
   }
 }
 
-async function createNoteNode(kind, requestedParentId = '') {
+function openNoteCreateMenu(requestedParentId = '') {
+  if (!state.account.loggedIn || state.notes.creating) return;
+  let parentId = requestedParentId;
+  const selected = noteNodeById(state.notes.selectedId);
+  if (!parentId && selected) parentId = selected.kind === 'folder' ? selected.id : selected.parentId;
+  state.notes.createParentId = state.notes.filter === 'trash' ? '' : (parentId || '');
+  $('#note-create-menu').classList.remove('hidden');
+  window.requestAnimationFrame(() => $('#note-create-menu [data-note-create-type="richtext"]')?.focus());
+}
+
+function closeNoteCreateMenu() {
+  $('#note-create-menu').classList.add('hidden');
+}
+
+async function createNoteNode(kind, requestedParentId = '', requestedContentType = 'richtext') {
   if (state.notes.creating) return;
   await flushNoteSave();
   let parentId = requestedParentId;
   const selected = noteNodeById(state.notes.selectedId);
   if (!parentId && selected) parentId = selected.kind === 'folder' ? selected.id : selected.parentId;
   if (state.notes.filter === 'trash') parentId = '';
-  const title = kind === 'folder' ? await showAppPrompt('文件夹名称', '新建文件夹', {title:'新建文件夹',label:'文件夹名称'}) : '无标题笔记';
+  const contentType = kind === 'note' ? normalizeNoteContentType(requestedContentType) : '';
+  const title = kind === 'folder'
+    ? await showAppPrompt('文件夹名称', '新建文件夹', {title:'新建文件夹',label:'文件夹名称'})
+    : contentType === 'markdown' ? '无标题Markdown' : contentType === 'spreadsheet' ? '无标题表格' : '无标题笔记';
   if (title === null) return;
+  const content = contentType === 'spreadsheet' ? JSON.stringify(createNoteWorkbook()) : '';
   state.notes.creating = true;
   const createButtons = ['#create-note','#create-note-folder','#notes-empty-create','#notes-folder-new-note','#notes-folder-new-folder']
     .map(selector => $(selector))
     .filter(Boolean);
   createButtons.forEach(button => { button.disabled = true; });
   try {
-    const created = await api.CreateNoteNode({kind,parentId:parentId || '',title});
+    const created = await api.CreateNoteNode({kind,parentId:parentId || '',title,content,contentType});
     if (!created?.id) throw new Error('云端创建成功，但未返回笔记标识，请刷新后重试');
     Object.assign(created, {
       kind: created.kind || kind,
       parentId: created.parentId ?? parentId ?? '',
       title: created.title || title,
-      content: created.content || '',
+      content: created.content || content,
+      contentType: kind === 'note' ? normalizeNoteContentType(created.contentType || contentType) : '',
       locked: kind === 'note' ? false : Boolean(created.locked),
       savedTitle: created.title || title,
       savedContent: created.content || ''
@@ -1698,7 +1982,7 @@ function scheduleNoteSave() {
   const node = currentNoteNode();
   if (!node || node.locked && !state.notes.unlocked.has(node.id)) return;
   node.title = $('#note-title-input').value || '无标题笔记';
-  node.content = $('#note-content-editor').innerHTML;
+  node.content = currentNoteContent(node);
   node.updatedAt = new Date().toISOString();
   $('#note-save-status').textContent = '待保存';
   $('#note-save-status').classList.add('saving');
@@ -1713,7 +1997,7 @@ async function flushNoteSave() {
   const node = currentNoteNode();
   if (!node || state.notes.saving || node.deletedAt || node.locked && !state.notes.unlocked.has(node.id)) return;
   const title = ($('#note-title-input')?.value || node.title || '无标题笔记').trim() || '无标题笔记';
-  const content = $('#note-content-editor')?.innerHTML ?? node.content ?? '';
+  const content = currentNoteContent(node);
   if (title === node.savedTitle && content === node.savedContent) return;
   state.notes.saving = true;
   if (state.notes.selectedId === node.id) {
@@ -1742,7 +2026,7 @@ async function flushNoteSave() {
 
 async function applyNoteFormat(event) {
   const button = event.target.closest('button');
-  if (!button || !currentNoteNode()) return;
+  if (!button || !currentNoteNode() || currentNoteNode().contentType !== 'richtext') return;
   $('#note-content-editor').focus();
   if (button.dataset.noteBlock) {
     document.execCommand('formatBlock', false, button.dataset.noteBlock);
@@ -2116,7 +2400,7 @@ async function shareCurrentNote() {
 async function sendCurrentNoteToAI() {
   const node = currentNoteNode();
   if (!node) return;
-  const content = notePlainTextFromHTML($('#note-content-editor').innerHTML);
+  const content = currentNotePlainText(node);
   await flushNoteSave();
   closeNotesPage();
   await openAIChatPage();
@@ -2128,7 +2412,7 @@ async function sendCurrentNoteToAI() {
 async function translateCurrentNote() {
   const node = currentNoteNode();
   if (!node) return;
-  const content = notePlainTextFromHTML($('#note-content-editor').innerHTML);
+  const content = currentNotePlainText(node);
   await flushNoteSave();
   closeNotesPage();
   await openTranslatorPage();
@@ -2140,10 +2424,12 @@ async function translateCurrentNote() {
 function showCurrentNoteInfo() {
   const node = currentNoteNode();
   if (!node) return;
-  const words = notePlainTextFromHTML($('#note-content-editor').innerHTML).length;
+  const words = node.contentType === 'spreadsheet'
+    ? (state.notes.workbook?.sheets || []).reduce((total,sheet) => total + Object.values(sheet.cells || {}).filter(cell => String(cell?.v ?? '').trim()).length,0)
+    : currentNotePlainText(node).length;
   $('#note-info-title').textContent = node.title;
   $('#note-info-path').textContent = noteNodePath(node);
-  $('#note-info-words').textContent = words.toLocaleString(locale());
+  $('#note-info-words').textContent = `${words.toLocaleString(locale())}${node.contentType === 'spreadsheet' ? ' 个非空单元格' : ''}`;
   $('#note-info-created').textContent = formatNoteDate(node.createdAt);
   $('#note-info-updated').textContent = formatNoteDate(node.updatedAt);
   $('#note-info-password').textContent = node.hasPassword || node.locked ? '已设置' : '未设置';
@@ -5019,6 +5305,8 @@ async function submitTodo(event) {
 }
 
 function openSettings() {
+	state.settings.headerEntries = normaliseHeaderEntries(state.settings.headerEntries);
+	$$('[data-header-entry]').forEach(input => { input.checked = state.settings.headerEntries[input.dataset.headerEntry]; });
   $('#work-start').value = state.settings.workStart;
   $('#work-end').value = state.settings.workEnd;
   $('#monthly-salary').value = state.settings.monthlySalary || '';
@@ -5049,6 +5337,7 @@ async function submitSettings(event) {
   event.preventDefault();
   const workdays = $$('#weekday-picker .weekday.active').map(button => Number(button.dataset.day));
   if (!workdays.length) { showToast(t('chooseWorkday'), true); return; }
+	const headerEntries = Object.fromEntries($$('[data-header-entry]').map(input => [input.dataset.headerEntry, input.checked]));
   state.settings = {
     alwaysOnTop: $('#settings-top').checked,
     compactMode: state.settings.compactMode,
@@ -5066,7 +5355,8 @@ async function submitSettings(event) {
     showCompactTodos: $('#show-compact-todos').checked,
     compactOpacity: normaliseCompactOpacity($('#compact-opacity').value),
     compactWidth: state.settings.compactWidth || 520,
-    compactHeight: state.settings.compactHeight || 350
+    compactHeight: state.settings.compactHeight || 350,
+		headerEntries: normaliseHeaderEntries(headerEntries)
   };
   try {
     await saveSettings();
@@ -5101,6 +5391,13 @@ function applyCompactUI() {
   $('#compact-label').textContent = compact ? t('expand') : t('compact');
   $('#compact-toggle').title = compact ? t('expandTitle') : t('compactTitle');
   $('#compact-toggle').setAttribute('aria-label', $('#compact-toggle').title);
+}
+
+function applyHeaderEntryVisibility() {
+  state.settings.headerEntries = normaliseHeaderEntries(state.settings.headerEntries);
+  headerEntryDefinitions.forEach(([key, selector]) => {
+    $(selector)?.classList.toggle('header-entry-hidden', !state.settings.headerEntries[key]);
+  });
 }
 
 function normaliseCompactOpacity(value) {
@@ -5430,7 +5727,7 @@ function createPreviewAPI() {
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
     async ListNoteNodes(){ return structuredClone(previewNotes); },
     async GetNoteNode(id){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); return structuredClone(node); },
-    async CreateNoteNode(input){ const timestamp=new Date().toISOString(); const node={id:crypto.randomUUID(),parentId:input.parentId||'',kind:input.kind,title:input.title||(input.kind==='folder'?'新建文件夹':'无标题笔记'),content:'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:timestamp,updatedAt:timestamp}; previewNotes.push(node); return structuredClone(node); },
+    async CreateNoteNode(input){ const timestamp=new Date().toISOString(); const node={id:crypto.randomUUID(),parentId:input.parentId||'',kind:input.kind,title:input.title||(input.kind==='folder'?'新建文件夹':'无标题笔记'),content:input.content||'',contentType:input.kind==='note'?(input.contentType||'richtext'):'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:timestamp,updatedAt:timestamp}; previewNotes.push(node); return structuredClone(node); },
     async UpdateNote(id,input){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); const versions=previewNoteVersions.get(id)||[]; if(node.content&&node.content!==input.content&&!versions.length)versions.push({id:crypto.randomUUID(),noteId:id,title:node.title,content:node.content,createdAt:new Date().toISOString()}); previewNoteVersions.set(id,versions); Object.assign(node,input,{updatedAt:new Date().toISOString()}); return structuredClone(node); },
     async RenameNoteNode(id,title){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('内容不存在'); node.title=title; node.updatedAt=new Date().toISOString(); return structuredClone(node); },
     async MoveNoteNode(id,parentId){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('内容不存在'); node.parentId=parentId||''; node.updatedAt=new Date().toISOString(); return structuredClone(node); },
@@ -5556,7 +5853,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.13.0',latestVersion:'0.13.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增极光主题、全局全屏、账号服务快捷入口，并完善跨平台托盘与界面可读性。\nAdded the Aurora theme, global full screen, account service shortcuts, and improved cross-platform tray behaviour and readability.'} : {currentVersion:'0.13.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.14.0',latestVersion:'0.14.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'云笔记新增普通笔记、Markdown 与表格文档，并支持配置顶部功能入口。\nCloud Notes now supports rich-text, Markdown, and spreadsheet documents, with configurable header shortcuts.'} : {currentVersion:'0.14.0',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; }
   };

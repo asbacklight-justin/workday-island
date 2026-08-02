@@ -14,23 +14,24 @@ type Todo struct {
 }
 
 type Settings struct {
-	AlwaysOnTop      bool    `json:"alwaysOnTop"`
-	CompactMode      bool    `json:"compactMode"`
-	ShowCompactTodos bool    `json:"showCompactTodos"`
-	CompactOpacity   int     `json:"compactOpacity"`
-	CompactWidth     int     `json:"compactWidth"`
-	CompactHeight    int     `json:"compactHeight"`
-	WorkStart        string  `json:"workStart"`
-	WorkEnd          string  `json:"workEnd"`
-	Workdays         []int   `json:"workdays"`
-	MonthlySalary    float64 `json:"monthlySalary"`
-	SalaryWorkdays   float64 `json:"salaryWorkdays"`
-	Currency         string  `json:"currency"`
-	WeatherCity      string  `json:"weatherCity"`
-	Language         string  `json:"language"`
-	Theme            string  `json:"theme"`
-	EnglishMode      string  `json:"englishMode"`
-	EnglishSource    string  `json:"englishSource"`
+	AlwaysOnTop      bool            `json:"alwaysOnTop"`
+	CompactMode      bool            `json:"compactMode"`
+	ShowCompactTodos bool            `json:"showCompactTodos"`
+	CompactOpacity   int             `json:"compactOpacity"`
+	CompactWidth     int             `json:"compactWidth"`
+	CompactHeight    int             `json:"compactHeight"`
+	WorkStart        string          `json:"workStart"`
+	WorkEnd          string          `json:"workEnd"`
+	Workdays         []int           `json:"workdays"`
+	MonthlySalary    float64         `json:"monthlySalary"`
+	SalaryWorkdays   float64         `json:"salaryWorkdays"`
+	Currency         string          `json:"currency"`
+	WeatherCity      string          `json:"weatherCity"`
+	Language         string          `json:"language"`
+	Theme            string          `json:"theme"`
+	EnglishMode      string          `json:"englishMode"`
+	EnglishSource    string          `json:"englishSource"`
+	HeaderEntries    map[string]bool `json:"headerEntries"`
 }
 
 type State struct {

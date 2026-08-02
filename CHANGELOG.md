@@ -5,8 +5,19 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
-暂无未发布变更。
-No unreleased changes.
+## [0.14.0] - 2026-08-02
+
+### 中文
+
+- 设置页顶部新增 8 个工作台快捷入口开关，可分别控制 AI 对话、实时聊天、股市、工作云盘、云笔记、链接分享、全能翻译和英语学习是否显示；默认全部开启，并兼容旧版本地配置。
+- 云笔记新建入口新增普通笔记、Markdown 与表格文档三种类型；Markdown 支持源码编辑和安全预览，表格文档使用与 Web 后台一致的 Workbook 格式并支持单元格、公式栏、扩展行列和多工作表编辑。
+- 桌面端创建、保存、统计、AI 整理和翻译时会按文档类型处理内容，确保 Markdown 与表格可在桌面端和 Web 端之间继续编辑。
+
+### English
+
+- Added eight shortcut visibility controls at the top of Settings for AI Chat, Realtime Chat, Stocks, Work Cloud, Cloud Notes, Link Sharing, Universal Translator, and English Learning. All are shown by default, including for users upgrading from older local settings.
+- Added Rich Text, Markdown, and Spreadsheet choices to Cloud Notes creation. Markdown includes source editing and safe preview, while spreadsheets use the same Workbook format as the Web app with cells, a formula bar, expandable rows/columns, and multiple sheets.
+- Desktop creation, autosave, statistics, AI hand-off, and translation now process content by document type so Markdown and spreadsheets remain editable across desktop and Web.
 
 ## [0.13.0] - 2026-08-01
 
@@ -270,6 +281,7 @@ No unreleased changes.
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.14.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0
 [0.13.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0
 [0.12.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0
 [0.11.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.11.0

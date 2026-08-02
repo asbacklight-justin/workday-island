@@ -257,6 +257,56 @@ func TestCloudNoteCreateUsesProductionDetailShape(t *testing.T) {
 	}
 }
 
+func TestCloudNoteCreatePreservesMarkdownAndSpreadsheetTypes(t *testing.T) {
+	tests := []struct {
+		name, contentType, title, content string
+	}{
+		{name: "markdown", contentType: "markdown", title: "无标题Markdown", content: "# 标题\n\n正文"},
+		{name: "spreadsheet", contentType: "spreadsheet", title: "无标题表格", content: `{"version":1,"activeSheetId":"sheet_1","sheets":[{"id":"sheet_1","name":"工作表1","rowCount":100,"colCount":26,"cells":{}}]}`},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			server := httptest.NewServer(http.HandlerFunc(func(writer http.ResponseWriter, request *http.Request) {
+				if request.Method != http.MethodPost || request.URL.Path != "/cloud_note/note" {
+					http.NotFound(writer, request)
+					return
+				}
+				var payload map[string]any
+				if err := json.NewDecoder(request.Body).Decode(&payload); err != nil {
+					t.Fatal(err)
+				}
+				if payload["content_type"] != test.contentType || payload["content"] != test.content {
+					t.Fatalf("payload = %#v", payload)
+				}
+				writeCloudNoteTestResponse(t, writer, map[string]any{
+					"id": 91, "title": test.title, "content": test.content, "content_type": test.contentType,
+					"revision": 1, "create_time": time.Now(), "modify_time": time.Now(),
+				})
+			}))
+			defer server.Close()
+
+			client := authenticatedCloudNoteClient(server, "account-a")
+			created, err := client.CreateNoteNode(t.Context(), NoteNodeInput{
+				Kind: noteKindNote, Title: test.title, Content: test.content, ContentType: test.contentType,
+			})
+			if err != nil {
+				t.Fatal(err)
+			}
+			if created.ContentType != test.contentType || created.Content != test.content {
+				t.Fatalf("created = %+v", created)
+			}
+		})
+	}
+}
+
+func TestCloudNoteCreateRejectsUnsupportedContentType(t *testing.T) {
+	client := authenticatedCloudNoteClient(&httptest.Server{}, "account-a")
+	_, err := client.CreateNoteNode(t.Context(), NoteNodeInput{Kind: noteKindNote, ContentType: "binary"})
+	if err == nil || !strings.Contains(err.Error(), "文档类型") {
+		t.Fatalf("error = %v", err)
+	}
+}
+
 func TestLegacyLocalNotesAreDiscardedAndNotSerialized(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "data.json")
 	legacy := `{"todos":[],"noteNodes":[{"id":"old","kind":"note","title":"旧笔记","content":"LOCAL-SECRET"}],"noteVersions":[{"id":"v1","noteId":"old","content":"OLD-SECRET"}],"settings":{}}`

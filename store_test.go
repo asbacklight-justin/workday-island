@@ -21,6 +21,7 @@ func TestStorePersistsTodoAndSettings(t *testing.T) {
 		AlwaysOnTop: false, CompactMode: true, ShowCompactTodos: true,
 		CompactOpacity: 65, CompactWidth: 688, CompactHeight: 422, WorkStart: "08:30", WorkEnd: "17:45",
 		Workdays: []int{1, 2, 3, 4, 5}, Theme: "light", Currency: "$",
+		HeaderEntries: map[string]bool{"chat": false, "stocks": false},
 	})
 	if err != nil {
 		t.Fatal(err)
@@ -35,6 +36,9 @@ func TestStorePersistsTodoAndSettings(t *testing.T) {
 	}
 	if !state.Settings.ShowCompactTodos || state.Settings.CompactOpacity != 65 || state.Settings.CompactWidth != 688 || state.Settings.CompactHeight != 422 || state.Settings.Theme != "light" || state.Settings.Currency != "$" {
 		t.Fatalf("new preferences not persisted: %#v", state.Settings)
+	}
+	if state.Settings.HeaderEntries["chat"] || state.Settings.HeaderEntries["stocks"] || !state.Settings.HeaderEntries["ai"] || !state.Settings.HeaderEntries["english"] {
+		t.Fatalf("header entry preferences not persisted or completed: %#v", state.Settings.HeaderEntries)
 	}
 }
 
@@ -101,6 +105,10 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 	}
 	if got := normaliseSettings(Settings{EnglishMode: "sentence", Workdays: []int{1}}).EnglishMode; got != "sentence" {
 		t.Fatalf("sentence learning mode was not preserved: %q", got)
+	}
+	entries := normaliseSettings(Settings{Workdays: []int{1}, HeaderEntries: map[string]bool{"notes": false}}).HeaderEntries
+	if entries["notes"] || !entries["ai"] || !entries["chat"] || !entries["english"] || len(entries) != 8 {
+		t.Fatalf("header entry defaults were not normalised: %#v", entries)
 	}
 }
 

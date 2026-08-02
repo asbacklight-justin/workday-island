@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.13.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.13.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.14.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.14.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -30,13 +30,14 @@ The public packages are not currently signed with commercial distribution certif
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
 - **Multiple themes:** Follow the system appearance or choose Dark, Light, or the teal-and-violet glassy Aurora theme.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
+- **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Work Cloud, Cloud Notes, Sharing, Translator, and English Learning. All remain visible by default, including after upgrading an older installation.
 - **English Learning centre:** The `EN` button now opens a full learning centre. Its local Word Book keeps a cross-day history of words actually viewed in all five modes with phonetics, meanings, examples, library, modes, and view counts. The Wrong Book records mistakes from EN → CN, CN → EN, and spelling with the latest answer and accumulated error count. The compact learning window opens only from **Compact Study**; on macOS and Windows, floating-window opacity affects its background without dimming core content.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Online updates and Web App:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, or visit the [Backlight Web App](https://admin.asbacklight.cn/).
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
 - **Desktop AI Chat:** Create, search, pin, archive, rename, and delete account conversations from the desktop. Select an allowed model and thinking mode, stream responses, stop generation, copy code blocks, render Markdown, inspect usage, and configure a personal system prompt.
-- **Cloud Notes:** Access notes and folders across devices with rich-text editing, autosave, search, favourites, pinning, move, recycle bin, version history, reading passwords, AI organisation, translation, and Word/text export. Pinned content always sorts first inside its folder.
+- **Cloud Notes:** Access notes and folders across devices and create rich-text, Markdown, or Web-compatible spreadsheet documents, with autosave, search, favourites, pinning, move, recycle bin, version history, reading passwords, AI organisation, translation, and export. Pinned content always sorts first inside its folder.
 - **Link Sharing:** Publish a Cloud Note as a snapshot or live share with optional password, validity period, copy, and comment policies. A dedicated management page supports search, edit, revoke, regenerate, open, and delete actions plus quota and view counts.
 - **Realtime chat, friends, and window interactions:** Add friends by exact username/user ID, process requests, see presence, and send text, shake, or flash events. Shake and flash events appear in conversation history and prefer the sender's nickname.
 - **Work Cloud:** Browse and search folders, create directories, rename, move, delete, upload, and download files while viewing the account's live storage quota.
@@ -59,9 +60,15 @@ The 2×2 layout fits in a corner of the desktop and remains freely resizable.
 
 ### Preferences
 
-Configure work hours, salary, paid days, weather city, workdays, the English word library, language, and always-on-top behaviour.
+Configure header shortcuts, work hours, salary, paid days, weather city, workdays, the English word library, language, and always-on-top behaviour.
 
 ![English preferences](docs/screenshots/en-settings.png)
+
+### AI Chat
+
+Use DeepSeek models directly from the desktop while managing conversations, thinking mode, usage, and personal settings.
+
+![Desktop AI Chat in the Chinese interface](docs/screenshots/zh-ai.png)
 
 ### English Learning
 
@@ -100,7 +107,7 @@ See the [Chinese README](README.md#界面预览) for the Chinese screenshots.
 13. Select the notes button for Cloud Notes. Edits autosave; the More menu manages versions, reading passwords, exports, and deletion, while Share creates a link.
 14. Select the share button to manage the current account's note links, including edit, revoke, regenerate, open, and delete actions.
 15. Select the `EN` button to open the English Learning centre and review the local Word Book or Wrong Book. Choose **Compact Study** to enter one of the five learning modes, and select the word library in Settings. Learning records start with the version that introduces this feature.
-16. Select the `文A` button for Universal Translator. Check the daily quota, auto-detect source language, copy results, and manage or export translation history for the current account.
+16. Select the `译` button for Universal Translator. Check the daily quota, auto-detect source language, copy results, and manage or export translation history for the current account.
 
 ## Stack and architecture
 
@@ -158,7 +165,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.13.0`
+- Current version: `v0.14.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

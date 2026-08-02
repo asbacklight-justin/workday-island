@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=45">
+  <link rel="stylesheet" href="./style.css?v=46">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.13.0</span>
+        <span id="app-version-badge" class="version-badge">v0.14.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -268,6 +268,16 @@
             <button id="create-note" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><b>新建笔记</b></button>
             <button id="create-note-folder" type="button" aria-label="新建文件夹" title="新建文件夹"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6h6l2 2h9v10.5h-17z"/><path d="M15 11v5M12.5 13.5h5"/></svg></button>
           </div>
+          <div id="note-create-menu" class="note-create-mask hidden">
+            <section class="note-create-dialog" role="dialog" aria-modal="true" aria-labelledby="note-create-title">
+              <header><div><small>NEW DOCUMENT</small><h2 id="note-create-title">选择文档类型</h2><p>选择后才会创建云端文档。</p></div><button id="close-note-create-menu" type="button" aria-label="关闭" title="关闭">×</button></header>
+              <div class="note-create-options">
+                <button type="button" data-note-create-type="richtext"><span class="richtext">文</span><p><b>普通笔记</b><small>富文本排版，适合日常记录</small></p><i>›</i></button>
+                <button type="button" data-note-create-type="markdown"><span class="markdown">M↓</span><p><b>Markdown</b><small>源码编辑与实时预览</small></p><i>›</i></button>
+                <button type="button" data-note-create-type="spreadsheet"><span class="spreadsheet">▦</span><p><b>表格文档</b><small>兼容 Web 云笔记表格</small></p><i>›</i></button>
+              </div>
+            </section>
+          </div>
           <div class="notes-tree-caption"><span>文件夹与笔记</span><button id="refresh-notes" type="button" aria-label="刷新笔记" title="刷新笔记"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7 7 0 1 0 1 6"/><path d="M19 3v5h-5"/></svg></button></div>
           <div id="notes-tree" class="notes-tree"></div>
           <footer class="notes-sidebar-foot"><span id="notes-storage-status">云端实时同步</span><b id="notes-total-words">0 字</b></footer>
@@ -299,6 +309,7 @@
             <header class="notes-editor-head">
               <div class="notes-title-wrap">
                 <input id="note-title-input" maxlength="160" placeholder="无标题笔记">
+                <em id="note-content-type-badge">普通笔记</em>
                 <span id="note-save-status">已保存</span>
               </div>
               <div class="notes-editor-actions">
@@ -331,6 +342,19 @@
               <button type="button" data-note-command="removeFormat" title="清除格式">Tx</button>
             </div>
             <div id="note-content-editor" class="note-content-editor" contenteditable="true" role="textbox" aria-multiline="true" data-placeholder="从这里开始记录…"></div>
+            <div id="note-markdown-editor" class="note-markdown-editor hidden">
+              <div class="note-markdown-tabs"><button type="button" class="active" data-markdown-view="edit">编辑</button><button type="button" data-markdown-view="preview">预览</button><span>支持标题、列表、待办、引用、代码与链接</span></div>
+              <textarea id="note-markdown-input" spellcheck="false" placeholder="# 从这里开始记录…"></textarea>
+              <div id="note-markdown-preview" class="note-markdown-preview hidden"></div>
+            </div>
+            <div id="note-spreadsheet-editor" class="note-spreadsheet-editor hidden">
+              <div class="note-sheet-bar">
+                <span id="note-sheet-cell-name">A1</span><b>fx</b><input id="note-sheet-formula" type="text" spellcheck="false" placeholder="输入内容或公式，例如 =SUM(A1:A5)">
+                <button id="note-sheet-add-row" type="button">＋ 行</button><button id="note-sheet-add-column" type="button">＋ 列</button>
+              </div>
+              <div class="note-sheet-scroll"><table id="note-sheet-grid" class="note-sheet-grid"></table></div>
+              <div id="note-sheet-tabs" class="note-sheet-tabs"></div>
+            </div>
             <footer class="notes-editor-foot"><span id="note-path">全部笔记</span><span id="note-updated-time">—</span><b id="note-word-count">0 字</b></footer>
           </article>
 
@@ -996,6 +1020,19 @@
   <div id="settings-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
     <form id="settings-form" class="modal-card settings-card">
       <div class="modal-head"><div><div class="section-kicker">PREFERENCES</div><h2 id="settings-title" data-i18n="settingsTitle">工作时间设置</h2></div><button type="button" class="close-btn" data-close="settings-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <section class="header-entry-settings" aria-labelledby="header-entry-settings-title">
+        <div class="header-entry-settings-head"><strong id="header-entry-settings-title" data-i18n="headerEntries">顶部功能入口</strong><p data-i18n="headerEntriesDesc">选择在工作台顶部显示的快捷入口</p></div>
+        <div class="header-entry-grid">
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="ai" checked><span class="entry-switch"><span></span></span><b data-i18n="aiChat">AI 对话</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="chat" checked><span class="entry-switch"><span></span></span><b data-i18n="realtimeChat">实时聊天</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="stocks" checked><span class="entry-switch"><span></span></span><b data-i18n="stockMarket">股市</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="cloud" checked><span class="entry-switch"><span></span></span><b data-i18n="workCloud">工作云盘</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="notes" checked><span class="entry-switch"><span></span></span><b data-i18n="cloudNotes">云笔记</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="sharing" checked><span class="entry-switch"><span></span></span><b data-i18n="linkSharing">链接分享</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="translator" checked><span class="entry-switch"><span></span></span><b data-i18n="universalTranslator">全能翻译</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="english" checked><span class="entry-switch"><span></span></span><b data-i18n="englishLearning">偷偷学英语</b></label>
+        </div>
+      </section>
       <div class="field-grid">
         <label class="field"><span data-i18n="workStart">上班时间</span><input id="work-start" type="time" required></label>
         <label class="field"><span data-i18n="workEnd">下班时间</span><input id="work-end" type="time" required></label>
@@ -1074,12 +1111,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.13.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.14.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.13.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.14.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1102,6 +1139,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=57" type="module"></script>
+  <script src="./app.js?v=58" type="module"></script>
 </body>
 </html>
