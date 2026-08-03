@@ -5,6 +5,24 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.15.0] - 2026-08-03
+
+### 中文
+
+- 股市入口默认打开清晰的大页面并保持完整窗口尺寸，页面内点击“精简”后才切换为原有透明行情小窗；小窗可再次展开回大页面。
+- 重新设计股市完整版的标题、搜索区、行情卡片、操作按钮和状态栏，使其完整适配深色、浅色与极光主题；修复浅色主题下固定深色面板造成的低对比度和视觉割裂。
+- 账号中心的注册 Tab 改为更明确的“免费注册”，英文同步为“Sign Up Free”。
+- 完整模式右上角窗口按钮统一调整为“最小化、全屏、关闭”的顺序。
+- 修复 Windows WebView2 中英语单词卡片的中文译文因字体行盒差异被纵向裁切、展示不全的问题。
+
+### English
+
+- Stocks now opens as a clear full-size page while preserving the regular window size. The existing transparent ticker appears only after selecting Compact and can be expanded again.
+- Redesigned the full Stocks page hierarchy across its header, search bar, quote cards, controls, and status area for Dark, Light, and Aurora themes; fixed the hard-coded dark surface that caused poor contrast and visual inconsistency in Light mode.
+- Renamed the Account Centre registration tab to the clearer “Sign Up Free”, with matching Chinese copy.
+- Reordered the full-mode window controls to Minimize, Full Screen, then Close.
+- Fixed Chinese translations in English word cards being vertically clipped in Windows WebView2 because of different font metrics.
+
 ## [0.14.0] - 2026-08-02
 
 ### 中文
@@ -281,6 +299,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.15.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.0
 [0.14.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0
 [0.13.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0
 [0.12.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.12.0

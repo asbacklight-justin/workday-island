@@ -59,7 +59,7 @@ const translations = {
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
     accountUsernamePlaceholder: '请输入用户名', accountPasswordPlaceholder: '请输入密码', loginOnline: '登录并上线', deviceAuth: '设备登录', passwordAuth: '账号登录',
-    noAccountYet: '还没有账号？', registerNow: '注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。',
+    noAccountYet: '还没有账号？', registerNow: '免费注册', registerAccount: '注册工位岛账号', registerAccountHint: '注册后可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。',
     registerUsernamePlaceholder: '3–20 位字母、数字或下划线', registerNicknamePlaceholder: '2–20 个字符', registerPasswordPlaceholder: '6–20 个字符',
     confirmPassword: '确认密码', confirmPasswordPlaceholder: '再次输入密码', phone: '手机号', emailPlaceholder: 'name@example.com', phonePlaceholder: '中国大陆手机号',
     inviteCode: '邀请码', inviteCodePlaceholder: '有邀请码时填写', inviteHint: '邀请码不必填写；填写后会关联邀请人。',
@@ -149,7 +149,7 @@ const translations = {
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
     accountUsernamePlaceholder: 'Enter username', accountPasswordPlaceholder: 'Enter password', loginOnline: 'Sign In & Go Online', deviceAuth: 'Device login', passwordAuth: 'Account login',
-    noAccountYet: 'No account yet?', registerNow: 'Register', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.',
+    noAccountYet: 'No account yet?', registerNow: 'Sign Up Free', registerAccount: 'Create a Workday Island account', registerAccountHint: 'Use one account for AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.',
     registerUsernamePlaceholder: '3–20 letters, numbers, or underscores', registerNicknamePlaceholder: '2–20 characters', registerPasswordPlaceholder: '6–20 characters',
     confirmPassword: 'Confirm password', confirmPasswordPlaceholder: 'Enter the password again', phone: 'Phone', emailPlaceholder: 'name@example.com', phonePlaceholder: 'Mainland China mobile number',
     inviteCode: 'Invite code', inviteCodePlaceholder: 'Enter one if you have it', inviteHint: 'The invite code is optional. If supplied, it links your inviter.',
@@ -233,6 +233,7 @@ const state = {
   chatUnread: 0,
   latestIncomingPeer: 0,
   stockOpen: false,
+  stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
@@ -340,6 +341,7 @@ function applyTranslations() {
   $('#compact-todos').setAttribute('aria-label', t('compactTodos'));
   $('#english-page').setAttribute('aria-label', t('englishLearning'));
   $('#stock-page').setAttribute('aria-label', t('stockMarket'));
+  renderStockCompactControl();
   $('#cloud-page').setAttribute('aria-label', t('workCloud'));
   $('#translator-page').setAttribute('aria-label', t('universalTranslator'));
   $('#translator-tabs').setAttribute('aria-label', t('translatorPage'));
@@ -647,6 +649,7 @@ function bindEvents() {
   $('#translation-history-next').addEventListener('click', () => changeTranslationHistoryPage(1));
   $('#open-stocks').addEventListener('click', openStockPage);
   $('#close-stocks').addEventListener('click', closeStockPage);
+  $('#compact-stocks').addEventListener('click', toggleStockCompactMode);
   $('#minimize-stocks').addEventListener('click', minimiseWindow);
   $('#refresh-stocks').addEventListener('click', refreshStocks);
   $('#stock-add-form').addEventListener('submit', addStock);
@@ -4117,14 +4120,12 @@ async function openStockPage() {
   if (state.translatorOpen) closeTranslatorPage();
   if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
   state.stockOpen = true;
-  document.documentElement.classList.add('stock-window');
+  state.stockCompact = false;
+  document.documentElement.classList.remove('stock-window');
   document.body.classList.add('stock-open');
+  document.body.classList.remove('stock-compact');
   $('#stock-page').classList.remove('hidden');
-  try {
-    await api.SetStockWindow?.(true);
-  } catch (error) {
-    showToast(readError(error), true);
-  }
+  renderStockCompactControl();
   await refreshStocks();
   window.clearInterval(stockRefreshTimer);
   stockRefreshTimer = window.setInterval(refreshStocks, 5000);
@@ -4132,16 +4133,46 @@ async function openStockPage() {
 
 async function closeStockPage() {
   state.stockOpen = false;
+  state.stockCompact = false;
   window.clearInterval(stockRefreshTimer);
   stockRefreshTimer = 0;
   document.documentElement.classList.remove('stock-window');
   document.body.classList.remove('stock-open');
+  document.body.classList.remove('stock-compact');
   $('#stock-page').classList.add('hidden');
   try {
     await api.SetStockWindow?.(false);
   } catch (error) {
     showToast(readError(error), true);
   }
+}
+
+async function toggleStockCompactMode() {
+  if (!state.stockOpen) return;
+  if (state.windowFullscreen) await setWindowFullscreen(false);
+  const compact = !state.stockCompact;
+  state.stockCompact = compact;
+  document.documentElement.classList.toggle('stock-window', compact);
+  document.body.classList.toggle('stock-compact', compact);
+  renderStockCompactControl();
+  try {
+    await api.SetStockWindow?.(compact);
+  } catch (error) {
+    state.stockCompact = !compact;
+    document.documentElement.classList.toggle('stock-window', state.stockCompact);
+    document.body.classList.toggle('stock-compact', state.stockCompact);
+    renderStockCompactControl();
+    showToast(readError(error), true);
+  }
+}
+
+function renderStockCompactControl() {
+  const button = $('#compact-stocks');
+  if (!button) return;
+  const key = state.stockCompact ? 'expand' : 'compact';
+  button.querySelector('span').textContent = t(key);
+  button.setAttribute('aria-label', t(key));
+  button.title = t(key);
 }
 
 async function refreshStocks() {

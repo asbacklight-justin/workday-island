@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=46">
+  <link rel="stylesheet" href="./style.css?v=48">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.14.0</span>
+        <span id="app-version-badge" class="version-badge">v0.15.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -65,13 +65,13 @@
           <svg viewBox="0 0 24 24"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1Z"/></svg>
         </button>
         <button id="open-about" class="icon-btn about-button" aria-label="关于" title="关于"><span>i</span></button>
+        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
         <button id="fullscreen-window" class="icon-btn fullscreen-window-btn" aria-label="全屏" title="全屏">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path class="fullscreen-enter-icon" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/>
             <path class="fullscreen-exit-icon" d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/>
           </svg>
         </button>
-        <button id="minimize-window" class="icon-btn minimize-btn" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
         <button id="close-window" class="icon-btn close-window-btn" aria-label="隐藏到系统托盘" title="隐藏到系统托盘"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
       </div>
     </header>
@@ -183,7 +183,7 @@
           <div id="account-auth-view">
             <nav id="account-mode-tabs" class="account-mode-tabs" aria-label="账号入口">
               <button type="button" class="active" data-account-mode="login" data-i18n="accountLogin">登录</button>
-              <button type="button" data-account-mode="register" data-i18n="registerNow">注册</button>
+              <button type="button" data-account-mode="register" data-i18n="registerNow">免费注册</button>
             </nav>
 
             <form id="account-login-form" class="account-form">
@@ -987,6 +987,7 @@
           <div class="stock-title"><span class="stock-live-dot"></span><div><strong data-i18n="stockMarket">股市</strong><small data-i18n="stockWatchlist">自选行情</small></div></div>
           <div class="stock-window-actions no-drag">
             <button id="refresh-stocks" type="button" aria-label="刷新" title="刷新"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 8a7 7 0 1 0 1 6"/><path d="M19 3v5h-5"/></svg></button>
+            <button id="compact-stocks" class="stock-compact-toggle" type="button" aria-label="精简" title="精简"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="stock-compact-icon" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path class="stock-expand-icon" d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6"/></svg><span data-i18n="compact">精简</span></button>
             <button id="minimize-stocks" type="button" aria-label="最小化" title="最小化"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/></svg></button>
             <button id="close-stocks" type="button" aria-label="返回工作台" title="返回工作台"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
           </div>
@@ -1111,12 +1112,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.14.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.15.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.14.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.15.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1139,6 +1140,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=58" type="module"></script>
+  <script src="./app.js?v=60" type="module"></script>
 </body>
 </html>
