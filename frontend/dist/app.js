@@ -12,7 +12,7 @@ const translations = {
     localOnly: '仅保存在本机', salaryPlaceholder: '例如 15000', salaryWorkdays: '月计薪天数', weatherCity: '天气城市',
     weatherPlaceholder: '例如：上海、杭州、Shenzhen', workdays: '工作日', language: '界面语言', followSystem: '跟随系统',
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
-    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', auroraTheme: '极光', currency: '货币符号', compactTodos: '未完成待办',
+    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', auroraTheme: '极光', plusTheme: '曜金紫晶 · Plus', proTheme: '全息极光 · Pro', ultraTheme: '黑曜星钻 · Ultra', themeLocked: '需 {membership} 或更高等级', themeAccessHint: '会员主题按当前账号等级解锁', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
     compactOpacity: '悬浮窗透明度', compactOpacityDesc: '拖动时实时预览；精简模式、英语学习和股市小窗共用',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱', webApp: 'Web 端',
@@ -54,7 +54,7 @@ const translations = {
     translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
     confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
     languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手', workdayMember: '工位岛用户', workdayPlusMember: '工位岛 Plus 会员', workdayProMember: '工位岛 Pro 会员', workdayUltraMember: '工位岛 Ultra 会员', membershipUpdated: '{membership} 已生效',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
@@ -102,7 +102,7 @@ const translations = {
     localOnly: 'Stored locally', salaryPlaceholder: 'e.g. 15000', salaryWorkdays: 'Paid days / month', weatherCity: 'Weather city',
     weatherPlaceholder: 'e.g. Shanghai, Hangzhou, Shenzhen', workdays: 'Workdays', language: 'Language', followSystem: 'Follow system',
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
-    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', auroraTheme: 'Aurora', currency: 'Currency symbol', compactTodos: 'Pending todos',
+    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', auroraTheme: 'Aurora', plusTheme: 'Violet Gilt · Plus', proTheme: 'Holographic Aurora · Pro', ultraTheme: 'Obsidian Diamond · Ultra', themeLocked: 'Requires {membership} or higher', themeAccessHint: 'Member themes unlock with your current account tier', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
     compactOpacity: 'Floating window opacity', compactOpacityDesc: 'Live preview; shared by compact mode, English learning, and the stock ticker',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email', webApp: 'Web App',
@@ -144,7 +144,7 @@ const translations = {
     translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
     confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
     languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant', workdayMember: 'Workday Island Member', workdayPlusMember: 'Workday Island Plus', workdayProMember: 'Workday Island Pro', workdayUltraMember: 'Workday Island Ultra', membershipUpdated: '{membership} is now active',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
@@ -194,7 +194,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.14.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.15.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -261,6 +261,8 @@ let updateCheckResult = null;
 let remoteEffectTimer = 0;
 let realtimeBusy = false;
 let accountBusy = false;
+let accountProfileRefreshBusy = false;
+let lastAccountProfileRefreshAt = 0;
 let realtimeRegistrationBusy = false;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
@@ -426,6 +428,11 @@ async function boot() {
     setInterval(refreshWeather, 20 * 60 * 1000);
     checkActiveReminder();
     setInterval(checkActiveReminder, 700);
+    setInterval(() => void refreshAccountProfile(), 30000);
+    window.addEventListener('focus', () => void refreshAccountProfile());
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') void refreshAccountProfile();
+    });
     checkForUpdates(false);
     window.runtime?.EventsOn?.('reminder:due', payload => {
       const alert = payload?.todo ? payload : {todo: payload, sequence: 0};
@@ -3171,6 +3178,64 @@ function accountDisplayName() {
   return String(state.account?.user?.nickname || state.account?.user?.username || '');
 }
 
+function resolveAccountMembership(user) {
+  const definitions = {
+    member: {rank:0, code:'WORKDAY_ISLAND', labelKey:'workdayMember', icon:'W', nav:''},
+    plus: {rank:1, code:'WORKDAY_ISLAND_PLUS', labelKey:'workdayPlusMember', icon:'◆', nav:'PLUS'},
+    pro: {rank:2, code:'WORKDAY_ISLAND_PRO', labelKey:'workdayProMember', icon:'✧', nav:'PRO'},
+    ultra: {rank:3, code:'WORKDAY_ISLAND_ULTRA', labelKey:'workdayUltraMember', icon:'✦', nav:'ULTRA'}
+  };
+  const byCode = Object.fromEntries(Object.entries(definitions).map(([tier, value]) => [value.code, tier]));
+  let selectedTier = String(user?.membership_tier || user?.membershipTier || '').trim().toLowerCase();
+  if (!definitions[selectedTier]) selectedTier = 'member';
+  const roleCodes = [];
+  const addRole = value => {
+    const code = String(typeof value === 'string' ? value : (value?.role_code || value?.roleCode || '')).trim().toUpperCase();
+    if (code) roleCodes.push(code);
+  };
+  (Array.isArray(user?.roles) ? user.roles : []).forEach(addRole);
+  addRole(user?.primary_role_code || user?.primaryRoleCode);
+  addRole(user?.membership_role_code || user?.membershipRoleCode);
+  for (const code of roleCodes) {
+    const candidate = byCode[code];
+    if (candidate && definitions[candidate].rank > definitions[selectedTier].rank) selectedTier = candidate;
+  }
+  const selected = definitions[selectedTier];
+  return {...selected, tier:selectedTier, label:t(selected.labelKey)};
+}
+
+const memberThemeDefinitions = {
+  'plus-theme': {rank:1, tier:'plus', labelKey:'plusTheme', membership:'Plus'},
+  'pro-theme': {rank:2, tier:'pro', labelKey:'proTheme', membership:'Pro'},
+  'ultra-theme': {rank:3, tier:'ultra', labelKey:'ultraTheme', membership:'Ultra'}
+};
+
+function currentMembershipRank() {
+  return state.account?.loggedIn ? resolveAccountMembership(state.account.user).rank : 0;
+}
+
+function effectiveTheme(theme = state.settings.theme) {
+  const requested = theme || 'system';
+  const memberTheme = memberThemeDefinitions[requested];
+  return memberTheme && currentMembershipRank() < memberTheme.rank ? 'system' : requested;
+}
+
+function renderThemeAccess() {
+  const select = $('#theme-select');
+  if (!select) return;
+  const rank = currentMembershipRank();
+  Object.entries(memberThemeDefinitions).forEach(([value, definition]) => {
+    const option = select.querySelector(`option[value="${value}"]`);
+    if (!option) return;
+    const locked = rank < definition.rank;
+    option.disabled = locked;
+    option.textContent = `${t(definition.labelKey)}${locked ? ` · ${t('themeLocked', {membership:definition.membership})}` : ''}`;
+  });
+  const requested = state.settings.theme || 'system';
+  select.value = effectiveTheme(requested);
+  $('#theme-access-hint').textContent = t('themeAccessHint');
+}
+
 function resolveAccountAvatarURL(value) {
   const raw = String(value || '').trim();
   if (!raw) return '';
@@ -3217,15 +3282,21 @@ function renderAccountSession() {
   const loggedIn = Boolean(state.account?.loggedIn);
   const user = state.account?.user || null;
   const displayName = accountDisplayName();
+  const membership = resolveAccountMembership(user);
   const nav = $('#open-account');
   nav.classList.toggle('logged-in', loggedIn);
+  ['member','plus','pro','ultra'].forEach(tier => nav.classList.toggle(`membership-${tier}`, loggedIn && membership.tier === tier));
+  nav.title = loggedIn ? `${displayName} · ${membership.label}` : t('account');
   $('#account-home-name').textContent = loggedIn ? displayName : t('accountLogin');
   renderAccountAvatar($('.account-nav-avatar'), {
     loggedIn,
     displayName,
-    avatarURL: '',
+    avatarURL: user?.avatar_url || user?.avatarUrl,
     guest: true
   });
+  const navTier = $('#account-nav-tier');
+  navTier.textContent = membership.nav;
+  navTier.classList.toggle('hidden', !loggedIn || !membership.nav);
 
   const chip = $('#account-status-chip');
   chip.classList.toggle('logged-in', loggedIn);
@@ -3234,13 +3305,21 @@ function renderAccountSession() {
   $('#account-profile-view').classList.toggle('hidden', !loggedIn);
 
   if (loggedIn) {
-    renderAccountAvatar($('#account-profile-avatar'), {
+    const profileAvatar = $('#account-profile-avatar');
+    ['member','plus','pro','ultra'].forEach(tier => profileAvatar.classList.toggle(`membership-${tier}`, membership.tier === tier));
+    renderAccountAvatar(profileAvatar, {
       loggedIn,
       displayName,
       avatarURL: user?.avatar_url || user?.avatarUrl
     });
     $('#account-profile-name').textContent = displayName;
     $('#account-profile-username').textContent = user?.username ? `@${user.username}` : '';
+    const membershipBadge = $('#account-membership-badge');
+    membershipBadge.className = `account-membership-badge membership-${membership.tier}`;
+    membershipBadge.querySelector('span').textContent = membership.icon;
+    membershipBadge.querySelector('b').textContent = membership.label;
+    membershipBadge.title = String(user?.membership_role_code || user?.membershipRoleCode || membership.code);
+    $('#account-profile-view').dataset.membership = membership.tier;
     $('#account-chat-status').textContent = realtimeStatusLabel(state.realtime?.status || 'offline');
     $('#account-service-grid').classList.toggle('chat-online', state.realtime?.status === 'online');
   } else {
@@ -3252,6 +3331,36 @@ function renderAccountSession() {
     });
   }
   renderNoteShareSession();
+  renderThemeAccess();
+  applyTheme();
+}
+
+async function refreshAccountProfile(force = false) {
+  if (!state.account?.loggedIn || accountBusy || accountProfileRefreshBusy) return;
+  const now = Date.now();
+  if (!force && now - lastAccountProfileRefreshAt < 15000) return;
+  accountProfileRefreshBusy = true;
+  try {
+    const previousMembership = resolveAccountMembership(state.account.user);
+    const session = await api.RefreshAccountSession();
+    lastAccountProfileRefreshAt = Date.now();
+    if (!session?.loggedIn || !session?.user) return;
+    state.account = {loggedIn: true, user: session.user};
+    state.cloud.session = {loggedIn: true, user: session.user};
+    if (session.realtime) state.realtime = {...state.realtime, ...session.realtime};
+    const currentMembership = resolveAccountMembership(session.user);
+    renderAccountSession();
+    renderCloudSession();
+    renderRealtime();
+    if (currentMembership.tier !== previousMembership.tier) {
+      showToast(t('membershipUpdated', {membership: currentMembership.label}));
+    }
+  } catch (error) {
+    // Profile refresh is opportunistic. Existing sessions continue to work
+    // during a temporary network interruption and retry on the next trigger.
+  } finally {
+    accountProfileRefreshBusy = false;
+  }
 }
 
 function openAccountPage(mode = 'login') {
@@ -3268,6 +3377,7 @@ function openAccountPage(mode = 'login') {
   document.body.classList.add('account-open');
   $('#account-page').classList.remove('hidden');
   renderAccountSession();
+  if (state.account.loggedIn) void refreshAccountProfile(true);
   if (!state.account.loggedIn) {
     setTimeout(() => $(state.accountMode === 'register' ? '#register-username' : '#account-username').focus(), 40);
   }
@@ -3306,6 +3416,7 @@ async function submitAccountLogin(event) {
   try {
     const session = await api.LoginAccount(username, password);
     state.account = {loggedIn: Boolean(session?.loggedIn), user: session?.user || null};
+    lastAccountProfileRefreshAt = Date.now();
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
     state.notes.nodes = [];
     state.notes.selectedId = '';
@@ -3324,6 +3435,10 @@ async function submitAccountLogin(event) {
     renderRealtime();
     if (state.shareManagementOpen) await loadNoteShares();
     showToast(t('loginSuccess'));
+    // Membership may be granted asynchronously immediately after login.
+    // Retry profile loading shortly afterwards without delaying the login UI.
+    window.setTimeout(() => void refreshAccountProfile(true), 1500);
+    window.setTimeout(() => void refreshAccountProfile(true), 6000);
   } catch (error) {
     showToast(readError(error), true);
   } finally {
@@ -5344,7 +5459,7 @@ function openSettings() {
   $('#salary-workdays').value = state.settings.salaryWorkdays || 21.75;
   $('#weather-city-input').value = state.settings.weatherCity || '上海';
   $('#language-select').value = state.settings.language || 'system';
-  $('#theme-select').value = state.settings.theme || 'system';
+  renderThemeAccess();
   $('#english-source-select').value = state.settings.englishSource || 'nce2';
   $('#currency-symbol').value = state.settings.currency || '¥';
   $('#show-compact-todos').checked = Boolean(state.settings.showCompactTodos);
@@ -5453,12 +5568,12 @@ function applyEnglishBackgroundOpacity(value = state.settings.compactOpacity) {
 }
 
 function applyTheme() {
-  const requested = state.settings.theme || 'system';
+  const requested = effectiveTheme();
   const resolved = requested === 'system' ? (systemTheme?.matches ? 'light' : 'dark') : requested;
   document.documentElement.dataset.theme = resolved;
   document.documentElement.style.colorScheme = resolved === 'light' ? 'light' : 'dark';
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : resolved === 'aurora' ? '#071723' : '#0b101b';
+  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : resolved === 'aurora' ? '#071723' : resolved === 'plus-theme' ? '#160d24' : resolved === 'pro-theme' ? '#061825' : resolved === 'ultra-theme' ? '#050711' : '#0b101b';
   applyEnglishBackgroundOpacity();
 }
 
@@ -5805,6 +5920,7 @@ function createPreviewAPI() {
     async RemoveRealtimeFriend(userId){ previewRealtime.friends=previewRealtime.friends.filter(item=>Number(item.user.userId)!==Number(userId)); return true; },
     async RefreshRealtimeFriends(){ return structuredClone(previewRealtime); },
     async GetCloudDiskSession(){ return structuredClone(previewCloud.session); },
+    async RefreshAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async ListCloudDiskItems(parentId,page,pageSize,keyword){ const list=previewCloud.items.filter(item=>Number(item.parent_id)===Number(parentId)&&(!keyword||item.name.includes(keyword))); return {total:list.length,list:structuredClone(list),page,pageSize}; },
     async GetCloudDiskQuota(){ return structuredClone(previewCloud.quota); },
     async CreateCloudDiskFolder(parentId,name){ const item={id:Date.now(),parent_id:parentId,node_type:1,name,size:0,content_type:'',modify_time:new Date().toISOString()}; previewCloud.items.push(item); return structuredClone(item); },
@@ -5884,7 +6000,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.14.0',latestVersion:'0.14.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'云笔记新增普通笔记、Markdown 与表格文档，并支持配置顶部功能入口。\nCloud Notes now supports rich-text, Markdown, and spreadsheet documents, with configurable header shortcuts.'} : {currentVersion:'0.14.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.15.1',latestVersion:'0.15.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增 Plus、Pro 与 Ultra 会员身份及三档专属主题。\nAdded Plus, Pro, and Ultra membership identity with three exclusive themes.'} : {currentVersion:'0.15.1',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; }
   };

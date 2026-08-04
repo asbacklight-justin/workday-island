@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -25,11 +26,11 @@ func TestCloudDiskLoginAndListShareAccountToken(t *testing.T) {
 				t.Fatalf("unexpected login payload: %s", body)
 			}
 			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"token":"shared-token","user":{"id":26,"username":"justin","nickname":"Justin"}}}`))
-		case "/user/profile":
+		case "/user/info":
 			if request.Header.Get("Authorization") != "Bearer shared-token" {
 				t.Fatalf("profile request did not share the account token: %q", request.Header.Get("Authorization"))
 			}
-			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"id":26,"username":"justin","nickname":"Justin","avatar_url":"/user/avatar/26?v=1"}}`))
+			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"id":26,"username":"justin","nickname":"Justin","avatar_url":"/user/avatar/26?v=1","primary_role_code":"WORKDAY_ISLAND","roles":[{"id":5,"role_code":"WORKDAY_ISLAND_ULTRA","role_name":"工位岛Ultra会员","sort_no":5},{"id":3,"role_code":"WORKDAY_ISLAND_PLUS","role_name":"工位岛Plus会员","sort_no":3}]}}`))
 		case "/netdisk/items":
 			if request.Header.Get("Authorization") != "Bearer shared-token" {
 				t.Fatalf("cloud request did not share the account token: %q", request.Header.Get("Authorization"))
@@ -53,6 +54,9 @@ func TestCloudDiskLoginAndListShareAccountToken(t *testing.T) {
 	if !session.LoggedIn || session.User == nil || session.User.ID != 26 || session.User.AvatarURL != "/user/avatar/26?v=1" {
 		t.Fatalf("unexpected session: %#v", session)
 	}
+	if session.User.MembershipTier != "ultra" || session.User.MembershipRoleCode != "WORKDAY_ISLAND_ULTRA" || session.User.MembershipName != "工位岛Ultra会员" {
+		t.Fatalf("unexpected membership: %#v", session.User)
+	}
 	page, err := client.List(context.Background(), 7, 1, 50, "report")
 	if err != nil {
 		t.Fatal(err)
@@ -69,7 +73,7 @@ func TestCloudDiskUnauthorizedClearsSession(t *testing.T) {
 			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"token":"expired-token","user":{"id":26,"username":"justin"}}}`))
 			return
 		}
-		if request.URL.Path == "/user/profile" {
+		if request.URL.Path == "/user/info" {
 			_, _ = writer.Write([]byte(`{"code":200,"message":"success","data":{"id":26,"username":"justin"}}`))
 			return
 		}
@@ -87,6 +91,17 @@ func TestCloudDiskUnauthorizedClearsSession(t *testing.T) {
 	}
 	if client.Session().LoggedIn {
 		t.Fatal("expired session should be cleared")
+	}
+}
+
+func TestCloudDiskRolesAcceptLegacyStringCodes(t *testing.T) {
+	var user CloudDiskUser
+	if err := json.Unmarshal([]byte(`{"roles":["WORKDAY_ISLAND_PLUS",{"role_code":"WORKDAY_ISLAND_PRO","role_name":"工位岛PRO会员"}]}`), &user); err != nil {
+		t.Fatal(err)
+	}
+	normaliseCloudDiskUser(&user)
+	if len(user.Roles) != 2 || user.MembershipTier != "pro" || user.MembershipRoleCode != "WORKDAY_ISLAND_PRO" {
+		t.Fatalf("unexpected user roles: %#v", user)
 	}
 }
 

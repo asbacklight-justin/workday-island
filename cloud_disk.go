@@ -27,10 +27,95 @@ const cloudDiskAPIBaseURL = "https://admin.asbacklight.cn/api"
 var ErrCloudDiskLoginRequired = errors.New("请先登录工位岛账号")
 
 type CloudDiskUser struct {
-	ID        uint64 `json:"id"`
-	Username  string `json:"username"`
-	Nickname  string `json:"nickname"`
-	AvatarURL string `json:"avatar_url,omitempty"`
+	ID                 uint64         `json:"id"`
+	Username           string         `json:"username"`
+	Nickname           string         `json:"nickname"`
+	AvatarURL          string         `json:"avatar_url,omitempty"`
+	Roles              CloudDiskRoles `json:"roles,omitempty"`
+	PrimaryRoleCode    string         `json:"primary_role_code,omitempty"`
+	PrimaryRoleName    string         `json:"primary_role_name,omitempty"`
+	MembershipTier     string         `json:"membership_tier"`
+	MembershipRoleCode string         `json:"membership_role_code"`
+	MembershipName     string         `json:"membership_name"`
+}
+
+type CloudDiskRole struct {
+	ID       uint64 `json:"id,omitempty"`
+	RoleCode string `json:"role_code"`
+	RoleName string `json:"role_name,omitempty"`
+	SortNo   int    `json:"sort_no,omitempty"`
+}
+
+// CloudDiskRoles accepts both the current /user/info object list and the
+// legacy string-code list so desktop upgrades do not lose membership styling.
+type CloudDiskRoles []CloudDiskRole
+
+func (roles *CloudDiskRoles) UnmarshalJSON(data []byte) error {
+	var values []json.RawMessage
+	if err := json.Unmarshal(data, &values); err != nil {
+		return err
+	}
+	result := make(CloudDiskRoles, 0, len(values))
+	for _, value := range values {
+		var role CloudDiskRole
+		if err := json.Unmarshal(value, &role); err == nil && strings.TrimSpace(role.RoleCode) != "" {
+			result = append(result, role)
+			continue
+		}
+		var code string
+		if err := json.Unmarshal(value, &code); err == nil && strings.TrimSpace(code) != "" {
+			result = append(result, CloudDiskRole{RoleCode: code})
+		}
+	}
+	*roles = result
+	return nil
+}
+
+func normaliseCloudDiskUser(user *CloudDiskUser) {
+	if user == nil {
+		return
+	}
+	tier, code, name, rank := "member", "WORKDAY_ISLAND", "工位岛用户", 0
+	consider := func(roleCode, roleName string) {
+		roleCode = strings.ToUpper(strings.TrimSpace(roleCode))
+		roleName = strings.TrimSpace(roleName)
+		candidateTier, candidateRank := "", -1
+		switch roleCode {
+		case "WORKDAY_ISLAND_ULTRA":
+			candidateTier, candidateRank = "ultra", 3
+		case "WORKDAY_ISLAND_PRO":
+			candidateTier, candidateRank = "pro", 2
+		case "WORKDAY_ISLAND_PLUS":
+			candidateTier, candidateRank = "plus", 1
+		case "WORKDAY_ISLAND":
+			candidateTier, candidateRank = "member", 0
+		}
+		if candidateRank < rank || candidateRank < 0 {
+			return
+		}
+		tier, code, rank = candidateTier, roleCode, candidateRank
+		if roleName != "" {
+			name = roleName
+		} else {
+			switch candidateTier {
+			case "ultra":
+				name = "工位岛 Ultra 会员"
+			case "pro":
+				name = "工位岛 Pro 会员"
+			case "plus":
+				name = "工位岛 Plus 会员"
+			default:
+				name = "工位岛用户"
+			}
+		}
+	}
+	consider(user.PrimaryRoleCode, user.PrimaryRoleName)
+	for _, role := range user.Roles {
+		consider(role.RoleCode, role.RoleName)
+	}
+	user.MembershipTier = tier
+	user.MembershipRoleCode = code
+	user.MembershipName = name
 }
 
 type CloudDiskSession struct {
@@ -179,6 +264,7 @@ func (client *CloudDiskClient) Login(ctx context.Context, username, password str
 	client.mu.Lock()
 	client.token = envelope.Data.Token
 	user := envelope.Data.User
+	normaliseCloudDiskUser(&user)
 	client.user = &user
 	client.noteUnlockTokens = make(map[uint64]string)
 	client.mu.Unlock()
@@ -190,9 +276,10 @@ func (client *CloudDiskClient) Login(ctx context.Context, username, password str
 
 func (client *CloudDiskClient) RefreshProfile(ctx context.Context) error {
 	var user CloudDiskUser
-	if err := client.requestAccountJSON(ctx, http.MethodGet, "/user/profile", nil, &user, "账号服务"); err != nil {
+	if err := client.requestAccountJSON(ctx, http.MethodGet, "/user/info", nil, &user, "账号服务"); err != nil {
 		return err
 	}
+	normaliseCloudDiskUser(&user)
 	client.mu.Lock()
 	client.user = &user
 	client.mu.Unlock()

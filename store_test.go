@@ -112,6 +112,15 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 	}
 }
 
+func TestMemberThemesArePreserved(t *testing.T) {
+	for _, theme := range []string{"plus-theme", "pro-theme", "ultra-theme"} {
+		settings := normaliseSettings(Settings{Theme: theme, Workdays: []int{1}})
+		if settings.Theme != theme {
+			t.Fatalf("member theme %q was not preserved: %#v", theme, settings)
+		}
+	}
+}
+
 func TestWeatherCachePersistsWithoutTransientError(t *testing.T) {
 	path := filepath.Join(t.TempDir(), "data.json")
 	store := NewStore(path)

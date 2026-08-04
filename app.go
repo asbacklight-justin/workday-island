@@ -15,7 +15,12 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.15.0"
+const appVersion = "0.15.1"
+
+const (
+	defaultFullWindowWidth = 1024
+	fullWindowHeight       = 650
+)
 
 type App struct {
 	ctx          context.Context
@@ -139,6 +144,9 @@ func (a *App) StopFocus() (FocusSession, error) {
 
 func (a *App) SaveSettings(settings Settings) (Settings, error) {
 	previous := a.store.Snapshot().Settings
+	if requiredRank := requiredMembershipRankForTheme(settings.Theme); requiredRank > a.accountMembershipRank() {
+		return previous, fmt.Errorf("该主题需要%s或更高等级会员", membershipNameForRank(requiredRank))
+	}
 	saved, err := a.store.SaveSettings(settings)
 	if err == nil && a.ctx != nil {
 		runtime.WindowSetAlwaysOnTop(a.ctx, saved.AlwaysOnTop)
@@ -149,6 +157,49 @@ func (a *App) SaveSettings(settings Settings) (Settings, error) {
 		a.applyWindowOpacity()
 	}
 	return saved, err
+}
+
+func requiredMembershipRankForTheme(theme string) int {
+	switch theme {
+	case "plus-theme":
+		return 1
+	case "pro-theme":
+		return 2
+	case "ultra-theme":
+		return 3
+	default:
+		return 0
+	}
+}
+
+func membershipNameForRank(rank int) string {
+	switch rank {
+	case 1:
+		return "Plus"
+	case 2:
+		return "Pro"
+	case 3:
+		return "Ultra"
+	default:
+		return "普通"
+	}
+}
+
+func (a *App) accountMembershipRank() int {
+	session := a.cloudDisk.Session()
+	if !session.LoggedIn || session.User == nil {
+		return 0
+	}
+	switch strings.ToLower(strings.TrimSpace(session.User.MembershipTier)) {
+	case "plus":
+		return 1
+	case "pro":
+		return 2
+	case "ultra":
+		return 3
+	default:
+		return 0
+	}
 }
 
 func (a *App) SetCompactMode(compact bool) (Settings, error) {
@@ -273,6 +324,24 @@ func (a *App) ConnectRealtimePassword(username, password string) (RealtimeSnapsh
 
 func (a *App) GetAccountSession() AccountSession {
 	return a.accountSession()
+}
+
+// RefreshAccountSession reloads the current profile so role and membership
+// changes made while the desktop app is open become visible without signing in
+// again. The shared token remains the single source of authentication.
+func (a *App) RefreshAccountSession() (AccountSession, error) {
+	session := a.accountSession()
+	if !session.LoggedIn {
+		return session, nil
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	if err := a.cloudDisk.RefreshProfile(ctx); err != nil {
+		return a.accountSession(), err
+	}
+	return a.accountSession(), nil
 }
 
 func (a *App) LoginAccount(username, password string) (AccountSession, error) {
@@ -589,9 +658,10 @@ func (a *App) applyWindowMode(compact bool) {
 		runtime.WindowSetSize(a.ctx, settings.CompactWidth, settings.CompactHeight)
 		return
 	}
-	runtime.WindowSetMaxSize(a.ctx, 940, 650)
-	runtime.WindowSetMinSize(a.ctx, 940, 650)
-	runtime.WindowSetSize(a.ctx, 940, 650)
+	width := defaultFullWindowWidth
+	runtime.WindowSetMaxSize(a.ctx, width, fullWindowHeight)
+	runtime.WindowSetMinSize(a.ctx, width, fullWindowHeight)
+	runtime.WindowSetSize(a.ctx, width, fullWindowHeight)
 }
 
 func (a *App) applyNativeTheme(theme string) {
@@ -601,7 +671,7 @@ func (a *App) applyNativeTheme(theme string) {
 	switch theme {
 	case "light":
 		runtime.WindowSetLightTheme(a.ctx)
-	case "dark":
+	case "dark", "plus-theme", "pro-theme", "ultra-theme":
 		runtime.WindowSetDarkTheme(a.ctx)
 	case "aurora":
 		runtime.WindowSetDarkTheme(a.ctx)

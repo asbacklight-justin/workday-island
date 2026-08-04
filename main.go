@@ -17,11 +17,11 @@ func main() {
 	app := NewApp()
 	err := wails.Run(&options.App{
 		Title:         "工位岛 · Workday Island",
-		Width:         940,
+		Width:         1024,
 		Height:        650,
 		MinWidth:      400,
 		MinHeight:     270,
-		MaxWidth:      940,
+		MaxWidth:      1024,
 		MaxHeight:     650,
 		DisableResize: false,
 		Frameless:     true,

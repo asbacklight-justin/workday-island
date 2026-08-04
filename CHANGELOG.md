@@ -5,6 +5,32 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.15.1] - 2026-08-04
+
+### 中文
+
+- 账号登录后改用 `/user/info` 刷新头像、角色编码与角色列表；顶部账号入口和账号中心现在会展示真实头像。
+- 新增工位岛会员身份视觉：按 `WORKDAY_ISLAND_PLUS`、`WORKDAY_ISLAND_PRO`、`WORKDAY_ISLAND_ULTRA` 精确识别 Plus、Pro、Ultra，并按最高等级展示逐级增强的青蓝、紫金和极光动态徽章；普通用户保持简洁样式。
+- 会员徽章完整适配深色、浅色与极光主题，并遵循系统“减少动态效果”设置。
+- 强化会员等级颜色与边框区分：Plus 使用电光青蓝多层边框，Pro 使用紫金渐变双辉边框，Ultra 使用动态全光谱极光边框，并同步作用于顶部账号入口、头像外环、会员徽章和账号中心身份区域。
+- 提升浅色主题下 Pro 会员徽章的对比度，使用深紫文字、实色紫金边框和更醒目的金色图标，并适当增大徽章字号与高度。
+- 完整模式默认窗口宽度统一提升至 1024px，为标题栏预留稳定空间；Ultra 登录后不再单独改变窗口宽度，顶部品牌、账号、精简和置顶等控件禁止收缩换行，既避免大段留白，也确保标题栏始终保持单行布局。
+- 修复登录后会员等级变化不能及时显示的问题：打开账号中心、窗口重新获得焦点及登录期间定时刷新时会重新读取 `/user/info`，即时同步会员标识、头像与对应窗口样式，无需退出重登。
+- 重新设计会员视觉层级：Plus 继承原 Pro 的紫金流光质感，Pro 升级为原 Ultra 的动态全光谱极光；Ultra 新增顶级黑曜星钻效果，包含钻石切面边框、冷金与冰蓝多层辉光、星芒呼吸和缓慢扫光，并提供协调的浅色“白钻”版本与减少动态效果适配。
+- 修复浅色主题下 Ultra 顶部账号入口出现白字叠白底的问题；白钻版本现在使用高对比度深海军蓝昵称、冷金 Ultra 标识与受控扫光，在动画全过程中保持清晰可读。
+
+### English
+
+- Account sign-in now refreshes the avatar, role codes, and role list through `/user/info`; the header account control and Account Centre display the real profile image.
+- Added Workday Island membership visuals. Exact `WORKDAY_ISLAND_PLUS`, `WORKDAY_ISLAND_PRO`, and `WORKDAY_ISLAND_ULTRA` roles map to increasingly expressive cyan-blue, violet-gold, and animated aurora badges, with the highest assigned tier taking precedence and regular members staying understated.
+- Membership treatments support Dark, Light, and Aurora themes and respect the operating system's reduced-motion preference.
+- Strengthened tier differentiation across the header account control, avatar ring, membership badge, and Account Centre identity panel: electric cyan-blue for Plus, violet-gold dual glow for Pro, and an animated full-spectrum aurora border for Ultra.
+- Improved the Pro badge contrast in Light mode with dark-violet text, a stronger violet-gold border, a clearer gold icon, and slightly larger badge typography.
+- The default regular-window width is now 1024px for every user, providing stable header space without resizing again after an Ultra sign-in. Branding, account, Compact, and Pin controls remain on one line without excessive gaps, shrinking, or wrapping.
+- Fixed membership changes not appearing promptly after sign-in. Opening Account Centre, refocusing the window, and a lightweight signed-in interval now refresh `/user/info`, immediately synchronising membership badges, avatars, and tier-specific window styling without requiring another sign-in.
+- Redesigned the membership hierarchy: Plus inherits the former Pro violet-gold sheen, Pro receives the former Ultra animated full-spectrum aurora, and Ultra gains a new flagship obsidian-diamond treatment with faceted borders, layered cool-gold and ice-blue glows, breathing starlight, and slow light sweeps, plus a coordinated light-theme “white diamond” variant and reduced-motion support.
+- Fixed white Ultra account text blending into the Light-theme header. The white-diamond variant now uses a high-contrast deep-navy name, cool-gold Ultra label, and controlled light sweep that remains legible throughout the animation.
+
 ## [0.15.0] - 2026-08-03
 
 ### 中文
@@ -299,6 +325,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.15.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1
 [0.15.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.0
 [0.14.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0
 [0.13.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.13.0

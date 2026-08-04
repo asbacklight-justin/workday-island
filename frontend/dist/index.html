@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=48">
+  <link rel="stylesheet" href="./style.css?v=55">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.15.0</span>
+        <span id="app-version-badge" class="version-badge">v0.15.1</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -52,6 +52,7 @@
             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
           </span>
           <b id="account-home-name" data-i18n="accountLogin">登录</b>
+          <span id="account-nav-tier" class="account-nav-tier hidden" aria-hidden="true"></span>
         </button>
         <button id="compact-toggle" class="compact-btn" aria-label="切换精简模式" title="切换精简模式">
           <svg class="compact-icon" viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><path d="m3 8 5-5m8 0 5 5M3 16l5 5m8 0 5-5"/></svg><span id="compact-label" data-i18n="compact">精简</span>
@@ -231,6 +232,9 @@
             <div class="section-kicker">SIGNED IN</div>
             <h2 id="account-profile-name">—</h2>
             <p id="account-profile-username">—</p>
+            <div id="account-membership-badge" class="account-membership-badge membership-member">
+              <span aria-hidden="true">W</span><b data-i18n="workdayMember">工位岛用户</b>
+            </div>
             <div id="account-service-grid" class="account-service-grid">
               <button type="button" data-account-service="chat"><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
               <button type="button" data-account-service="cloud"><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
@@ -1047,7 +1051,7 @@
       <label class="field"><span data-i18n="englishSource">单词词库</span><select id="english-source-select"><option value="nce2" data-i18n="englishSourceNCE2">新概念英语第二册</option><option value="nce3" data-i18n="englishSourceNCE3">新概念英语第三册</option><option value="cet4" data-i18n="englishSourceCET4">大学英语四级</option><option value="cet6" data-i18n="englishSourceCET6">大学英语六级</option><option value="ielts" data-i18n="englishSourceIELTS">雅思核心词汇</option><option value="all" data-i18n="englishSourceAll">全部公共词库</option></select></label>
       <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
       <div class="field-grid preference-grid">
-        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option><option value="aurora" data-i18n="auroraTheme">极光</option></select></label>
+        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option><option value="aurora" data-i18n="auroraTheme">极光</option><option value="plus-theme" data-theme-tier="plus" data-i18n="plusTheme">曜金紫晶 · Plus</option><option value="pro-theme" data-theme-tier="pro" data-i18n="proTheme">全息极光 · Pro</option><option value="ultra-theme" data-theme-tier="ultra" data-i18n="ultraTheme">黑曜星钻 · Ultra</option></select><small id="theme-access-hint" class="theme-access-hint"></small></label>
         <label class="field"><span data-i18n="currency">货币符号</span><input id="currency-symbol" maxlength="8" placeholder="¥ / $ / €"></label>
       </div>
       <div class="compact-opacity-setting">
@@ -1112,12 +1116,12 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.15.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.15.1</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.15.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.15.1</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1140,6 +1144,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=60" type="module"></script>
+  <script src="./app.js?v=66" type="module"></script>
 </body>
 </html>

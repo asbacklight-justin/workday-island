@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.15.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.15.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.15.1-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.15.1-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -28,7 +28,7 @@ The public packages are not currently signed with commercial distribution certif
 - **Persistent alerts:** A due reminder restores and raises the window, flashes multiple colours, and repeats a short sound until acknowledged.
 - **Focus mode:** Start 25, 50, or 90-minute sessions. Sessions persist locally and end with a foreground break reminder that continues until acknowledged.
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
-- **Multiple themes:** Follow the system appearance or choose Dark, Light, or the teal-and-violet glassy Aurora theme.
+- **Membership identity and exclusive themes:** `/user/info` keeps regular, Plus, Pro, and Ultra status current while showing the real avatar and progressively richer membership treatments. Alongside System, Dark, Light, and Aurora, Plus unlocks **Violet Gilt**, Pro unlocks **Holographic Aurora**, and Ultra unlocks **Obsidian Diamond**. Higher tiers can use their own and lower-tier themes, enforced by both the UI and Go backend.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
 - **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Work Cloud, Cloud Notes, Sharing, Translator, and English Learning. All remain visible by default, including after upgrading an older installation.
 - **English Learning centre:** The `EN` button now opens a full learning centre. Its local Word Book keeps a cross-day history of words actually viewed in all five modes with phonetics, meanings, examples, library, modes, and view counts. The Wrong Book records mistakes from EN → CN, CN → EN, and spelling with the latest answer and accumulated error count. The compact learning window opens only from **Compact Study**; on macOS and Windows, floating-window opacity affects its background without dimming core content.
@@ -165,7 +165,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.15.0`
+- Current version: `v0.15.1`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)
