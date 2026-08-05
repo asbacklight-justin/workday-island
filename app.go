@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.15.1"
+const appVersion = "0.16.0"
 
 const (
 	defaultFullWindowWidth = 1024
@@ -161,11 +161,11 @@ func (a *App) SaveSettings(settings Settings) (Settings, error) {
 
 func requiredMembershipRankForTheme(theme string) int {
 	switch theme {
-	case "plus-theme":
+	case "plus-theme", "plus-light":
 		return 1
-	case "pro-theme":
+	case "pro-theme", "pro-light":
 		return 2
-	case "ultra-theme":
+	case "ultra-theme", "ultra-light":
 		return 3
 	default:
 		return 0
@@ -669,7 +669,7 @@ func (a *App) applyNativeTheme(theme string) {
 		return
 	}
 	switch theme {
-	case "light":
+	case "light", "plus-light", "pro-light", "ultra-light":
 		runtime.WindowSetLightTheme(a.ctx)
 	case "dark", "plus-theme", "pro-theme", "ultra-theme":
 		runtime.WindowSetDarkTheme(a.ctx)

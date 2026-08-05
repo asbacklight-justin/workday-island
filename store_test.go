@@ -107,13 +107,13 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 		t.Fatalf("sentence learning mode was not preserved: %q", got)
 	}
 	entries := normaliseSettings(Settings{Workdays: []int{1}, HeaderEntries: map[string]bool{"notes": false}}).HeaderEntries
-	if entries["notes"] || !entries["ai"] || !entries["chat"] || !entries["english"] || len(entries) != 8 {
+	if entries["notes"] || !entries["ai"] || !entries["chat"] || !entries["english"] || !entries["notifications"] || len(entries) != 9 {
 		t.Fatalf("header entry defaults were not normalised: %#v", entries)
 	}
 }
 
 func TestMemberThemesArePreserved(t *testing.T) {
-	for _, theme := range []string{"plus-theme", "pro-theme", "ultra-theme"} {
+	for _, theme := range []string{"plus-theme", "pro-theme", "ultra-theme", "plus-light", "pro-light", "ultra-light"} {
 		settings := normaliseSettings(Settings{Theme: theme, Workdays: []int{1}})
 		if settings.Theme != theme {
 			t.Fatalf("member theme %q was not preserved: %#v", theme, settings)

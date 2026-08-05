@@ -436,7 +436,7 @@ func normaliseSettings(settings Settings) Settings {
 	if settings.Language != "zh" && settings.Language != "en" && settings.Language != "system" {
 		settings.Language = "system"
 	}
-	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "aurora" && settings.Theme != "plus-theme" && settings.Theme != "pro-theme" && settings.Theme != "ultra-theme" && settings.Theme != "system" {
+	if settings.Theme != "light" && settings.Theme != "dark" && settings.Theme != "aurora" && settings.Theme != "plus-theme" && settings.Theme != "pro-theme" && settings.Theme != "ultra-theme" && settings.Theme != "plus-light" && settings.Theme != "pro-light" && settings.Theme != "ultra-light" && settings.Theme != "system" {
 		settings.Theme = "system"
 	}
 	if settings.EnglishMode != "study" && settings.EnglishMode != "sentence" && settings.EnglishMode != "quiz" && settings.EnglishMode != "chinese" && settings.EnglishMode != "spelling" {
@@ -461,7 +461,7 @@ func normaliseSettings(settings Settings) Settings {
 	return settings
 }
 
-var headerEntryKeys = []string{"ai", "chat", "stocks", "cloud", "notes", "sharing", "translator", "english"}
+var headerEntryKeys = []string{"ai", "chat", "stocks", "cloud", "notes", "sharing", "translator", "english", "notifications"}
 
 func defaultHeaderEntries() map[string]bool {
 	entries := make(map[string]bool, len(headerEntryKeys))

@@ -5,6 +5,28 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.0] - 2026-08-05
+
+### 中文
+
+- Plus、Pro、Ultra 分别新增“樱金晨曦”“冰川晴空”“星钻白曜”三套会员亮色主题；基于完整浅色组件体系设计，并覆盖工作台、弹窗、账号中心、云笔记、AI、聊天、翻译、云盘、英语学习和股市页面。
+- 三套亮色主题沿用会员等级权限：Plus 解锁 Plus 亮色，Pro 解锁 Plus/Pro 亮色，Ultra 解锁全部；界面选项、持久化校验、Go 后端权限与系统原生浅色窗口外观保持一致。
+- “关于”页新增意见反馈入口，可在无需登录的情况下提交问题、功能建议、体验反馈或其他意见；自动携带应用版本与系统平台，但不会附加待办、薪资或笔记。
+- 新增公共反馈原生网络客户端、双语表单、输入长度校验、提交状态、成功编号与服务端错误提示，并为客户端来源/版本请求头和限流响应补充测试。
+- 接入 Backlight 站内信：顶部通知入口展示实时未读角标，通知中心支持类型/已读状态筛选、分页、单条已读、全部已读、删除和业务详情跳转；会话未登录时引导到账号中心。
+- 修复云笔记编辑中切换到其他页面再返回时，笔记列表摘要覆盖完整正文、造成内容大量减少的问题。返回云笔记时保留原选中笔记、编辑器内容与页面状态；离开时立即快照保存，保存请求期间的新输入会自动排队再次保存。
+- 新增会员主题自动适配：会员登录，或已登录普通用户在 `/user/info` 刷新后升级为 Plus、Pro、Ultra 时，若当前不是会员主题，会自动切换到对应等级的专属主题；原浅色/系统浅色使用亮色会员主题，原深色/极光使用深色会员主题。用户已主动选择的会员主题不会被覆盖。
+
+### English
+
+- Added three bright member themes: **Sakura Dawn** for Plus, **Glacier Sky** for Pro, and **Stellar White Diamond** for Ultra. They build on the complete light component system and cover the dashboard, dialogs, Account Centre, Cloud Notes, AI, chat, translation, Work Cloud, English learning, and stocks.
+- Bright themes follow the existing hierarchy: Plus unlocks the Plus theme, Pro unlocks Plus and Pro themes, and Ultra unlocks all themes. UI options, persistence validation, Go-side access checks, and the native light window appearance stay aligned.
+- Added a Feedback entry to About for sending bug reports, feature suggestions, experience feedback, or other comments without signing in. Reports include the app version and platform but never attach todos, salary, or notes.
+- Added a native public-feedback client, bilingual form, input limits, pending state, success reference, service-error handling, and tests for client metadata headers and rate-limit responses.
+- Integrated Backlight in-app notifications. The header shows a live unread badge, while Notification Center supports type/read-state filters, pagination, marking one or all as read, deletion, and business-detail links; signed-out sessions are directed to Account Centre.
+- Fixed Cloud Notes losing most of an edited note after navigating away and back because a list excerpt replaced the full body. Returning now preserves the selected note, live editor content, and page state; leaving snapshots immediately, and edits made during an in-flight save are queued for a follow-up save.
+- Added automatic member-theme matching. When a member signs in, or a signed-in regular account becomes Plus, Pro, or Ultra after a `/user/info` refresh, a non-member theme switches to that tier's exclusive theme. Light/System-Light stays bright, while Dark/Aurora stays dark; an explicitly selected member theme is never overwritten.
+
 ## [0.15.1] - 2026-08-04
 
 ### 中文
@@ -325,6 +347,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0
 [0.15.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1
 [0.15.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.0
 [0.14.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.14.0

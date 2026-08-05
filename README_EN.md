@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.15.1-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.15.1-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.16.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.16.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -28,13 +28,14 @@ The public packages are not currently signed with commercial distribution certif
 - **Persistent alerts:** A due reminder restores and raises the window, flashes multiple colours, and repeats a short sound until acknowledged.
 - **Focus mode:** Start 25, 50, or 90-minute sessions. Sessions persist locally and end with a foreground break reminder that continues until acknowledged.
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
-- **Membership identity and exclusive themes:** `/user/info` keeps regular, Plus, Pro, and Ultra status current while showing the real avatar and progressively richer membership treatments. Alongside System, Dark, Light, and Aurora, Plus unlocks **Violet Gilt**, Pro unlocks **Holographic Aurora**, and Ultra unlocks **Obsidian Diamond**. Higher tiers can use their own and lower-tier themes, enforced by both the UI and Go backend.
+- **Membership identity and exclusive themes:** `/user/info` keeps regular, Plus, Pro, and Ultra status current while showing the real avatar and progressively richer membership treatments. Each tier now has both a dark and bright exclusive theme: Plus gets **Violet Gilt** and **Sakura Dawn**, Pro gets **Holographic Aurora** and **Glacier Sky**, and Ultra gets **Obsidian Diamond** and **Stellar White Diamond**. Higher tiers can use their own and lower-tier themes, enforced by both the UI and Go backend.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
-- **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Work Cloud, Cloud Notes, Sharing, Translator, and English Learning. All remain visible by default, including after upgrading an older installation.
+- **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Work Cloud, Cloud Notes, Sharing, Translator, English Learning, and Notification Center. All remain visible by default, including after upgrading an older installation.
+- **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
 - **English Learning centre:** The `EN` button now opens a full learning centre. Its local Word Book keeps a cross-day history of words actually viewed in all five modes with phonetics, meanings, examples, library, modes, and view counts. The Wrong Book records mistakes from EN → CN, CN → EN, and spelling with the latest answer and accumulated error count. The compact learning window opens only from **Compact Study**; on macOS and Windows, floating-window opacity affects its background without dimming core content.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
-- **Online updates and Web App:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, or visit the [Backlight Web App](https://admin.asbacklight.cn/).
+- **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
 - **Desktop AI Chat:** Create, search, pin, archive, rename, and delete account conversations from the desktop. Select an allowed model and thinking mode, stream responses, stop generation, copy code blocks, render Markdown, inspect usage, and configure a personal system prompt.
 - **Cloud Notes:** Access notes and folders across devices and create rich-text, Markdown, or Web-compatible spreadsheet documents, with autosave, search, favourites, pinning, move, recycle bin, version history, reading passwords, AI organisation, translation, and export. Pinned content always sorts first inside its folder.
@@ -165,7 +166,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.15.1`
+- Current version: `v0.16.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=55">
+  <link rel="stylesheet" href="./style.css?v=58">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.15.1</span>
+        <span id="app-version-badge" class="version-badge">v0.16.0</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -47,6 +47,10 @@
         </button>
         <button id="open-translator" class="icon-btn translate-button" aria-label="全能翻译" title="全能翻译"><span aria-hidden="true">译</span></button>
         <button id="open-english" class="icon-btn english-button" aria-label="偷偷学英语" title="偷偷学英语"><span>EN</span></button>
+        <button id="open-notifications" class="icon-btn notification-button" aria-label="通知中心" title="通知中心">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg>
+          <span id="notification-unread" class="notification-unread hidden">0</span>
+        </button>
         <button id="open-account" class="account-nav-button" type="button" aria-label="账号" title="账号">
           <span class="account-nav-avatar" aria-hidden="true">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
@@ -168,6 +172,32 @@
         </aside>
       </section>
     </main>
+
+    <section id="notification-page" class="notification-page hidden" aria-labelledby="notification-title">
+      <div class="notification-page-head">
+        <button id="close-notifications" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="notification-title-group"><div class="section-kicker">INBOX</div><h1 id="notification-title" data-i18n="notificationCenter">通知中心</h1><p data-i18n="notificationCenterHint">系统消息、业务动态和安全提醒集中在这里。</p></div>
+        <div id="notification-status-chip" class="notification-status-chip"><span></span><b data-i18n="signedOut">未登录</b></div>
+      </div>
+      <section id="notification-login-required" class="panel notification-login-required">
+        <div class="notification-empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4"/></svg></div>
+        <h2 data-i18n="notificationLoginTitle">登录后查看站内信</h2><p data-i18n="notificationLoginHint">系统通知与当前工位岛账号关联。</p>
+        <button id="notification-open-login" type="button" class="primary-btn" data-i18n="goToAccountLogin">前往账号登录</button>
+      </section>
+      <section id="notification-content" class="panel notification-shell hidden">
+        <header class="notification-toolbar">
+          <div><strong data-i18n="allNotifications">全部通知</strong><span id="notification-summary">0 条通知</span></div>
+          <div class="notification-filters">
+            <select id="notification-type-filter" aria-label="通知类型"><option value="" data-i18n="allTypes">全部类型</option><option value="SYSTEM" data-i18n="noticeSystem">系统通知</option><option value="BUSINESS" data-i18n="noticeBusiness">业务提醒</option><option value="SECURITY" data-i18n="noticeSecurity">安全提醒</option><option value="ANNOUNCEMENT" data-i18n="noticeAnnouncement">公告</option></select>
+            <select id="notification-status-filter" aria-label="阅读状态"><option value="" data-i18n="allStatuses">全部状态</option><option value="UNREAD" data-i18n="unread">未读</option><option value="READ" data-i18n="read">已读</option></select>
+            <button id="notification-refresh" type="button" class="ghost-btn" data-i18n="refresh">刷新</button>
+            <button id="notification-read-all" type="button" class="ghost-btn" data-i18n="markAllRead">全部已读</button>
+          </div>
+        </header>
+        <div id="notification-list" class="notification-list"></div>
+        <footer class="notification-pagination"><span id="notification-page-summary"></span><div><button id="notification-prev" type="button" class="ghost-btn" data-i18n="previousPage">上一页</button><button id="notification-next" type="button" class="ghost-btn" data-i18n="nextPage">下一页</button></div></footer>
+      </section>
+    </section>
 
     <section id="account-page" class="account-page hidden" aria-labelledby="account-title">
       <div class="account-page-head">
@@ -1036,6 +1066,7 @@
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="sharing" checked><span class="entry-switch"><span></span></span><b data-i18n="linkSharing">链接分享</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="translator" checked><span class="entry-switch"><span></span></span><b data-i18n="universalTranslator">全能翻译</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="english" checked><span class="entry-switch"><span></span></span><b data-i18n="englishLearning">偷偷学英语</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="notifications" checked><span class="entry-switch"><span></span></span><b data-i18n="notificationCenter">通知中心</b></label>
         </div>
       </section>
       <div class="field-grid">
@@ -1051,7 +1082,7 @@
       <label class="field"><span data-i18n="englishSource">单词词库</span><select id="english-source-select"><option value="nce2" data-i18n="englishSourceNCE2">新概念英语第二册</option><option value="nce3" data-i18n="englishSourceNCE3">新概念英语第三册</option><option value="cet4" data-i18n="englishSourceCET4">大学英语四级</option><option value="cet6" data-i18n="englishSourceCET6">大学英语六级</option><option value="ielts" data-i18n="englishSourceIELTS">雅思核心词汇</option><option value="all" data-i18n="englishSourceAll">全部公共词库</option></select></label>
       <label class="field"><span data-i18n="language">界面语言</span><select id="language-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="zh">中文</option><option value="en">English</option></select></label>
       <div class="field-grid preference-grid">
-        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option><option value="aurora" data-i18n="auroraTheme">极光</option><option value="plus-theme" data-theme-tier="plus" data-i18n="plusTheme">曜金紫晶 · Plus</option><option value="pro-theme" data-theme-tier="pro" data-i18n="proTheme">全息极光 · Pro</option><option value="ultra-theme" data-theme-tier="ultra" data-i18n="ultraTheme">黑曜星钻 · Ultra</option></select><small id="theme-access-hint" class="theme-access-hint"></small></label>
+        <label class="field"><span data-i18n="theme">界面主题</span><select id="theme-select"><option value="system" data-i18n="followSystem">跟随系统</option><option value="dark" data-i18n="darkTheme">深色</option><option value="light" data-i18n="lightTheme">浅色</option><option value="aurora" data-i18n="auroraTheme">极光</option><optgroup data-i18n-label="memberDarkThemes" label="会员深色主题"><option value="plus-theme" data-theme-tier="plus" data-i18n="plusTheme">曜金紫晶 · Plus</option><option value="pro-theme" data-theme-tier="pro" data-i18n="proTheme">全息极光 · Pro</option><option value="ultra-theme" data-theme-tier="ultra" data-i18n="ultraTheme">黑曜星钻 · Ultra</option></optgroup><optgroup data-i18n-label="memberLightThemes" label="会员亮色主题"><option value="plus-light" data-theme-tier="plus" data-i18n="plusLightTheme">樱金晨曦 · Plus</option><option value="pro-light" data-theme-tier="pro" data-i18n="proLightTheme">冰川晴空 · Pro</option><option value="ultra-light" data-theme-tier="ultra" data-i18n="ultraLightTheme">星钻白曜 · Ultra</option></optgroup></select><small id="theme-access-hint" class="theme-access-hint"></small></label>
         <label class="field"><span data-i18n="currency">货币符号</span><input id="currency-symbol" maxlength="8" placeholder="¥ / $ / €"></label>
       </div>
       <div class="compact-opacity-setting">
@@ -1116,12 +1147,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.15.1</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.0</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
+      <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.15.1</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.0</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1134,6 +1166,20 @@
       </section>
     </section>
   </div>
+  <div id="feedback-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="feedback-title">
+    <form id="feedback-form" class="modal-card feedback-card">
+      <div class="modal-head"><div><div class="section-kicker">FEEDBACK</div><h2 id="feedback-title" data-i18n="feedbackTitle">提交意见反馈</h2></div><button type="button" class="close-btn" data-close="feedback-modal" aria-label="关闭" title="关闭"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <p class="feedback-description" data-i18n="feedbackDescription">你的反馈会直接送达 Backlight 团队，无需登录。</p>
+      <div class="field-grid feedback-grid">
+        <label class="field"><span data-i18n="feedbackType">反馈类型</span><select id="feedback-type"><option value="suggestion" data-i18n="feedbackSuggestion">功能建议</option><option value="bug" data-i18n="feedbackBug">问题反馈</option><option value="experience" data-i18n="feedbackExperience">体验反馈</option><option value="other" data-i18n="feedbackOther">其他</option></select></label>
+        <label class="field"><span><span data-i18n="feedbackContact">联系方式</span> <em data-i18n="optional">可选</em></span><input id="feedback-contact" type="text" maxlength="160" autocomplete="email" data-i18n-placeholder="feedbackContactPlaceholder" placeholder="邮箱或其他联系方式"></label>
+      </div>
+      <label class="field"><span data-i18n="feedbackSubject">标题</span><input id="feedback-subject" type="text" maxlength="160" required data-i18n-placeholder="feedbackSubjectPlaceholder" placeholder="用一句话概括问题或建议"></label>
+      <label class="field feedback-content-field"><span data-i18n="feedbackContent">详细内容</span><textarea id="feedback-content" maxlength="5000" required data-i18n-placeholder="feedbackContentPlaceholder" placeholder="请描述发生了什么、期望效果或复现步骤"></textarea><small id="feedback-counter" class="feedback-counter">0 / 5000</small></label>
+      <p class="feedback-privacy" data-i18n="feedbackPrivacy">提交时会发送反馈内容、可选联系方式、应用版本和系统平台，不会附带待办、薪资或笔记。</p>
+      <div class="modal-actions"><button type="button" class="text-btn" data-close="feedback-modal" data-i18n="cancel">取消</button><button id="submit-feedback" type="submit" class="primary-btn" data-i18n="submitFeedback">提交反馈</button></div>
+    </form>
+  </div>
   <button id="reminder-alert" class="reminder-alert" aria-label="停止提醒闪烁">
     <span id="alert-bell" class="alert-bell">!</span><span><small id="reminder-alert-kicker" data-i18n="reminderDue">待办到时间了</small><strong id="reminder-alert-title">该处理待办啦</strong></span><em data-i18n="clickStop">点击停止</em>
   </button>
@@ -1144,6 +1190,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=66" type="module"></script>
+  <script src="./app.js?v=71" type="module"></script>
 </body>
 </html>

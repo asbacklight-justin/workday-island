@@ -2,7 +2,7 @@
 
 [中文](PRIVACY.zh-CN.md) · [English](PRIVACY.md)
 
-Last updated: 2026-07-30
+Last updated: 2026-08-05
 
 Workday Island is local-first. Core features such as todos require no account. AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator share one signed-in Backlight account session.
 
@@ -31,6 +31,8 @@ When the user submits the registration form, the app sends the username, nicknam
 
 After account sign-in, the app connects to `admin.asbacklight.cn`. It requests `/user/info` to refresh the current account's nickname, avatar URL, role codes, and role names; membership role codes are used only to select the matching local badge style. Chat content, sender/recipient user IDs and nicknames, timestamps, delivery/read states, friend requests and relationships, online status, and shake/flash commands pass through the realtime service and may be retained server-side. Shake and flash actions are also kept as interaction records in recent local conversation history. Blocking network access does not affect local core features outside chat.
 
+Opening Notification Center uses the current account to retrieve system, business, security, and announcement messages visible to that user. While signed in, the app performs a lightweight unread-count request every 45 seconds. Marking one or all messages as read and deletion are sent only after an explicit user action. The notification list and unread count remain in the running process and are not written to the local data file.
+
 When AI Chat is used, conversation titles, system prompts, selected models, thinking settings, user messages, AI responses, token usage, and creation/modification times are sent to the Backlight AI service and associated with the current account. Responses stream to the desktop and generation can be stopped; conversations can be archived or deleted. The app does not automatically attach todos, salary, or other local data. Only content explicitly entered by the user or sent from Cloud Notes is submitted.
 
 Opening Cloud Notes uses the current account to retrieve folders, note bodies, favourite/pinned states, word counts, versions, recycle-bin entries, and reading-password status. Creating, editing, moving, restoring, deleting, setting a reading password, exporting, translating, or sending a note to AI is user-initiated; edited content autosaves to the Backlight Cloud Notes service. Reading passwords are submitted over HTTPS for server-side verification, while the unlock token remains only in the running session.
@@ -43,7 +45,9 @@ Opening compact English learning requests words, phonetics, meanings, examples, 
 
 Opening Work Cloud uses the current account token to read folders and storage quota. The app reads and uploads a local file only after the user selects it, using an object-storage URL issued by the service. Downloads are also explicitly initiated by the user. The Backlight service stores file metadata such as name, size, content type, folder relationships, and object key, while file contents live in the configured object storage. The app does not crawl or scan local files that the user did not select.
 
-Requests from Workday Island to account, AI Chat, realtime chat, Cloud Notes, Link Sharing, English, translation, and Work Cloud business endpoints on `admin.asbacklight.cn` include `X-Client-Source: workday-island` and the current application version. These fields identify the client for compatibility and troubleshooting. Presigned object-storage upload/download requests do not receive these headers.
+Requests from Workday Island to account, AI Chat, realtime chat, notifications, Cloud Notes, Link Sharing, English, translation, and Work Cloud business endpoints on `admin.asbacklight.cn` include `X-Client-Source: workday-island` and the current application version. These fields identify the client for compatibility and troubleshooting. Presigned object-storage upload/download requests do not receive these headers.
+
+When the user explicitly submits feedback from About, the app sends the selected type, subject, details, optional contact, app version, and operating-system platform to the public Backlight feedback service. The service records the submitting IP for rate limiting and abuse prevention. No sign-in is required, and the app never automatically attaches todos, salary, chat, notes, files, or other local business data.
 
 ## Operating-system capabilities
 

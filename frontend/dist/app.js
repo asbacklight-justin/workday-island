@@ -12,10 +12,14 @@ const translations = {
     localOnly: '仅保存在本机', salaryPlaceholder: '例如 15000', salaryWorkdays: '月计薪天数', weatherCity: '天气城市',
     weatherPlaceholder: '例如：上海、杭州、Shenzhen', workdays: '工作日', language: '界面语言', followSystem: '跟随系统',
     keepOnTop: '窗口保持置顶', keepOnTopDesc: '让倒计时和待办始终触手可及', saveSettings: '保存设置',
-    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', auroraTheme: '极光', plusTheme: '曜金紫晶 · Plus', proTheme: '全息极光 · Pro', ultraTheme: '黑曜星钻 · Ultra', themeLocked: '需 {membership} 或更高等级', themeAccessHint: '会员主题按当前账号等级解锁', currency: '货币符号', compactTodos: '未完成待办',
+    theme: '界面主题', darkTheme: '深色', lightTheme: '浅色', auroraTheme: '极光', memberDarkThemes: '会员深色主题', memberLightThemes: '会员亮色主题', plusTheme: '曜金紫晶 · Plus', proTheme: '全息极光 · Pro', ultraTheme: '黑曜星钻 · Ultra', plusLightTheme: '樱金晨曦 · Plus', proLightTheme: '冰川晴空 · Pro', ultraLightTheme: '星钻白曜 · Ultra', themeLocked: '需 {membership} 或更高等级', themeAccessHint: '会员主题按当前账号等级解锁', currency: '货币符号', compactTodos: '未完成待办',
     showCompactTodos: '精简模式展示待办', showCompactTodosDesc: '在核心面板下方展示未完成事项', noCompactTodos: '暂无未完成待办',
     compactOpacity: '悬浮窗透明度', compactOpacityDesc: '拖动时实时预览；精简模式、英语学习和股市小窗共用',
     aboutTitle: '关于工位岛', aboutDescription: '一座安静悬浮在桌面的工作小岛。', version: '版本', author: '作者', email: '邮箱', webApp: 'Web 端',
+    feedback: '意见反馈', feedbackEntryHint: '告诉我们哪里可以做得更好', feedbackTitle: '提交意见反馈', feedbackDescription: '你的反馈会直接送达 Backlight 团队，无需登录。',
+    feedbackType: '反馈类型', feedbackSuggestion: '功能建议', feedbackBug: '问题反馈', feedbackExperience: '体验反馈', feedbackOther: '其他', feedbackContact: '联系方式', feedbackContactPlaceholder: '邮箱或其他联系方式',
+    feedbackSubject: '标题', feedbackSubjectPlaceholder: '用一句话概括问题或建议', feedbackContent: '详细内容', feedbackContentPlaceholder: '请描述发生了什么、期望效果或复现步骤',
+    feedbackPrivacy: '提交时会发送反馈内容、可选联系方式、应用版本和系统平台，不会附带待办、薪资或笔记。', submitFeedback: '提交反馈', submittingFeedback: '正在提交…', feedbackSubjectRequired: '请填写反馈标题', feedbackContentRequired: '请填写反馈内容', feedbackSubmitted: '反馈已提交，谢谢你的帮助（编号 #{id}）', feedbackSubmittedNoID: '反馈已提交，谢谢你的帮助',
     updates: '应用更新', autoUpdateHint: '每天自动检查一次', updateIdle: '可手动检查 GitHub Releases 中的新版本',
     checkUpdates: '检查更新', checkingUpdates: '正在检查更新…', latestVersion: '已是最新版 v{version}',
     updateAvailable: '发现新版本 v{version}', downloadUpdate: '下载更新', openRelease: '查看发布页',
@@ -54,7 +58,7 @@ const translations = {
     translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
     confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
     languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手', workdayMember: '工位岛用户', workdayPlusMember: '工位岛 Plus 会员', workdayProMember: '工位岛 Pro 会员', workdayUltraMember: '工位岛 Ultra 会员', membershipUpdated: '{membership} 已生效',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手', workdayMember: '工位岛用户', workdayPlusMember: '工位岛 Plus 会员', workdayProMember: '工位岛 Pro 会员', workdayUltraMember: '工位岛 Ultra 会员', membershipUpdated: '{membership} 已生效', membershipThemeApplied: '已自动切换为 {membership} 专属主题',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
@@ -87,6 +91,10 @@ const translations = {
     englishLoadFailed: '取词失败', retry: '重试', nextWord: '下一个', answerCorrect: '回答正确', answerWrong: '回答错误', previousWord: '上一词',
     englishSpellingPlaceholder: '输入完整英文单词', checkAnswer: '检查', enterSpelling: '请输入完整英文单词', translatingExample: '正在获取中文例句…',
     exampleUnavailable: '暂无英文例句', exampleTranslationUnavailable: '中文释义：{meaning}',
+    notificationCenter: '通知中心', notificationCenterHint: '系统消息、业务动态和安全提醒集中在这里。', notificationLoginTitle: '登录后查看站内信', notificationLoginHint: '系统通知与当前工位岛账号关联。',
+    allNotifications: '全部通知', allTypes: '全部类型', allStatuses: '全部状态', noticeSystem: '系统通知', noticeBusiness: '业务提醒', noticeSecurity: '安全提醒', noticeAnnouncement: '公告', unread: '未读', read: '已读', markRead: '标为已读', markAllRead: '全部已读',
+    notificationCount: '共 {count} 条通知', unreadCount: '{count} 条未读', notificationLoading: '正在读取通知…', noNotifications: '暂无通知', noNotificationsHint: '新的系统消息会出现在这里。', notificationMarkedRead: '通知已读', markedAllRead: '所有通知已标记为已读', notificationDeleted: '通知已删除', deleteNotificationConfirm: '确定删除通知“{title}”吗？',
+    previousPage: '上一页', nextPage: '下一页', notificationPageSummary: '第 {page} / {pages} 页', pinnedNotice: '置顶', openNotificationLink: '打开详情',
     weekdays: ['一','二','三','四','五','六','日']
   },
   en: {
@@ -102,10 +110,14 @@ const translations = {
     localOnly: 'Stored locally', salaryPlaceholder: 'e.g. 15000', salaryWorkdays: 'Paid days / month', weatherCity: 'Weather city',
     weatherPlaceholder: 'e.g. Shanghai, Hangzhou, Shenzhen', workdays: 'Workdays', language: 'Language', followSystem: 'Follow system',
     keepOnTop: 'Keep window on top', keepOnTopDesc: 'Keep your countdown and todos within reach', saveSettings: 'Save Settings',
-    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', auroraTheme: 'Aurora', plusTheme: 'Violet Gilt · Plus', proTheme: 'Holographic Aurora · Pro', ultraTheme: 'Obsidian Diamond · Ultra', themeLocked: 'Requires {membership} or higher', themeAccessHint: 'Member themes unlock with your current account tier', currency: 'Currency symbol', compactTodos: 'Pending todos',
+    theme: 'Theme', darkTheme: 'Dark', lightTheme: 'Light', auroraTheme: 'Aurora', memberDarkThemes: 'Member dark themes', memberLightThemes: 'Member light themes', plusTheme: 'Violet Gilt · Plus', proTheme: 'Holographic Aurora · Pro', ultraTheme: 'Obsidian Diamond · Ultra', plusLightTheme: 'Sakura Dawn · Plus', proLightTheme: 'Glacier Sky · Pro', ultraLightTheme: 'Stellar White Diamond · Ultra', themeLocked: 'Requires {membership} or higher', themeAccessHint: 'Member themes unlock with your current account tier', currency: 'Currency symbol', compactTodos: 'Pending todos',
     showCompactTodos: 'Show todos in compact mode', showCompactTodosDesc: 'Show pending items below the core cards', noCompactTodos: 'No pending todos',
     compactOpacity: 'Floating window opacity', compactOpacityDesc: 'Live preview; shared by compact mode, English learning, and the stock ticker',
     aboutTitle: 'About Workday Island', aboutDescription: 'A quiet little work island floating on your desktop.', version: 'Version', author: 'Author', email: 'Email', webApp: 'Web App',
+    feedback: 'Feedback', feedbackEntryHint: 'Tell us what could be better', feedbackTitle: 'Send Feedback', feedbackDescription: 'Your feedback goes directly to the Backlight team. No sign-in is required.',
+    feedbackType: 'Type', feedbackSuggestion: 'Feature suggestion', feedbackBug: 'Bug report', feedbackExperience: 'Experience feedback', feedbackOther: 'Other', feedbackContact: 'Contact', feedbackContactPlaceholder: 'Email or another way to reach you',
+    feedbackSubject: 'Subject', feedbackSubjectPlaceholder: 'Summarise the issue or idea in one sentence', feedbackContent: 'Details', feedbackContentPlaceholder: 'Describe what happened, the expected result, or steps to reproduce',
+    feedbackPrivacy: 'The report sends its content, optional contact, app version, and system platform. Todos, salary, and notes are never attached.', submitFeedback: 'Send Feedback', submittingFeedback: 'Sending…', feedbackSubjectRequired: 'Enter a feedback subject', feedbackContentRequired: 'Enter the feedback details', feedbackSubmitted: 'Feedback sent — thank you (reference #{id})', feedbackSubmittedNoID: 'Feedback sent — thank you',
     updates: 'App updates', autoUpdateHint: 'Checked automatically once a day', updateIdle: 'Check GitHub Releases for a newer version',
     checkUpdates: 'Check for Updates', checkingUpdates: 'Checking for updates…', latestVersion: 'You’re up to date — v{version}',
     updateAvailable: 'Version v{version} is available', downloadUpdate: 'Download Update', openRelease: 'View Release',
@@ -144,7 +156,7 @@ const translations = {
     translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
     confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
     languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant', workdayMember: 'Workday Island Member', workdayPlusMember: 'Workday Island Plus', workdayProMember: 'Workday Island Pro', workdayUltraMember: 'Workday Island Ultra', membershipUpdated: '{membership} is now active',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant', workdayMember: 'Workday Island Member', workdayPlusMember: 'Workday Island Plus', workdayProMember: 'Workday Island Pro', workdayUltraMember: 'Workday Island Ultra', membershipUpdated: '{membership} is now active', membershipThemeApplied: 'Switched automatically to the {membership} member theme',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
@@ -177,13 +189,18 @@ const translations = {
     englishLoadFailed: 'Unable to fetch words', retry: 'Retry', nextWord: 'Next word', answerCorrect: 'Correct', answerWrong: 'Wrong', previousWord: 'Previous',
     englishSpellingPlaceholder: 'Type the complete English word', checkAnswer: 'Check', enterSpelling: 'Type the complete English word', translatingExample: 'Fetching the Chinese sentence…',
     exampleUnavailable: 'No example sentence', exampleTranslationUnavailable: 'Meaning: {meaning}',
+    notificationCenter: 'Notification Center', notificationCenterHint: 'System messages, business updates, and security alerts in one place.', notificationLoginTitle: 'Sign in to view notifications', notificationLoginHint: 'Notifications are linked to your Workday Island account.',
+    allNotifications: 'All notifications', allTypes: 'All types', allStatuses: 'All statuses', noticeSystem: 'System', noticeBusiness: 'Business', noticeSecurity: 'Security', noticeAnnouncement: 'Announcement', unread: 'Unread', read: 'Read', markRead: 'Mark as read', markAllRead: 'Mark all read',
+    notificationCount: '{count} notifications', unreadCount: '{count} unread', notificationLoading: 'Loading notifications…', noNotifications: 'No notifications', noNotificationsHint: 'New system messages will appear here.', notificationMarkedRead: 'Notification marked as read', markedAllRead: 'All notifications marked as read', notificationDeleted: 'Notification deleted', deleteNotificationConfirm: 'Delete “{title}”?',
+    previousPage: 'Previous', nextPage: 'Next', notificationPageSummary: 'Page {page} / {pages}', pinnedNotice: 'Pinned', openNotificationLink: 'Open details',
     weekdays: ['M','T','W','T','F','S','S']
   }
 };
 
 const headerEntryDefinitions = [
   ['ai', '#open-ai-chat'], ['chat', '#open-chat'], ['stocks', '#open-stocks'], ['cloud', '#open-cloud'],
-  ['notes', '#open-notes'], ['sharing', '#open-share-management'], ['translator', '#open-translator'], ['english', '#open-english']
+  ['notes', '#open-notes'], ['sharing', '#open-share-management'], ['translator', '#open-translator'], ['english', '#open-english'],
+  ['notifications', '#open-notifications']
 ];
 
 function normaliseHeaderEntries(value) {
@@ -194,7 +211,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.15.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -202,10 +219,12 @@ const state = {
   accountOpen: false,
   accountMode: 'login',
   account: {loggedIn: false, user: null},
+  notificationOpen: false,
+  notifications: {items: [], total: 0, page: 1, pageSize: 15, type: '', readStatus: '', unread: 0, busy: false},
   notesOpen: false,
   notes: {
     nodes: [], selectedId: '', filter: 'all', query: '', expanded: new Set(),
-    menuTargetId: '', movingId: '', saving: false, creating: false, unlocked: new Set(), fullscreen: false,
+    menuTargetId: '', movingId: '', saving: false, saveQueued: false, loaded: false, creating: false, unlocked: new Set(), fullscreen: false,
     selectionRevision: 0, deleteTargetId: '', deletePermanent: false, passwordMode: 'set',
     createParentId: '', markdownView: 'edit', workbook: null, selectedCell: 'A1'
   },
@@ -271,6 +290,8 @@ let englishFitTimer = 0;
 let aiSearchTimer = 0;
 let aiRenderFrame = 0;
 let noteSaveTimer = 0;
+let noteSavePromise = Promise.resolve();
+const pendingNoteSaves = new Map();
 let appDialogResolve = null;
 let appDialogMode = 'confirm';
 const systemTheme = window.matchMedia?.('(prefers-color-scheme: light)');
@@ -312,10 +333,13 @@ function applyTranslations() {
   document.title = language === 'zh' ? '工位岛 · Workday Island' : 'Workday Island';
   $$('[data-i18n]').forEach(element => { element.textContent = t(element.dataset.i18n); });
   $$('[data-i18n-placeholder]').forEach(element => { element.placeholder = t(element.dataset.i18nPlaceholder); });
+  $$('[data-i18n-label]').forEach(element => { element.label = t(element.dataset.i18nLabel); });
   $('#open-settings').setAttribute('aria-label', t('settings'));
   $('#open-settings').title = t('settings');
   $('#open-about').setAttribute('aria-label', t('about'));
   $('#open-about').title = t('about');
+  $('#open-feedback').setAttribute('aria-label', t('feedback'));
+  $('#open-feedback').title = t('feedback');
   renderFullscreenControl();
   $('#open-chat').setAttribute('aria-label', t('chat'));
   $('#open-chat').title = t('chat');
@@ -331,6 +355,10 @@ function applyTranslations() {
   $('#open-translator').title = t('universalTranslator');
   $('#open-english').setAttribute('aria-label', t('englishLearning'));
   $('#open-english').title = t('englishLearning');
+  $('#open-notifications').setAttribute('aria-label', t('notificationCenter'));
+  $('#notification-page').setAttribute('aria-label', t('notificationCenter'));
+  $('#close-notifications').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-notifications').title = t('backToDashboard');
   $('#open-account').setAttribute('aria-label', t('account'));
   $('#open-account').title = t('account');
   ['#minimize-window', '#compact-minimize', '#minimize-english', '#minimize-stocks'].forEach(selector => {
@@ -422,6 +450,7 @@ async function boot() {
     bindEvents();
     applyTranslations();
     renderAll();
+    void refreshNotificationUnread();
     void syncWindowFullscreen();
     setInterval(updateClock, 1000);
     refreshWeather();
@@ -429,6 +458,7 @@ async function boot() {
     checkActiveReminder();
     setInterval(checkActiveReminder, 700);
     setInterval(() => void refreshAccountProfile(), 30000);
+    setInterval(() => void refreshNotificationUnread(), 45000);
     window.addEventListener('focus', () => void refreshAccountProfile());
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') void refreshAccountProfile();
@@ -470,6 +500,9 @@ function bindEvents() {
   $('#add-todo').addEventListener('click', () => openTodoModal());
   $('#open-settings').addEventListener('click', openSettings);
   $('#open-about').addEventListener('click', () => openModal('about-modal'));
+  $('#open-feedback').addEventListener('click', openFeedbackModal);
+  $('#feedback-form').addEventListener('submit', submitPublicFeedback);
+  $('#feedback-content').addEventListener('input', updateFeedbackCounter);
   $('#open-ai-chat').addEventListener('click', openAIChatPage);
   $('#close-ai-chat').addEventListener('click', closeAIChatPage);
   $('#ai-open-login').addEventListener('click', () => { closeAIChatPage(); openAccountPage('login'); });
@@ -566,7 +599,7 @@ function bindEvents() {
     createNoteNode('note', parentId, button.dataset.noteCreateType);
   });
   $('#close-note-create-menu').addEventListener('click', closeNoteCreateMenu);
-  $('#refresh-notes').addEventListener('click', loadNotes);
+  $('#refresh-notes').addEventListener('click', () => loadNotes(true));
   $('#notes-tree').addEventListener('click', handleNotesTreeClick);
   $('#notes-tree').addEventListener('dblclick', handleNotesTreeDoubleClick);
   $('#note-title-input').addEventListener('input', scheduleNoteSave);
@@ -603,6 +636,24 @@ function bindEvents() {
     if (event.target === mask) closeNoteDialog(mask.id);
   }));
   $('#open-account').addEventListener('click', () => openAccountPage('login'));
+  $('#open-notifications').addEventListener('click', openNotificationPage);
+  $('#close-notifications').addEventListener('click', closeNotificationPage);
+  $('#notification-open-login').addEventListener('click', () => { closeNotificationPage(); openAccountPage('login'); });
+  $('#notification-refresh').addEventListener('click', loadUserNotices);
+  $('#notification-read-all').addEventListener('click', markAllNotificationsRead);
+  $('#notification-type-filter').addEventListener('change', event => {
+    state.notifications.type = event.target.value;
+    state.notifications.page = 1;
+    loadUserNotices();
+  });
+  $('#notification-status-filter').addEventListener('change', event => {
+    state.notifications.readStatus = event.target.value;
+    state.notifications.page = 1;
+    loadUserNotices();
+  });
+  $('#notification-list').addEventListener('click', handleNotificationAction);
+  $('#notification-prev').addEventListener('click', () => changeNotificationPage(-1));
+  $('#notification-next').addEventListener('click', () => changeNotificationPage(1));
   $('#close-account').addEventListener('click', closeAccountPage);
   $('#account-service-grid').addEventListener('click', openAccountService);
   $('#account-mode-tabs').addEventListener('click', changeAccountMode);
@@ -761,6 +812,7 @@ function bindEvents() {
       }
     }
     if (event.key === 'Escape' && state.accountOpen) { closeAccountPage(); return; }
+    if (event.key === 'Escape' && state.notificationOpen) { closeNotificationPage(); return; }
     if (event.key === 'Escape' && state.shareManagementOpen) { closeShareManagementPage(); return; }
     if (event.key === 'Escape' && state.notes.fullscreen) { toggleNoteFullscreen(); return; }
     if (event.key === 'Escape' && state.windowFullscreen) { event.preventDefault(); void setWindowFullscreen(false); return; }
@@ -948,6 +1000,8 @@ function renderAll() {
   renderCompactTodos();
   renderSummary();
   renderAccountSession();
+  renderNotificationSession();
+  renderNotificationBadge();
   renderAIChat();
   if (state.notesOpen) renderNotes();
   renderRealtime();
@@ -1106,6 +1160,7 @@ async function handleTodoAction(event) {
 }
 
 async function openNotesPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
@@ -1118,12 +1173,18 @@ async function openNotesPage() {
   document.body.classList.add('notes-open');
   $('#notes-page').classList.remove('hidden');
   $('#open-notes').classList.add('active');
-  renderNotesSession();
-  if (!state.account.loggedIn) return;
-  await loadNotes();
+  if (!state.account.loggedIn) {
+    renderNotesSession();
+    return;
+  }
+  // Returning from another page must keep the live editor exactly as it was.
+  // The list endpoint contains summaries, so reloading it here would replace a
+  // complete note body with a shortened excerpt.
+  if (!state.notes.loaded) await loadNotes();
 }
 
 async function openShareManagementPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
   if (state.accountOpen) closeAccountPage();
@@ -1438,6 +1499,7 @@ function openCurrentNoteShareLink() {
 }
 
 function closeNotesPage() {
+  captureCurrentNoteDraft();
   void flushNoteSave();
   state.notesOpen = false;
   state.notes.fullscreen = false;
@@ -1450,16 +1512,40 @@ function closeNotesPage() {
   $$('.note-dialog-mask:not(.hidden)').forEach(mask => closeNoteDialog(mask.id));
 }
 
-async function loadNotes() {
+async function loadNotes(saveFirst = false) {
   try {
+    if (saveFirst) await flushNoteSave();
+    const selectedID = state.notes.selectedId;
+    const selectedBeforeLoad = noteNodeById(selectedID);
     const loaded = await api.ListNoteNodes() || [];
     // The account service is the only source of truth. Never merge note bodies
     // from a previous in-memory list (which could belong to another account).
     state.notes.nodes = loaded;
+    if (selectedID && selectedBeforeLoad?.kind === 'note' && !selectedBeforeLoad.deletedAt) {
+      const target = state.notes.nodes.find(node => String(node.id) === String(selectedID));
+      try {
+        const fresh = await api.GetNoteNode(selectedID);
+        if (target && fresh) Object.assign(target, fresh, {
+          id:selectedID,
+          kind:'note',
+          title:fresh.title || target.title || '无标题笔记',
+          content:fresh.content || '',
+          savedTitle:fresh.title || target.title || '无标题笔记',
+          savedContent:fresh.content || ''
+        });
+      } catch (error) {
+        // A list item may contain only an excerpt. If the detail request fails,
+        // retain the complete in-memory draft instead of ever rendering that
+        // excerpt over the editor.
+        if (target) Object.assign(target, selectedBeforeLoad);
+        showToast(readError(error), true);
+      }
+    }
     const selected = noteNodeById(state.notes.selectedId);
     if (!selected || (state.notes.filter === 'trash') !== Boolean(selected.deletedAt)) {
       state.notes.selectedId = '';
     }
+    state.notes.loaded = true;
     renderNotes();
   } catch (error) {
     showToast(readError(error), true);
@@ -1798,6 +1884,7 @@ function renderNotesSession() {
   if (!loggedIn) {
     state.notes.nodes = [];
     state.notes.selectedId = '';
+    state.notes.loaded = false;
     $('#notes-tree').innerHTML = '<div class="notes-tree-empty">登录后显示你的笔记</div>';
     $('#notes-all-count').textContent = '0';
     $('#notes-favorite-count').textContent = '0';
@@ -1988,12 +2075,19 @@ async function createNoteNode(kind, requestedParentId = '', requestedContentType
   }
 }
 
-function scheduleNoteSave() {
+function captureCurrentNoteDraft() {
   const node = currentNoteNode();
-  if (!node || node.locked && !state.notes.unlocked.has(node.id)) return;
+  if (!node || node.deletedAt || node.locked && !state.notes.unlocked.has(node.id)) return null;
   node.title = $('#note-title-input').value || '无标题笔记';
   node.content = currentNoteContent(node);
   node.updatedAt = new Date().toISOString();
+  return node;
+}
+
+function scheduleNoteSave() {
+  const node = captureCurrentNoteDraft();
+  if (!node) return;
+  node.localEditRevision = (Number(node.localEditRevision) || 0) + 1;
   $('#note-save-status').textContent = '待保存';
   $('#note-save-status').classList.add('saving');
   updateCurrentNoteWordCount();
@@ -2004,31 +2098,80 @@ function scheduleNoteSave() {
 async function flushNoteSave() {
   window.clearTimeout(noteSaveTimer);
   noteSaveTimer = 0;
-  const node = currentNoteNode();
-  if (!node || state.notes.saving || node.deletedAt || node.locked && !state.notes.unlocked.has(node.id)) return;
-  const title = ($('#note-title-input')?.value || node.title || '无标题笔记').trim() || '无标题笔记';
-  const content = currentNoteContent(node);
+  const node = captureCurrentNoteDraft();
+  if (!node) return noteSavePromise;
+  const title = String(node.title || '无标题笔记').trim() || '无标题笔记';
+  const content = String(node.content || '');
   if (title === node.savedTitle && content === node.savedContent) return;
-  state.notes.saving = true;
+  pendingNoteSaves.set(node.id, {
+    id:node.id,
+    title,
+    content,
+    contentType:node.contentType || 'richtext',
+    revision:node.revision || 0,
+    localEditRevision:Number(node.localEditRevision) || 0
+  });
   if (state.notes.selectedId === node.id) {
     $('#note-save-status').textContent = '保存中…';
     $('#note-save-status').classList.add('saving');
   }
+  if (!state.notes.saving) noteSavePromise = processPendingNoteSaves();
+  return noteSavePromise;
+}
+
+async function processPendingNoteSaves() {
+  state.notes.saving = true;
   try {
-    const updated = await api.UpdateNote(node.id, {title,content,contentType:node.contentType || 'richtext',revision:node.revision || 0});
-    Object.assign(node, updated, {content,locked:false,savedTitle:title,savedContent:content});
-    if (state.notes.selectedId === node.id) {
-      $('#note-save-status').textContent = '已保存';
-      $('#note-save-status').classList.remove('saving');
-      renderCurrentNoteMeta();
+    while (pendingNoteSaves.size) {
+      const [id, snapshot] = pendingNoteSaves.entries().next().value;
+      pendingNoteSaves.delete(id);
+      const node = noteNodeById(id);
+      if (!node || node.deletedAt) continue;
+      try {
+        const updated = await api.UpdateNote(id, {
+          title:snapshot.title,
+          content:snapshot.content,
+          contentType:snapshot.contentType,
+          revision:snapshot.revision
+        });
+        const liveTitle = node.title;
+        const liveContent = node.content;
+        const liveEditRevision = Number(node.localEditRevision) || 0;
+        Object.assign(node, updated, {
+          locked:false,
+          savedTitle:snapshot.title,
+          savedContent:snapshot.content
+        });
+        // A newer keystroke may have landed while the network request was in
+        // flight. Keep it locally and queue another save instead of replacing
+        // it with the older response.
+        if (liveEditRevision > snapshot.localEditRevision) {
+          Object.assign(node, {title:liveTitle, content:liveContent, localEditRevision:liveEditRevision});
+          pendingNoteSaves.set(id, {
+            id,
+            title:String(liveTitle || '无标题笔记').trim() || '无标题笔记',
+            content:String(liveContent || ''),
+            contentType:node.contentType || snapshot.contentType,
+            revision:node.revision || snapshot.revision,
+            localEditRevision:liveEditRevision
+          });
+        } else {
+          Object.assign(node, {title:snapshot.title, content:snapshot.content});
+        }
+        if (state.notes.selectedId === id && !pendingNoteSaves.has(id)) {
+          $('#note-save-status').textContent = '已保存';
+          $('#note-save-status').classList.remove('saving');
+          renderCurrentNoteMeta();
+        }
+        renderNotesTree();
+      } catch (error) {
+        if (state.notes.selectedId === id) {
+          $('#note-save-status').textContent = '保存失败';
+          $('#note-save-status').classList.remove('saving');
+        }
+        showToast(readError(error), true);
+      }
     }
-    renderNotesTree();
-  } catch (error) {
-    if (state.notes.selectedId === node.id) {
-      $('#note-save-status').textContent = '保存失败';
-      $('#note-save-status').classList.remove('saving');
-    }
-    showToast(readError(error), true);
   } finally {
     state.notes.saving = false;
   }
@@ -2529,6 +2672,7 @@ function aiServiceAvailable() {
 }
 
 async function openAIChatPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.accountOpen) closeAccountPage();
@@ -3207,8 +3351,45 @@ function resolveAccountMembership(user) {
 const memberThemeDefinitions = {
   'plus-theme': {rank:1, tier:'plus', labelKey:'plusTheme', membership:'Plus'},
   'pro-theme': {rank:2, tier:'pro', labelKey:'proTheme', membership:'Pro'},
-  'ultra-theme': {rank:3, tier:'ultra', labelKey:'ultraTheme', membership:'Ultra'}
+  'ultra-theme': {rank:3, tier:'ultra', labelKey:'ultraTheme', membership:'Ultra'},
+  'plus-light': {rank:1, tier:'plus', labelKey:'plusLightTheme', membership:'Plus'},
+  'pro-light': {rank:2, tier:'pro', labelKey:'proLightTheme', membership:'Pro'},
+  'ultra-light': {rank:3, tier:'ultra', labelKey:'ultraLightTheme', membership:'Ultra'}
 };
+
+const automaticMemberThemes = {
+  plus: {dark:'plus-theme', light:'plus-light'},
+  pro: {dark:'pro-theme', light:'pro-light'},
+  ultra: {dark:'ultra-theme', light:'ultra-light'}
+};
+
+function currentThemeIsLight() {
+  const theme = state.settings.theme || 'system';
+  if (theme === 'light') return true;
+  if (theme === 'system') return Boolean(systemTheme?.matches);
+  return false;
+}
+
+async function applyAutomaticMemberTheme(previousMembership, currentMembership) {
+  if (!currentMembership || currentMembership.rank < 1 || currentMembership.rank <= (previousMembership?.rank || 0)) return false;
+  // A member theme is an explicit choice. Never replace it automatically,
+  // even when the account later reaches a higher tier.
+  if (memberThemeDefinitions[state.settings.theme]) return false;
+  const pair = automaticMemberThemes[currentMembership.tier];
+  if (!pair) return false;
+  const theme = currentThemeIsLight() ? pair.light : pair.dark;
+  try {
+    const saved = await api.SaveSettings({...state.settings, theme});
+    state.settings = {...state.settings, ...(saved || {}), theme};
+    applyTheme();
+    renderThemeAccess();
+    showToast(t('membershipThemeApplied', {membership:currentMembership.label}));
+    return true;
+  } catch (error) {
+    showToast(readError(error), true);
+    return false;
+  }
+}
 
 function currentMembershipRank() {
   return state.account?.loggedIn ? resolveAccountMembership(state.account.user).rank : 0;
@@ -3349,6 +3530,7 @@ async function refreshAccountProfile(force = false) {
     state.cloud.session = {loggedIn: true, user: session.user};
     if (session.realtime) state.realtime = {...state.realtime, ...session.realtime};
     const currentMembership = resolveAccountMembership(session.user);
+    await applyAutomaticMemberTheme(previousMembership, currentMembership);
     renderAccountSession();
     renderCloudSession();
     renderRealtime();
@@ -3364,6 +3546,7 @@ async function refreshAccountProfile(force = false) {
 }
 
 function openAccountPage(mode = 'login') {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -3400,6 +3583,196 @@ function changeAccountMode(event) {
   setTimeout(() => $(state.accountMode === 'register' ? '#register-username' : '#account-username').focus(), 30);
 }
 
+async function openNotificationPage() {
+  if (state.shareManagementOpen) closeShareManagementPage();
+  if (state.notesOpen) closeNotesPage();
+  if (state.aiChatOpen) closeAIChatPage();
+  if (state.accountOpen) closeAccountPage();
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.stockOpen) await closeStockPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
+  state.notificationOpen = true;
+  document.body.classList.add('notification-open');
+  $('#notification-page').classList.remove('hidden');
+  $('#open-notifications').classList.add('active');
+  renderNotificationSession();
+  if (state.account.loggedIn) await Promise.allSettled([loadUserNotices(), refreshNotificationUnread()]);
+}
+
+function closeNotificationPage() {
+  state.notificationOpen = false;
+  document.body.classList.remove('notification-open');
+  $('#notification-page').classList.add('hidden');
+  $('#open-notifications').classList.remove('active');
+}
+
+function renderNotificationSession() {
+  const loggedIn = Boolean(state.account.loggedIn);
+  $('#notification-login-required').classList.toggle('hidden', loggedIn);
+  $('#notification-content').classList.toggle('hidden', !loggedIn);
+  const chip = $('#notification-status-chip');
+  chip.classList.toggle('logged-in', loggedIn);
+  chip.querySelector('b').textContent = loggedIn ? t('accountSignedIn') : t('signedOut');
+  if (loggedIn) renderNotifications();
+}
+
+function renderNotificationBadge() {
+  const count = state.account.loggedIn ? Math.max(0, Number(state.notifications.unread) || 0) : 0;
+  const badge = $('#notification-unread');
+  badge.textContent = count > 99 ? '99+' : String(count);
+  badge.classList.toggle('hidden', count < 1);
+  $('#open-notifications').title = count ? `${t('notificationCenter')} · ${t('unreadCount', {count})}` : t('notificationCenter');
+}
+
+function noticeTypeKey(type) {
+  return {SYSTEM:'noticeSystem', BUSINESS:'noticeBusiness', SECURITY:'noticeSecurity', ANNOUNCEMENT:'noticeAnnouncement'}[type] || 'noticeSystem';
+}
+
+function noticeTime(notice) {
+  const value = notice.publish_time || notice.create_time;
+  if (!value) return '';
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? '' : new Intl.DateTimeFormat(locale(), {month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit'}).format(date);
+}
+
+function renderNotifications() {
+  const model = state.notifications;
+  $('#notification-summary').textContent = t('notificationCount', {count: model.total});
+  $('#notification-type-filter').value = model.type;
+  $('#notification-status-filter').value = model.readStatus;
+  $('#notification-refresh').disabled = model.busy;
+  $('#notification-read-all').disabled = model.busy || model.unread < 1;
+  const pages = Math.max(1, Math.ceil(model.total / model.pageSize));
+  $('#notification-page-summary').textContent = t('notificationPageSummary', {page: Math.min(model.page, pages), pages});
+  $('#notification-prev').disabled = model.busy || model.page <= 1;
+  $('#notification-next').disabled = model.busy || model.page >= pages;
+  const list = $('#notification-list');
+  if (model.busy && !model.items.length) {
+    list.innerHTML = `<div class="notification-empty"><span class="spinner"></span><b>${escapeHTML(t('notificationLoading'))}</b></div>`;
+    return;
+  }
+  if (!model.items.length) {
+    list.innerHTML = `<div class="notification-empty"><div class="notification-empty-icon">✓</div><b>${escapeHTML(t('noNotifications'))}</b><p>${escapeHTML(t('noNotificationsHint'))}</p></div>`;
+    return;
+  }
+  list.innerHTML = model.items.map(notice => {
+    const id = Number(notice.id) || 0;
+    const type = String(notice.notice_type || 'SYSTEM').toUpperCase();
+    const unread = !notice.is_read;
+    const actionURL = String(notice.action_url || '').trim();
+    return `<article class="notification-item notice-${type.toLowerCase()} ${unread ? 'unread' : ''}" data-notice-id="${id}">
+      <div class="notification-type-icon" aria-hidden="true">${{SYSTEM:'◉',BUSINESS:'◇',SECURITY:'◆',ANNOUNCEMENT:'✦'}[type] || '◉'}</div>
+      <div class="notification-item-body">
+        <div class="notification-item-meta"><span>${escapeHTML(t(noticeTypeKey(type)))}</span>${Number(notice.is_top) ? `<em>${escapeHTML(t('pinnedNotice'))}</em>` : ''}<time>${escapeHTML(noticeTime(notice))}</time></div>
+        <h3>${escapeHTML(notice.title || t(noticeTypeKey(type)))}</h3>
+        <p>${escapeHTML(notice.content || '')}</p>
+      </div>
+      <div class="notification-item-actions">
+        ${unread ? `<button type="button" class="ghost-btn" data-notice-action="read" data-notice-id="${id}">${escapeHTML(t('markRead'))}</button>` : ''}
+        ${actionURL ? `<button type="button" class="ghost-btn" data-notice-action="open" data-notice-url="${escapeHTML(actionURL)}">${escapeHTML(t('openNotificationLink'))}</button>` : ''}
+        <button type="button" class="notification-delete" data-notice-action="delete" data-notice-id="${id}" aria-label="${escapeHTML(t('delete'))}" title="${escapeHTML(t('delete'))}">×</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+async function refreshNotificationUnread() {
+  if (!state.account.loggedIn || !api.GetUserNoticeUnreadCount) {
+    state.notifications.unread = 0;
+    renderNotificationBadge();
+    return;
+  }
+  try {
+    state.notifications.unread = Number(await api.GetUserNoticeUnreadCount()) || 0;
+    renderNotificationBadge();
+    if (state.notificationOpen) renderNotifications();
+  } catch (_) { /* Keep the last known badge during temporary network failures. */ }
+}
+
+async function loadUserNotices() {
+  if (!state.account.loggedIn || state.notifications.busy) return;
+  state.notifications.busy = true;
+  renderNotifications();
+  try {
+    const page = await api.ListUserNotices(state.notifications.page, state.notifications.pageSize, state.notifications.type, state.notifications.readStatus);
+    state.notifications.items = Array.isArray(page?.list) ? page.list : [];
+    state.notifications.total = Number(page?.total) || 0;
+    state.notifications.page = Number(page?.page) || state.notifications.page;
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    state.notifications.busy = false;
+    renderNotifications();
+  }
+}
+
+async function markAllNotificationsRead() {
+  if (!state.account.loggedIn || state.notifications.busy || state.notifications.unread < 1) return;
+  state.notifications.busy = true;
+  renderNotifications();
+  try {
+    await api.MarkAllUserNoticesRead();
+    state.notifications.items = state.notifications.items.map(item => ({...item, is_read:true}));
+    state.notifications.unread = 0;
+    showToast(t('markedAllRead'));
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    state.notifications.busy = false;
+    renderNotificationBadge();
+    renderNotifications();
+  }
+}
+
+async function handleNotificationAction(event) {
+  const button = event.target.closest('[data-notice-action]');
+  if (!button || state.notifications.busy) return;
+  const action = button.dataset.noticeAction;
+  const id = Number(button.dataset.noticeId) || 0;
+  const notice = state.notifications.items.find(item => Number(item.id) === id);
+  if (action === 'open') {
+    const value = String(button.dataset.noticeUrl || '').trim();
+    const url = /^https:\/\//i.test(value) ? value : (value.startsWith('/') && !value.startsWith('//') ? `https://admin.asbacklight.cn${value}` : '');
+    if (url && window.runtime?.BrowserOpenURL) window.runtime.BrowserOpenURL(url);
+    else if (url) window.open(url, '_blank', 'noopener');
+    return;
+  }
+  if (!id || !notice) return;
+  try {
+    if (action === 'read') {
+      await api.MarkUserNoticeRead(id);
+      notice.is_read = true;
+      state.notifications.unread = Math.max(0, state.notifications.unread - 1);
+      showToast(t('notificationMarkedRead'));
+    } else if (action === 'delete') {
+      if (!await showAppConfirm(t('deleteNotificationConfirm', {title: notice.title || t(noticeTypeKey(notice.notice_type))}), {title:t('delete'), danger:true})) return;
+      await api.DeleteUserNotice(id);
+      state.notifications.items = state.notifications.items.filter(item => Number(item.id) !== id);
+      state.notifications.total = Math.max(0, state.notifications.total - 1);
+      if (!notice.is_read) state.notifications.unread = Math.max(0, state.notifications.unread - 1);
+      showToast(t('notificationDeleted'));
+      if (!state.notifications.items.length && state.notifications.page > 1) {
+        state.notifications.page -= 1;
+        await loadUserNotices();
+      }
+    }
+    renderNotificationBadge();
+    renderNotifications();
+  } catch (error) {
+    showToast(readError(error), true);
+  }
+}
+
+function changeNotificationPage(offset) {
+  const pages = Math.max(1, Math.ceil(state.notifications.total / state.notifications.pageSize));
+  const page = Math.max(1, Math.min(pages, state.notifications.page + offset));
+  if (page === state.notifications.page) return;
+  state.notifications.page = page;
+  loadUserNotices();
+}
+
 async function submitAccountLogin(event) {
   event.preventDefault();
   if (accountBusy) return;
@@ -3420,12 +3793,15 @@ async function submitAccountLogin(event) {
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
     state.notes.nodes = [];
     state.notes.selectedId = '';
+    state.notes.loaded = false;
+    pendingNoteSaves.clear();
     state.notes.unlocked.clear();
     state.noteShares.items = [];
     state.noteShares.total = 0;
     state.noteShares.page = 1;
     state.noteShares.quota = {};
     state.realtime = {...state.realtime, ...(session?.realtime || {})};
+    await applyAutomaticMemberTheme(resolveAccountMembership(null), resolveAccountMembership(state.account.user));
     localStorage.setItem('workdayIsland.accountUsername', username);
     $('#account-password').value = '';
     renderAccountSession();
@@ -3433,6 +3809,9 @@ async function submitAccountLogin(event) {
     renderTranslatorSession();
     renderAIChat();
     renderRealtime();
+    renderNotificationSession();
+    await refreshNotificationUnread();
+    if (state.notificationOpen) await loadUserNotices();
     if (state.shareManagementOpen) await loadNoteShares();
     showToast(t('loginSuccess'));
     // Membership may be granted asynchronously immediately after login.
@@ -3469,11 +3848,14 @@ async function logoutAccount() {
     state.translator.selected = [];
     state.notes.nodes = [];
     state.notes.selectedId = '';
+    state.notes.loaded = false;
+    pendingNoteSaves.clear();
     state.notes.unlocked.clear();
     state.noteShares.items = [];
     state.noteShares.total = 0;
     state.noteShares.page = 1;
     state.noteShares.quota = {};
+    state.notifications = {...state.notifications, items:[], total:0, page:1, unread:0, busy:false};
     state.aiChat.conversations = [];
     state.aiChat.messages = [];
     state.aiChat.current = null;
@@ -3481,6 +3863,8 @@ async function logoutAccount() {
     state.aiChat.usageLoaded = false;
     state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
     state.accountMode = 'login';
+    renderNotificationSession();
+    renderNotificationBadge();
     renderAccountSession();
     renderCloudSession();
     renderTranslatorSession();
@@ -3501,6 +3885,7 @@ async function logoutAccount() {
 }
 
 function openChatPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -3573,6 +3958,7 @@ function renderChatSection() {
 }
 
 async function openCloudPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -3625,6 +4011,7 @@ function translatorLanguageLabel(value) {
 }
 
 async function openTranslatorPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -4225,6 +4612,7 @@ function renderCloudTransferProgress(payload = {}) {
 }
 
 async function openStockPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.windowFullscreen) await setWindowFullscreen(false);
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
@@ -4372,6 +4760,7 @@ function formatStockNumber(value) {
 }
 
 async function openEnglishPage() {
+  if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
   if (state.notesOpen) closeNotesPage();
   if (state.aiChatOpen) closeAIChatPage();
@@ -5570,10 +5959,13 @@ function applyEnglishBackgroundOpacity(value = state.settings.compactOpacity) {
 function applyTheme() {
   const requested = effectiveTheme();
   const resolved = requested === 'system' ? (systemTheme?.matches ? 'light' : 'dark') : requested;
-  document.documentElement.dataset.theme = resolved;
-  document.documentElement.style.colorScheme = resolved === 'light' ? 'light' : 'dark';
+  const brightMemberTheme = ['plus-light', 'pro-light', 'ultra-light'].includes(resolved) ? resolved : '';
+  document.documentElement.dataset.theme = brightMemberTheme ? 'light' : resolved;
+  if (brightMemberTheme) document.documentElement.dataset.memberTheme = brightMemberTheme;
+  else delete document.documentElement.dataset.memberTheme;
+  document.documentElement.style.colorScheme = brightMemberTheme || resolved === 'light' ? 'light' : 'dark';
   const themeColor = document.querySelector('meta[name="theme-color"]');
-  if (themeColor) themeColor.content = resolved === 'light' ? '#edf3fb' : resolved === 'aurora' ? '#071723' : resolved === 'plus-theme' ? '#160d24' : resolved === 'pro-theme' ? '#061825' : resolved === 'ultra-theme' ? '#050711' : '#0b101b';
+  if (themeColor) themeColor.content = brightMemberTheme === 'plus-light' ? '#fff4f6' : brightMemberTheme === 'pro-light' ? '#eefaff' : brightMemberTheme === 'ultra-light' ? '#f7f9ff' : resolved === 'light' ? '#edf3fb' : resolved === 'aurora' ? '#071723' : resolved === 'plus-theme' ? '#160d24' : resolved === 'pro-theme' ? '#061825' : resolved === 'ultra-theme' ? '#050711' : '#0b101b';
   applyEnglishBackgroundOpacity();
 }
 
@@ -5685,6 +6077,46 @@ function weatherCacheLabel(weather) {
   const updated = new Date(weather?.updatedAt);
   const time = Number.isNaN(updated.getTime()) ? '--:--' : updated.toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit', hour12:false});
   return t('weatherCached', {time});
+}
+
+function openFeedbackModal() {
+  closeModal('about-modal');
+  updateFeedbackCounter();
+  openModal('feedback-modal');
+  requestAnimationFrame(() => $('#feedback-subject').focus());
+}
+
+function updateFeedbackCounter() {
+  $('#feedback-counter').textContent = `${[...$('#feedback-content').value].length} / 5000`;
+}
+
+async function submitPublicFeedback(event) {
+  event.preventDefault();
+  const title = $('#feedback-subject').value.trim();
+  const content = $('#feedback-content').value.trim();
+  if (!title) { showToast(t('feedbackSubjectRequired'), true); $('#feedback-subject').focus(); return; }
+  if (!content) { showToast(t('feedbackContentRequired'), true); $('#feedback-content').focus(); return; }
+  const button = $('#submit-feedback');
+  const previousLabel = button.textContent;
+  button.disabled = true;
+  button.textContent = t('submittingFeedback');
+  try {
+    const result = await api.SubmitPublicFeedback({
+      feedbackType: $('#feedback-type').value,
+      title,
+      content,
+      contact: $('#feedback-contact').value.trim()
+    });
+    closeModal('feedback-modal');
+    $('#feedback-form').reset();
+    updateFeedbackCounter();
+    showToast(result?.id ? t('feedbackSubmitted', {id: result.id}) : t('feedbackSubmittedNoID'));
+  } catch (error) {
+    showToast(readError(error), true);
+  } finally {
+    button.disabled = false;
+    button.textContent = previousLabel;
+  }
 }
 
 function weatherLabel(code) {
@@ -5825,6 +6257,10 @@ function createPreviewAPI() {
       {id:2,source_text:'Keep it concise and clear.',source_lang:'en',target_text:'保持简洁清晰。',target_lang:'zh',word_count:25,translate_time:new Date(now.getTime()-3600000).toISOString()}
     ]
   };
+  let previewNotifications = [
+    {id:1,title:'欢迎使用工位岛',content:'你的系统通知、业务动态和安全提醒会集中显示在这里。',notice_type:'SYSTEM',is_top:1,is_read:false,create_time:now.toISOString(),publish_time:now.toISOString()},
+    {id:2,title:'账号安全提醒',content:'请妥善保管账号密码，不要向他人透露登录信息。',notice_type:'SECURITY',is_top:0,is_read:true,create_time:new Date(now.getTime()-3600000).toISOString(),publish_time:new Date(now.getTime()-3600000).toISOString()}
+  ];
   const previewAI = {
     conversations: [],
     messages: new Map(),
@@ -5871,6 +6307,11 @@ function createPreviewAPI() {
     async GetAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); if(previewCloud.session.user?.username!==username)previewNoteShares=[]; previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName,avatar_url:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x2=%221%22 y2=%221%22%3E%3Cstop stop-color=%22%236fe1c5%22/%3E%3Cstop offset=%221%22 stop-color=%22%2376aef5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22url(%23g)%22/%3E%3Ccircle cx=%2250%22 cy=%2238%22 r=%2218%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3Cpath d=%22M18 92c4-22 16-32 32-32s28 10 32 32%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3C/svg%3E'}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
+    async ListUserNotices(page,pageSize,noticeType,readStatus){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); const filtered=previewNotifications.filter(item=>(!noticeType||item.notice_type===noticeType)&&(!readStatus||(readStatus==='READ'?item.is_read:!item.is_read))); const start=(page-1)*pageSize; return {total:filtered.length,list:structuredClone(filtered.slice(start,start+pageSize)),page,pageSize}; },
+    async GetUserNoticeUnreadCount(){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); return previewNotifications.filter(item=>!item.is_read).length; },
+    async MarkUserNoticeRead(id){ const item=previewNotifications.find(value=>Number(value.id)===Number(id)); if(item)item.is_read=true; return true; },
+    async MarkAllUserNoticesRead(){ previewNotifications.forEach(item=>item.is_read=true); return true; },
+    async DeleteUserNotice(id){ previewNotifications=previewNotifications.filter(item=>Number(item.id)!==Number(id)); return true; },
     async ListNoteNodes(){ return structuredClone(previewNotes); },
     async GetNoteNode(id){ const node=previewNotes.find(item=>item.id===id); if(!node)throw new Error('笔记不存在'); return structuredClone(node); },
     async CreateNoteNode(input){ const timestamp=new Date().toISOString(); const node={id:crypto.randomUUID(),parentId:input.parentId||'',kind:input.kind,title:input.title||(input.kind==='folder'?'新建文件夹':'无标题笔记'),content:input.content||'',contentType:input.kind==='note'?(input.contentType||'richtext'):'',favorite:false,pinned:false,hasPassword:false,locked:false,createdAt:timestamp,updatedAt:timestamp}; previewNotes.push(node); return structuredClone(node); },
@@ -6000,9 +6441,10 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.15.1',latestVersion:'0.15.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增 Plus、Pro 与 Ultra 会员身份及三档专属主题。\nAdded Plus, Pro, and Ultra membership identity with three exclusive themes.'} : {currentVersion:'0.15.1',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.0',latestVersion:'0.16.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增系统通知、意见反馈、三款会员亮色主题并优化交互。\nAdded system notifications, feedback, three bright member themes, and interaction improvements.'} : {currentVersion:'0.16.0',skipped:true}; },
     async OpenUpdateURL(){ return true; },
-    async OpenWebApp(){ return true; }
+    async OpenWebApp(){ return true; },
+    async SubmitPublicFeedback(){ return {id:1001}; }
   };
 }
 
