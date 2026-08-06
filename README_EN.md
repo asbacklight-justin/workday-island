@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.16.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.16.1-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.16.1-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -30,10 +30,11 @@ The public packages are not currently signed with commercial distribution certif
 - **Weather:** Current conditions through Open-Meteo, with automatic retries and a local fallback capped at three hours so outdated conditions are not shown indefinitely.
 - **Membership identity and exclusive themes:** `/user/info` keeps regular, Plus, Pro, and Ultra status current while showing the real avatar and progressively richer membership treatments. Each tier now has both a dark and bright exclusive theme: Plus gets **Violet Gilt** and **Sakura Dawn**, Pro gets **Holographic Aurora** and **Glacier Sky**, and Ultra gets **Obsidian Diamond** and **Stellar White Diamond**. Higher tiers can use their own and lower-tier themes, enforced by both the UI and Go backend.
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
-- **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Work Cloud, Cloud Notes, Sharing, Translator, English Learning, and Notification Center. All remain visible by default, including after upgrading an older installation.
+- **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Fishing Break, Work Cloud, Cloud Notes, Sharing, Translator, English Learning, and Notification Center. All remain visible by default, including after upgrading an older installation.
 - **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
 - **English Learning centre:** The `EN` button now opens a full learning centre. Its local Word Book keeps a cross-day history of words actually viewed in all five modes with phonetics, meanings, examples, library, modes, and view counts. The Wrong Book records mistakes from EN → CN, CN → EN, and spelling with the latest answer and accumulated error count. The compact learning window opens only from **Compact Study**; on macOS and Windows, floating-window opacity affects its background without dimming core content.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
+- **Member Fishing Break beta:** The fish-shaped header shortcut opens Fishing Island. Its first mini-game asks you to wait for a bite, reel inside a moving glowing zone, chain accurate hits to fill catch progress, and manage line tension and an escape timer. Fish and rarity are random; the catch journal and best streak stay local. During beta, entry is limited to Plus, Pro, and Ultra members.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
@@ -143,7 +144,7 @@ See the [build and release guide](docs/BUILD.md) for complete packaging instruct
 
 ## Privacy and network access
 
-Todos, reminders, salary, work schedules, focus sessions, the English Word Book, and the Wrong Book are written only to a local JSON file. Weather uses Open-Meteo, quotes use Eastmoney's public endpoint, and update checks use GitHub. When the user uses accounts, AI Chat, chat, Cloud Notes, Link Sharing, translation, English learning, or Work Cloud, the corresponding data is sent to Backlight services. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
+Todos, reminders, salary, work schedules, focus sessions, the English Word Book, the Wrong Book, and Fishing Break catches are stored locally only. Weather uses Open-Meteo, quotes use Eastmoney's public endpoint, and update checks use GitHub. When the user uses accounts, AI Chat, chat, Cloud Notes, Link Sharing, translation, English learning, or Work Cloud, the corresponding data is sent to Backlight services. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
 
 ## Contributing
 
@@ -166,7 +167,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.16.0`
+- Current version: `v0.16.1`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=58">
+  <link rel="stylesheet" href="./style.css?v=59">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.16.0</span>
+        <span id="app-version-badge" class="version-badge">v0.16.1</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -34,6 +34,12 @@
             <path d="M4 17.5 9 12l3.4 3.4L20 7.8"></path>
             <path d="M14.5 7.8H20v5.5"></path>
             <path d="M4 20h16"></path>
+          </svg>
+        </button>
+        <button id="open-fishing" class="icon-btn fishing-button" aria-label="摸鱼" title="摸鱼">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 12.2c2.7-4 6.6-5.7 10.6-3.4 1.4.8 2.4 2 3.1 3.4-.7 1.4-1.7 2.6-3.1 3.4-4 2.3-7.9.6-10.6-3.4Z"/>
+            <path d="m4 12.2-2.2-2.4v4.8L4 12.2ZM14.7 9c-.4 1-.4 2.1 0 3.2M17.8 12.2H18M9.4 8.2 11 5.9l2.2 2.1"/>
           </svg>
         </button>
         <button id="open-cloud" class="icon-btn cloud-button" aria-label="工作云盘" title="工作云盘">
@@ -1015,6 +1021,68 @@
       </div>
     </section>
 
+    <section id="fishing-page" class="fishing-page hidden" aria-labelledby="fishing-title">
+      <header class="fishing-page-head">
+        <button id="close-fishing" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="fishing-title-group">
+          <div class="section-kicker">FISHING BREAK</div>
+          <h1 id="fishing-title" data-i18n="fishingTitle">摸鱼小岛</h1>
+        </div>
+        <span class="fishing-member-chip"><span>✦</span><b data-i18n="memberBeta">会员内测</b></span>
+      </header>
+      <div class="fishing-layout">
+        <aside class="panel fishing-side-panel">
+          <div class="fishing-panel-heading"><div><span data-i18n="fishingJournal">摸鱼图鉴</span><strong data-i18n="fishingJournalHint">今日也要有点收获</strong></div><span>🐟</span></div>
+          <div class="fishing-stats">
+            <article><small data-i18n="fishCaught">钓获</small><strong id="fishing-total-caught">0</strong></article>
+            <article><small data-i18n="bestStreak">最佳连击</small><strong id="fishing-best-streak">0</strong></article>
+          </div>
+          <div class="fishing-catch-title"><b data-i18n="recentCatch">最近鱼获</b><button id="clear-fishing-log" type="button" data-i18n="clear">清空</button></div>
+          <div id="fishing-catch-list" class="fishing-catch-list"></div>
+        </aside>
+        <section class="panel fishing-lake-panel">
+          <div class="fishing-sky"><span></span><span></span><span></span></div>
+          <div class="fishing-water">
+            <div class="fishing-ripples"><i></i><i></i><i></i></div>
+            <div id="fishing-float" class="fishing-float"><span></span><i></i></div>
+            <div id="fishing-shadow" class="fishing-shadow">🐟</div>
+          </div>
+          <div class="fishing-game-card">
+            <div class="fishing-status-row">
+              <div><small id="fishing-phase-label" data-i18n="fishingReady">湖面很安静</small><strong id="fishing-status-text" data-i18n="fishingReadyHint">抛下鱼竿，等一条有缘鱼</strong></div>
+              <span id="fishing-timer" class="hidden">20.0s</span>
+            </div>
+            <div id="fishing-target-card" class="fishing-target-card hidden">
+              <div class="fishing-target-meta"><span id="fishing-rarity">COMMON</span><strong id="fishing-fish-name">未知鱼影</strong><small id="fishing-fish-hint">看准时机收线</small></div>
+              <div class="fishing-timing-track" aria-label="收线时机">
+                <span id="fishing-perfect-zone" class="fishing-perfect-zone"></span>
+                <i id="fishing-timing-marker" class="fishing-timing-marker"></i>
+              </div>
+              <div class="fishing-meter-row"><small data-i18n="catchProgress">捕获进度</small><div class="fishing-progress-track"><span id="fishing-progress-bar"></span></div><b id="fishing-progress-value">0%</b></div>
+              <div class="fishing-meter-row tension"><small data-i18n="lineTension">鱼线张力</small><div class="fishing-progress-track"><span id="fishing-tension-bar"></span></div><b id="fishing-tension-value">0%</b></div>
+            </div>
+            <div id="fishing-result" class="fishing-result hidden" aria-live="polite"></div>
+            <button id="fishing-action" type="button" class="primary-btn fishing-action"><span>⌁</span><b data-i18n="startFishing">开始钓鱼</b><small data-i18n="spaceShortcut">空格键</small></button>
+          </div>
+        </section>
+        <aside class="panel fishing-guide-panel">
+          <div class="fishing-panel-heading"><div><span data-i18n="fishingGuide">钓鱼指南</span><strong data-i18n="fishingGuideHint">稳住，别让老板发现</strong></div><span>🎣</span></div>
+          <ol class="fishing-guide-list">
+            <li><span>1</span><p><b data-i18n="castRod">抛竿等待</b><small data-i18n="castRodHint">鱼儿咬钩前不要着急</small></p></li>
+            <li><span>2</span><p><b data-i18n="hitPerfectZone">命中时机</b><small data-i18n="hitPerfectZoneHint">游标进入发光区时收线</small></p></li>
+            <li><span>3</span><p><b data-i18n="fillCatchProgress">填满进度</b><small data-i18n="fillCatchProgressHint">连续完美命中可快速钓起</small></p></li>
+          </ol>
+          <div class="fishing-rarity-guide">
+            <b data-i18n="fishRarity">鱼类稀有度</b>
+            <span><i class="common"></i><em data-i18n="rarityCommon">常见</em></span>
+            <span><i class="rare"></i><em data-i18n="rarityRare">珍稀</em></span>
+            <span><i class="epic"></i><em data-i18n="rarityEpic">史诗</em></span>
+            <span><i class="legendary"></i><em data-i18n="rarityLegendary">传说</em></span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section id="stock-page" class="stock-page hidden" aria-label="股市行情">
       <div class="stock-window">
         <header class="stock-head">
@@ -1061,6 +1129,7 @@
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="ai" checked><span class="entry-switch"><span></span></span><b data-i18n="aiChat">AI 对话</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="chat" checked><span class="entry-switch"><span></span></span><b data-i18n="realtimeChat">实时聊天</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="stocks" checked><span class="entry-switch"><span></span></span><b data-i18n="stockMarket">股市</b></label>
+          <label class="header-entry-toggle"><input type="checkbox" data-header-entry="fishing" checked><span class="entry-switch"><span></span></span><b data-i18n="fishing">摸鱼</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="cloud" checked><span class="entry-switch"><span></span></span><b data-i18n="workCloud">工作云盘</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="notes" checked><span class="entry-switch"><span></span></span><b data-i18n="cloudNotes">云笔记</b></label>
           <label class="header-entry-toggle"><input type="checkbox" data-header-entry="sharing" checked><span class="entry-switch"><span></span></span><b data-i18n="linkSharing">链接分享</b></label>
@@ -1147,13 +1216,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.0</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.1</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.0</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.1</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1190,6 +1259,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=71" type="module"></script>
+  <script src="./app.js?v=72" type="module"></script>
 </body>
 </html>

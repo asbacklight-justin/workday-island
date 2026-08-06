@@ -5,6 +5,22 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.1] - 2026-08-06
+
+### 中文
+
+- 新增会员内测“摸鱼小岛”模块与鱼形顶部入口；非会员点击会提示内测阶段仅会员可测试，Plus、Pro、Ultra 会员可直接进入。
+- 首个摸鱼小游戏为时机钓鱼：随机鱼种与稀有度、等待咬钩、移动收线区、完美/普通/失误判定、捕获进度、鱼线张力、逃脱倒计时和连续命中均已实现。
+- 新增本机鱼获图鉴、累计钓获与最佳连击；数据仅保存在内嵌 WebView 本机存储，不上传服务器。
+- “摸鱼”入口加入设置页顶部功能入口开关，默认展示；页面适配中英文、深浅色与会员主题、键盘空格操作及减少动态效果设置。
+
+### English
+
+- Added the member-beta Fishing Island module and a fish-shaped header shortcut. Non-members see a members-only beta prompt, while Plus, Pro, and Ultra members can enter directly.
+- The first Fishing Break mini-game includes random species and rarity, bite waiting, a moving reel zone, perfect/good/miss judgements, catch progress, line tension, an escape timer, and hit streaks.
+- Added an on-device catch journal, total catches, and best streak. These records stay in embedded WebView local storage and are never uploaded.
+- Fishing Break is configurable in the header-shortcut settings and visible by default, with Chinese/English, light/dark/member-theme, Space-key, and reduced-motion support.
+
 ## [0.16.0] - 2026-08-05
 
 ### 中文
@@ -347,6 +363,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
 [0.16.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0
 [0.15.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1
 [0.15.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.0

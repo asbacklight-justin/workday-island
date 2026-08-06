@@ -2,7 +2,7 @@
 
 [中文](PRIVACY.zh-CN.md) · [English](PRIVACY.md)
 
-Last updated: 2026-08-05
+Last updated: 2026-08-06
 
 Workday Island is local-first. Core features such as todos require no account. AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator share one signed-in Backlight account session.
 
@@ -20,6 +20,8 @@ The following data is stored in `WorkdayIsland/data.json` under the user's confi
 - the current focus session's start, end, and running state.
 - the realtime user ID, username, display nickname, and up to 500 recent realtime messages and window-interaction records.
 - the last entered account username may be stored by the embedded WebView; account passwords and Work Cloud access tokens are never persisted.
+
+Fishing Island stores recent catches, total catches, and the best streak in the embedded WebView's local storage. This data is used only for the on-device catch journal and is never sent to the server. Clearing WebView site data or clearing the journal in the game removes these records.
 
 The app never uploads todos, salary, work schedules, or focus records. The uninstaller does not delete the data file so a reinstall can continue where you left off. To erase it completely, quit the app and remove the `WorkdayIsland` configuration directory.
 

@@ -461,7 +461,7 @@ func normaliseSettings(settings Settings) Settings {
 	return settings
 }
 
-var headerEntryKeys = []string{"ai", "chat", "stocks", "cloud", "notes", "sharing", "translator", "english", "notifications"}
+var headerEntryKeys = []string{"ai", "chat", "stocks", "fishing", "cloud", "notes", "sharing", "translator", "english", "notifications"}
 
 func defaultHeaderEntries() map[string]bool {
 	entries := make(map[string]bool, len(headerEntryKeys))

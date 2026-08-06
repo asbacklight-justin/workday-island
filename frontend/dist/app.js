@@ -42,6 +42,10 @@ const translations = {
     englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     stockMarket: '股市', stockWatchlist: '自选行情', stockCodePlaceholder: '股票代码，如 600519', addStock: '添加', stockLoading: '正在刷新行情…',
     stockUpdated: '{time} 更新', stockCached: '缓存于 {time}', stockNoData: '暂无自选股票', stockDisclaimer: '东方财富 · 数据仅供参考', removeStock: '删除自选股', stockAdded: '已添加自选股',
+    fishing: '摸鱼', fishingTitle: '摸鱼小岛', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获',
+    fishingReady: '湖面很安静', fishingReadyHint: '抛下鱼竿，等一条有缘鱼', startFishing: '开始钓鱼', waitingForFish: '等待鱼儿咬钩…', waitingHint: '保持安静，浮标下沉时准备收线', fishBiting: '鱼儿咬钩了！', fishBitingHint: '游标进入发光区时点击收线', reelNow: '收线', catchProgress: '捕获进度', lineTension: '鱼线张力', spaceShortcut: '空格键',
+    fishingGuide: '钓鱼指南', fishingGuideHint: '稳住，别让老板发现', castRod: '抛竿等待', castRodHint: '鱼儿咬钩前不要着急', hitPerfectZone: '命中时机', hitPerfectZoneHint: '游标进入发光区时收线', fillCatchProgress: '填满进度', fillCatchProgressHint: '连续完美命中可快速钓起', fishRarity: '鱼类稀有度', rarityCommon: '常见', rarityRare: '珍稀', rarityEpic: '史诗', rarityLegendary: '传说',
+    fishingPerfect: '完美收线！捕获进度大幅提升', fishingGood: '不错的时机，继续稳住', fishingMiss: '时机不对，鱼线张力上升了', fishingCaught: '钓到了！{name} 已收入摸鱼图鉴', fishingEscaped: '{name} 挣脱鱼线逃走了', fishingTimeout: '{name} 耗尽你的耐心后溜走了', noFishingCatch: '还没有鱼获\n去湖边试试手气吧', unknownFish: '未知鱼影', clearFishingLogConfirm: '确定清空本机鱼获记录吗？', fishingLogCleared: '鱼获记录已清空',
     workCloud: '工作云盘', cloudNotLoggedIn: '未登录', cloudLoginTitle: '登录后使用工作云盘', cloudLoginHint: '工作云盘与实时聊天共享工位岛账号。', goToAccountLogin: '前往账号登录',
     used: '已使用', personalStorage: '个人存储空间', remaining: '剩余', uploadFile: '上传文件', newFolder: '新建目录', cloudIsolationHint: '文件按当前账号独立存储，并与 Backlight 网盘保持一致。',
     searchCurrentFolder: '搜索当前目录', refresh: '刷新', allFiles: '全部文件', recentlyModified: '最近修改优先', folder: '文件夹', file: '文件',
@@ -140,6 +144,10 @@ const translations = {
     englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     stockMarket: 'Stocks', stockWatchlist: 'Watchlist', stockCodePlaceholder: 'A-share code, e.g. 600519', addStock: 'Add', stockLoading: 'Refreshing quotes…',
     stockUpdated: 'Updated {time}', stockCached: 'Cached at {time}', stockNoData: 'No watched stocks', stockDisclaimer: 'Eastmoney · For reference only', removeStock: 'Remove from watchlist', stockAdded: 'Stock added',
+    fishing: 'Fishing Break', fishingTitle: 'Fishing Island', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches',
+    fishingReady: 'The lake is quiet', fishingReadyHint: 'Cast the line and wait for your lucky fish', startFishing: 'Start fishing', waitingForFish: 'Waiting for a bite…', waitingHint: 'Stay quiet and get ready when the float sinks', fishBiting: 'A fish is biting!', fishBitingHint: 'Reel when the marker enters the glowing zone', reelNow: 'Reel now', catchProgress: 'Catch progress', lineTension: 'Line tension', spaceShortcut: 'Space',
+    fishingGuide: 'Fishing guide', fishingGuideHint: 'Keep calm—and keep it discreet', castRod: 'Cast and wait', castRodHint: 'Do not rush before the fish bites', hitPerfectZone: 'Hit the timing', hitPerfectZoneHint: 'Reel inside the glowing zone', fillCatchProgress: 'Fill the progress', fillCatchProgressHint: 'Perfect streaks land fish faster', fishRarity: 'Fish rarity', rarityCommon: 'Common', rarityRare: 'Rare', rarityEpic: 'Epic', rarityLegendary: 'Legendary',
+    fishingPerfect: 'Perfect reel! Catch progress surged', fishingGood: 'Good timing—keep it steady', fishingMiss: 'Bad timing—the line tension increased', fishingCaught: 'Caught! {name} was added to your journal', fishingEscaped: '{name} broke free and escaped', fishingTimeout: '{name} outlasted your patience and slipped away', noFishingCatch: 'No catches yet\nTry your luck by the lake', unknownFish: 'Unknown shadow', clearFishingLogConfirm: 'Clear the local catch journal?', fishingLogCleared: 'Catch journal cleared',
     workCloud: 'Work Cloud', cloudNotLoggedIn: 'Signed out', cloudLoginTitle: 'Sign in to use Work Cloud', cloudLoginHint: 'Work Cloud and realtime chat share your Workday Island account.', goToAccountLogin: 'Go to account login',
     used: 'Used', personalStorage: 'Personal storage', remaining: 'Remaining', uploadFile: 'Upload file', newFolder: 'New folder', cloudIsolationHint: 'Files are isolated by account and stay in sync with your Backlight drive.',
     searchCurrentFolder: 'Search this folder', refresh: 'Refresh', allFiles: 'All files', recentlyModified: 'Recently modified first', folder: 'Folder', file: 'File',
@@ -198,7 +206,7 @@ const translations = {
 };
 
 const headerEntryDefinitions = [
-  ['ai', '#open-ai-chat'], ['chat', '#open-chat'], ['stocks', '#open-stocks'], ['cloud', '#open-cloud'],
+  ['ai', '#open-ai-chat'], ['chat', '#open-chat'], ['stocks', '#open-stocks'], ['fishing', '#open-fishing'], ['cloud', '#open-cloud'],
   ['notes', '#open-notes'], ['sharing', '#open-share-management'], ['translator', '#open-translator'], ['english', '#open-english'],
   ['notifications', '#open-notifications']
 ];
@@ -211,7 +219,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -254,6 +262,8 @@ const state = {
   stockOpen: false,
   stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
+  fishingOpen: false,
+  fishing: {phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, journal: loadFishingJournal()},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   translatorOpen: false,
@@ -283,6 +293,8 @@ let accountBusy = false;
 let accountProfileRefreshBusy = false;
 let lastAccountProfileRefreshAt = 0;
 let realtimeRegistrationBusy = false;
+let fishingWaitTimer = 0;
+let fishingAnimationFrame = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
@@ -345,6 +357,8 @@ function applyTranslations() {
   $('#open-chat').title = t('chat');
   $('#open-stocks').setAttribute('aria-label', t('stockMarket'));
   $('#open-stocks').title = t('stockMarket');
+  $('#open-fishing').setAttribute('aria-label', t('fishing'));
+  $('#open-fishing').title = t('fishing');
   $('#open-cloud').setAttribute('aria-label', t('workCloud'));
   $('#open-cloud').title = t('workCloud');
   $('#open-notes').setAttribute('aria-label', currentLanguage() === 'zh' ? '云笔记' : 'Cloud Notes');
@@ -371,6 +385,9 @@ function applyTranslations() {
   $('#compact-todos').setAttribute('aria-label', t('compactTodos'));
   $('#english-page').setAttribute('aria-label', t('englishLearning'));
   $('#stock-page').setAttribute('aria-label', t('stockMarket'));
+  $('#fishing-page').setAttribute('aria-label', t('fishingTitle'));
+  $('#close-fishing').setAttribute('aria-label', t('backToDashboard'));
+  $('#close-fishing').title = t('backToDashboard');
   renderStockCompactControl();
   $('#cloud-page').setAttribute('aria-label', t('workCloud'));
   $('#translator-page').setAttribute('aria-label', t('universalTranslator'));
@@ -410,6 +427,7 @@ function applyTranslations() {
   $('.weather-card').title = t('weatherData');
   $('#app-version-badge').textContent = `v${state.appInfo.version}`;
   $('#about-version').textContent = state.appInfo.version;
+  renderFishingJournal();
   $('#email-author strong').textContent = state.appInfo.email;
   $('#open-web-app').setAttribute('aria-label', `${t('webApp')}: https://admin.asbacklight.cn/`);
   $('#open-web-app').title = 'https://admin.asbacklight.cn/';
@@ -712,6 +730,13 @@ function bindEvents() {
   $('#refresh-stocks').addEventListener('click', refreshStocks);
   $('#stock-add-form').addEventListener('submit', addStock);
   $('#stock-list').addEventListener('click', removeStock);
+  $('#open-fishing').addEventListener('click', openFishingPage);
+  $('#close-fishing').addEventListener('click', closeFishingPage);
+  $('#fishing-action').addEventListener('click', handleFishingAction);
+  $('#clear-fishing-log').addEventListener('click', clearFishingJournal);
+  $('.top-actions').addEventListener('click', event => {
+    if (state.fishingOpen && !event.target.closest('#open-fishing')) closeFishingPage();
+  }, true);
   $('#open-english').addEventListener('click', openEnglishPage);
   $('#close-english-center').addEventListener('click', closeEnglishCenterPage);
   $('#open-english-compact').addEventListener('click', openEnglishCompactPage);
@@ -821,11 +846,16 @@ function bindEvents() {
     if (event.key === 'Escape' && state.aiChatOpen) { closeAIChatPage(); return; }
     if (event.key === 'Escape' && state.cloudOpen) { closeCloudPage(); return; }
     if (event.key === 'Escape' && state.translatorOpen) { closeTranslatorPage(); return; }
+    if (event.key === 'Escape' && state.fishingOpen) { closeFishingPage(); return; }
     if (event.key === 'Escape' && state.stockOpen) { closeStockPage(); return; }
     if (event.key === 'Escape' && state.englishOpen) { closeEnglishCompactPage(true); return; }
     if (event.key === 'Escape' && state.englishCenterOpen) { closeEnglishCenterPage(); return; }
     if (state.englishOpen && ['quiz', 'chinese'].includes(state.english.mode) && /^[1-4]$/.test(event.key)) {
       $('#english-options').querySelector(`[data-option-index="${Number(event.key) - 1}"]`)?.click();
+    }
+    if (state.fishingOpen && event.code === 'Space' && !event.repeat && !event.target.closest('input, textarea, select, button')) {
+      event.preventDefault();
+      handleFishingAction();
     }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
     if (state.aiChatOpen && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); startNewAIConversation(); }
@@ -903,6 +933,7 @@ function hideToTray() {
 async function navigateFromTray(target) {
   $$('.modal-backdrop:not(.hidden)').forEach(modal => closeModal(modal.id));
   closeAISettings();
+  if (state.fishingOpen) closeFishingPage();
   if (state.settings.compactMode) {
     try {
       state.settings = {...state.settings, ...(await api.SetCompactMode(false))};
@@ -4611,6 +4642,292 @@ function renderCloudTransferProgress(payload = {}) {
   $('#cloud-transfer-bar').style.width = `${percent}%`;
 }
 
+const fishingFish = [
+  {id:'crucian', emoji:'🐟', zh:'小鲫鱼', en:'Crucian Carp', rarity:'common', weight:34, difficulty:1, duration:22, zone:28},
+  {id:'carp', emoji:'🐠', zh:'锦鲤', en:'Koi', rarity:'common', weight:25, difficulty:1, duration:21, zone:27},
+  {id:'perch', emoji:'🐟', zh:'河鲈', en:'River Perch', rarity:'rare', weight:17, difficulty:2, duration:19, zone:22},
+  {id:'salmon', emoji:'🐡', zh:'银鳞鲑', en:'Silver Salmon', rarity:'rare', weight:12, difficulty:2, duration:18, zone:21},
+  {id:'moonfish', emoji:'🐠', zh:'月光蝶鱼', en:'Moonlit Butterflyfish', rarity:'epic', weight:7, difficulty:3, duration:16, zone:17},
+  {id:'koi-king', emoji:'🐉', zh:'赤焰龙鲤', en:'Crimson Dragon Koi', rarity:'legendary', weight:3, difficulty:4, duration:14, zone:13},
+  {id:'star-whale', emoji:'🐋', zh:'星海幼鲸', en:'Starlight Calf', rarity:'legendary', weight:2, difficulty:4, duration:13, zone:12}
+];
+
+function loadFishingJournal() {
+  try {
+    const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
+    return {
+      catches: Array.isArray(value.catches) ? value.catches.slice(0, 30) : [],
+      totalCaught: Math.max(0, Number(value.totalCaught) || 0),
+      bestStreak: Math.max(0, Number(value.bestStreak) || 0)
+    };
+  } catch (_) {
+    return {catches: [], totalCaught: 0, bestStreak: 0};
+  }
+}
+
+function saveFishingJournal() {
+  try { localStorage.setItem('workdayIsland.fishingJournal', JSON.stringify(state.fishing.journal)); } catch (_) { /* Local journal is optional. */ }
+}
+
+function fishingFishName(fish) {
+  return currentLanguage() === 'zh' ? fish?.zh : fish?.en;
+}
+
+function fishingRarityLabel(rarity) {
+  const key = {common:'rarityCommon', rare:'rarityRare', epic:'rarityEpic', legendary:'rarityLegendary'}[rarity] || 'rarityCommon';
+  return t(key);
+}
+
+function chooseFishingFish() {
+  const total = fishingFish.reduce((sum, fish) => sum + fish.weight, 0);
+  let draw = Math.random() * total;
+  return fishingFish.find(fish => (draw -= fish.weight) <= 0) || fishingFish[0];
+}
+
+function renderFishingJournal() {
+  const journal = state.fishing?.journal;
+  if (!journal || !$('#fishing-catch-list')) return;
+  $('#fishing-total-caught').textContent = String(journal.totalCaught || 0);
+  $('#fishing-best-streak').textContent = String(journal.bestStreak || 0);
+  const list = $('#fishing-catch-list');
+  if (!journal.catches.length) {
+    list.innerHTML = `<div class="fishing-catch-empty">${escapeHTML(t('noFishingCatch')).replace(/\n/g, '<br>')}</div>`;
+    return;
+  }
+  list.innerHTML = journal.catches.map(caught => {
+    const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
+    const time = new Date(caught.caughtAt || Date.now()).toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit'});
+    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em>${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
+  }).join('');
+}
+
+function setFishingAction(labelKey, disabled = false) {
+  const button = $('#fishing-action');
+  button.disabled = disabled;
+  button.querySelector('b').textContent = t(labelKey);
+}
+
+function renderFishingMeters() {
+  const game = state.fishing;
+  const progress = Math.max(0, Math.min(100, Math.round(game.progress)));
+  const tension = Math.max(0, Math.min(100, Math.round(game.tension)));
+  $('#fishing-progress-bar').style.width = `${progress}%`;
+  $('#fishing-progress-value').textContent = `${progress}%`;
+  $('#fishing-tension-bar').style.width = `${tension}%`;
+  $('#fishing-tension-value').textContent = `${tension}%`;
+}
+
+function relocateFishingTarget() {
+  const width = state.fishing.fish?.zone || 24;
+  state.fishing.targetWidth = width;
+  state.fishing.targetStart = 5 + Math.random() * (90 - width);
+  const zone = $('#fishing-perfect-zone');
+  zone.style.left = `${state.fishing.targetStart}%`;
+  zone.style.width = `${width}%`;
+}
+
+function showFishingResult(message, kind = '') {
+  const result = $('#fishing-result');
+  result.textContent = message;
+  result.className = `fishing-result${kind ? ` ${kind}` : ''}`;
+}
+
+async function openFishingPage() {
+  const membership = resolveAccountMembership(state.account?.user);
+  if (!state.account?.loggedIn || membership.rank < 1) {
+    showToast(t('fishingMembersOnly'), true);
+    return;
+  }
+  if (state.notificationOpen) closeNotificationPage();
+  if (state.shareManagementOpen) closeShareManagementPage();
+  if (state.notesOpen) closeNotesPage();
+  if (state.aiChatOpen) closeAIChatPage();
+  if (state.accountOpen) closeAccountPage();
+  if (state.chatOpen) closeChatPage();
+  if (state.cloudOpen) closeCloudPage();
+  if (state.translatorOpen) closeTranslatorPage();
+  if (state.stockOpen) await closeStockPage();
+  if (state.englishOpen || state.englishCenterOpen) await closeEnglishPage();
+  state.fishingOpen = true;
+  document.body.classList.add('fishing-open');
+  $('#fishing-page').classList.remove('hidden');
+  $('#open-fishing').classList.add('active');
+  renderFishingJournal();
+  renderFishingIdle();
+}
+
+function closeFishingPage() {
+  if (!state.fishingOpen) return;
+  window.clearTimeout(fishingWaitTimer);
+  window.cancelAnimationFrame(fishingAnimationFrame);
+  fishingWaitTimer = 0;
+  fishingAnimationFrame = 0;
+  state.fishingOpen = false;
+  state.fishing.phase = 'idle';
+  document.body.classList.remove('fishing-open');
+  $('#fishing-page').classList.add('hidden');
+  $('#open-fishing').classList.remove('active');
+}
+
+function renderFishingIdle() {
+  const game = state.fishing;
+  game.phase = 'idle';
+  game.fish = null;
+  game.progress = 0;
+  game.tension = 0;
+  game.streak = 0;
+  $('#fishing-phase-label').textContent = t('fishingReady');
+  $('#fishing-status-text').textContent = t('fishingReadyHint');
+  $('#fishing-timer').classList.add('hidden');
+  $('#fishing-target-card').classList.add('hidden');
+  $('#fishing-result').classList.add('hidden');
+  $('#fishing-float').className = 'fishing-float';
+  $('#fishing-shadow').classList.remove('active');
+  renderFishingMeters();
+  setFishingAction('startFishing');
+}
+
+function startFishingRound() {
+  if (!state.fishingOpen) return;
+  window.clearTimeout(fishingWaitTimer);
+  window.cancelAnimationFrame(fishingAnimationFrame);
+  const game = state.fishing;
+  game.phase = 'waiting';
+  game.fish = chooseFishingFish();
+  game.progress = 0;
+  game.tension = 0;
+  game.streak = 0;
+  $('#fishing-phase-label').textContent = t('waitingForFish');
+  $('#fishing-status-text').textContent = t('waitingHint');
+  $('#fishing-timer').classList.add('hidden');
+  $('#fishing-target-card').classList.add('hidden');
+  $('#fishing-result').classList.add('hidden');
+  $('#fishing-float').className = 'fishing-float waiting';
+  $('#fishing-shadow').classList.remove('active');
+  setFishingAction('waitingForFish', true);
+  renderFishingMeters();
+  fishingWaitTimer = window.setTimeout(beginFishingReel, 1600 + Math.random() * 2600);
+}
+
+function beginFishingReel() {
+  if (!state.fishingOpen || state.fishing.phase !== 'waiting') return;
+  const game = state.fishing;
+  game.phase = 'reeling';
+  game.startedAt = performance.now();
+  game.deadline = game.startedAt + game.fish.duration * 1000;
+  $('#fishing-phase-label').textContent = t('fishBiting');
+  $('#fishing-status-text').textContent = t('fishBitingHint');
+  $('#fishing-timer').classList.remove('hidden');
+  $('#fishing-target-card').classList.remove('hidden');
+  $('#fishing-rarity').textContent = fishingRarityLabel(game.fish.rarity).toUpperCase();
+  $('#fishing-rarity').className = game.fish.rarity;
+  $('#fishing-fish-name').textContent = fishingFishName(game.fish);
+  $('#fishing-fish-hint').textContent = t('fishBitingHint');
+  $('#fishing-float').className = 'fishing-float bite';
+  $('#fishing-shadow').textContent = game.fish.emoji;
+  $('#fishing-shadow').classList.add('active');
+  relocateFishingTarget();
+  renderFishingMeters();
+  setFishingAction('reelNow');
+  fishingAnimationFrame = window.requestAnimationFrame(updateFishingFrame);
+}
+
+function updateFishingFrame(now) {
+  if (!state.fishingOpen || state.fishing.phase !== 'reeling') return;
+  const game = state.fishing;
+  const speed = 64 + game.fish.difficulty * 15 + Math.min(24, game.progress * .12);
+  const cycle = ((now - game.startedAt) * speed / 1000) % 200;
+  game.marker = cycle <= 100 ? cycle : 200 - cycle;
+  $('#fishing-timing-marker').style.left = `${game.marker}%`;
+  const remaining = Math.max(0, game.deadline - now);
+  $('#fishing-timer').textContent = `${(remaining / 1000).toFixed(1)}s`;
+  if (remaining <= 0) {
+    finishFishingRound(false, 'timeout');
+    return;
+  }
+  fishingAnimationFrame = window.requestAnimationFrame(updateFishingFrame);
+}
+
+function handleFishingAction() {
+  if (!state.fishingOpen) return;
+  const game = state.fishing;
+  if (game.phase === 'idle' || game.phase === 'caught' || game.phase === 'escaped') {
+    startFishingRound();
+    return;
+  }
+  if (game.phase !== 'reeling') return;
+  const zoneStart = game.targetStart;
+  const zoneEnd = zoneStart + game.targetWidth;
+  const innerStart = zoneStart + game.targetWidth * .28;
+  const innerEnd = zoneEnd - game.targetWidth * .28;
+  if (game.marker >= innerStart && game.marker <= innerEnd) {
+    game.streak += 1;
+    game.progress += 27 + Math.min(12, game.streak * 2);
+    game.tension = Math.max(0, game.tension - 12);
+    showFishingResult(t('fishingPerfect'), 'perfect');
+  } else if (game.marker >= zoneStart && game.marker <= zoneEnd) {
+    game.streak = 0;
+    game.progress += 14;
+    game.tension = Math.max(0, game.tension - 4);
+    showFishingResult(t('fishingGood'));
+  } else {
+    game.streak = 0;
+    game.progress = Math.max(0, game.progress - 7);
+    game.tension += 23 + game.fish.difficulty * 3;
+    showFishingResult(t('fishingMiss'), 'escaped');
+  }
+  renderFishingMeters();
+  if (game.progress >= 100) {
+    finishFishingRound(true);
+    return;
+  }
+  if (game.tension >= 100) {
+    finishFishingRound(false, 'escaped');
+    return;
+  }
+  relocateFishingTarget();
+}
+
+function finishFishingRound(caught, reason = 'escaped') {
+  const game = state.fishing;
+  window.cancelAnimationFrame(fishingAnimationFrame);
+  fishingAnimationFrame = 0;
+  $('#fishing-timer').classList.add('hidden');
+  $('#fishing-target-card').classList.add('hidden');
+  $('#fishing-float').className = 'fishing-float';
+  $('#fishing-shadow').classList.remove('active');
+  if (caught) {
+    game.phase = 'caught';
+    game.progress = 100;
+    game.journal.totalCaught += 1;
+    game.journal.bestStreak = Math.max(game.journal.bestStreak, game.streak);
+    game.journal.catches.unshift({fishId:game.fish.id, caughtAt:new Date().toISOString(), streak:game.streak});
+    game.journal.catches = game.journal.catches.slice(0, 30);
+    saveFishingJournal();
+    renderFishingJournal();
+    $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
+    $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
+    showFishingResult(t('fishingCaught', {name:fishingFishName(game.fish)}), 'caught');
+  } else {
+    game.phase = 'escaped';
+    const key = reason === 'timeout' ? 'fishingTimeout' : 'fishingEscaped';
+    $('#fishing-phase-label').textContent = t(key, {name:fishingFishName(game.fish)});
+    $('#fishing-status-text').textContent = t('fishingReadyHint');
+    showFishingResult(t(key, {name:fishingFishName(game.fish)}), 'escaped');
+  }
+  renderFishingMeters();
+  setFishingAction('startFishing');
+}
+
+function clearFishingJournal() {
+  if (!state.fishing.journal.catches.length) return;
+  if (!window.confirm(t('clearFishingLogConfirm'))) return;
+  state.fishing.journal = {catches:[], totalCaught:0, bestStreak:0};
+  saveFishingJournal();
+  renderFishingJournal();
+  showToast(t('fishingLogCleared'));
+}
+
 async function openStockPage() {
   if (state.notificationOpen) closeNotificationPage();
   if (state.windowFullscreen) await setWindowFullscreen(false);
@@ -6305,7 +6622,7 @@ function createPreviewAPI() {
     async GetState(){ return structuredClone(previewState); },
     async GetAppInfo(){ return structuredClone(state.appInfo); },
     async GetAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
-    async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); if(previewCloud.session.user?.username!==username)previewNoteShares=[]; previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName,avatar_url:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x2=%221%22 y2=%221%22%3E%3Cstop stop-color=%22%236fe1c5%22/%3E%3Cstop offset=%221%22 stop-color=%22%2376aef5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22url(%23g)%22/%3E%3Ccircle cx=%2250%22 cy=%2238%22 r=%2218%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3Cpath d=%22M18 92c4-22 16-32 32-32s28 10 32 32%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3C/svg%3E'}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
+    async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); if(previewCloud.session.user?.username!==username)previewNoteShares=[]; previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName,membership_tier:'plus',roles:[{role_code:'WORKDAY_ISLAND_PLUS'}],avatar_url:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x2=%221%22 y2=%221%22%3E%3Cstop stop-color=%22%236fe1c5%22/%3E%3Cstop offset=%221%22 stop-color=%22%2376aef5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22url(%23g)%22/%3E%3Ccircle cx=%2250%22 cy=%2238%22 r=%2218%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3Cpath d=%22M18 92c4-22 16-32 32-32s28 10 32 32%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3C/svg%3E'}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
     async ListUserNotices(page,pageSize,noticeType,readStatus){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); const filtered=previewNotifications.filter(item=>(!noticeType||item.notice_type===noticeType)&&(!readStatus||(readStatus==='READ'?item.is_read:!item.is_read))); const start=(page-1)*pageSize; return {total:filtered.length,list:structuredClone(filtered.slice(start,start+pageSize)),page,pageSize}; },
     async GetUserNoticeUnreadCount(){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); return previewNotifications.filter(item=>!item.is_read).length; },
@@ -6441,7 +6758,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.0',latestVersion:'0.16.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增系统通知、意见反馈、三款会员亮色主题并优化交互。\nAdded system notifications, feedback, three bright member themes, and interaction improvements.'} : {currentVersion:'0.16.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.1',latestVersion:'0.16.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增会员内测“摸鱼小岛”与时机钓鱼小游戏。\nAdded the member-beta Fishing Island and timing-based fishing mini-game.'} : {currentVersion:'0.16.1',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

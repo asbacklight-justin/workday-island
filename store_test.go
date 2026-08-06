@@ -107,7 +107,7 @@ func TestInvalidSettingsFallBack(t *testing.T) {
 		t.Fatalf("sentence learning mode was not preserved: %q", got)
 	}
 	entries := normaliseSettings(Settings{Workdays: []int{1}, HeaderEntries: map[string]bool{"notes": false}}).HeaderEntries
-	if entries["notes"] || !entries["ai"] || !entries["chat"] || !entries["english"] || !entries["notifications"] || len(entries) != 9 {
+	if entries["notes"] || !entries["ai"] || !entries["chat"] || !entries["english"] || !entries["notifications"] || !entries["fishing"] || len(entries) != 10 {
 		t.Fatalf("header entry defaults were not normalised: %#v", entries)
 	}
 }
