@@ -5,6 +5,22 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.2] - 2026-08-07
+
+### 中文
+
+- 统一顶部功能入口的默认中性色、悬停状态与页面选中态；AI、聊天、股市、摸鱼、云盘、笔记、分享、翻译、英语和通知均使用一致的交互规则。
+- 页面切换时会自动同步入口选中状态与 `aria-current`，进入、返回或关闭页面后不再出现高亮遗漏。
+- Plus、Pro、Ultra 会员在选中入口时获得按模块区分的彩色图标、边框和光晕；未登录和普通会员继续使用统一、克制的选中样式。
+- 构建指南新增强制验收流程：每次完成需求后自动构建 Mac Universal 验收包，并校验双架构与 DMG 完整性。
+
+### English
+
+- Unified neutral resting colours, hover feedback, and selected-page states for every header shortcut: AI, chat, stocks, Fishing Island, Work Cloud, Cloud Notes, sharing, translation, English, and notifications.
+- Header selection and `aria-current` now synchronise automatically while opening, returning from, or closing pages, preventing missed highlights.
+- Plus, Pro, and Ultra members receive module-specific colourful icon, border, and glow accents for selected shortcuts; signed-out and regular members keep the restrained unified selection style.
+- The build guide now requires a macOS Universal acceptance build after every completed change, including Universal-architecture and DMG-integrity checks.
+
 ## [0.16.1] - 2026-08-06
 
 ### 中文
@@ -363,6 +379,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2
 [0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
 [0.16.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0
 [0.15.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.15.1

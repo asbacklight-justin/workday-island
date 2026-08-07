@@ -211,6 +211,23 @@ const headerEntryDefinitions = [
   ['notifications', '#open-notifications']
 ];
 
+const headerPageEntryDefinitions = [
+  ['ai-chat-open', '#open-ai-chat'], ['chat-open', '#open-chat'], ['stock-open', '#open-stocks'], ['fishing-open', '#open-fishing'],
+  ['cloud-open', '#open-cloud'], ['notes-open', '#open-notes'], ['share-management-open', '#open-share-management'],
+  ['translator-open', '#open-translator'], ['english-center-open', '#open-english'], ['english-open', '#open-english'], ['notification-open', '#open-notifications']
+];
+
+function syncHeaderPageEntryState() {
+  headerPageEntryDefinitions.forEach(([pageClass, selector]) => {
+    const button = $(selector);
+    if (!button) return;
+    const active = document.body.classList.contains(pageClass);
+    button.classList.toggle('active', active);
+    if (active) button.setAttribute('aria-current', 'page');
+    else button.removeAttribute('aria-current');
+  });
+}
+
 function normaliseHeaderEntries(value) {
   const source = value && typeof value === 'object' ? value : {};
   return Object.fromEntries(headerEntryDefinitions.map(([key]) => [key, Object.prototype.hasOwnProperty.call(source, key) ? Boolean(source[key]) : true]));
@@ -219,7 +236,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.2', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -466,6 +483,8 @@ async function boot() {
     applyTheme();
     applyEnglishBackgroundOpacity();
     bindEvents();
+    new MutationObserver(syncHeaderPageEntryState).observe(document.body, {attributes: true, attributeFilter: ['class']});
+    syncHeaderPageEntryState();
     applyTranslations();
     renderAll();
     void refreshNotificationUnread();
@@ -3495,6 +3514,7 @@ function renderAccountSession() {
   const user = state.account?.user || null;
   const displayName = accountDisplayName();
   const membership = resolveAccountMembership(user);
+  document.documentElement.classList.toggle('member-colourful-entries', loggedIn && membership.rank > 0);
   const nav = $('#open-account');
   nav.classList.toggle('logged-in', loggedIn);
   ['member','plus','pro','ultra'].forEach(tier => nav.classList.toggle(`membership-${tier}`, loggedIn && membership.tier === tier));
@@ -6758,7 +6778,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.1',latestVersion:'0.16.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增会员内测“摸鱼小岛”与时机钓鱼小游戏。\nAdded the member-beta Fishing Island and timing-based fishing mini-game.'} : {currentVersion:'0.16.1',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.2',latestVersion:'0.16.2',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'统一顶部入口选中态；会员可获得彩色选中效果，并新增每次改动后的 Mac 验收构建规范。\nUnified header selection styles, added member-only colourful active states, and documented mandatory Mac acceptance builds after each change.'} : {currentVersion:'0.16.2',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

@@ -36,7 +36,24 @@ go test ./...
 
 建议在提交前至少验证：完整/精简模式的无边框窗口控制、精简窗口拖动与尺寸恢复、深色/浅色/跟随系统主题、精简待办开关、中文/英文切换、待办提醒置前、专注结束提醒、天气离线回退、自定义货币符号、测试 Release 响应下的版本检测，以及月薪为空时隐藏收入卡片。
 
-## 3. macOS Universal DMG
+## 3. 每次需求完成后的 Mac 验收包（必做）
+
+每次完成界面、交互或功能需求后，均应使用当前工作区代码自动构建一次 macOS Universal 验收包，即使尚未升级版本或提交代码。先执行前端语法与差异检查，再构建：
+
+```bash
+node --check frontend/dist/app.js
+git diff --check
+env TMPDIR=/private/tmp ./scripts/package-macos.sh
+```
+
+构建后至少核验 Universal 双架构与 DMG 完整性，并向验收人员提供本地 DMG 路径：
+
+```bash
+lipo -info "build/bin/Workday Island.app/Contents/MacOS/Workday Island"
+hdiutil verify "build/bin/Workday-Island-v<版本号>-macOS-universal.dmg"
+```
+
+## 4. macOS Universal DMG
 
 ```bash
 chmod +x scripts/build-macos.sh scripts/package-macos.sh
@@ -46,7 +63,7 @@ chmod +x scripts/build-macos.sh scripts/package-macos.sh
 流程会分别为 `amd64/x86_64` 和 `arm64` 编译，再通过 `lipo` 合并为 Universal Binary，生成 App Bundle、ICNS 图标、临时签名和 DMG。产物：
 
 ```text
-build/bin/Workday-Island-v0.16.1-macOS-universal.dmg
+build/bin/Workday-Island-v0.16.2-macOS-universal.dmg
 ```
 
 验证架构和签名：
@@ -59,7 +76,7 @@ spctl --assess --type execute --verbose "build/bin/Workday Island.app"
 
 当前脚本使用 ad-hoc 签名，适合开源测试分发。面向大规模用户发布时，应使用 Apple Developer ID Application 证书签名，并执行 `notarytool submit` 和 `stapler staple`。
 
-## 4. Windows x64 Setup
+## 5. Windows x64 Setup
 
 在 PowerShell 中执行：
 
@@ -78,12 +95,12 @@ Set-ExecutionPolicy -Scope Process Bypass
 产物：
 
 ```text
-build/bin/Workday-Island-v0.16.1-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.16.2-windows-x64-Setup.exe
 ```
 
 正式分发建议在生成 Setup 后使用组织的 Authenticode 证书签名应用 EXE 和安装包，并通过 `Get-AuthenticodeSignature` 验证。
 
-## 5. 自动发布
+## 6. 自动发布
 
 `.github/workflows/release.yml` 在推送 `v*.*.*` 标签时运行：
 
@@ -97,13 +114,13 @@ build/bin/Workday-Island-v0.16.1-windows-x64-Setup.exe
 ```bash
 git status --short
 go test ./...
-git tag v0.16.1
+git tag v0.16.2
 git push origin main --tags
 ```
 
 标签版本必须与 `VERSION` 一致，否则工作流会主动失败。发布完成后，在 Intel/M 系列 Mac 和 Windows 10/11 至少各做一次安装、启动、提醒和卸载冒烟测试。
 
-## 6. 数据与升级
+## 7. 数据与升级
 
 安装包不会在升级或卸载时删除用户配置：
 

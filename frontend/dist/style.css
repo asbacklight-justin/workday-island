@@ -13,6 +13,9 @@
   --violet: #ad8cff;
   --danger: #ff8798;
   --english-background-opacity: 1;
+  --header-entry-icon: #9caabe;
+  --header-entry-active: #6de1c3;
+  --header-entry-active-rgb: 109, 225, 195;
 }
 
 * { box-sizing: border-box; }
@@ -60,25 +63,16 @@ input:checked + .switch span { transform: translateX(16px); background: var(--te
 .icon-btn svg, .close-btn svg { width: 17px; height: 17px; fill: none; stroke: #b5c0d2; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
 .about-button span { color: #b5c0d2; font-size: 16px; font-family: Georgia, serif; font-weight: 700; }
 .chat-button, .notification-button { position: relative; }
-.notes-button svg { stroke: #67a6ff; filter: drop-shadow(0 0 4px rgba(74,144,245,.26)); }
-.notes-button:hover svg, .notes-button.active svg { stroke: #9bc6ff; filter: drop-shadow(0 0 7px rgba(74,144,245,.45)); }
-.notes-button.active { border-color: rgba(78,145,245,.34); background: rgba(78,145,245,.13); }
-.ai-entry-label { color: #b49aff; font-size: 10px; font-weight: 900; letter-spacing: -.06em; filter: drop-shadow(0 0 4px rgba(132,91,246,.32)); }
-.ai-entry-button:hover .ai-entry-label, .ai-entry-button.active .ai-entry-label { color: #d5c8ff; filter: drop-shadow(0 0 7px rgba(132,91,246,.55)); }
-.ai-entry-button.active { border-color: rgba(139,92,246,.35); background: rgba(124,92,246,.16); }
-.stock-button .stock-button-icon {
-  width: 19px; height: 19px; fill: none; stroke: #ff946b; stroke-width: 2.25;
-  stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px rgba(255,148,107,.35));
-}
-.stock-button:hover .stock-button-icon { stroke: #ffb08f; filter: drop-shadow(0 0 6px rgba(255,148,107,.55)); }
-.fishing-button svg { width: 19px; height: 19px; stroke: #55d9eb; stroke-width: 1.65; fill: rgba(85,217,235,.08); transition: .2s; }
-.fishing-button:hover svg, .fishing-button.active svg { color: #8af4ff; stroke: #8af4ff; fill: rgba(85,217,235,.15); filter: drop-shadow(0 0 7px rgba(78,222,239,.52)); transform: translateX(1px); }
-.fishing-button.active { border-color: rgba(85,217,235,.34); background: rgba(85,217,235,.11); }
-.cloud-button svg { stroke: #70b7ff; filter: drop-shadow(0 0 4px rgba(87,156,241,.26)); }
-.cloud-button:hover svg { stroke: #8fe6d0; filter: drop-shadow(0 0 6px rgba(62,230,189,.35)); }
-.translate-button span { color: #b59aff; font-size: 13px; font-weight: 850; line-height: 1; letter-spacing: 0; filter: drop-shadow(0 0 4px rgba(173,140,255,.32)); }
-.translate-button:hover span { color: #d1c2ff; filter: drop-shadow(0 0 6px rgba(173,140,255,.48)); }
-.english-button span { color: #72ddc4; font-size: 9px; font-weight: 850; letter-spacing: -.03em; }
+.workspace-entry { color: var(--header-entry-icon); }
+.workspace-entry svg, .workspace-entry .ai-entry-label, .workspace-entry > span { color: currentColor; stroke: currentColor; filter: none; }
+.workspace-entry .ai-entry-label { font-size: 10px; font-weight: 900; letter-spacing: -.06em; }
+.workspace-entry .stock-button-icon { width: 19px; height: 19px; fill: none; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+.workspace-entry.fishing-button svg { width: 19px; height: 19px; fill: transparent; stroke-width: 1.65; transition: .18s; }
+.workspace-entry.translate-button > span { font-size: 13px; font-weight: 850; line-height: 1; letter-spacing: 0; }
+.workspace-entry.english-button > span { font-size: 9px; font-weight: 850; letter-spacing: -.03em; }
+.workspace-entry:hover { color: var(--header-entry-active); border-color: rgba(var(--header-entry-active-rgb), .34); background: rgba(var(--header-entry-active-rgb), .09); }
+.workspace-entry.active { color: var(--header-entry-active); border-color: rgba(var(--header-entry-active-rgb), .52); background: linear-gradient(135deg, rgba(var(--header-entry-active-rgb), .20), rgba(var(--header-entry-active-rgb), .08)); box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 1px rgba(var(--header-entry-active-rgb), .06), 0 5px 14px rgba(var(--header-entry-active-rgb), .16); }
+.workspace-entry.active svg, .workspace-entry.active .ai-entry-label, .workspace-entry.active > span { filter: drop-shadow(0 0 5px rgba(var(--header-entry-active-rgb), .28)); }
 .account-nav-button { max-width: 118px; height: 32px; padding: 0 9px 0 6px; border: 1px solid var(--border); border-radius: 10px; display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.035); color: #8290a5; cursor: pointer; }
 .account-nav-button:hover { color: #dbe4f2; background: rgba(255,255,255,.08); }
 .account-nav-button.logged-in { color: #75e1c7; border-color: rgba(62,230,189,.18); background: rgba(62,230,189,.065); }
@@ -1494,8 +1488,6 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 }
 
 /* Cloud note share creation and management. */
-.share-management-button { color:#8f7cf2; }
-.share-management-button.active,.share-management-button:hover { color:#a899ff; border-color:rgba(143,124,242,.42); background:rgba(143,124,242,.14); }
 .share-management-page { position:relative; height:calc(100% - 58px); padding:14px 22px 22px; display:flex; flex-direction:column; gap:12px; overflow:hidden; }
 .share-management-head { flex:0 0 43px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
 .share-management-title-group { text-align:center; }
@@ -2052,6 +2044,9 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
   --muted: #65738a;
   color: #172238;
   background: #edf3fb;
+  --header-entry-icon: #5e6d85;
+  --header-entry-active: #158a78;
+  --header-entry-active-rgb: 21, 138, 120;
 }
 :root[data-theme="light"] body {
   background:
@@ -2856,3 +2851,26 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
   .clock-line strong { font-size: 36px; }
   .countdown-value { font-size: 27px; }
 }
+
+/* Header shortcuts deliberately share one neutral resting colour. The current
+   workspace is then distinguished by the same accent in every theme. */
+:root[data-theme="light"] .workspace-entry svg,
+:root[data-theme="light"] .workspace-entry .ai-entry-label,
+:root[data-theme="light"] .workspace-entry > span { color:currentColor; stroke:currentColor; }
+:root[data-theme] .workspace-entry.active { color:var(--header-entry-active); border-color:rgba(var(--header-entry-active-rgb), .52); background:linear-gradient(135deg, rgba(var(--header-entry-active-rgb), .20), rgba(var(--header-entry-active-rgb), .08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 1px rgba(var(--header-entry-active-rgb), .06), 0 5px 14px rgba(var(--header-entry-active-rgb), .16); }
+:root[data-theme] .workspace-entry.active svg,
+:root[data-theme] .workspace-entry.active .ai-entry-label,
+:root[data-theme] .workspace-entry.active > span { color:currentColor; stroke:currentColor; filter:drop-shadow(0 0 5px rgba(var(--header-entry-active-rgb), .28)); }
+
+/* Resting shortcuts stay neutral. Colourful selected shortcuts are a small
+   membership enhancement for Plus, Pro, and Ultra users only. */
+:root.member-colourful-entries[data-theme] .workspace-entry.active.ai-entry-button { color:#8d72ff; border-color:rgba(141,114,255,.52); background:linear-gradient(135deg,rgba(141,114,255,.23),rgba(206,137,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(141,114,255,.20); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.chat-button { color:#4b9cff; border-color:rgba(75,156,255,.52); background:linear-gradient(135deg,rgba(75,156,255,.22),rgba(80,214,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(75,156,255,.20); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.stock-button { color:#ff8d5d; border-color:rgba(255,141,93,.54); background:linear-gradient(135deg,rgba(255,141,93,.22),rgba(255,202,101,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(255,141,93,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.fishing-button { color:#20c7dc; border-color:rgba(32,199,220,.54); background:linear-gradient(135deg,rgba(32,199,220,.22),rgba(80,238,193,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(32,199,220,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.cloud-button { color:#459ff0; border-color:rgba(69,159,240,.52); background:linear-gradient(135deg,rgba(69,159,240,.22),rgba(93,203,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(69,159,240,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.notes-button { color:#5f86ff; border-color:rgba(95,134,255,.54); background:linear-gradient(135deg,rgba(95,134,255,.22),rgba(113,181,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(95,134,255,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.share-management-button { color:#a277f0; border-color:rgba(162,119,240,.54); background:linear-gradient(135deg,rgba(162,119,240,.22),rgba(219,129,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(162,119,240,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.translate-button { color:#af71fa; border-color:rgba(175,113,250,.54); background:linear-gradient(135deg,rgba(175,113,250,.22),rgba(237,132,255,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(175,113,250,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.english-button { color:#17ae86; border-color:rgba(23,174,134,.54); background:linear-gradient(135deg,rgba(23,174,134,.22),rgba(75,224,181,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(23,174,134,.19); }
+:root.member-colourful-entries[data-theme] .workspace-entry.active.notification-button { color:#e49a34; border-color:rgba(228,154,52,.56); background:linear-gradient(135deg,rgba(228,154,52,.22),rgba(255,207,94,.08)); box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 5px 14px rgba(228,154,52,.19); }

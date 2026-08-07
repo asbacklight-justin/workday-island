@@ -36,7 +36,24 @@ go test ./...
 
 Before a release, also check full/compact frameless controls, compact drag and size restoration, dark/light/aurora/system themes, optional compact todos, Chinese/English switching, foreground todo reminders, focus-completion reminders, weather offline fallback, custom currency symbols, update detection against a test release response, and earnings-card hiding when salary is empty.
 
-## 3. macOS universal DMG
+## 3. macOS acceptance package after every change (required)
+
+After every completed UI, interaction, or feature request, automatically build a macOS Universal acceptance package from the current working tree, even when the version has not changed and the work has not yet been committed. Run front-end syntax and diff checks before packaging:
+
+```bash
+node --check frontend/dist/app.js
+git diff --check
+env TMPDIR=/private/tmp ./scripts/package-macos.sh
+```
+
+Verify the Universal architectures and DMG integrity after building, then provide the local DMG path to the reviewer:
+
+```bash
+lipo -info "build/bin/Workday Island.app/Contents/MacOS/Workday Island"
+hdiutil verify "build/bin/Workday-Island-v<version>-macOS-universal.dmg"
+```
+
+## 4. macOS universal DMG
 
 ```bash
 chmod +x scripts/build-macos.sh scripts/package-macos.sh
@@ -46,7 +63,7 @@ chmod +x scripts/build-macos.sh scripts/package-macos.sh
 The scripts compile `amd64/x86_64` and `arm64` separately, merge them with `lipo`, then create the app bundle, ICNS icon, ad-hoc signature, and DMG. Output:
 
 ```text
-build/bin/Workday-Island-v0.16.1-macOS-universal.dmg
+build/bin/Workday-Island-v0.16.2-macOS-universal.dmg
 ```
 
 Verify architectures and the signature:
@@ -59,7 +76,7 @@ spctl --assess --type execute --verbose "build/bin/Workday Island.app"
 
 The current build uses an ad-hoc signature suitable for open-source testing. Wider distribution should use an Apple Developer ID Application certificate, followed by `notarytool submit` and `stapler staple`.
 
-## 4. Windows x64 Setup
+## 5. Windows x64 Setup
 
 Run in PowerShell:
 
@@ -78,12 +95,12 @@ The script:
 Output:
 
 ```text
-build/bin/Workday-Island-v0.16.1-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.16.2-windows-x64-Setup.exe
 ```
 
 For production distribution, sign both the application EXE and Setup package with the organisation's Authenticode certificate and validate them with `Get-AuthenticodeSignature`.
 
-## 5. Automated releases
+## 6. Automated releases
 
 `.github/workflows/release.yml` runs for `v*.*.*` tags:
 
@@ -97,13 +114,13 @@ Pre-release checklist:
 ```bash
 git status --short
 go test ./...
-git tag v0.16.1
+git tag v0.16.2
 git push origin main --tags
 ```
 
 The tag must match `VERSION`, or the workflow fails. After publication, smoke-test installation, launch, reminders, and uninstall on both Intel/M-series Macs and Windows 10/11.
 
-## 6. User data and upgrades
+## 7. User data and upgrades
 
 Upgrades and uninstallers preserve the user configuration file:
 
