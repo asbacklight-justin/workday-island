@@ -42,7 +42,7 @@ const translations = {
     englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     stockMarket: '股市', stockWatchlist: '自选行情', stockCodePlaceholder: '股票代码，如 600519', addStock: '添加', stockLoading: '正在刷新行情…',
     stockUpdated: '{time} 更新', stockCached: '缓存于 {time}', stockNoData: '暂无自选股票', stockDisclaimer: '东方财富 · 数据仅供参考', removeStock: '删除自选股', stockAdded: '已添加自选股',
-    fishing: '摸鱼', fishingTitle: '摸鱼小岛', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获',
+    fishing: '摸鱼', fishingTitle: '摸鱼岛', fishingIsland: '钓鱼小岛', slackingIsland: '摸鱼小岛', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获', fishingRods: '鱼竿装备', fishingRodsHint: '每一根鱼竿只强化一个钓鱼方面', equipFishingRod: '装备鱼竿', rodCollection: '已收集 {owned}/{total} 根', rodDropRates: '优 1% · 精 .35% · 史 .1% · 传 .03%', rodNoBonus: '无额外加成', rodUnlocked: '获得 {rarity} 鱼竿「{name}」！可在装备栏切换', rodAlreadyOwned: '获得了重复鱼竿「{name}」', rodOrdinary: '普通', rodExcellent: '优秀', rodFine: '精良', rodEpic: '史诗', rodLegendary: '传说', slackingTitle: '工位摸鱼计划', slackingHint: '带上一条鱼，在老板视线外完成几次完美偷闲。', slackingCompanion: '选择摸鱼搭子', slackingSafeWindow: '安全空档', slackingProgress: '摸鱼进度', slackingExposure: '老板警觉', startSlacking: '开始摸鱼', slackingNow: '趁现在摸一下', slackingNeedFish: '先在钓鱼小岛钓到一条鱼，再来开启摸鱼计划。', slackingPerfect: '完美偷闲，老板完全没有察觉。', slackingGood: '安全通过，继续保持。', slackingMiss: '动作太明显，老板警觉上升！', slackingSuccess: '摸鱼成功！今天也要保持从容。', slackingCaught: '老板发现了，先认真工作一会儿吧。', slackingTimeout: '安全空档结束，收起你的摸鱼搭子。',
     fishingReady: '湖面很安静', fishingReadyHint: '抛下鱼竿，等一条有缘鱼', startFishing: '开始钓鱼', waitingForFish: '等待鱼儿咬钩…', waitingHint: '保持安静，浮标下沉时准备收线', fishBiting: '鱼儿咬钩了！', fishBitingHint: '游标进入发光区时点击收线', reelNow: '收线', catchProgress: '捕获进度', lineTension: '鱼线张力', spaceShortcut: '空格键',
     fishingGuide: '钓鱼指南', fishingGuideHint: '稳住，别让老板发现', castRod: '抛竿等待', castRodHint: '鱼儿咬钩前不要着急', hitPerfectZone: '命中时机', hitPerfectZoneHint: '游标进入发光区时收线', fillCatchProgress: '填满进度', fillCatchProgressHint: '连续完美命中可快速钓起', fishRarity: '鱼类稀有度', rarityCommon: '常见', rarityRare: '珍稀', rarityEpic: '史诗', rarityLegendary: '传说',
     fishingPerfect: '完美收线！捕获进度大幅提升', fishingGood: '不错的时机，继续稳住', fishingMiss: '时机不对，鱼线张力上升了', fishingCaught: '钓到了！{name} 已收入摸鱼图鉴', fishingEscaped: '{name} 挣脱鱼线逃走了', fishingTimeout: '{name} 耗尽你的耐心后溜走了', noFishingCatch: '还没有鱼获\n去湖边试试手气吧', unknownFish: '未知鱼影', clearFishingLogConfirm: '确定清空本机鱼获记录吗？', fishingLogCleared: '鱼获记录已清空',
@@ -144,7 +144,7 @@ const translations = {
     englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     stockMarket: 'Stocks', stockWatchlist: 'Watchlist', stockCodePlaceholder: 'A-share code, e.g. 600519', addStock: 'Add', stockLoading: 'Refreshing quotes…',
     stockUpdated: 'Updated {time}', stockCached: 'Cached at {time}', stockNoData: 'No watched stocks', stockDisclaimer: 'Eastmoney · For reference only', removeStock: 'Remove from watchlist', stockAdded: 'Stock added',
-    fishing: 'Fishing Break', fishingTitle: 'Fishing Island', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches',
+    fishing: 'Fishing Break', fishingTitle: 'Slack Island', fishingIsland: 'Fishing Island', slackingIsland: 'Slack Island', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches', fishingRods: 'Rod Loadout', fishingRodsHint: 'Each rod improves one fishing aspect', equipFishingRod: 'Equip rod', rodCollection: '{owned}/{total} rods collected', rodDropRates: 'Ex 1% · Fine .35% · Epic .1% · Leg .03%', rodNoBonus: 'No bonus', rodUnlocked: 'Unlocked a {rarity} rod: {name}. Equip it in your loadout.', rodAlreadyOwned: 'You found a duplicate {name}', rodOrdinary: 'Ordinary', rodExcellent: 'Excellent', rodFine: 'Fine', rodEpic: 'Epic', rodLegendary: 'Legendary', slackingTitle: 'Desk-side Slack Plan', slackingHint: 'Bring a caught fish and use safe windows for a few perfect breaks.', slackingCompanion: 'Choose your fish buddy', slackingSafeWindow: 'Safe window', slackingProgress: 'Slack progress', slackingExposure: 'Boss alert', startSlacking: 'Start slacking', slackingNow: 'Take a quick break', slackingNeedFish: 'Catch a fish in Fishing Island before starting your slack plan.', slackingPerfect: 'Perfect break. Nobody noticed.', slackingGood: 'Safe pass. Keep it subtle.', slackingMiss: 'Too obvious—the boss alert rose!', slackingSuccess: 'Slack success! Stay effortlessly calm.', slackingCaught: 'Busted. Time to look busy for a moment.', slackingTimeout: 'The safe window closed. Hide your fish buddy.',
     fishingReady: 'The lake is quiet', fishingReadyHint: 'Cast the line and wait for your lucky fish', startFishing: 'Start fishing', waitingForFish: 'Waiting for a bite…', waitingHint: 'Stay quiet and get ready when the float sinks', fishBiting: 'A fish is biting!', fishBitingHint: 'Reel when the marker enters the glowing zone', reelNow: 'Reel now', catchProgress: 'Catch progress', lineTension: 'Line tension', spaceShortcut: 'Space',
     fishingGuide: 'Fishing guide', fishingGuideHint: 'Keep calm—and keep it discreet', castRod: 'Cast and wait', castRodHint: 'Do not rush before the fish bites', hitPerfectZone: 'Hit the timing', hitPerfectZoneHint: 'Reel inside the glowing zone', fillCatchProgress: 'Fill the progress', fillCatchProgressHint: 'Perfect streaks land fish faster', fishRarity: 'Fish rarity', rarityCommon: 'Common', rarityRare: 'Rare', rarityEpic: 'Epic', rarityLegendary: 'Legendary',
     fishingPerfect: 'Perfect reel! Catch progress surged', fishingGood: 'Good timing—keep it steady', fishingMiss: 'Bad timing—the line tension increased', fishingCaught: 'Caught! {name} was added to your journal', fishingEscaped: '{name} broke free and escaped', fishingTimeout: '{name} outlasted your patience and slipped away', noFishingCatch: 'No catches yet\nTry your luck by the lake', unknownFish: 'Unknown shadow', clearFishingLogConfirm: 'Clear the local catch journal?', fishingLogCleared: 'Catch journal cleared',
@@ -217,6 +217,22 @@ const headerPageEntryDefinitions = [
   ['translator-open', '#open-translator'], ['english-center-open', '#open-english'], ['english-open', '#open-english'], ['notification-open', '#open-notifications']
 ];
 
+const chatEmojiCatalog = [
+  ['😀', '开心', 'Happy', 'bounce'], ['😂', '笑哭', 'Laugh', 'laugh'], ['🥳', '庆祝', 'Celebrate', 'party'], ['😍', '喜欢', 'Love', 'heart'], ['😎', '酷', 'Cool', 'sway'],
+  ['🤔', '思考', 'Thinking', 'think'], ['😭', '哭哭', 'Crying', 'tear'], ['😤', '加油', 'Keep going', 'puff'], ['😴', '困了', 'Sleepy', 'float'], ['🤯', '震惊', 'Mind blown', 'pop'],
+  ['👍', '点赞', 'Thumbs up', 'thumb'], ['👏', '鼓掌', 'Applause', 'clap'], ['🙏', '感谢', 'Thanks', 'bow'], ['💪', '努力', 'Strong', 'flex'], ['❤️', '爱心', 'Heart', 'heart'],
+  ['🔥', '火力全开', 'On fire', 'flame'], ['🎉', '撒花', 'Confetti', 'party'], ['✨', '闪耀', 'Sparkle', 'sparkle'], ['👋', '挥手', 'Wave', 'wave'], ['🐟', '摸鱼', 'Fish', 'swim'],
+  ['😁', '咧嘴笑', 'Grin', 'bounce'], ['😆', '大笑', 'Big laugh', 'laugh'], ['🙂', '微笑', 'Smile', 'sway'], ['😉', '眨眼', 'Wink', 'think'], ['😌', '安心', 'Relieved', 'float'],
+  ['😇', '天使', 'Angel', 'float'], ['🤩', '惊艳', 'Star-struck', 'sparkle'], ['😋', '美味', 'Yum', 'pop'], ['😜', '调皮', 'Playful', 'sway'], ['😳', '脸红', 'Blush', 'pop'],
+  ['😅', '尴尬', 'Awkward', 'tear'], ['🥲', '感动', 'Touched', 'tear'], ['😔', '失落', 'Sad', 'float'], ['😡', '生气', 'Angry', 'puff'], ['🤬', '爆炸', 'Furious', 'puff'],
+  ['😱', '吓到', 'Shocked', 'pop'], ['🤗', '抱抱', 'Hug', 'heart'], ['🤝', '握手', 'Handshake', 'thumb'], ['🙌', '欢呼', 'Cheers', 'party'], ['🙆', '没问题', 'All good', 'wave'],
+  ['👌', '可以', 'OK', 'thumb'], ['✌️', '胜利', 'Victory', 'wave'], ['🤞', '好运', 'Good luck', 'wave'], ['👀', '围观', 'Watching', 'think'], ['🫡', '收到', 'Salute', 'bow'],
+  ['🫶', '比心', 'Love hands', 'heart'], ['💯', '满分', 'Perfect', 'pop'], ['🚀', '起飞', 'Rocket', 'float'], ['🎈', '气球', 'Balloon', 'float'], ['🎁', '礼物', 'Gift', 'party'],
+  ['☕', '咖啡', 'Coffee', 'sway'], ['🍰', '蛋糕', 'Cake', 'party'], ['🍜', '吃面', 'Noodles', 'sway'], ['🧋', '奶茶', 'Milk tea', 'float'], ['🎵', '音乐', 'Music', 'sway'],
+  ['🌈', '彩虹', 'Rainbow', 'sparkle'], ['⭐', '星星', 'Star', 'sparkle'], ['🌙', '晚安', 'Good night', 'float'], ['☀️', '晴天', 'Sunny', 'bounce'], ['🐱', '猫猫', 'Cat', 'wave']
+].map(([emoji, zh, en, motion]) => ({emoji, zh, en, motion}));
+let chatEmojiPickerOpen = false;
+
 function syncHeaderPageEntryState() {
   headerPageEntryDefinitions.forEach(([pageClass, selector]) => {
     const button = $(selector);
@@ -236,7 +252,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.2', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.3', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -280,7 +296,7 @@ const state = {
   stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   fishingOpen: false,
-  fishing: {phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, journal: loadFishingJournal()},
+  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   translatorOpen: false,
@@ -312,6 +328,7 @@ let lastAccountProfileRefreshAt = 0;
 let realtimeRegistrationBusy = false;
 let fishingWaitTimer = 0;
 let fishingAnimationFrame = 0;
+let slackingAnimationFrame = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
@@ -753,6 +770,10 @@ function bindEvents() {
   $('#close-fishing').addEventListener('click', closeFishingPage);
   $('#fishing-action').addEventListener('click', handleFishingAction);
   $('#clear-fishing-log').addEventListener('click', clearFishingJournal);
+  $('#fishing-rod-select').addEventListener('change', equipFishingRod);
+  $('#fishing-tabs').addEventListener('click', changeFishingTab);
+  $('#slacking-fish-select').addEventListener('change', changeSlackingCompanion);
+  $('#slacking-action').addEventListener('click', handleSlackingAction);
   $('.top-actions').addEventListener('click', event => {
     if (state.fishingOpen && !event.target.closest('#open-fishing')) closeFishingPage();
   }, true);
@@ -786,6 +807,7 @@ function bindEvents() {
   $('#peer-user-id').addEventListener('input', handlePeerChange);
   $('#send-shake').addEventListener('click', () => sendWindowEffect('shake'));
   $('#send-flash').addEventListener('click', () => sendWindowEffect('flash'));
+  initialiseChatEmojiPicker();
   $('#chat-form').addEventListener('submit', submitChatMessage);
   $('#chat-input').addEventListener('keydown', event => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -874,7 +896,7 @@ function bindEvents() {
     }
     if (state.fishingOpen && event.code === 'Space' && !event.repeat && !event.target.closest('input, textarea, select, button')) {
       event.preventDefault();
-      handleFishingAction();
+      if (state.fishing.tab === 'slacking') handleSlackingAction(); else handleFishingAction();
     }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
     if (state.aiChatOpen && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); startNewAIConversation(); }
@@ -4672,16 +4694,37 @@ const fishingFish = [
   {id:'star-whale', emoji:'🐋', zh:'星海幼鲸', en:'Starlight Calf', rarity:'legendary', weight:2, difficulty:4, duration:13, zone:12}
 ];
 
+const fishingRods = [
+  {id:'bamboo', emoji:'🎣', zh:'初学者竹竿', en:'Starter Bamboo Rod', rarity:'ordinary', statZh:'无额外加成', statEn:'No bonus', effect:{}},
+  {id:'stream', emoji:'🎋', zh:'溪流轻竿', en:'Streamlight Rod', rarity:'ordinary', statZh:'咬钩速度 +7%', statEn:'Bite speed +7%', effect:{biteSpeed:7}},
+  {id:'jade', emoji:'🪷', zh:'青釉浮光竿', en:'Jadeglow Rod', rarity:'excellent', statZh:'完美区 +7%', statEn:'Perfect zone +7%', effect:{perfectZone:7}},
+  {id:'sail', emoji:'⛵', zh:'云帆轻竿', en:'Cloudsail Rod', rarity:'excellent', statZh:'稀有鱼概率 +12%', statEn:'Rare fish chance +12%', effect:{rareFish:12}},
+  {id:'frost', emoji:'❄️', zh:'霜潮钓竿', en:'Frosttide Rod', rarity:'fine', statZh:'捕获进度 +10%', statEn:'Catch progress +10%', effect:{progress:10}},
+  {id:'crystal', emoji:'🔮', zh:'绯晶钓竿', en:'Rosecrystal Rod', rarity:'fine', statZh:'张力抵抗 +14%', statEn:'Tension guard +14%', effect:{tensionGuard:14}},
+  {id:'galaxy', emoji:'🌌', zh:'星河钓竿', en:'Starglade Rod', rarity:'epic', statZh:'稀有鱼概率 +36%', statEn:'Rare fish chance +36%', effect:{rareFish:36}},
+  {id:'tide', emoji:'🌊', zh:'潮汐长竿', en:'Tidemaster Rod', rarity:'epic', statZh:'完美区 +18%', statEn:'Perfect zone +18%', effect:{perfectZone:18}},
+  {id:'dragon', emoji:'🐉', zh:'龙鳞神竿', en:'Dragonscale Rod', rarity:'legendary', statZh:'捕获进度 +28%', statEn:'Catch progress +28%', effect:{progress:28}},
+  {id:'sky', emoji:'🌠', zh:'天穹星竿', en:'Skyfall Rod', rarity:'legendary', statZh:'稀有鱼概率 +75%', statEn:'Rare fish chance +75%', effect:{rareFish:75}}
+];
+
+const fishingRodRarityKeys = {ordinary:'rodOrdinary', excellent:'rodExcellent', fine:'rodFine', epic:'rodEpic', legendary:'rodLegendary'};
+
 function loadFishingJournal() {
   try {
     const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
+    const rodIDs = ['bamboo', 'stream', 'jade', 'sail', 'frost', 'crystal', 'galaxy', 'tide', 'dragon', 'sky'];
+    const ownedRods = Array.isArray(value.ownedRods) ? value.ownedRods.filter(id => rodIDs.includes(id)) : ['bamboo'];
+    if (!ownedRods.includes('bamboo')) ownedRods.unshift('bamboo');
+    const equippedRod = rodIDs.includes(value.equippedRod) && ownedRods.includes(value.equippedRod) ? value.equippedRod : 'bamboo';
     return {
       catches: Array.isArray(value.catches) ? value.catches.slice(0, 30) : [],
       totalCaught: Math.max(0, Number(value.totalCaught) || 0),
-      bestStreak: Math.max(0, Number(value.bestStreak) || 0)
+      bestStreak: Math.max(0, Number(value.bestStreak) || 0),
+      ownedRods,
+      equippedRod
     };
   } catch (_) {
-    return {catches: [], totalCaught: 0, bestStreak: 0};
+    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo'};
   }
 }
 
@@ -4698,10 +4741,262 @@ function fishingRarityLabel(rarity) {
   return t(key);
 }
 
-function chooseFishingFish() {
-  const total = fishingFish.reduce((sum, fish) => sum + fish.weight, 0);
+function fishingRodName(rod) {
+  return currentLanguage() === 'zh' ? rod?.zh : rod?.en;
+}
+
+function fishingRodRarityLabel(rarity) {
+  return t(fishingRodRarityKeys[rarity] || 'rodOrdinary');
+}
+
+function fishingRodStat(rod) {
+  return currentLanguage() === 'zh' ? (rod?.statZh || t('rodNoBonus')) : (rod?.statEn || t('rodNoBonus'));
+}
+
+function equippedFishingRod() {
+  const journal = state.fishing.journal || {};
+  return fishingRods.find(rod => rod.id === journal.equippedRod && journal.ownedRods?.includes(rod.id)) || fishingRods[0];
+}
+
+function chooseFishingFish(rod = equippedFishingRod()) {
+  const rareBonus = Number(rod.effect?.rareFish) || 0;
+  const weightedFish = fishingFish.map(fish => ({...fish, weight:fish.weight * (fish.rarity === 'common' ? 1 : 1 + rareBonus / 100)}));
+  const total = weightedFish.reduce((sum, fish) => sum + fish.weight, 0);
   let draw = Math.random() * total;
-  return fishingFish.find(fish => (draw -= fish.weight) <= 0) || fishingFish[0];
+  return weightedFish.find(fish => (draw -= fish.weight) <= 0) || weightedFish[0];
+}
+
+function renderFishingRods() {
+  const journal = state.fishing?.journal;
+  if (!journal || !$('#fishing-rod-select')) return;
+  const rod = equippedFishingRod();
+  const owned = new Set(journal.ownedRods || ['bamboo']);
+  $('#fishing-equipped-rod-icon').textContent = rod.emoji;
+  $('#fishing-equipped-rarity').textContent = fishingRodRarityLabel(rod.rarity);
+  $('#fishing-equipped-rarity').className = `fishing-equipped-rarity ${rod.rarity}`;
+  $('#fishing-equipped-name').textContent = fishingRodName(rod);
+  $('#fishing-equipped-stat').textContent = fishingRodStat(rod);
+  const select = $('#fishing-rod-select');
+  select.innerHTML = fishingRods.map(item => `<option value="${item.id}" ${owned.has(item.id) ? '' : 'disabled'}>${item.emoji} ${fishingRodName(item)} · ${owned.has(item.id) ? fishingRodRarityLabel(item.rarity) : '🔒'}</option>`).join('');
+  select.value = rod.id;
+  select.disabled = ['waiting', 'reeling'].includes(state.fishing.phase);
+  $('#fishing-rod-progress').textContent = `${t('rodCollection', {owned:owned.size, total:fishingRods.length})} · ${t('rodDropRates')}`;
+}
+
+function equipFishingRod(event) {
+  const id = event.target.value;
+  const journal = state.fishing.journal;
+  if (!journal.ownedRods.includes(id) || ['waiting', 'reeling'].includes(state.fishing.phase)) {
+    renderFishingRods();
+    return;
+  }
+  journal.equippedRod = id;
+  saveFishingJournal();
+  renderFishingRods();
+  showToast(`${fishingRodName(equippedFishingRod())} · ${fishingRodStat(equippedFishingRod())}`);
+}
+
+function tryUnlockFishingRod() {
+  const roll = Math.random();
+  const rarity = roll < .0003 ? 'legendary' : roll < .0013 ? 'epic' : roll < .0048 ? 'fine' : roll < .0148 ? 'excellent' : roll < .0748 ? 'ordinary' : '';
+  if (!rarity) return null;
+  const pool = fishingRods.filter(rod => rod.rarity === rarity && !state.fishing.journal.ownedRods.includes(rod.id));
+  if (!pool.length) return null;
+  const rod = pool[Math.floor(Math.random() * pool.length)];
+  state.fishing.journal.ownedRods.push(rod.id);
+  return rod;
+}
+
+function changeFishingTab(event) {
+  const button = event.target.closest('[data-fishing-tab]');
+  const tab = button?.dataset.fishingTab;
+  if (!tab || tab === state.fishing.tab) return;
+  window.clearTimeout(fishingWaitTimer);
+  window.cancelAnimationFrame(fishingAnimationFrame);
+  window.cancelAnimationFrame(slackingAnimationFrame);
+  fishingWaitTimer = 0;
+  fishingAnimationFrame = 0;
+  slackingAnimationFrame = 0;
+  state.fishing.phase = 'idle';
+  state.fishing.slack.phase = 'idle';
+  state.fishing.tab = tab === 'slacking' ? 'slacking' : 'fishing';
+  renderFishingTabs();
+}
+
+function renderFishingTabs() {
+  const slacking = state.fishing.tab === 'slacking';
+  $('#fishing-layout').classList.toggle('slacking-active', slacking);
+  $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => button.classList.toggle('active', button.dataset.fishingTab === state.fishing.tab));
+  $('.fishing-lake-panel').classList.toggle('hidden', slacking);
+  $('#slacking-panel').classList.toggle('hidden', !slacking);
+  $('.fishing-guide-panel').classList.toggle('hidden', slacking);
+  if (slacking) renderSlackingIdle(); else renderFishingIdle();
+}
+
+function slackingCompanion() {
+  const catches = state.fishing.journal?.catches || [];
+  const index = Math.max(0, Math.min(catches.length - 1, Number(state.fishing.slack.selectedCatch) || 0));
+  const caught = catches[index];
+  return caught ? {caught, fish:fishingFish.find(item => item.id === caught.fishId) || fishingFish[0], index} : null;
+}
+
+function slackingPerk(fish) {
+  const perks = {
+    common: {zone:4, progress:0, guard:0, zh:'安全空档 +4%', en:'Safe window +4%'},
+    rare: {zone:9, progress:0, guard:8, zh:'安全空档 +9%，警觉抵抗 +8%', en:'Safe window +9%, alert guard +8%'},
+    epic: {zone:12, progress:15, guard:12, zh:'摸鱼进度 +15%，警觉抵抗 +12%', en:'Slack progress +15%, alert guard +12%'},
+    legendary: {zone:18, progress:25, guard:18, zh:'安全空档 +18%，摸鱼进度 +25%', en:'Safe window +18%, slack progress +25%'}
+  };
+  return perks[fish?.rarity] || perks.common;
+}
+
+function renderSlackingCompanion() {
+  const select = $('#slacking-fish-select');
+  const catches = state.fishing.journal?.catches || [];
+  const action = $('#slacking-action');
+  if (!catches.length) {
+    select.innerHTML = `<option value="">${escapeHTML(t('slackingNeedFish'))}</option>`;
+    select.disabled = true;
+    action.disabled = true;
+    $('#slacking-companion-name').textContent = '—';
+    $('#slacking-companion-rarity').textContent = '—';
+    $('#slacking-companion-perk').textContent = t('slackingNeedFish');
+    $('#slacking-companion-emoji').textContent = '🐟';
+    return null;
+  }
+  const companion = slackingCompanion();
+  select.innerHTML = catches.map((caught, index) => {
+    const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
+    return `<option value="${index}">${fish.emoji} ${escapeHTML(fishingFishName(fish))} · ${escapeHTML(fishingRarityLabel(fish.rarity))}</option>`;
+  }).join('');
+  select.value = String(companion.index);
+  select.disabled = state.fishing.slack.phase === 'active';
+  const perk = slackingPerk(companion.fish);
+  $('#slacking-companion-card').className = `slacking-companion-card ${companion.fish.rarity}`;
+  $('#slacking-companion-card > span').textContent = companion.fish.emoji;
+  $('#slacking-companion-emoji').textContent = companion.fish.emoji;
+  $('#slacking-companion-rarity').textContent = fishingRarityLabel(companion.fish.rarity);
+  $('#slacking-companion-name').textContent = fishingFishName(companion.fish);
+  $('#slacking-companion-perk').textContent = currentLanguage() === 'zh' ? perk.zh : perk.en;
+  action.disabled = false;
+  return {companion, perk};
+}
+
+function renderSlackingMeters() {
+  const game = state.fishing.slack;
+  const progress = Math.max(0, Math.min(100, Math.round(game.progress)));
+  const exposure = Math.max(0, Math.min(100, Math.round(game.exposure)));
+  $('#slacking-progress-bar').style.width = `${progress}%`;
+  $('#slacking-progress-value').textContent = `${progress}%`;
+  $('#slacking-exposure-bar').style.width = `${exposure}%`;
+  $('#slacking-exposure-value').textContent = `${exposure}%`;
+}
+
+function renderSlackingIdle() {
+  const game = state.fishing.slack;
+  game.phase = 'idle';
+  game.progress = 0;
+  game.exposure = 0;
+  game.streak = 0;
+  $('#slacking-result').classList.add('hidden');
+  $('#slacking-timer').classList.add('hidden');
+  $('#slacking-status').textContent = t('slackingHint');
+  renderSlackingCompanion();
+  renderSlackingMeters();
+  $('#slacking-action').querySelector('b').textContent = t('startSlacking');
+}
+
+function changeSlackingCompanion(event) {
+  if (state.fishing.slack.phase === 'active') return;
+  state.fishing.slack.selectedCatch = Number(event.target.value) || 0;
+  renderSlackingCompanion();
+}
+
+function relocateSlackingWindow(perk) {
+  const game = state.fishing.slack;
+  const width = Math.min(52, 22 + perk.zone);
+  game.targetWidth = width;
+  game.targetStart = 5 + Math.random() * (90 - width);
+  $('#slacking-safe-zone').style.left = `${game.targetStart}%`;
+  $('#slacking-safe-zone').style.width = `${width}%`;
+}
+
+function startSlackingRound() {
+  const data = renderSlackingCompanion();
+  if (!data) { showToast(t('slackingNeedFish'), true); return; }
+  const game = state.fishing.slack;
+  game.phase = 'active';
+  game.progress = 0;
+  game.exposure = 0;
+  game.streak = 0;
+  game.startedAt = performance.now();
+  game.deadline = game.startedAt + 18000;
+  game.perk = data.perk;
+  $('#slacking-status').textContent = t('slackingNow');
+  $('#slacking-result').classList.add('hidden');
+  $('#slacking-timer').classList.remove('hidden');
+  $('#slacking-action').querySelector('b').textContent = t('slackingNow');
+  renderSlackingCompanion();
+  relocateSlackingWindow(data.perk);
+  renderSlackingMeters();
+  slackingAnimationFrame = window.requestAnimationFrame(updateSlackingFrame);
+}
+
+function updateSlackingFrame(now) {
+  const game = state.fishing.slack;
+  if (!state.fishingOpen || state.fishing.tab !== 'slacking' || game.phase !== 'active') return;
+  const cycle = ((now - game.startedAt) * (58 + game.progress * .16) / 1000) % 200;
+  game.marker = cycle <= 100 ? cycle : 200 - cycle;
+  $('#slacking-marker').style.left = `${game.marker}%`;
+  const remaining = Math.max(0, game.deadline - now);
+  $('#slacking-timer').textContent = `${(remaining / 1000).toFixed(1)}s`;
+  if (remaining <= 0) { finishSlackingRound(false, 'timeout'); return; }
+  slackingAnimationFrame = window.requestAnimationFrame(updateSlackingFrame);
+}
+
+function handleSlackingAction() {
+  const game = state.fishing.slack;
+  if (game.phase !== 'active') { startSlackingRound(); return; }
+  const start = game.targetStart;
+  const end = start + game.targetWidth;
+  const innerStart = start + game.targetWidth * .28;
+  const innerEnd = end - game.targetWidth * .28;
+  if (game.marker >= innerStart && game.marker <= innerEnd) {
+    game.streak += 1;
+    game.progress += (28 + Math.min(12, game.streak * 2)) * (1 + game.perk.progress / 100);
+    game.exposure = Math.max(0, game.exposure - 12);
+    $('#slacking-result').textContent = t('slackingPerfect');
+    $('#slacking-result').className = 'slacking-result perfect';
+  } else if (game.marker >= start && game.marker <= end) {
+    game.streak = 0;
+    game.progress += 14 * (1 + game.perk.progress / 100);
+    $('#slacking-result').textContent = t('slackingGood');
+    $('#slacking-result').className = 'slacking-result';
+  } else {
+    game.streak = 0;
+    game.exposure += 27 * (1 - game.perk.guard / 100);
+    $('#slacking-result').textContent = t('slackingMiss');
+    $('#slacking-result').className = 'slacking-result danger';
+  }
+  renderSlackingMeters();
+  if (game.progress >= 100) { finishSlackingRound(true); return; }
+  if (game.exposure >= 100) { finishSlackingRound(false, 'caught'); return; }
+  relocateSlackingWindow(game.perk);
+}
+
+function finishSlackingRound(success, reason = 'caught') {
+  const game = state.fishing.slack;
+  window.cancelAnimationFrame(slackingAnimationFrame);
+  slackingAnimationFrame = 0;
+  game.phase = success ? 'success' : reason;
+  $('#slacking-timer').classList.add('hidden');
+  $('#slacking-status').textContent = t(success ? 'slackingSuccess' : reason === 'timeout' ? 'slackingTimeout' : 'slackingCaught');
+  $('#slacking-result').textContent = $('#slacking-status').textContent;
+  $('#slacking-result').className = `slacking-result ${success ? 'success' : 'danger'}`;
+  $('#slacking-action').querySelector('b').textContent = t('startSlacking');
+  state.fishing.journal.lastSlackingAt = new Date().toISOString();
+  saveFishingJournal();
+  renderSlackingCompanion();
 }
 
 function renderFishingJournal() {
@@ -4738,7 +5033,7 @@ function renderFishingMeters() {
 }
 
 function relocateFishingTarget() {
-  const width = state.fishing.fish?.zone || 24;
+  const width = Math.min(48, (state.fishing.fish?.zone || 24) + (Number(state.fishing.rod?.effect?.perfectZone) || 0));
   state.fishing.targetWidth = width;
   state.fishing.targetStart = 5 + Math.random() * (90 - width);
   const zone = $('#fishing-perfect-zone');
@@ -4773,17 +5068,21 @@ async function openFishingPage() {
   $('#fishing-page').classList.remove('hidden');
   $('#open-fishing').classList.add('active');
   renderFishingJournal();
-  renderFishingIdle();
+  renderFishingRods();
+  renderFishingTabs();
 }
 
 function closeFishingPage() {
   if (!state.fishingOpen) return;
   window.clearTimeout(fishingWaitTimer);
   window.cancelAnimationFrame(fishingAnimationFrame);
+  window.cancelAnimationFrame(slackingAnimationFrame);
   fishingWaitTimer = 0;
   fishingAnimationFrame = 0;
+  slackingAnimationFrame = 0;
   state.fishingOpen = false;
   state.fishing.phase = 'idle';
+  state.fishing.slack.phase = 'idle';
   document.body.classList.remove('fishing-open');
   $('#fishing-page').classList.add('hidden');
   $('#open-fishing').classList.remove('active');
@@ -4796,6 +5095,7 @@ function renderFishingIdle() {
   game.progress = 0;
   game.tension = 0;
   game.streak = 0;
+  game.rod = equippedFishingRod();
   $('#fishing-phase-label').textContent = t('fishingReady');
   $('#fishing-status-text').textContent = t('fishingReadyHint');
   $('#fishing-timer').classList.add('hidden');
@@ -4804,6 +5104,7 @@ function renderFishingIdle() {
   $('#fishing-float').className = 'fishing-float';
   $('#fishing-shadow').classList.remove('active');
   renderFishingMeters();
+  renderFishingRods();
   setFishingAction('startFishing');
 }
 
@@ -4812,8 +5113,9 @@ function startFishingRound() {
   window.clearTimeout(fishingWaitTimer);
   window.cancelAnimationFrame(fishingAnimationFrame);
   const game = state.fishing;
+  game.rod = equippedFishingRod();
   game.phase = 'waiting';
-  game.fish = chooseFishingFish();
+  game.fish = chooseFishingFish(game.rod);
   game.progress = 0;
   game.tension = 0;
   game.streak = 0;
@@ -4826,7 +5128,8 @@ function startFishingRound() {
   $('#fishing-shadow').classList.remove('active');
   setFishingAction('waitingForFish', true);
   renderFishingMeters();
-  fishingWaitTimer = window.setTimeout(beginFishingReel, 1600 + Math.random() * 2600);
+  renderFishingRods();
+  fishingWaitTimer = window.setTimeout(beginFishingReel, (1600 + Math.random() * 2600) * (1 - (Number(game.rod.effect?.biteSpeed) || 0) / 100));
 }
 
 function beginFishingReel() {
@@ -4882,18 +5185,18 @@ function handleFishingAction() {
   const innerEnd = zoneEnd - game.targetWidth * .28;
   if (game.marker >= innerStart && game.marker <= innerEnd) {
     game.streak += 1;
-    game.progress += 27 + Math.min(12, game.streak * 2);
+    game.progress += (27 + Math.min(12, game.streak * 2)) * (1 + (Number(game.rod?.effect?.progress) || 0) / 100);
     game.tension = Math.max(0, game.tension - 12);
     showFishingResult(t('fishingPerfect'), 'perfect');
   } else if (game.marker >= zoneStart && game.marker <= zoneEnd) {
     game.streak = 0;
-    game.progress += 14;
+    game.progress += 14 * (1 + (Number(game.rod?.effect?.progress) || 0) / 100);
     game.tension = Math.max(0, game.tension - 4);
     showFishingResult(t('fishingGood'));
   } else {
     game.streak = 0;
     game.progress = Math.max(0, game.progress - 7);
-    game.tension += 23 + game.fish.difficulty * 3;
+    game.tension += (23 + game.fish.difficulty * 3) * (1 - (Number(game.rod?.effect?.tensionGuard) || 0) / 100);
     showFishingResult(t('fishingMiss'), 'escaped');
   }
   renderFishingMeters();
@@ -4923,11 +5226,13 @@ function finishFishingRound(caught, reason = 'escaped') {
     game.journal.bestStreak = Math.max(game.journal.bestStreak, game.streak);
     game.journal.catches.unshift({fishId:game.fish.id, caughtAt:new Date().toISOString(), streak:game.streak});
     game.journal.catches = game.journal.catches.slice(0, 30);
+    const rodDrop = tryUnlockFishingRod();
     saveFishingJournal();
     renderFishingJournal();
+    renderFishingRods();
     $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
     $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
-    showFishingResult(t('fishingCaught', {name:fishingFishName(game.fish)}), 'caught');
+    showFishingResult(`${t('fishingCaught', {name:fishingFishName(game.fish)})}${rodDrop ? `\n${t('rodUnlocked', {rarity:fishingRodRarityLabel(rodDrop.rarity), name:fishingRodName(rodDrop)})}` : ''}`, 'caught');
   } else {
     game.phase = 'escaped';
     const key = reason === 'timeout' ? 'fishingTimeout' : 'fishingEscaped';
@@ -4936,13 +5241,14 @@ function finishFishingRound(caught, reason = 'escaped') {
     showFishingResult(t(key, {name:fishingFishName(game.fish)}), 'escaped');
   }
   renderFishingMeters();
+  renderFishingRods();
   setFishingAction('startFishing');
 }
 
 function clearFishingJournal() {
   if (!state.fishing.journal.catches.length) return;
   if (!window.confirm(t('clearFishingLogConfirm'))) return;
-  state.fishing.journal = {catches:[], totalCaught:0, bestStreak:0};
+  state.fishing.journal = {...state.fishing.journal, catches:[], totalCaught:0, bestStreak:0};
   saveFishingJournal();
   renderFishingJournal();
   showToast(t('fishingLogCleared'));
@@ -5677,8 +5983,13 @@ function renderRealtime() {
   const validPeer = Boolean(peerID && (!identity || peerID !== Number(identity.userId)));
   const peerFriend = friendByUserID(peerID);
   $('#conversation-peer').textContent = validPeer ? (peerFriend ? friendDisplayName(peerFriend.user) : `#${peerID}`) : '—';
-  $('#chat-input').disabled = !online || !validPeer || realtimeBusy;
-  $('#send-chat').disabled = !online || !validPeer || realtimeBusy;
+  const chatAvailable = online && validPeer && !realtimeBusy;
+  $('#chat-input').disabled = !chatAvailable;
+  $('#send-chat').disabled = !chatAvailable;
+  $('#chat-emoji-toggle').disabled = !chatAvailable;
+  if (!chatAvailable) chatEmojiPickerOpen = false;
+  $('#chat-emoji-picker').classList.toggle('hidden', !chatEmojiPickerOpen);
+  $('#chat-emoji-toggle').setAttribute('aria-expanded', String(chatEmojiPickerOpen));
   $('#send-shake').disabled = !online || !validPeer || realtimeBusy;
   $('#send-flash').disabled = !online || !validPeer || realtimeBusy;
   $('#send-friend-request').disabled = !online || realtimeBusy;
@@ -5858,12 +6169,38 @@ function renderChatMessages(peerID) {
         <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
       </article>`;
     }
-    return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
-      <div class="chat-bubble">${escapeHTML(message.text)}</div>
+    const emoji = findChatEmoji(message.text);
+    return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''} ${emoji ? 'emoji-only' : ''}" data-message-id="${escapeHTML(message.messageId)}">
+      <div class="chat-bubble">${emoji ? `<span class="chat-message-emoji emoji-motion-${emoji.motion}" role="img" aria-label="${escapeHTML(locale().startsWith('zh') ? emoji.zh : emoji.en)}">${emoji.emoji}</span>` : escapeHTML(message.text)}</div>
       <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
     </article>`;
   }).join('');
   requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
+}
+
+function initialiseChatEmojiPicker() {
+  const grid = $('#chat-emoji-grid');
+  grid.innerHTML = chatEmojiCatalog.map(item => `<button type="button" role="listitem" data-chat-emoji="${item.emoji}" class="emoji-motion-${item.motion}" title="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}" aria-label="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}">${item.emoji}</button>`).join('');
+  $('#chat-emoji-toggle').addEventListener('click', () => {
+    if ($('#chat-emoji-toggle').disabled) return;
+    chatEmojiPickerOpen = !chatEmojiPickerOpen;
+    $('#chat-emoji-picker').classList.toggle('hidden', !chatEmojiPickerOpen);
+    $('#chat-emoji-toggle').setAttribute('aria-expanded', String(chatEmojiPickerOpen));
+  });
+  grid.addEventListener('click', event => {
+    const button = event.target.closest('[data-chat-emoji]');
+    if (!button || button.disabled) return;
+    $('#chat-input').value = button.dataset.chatEmoji;
+    chatEmojiPickerOpen = false;
+    $('#chat-emoji-picker').classList.add('hidden');
+    $('#chat-emoji-toggle').setAttribute('aria-expanded', 'false');
+    $('#chat-form').requestSubmit();
+  });
+}
+
+function findChatEmoji(text) {
+  const value = String(text || '').trim();
+  return chatEmojiCatalog.find(item => item.emoji === value) || null;
 }
 
 function realtimeMessageSenderName(message) {
@@ -6778,7 +7115,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.2',latestVersion:'0.16.2',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'统一顶部入口选中态；会员可获得彩色选中效果，并新增每次改动后的 Mac 验收构建规范。\nUnified header selection styles, added member-only colourful active states, and documented mandatory Mac acceptance builds after each change.'} : {currentVersion:'0.16.2',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.3',latestVersion:'0.16.3',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'聊天新增 60 个轻量动效 Emoji；完整窗口优化；新增摸鱼岛双玩法、鱼竿装备与掉落系统。\nAdded 60 animated chat emoji, a roomier regular window, and the Slack Island dual-game and fishing-rod system.'} : {currentVersion:'0.16.3',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

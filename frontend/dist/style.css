@@ -1146,11 +1146,44 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .conversation-effects button:disabled { cursor: not-allowed; opacity: .36; }
 .conversation-effects button span { color: #b89bfa; font-size: 13px; }
 .conversation-effects button b { font-size: 9px; }
-.chat-compose { flex: 0 0 auto; padding: 12px 14px; display: grid; grid-template-columns: 1fr auto; gap: 9px; border-top: 1px solid rgba(255,255,255,.06); background: rgba(7,12,22,.16); }
+.chat-compose { position:relative; flex: 0 0 auto; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 9px; border-top: 1px solid rgba(255,255,255,.06); background: rgba(7,12,22,.16); }
 .chat-compose textarea { min-height: 48px; max-height: 94px; resize: none; line-height: 1.45; }
 .chat-compose textarea:disabled { opacity: .48; cursor: not-allowed; }
 .chat-compose .primary-btn { align-self: stretch; min-width: 76px; }
 .chat-compose .primary-btn:disabled { cursor: not-allowed; filter: grayscale(.75); opacity: .45; transform: none; }
+.chat-emoji-toggle { width:42px; border:1px solid rgba(173,140,255,.18); border-radius:11px; color:#c5abff; background:rgba(173,140,255,.08); font-size:19px; cursor:pointer; transition:transform .18s ease, background .18s ease, border-color .18s ease; }
+.chat-emoji-toggle:hover:not(:disabled), .chat-emoji-toggle[aria-expanded="true"] { transform:translateY(-1px); border-color:rgba(173,140,255,.48); background:rgba(173,140,255,.16); }
+.chat-emoji-toggle:disabled { cursor:not-allowed; opacity:.42; }
+.chat-emoji-picker { position:absolute; z-index:8; left:14px; bottom:calc(100% - 5px); width:382px; padding:9px; border:1px solid rgba(173,140,255,.27); border-radius:14px; background:rgba(15,22,38,.96); box-shadow:0 14px 34px rgba(2,7,18,.35), 0 0 0 1px rgba(255,255,255,.025) inset; animation:pop-in .18s ease both; }
+.chat-emoji-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:5px; }
+.chat-emoji-grid button { height:36px; border:1px solid transparent; border-radius:9px; background:rgba(255,255,255,.035); cursor:pointer; font-size:21px; line-height:1; transition:background .15s ease, border-color .15s ease, transform .15s ease; }
+.chat-emoji-grid button:hover { border-color:rgba(173,140,255,.35); background:rgba(173,140,255,.11); transform:scale(1.12); }
+.chat-message.emoji-only { max-width:120px; }
+.chat-message.emoji-only .chat-bubble { min-width:54px; padding:6px 9px; background:rgba(255,255,255,.035); }
+.chat-message.outgoing.emoji-only .chat-bubble { background:rgba(62,230,189,.12); }
+.chat-message-emoji { display:block; font-size:36px; line-height:1.14; transform-origin:center bottom; filter:drop-shadow(0 3px 4px rgba(0,0,0,.12)); }
+.emoji-motion-bounce { animation:chat-emoji-bounce 1s cubic-bezier(.22,.8,.32,1) both; }
+.emoji-motion-laugh { animation:chat-emoji-laugh .78s ease-in-out both; }
+.emoji-motion-party { animation:chat-emoji-party 1s ease-in-out both; }
+.emoji-motion-heart { animation:chat-emoji-heart .95s ease-in-out both; }
+.emoji-motion-sway { animation:chat-emoji-sway .9s ease-in-out both; }
+.emoji-motion-think { animation:chat-emoji-think 1s ease-in-out both; }
+.emoji-motion-tear { animation:chat-emoji-tear 1s ease-in both; }
+.emoji-motion-puff { animation:chat-emoji-puff .7s ease-out both; }
+.emoji-motion-float { animation:chat-emoji-float 1.3s ease-in-out both; }
+.emoji-motion-pop { animation:chat-emoji-pop .62s cubic-bezier(.18,.9,.28,1.45) both; }
+.emoji-motion-thumb, .emoji-motion-clap, .emoji-motion-bow, .emoji-motion-flex, .emoji-motion-flame, .emoji-motion-sparkle, .emoji-motion-wave, .emoji-motion-swim { animation:chat-emoji-wave .9s ease-in-out both; }
+@keyframes chat-emoji-bounce { 0%{transform:translateY(8px) scale(.55);opacity:0}55%{transform:translateY(-5px) scale(1.15)}75%{transform:translateY(2px) scale(.96)}100%{transform:translateY(0) scale(1);opacity:1} }
+@keyframes chat-emoji-laugh { 0%{transform:scale(.7) rotate(0)}35%{transform:scale(1.14) rotate(-12deg)}55%{transform:rotate(12deg)}75%{transform:rotate(-7deg)}100%{transform:scale(1) rotate(0)} }
+@keyframes chat-emoji-party { 0%{transform:scale(.5) rotate(-25deg);opacity:0}58%{transform:scale(1.22) rotate(14deg)}100%{transform:scale(1) rotate(0);opacity:1} }
+@keyframes chat-emoji-heart { 0%,100%{transform:scale(1)}28%{transform:scale(1.28)}50%{transform:scale(.94)}72%{transform:scale(1.15)} }
+@keyframes chat-emoji-sway { 0%{transform:translateX(-7px) rotate(-9deg);opacity:0}50%{transform:translateX(6px) rotate(8deg)}100%{transform:translateX(0) rotate(0);opacity:1} }
+@keyframes chat-emoji-think { 0%{transform:translateY(5px);opacity:0}45%{transform:translateY(-3px) rotate(-4deg)}100%{transform:translateY(0);opacity:1} }
+@keyframes chat-emoji-tear { 0%{transform:translateY(-8px) scale(.7);opacity:0}60%{transform:translateY(2px) scale(1.12)}100%{transform:translateY(0) scale(1);opacity:1} }
+@keyframes chat-emoji-puff { 0%{transform:scale(.6);opacity:0}55%{transform:scale(1.25)}100%{transform:scale(1);opacity:1} }
+@keyframes chat-emoji-float { 0%{transform:translateY(8px);opacity:0}55%{transform:translateY(-5px)}100%{transform:translateY(0);opacity:1} }
+@keyframes chat-emoji-pop { 0%{transform:scale(.2) rotate(-16deg);opacity:0}65%{transform:scale(1.25) rotate(7deg)}100%{transform:scale(1) rotate(0);opacity:1} }
+@keyframes chat-emoji-wave { 0%{transform:scale(.7) rotate(-12deg);opacity:0}45%{transform:scale(1.13) rotate(11deg)}72%{transform:rotate(-7deg)}100%{transform:scale(1) rotate(0);opacity:1} }
 
 .reminder-alert { position: fixed; z-index: 80; inset: 0; width: 100%; height: 100%; border: 0; display: none; align-items: center; justify-content: center; gap: 16px; color: white; cursor: pointer; text-align: left; }
 .reminder-alert.active { display: flex; animation: reminder-rave .24s steps(1,end) infinite; }
@@ -2685,9 +2718,26 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 .fishing-title-group h1 { margin: 0; color: #e8f2f7; font-size: 20px; }
 .fishing-member-chip { justify-self: end; height: 32px; padding: 0 12px; border: 1px solid rgba(91,225,227,.20); border-radius: 99px; display: flex; align-items: center; gap: 7px; color: #8be8e1; background: rgba(55,202,196,.07); font-size: 10px; }
 .fishing-member-chip > span { color: #ffd873; filter: drop-shadow(0 0 5px rgba(255,216,115,.4)); }
+.fishing-tabs { align-self:center; height:34px; padding:3px; border:1px solid rgba(112,224,217,.14); border-radius:11px; display:flex; gap:3px; background:rgba(10,28,42,.36); }
+.fishing-tabs button { min-width:104px; border:0; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:6px; color:#8297a9; background:transparent; cursor:pointer; font-size:10px; transition:.18s; }
+.fishing-tabs button span { font-size:13px; filter:grayscale(.35); }.fishing-tabs button.active { color:#9cf1e5; background:linear-gradient(135deg,rgba(61,211,194,.19),rgba(88,155,242,.14)); box-shadow:inset 0 0 0 1px rgba(91,229,217,.17),0 4px 12px rgba(0,0,0,.11); }.fishing-tabs button.active span { filter:none; }
 .fishing-layout { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 230px minmax(390px,1fr) 215px; gap: 12px; }
+.fishing-layout.slacking-active { grid-template-columns:230px minmax(390px,1fr); }
 .fishing-layout > .panel { min-height: 0; padding: 15px; overflow: hidden; }
 .fishing-side-panel, .fishing-guide-panel { display: flex; flex-direction: column; }
+.fishing-rod-panel { flex:0 0 auto; padding:10px; border:1px solid rgba(94,222,224,.14); border-radius:11px; background:linear-gradient(145deg,rgba(58,199,194,.09),rgba(107,143,255,.045)); }
+.fishing-rod-panel .fishing-panel-heading > span { font-size:18px; }
+.fishing-equipped-rod { margin-top:9px; padding:8px; border:1px solid rgba(255,255,255,.075); border-radius:9px; display:grid; grid-template-columns:29px minmax(0,1fr); align-items:center; gap:7px; background:rgba(5,23,35,.28); }
+.fishing-equipped-rod > span { font-size:21px; filter:drop-shadow(0 2px 5px rgba(0,0,0,.24)); }
+.fishing-equipped-rod div { min-width:0; display:flex; flex-direction:column; gap:2px; }
+.fishing-equipped-rod small { align-self:flex-start; padding:1px 4px; border-radius:4px; color:#9baebe; background:rgba(255,255,255,.055); font-size:7px; font-weight:750; }
+.fishing-equipped-rod small.excellent { color:#69d6ff; background:rgba(88,188,255,.10); }.fishing-equipped-rod small.fine { color:#8ce8c7; background:rgba(82,220,180,.10); }.fishing-equipped-rod small.epic { color:#d2a3ff; background:rgba(183,127,255,.11); }.fishing-equipped-rod small.legendary { color:#ffdc84; background:rgba(255,203,95,.12); }
+.fishing-equipped-rod strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#e4f3f1; font-size:10px; }
+.fishing-equipped-rod em { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#73bfc0; font-size:8px; font-style:normal; }
+.fishing-rod-select { margin-top:8px; display:flex; flex-direction:column; gap:4px; color:#8196a6; font-size:8px; }
+.fishing-rod-select select { width:100%; height:28px; padding:0 7px; border:1px solid rgba(255,255,255,.09); border-radius:7px; outline:0; color:#cfe4e4; background:rgba(7,24,36,.58); font-size:9px; }
+.fishing-rod-select select:disabled { opacity:.58; cursor:not-allowed; }
+.fishing-rod-progress { margin:6px 0 0; color:#5b7f90; font-size:8px; text-align:right; }
 .fishing-panel-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .fishing-panel-heading div { display: flex; flex-direction: column; gap: 4px; }
 .fishing-panel-heading div > span { color: #dbe7ef; font-size: 13px; font-weight: 750; }
@@ -2712,6 +2762,16 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 .fishing-catch-item small { margin-top: 2px; color: #637789; font-size: 7px; }
 .fishing-catch-item > em { padding: 3px 5px; border-radius: 99px; color: #79dacd; background: rgba(75,213,201,.08); font-size: 7px; font-style: normal; }
 .fishing-lake-panel { position: relative; padding: 0 !important; display: flex; flex-direction: column; background: linear-gradient(180deg, rgba(19,48,58,.80), rgba(11,25,39,.86)); }
+.slacking-panel { position:relative; min-width:0; padding:0 !important; overflow:hidden; background:radial-gradient(circle at 74% 18%,rgba(255,210,117,.22),transparent 23%),linear-gradient(145deg,rgba(27,61,91,.94),rgba(14,31,49,.97)); }
+.slacking-sky { position:absolute; inset:0 0 46%; overflow:hidden; background:linear-gradient(180deg,rgba(104,175,213,.48),rgba(68,135,168,.18)); }.slacking-sky::after { content:""; position:absolute; inset:auto 0 0; height:42%; background:linear-gradient(160deg,transparent 25%,rgba(24,74,69,.62) 26% 54%,transparent 55%),linear-gradient(200deg,transparent 38%,rgba(26,83,67,.48) 39% 67%,transparent 68%); }.slacking-sky span { position:absolute; opacity:.30; color:#effffb; font-size:40px; }.slacking-sky span:first-child{left:12%;top:11%}.slacking-sky span:nth-child(2){right:20%;top:22%;font-size:29px}.slacking-sky i { position:absolute; z-index:1; right:13%; bottom:15%; color:rgba(237,255,249,.65); font-size:52px; font-style:normal; filter:drop-shadow(0 8px 10px rgba(0,0,0,.23)); }
+.slacking-game-card { position:absolute; left:18px; right:18px; bottom:16px; min-height:276px; padding:15px; border:1px solid rgba(168,240,229,.16); border-radius:15px; background:rgba(5,19,31,.79); box-shadow:0 16px 38px rgba(0,0,0,.25); backdrop-filter:blur(18px); }
+.slacking-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }.slacking-heading small { color:#7ee6d9; letter-spacing:.12em; font-size:8px; font-weight:800; }.slacking-heading h2 { margin:3px 0 0; color:#ecf6f5; font-size:17px; }.slacking-heading p { margin:5px 0 0; color:#89a4b3; font-size:9px; }.slacking-heading > span { font-size:38px; filter:drop-shadow(0 4px 8px rgba(0,0,0,.24)); }
+.slacking-companion-select { margin-top:10px; display:grid; grid-template-columns:76px minmax(0,1fr); align-items:center; gap:8px; color:#8ba3ae; font-size:9px; }.slacking-companion-select select { min-width:0; height:30px; padding:0 8px; border:1px solid rgba(255,255,255,.10); border-radius:8px; outline:0; color:#d7e9e8; background:rgba(255,255,255,.055); font-size:9px; }.slacking-companion-select select:disabled{opacity:.55}
+.slacking-companion-card { margin-top:8px; padding:7px 9px; border:1px solid rgba(100,222,207,.13); border-radius:9px; display:grid; grid-template-columns:27px minmax(0,1fr); align-items:center; gap:7px; background:rgba(67,209,193,.045); }.slacking-companion-card > span{font-size:20px}.slacking-companion-card div{min-width:0}.slacking-companion-card small,.slacking-companion-card strong,.slacking-companion-card em{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.slacking-companion-card small{color:#79d9ca;font-size:7px}.slacking-companion-card strong{margin-top:1px;color:#dceeea;font-size:10px}.slacking-companion-card em{margin-top:2px;color:#7695a2;font-size:8px;font-style:normal}.slacking-companion-card.epic{border-color:rgba(188,136,255,.25);background:rgba(180,119,255,.08)}.slacking-companion-card.legendary{border-color:rgba(255,213,116,.28);background:rgba(255,198,91,.08)}
+.slacking-radar { margin-top:10px; padding:8px; border:1px solid rgba(255,255,255,.075); border-radius:9px; background:rgba(0,0,0,.13); }.slacking-radar-head{display:flex;align-items:center;gap:7px;margin-bottom:6px}.slacking-radar-head small{color:#6de1d1;font-size:8px}.slacking-radar-head strong{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#b9ced4;font-size:9px}.slacking-radar-head span{padding:3px 5px;border-radius:5px;color:#9beade;background:rgba(83,219,201,.08);font-size:8px}.slacking-track{position:relative;height:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);border-radius:6px;background:linear-gradient(90deg,rgba(255,116,135,.14),rgba(70,221,199,.05),rgba(255,116,135,.14))}.slacking-track i{position:absolute;top:2px;bottom:2px;border-radius:4px;background:linear-gradient(90deg,rgba(95,229,205,.14),rgba(130,244,219,.35),rgba(95,229,205,.14));box-shadow:0 0 10px rgba(95,229,205,.20)}.slacking-track b{position:absolute;top:1px;bottom:1px;left:0;width:3px;border-radius:4px;background:#fff6b5;box-shadow:0 0 8px #ffe987;transform:translateX(-50%)}
+.slacking-meter{margin-top:7px;display:grid;grid-template-columns:58px 1fr 28px;align-items:center;gap:7px}.slacking-meter>span{color:#7d97a3;font-size:8px}.slacking-meter>div{height:5px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.08)}.slacking-meter>div i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#57d9c5,#6caefa);transition:width .24s}.slacking-meter>b{color:#83e2d4;text-align:right;font-size:8px}.slacking-meter.exposure>div i{background:linear-gradient(90deg,#f1b75c,#ff738b)}.slacking-meter.exposure>b{color:#f1ab84}
+.slacking-result{min-height:25px;margin:8px 137px 0 0;padding:6px 8px;border:1px solid rgba(96,220,205,.14);border-radius:8px;color:#9cded4;background:rgba(71,210,195,.05);font-size:9px;line-height:1.35}.slacking-result.danger{color:#ffadb8;border-color:rgba(255,128,147,.22);background:rgba(255,117,139,.06)}.slacking-result.success{color:#fff0a9;border-color:rgba(255,216,102,.23);background:rgba(255,204,84,.07)}
+.slacking-action{position:absolute;right:15px;bottom:15px;min-width:122px;height:34px;padding:0 10px;display:flex;align-items:center;justify-content:center;gap:7px}.slacking-action>span{font-size:15px}.slacking-action>b{font-size:10px}
 .fishing-sky { flex: 0 0 26%; position: relative; overflow: hidden; background: radial-gradient(circle at 73% 24%, rgba(255,220,129,.65) 0 3%, rgba(255,220,129,.15) 3.5%, transparent 15%), linear-gradient(180deg, rgba(67,137,156,.40), rgba(61,139,143,.16)); }
 .fishing-sky::after { content:""; position:absolute; inset:auto -8% 0; height:40%; opacity:.7; background:linear-gradient(160deg,transparent 35%,rgba(21,65,56,.78) 36% 55%,transparent 56%),linear-gradient(205deg,transparent 42%,rgba(29,78,63,.62) 43% 62%,transparent 63%); }
 .fishing-sky > span { position:absolute; width:34px; height:9px; border-radius:99px; background:rgba(230,252,246,.14); filter:blur(1px); }
@@ -2757,14 +2817,15 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 .fishing-result.perfect { color:#fff1a6; border-color:rgba(255,220,91,.22); background:rgba(255,210,70,.07); }
 .fishing-result.caught { color:#90f0dc; border-color:rgba(86,230,198,.28); background:rgba(62,230,189,.09); }
 .fishing-result.escaped { color:#ff9baa; border-color:rgba(255,125,145,.22); background:rgba(255,125,145,.06); }
-.fishing-guide-list { margin:17px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:11px; }
+.fishing-guide-panel > .fishing-rod-panel + .fishing-panel-heading { margin-top:12px; }
+.fishing-guide-list { margin:11px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:8px; }
 .fishing-guide-list li { display:flex; align-items:center; gap:9px; }
 .fishing-guide-list li > span { flex:0 0 25px; height:25px; border:1px solid rgba(93,221,216,.13); border-radius:8px; display:grid; place-items:center; color:#75dcd3; background:rgba(70,207,202,.055); font-size:9px; font-weight:800; }
 .fishing-guide-list p { margin:0; min-width:0; }
 .fishing-guide-list b,.fishing-guide-list small { display:block; }
 .fishing-guide-list b { color:#b7c7d2; font-size:10px; }
 .fishing-guide-list small { margin-top:3px; color:#617588; font-size:8px; line-height:1.35; }
-.fishing-rarity-guide { margin-top:auto; padding:11px; border:1px solid rgba(255,255,255,.055); border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:8px; background:rgba(255,255,255,.018); }
+.fishing-rarity-guide { margin-top:auto; padding:9px; border:1px solid rgba(255,255,255,.055); border-radius:10px; display:grid; grid-template-columns:1fr 1fr; gap:7px; background:rgba(255,255,255,.018); }
 .fishing-rarity-guide > b { grid-column:1/-1; margin-bottom:2px; color:#899cad; font-size:9px; }
 .fishing-rarity-guide > span { display:flex; align-items:center; gap:5px; }
 .fishing-rarity-guide i { width:6px; height:6px; border-radius:50%; background:#63d9c7; box-shadow:0 0 5px currentColor; }.fishing-rarity-guide i.rare{background:#62a9ff}.fishing-rarity-guide i.epic{background:#b788ff}.fishing-rarity-guide i.legendary{background:#ffd25f}
@@ -2794,6 +2855,10 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-member-theme="plus-light"] .fishing-catch-item strong,
 :root[data-member-theme="pro-light"] .fishing-catch-item strong,
 :root[data-member-theme="ultra-light"] .fishing-catch-item strong { color:#29485a; }
+:root[data-theme="light"] .fishing-rod-panel,:root[data-member-theme="plus-light"] .fishing-rod-panel,:root[data-member-theme="pro-light"] .fishing-rod-panel,:root[data-member-theme="ultra-light"] .fishing-rod-panel { border-color:rgba(51,137,148,.16); background:linear-gradient(145deg,rgba(74,202,194,.10),rgba(111,155,245,.06)); }
+:root[data-theme="light"] .fishing-equipped-rod,:root[data-member-theme="plus-light"] .fishing-equipped-rod,:root[data-member-theme="pro-light"] .fishing-equipped-rod,:root[data-member-theme="ultra-light"] .fishing-equipped-rod { border-color:rgba(33,78,96,.12); background:rgba(255,255,255,.65); }
+:root[data-theme="light"] .fishing-equipped-rod strong,:root[data-member-theme="plus-light"] .fishing-equipped-rod strong,:root[data-member-theme="pro-light"] .fishing-equipped-rod strong,:root[data-member-theme="ultra-light"] .fishing-equipped-rod strong { color:#29485a; }
+:root[data-theme="light"] .fishing-rod-select select,:root[data-member-theme="plus-light"] .fishing-rod-select select,:root[data-member-theme="pro-light"] .fishing-rod-select select,:root[data-member-theme="ultra-light"] .fishing-rod-select select { border-color:rgba(33,78,96,.14); color:#29485a; background:rgba(255,255,255,.82); }
 
 @media (max-width:900px) { .fishing-layout{grid-template-columns:190px minmax(360px,1fr)}.fishing-guide-panel{display:none !important;} }
 @media (max-height:650px) { .fishing-page{padding-top:8px;gap:7px}.fishing-page-head{flex-basis:38px}.fishing-layout>.panel{padding:11px}.fishing-game-card{min-height:153px;bottom:9px}.fishing-guide-list{margin-top:11px;gap:8px} }

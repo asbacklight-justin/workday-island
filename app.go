@@ -15,11 +15,11 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.2"
+const appVersion = "0.16.3"
 
 const (
-	defaultFullWindowWidth = 1024
-	fullWindowHeight       = 650
+	defaultFullWindowWidth = 1100
+	fullWindowHeight       = 700
 )
 
 type App struct {

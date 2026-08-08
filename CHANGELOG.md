@@ -5,6 +5,18 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.3] - 2026-08-08
+
+### 新增 / Added
+
+- 实时聊天新增原生动效表情面板，内置 60 个轻量 Emoji；单个 Emoji 消息会以更醒目的动态气泡呈现。
+- 摸鱼模块升级为「摸鱼岛」，提供「钓鱼小岛」与「摸鱼小岛」双 Tab：前者增加 10 把五品质鱼竿、装备属性和低概率掉落，后者可让已钓到的鱼陪伴完成上班摸鱼小游戏。
+
+### 优化 / Improved
+
+- 完整窗口默认尺寸优化为 1100 × 700，确保顶部工具栏及最小化、全屏、关闭按钮在常规桌面尺寸下完整可见。
+- 聊天表情与摸鱼进度均保留在本地，不改变现有聊天协议或云端数据结构。
+
 ## [0.16.2] - 2026-08-07
 
 ### 中文
@@ -379,6 +391,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3
 [0.16.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2
 [0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
 [0.16.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.0

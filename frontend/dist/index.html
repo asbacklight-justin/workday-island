@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.16.2</span>
+        <span id="app-version-badge" class="version-badge">v0.16.3</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -885,8 +885,12 @@
             <button id="send-flash" type="button" disabled title="闪一闪"><span>✦</span><b data-i18n="flashWindow">闪一闪</b></button>
           </div>
           <form id="chat-form" class="chat-compose">
+            <button id="chat-emoji-toggle" type="button" class="chat-emoji-toggle" aria-label="表情" title="表情" aria-expanded="false" disabled>☺</button>
             <textarea id="chat-input" maxlength="4000" rows="2" data-i18n-placeholder="chatPlaceholder" placeholder="输入消息，Enter 发送，Shift+Enter 换行" disabled></textarea>
             <button id="send-chat" type="submit" class="primary-btn" disabled><span>➤</span><b data-i18n="send">发送</b></button>
+            <div id="chat-emoji-picker" class="chat-emoji-picker hidden" role="dialog" aria-label="表情面板">
+              <div id="chat-emoji-grid" class="chat-emoji-grid" role="list"></div>
+            </div>
           </form>
         </section>
       </div>
@@ -1025,12 +1029,16 @@
       <header class="fishing-page-head">
         <button id="close-fishing" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
         <div class="fishing-title-group">
-          <div class="section-kicker">FISHING BREAK</div>
-          <h1 id="fishing-title" data-i18n="fishingTitle">摸鱼小岛</h1>
+          <div class="section-kicker">SLACK ISLAND</div>
+          <h1 id="fishing-title" data-i18n="fishingTitle">摸鱼岛</h1>
         </div>
         <span class="fishing-member-chip"><span>✦</span><b data-i18n="memberBeta">会员内测</b></span>
       </header>
-      <div class="fishing-layout">
+      <nav id="fishing-tabs" class="fishing-tabs" aria-label="摸鱼玩法">
+        <button type="button" class="active" data-fishing-tab="fishing"><span>🎣</span><b data-i18n="fishingIsland">钓鱼小岛</b></button>
+        <button type="button" data-fishing-tab="slacking"><span>🐟</span><b data-i18n="slackingIsland">摸鱼小岛</b></button>
+      </nav>
+      <div id="fishing-layout" class="fishing-layout">
         <aside class="panel fishing-side-panel">
           <div class="fishing-panel-heading"><div><span data-i18n="fishingJournal">摸鱼图鉴</span><strong data-i18n="fishingJournalHint">今日也要有点收获</strong></div><span>🐟</span></div>
           <div class="fishing-stats">
@@ -1065,7 +1073,26 @@
             <button id="fishing-action" type="button" class="primary-btn fishing-action"><span>⌁</span><b data-i18n="startFishing">开始钓鱼</b><small data-i18n="spaceShortcut">空格键</small></button>
           </div>
         </section>
+        <section id="slacking-panel" class="panel slacking-panel hidden">
+          <div class="slacking-sky"><span>☁</span><span>☁</span><i>🖥️</i></div>
+          <div class="slacking-game-card">
+            <div class="slacking-heading"><div><small>OFFICE COVER</small><h2 data-i18n="slackingTitle">工位摸鱼计划</h2><p data-i18n="slackingHint">带上一条鱼，在老板视线外完成几次完美偷闲。</p></div><span id="slacking-companion-emoji">🐟</span></div>
+            <label class="slacking-companion-select"><span data-i18n="slackingCompanion">选择摸鱼搭子</span><select id="slacking-fish-select"></select></label>
+            <div id="slacking-companion-card" class="slacking-companion-card"><span>🐟</span><div><small id="slacking-companion-rarity">—</small><strong id="slacking-companion-name">—</strong><em id="slacking-companion-perk">—</em></div></div>
+            <div class="slacking-radar"><div class="slacking-radar-head"><small data-i18n="slackingSafeWindow">安全空档</small><strong id="slacking-status">先从钓鱼小岛带回一条鱼</strong><span id="slacking-timer" class="hidden">18.0s</span></div><div class="slacking-track"><i id="slacking-safe-zone"></i><b id="slacking-marker"></b></div></div>
+            <div class="slacking-meter"><span data-i18n="slackingProgress">摸鱼进度</span><div><i id="slacking-progress-bar"></i></div><b id="slacking-progress-value">0%</b></div>
+            <div class="slacking-meter exposure"><span data-i18n="slackingExposure">老板警觉</span><div><i id="slacking-exposure-bar"></i></div><b id="slacking-exposure-value">0%</b></div>
+            <p id="slacking-result" class="slacking-result hidden" aria-live="polite"></p>
+            <button id="slacking-action" type="button" class="primary-btn slacking-action"><span>🐟</span><b data-i18n="startSlacking">开始摸鱼</b></button>
+          </div>
+        </section>
         <aside class="panel fishing-guide-panel">
+          <section class="fishing-rod-panel">
+            <div class="fishing-panel-heading"><div><span data-i18n="fishingRods">鱼竿装备</span><strong data-i18n="fishingRodsHint">每一根鱼竿只强化一个钓鱼方面</strong></div><span>🎣</span></div>
+            <div id="fishing-equipped-rod" class="fishing-equipped-rod"><span id="fishing-equipped-rod-icon">🎣</span><div><small id="fishing-equipped-rarity">普通</small><strong id="fishing-equipped-name">初学者竹竿</strong><em id="fishing-equipped-stat">无额外加成</em></div></div>
+            <label class="fishing-rod-select"><span data-i18n="equipFishingRod">装备鱼竿</span><select id="fishing-rod-select"></select></label>
+            <p id="fishing-rod-progress" class="fishing-rod-progress"></p>
+          </section>
           <div class="fishing-panel-heading"><div><span data-i18n="fishingGuide">钓鱼指南</span><strong data-i18n="fishingGuideHint">稳住，别让老板发现</strong></div><span>🎣</span></div>
           <ol class="fishing-guide-list">
             <li><span>1</span><p><b data-i18n="castRod">抛竿等待</b><small data-i18n="castRodHint">鱼儿咬钩前不要着急</small></p></li>
@@ -1216,13 +1243,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.2</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.3</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.2</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.3</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
