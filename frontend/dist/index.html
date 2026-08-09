@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=59">
+  <link rel="stylesheet" href="./style.css?v=60">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.16.4</span>
+        <span id="app-version-badge" class="version-badge">v0.16.5</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -1038,6 +1038,7 @@
       <nav id="fishing-tabs" class="fishing-tabs" aria-label="摸鱼玩法">
         <button type="button" class="active" data-fishing-tab="fishing"><span>🎣</span><b data-i18n="fishingIsland">钓鱼小岛</b></button>
         <button type="button" data-fishing-tab="slacking"><span>🐟</span><b data-i18n="slackingIsland">摸鱼小岛</b></button>
+        <button type="button" data-fishing-tab="pet"><span>🐾</span><b data-i18n="petIsland">摸鱼小宠</b></button>
       </nav>
       <div id="fishing-layout" class="fishing-layout">
         <aside class="panel fishing-side-panel">
@@ -1086,6 +1087,39 @@
             <div class="slacking-meter exposure"><span data-i18n="slackingExposure">老板警觉</span><div><i id="slacking-exposure-bar"></i></div><b id="slacking-exposure-value">0%</b></div>
             <p id="slacking-result" class="slacking-result hidden" aria-live="polite"></p>
             <button id="slacking-action" type="button" class="primary-btn slacking-action"><span>🐟</span><b data-i18n="startSlacking">开始摸鱼</b></button>
+          </div>
+        </section>
+        <section id="pet-panel" class="panel pet-panel hidden" aria-labelledby="pet-title">
+          <div class="pet-aquarium" aria-hidden="true">
+            <div class="pet-sun"></div>
+            <div class="pet-bubbles"><i></i><i></i><i></i><i></i></div>
+            <div id="pet-avatar" class="pet-avatar"><span id="pet-sprite" class="pet-sprite" data-motion="idle"></span></div>
+            <div class="pet-seabed"><i></i><i></i><i></i></div>
+          </div>
+          <div class="pet-card">
+            <div class="pet-heading">
+              <div><small>DESK PET</small><h2 id="pet-title" data-i18n="petTitle">桌面小宠舱</h2><p data-i18n="petHint">布鲁斯会陪你度过摸鱼间隙，吃掉你钓到的鱼。</p></div>
+              <span class="pet-live-chip"><i></i><b data-i18n="petOnline">陪伴中</b></span>
+            </div>
+            <div id="pet-picker" class="pet-picker" aria-label="切换小宠">
+              <button type="button" class="active" data-pet-id="bruce"><span class="pet-picker-sprite bruce"></span><b data-i18n="petBruce">布鲁斯</b></button>
+              <button type="button" data-pet-id="tangerine"><span class="pet-picker-sprite tangerine"></span><b data-i18n="petTangerine">橘小福</b></button>
+              <button type="button" data-pet-id="luna"><span class="pet-picker-sprite luna"></span><b data-i18n="petLuna">月白</b></button>
+              <button type="button" data-pet-id="cape"><span class="pet-picker-sprite cape"></span><b data-i18n="petCape">披风</b></button>
+            </div>
+            <label class="pet-select"><span data-i18n="petFood">选择鱼获</span><select id="pet-food-select"></select></label>
+            <div class="pet-status-row"><strong id="pet-name">—</strong><span id="pet-level">Lv.1</span><em id="pet-mood">—</em></div>
+            <div class="pet-xp-row"><span data-i18n="petGrowth">成长</span><div><i id="pet-xp-bar"></i></div><b id="pet-xp">0 / 100</b></div>
+            <div class="pet-meters">
+              <div><span data-i18n="petEnergy">精力</span><i><b id="pet-energy-bar"></b></i><em id="pet-energy">0%</em></div>
+              <div><span data-i18n="petAffection">亲密度</span><i><b id="pet-affection-bar"></b></i><em id="pet-affection">0%</em></div>
+            </div>
+            <p id="pet-result" class="pet-result" aria-live="polite"></p>
+            <div id="pet-actions" class="pet-actions">
+              <button type="button" data-pet-action="feed"><span>🍪</span><b data-i18n="petFeed">喂食</b></button>
+              <button type="button" data-pet-action="play"><span>🫧</span><b data-i18n="petPlay">陪玩</b><small id="pet-play-charge">3/3</small></button>
+              <button type="button" data-pet-action="nap"><span>💤</span><b data-i18n="petNap">打盹</b><small id="pet-nap-cooldown" class="hidden"></small></button>
+            </div>
           </div>
         </section>
         <aside class="panel fishing-guide-panel">
@@ -1245,13 +1279,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.4</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.5</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.4</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.5</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1288,6 +1322,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=72" type="module"></script>
+  <script src="./app.js?v=76" type="module"></script>
 </body>
 </html>

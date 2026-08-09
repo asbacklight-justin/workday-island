@@ -5,6 +5,19 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.5] - 2026-08-09
+
+### 新增 / Added
+
+- 摸鱼岛新增可切换的小宠阵容：布鲁斯、橘小福、月白与披风；每只小宠独立保存成长、精力、亲密度、玩耍充能、睡觉冷却和动作状态。
+- 小宠喂食会消耗本机鱼获；玩耍每分钟恢复 1 点充能（最多 3 次），睡觉完成后进入 10 分钟冷却，避免无限重复操作。
+
+### 修复与优化 / Fixed & improved
+
+- 小宠动作节奏放缓并保持连续帧，修复偶发短暂消失的问题。
+- 修复小宠状态初始化时导致顶部功能入口无法点击的启动错误。
+- 账号头像现与 Backlight Web 端一致：`/user/info` 返回的相对头像路径会自动补全服务前缀，并兼容多种头像字段与按用户 ID 的兜底地址。
+
 ## [0.16.4] - 2026-08-09
 
 ### 新增 / Added
@@ -404,6 +417,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
 [0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
+[0.16.5]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.5
 [0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3
 [0.16.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2
 [0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
