@@ -62,7 +62,7 @@ const translations = {
     translationHistoryLoading: '正在读取翻译历史…', noTranslationHistory: '暂无翻译历史', translationHistoryDeleted: '翻译历史已删除', translationHistoryBatchDeleted: '已删除选中的翻译历史', translationHistoryExported: '翻译历史已导出',
     confirmDeleteTranslation: '确定删除这条翻译历史吗？', confirmBatchDeleteTranslation: '确定删除选中的 {count} 条翻译历史吗？', totalRecords: '共 {count} 条',
     languageAuto: '自动检测', languageZh: '中文', languageEn: '英文', languageJa: '日语', languageKo: '韩语', languageFr: '法语', languageDe: '德语', languageEs: '西班牙语', languageRu: '俄语', languagePt: '葡萄牙语', languageAr: '阿拉伯语',
-    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手', workdayMember: '工位岛用户', workdayPlusMember: '工位岛 Plus 会员', workdayProMember: '工位岛 Pro 会员', workdayUltraMember: '工位岛 Ultra 会员', membershipUpdated: '{membership} 已生效', membershipThemeApplied: '已自动切换为 {membership} 专属主题',
+    account: '账号', accountCenter: '账号中心', accountLogin: '登录', accountLoginTitle: '登录工位岛', accountLoginHint: '一次登录即可使用 AI 对话、实时聊天、好友、工作云盘、云笔记、链接分享和全能翻译。', accountSecurityHint: '密码仅用于本次登录，不会保存在本机。', signIn: '登录账号', signingIn: '正在登录…', signedOut: '未登录', accountSignedIn: '已登录', signOutAll: '退出账号', signingOut: '正在退出…', signOutHint: '退出后，AI 对话、实时聊天、工作云盘、云笔记、链接分享和全能翻译会同时退出。', loginSuccess: '登录成功', logoutSuccess: '已退出账号', ready: '已就绪', myAccount: '我的账号', chatLoginRequired: '登录账号后即可使用好友和实时聊天。', aiChat: 'AI 对话', cloudNotes: '云笔记', linkSharing: '链接分享', aiAvailableTitle: 'AI 对话现已可用', aiAvailableHint: '登录后即可使用 DeepSeek 智能助手', workdayMember: '工位岛用户', workdayPlusMember: '工位岛 Plus 会员', workdayProMember: '工位岛 Pro 会员', workdayUltraMember: '工位岛 Ultra 会员', membershipUpdated: '{membership} 已生效', membershipThemeApplied: '已自动切换为 {membership} 专属主题', trialInvitation: '免费试用资格', trialInvitationHint: '你获得了 {role} 免费试用 {days} 天的资格', trialInvitationExpiry: '请在 {time} 前领取', claimTrial: '确认领取', claimingTrial: '正在领取…', trialClaimConfirm: '确认领取 {role} 的 {days} 天免费试用吗？领取后将立即生效，且不可重复领取。', trialClaimed: '已领取 {role} 免费试用，会员权益现已生效',
     realtimeChat: '实时聊天', chat: '实时聊天', backToDashboard: '返回工作台', offline: '已下线', online: '已上线', connecting: '正在连接', authenticating: '正在认证', reconnecting: '正在重连', authFailed: '需要重新连接',
     myRealtimeIdentity: '我的实时身份', copyId: '复制 ID', identityHint: '首次上线会自动创建安全设备身份，私钥仅保存在系统安全存储中。', nickname: '昵称', nicknamePlaceholder: '例如：小明的桌面',
     deviceLogin: '一键登录', passwordLogin: '账号密码', passwordLoginHint: '使用已有账号登录；密码仅用于当前在线会话，不会保存到本机。', accountUsername: '用户名', accountPassword: '密码',
@@ -164,7 +164,7 @@ const translations = {
     translationHistoryLoading: 'Loading translation history…', noTranslationHistory: 'No translation history', translationHistoryDeleted: 'Translation history deleted', translationHistoryBatchDeleted: 'Selected translation history deleted', translationHistoryExported: 'Translation history exported',
     confirmDeleteTranslation: 'Delete this translation history entry?', confirmBatchDeleteTranslation: 'Delete the selected {count} history entries?', totalRecords: '{count} records',
     languageAuto: 'Auto detect', languageZh: 'Chinese', languageEn: 'English', languageJa: 'Japanese', languageKo: 'Korean', languageFr: 'French', languageDe: 'German', languageEs: 'Spanish', languageRu: 'Russian', languagePt: 'Portuguese', languageAr: 'Arabic',
-    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant', workdayMember: 'Workday Island Member', workdayPlusMember: 'Workday Island Plus', workdayProMember: 'Workday Island Pro', workdayUltraMember: 'Workday Island Ultra', membershipUpdated: '{membership} is now active', membershipThemeApplied: 'Switched automatically to the {membership} member theme',
+    account: 'Account', accountCenter: 'Account Center', accountLogin: 'Sign In', accountLoginTitle: 'Sign in to Workday Island', accountLoginHint: 'One sign-in unlocks AI Chat, realtime chat, friends, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', accountSecurityHint: 'Your password is used only for this session and is not stored locally.', signIn: 'Sign In', signingIn: 'Signing in…', signedOut: 'Signed out', accountSignedIn: 'Signed in', signOutAll: 'Sign Out', signingOut: 'Signing out…', signOutHint: 'Signing out disconnects AI Chat, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator.', loginSuccess: 'Signed in', logoutSuccess: 'Signed out', ready: 'Ready', myAccount: 'My account', chatLoginRequired: 'Sign in to use friends and realtime chat.', aiChat: 'AI Chat', cloudNotes: 'Cloud Notes', linkSharing: 'Link Sharing', aiAvailableTitle: 'AI Chat is now available', aiAvailableHint: 'Sign in to use the DeepSeek assistant', workdayMember: 'Workday Island Member', workdayPlusMember: 'Workday Island Plus', workdayProMember: 'Workday Island Pro', workdayUltraMember: 'Workday Island Ultra', membershipUpdated: '{membership} is now active', membershipThemeApplied: 'Switched automatically to the {membership} member theme', trialInvitation: 'Free trial available', trialInvitationHint: 'You have a {days}-day free trial for {role}', trialInvitationExpiry: 'Claim before {time}', claimTrial: 'Claim trial', claimingTrial: 'Claiming…', trialClaimConfirm: 'Claim the {days}-day free trial for {role}? It starts immediately and can only be claimed once.', trialClaimed: '{role} free trial claimed. Your membership is now active.',
     realtimeChat: 'Realtime Chat', chat: 'Realtime chat', backToDashboard: 'Back to dashboard', offline: 'Offline', online: 'Online', connecting: 'Connecting', authenticating: 'Authenticating', reconnecting: 'Reconnecting', authFailed: 'Reconnect required',
     myRealtimeIdentity: 'My realtime identity', copyId: 'Copy ID', identityHint: 'Your first connection creates a secure device identity. Its private key stays in system secure storage.', nickname: 'Nickname', nicknamePlaceholder: 'e.g. Alex’s desktop',
     deviceLogin: 'One-click login', passwordLogin: 'Username & password', passwordLoginHint: 'Sign in with an existing account. Your password is kept only for this online session and is never saved locally.', accountUsername: 'Username', accountPassword: 'Password',
@@ -252,7 +252,7 @@ function normaliseHeaderEntries(value) {
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.3', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.4', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -288,6 +288,7 @@ const state = {
     loadingConversations: false, loadingMessages: false, generating: false, requestId: '', settingsOpen: false
   },
   realtime: {status: 'offline', desiredOnline: false, lastError: '', authMode: 'device', identity: null, messages: [], friends: [], friendRequests: []},
+  accountTrial: {items: [], loading: false, acceptingID: 0, requestID: 0},
   chatOpen: false,
   chatSection: 'conversation',
   chatUnread: 0,
@@ -328,6 +329,7 @@ let lastAccountProfileRefreshAt = 0;
 let realtimeRegistrationBusy = false;
 let fishingWaitTimer = 0;
 let fishingAnimationFrame = 0;
+let fishingFxTimer = 0;
 let slackingAnimationFrame = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
@@ -710,6 +712,7 @@ function bindEvents() {
   $('#notification-next').addEventListener('click', () => changeNotificationPage(1));
   $('#close-account').addEventListener('click', closeAccountPage);
   $('#account-service-grid').addEventListener('click', openAccountService);
+  $('#account-trial-invitations').addEventListener('click', handleAccountTrialAction);
   $('#account-mode-tabs').addEventListener('click', changeAccountMode);
   $('#account-login-form').addEventListener('submit', submitAccountLogin);
   $('#account-register-form').addEventListener('submit', submitRealtimeRegistration);
@@ -3576,7 +3579,11 @@ function renderAccountSession() {
     $('#account-profile-view').dataset.membership = membership.tier;
     $('#account-chat-status').textContent = realtimeStatusLabel(state.realtime?.status || 'offline');
     $('#account-service-grid').classList.toggle('chat-online', state.realtime?.status === 'online');
+    renderAccountTrialInvitations();
   } else {
+    state.accountTrial.items = [];
+    state.accountTrial.loading = false;
+    $('#account-trial-invitations').classList.add('hidden');
     const registerMode = state.accountMode === 'register';
     $('#account-login-form').classList.toggle('hidden', registerMode);
     $('#account-register-form').classList.toggle('hidden', !registerMode);
@@ -3587,6 +3594,96 @@ function renderAccountSession() {
   renderNoteShareSession();
   renderThemeAccess();
   applyTheme();
+}
+
+function trialRoleName(invitation) {
+  return invitation?.role_name || invitation?.roleName || invitation?.role_code || invitation?.roleCode || t('workdayMember');
+}
+
+function formatTrialExpiry(value) {
+  const date = value ? new Date(value) : null;
+  if (!date || Number.isNaN(date.getTime())) return '—';
+  return date.toLocaleString(locale(), {month:'numeric', day:'numeric', hour:'2-digit', minute:'2-digit', hour12:false});
+}
+
+function renderAccountTrialInvitations() {
+  const section = $('#account-trial-invitations');
+  if (!state.account?.loggedIn) {
+    section.classList.add('hidden');
+    return;
+  }
+  const items = Array.isArray(state.accountTrial?.items) ? state.accountTrial.items : [];
+  if (!state.accountTrial.loading && !items.length) {
+    section.classList.add('hidden');
+    section.replaceChildren();
+    return;
+  }
+  section.classList.remove('hidden');
+  if (state.accountTrial.loading && !items.length) {
+    section.innerHTML = `<div class="account-trial-loading"><span></span>${escapeHTML(t('trialInvitation'))}</div>`;
+    return;
+  }
+  section.innerHTML = items.map(invitation => {
+    const id = Number(invitation?.id) || 0;
+    const accepting = Number(state.accountTrial.acceptingID) === id;
+    const days = Math.max(1, Number(invitation?.trial_days ?? invitation?.trialDays) || 1);
+    return `<article class="account-trial-card"><span class="account-trial-icon" aria-hidden="true">✦</span><div><small>${escapeHTML(t('trialInvitation'))}</small><strong>${escapeHTML(t('trialInvitationHint', {role:trialRoleName(invitation), days}))}</strong><em>${escapeHTML(t('trialInvitationExpiry', {time:formatTrialExpiry(invitation?.expires_at ?? invitation?.expiresAt)}))}</em></div><button type="button" data-trial-invitation-id="${id}" ${accepting || !id ? 'disabled' : ''}>${escapeHTML(t(accepting ? 'claimingTrial' : 'claimTrial'))}</button></article>`;
+  }).join('');
+}
+
+async function loadAccountTrialInvitations() {
+  if (!state.account?.loggedIn || typeof api.GetMyMembershipTrialInvitations !== 'function') return;
+  const requestID = ++state.accountTrial.requestID;
+  state.accountTrial.loading = true;
+  renderAccountTrialInvitations();
+  try {
+    const invitations = await api.GetMyMembershipTrialInvitations();
+    if (requestID !== state.accountTrial.requestID || !state.account?.loggedIn) return;
+    state.accountTrial.items = (Array.isArray(invitations) ? invitations : []).filter(item => String(item?.status || 'pending').toLowerCase() === 'pending');
+  } catch (error) {
+    // The eligibility check is optional for the page itself. Avoid an error
+    // toast on every page open if the account service is temporarily offline.
+    if (requestID === state.accountTrial.requestID) state.accountTrial.items = [];
+  } finally {
+    if (requestID === state.accountTrial.requestID) {
+      state.accountTrial.loading = false;
+      renderAccountTrialInvitations();
+    }
+  }
+}
+
+async function handleAccountTrialAction(event) {
+  const button = event.target.closest('[data-trial-invitation-id]');
+  const invitationID = Number(button?.dataset.trialInvitationId) || 0;
+  const invitation = state.accountTrial.items.find(item => Number(item?.id) === invitationID);
+  if (!invitation || !invitationID || state.accountTrial.acceptingID) return;
+  const days = Math.max(1, Number(invitation?.trial_days ?? invitation?.trialDays) || 1);
+  const accepted = await showAppConfirm(t('trialClaimConfirm', {role:trialRoleName(invitation), days}), {title:t('trialInvitation'), confirmText:t('claimTrial')});
+  if (!accepted) return;
+  state.accountTrial.acceptingID = invitationID;
+  renderAccountTrialInvitations();
+  try {
+    await api.AcceptMembershipTrialInvitation(invitationID);
+    state.accountTrial.items = state.accountTrial.items.filter(item => Number(item?.id) !== invitationID);
+    const previousMembership = resolveAccountMembership(state.account.user);
+    const session = await api.RefreshAccountSession();
+    if (session?.loggedIn && session?.user) {
+      state.account = {loggedIn:true, user:session.user};
+      state.cloud.session = {loggedIn:true, user:session.user};
+      if (session.realtime) state.realtime = {...state.realtime, ...session.realtime};
+      await applyAutomaticMemberTheme(previousMembership, resolveAccountMembership(session.user));
+    }
+    renderAccountSession();
+    renderCloudSession();
+    renderRealtime();
+    showToast(t('trialClaimed', {role:trialRoleName(invitation)}));
+  } catch (error) {
+    showToast(readError(error), true);
+    await loadAccountTrialInvitations();
+  } finally {
+    state.accountTrial.acceptingID = 0;
+    renderAccountTrialInvitations();
+  }
 }
 
 async function refreshAccountProfile(force = false) {
@@ -3633,7 +3730,12 @@ function openAccountPage(mode = 'login') {
   document.body.classList.add('account-open');
   $('#account-page').classList.remove('hidden');
   renderAccountSession();
-  if (state.account.loggedIn) void refreshAccountProfile(true);
+  if (state.account.loggedIn) {
+    void refreshAccountProfile(true);
+    // An eligibility check is deliberately made on every account-centre entry
+    // so a newly created invitation appears without restarting the app.
+    void loadAccountTrialInvitations();
+  }
   if (!state.account.loggedIn) {
     setTimeout(() => $(state.accountMode === 'register' ? '#register-username' : '#account-username').focus(), 40);
   }
@@ -3883,6 +3985,7 @@ async function submitAccountLogin(event) {
     renderAIChat();
     renderRealtime();
     renderNotificationSession();
+    void loadAccountTrialInvitations();
     await refreshNotificationUnread();
     if (state.notificationOpen) await loadUserNotices();
     if (state.shareManagementOpen) await loadNoteShares();
@@ -5047,6 +5150,18 @@ function showFishingResult(message, kind = '') {
   result.className = `fishing-result${kind ? ` ${kind}` : ''}`;
 }
 
+function playFishingFx(effect, fish = state.fishing.fish) {
+  const fx = $('#fishing-fx');
+  if (!fx) return;
+  window.clearTimeout(fishingFxTimer);
+  $('#fishing-catch-emoji').textContent = fish?.emoji || '🐟';
+  fx.className = 'fishing-fx';
+  // Force a new animation even when the player lands the same timing twice.
+  void fx.offsetWidth;
+  fx.classList.add(`fx-${effect}`);
+  fishingFxTimer = window.setTimeout(() => { fx.className = 'fishing-fx'; }, effect === 'caught' ? 1100 : 620);
+}
+
 async function openFishingPage() {
   const membership = resolveAccountMembership(state.account?.user);
   if (!state.account?.loggedIn || membership.rank < 1) {
@@ -5103,6 +5218,7 @@ function renderFishingIdle() {
   $('#fishing-result').classList.add('hidden');
   $('#fishing-float').className = 'fishing-float';
   $('#fishing-shadow').classList.remove('active');
+  $('#fishing-fx').className = 'fishing-fx';
   renderFishingMeters();
   renderFishingRods();
   setFishingAction('startFishing');
@@ -5126,6 +5242,7 @@ function startFishingRound() {
   $('#fishing-result').classList.add('hidden');
   $('#fishing-float').className = 'fishing-float waiting';
   $('#fishing-shadow').classList.remove('active');
+  playFishingFx('cast', game.fish);
   setFishingAction('waitingForFish', true);
   renderFishingMeters();
   renderFishingRods();
@@ -5149,6 +5266,7 @@ function beginFishingReel() {
   $('#fishing-float').className = 'fishing-float bite';
   $('#fishing-shadow').textContent = game.fish.emoji;
   $('#fishing-shadow').classList.add('active');
+  playFishingFx('bite', game.fish);
   relocateFishingTarget();
   renderFishingMeters();
   setFishingAction('reelNow');
@@ -5188,16 +5306,19 @@ function handleFishingAction() {
     game.progress += (27 + Math.min(12, game.streak * 2)) * (1 + (Number(game.rod?.effect?.progress) || 0) / 100);
     game.tension = Math.max(0, game.tension - 12);
     showFishingResult(t('fishingPerfect'), 'perfect');
+    playFishingFx('perfect', game.fish);
   } else if (game.marker >= zoneStart && game.marker <= zoneEnd) {
     game.streak = 0;
     game.progress += 14 * (1 + (Number(game.rod?.effect?.progress) || 0) / 100);
     game.tension = Math.max(0, game.tension - 4);
     showFishingResult(t('fishingGood'));
+    playFishingFx('good', game.fish);
   } else {
     game.streak = 0;
     game.progress = Math.max(0, game.progress - 7);
     game.tension += (23 + game.fish.difficulty * 3) * (1 - (Number(game.rod?.effect?.tensionGuard) || 0) / 100);
     showFishingResult(t('fishingMiss'), 'escaped');
+    playFishingFx('miss', game.fish);
   }
   renderFishingMeters();
   if (game.progress >= 100) {
@@ -5233,12 +5354,14 @@ function finishFishingRound(caught, reason = 'escaped') {
     $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
     $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
     showFishingResult(`${t('fishingCaught', {name:fishingFishName(game.fish)})}${rodDrop ? `\n${t('rodUnlocked', {rarity:fishingRodRarityLabel(rodDrop.rarity), name:fishingRodName(rodDrop)})}` : ''}`, 'caught');
+    playFishingFx('caught', game.fish);
   } else {
     game.phase = 'escaped';
     const key = reason === 'timeout' ? 'fishingTimeout' : 'fishingEscaped';
     $('#fishing-phase-label').textContent = t(key, {name:fishingFishName(game.fish)});
     $('#fishing-status-text').textContent = t('fishingReadyHint');
     showFishingResult(t(key, {name:fishingFishName(game.fish)}), 'escaped');
+    playFishingFx('escaped', game.fish);
   }
   renderFishingMeters();
   renderFishingRods();
@@ -6945,6 +7068,7 @@ function createPreviewAPI() {
     ],
     policy: {allowed_models:['deepseek-v4-flash','deepseek-v4-pro'],daily_token_limit:0,total_token_limit:0,daily_used:0,total_used:0,source_type:'default',source_name:'系统默认',quota_exceeded:false,quota_message:''}
   };
+  let previewTrialInvitations = [{id:901,role_id:3,role_name:'工位岛 Plus 会员',role_code:'WORKDAY_ISLAND_PLUS',trial_days:7,status:'pending',expires_at:new Date(now.getTime()+3*86400000).toISOString(),remark:'欢迎体验会员功能'}];
   const previewEnglishQuestionRecord = question => ({
     wordId:Number(question?.wordId) || 0,
     word:String(question?.word || ''),
@@ -6981,6 +7105,8 @@ function createPreviewAPI() {
     async GetAccountSession(){ return {loggedIn:previewCloud.session.loggedIn,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LoginAccount(username,password){ if(!username||!password) throw new Error('请输入用户名和密码'); if(previewCloud.session.user?.username!==username)previewNoteShares=[]; previewRealtime.authMode='password'; previewRealtime.identity={userId:123,username,displayName:username==='justin'?'Justin':username,authMode:'password'}; previewRealtime.status='online'; previewRealtime.desiredOnline=true; previewRealtime.friends=[{user:{userId:456,username:'lisi',displayName:'李四',online:true},friendsSince:new Date().toISOString()}]; previewCloud.session={loggedIn:true,user:{id:123,username,nickname:previewRealtime.identity.displayName,membership_tier:'plus',roles:[{role_code:'WORKDAY_ISLAND_PLUS'}],avatar_url:'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cdefs%3E%3ClinearGradient id=%22g%22 x2=%221%22 y2=%221%22%3E%3Cstop stop-color=%22%236fe1c5%22/%3E%3Cstop offset=%221%22 stop-color=%22%2376aef5%22/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width=%22100%22 height=%22100%22 rx=%2230%22 fill=%22url(%23g)%22/%3E%3Ccircle cx=%2250%22 cy=%2238%22 r=%2218%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3Cpath d=%22M18 92c4-22 16-32 32-32s28 10 32 32%22 fill=%22%23fff%22 fill-opacity=%22.92%22/%3E%3C/svg%3E'}}; return {loggedIn:true,user:structuredClone(previewCloud.session.user),realtime:structuredClone(previewRealtime)}; },
     async LogoutAccount(){ previewRealtime.status='offline'; previewRealtime.desiredOnline=false; previewRealtime.identity=null; previewRealtime.friends=[]; previewRealtime.friendRequests=[]; previewCloud.session={loggedIn:false,user:null}; return {loggedIn:false,user:null,realtime:structuredClone(previewRealtime)}; },
+    async GetMyMembershipTrialInvitations(){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); return structuredClone(previewTrialInvitations.filter(item=>item.status==='pending')); },
+    async AcceptMembershipTrialInvitation(id){ const invitation=previewTrialInvitations.find(item=>Number(item.id)===Number(id)&&item.status==='pending'); if(!invitation) throw new Error('试用资格已失效或已领取'); invitation.status='accepted'; if(previewCloud.session.user){ previewCloud.session.user.membership_tier='plus'; previewCloud.session.user.roles=[{role_code:'WORKDAY_ISLAND_PLUS',role_name:'工位岛 Plus 会员'}]; } return {id:Date.now(),role_id:invitation.role_id,status:'active'}; },
     async ListUserNotices(page,pageSize,noticeType,readStatus){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); const filtered=previewNotifications.filter(item=>(!noticeType||item.notice_type===noticeType)&&(!readStatus||(readStatus==='READ'?item.is_read:!item.is_read))); const start=(page-1)*pageSize; return {total:filtered.length,list:structuredClone(filtered.slice(start,start+pageSize)),page,pageSize}; },
     async GetUserNoticeUnreadCount(){ if(!previewCloud.session.loggedIn)throw new Error('请先登录工位岛账号'); return previewNotifications.filter(item=>!item.is_read).length; },
     async MarkUserNoticeRead(id){ const item=previewNotifications.find(value=>Number(value.id)===Number(id)); if(item)item.is_read=true; return true; },
@@ -7115,7 +7241,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.3',latestVersion:'0.16.3',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'聊天新增 60 个轻量动效 Emoji；完整窗口优化；新增摸鱼岛双玩法、鱼竿装备与掉落系统。\nAdded 60 animated chat emoji, a roomier regular window, and the Slack Island dual-game and fishing-rod system.'} : {currentVersion:'0.16.3',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.4',latestVersion:'0.16.4',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增个人中心免费试用领取，并优化钓鱼小岛的抛竿、咬钩、命中与收获动效。\nAdded one-time trial claiming in Account Center and richer Fishing Island cast, bite, timing, and catch effects.'} : {currentVersion:'0.16.4',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.3"
+const appVersion = "0.16.4"
 
 const (
 	defaultFullWindowWidth = 1100
@@ -342,6 +342,28 @@ func (a *App) RefreshAccountSession() (AccountSession, error) {
 		return a.accountSession(), err
 	}
 	return a.accountSession(), nil
+}
+
+// GetMyMembershipTrialInvitations is intentionally scoped to the signed-in
+// account. The backend obtains the recipient from the JWT rather than trusting
+// a user ID supplied by the desktop UI.
+func (a *App) GetMyMembershipTrialInvitations() ([]MembershipTrialInvitation, error) {
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.ListMyMembershipTrialInvitations(ctx)
+}
+
+// AcceptMembershipTrialInvitation accepts a recipient-bound trial offer. The
+// remote service locks the invitation in a transaction, validates it, writes a
+// time-bounded role grant, and marks the invitation accepted atomically.
+func (a *App) AcceptMembershipTrialInvitation(invitationID uint64) (MembershipRoleGrantResult, error) {
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.AcceptMembershipTrialInvitation(ctx, invitationID)
 }
 
 func (a *App) LoginAccount(username, password string) (AccountSession, error) {

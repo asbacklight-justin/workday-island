@@ -129,6 +129,27 @@ type AccountSession struct {
 	Realtime RealtimeSnapshot `json:"realtime"`
 }
 
+// MembershipTrialInvitation is a recipient-bound, one-time membership trial
+// offer. The desktop client never derives a membership tier locally: it only
+// displays the server-authoritative invitation and asks the server to accept it.
+type MembershipTrialInvitation struct {
+	ID        uint64    `json:"id"`
+	RoleID    uint64    `json:"role_id"`
+	TrialDays int       `json:"trial_days"`
+	Status    string    `json:"status"`
+	ExpiresAt time.Time `json:"expires_at"`
+	Remark    string    `json:"remark"`
+	RoleName  string    `json:"role_name"`
+	RoleCode  string    `json:"role_code"`
+}
+
+type MembershipTrialInvitationPage struct {
+	Total    int64                       `json:"total"`
+	List     []MembershipTrialInvitation `json:"list"`
+	Page     int                         `json:"page"`
+	PageSize int                         `json:"pageSize"`
+}
+
 type CloudDiskNode struct {
 	ID          uint64    `json:"id"`
 	ParentID    uint64    `json:"parent_id"`
@@ -284,6 +305,35 @@ func (client *CloudDiskClient) RefreshProfile(ctx context.Context) error {
 	client.user = &user
 	client.mu.Unlock()
 	return nil
+}
+
+// ListMyMembershipTrialInvitations returns only the authenticated user's
+// pending invitations. Recipient ownership and availability are enforced again
+// by the API when an invitation is accepted.
+func (client *CloudDiskClient) ListMyMembershipTrialInvitations(ctx context.Context) ([]MembershipTrialInvitation, error) {
+	var result MembershipTrialInvitationPage
+	err := client.requestAccountJSON(ctx, http.MethodGet, "/membership/my-trial-invitations?page=1&pageSize=20&status=pending", nil, &result, "会员试用服务")
+	if result.List == nil {
+		result.List = []MembershipTrialInvitation{}
+	}
+	return result.List, err
+}
+
+// AcceptMembershipTrialInvitation delegates the one-time acceptance to the
+// service. The API performs the transactional row lock and grant creation.
+func (client *CloudDiskClient) AcceptMembershipTrialInvitation(ctx context.Context, invitationID uint64) (MembershipRoleGrantResult, error) {
+	var result MembershipRoleGrantResult
+	err := client.requestAccountJSON(ctx, http.MethodPost, fmt.Sprintf("/membership/trial-invitations/%d/accept", invitationID), nil, &result, "会员试用服务")
+	return result, err
+}
+
+type MembershipRoleGrantResult struct {
+	ID        uint64     `json:"id"`
+	UserID    uint64     `json:"user_id"`
+	RoleID    uint64     `json:"role_id"`
+	StartTime time.Time  `json:"start_time"`
+	EndTime   *time.Time `json:"end_time"`
+	Status    string     `json:"status"`
 }
 
 func (client *CloudDiskClient) Logout() {

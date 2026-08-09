@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.16.3</span>
+        <span id="app-version-badge" class="version-badge">v0.16.4</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -271,6 +271,7 @@
             <div id="account-membership-badge" class="account-membership-badge membership-member">
               <span aria-hidden="true">W</span><b data-i18n="workdayMember">工位岛用户</b>
             </div>
+            <section id="account-trial-invitations" class="account-trial-invitations hidden" aria-live="polite"></section>
             <div id="account-service-grid" class="account-service-grid">
               <button type="button" data-account-service="chat"><span class="service-dot"></span><p><b data-i18n="realtimeChat">实时聊天</b><small id="account-chat-status" data-i18n="connecting">正在连接</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
               <button type="button" data-account-service="cloud"><span class="service-dot"></span><p><b data-i18n="workCloud">工作云盘</b><small data-i18n="ready">已就绪</small></p><span class="service-arrow" aria-hidden="true">›</span></button>
@@ -1050,10 +1051,11 @@
         </aside>
         <section class="panel fishing-lake-panel">
           <div class="fishing-sky"><span></span><span></span><span></span></div>
-          <div class="fishing-water">
+          <div id="fishing-water" class="fishing-water">
             <div class="fishing-ripples"><i></i><i></i><i></i></div>
             <div id="fishing-float" class="fishing-float"><span></span><i></i></div>
             <div id="fishing-shadow" class="fishing-shadow">🐟</div>
+            <div id="fishing-fx" class="fishing-fx" aria-hidden="true"><i class="fishing-cast-line"></i><i class="fishing-splash splash-a"></i><i class="fishing-splash splash-b"></i><span class="fishing-sparkles">✦ ✦ ✦</span><b id="fishing-catch-emoji">🐟</b></div>
           </div>
           <div class="fishing-game-card">
             <div class="fishing-status-row">
@@ -1243,13 +1245,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.3</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.4</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.3</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.4</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>

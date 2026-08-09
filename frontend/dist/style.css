@@ -798,6 +798,12 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .account-membership-badge { width: max-content; max-width: 100%; min-height: 27px; margin: 10px auto 0; padding: 4px 11px 4px 5px; border: 1px solid rgba(255,255,255,.09); border-radius: 99px; display: flex; align-items: center; gap: 7px; color: #91a0b4; background: rgba(255,255,255,.035); box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
 .account-membership-badge > span { width: 17px; height: 17px; flex: 0 0 17px; border-radius: 50%; display: grid; place-items: center; color: #91a0b4; background: rgba(255,255,255,.055); font-size: 8px; font-weight: 900; }
 .account-membership-badge > b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; font-weight: 850; letter-spacing: .02em; }
+.account-trial-invitations { width:min(570px,100%); margin:12px auto -5px; text-align:left; }
+.account-trial-card { min-height:57px; padding:9px 10px; border:1px solid rgba(255,208,102,.28); border-radius:12px; display:grid; grid-template-columns:27px minmax(0,1fr) auto; align-items:center; gap:8px; background:linear-gradient(120deg,rgba(255,207,101,.12),rgba(122,103,255,.09)); box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 22px rgba(129,83,222,.08); }
+.account-trial-icon { width:26px; height:26px; border-radius:9px; display:grid; place-items:center; color:#fff1ac; background:linear-gradient(145deg,#a970ff,#f0b95d); box-shadow:0 0 13px rgba(206,140,255,.34); font-size:13px; }
+.account-trial-card div { min-width:0; }.account-trial-card small,.account-trial-card strong,.account-trial-card em { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }.account-trial-card small { color:#f5d38a; font-size:8px; letter-spacing:.06em; font-weight:800; }.account-trial-card strong { margin-top:2px; color:#e8eff4; font-size:10px; }.account-trial-card em { margin-top:3px; color:#91a2b5; font-size:8px; font-style:normal; }
+.account-trial-card button { height:28px; padding:0 10px; border:1px solid rgba(255,225,147,.42); border-radius:8px; color:#241d36; background:linear-gradient(135deg,#fff0ad,#eeb670); box-shadow:0 4px 11px rgba(255,194,95,.16); cursor:pointer; font-size:9px; font-weight:850; white-space:nowrap; transition:transform .16s ease,filter .16s ease; }.account-trial-card button:hover:not(:disabled){transform:translateY(-1px);filter:brightness(1.06)}.account-trial-card button:disabled{opacity:.65;cursor:wait}
+.account-trial-loading { min-height:34px; display:flex; align-items:center; justify-content:center; gap:7px; color:#8193a6; font-size:9px; }.account-trial-loading span { width:12px; height:12px; border:2px solid rgba(126,226,211,.22); border-top-color:#72e1cf; border-radius:50%; animation:account-trial-spin .8s linear infinite; }
 .account-membership-badge.membership-plus { color: #91eaff; border-color: rgba(74,209,255,.27); background: linear-gradient(110deg,rgba(34,211,199,.10),rgba(70,135,255,.10)); box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 8px 22px rgba(43,171,226,.09); }
 .account-membership-badge.membership-plus > span { color:#b4f3ff; background:rgba(69,203,255,.16); box-shadow:0 0 10px rgba(65,213,255,.18); }
 .account-membership-badge.membership-pro { position:relative; overflow:hidden; color:#ebcdff; border-color:rgba(203,145,255,.34); background:linear-gradient(110deg,rgba(124,82,232,.18),rgba(255,184,75,.10)); box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 9px 25px rgba(130,75,219,.13); }
@@ -2202,6 +2208,7 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-theme="light"] .account-nav-button.membership-pro { color:#7540a8; border-color:rgba(155,91,212,.30); background:linear-gradient(125deg,rgba(173,119,235,.16),rgba(247,185,83,.14)); }
 :root[data-theme="light"] .account-nav-button.membership-ultra { color:#23324b; border-color:transparent; background:linear-gradient(rgba(250,252,255,.94),rgba(250,252,255,.94)) padding-box,linear-gradient(105deg,#20bfa9,#4e8ff0,#ab5be2,#eba936,#20bfa9) border-box; }
 :root[data-theme="light"] .account-membership-badge.membership-plus { color:#087b9c; background:linear-gradient(110deg,rgba(43,201,187,.14),rgba(75,130,231,.11)); }
+:root[data-theme="light"] .account-trial-card { border-color:rgba(177,125,45,.30); background:linear-gradient(120deg,rgba(255,237,183,.72),rgba(231,220,255,.53)); box-shadow:inset 0 1px 0 rgba(255,255,255,.78),0 8px 20px rgba(126,85,197,.08); }:root[data-theme="light"] .account-trial-card strong { color:#3a475c; }:root[data-theme="light"] .account-trial-card em { color:#6e7d91; }
 :root[data-theme="light"] .account-membership-badge.membership-pro { color:#542177; border-color:rgba(137,58,190,.55); background:linear-gradient(110deg,rgba(181,114,229,.24),rgba(255,195,91,.25)); box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 0 0 1px rgba(255,255,255,.36),0 7px 20px rgba(120,55,172,.14); }
 :root[data-theme="light"] .account-membership-badge.membership-pro > span { color:#57206f; background:linear-gradient(145deg,#dca3ff,#ffc85d); box-shadow:inset 0 0 0 1px rgba(113,43,154,.17),0 0 11px rgba(176,91,220,.22); }
 :root[data-theme="light"] .account-membership-badge.membership-pro > b { color:#4d176d; -webkit-text-fill-color:#4d176d; text-shadow:0 1px 0 rgba(255,255,255,.55); }
@@ -2788,6 +2795,18 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 .fishing-float.bite { top:28%; animation:fishing-bite .28s ease-in-out infinite alternate; }
 .fishing-shadow { position:absolute; left:50%; top:55%; opacity:0; transform:translate(-50%,-50%) scaleX(-1); filter:grayscale(1) brightness(.3) blur(2px); font-size:46px; transition:.35s; }
 .fishing-shadow.active { opacity:.30; animation:fishing-swim 3s ease-in-out infinite alternate; }
+.fishing-fx { pointer-events:none; position:absolute; inset:0; z-index:4; overflow:hidden; }
+.fishing-cast-line { position:absolute; left:50%; top:-10%; width:1px; height:0; opacity:0; transform-origin:top; background:linear-gradient(180deg,rgba(255,255,255,.94),rgba(141,247,227,.35)); box-shadow:0 0 5px rgba(196,255,244,.58); }
+.fishing-splash { position:absolute; left:50%; top:28%; width:10px; height:5px; opacity:0; border:2px solid rgba(190,255,246,.82); border-radius:50%; transform:translate(-50%,-50%); box-shadow:0 0 14px rgba(73,231,211,.46); }
+.fishing-splash.splash-b { border-color:rgba(255,234,150,.82); }
+.fishing-sparkles { position:absolute; left:50%; top:34%; opacity:0; color:#fff0a7; font-size:18px; letter-spacing:13px; white-space:nowrap; text-shadow:0 0 9px #ffdc77; transform:translate(-50%,-50%) scale(.35); }
+.fishing-fx b { position:absolute; left:50%; top:42%; opacity:0; font-size:58px; filter:drop-shadow(0 7px 8px rgba(0,15,30,.42)); transform:translate(-50%,-50%) scale(.35) rotate(-20deg); }
+.fishing-fx.fx-cast .fishing-cast-line { animation:fishing-cast-line .58s cubic-bezier(.16,.86,.36,1) both; }
+.fishing-fx.fx-cast .splash-a { animation:fishing-splash .58s ease-out .36s both; }
+.fishing-fx.fx-bite .splash-a,.fishing-fx.fx-bite .splash-b { animation:fishing-splash .52s ease-out both; }.fishing-fx.fx-bite .splash-b { animation-delay:.1s; }
+.fishing-fx.fx-perfect .fishing-sparkles,.fishing-fx.fx-good .fishing-sparkles { animation:fishing-sparkles .58s ease-out both; }.fishing-fx.fx-good .fishing-sparkles { color:#9ff8e5; text-shadow:0 0 9px #41d9c3; }
+.fishing-fx.fx-miss .splash-a { border-color:#ff8c9d; box-shadow:0 0 14px rgba(255,98,126,.5); animation:fishing-splash .56s ease-out both; }.fishing-fx.fx-miss .splash-b { border-color:#ff8c9d; animation:fishing-splash .56s ease-out .1s both; }
+.fishing-fx.fx-caught b { animation:fishing-catch-pop 1.08s cubic-bezier(.16,.85,.28,1) both; }.fishing-fx.fx-caught .fishing-sparkles { animation:fishing-sparkles .72s ease-out .08s both; }.fishing-fx.fx-escaped .splash-a { animation:fishing-escape .58s ease-out both; }.fishing-fx.fx-escaped b { animation:fishing-flee .6s ease-out both; }
 .fishing-game-card { position:absolute; left:16px; right:16px; bottom:14px; min-height:166px; padding:13px; border:1px solid rgba(165,240,225,.13); border-radius:13px; background:rgba(6,19,31,.74); box-shadow:0 12px 34px rgba(0,0,0,.22); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
 .fishing-status-row { min-height:38px; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
 .fishing-status-row div { display:flex; flex-direction:column; gap:3px; }
@@ -2862,12 +2881,19 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 
 @media (max-width:900px) { .fishing-layout{grid-template-columns:190px minmax(360px,1fr)}.fishing-guide-panel{display:none !important;} }
 @media (max-height:650px) { .fishing-page{padding-top:8px;gap:7px}.fishing-page-head{flex-basis:38px}.fishing-layout>.panel{padding:11px}.fishing-game-card{min-height:153px;bottom:9px}.fishing-guide-list{margin-top:11px;gap:8px} }
-@media (prefers-reduced-motion:reduce) { .fishing-water::before,.fishing-ripples i,.fishing-float.waiting,.fishing-float.bite,.fishing-shadow.active{animation:none !important;} }
+@media (prefers-reduced-motion:reduce) { .fishing-water::before,.fishing-ripples i,.fishing-float.waiting,.fishing-float.bite,.fishing-shadow.active,.fishing-fx *{animation:none !important;} }
 @keyframes fishing-ripple { 0%{width:20px;height:7px;opacity:.65}100%{width:150px;height:50px;opacity:0} }
 @keyframes fishing-float { 50%{transform:translate(-50%,calc(-50% + 4px))} }
 @keyframes fishing-bite { to{transform:translate(-50%,calc(-50% + 8px)) rotate(5deg)} }
 @keyframes fishing-swim { from{left:35%;transform:translate(-50%,-50%) scaleX(-1) rotate(-6deg)}to{left:65%;transform:translate(-50%,-50%) scaleX(-1) rotate(6deg)} }
 @keyframes fishing-water-light { to{transform:translateX(12%)} }
+@keyframes fishing-cast-line { 0%{height:0;opacity:0;transform:rotate(19deg)} 30%{opacity:.92} 72%{height:43%;opacity:.92;transform:rotate(-4deg)} 100%{height:43%;opacity:0;transform:rotate(0)} }
+@keyframes fishing-splash { 0%{width:6px;height:3px;opacity:.95} 100%{width:116px;height:42px;opacity:0} }
+@keyframes fishing-sparkles { 0%{opacity:0;transform:translate(-50%,-42%) scale(.35)} 34%{opacity:1} 100%{opacity:0;transform:translate(-50%,-100%) scale(1.16)} }
+@keyframes fishing-catch-pop { 0%{opacity:0;transform:translate(-50%,35%) scale(.25) rotate(-22deg)} 28%{opacity:1;transform:translate(-50%,-50%) scale(1.22) rotate(10deg)} 64%{opacity:1;transform:translate(-50%,-70%) scale(1) rotate(-4deg)} 100%{opacity:0;transform:translate(-50%,-142%) scale(.75) rotate(12deg)} }
+@keyframes fishing-escape { 0%{width:12px;height:5px;opacity:.9} 100%{width:156px;height:62px;opacity:0} }
+@keyframes fishing-flee { 0%{opacity:.65;transform:translate(-50%,-50%) scale(.55) rotate(-20deg)} 100%{opacity:0;transform:translate(185%,-6%) scale(.82) rotate(22deg)} }
+@keyframes account-trial-spin { to { transform:rotate(360deg); } }
 
 @keyframes reminder-rave {
   0% { background: #ff1744; color: #fff; }

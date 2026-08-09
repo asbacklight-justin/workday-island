@@ -5,6 +5,18 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.4] - 2026-08-09
+
+### 新增 / Added
+
+- 个人中心现会在每次进入时查询当前账号的待领取会员试用资格；用户确认后可直接领取。
+- 钓鱼小岛新增抛竿、水花、咬钩、命中、鱼儿挣脱和钓获跃出等动态反馈，并尊重系统“减少动态效果”偏好。
+
+### 安全与交互 / Security & UX
+
+- 试用领取仅由服务端以当前登录令牌处理：事务锁定邀请、校验归属/状态/有效期及用户和角色启用状态，并原子写入限时会员授权，防止重复领取。
+- 领取成功后立即刷新账号资料、会员徽章、会员主题及功能权限。
+
 ## [0.16.3] - 2026-08-08
 
 ### 新增 / Added
@@ -391,6 +403,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
 [0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3
 [0.16.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2
 [0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
