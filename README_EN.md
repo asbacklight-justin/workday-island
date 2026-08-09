@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.4-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.16.4-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.16.5-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.16.5-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -34,7 +34,7 @@ The public packages are not currently signed with commercial distribution certif
 - **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
 - **English Learning centre:** The `EN` button now opens a full learning centre. Its local Word Book keeps a cross-day history of words actually viewed in all five modes with phonetics, meanings, examples, library, modes, and view counts. The Wrong Book records mistakes from EN → CN, CN → EN, and spelling with the latest answer and accumulated error count. The compact learning window opens only from **Compact Study**; on macOS and Windows, floating-window opacity affects its background without dimming core content.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
-- **Member Fishing Break beta:** The fish-shaped header shortcut opens Fishing Island. Its first mini-game asks you to wait for a bite, reel inside a moving glowing zone, chain accurate hits to fill catch progress, and manage line tension and an escape timer. Fish and rarity are random; the catch journal and best streak stay local. During beta, entry is limited to Plus, Pro, and Ultra members.
+- **Member Fishing Break beta:** The fish-shaped header shortcut opens Fishing Island. Its first mini-game asks you to wait for a bite, reel inside a moving glowing zone, chain accurate hits to fill catch progress, and manage line tension and an escape timer. Fish and rarity are random; the catch journal and best streak stay local. Bruce, Tangerine, Luna, and Cape are now independently tracked switchable pets, each with its own growth, energy, affinity, play charges, and nap cooldown. Feeding consumes catches; play restores one charge per minute (up to three), and naps have a ten-minute cooldown. During beta, entry is limited to Plus, Pro, and Ultra members.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
@@ -167,7 +167,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.16.4`
+- Current version: `v0.16.5`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

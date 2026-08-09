@@ -42,7 +42,9 @@ const translations = {
     englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     stockMarket: '股市', stockWatchlist: '自选行情', stockCodePlaceholder: '股票代码，如 600519', addStock: '添加', stockLoading: '正在刷新行情…',
     stockUpdated: '{time} 更新', stockCached: '缓存于 {time}', stockNoData: '暂无自选股票', stockDisclaimer: '东方财富 · 数据仅供参考', removeStock: '删除自选股', stockAdded: '已添加自选股',
-    fishing: '摸鱼', fishingTitle: '摸鱼岛', fishingIsland: '钓鱼小岛', slackingIsland: '摸鱼小岛', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获', fishingRods: '鱼竿装备', fishingRodsHint: '每一根鱼竿只强化一个钓鱼方面', equipFishingRod: '装备鱼竿', rodCollection: '已收集 {owned}/{total} 根', rodDropRates: '优 1% · 精 .35% · 史 .1% · 传 .03%', rodNoBonus: '无额外加成', rodUnlocked: '获得 {rarity} 鱼竿「{name}」！可在装备栏切换', rodAlreadyOwned: '获得了重复鱼竿「{name}」', rodOrdinary: '普通', rodExcellent: '优秀', rodFine: '精良', rodEpic: '史诗', rodLegendary: '传说', slackingTitle: '工位摸鱼计划', slackingHint: '带上一条鱼，在老板视线外完成几次完美偷闲。', slackingCompanion: '选择摸鱼搭子', slackingSafeWindow: '安全空档', slackingProgress: '摸鱼进度', slackingExposure: '老板警觉', startSlacking: '开始摸鱼', slackingNow: '趁现在摸一下', slackingNeedFish: '先在钓鱼小岛钓到一条鱼，再来开启摸鱼计划。', slackingPerfect: '完美偷闲，老板完全没有察觉。', slackingGood: '安全通过，继续保持。', slackingMiss: '动作太明显，老板警觉上升！', slackingSuccess: '摸鱼成功！今天也要保持从容。', slackingCaught: '老板发现了，先认真工作一会儿吧。', slackingTimeout: '安全空档结束，收起你的摸鱼搭子。',
+    fishing: '摸鱼', fishingTitle: '摸鱼岛', fishingIsland: '钓鱼小岛', slackingIsland: '摸鱼小岛', petIsland: '摸鱼小宠', petTitle: '桌面小宠舱', petHint: '把钓到的鱼留在身边，它会陪你度过摸鱼间隙。', petAdopt: '领养为小宠', petCompanionActive: '已在陪伴', petSwitch: '选择鱼获', petNeedFish: '先去钓鱼小岛钓到一条鱼，再来领养小宠。', petReadyToAdopt: '挑一条鱼，带它回到工位吧', petGrowth: '成长', petEnergy: '精力', petAffection: '亲密度', petFeed: '喂食', petPlay: '陪玩', petNap: '打盹', petActionCooldown: '小宠正在回味刚才的互动，稍等一下。', petAdopted: '{name} 已成为你的摸鱼小宠！', petFed: '{name} 开心地吃掉了小零食。', petPlayed: '{name} 转了一个漂亮的圈圈。', petNapped: '{name} 在工位旁打了个舒服的盹。', petMoodSleepy: '有点困', petMoodCalm: '很放松', petMoodHappy: '心情不错', petMoodDelighted: '超级开心', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获', fishingRods: '鱼竿装备', fishingRodsHint: '每一根鱼竿只强化一个钓鱼方面', equipFishingRod: '装备鱼竿', rodCollection: '已收集 {owned}/{total} 根', rodDropRates: '优 1% · 精 .35% · 史 .1% · 传 .03%', rodNoBonus: '无额外加成', rodUnlocked: '获得 {rarity} 鱼竿「{name}」！可在装备栏切换', rodAlreadyOwned: '获得了重复鱼竿「{name}」', rodOrdinary: '普通', rodExcellent: '优秀', rodFine: '精良', rodEpic: '史诗', rodLegendary: '传说', slackingTitle: '工位摸鱼计划', slackingHint: '带上一条鱼，在老板视线外完成几次完美偷闲。', slackingCompanion: '选择摸鱼搭子', slackingSafeWindow: '安全空档', slackingProgress: '摸鱼进度', slackingExposure: '老板警觉', startSlacking: '开始摸鱼', slackingNow: '趁现在摸一下', slackingNeedFish: '先在钓鱼小岛钓到一条鱼，再来开启摸鱼计划。', slackingPerfect: '完美偷闲，老板完全没有察觉。', slackingGood: '安全通过，继续保持。', slackingMiss: '动作太明显，老板警觉上升！', slackingSuccess: '摸鱼成功！今天也要保持从容。', slackingCaught: '老板发现了，先认真工作一会儿吧。', slackingTimeout: '安全空档结束，收起你的摸鱼搭子。',
+    petTitle: '布鲁斯的小宠舱', petHint: '布鲁斯会陪你度过摸鱼间隙，吃掉你钓到的鱼。', petOnline: '陪伴中', petFood: '选择鱼获', petNeedFish: '先去钓鱼小岛钓到一条鱼，布鲁斯已经饿啦。', petReadyToAdopt: '布鲁斯正在等一条新鲜的小鱼', petFed: '布鲁斯开心地吃掉了 {name}。', petPlayed: '布鲁斯追着气泡跑了一圈。', petNapped: '布鲁斯蜷在工位旁打了个舒服的盹。',
+    petBruce: '布鲁斯', petTangerine: '橘小福', petLuna: '月白', petCape: '披风', petPlaying: '小宠正在陪玩，还要 {seconds} 秒', petNapping: '小宠正在打盹，还要 {seconds} 秒', petEnergyLow: '小宠精力不足，先喂食或休息一下吧。', petTooRested: '小宠现在精力很充足，先陪它玩一会吧。', petPlayCharge: '充能 {current}/{max}', petPlayChargeNext: '下一次充能 {time}', petPlayChargeFull: '陪玩充能已满', petNapCooldown: '睡觉冷却 {time}', petNapReady: '可以睡觉',
     fishingReady: '湖面很安静', fishingReadyHint: '抛下鱼竿，等一条有缘鱼', startFishing: '开始钓鱼', waitingForFish: '等待鱼儿咬钩…', waitingHint: '保持安静，浮标下沉时准备收线', fishBiting: '鱼儿咬钩了！', fishBitingHint: '游标进入发光区时点击收线', reelNow: '收线', catchProgress: '捕获进度', lineTension: '鱼线张力', spaceShortcut: '空格键',
     fishingGuide: '钓鱼指南', fishingGuideHint: '稳住，别让老板发现', castRod: '抛竿等待', castRodHint: '鱼儿咬钩前不要着急', hitPerfectZone: '命中时机', hitPerfectZoneHint: '游标进入发光区时收线', fillCatchProgress: '填满进度', fillCatchProgressHint: '连续完美命中可快速钓起', fishRarity: '鱼类稀有度', rarityCommon: '常见', rarityRare: '珍稀', rarityEpic: '史诗', rarityLegendary: '传说',
     fishingPerfect: '完美收线！捕获进度大幅提升', fishingGood: '不错的时机，继续稳住', fishingMiss: '时机不对，鱼线张力上升了', fishingCaught: '钓到了！{name} 已收入摸鱼图鉴', fishingEscaped: '{name} 挣脱鱼线逃走了', fishingTimeout: '{name} 耗尽你的耐心后溜走了', noFishingCatch: '还没有鱼获\n去湖边试试手气吧', unknownFish: '未知鱼影', clearFishingLogConfirm: '确定清空本机鱼获记录吗？', fishingLogCleared: '鱼获记录已清空',
@@ -144,7 +146,9 @@ const translations = {
     englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     stockMarket: 'Stocks', stockWatchlist: 'Watchlist', stockCodePlaceholder: 'A-share code, e.g. 600519', addStock: 'Add', stockLoading: 'Refreshing quotes…',
     stockUpdated: 'Updated {time}', stockCached: 'Cached at {time}', stockNoData: 'No watched stocks', stockDisclaimer: 'Eastmoney · For reference only', removeStock: 'Remove from watchlist', stockAdded: 'Stock added',
-    fishing: 'Fishing Break', fishingTitle: 'Slack Island', fishingIsland: 'Fishing Island', slackingIsland: 'Slack Island', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches', fishingRods: 'Rod Loadout', fishingRodsHint: 'Each rod improves one fishing aspect', equipFishingRod: 'Equip rod', rodCollection: '{owned}/{total} rods collected', rodDropRates: 'Ex 1% · Fine .35% · Epic .1% · Leg .03%', rodNoBonus: 'No bonus', rodUnlocked: 'Unlocked a {rarity} rod: {name}. Equip it in your loadout.', rodAlreadyOwned: 'You found a duplicate {name}', rodOrdinary: 'Ordinary', rodExcellent: 'Excellent', rodFine: 'Fine', rodEpic: 'Epic', rodLegendary: 'Legendary', slackingTitle: 'Desk-side Slack Plan', slackingHint: 'Bring a caught fish and use safe windows for a few perfect breaks.', slackingCompanion: 'Choose your fish buddy', slackingSafeWindow: 'Safe window', slackingProgress: 'Slack progress', slackingExposure: 'Boss alert', startSlacking: 'Start slacking', slackingNow: 'Take a quick break', slackingNeedFish: 'Catch a fish in Fishing Island before starting your slack plan.', slackingPerfect: 'Perfect break. Nobody noticed.', slackingGood: 'Safe pass. Keep it subtle.', slackingMiss: 'Too obvious—the boss alert rose!', slackingSuccess: 'Slack success! Stay effortlessly calm.', slackingCaught: 'Busted. Time to look busy for a moment.', slackingTimeout: 'The safe window closed. Hide your fish buddy.',
+    fishing: 'Fishing Break', fishingTitle: 'Slack Island', fishingIsland: 'Fishing Island', slackingIsland: 'Slack Island', petIsland: 'Desk Pet', petTitle: 'Desk Pet Cabin', petHint: 'Keep one of your catches nearby for a tiny companion between breaks.', petAdopt: 'Adopt as pet', petCompanionActive: 'Already together', petSwitch: 'Choose a catch', petNeedFish: 'Catch a fish in Fishing Island before adopting a desk pet.', petReadyToAdopt: 'Pick a fish and bring it back to your desk', petGrowth: 'Growth', petEnergy: 'Energy', petAffection: 'Bond', petFeed: 'Feed', petPlay: 'Play', petNap: 'Nap', petActionCooldown: 'Your pet is still enjoying the last interaction. Give it a moment.', petAdopted: '{name} is now your desk pet!', petFed: '{name} happily finished a tiny snack.', petPlayed: '{name} made a beautiful little circle.', petNapped: '{name} took a comfortable nap by your desk.', petMoodSleepy: 'Sleepy', petMoodCalm: 'Relaxed', petMoodHappy: 'Happy', petMoodDelighted: 'Delighted', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches', fishingRods: 'Rod Loadout', fishingRodsHint: 'Each rod improves one fishing aspect', equipFishingRod: 'Equip rod', rodCollection: '{owned}/{total} rods collected', rodDropRates: 'Ex 1% · Fine .35% · Epic .1% · Leg .03%', rodNoBonus: 'No bonus', rodUnlocked: 'Unlocked a {rarity} rod: {name}. Equip it in your loadout.', rodAlreadyOwned: 'You found a duplicate {name}', rodOrdinary: 'Ordinary', rodExcellent: 'Excellent', rodFine: 'Fine', rodEpic: 'Epic', rodLegendary: 'Legendary', slackingTitle: 'Desk-side Slack Plan', slackingHint: 'Bring a caught fish and use safe windows for a few perfect breaks.', slackingCompanion: 'Choose your fish buddy', slackingSafeWindow: 'Safe window', slackingProgress: 'Slack progress', slackingExposure: 'Boss alert', startSlacking: 'Start slacking', slackingNow: 'Take a quick break', slackingNeedFish: 'Catch a fish in Fishing Island before starting your slack plan.', slackingPerfect: 'Perfect break. Nobody noticed.', slackingGood: 'Safe pass. Keep it subtle.', slackingMiss: 'Too obvious—the boss alert rose!', slackingSuccess: 'Slack success! Stay effortlessly calm.', slackingCaught: 'Busted. Time to look busy for a moment.', slackingTimeout: 'The safe window closed. Hide your fish buddy.',
+    petTitle: 'Bruce’s Pet Cabin', petHint: 'Bruce keeps you company between breaks and enjoys the fish you catch.', petOnline: 'Keeping you company', petFood: 'Choose a catch', petNeedFish: 'Catch a fish in Fishing Island—Bruce is hungry.', petReadyToAdopt: 'Bruce is waiting for a fresh fish', petFed: 'Bruce happily ate {name}.', petPlayed: 'Bruce chased bubbles in a little circle.', petNapped: 'Bruce took a comfortable nap by your desk.',
+    petBruce: 'Bruce', petTangerine: 'Tangerine', petLuna: 'Luna', petCape: 'Cape', petPlaying: 'Your pet is playing. {seconds}s remaining', petNapping: 'Your pet is napping. {seconds}s remaining', petEnergyLow: 'Your pet needs energy first—feed or let it rest.', petTooRested: 'Your pet is well rested. Play together first.', petPlayCharge: 'Charge {current}/{max}', petPlayChargeNext: 'Next charge {time}', petPlayChargeFull: 'Play charges are full', petNapCooldown: 'Nap cooldown {time}', petNapReady: 'Ready to nap',
     fishingReady: 'The lake is quiet', fishingReadyHint: 'Cast the line and wait for your lucky fish', startFishing: 'Start fishing', waitingForFish: 'Waiting for a bite…', waitingHint: 'Stay quiet and get ready when the float sinks', fishBiting: 'A fish is biting!', fishBitingHint: 'Reel when the marker enters the glowing zone', reelNow: 'Reel now', catchProgress: 'Catch progress', lineTension: 'Line tension', spaceShortcut: 'Space',
     fishingGuide: 'Fishing guide', fishingGuideHint: 'Keep calm—and keep it discreet', castRod: 'Cast and wait', castRodHint: 'Do not rush before the fish bites', hitPerfectZone: 'Hit the timing', hitPerfectZoneHint: 'Reel inside the glowing zone', fillCatchProgress: 'Fill the progress', fillCatchProgressHint: 'Perfect streaks land fish faster', fishRarity: 'Fish rarity', rarityCommon: 'Common', rarityRare: 'Rare', rarityEpic: 'Epic', rarityLegendary: 'Legendary',
     fishingPerfect: 'Perfect reel! Catch progress surged', fishingGood: 'Good timing—keep it steady', fishingMiss: 'Bad timing—the line tension increased', fishingCaught: 'Caught! {name} was added to your journal', fishingEscaped: '{name} broke free and escaped', fishingTimeout: '{name} outlasted your patience and slipped away', noFishingCatch: 'No catches yet\nTry your luck by the lake', unknownFish: 'Unknown shadow', clearFishingLogConfirm: 'Clear the local catch journal?', fishingLogCleared: 'Catch journal cleared',
@@ -249,6 +253,18 @@ function normaliseHeaderEntries(value) {
   return Object.fromEntries(headerEntryDefinitions.map(([key]) => [key, Object.prototype.hasOwnProperty.call(source, key) ? Boolean(source[key]) : true]));
 }
 
+const deskPets = [
+  {id:'bruce', nameKey:'petBruce'},
+  {id:'tangerine', nameKey:'petTangerine'},
+  {id:'luna', nameKey:'petLuna'},
+  {id:'cape', nameKey:'petCape'}
+];
+// These are read while restoring the local fishing journal during state
+// construction, so they must be available before `loadFishingJournal()` runs.
+const petPlayChargeMax = 3;
+const petPlayChargeInterval = 60 * 1000;
+const petNapCooldown = 10 * 60 * 1000;
+
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
@@ -297,7 +313,7 @@ const state = {
   stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   fishingOpen: false,
-  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
+  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, petCandidate: '', journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   translatorOpen: false,
@@ -331,6 +347,9 @@ let fishingWaitTimer = 0;
 let fishingAnimationFrame = 0;
 let fishingFxTimer = 0;
 let slackingAnimationFrame = 0;
+let petMotionTimer = 0;
+let petActivityTimer = 0;
+let petStatusTimer = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
@@ -777,6 +796,9 @@ function bindEvents() {
   $('#fishing-tabs').addEventListener('click', changeFishingTab);
   $('#slacking-fish-select').addEventListener('change', changeSlackingCompanion);
   $('#slacking-action').addEventListener('click', handleSlackingAction);
+  $('#pet-picker').addEventListener('click', changeActivePet);
+  $('#pet-food-select').addEventListener('change', changePetFood);
+  $('#pet-actions').addEventListener('click', handlePetAction);
   $('.top-actions').addEventListener('click', event => {
     if (state.fishingOpen && !event.target.closest('#open-fishing')) closeFishingPage();
   }, true);
@@ -899,7 +921,8 @@ function bindEvents() {
     }
     if (state.fishingOpen && event.code === 'Space' && !event.repeat && !event.target.closest('input, textarea, select, button')) {
       event.preventDefault();
-      if (state.fishing.tab === 'slacking') handleSlackingAction(); else handleFishingAction();
+      if (state.fishing.tab === 'slacking') handleSlackingAction();
+      else if (state.fishing.tab === 'fishing') handleFishingAction();
     }
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'n') { event.preventDefault(); openTodoModal(); }
     if (state.aiChatOpen && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); startNewAIConversation(); }
@@ -3492,13 +3515,34 @@ function renderThemeAccess() {
   $('#theme-access-hint').textContent = t('themeAccessHint');
 }
 
-function resolveAccountAvatarURL(value) {
+// Keep this aligned with baklight-backstage/src/utils/avatar.js.  The desktop
+// webview is served from wails://, so relative URLs must be made absolute
+// instead of relying on the browser's current origin.
+const accountAvatarAPIBaseURL = 'https://admin.asbacklight.cn/api';
+
+function resolveAccountAvatarURL(value, userID = 0) {
   const raw = String(value || '').trim();
-  if (!raw) return '';
-  if (/^(https?:\/\/|blob:|data:image\/)/i.test(raw)) return raw;
+  if (/^(https?:\/\/|blob:|data:)/i.test(raw)) return raw;
   if (raw.startsWith('//')) return `https:${raw}`;
-  if (raw.startsWith('/api/')) return `https://admin.asbacklight.cn${raw}`;
-  return `https://admin.asbacklight.cn/api${raw.startsWith('/') ? raw : `/${raw}`}`;
+  if (raw) {
+    if (raw.startsWith('/api/')) return `https://admin.asbacklight.cn${raw}`;
+    return `${accountAvatarAPIBaseURL}${raw.startsWith('/') ? raw : `/${raw}`}`;
+  }
+
+  // /user/info normally supplies avatar_url.  Wails may however expose the
+  // Go field in PascalCase in older generated bindings.  If it is absent but
+  // the user has an ID, use the same public avatar endpoint that the backend
+  // itself writes into avatar_url. A 404 simply keeps the letter fallback.
+  const id = Number(userID);
+  return Number.isFinite(id) && id > 0 ? `${accountAvatarAPIBaseURL}/user/avatar/${id}` : '';
+}
+
+function accountAvatarURL(user) {
+  if (!user || typeof user !== 'object') return '';
+  return resolveAccountAvatarURL(
+    user.avatar_url || user.avatarUrl || user.AvatarURL || user.avatar || '',
+    user.id || user.ID || user.user_id || user.userId || user.UserID || 0
+  );
 }
 
 function renderAccountAvatar(target, {loggedIn, displayName, avatarURL, guest = false}) {
@@ -3548,7 +3592,7 @@ function renderAccountSession() {
   renderAccountAvatar($('.account-nav-avatar'), {
     loggedIn,
     displayName,
-    avatarURL: user?.avatar_url || user?.avatarUrl,
+    avatarURL: accountAvatarURL(user),
     guest: true
   });
   const navTier = $('#account-nav-tier');
@@ -3567,7 +3611,7 @@ function renderAccountSession() {
     renderAccountAvatar(profileAvatar, {
       loggedIn,
       displayName,
-      avatarURL: user?.avatar_url || user?.avatarUrl
+      avatarURL: accountAvatarURL(user)
     });
     $('#account-profile-name').textContent = displayName;
     $('#account-profile-username').textContent = user?.username ? `@${user.username}` : '';
@@ -4811,6 +4855,30 @@ const fishingRods = [
 ];
 
 const fishingRodRarityKeys = {ordinary:'rodOrdinary', excellent:'rodExcellent', fine:'rodFine', epic:'rodEpic', legendary:'rodLegendary'};
+function createDeskPetState(value = {}) {
+  const now = Date.now();
+  const storedCharges = Number(value.playCharges);
+  const playCharges = Number.isFinite(storedCharges) ? Math.max(0, Math.min(petPlayChargeMax, Math.floor(storedCharges))) : petPlayChargeMax;
+  return {
+    exp: Math.max(0, Number(value.exp) || 0),
+    energy: Math.max(0, Math.min(100, Number.isFinite(Number(value.energy)) ? Number(value.energy) : 72)),
+    affection: Math.max(0, Math.min(100, Number.isFinite(Number(value.affection)) ? Number(value.affection) : 12)),
+    lastActionAt: Math.max(0, Number(value.lastActionAt) || 0),
+    activity: ['play', 'nap'].includes(value.activity) ? value.activity : '',
+    activityUntil: Math.max(0, Number(value.activityUntil) || 0),
+    napCooldownUntil: Math.max(0, Number(value.napCooldownUntil) || 0),
+    playCharges,
+    playChargeUpdatedAt: Math.max(0, Number(value.playChargeUpdatedAt) || now)
+  };
+}
+
+function deskPetDefinition(id) {
+  return deskPets.find(pet => pet.id === id) || deskPets[0];
+}
+
+function deskPetName(id) {
+  return t(deskPetDefinition(id).nameKey);
+}
 
 function loadFishingJournal() {
   try {
@@ -4819,15 +4887,21 @@ function loadFishingJournal() {
     const ownedRods = Array.isArray(value.ownedRods) ? value.ownedRods.filter(id => rodIDs.includes(id)) : ['bamboo'];
     if (!ownedRods.includes('bamboo')) ownedRods.unshift('bamboo');
     const equippedRod = rodIDs.includes(value.equippedRod) && ownedRods.includes(value.equippedRod) ? value.equippedRod : 'bamboo';
+    const savedPets = value.pets && typeof value.pets === 'object' ? value.pets : {};
+    const legacyPet = value.pet && typeof value.pet === 'object' ? value.pet : {};
+    const pets = Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState(savedPets[definition.id] || (definition.id === 'bruce' ? legacyPet : {}))]));
+    const activePetId = deskPets.some(pet => pet.id === value.activePetId) ? value.activePetId : 'bruce';
     return {
       catches: Array.isArray(value.catches) ? value.catches.slice(0, 30) : [],
       totalCaught: Math.max(0, Number(value.totalCaught) || 0),
       bestStreak: Math.max(0, Number(value.bestStreak) || 0),
       ownedRods,
-      equippedRod
+      equippedRod,
+      activePetId,
+      pets
     };
   } catch (_) {
-    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo'};
+    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()]))};
   }
 }
 
@@ -4922,18 +4996,297 @@ function changeFishingTab(event) {
   slackingAnimationFrame = 0;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
-  state.fishing.tab = tab === 'slacking' ? 'slacking' : 'fishing';
+  state.fishing.tab = ['slacking', 'pet'].includes(tab) ? tab : 'fishing';
   renderFishingTabs();
 }
 
 function renderFishingTabs() {
   const slacking = state.fishing.tab === 'slacking';
-  $('#fishing-layout').classList.toggle('slacking-active', slacking);
+  const pet = state.fishing.tab === 'pet';
+  $('#fishing-layout').classList.toggle('slacking-active', slacking || pet);
+  $('#fishing-layout').classList.toggle('pet-active', pet);
   $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => button.classList.toggle('active', button.dataset.fishingTab === state.fishing.tab));
-  $('.fishing-lake-panel').classList.toggle('hidden', slacking);
+  $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet);
   $('#slacking-panel').classList.toggle('hidden', !slacking);
-  $('.fishing-guide-panel').classList.toggle('hidden', slacking);
-  if (slacking) renderSlackingIdle(); else renderFishingIdle();
+  $('#pet-panel').classList.toggle('hidden', !pet);
+  $('.fishing-guide-panel').classList.toggle('hidden', slacking || pet);
+  if (slacking) renderSlackingIdle(); else if (pet) renderFishingPet(); else renderFishingIdle();
+}
+
+function fishingPet() {
+  const journal = state.fishing.journal;
+  if (!journal.pets || typeof journal.pets !== 'object') {
+    journal.pets = Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()]));
+  }
+  const definition = deskPetDefinition(journal.activePetId);
+  journal.activePetId = definition.id;
+  journal.pets[definition.id] = createDeskPetState(journal.pets[definition.id]);
+  return journal.pets[definition.id];
+}
+
+function petMood(pet) {
+  const score = Math.round((Number(pet.energy) || 0) * .62 + (Number(pet.affection) || 0) * .38);
+  if (score < 28) return t('petMoodSleepy');
+  if (score < 52) return t('petMoodCalm');
+  if (score < 78) return t('petMoodHappy');
+  return t('petMoodDelighted');
+}
+
+function petLevel(pet) {
+  return Math.max(1, Math.floor((Number(pet.exp) || 0) / 100) + 1);
+}
+
+function petSelectedFood() {
+  const catches = state.fishing.journal?.catches || [];
+  const candidate = state.fishing.petCandidate;
+  return catches.find(item => item.caughtAt === candidate) || catches[0] || null;
+}
+
+function petActivityLabel(activity, seconds) {
+  const key = activity === 'play' ? 'petPlaying' : 'petNapping';
+  return t(key, {seconds:Math.max(1, Math.ceil(seconds / 1000))});
+}
+
+function formatPetDuration(milliseconds) {
+  const seconds = Math.max(0, Math.ceil(milliseconds / 1000));
+  const minutes = Math.floor(seconds / 60);
+  return minutes > 0 ? `${minutes}:${String(seconds % 60).padStart(2, '0')}` : `${seconds}s`;
+}
+
+// Play is a small time-gated resource: every pet owns three independent
+// charges, restores one each minute, and never shares the clock with another
+// pet. Recalculate lazily so it also keeps charging while the page is closed.
+function replenishPetPlayCharges(pet, now = Date.now()) {
+  const charges = Math.max(0, Math.min(petPlayChargeMax, Math.floor(Number(pet.playCharges) || 0)));
+  if (charges >= petPlayChargeMax) {
+    if (pet.playCharges !== petPlayChargeMax) {
+      pet.playCharges = petPlayChargeMax;
+      return true;
+    }
+    return false;
+  }
+  const updatedAt = Math.max(0, Number(pet.playChargeUpdatedAt) || now);
+  const earned = Math.max(0, Math.floor((now - updatedAt) / petPlayChargeInterval));
+  if (!earned) return false;
+  pet.playCharges = Math.min(petPlayChargeMax, charges + earned);
+  pet.playChargeUpdatedAt = pet.playCharges >= petPlayChargeMax ? now : updatedAt + earned * petPlayChargeInterval;
+  return true;
+}
+
+function petPlayChargeStatus(pet, now = Date.now()) {
+  replenishPetPlayCharges(pet, now);
+  const charges = Math.max(0, Math.min(petPlayChargeMax, Math.floor(Number(pet.playCharges) || 0)));
+  if (charges >= petPlayChargeMax) return t('petPlayChargeFull');
+  const updatedAt = Math.max(0, Number(pet.playChargeUpdatedAt) || now);
+  const remaining = Math.max(0, petPlayChargeInterval - (now - updatedAt));
+  return `${t('petPlayCharge', {current:charges, max:petPlayChargeMax})} · ${t('petPlayChargeNext', {time:formatPetDuration(remaining)})}`;
+}
+
+function clearPetActivityTimer() {
+  window.clearInterval(petActivityTimer);
+  petActivityTimer = 0;
+}
+
+function ensurePetStatusTimer() {
+  if (petStatusTimer) return;
+  petStatusTimer = window.setInterval(() => {
+    if (!state.fishingOpen || state.fishing.tab !== 'pet') {
+      window.clearInterval(petStatusTimer);
+      petStatusTimer = 0;
+      return;
+    }
+    renderFishingPet();
+  }, 1000);
+}
+
+function finishPetActivity() {
+  const pet = fishingPet();
+  const activity = pet.activity;
+  if (!activity || Date.now() < pet.activityUntil) return false;
+  const rewards = activity === 'play'
+    ? {energy:-18, affection:15, exp:16, key:'petPlayed'}
+    : {energy:34, affection:5, exp:8, key:'petNapped'};
+  pet.energy = Math.max(0, Math.min(100, (Number(pet.energy) || 0) + rewards.energy));
+  pet.affection = Math.max(0, Math.min(100, (Number(pet.affection) || 0) + rewards.affection));
+  pet.exp = Math.max(0, (Number(pet.exp) || 0) + rewards.exp);
+  pet.activity = '';
+  pet.activityUntil = 0;
+  if (activity === 'nap') pet.napCooldownUntil = Date.now() + petNapCooldown;
+  pet.lastActionAt = Date.now();
+  clearPetActivityTimer();
+  saveFishingJournal();
+  setPetMotion('idle', false);
+  renderFishingPet(t(rewards.key));
+  showToast(t(rewards.key));
+  return true;
+}
+
+function startPetActivity(activity) {
+  const pet = fishingPet();
+  pet.activity = activity;
+  pet.activityUntil = Date.now() + (activity === 'play' ? 15000 : 24000);
+  saveFishingJournal();
+  setPetMotion(activity, false);
+  clearPetActivityTimer();
+  petActivityTimer = window.setInterval(() => {
+    if (finishPetActivity()) return;
+    if (state.fishingOpen && state.fishing.tab === 'pet') renderFishingPet();
+  }, 400);
+  renderFishingPet();
+}
+
+function renderFishingPet(message = '') {
+  const select = $('#pet-food-select');
+  const actions = $$('#pet-actions button');
+  const catches = state.fishing.journal?.catches || [];
+  const pet = fishingPet();
+  const now = Date.now();
+  const petID = state.fishing.journal.activePetId;
+  const definition = deskPetDefinition(petID);
+  ensurePetStatusTimer();
+  const playChargeChanged = replenishPetPlayCharges(pet, now);
+  if (playChargeChanged) saveFishingJournal();
+  if (pet.activity && Date.now() >= pet.activityUntil) {
+    finishPetActivity();
+    return;
+  }
+  const activeActivity = pet.activity && Math.max(0, pet.activityUntil - now);
+  const napCooldownRemaining = Math.max(0, Number(pet.napCooldownUntil) - now);
+  const playCharges = Math.max(0, Math.min(petPlayChargeMax, Math.floor(Number(pet.playCharges) || 0)));
+  if (activeActivity && !petActivityTimer) {
+    petActivityTimer = window.setInterval(() => {
+      if (finishPetActivity()) return;
+      if (state.fishingOpen && state.fishing.tab === 'pet') renderFishingPet();
+    }, 400);
+    setPetMotion(pet.activity, false);
+  }
+  if (!catches.length) {
+    select.innerHTML = `<option value="">${escapeHTML(t('petNeedFish'))}</option>`;
+    select.disabled = true;
+  } else {
+    const preferred = state.fishing.petCandidate || catches[0].caughtAt;
+    state.fishing.petCandidate = catches.some(item => item.caughtAt === preferred) ? preferred : catches[0].caughtAt;
+    select.innerHTML = catches.map(caught => {
+      const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
+      return `<option value="${escapeHTML(caught.caughtAt || '')}">${fish.emoji} ${escapeHTML(fishingFishName(fish))} · ${escapeHTML(fishingRarityLabel(fish.rarity))}</option>`;
+    }).join('');
+    select.value = state.fishing.petCandidate;
+    select.disabled = false;
+  }
+  actions.forEach(button => {
+    const action = button.dataset.petAction;
+    button.disabled = Boolean(activeActivity)
+      || (action === 'feed' && !catches.length)
+      || (action === 'play' && Number(pet.energy) < 18)
+      || (action === 'play' && playCharges < 1)
+      || (action === 'nap' && (Number(pet.energy) >= 96 || napCooldownRemaining > 0));
+  });
+  $('#pet-avatar').className = 'pet-avatar';
+  $('#pet-avatar').dataset.motion = pet.activity || 'idle';
+  $('#pet-sprite').className = `pet-sprite ${definition.id}`;
+  $('#pet-sprite').dataset.motion = pet.activity || 'idle';
+  $$('#pet-picker [data-pet-id]').forEach(button => button.classList.toggle('active', button.dataset.petId === petID));
+  $('#pet-name').textContent = deskPetName(petID);
+  $('#pet-level').textContent = `Lv.${petLevel(pet)}`;
+  $('#pet-mood').textContent = petMood(pet);
+  const exp = Math.max(0, Number(pet.exp) || 0);
+  $('#pet-xp-bar').style.width = `${exp % 100}%`;
+  $('#pet-xp').textContent = `${exp % 100} / 100`;
+  const energy = Math.round(Math.max(0, Math.min(100, Number(pet.energy) || 0)));
+  const affection = Math.round(Math.max(0, Math.min(100, Number(pet.affection) || 0)));
+  $('#pet-energy-bar').style.width = `${energy}%`;
+  $('#pet-affection-bar').style.width = `${affection}%`;
+  $('#pet-energy').textContent = `${energy}%`;
+  $('#pet-affection').textContent = `${affection}%`;
+  $('#pet-play-charge').textContent = `${playCharges}/${petPlayChargeMax}`;
+  $('#pet-play-charge').title = petPlayChargeStatus(pet, now);
+  $('#pet-nap-cooldown').textContent = napCooldownRemaining > 0 ? formatPetDuration(napCooldownRemaining) : '';
+  $('#pet-nap-cooldown').classList.toggle('hidden', napCooldownRemaining <= 0);
+  $('#pet-nap-cooldown').title = napCooldownRemaining > 0 ? t('petNapCooldown', {time:formatPetDuration(napCooldownRemaining)}) : t('petNapReady');
+  $('#pet-result').textContent = message || (activeActivity ? petActivityLabel(pet.activity, activeActivity) : napCooldownRemaining > 0 ? t('petNapCooldown', {time:formatPetDuration(napCooldownRemaining)}) : catches.length ? petPlayChargeStatus(pet, now) : t('petNeedFish'));
+}
+
+function changeActivePet(event) {
+  const button = event.target.closest('[data-pet-id]');
+  const id = button?.dataset.petId;
+  if (!deskPets.some(pet => pet.id === id) || id === state.fishing.journal.activePetId) return;
+  clearPetActivityTimer();
+  state.fishing.journal.activePetId = id;
+  state.fishing.petCandidate = '';
+  saveFishingJournal();
+  setPetMotion('idle', false);
+  renderFishingPet();
+}
+
+function changePetFood(event) {
+  state.fishing.petCandidate = event.target.value || '';
+  renderFishingPet();
+}
+
+function setPetMotion(motion = 'idle', reset = true) {
+  const sprite = $('#pet-sprite');
+  const avatar = $('#pet-avatar');
+  if (!sprite) return;
+  window.clearTimeout(petMotionTimer);
+  sprite.dataset.motion = motion;
+  if (avatar) avatar.dataset.motion = motion;
+  if (reset && motion !== 'idle') {
+    petMotionTimer = window.setTimeout(() => {
+      if (state.fishingOpen && state.fishing.tab === 'pet') {
+        sprite.dataset.motion = 'idle';
+        if (avatar) avatar.dataset.motion = 'idle';
+      }
+    }, 2200);
+  }
+}
+
+function handlePetAction(event) {
+  const button = event.target.closest('[data-pet-action]');
+  if (!button || button.disabled) return;
+  const pet = fishingPet();
+  if (pet.activity) { renderFishingPet(); return; }
+  const rewards = {
+    feed: {energy:18, affection:5, exp:6, key:'petFed', motion:'feed'},
+    play: {motion:'play'},
+    nap: {motion:'nap'}
+  }[button.dataset.petAction];
+  if (!rewards) return;
+  if (button.dataset.petAction === 'play') {
+    if (Number(pet.energy) < 18) { showToast(t('petEnergyLow'), true); return; }
+    replenishPetPlayCharges(pet);
+    if (Number(pet.playCharges) < 1) { renderFishingPet(); return; }
+    pet.playCharges -= 1;
+    pet.playChargeUpdatedAt = Date.now();
+    startPetActivity('play');
+    return;
+  }
+  if (button.dataset.petAction === 'nap') {
+    if (Number(pet.energy) >= 96) { showToast(t('petTooRested'), true); return; }
+    if (Date.now() < Number(pet.napCooldownUntil)) { renderFishingPet(); return; }
+    startPetActivity('nap');
+    return;
+  }
+  let food = null;
+  if (button.dataset.petAction === 'feed') {
+    food = petSelectedFood();
+    if (!food) { showToast(t('petNeedFish'), true); return; }
+    const fish = fishingFish.find(item => item.id === food.fishId) || fishingFish[0];
+    const nutrition = {common:0, rare:4, epic:8, legendary:14}[fish.rarity] || 0;
+    rewards.energy += nutrition;
+    rewards.affection += Math.max(1, Math.ceil(nutrition / 3));
+    rewards.exp += Math.max(0, Math.ceil(nutrition / 2));
+    const index = state.fishing.journal.catches.findIndex(item => item.caughtAt === food.caughtAt);
+    if (index >= 0) state.fishing.journal.catches.splice(index, 1);
+    state.fishing.petCandidate = '';
+  }
+  pet.energy = Math.max(0, Math.min(100, (Number(pet.energy) || 0) + rewards.energy));
+  pet.affection = Math.max(0, Math.min(100, (Number(pet.affection) || 0) + rewards.affection));
+  pet.exp = Math.max(0, (Number(pet.exp) || 0) + rewards.exp);
+  pet.lastActionAt = Date.now();
+  saveFishingJournal();
+  renderFishingJournal();
+  setPetMotion(rewards.motion);
+  renderFishingPet(t(rewards.key, {name:food ? fishingFishName(fishingFish.find(item => item.id === food.fishId) || fishingFish[0]) : pet.name}));
 }
 
 function slackingCompanion() {
@@ -5195,6 +5548,8 @@ function closeFishingPage() {
   fishingWaitTimer = 0;
   fishingAnimationFrame = 0;
   slackingAnimationFrame = 0;
+  window.clearInterval(petStatusTimer);
+  petStatusTimer = 0;
   state.fishingOpen = false;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
@@ -5372,8 +5727,10 @@ function clearFishingJournal() {
   if (!state.fishing.journal.catches.length) return;
   if (!window.confirm(t('clearFishingLogConfirm'))) return;
   state.fishing.journal = {...state.fishing.journal, catches:[], totalCaught:0, bestStreak:0};
+  state.fishing.petCandidate = '';
   saveFishingJournal();
   renderFishingJournal();
+  if (state.fishing.tab === 'pet') renderFishingPet();
   showToast(t('fishingLogCleared'));
 }
 
