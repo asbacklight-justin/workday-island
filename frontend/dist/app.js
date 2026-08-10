@@ -88,8 +88,10 @@ const translations = {
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
     incomingShake: '{name} 抖了抖你的窗口', incomingFlash: '{name} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
     shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
-    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', compactEnglishStudy: '精简学习',
-    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。',
+    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', compactEnglishStudy: '精简学习',
+    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。',
+    textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库',
+    englishLibraryTitle: '英文沉浸阅读', englishLibraryLoginRequired: '请先登录 Plus 及以上会员账号，再进入英文书架。', englishLibraryUpgradeHint: '英文书籍仅限 Plus、Pro 或 Ultra 会员使用。', englishLibraryLoading: '正在整理英文书架…', englishLibraryEmpty: '书架暂时还是空的。', englishLibrarySearch: '搜索书名、作者或简介', englishLibraryAllLanguages: '全部语言', englishLibraryRead: '开始阅读', englishLibraryContinue: '继续阅读', englishLibraryChapters: '章', englishLibraryProgress: '阅读进度', englishLibraryContents: '目录', englishLibraryBackShelf: '返回书架', englishLibraryPrevious: '上一页', englishLibraryNext: '下一页', englishLibraryPage: '第 {page} / {pages} 页', englishLibraryFont: '字号', englishLibraryTheme: '阅读主题', englishLibraryLineHeight: '行距', englishLibraryNoContent: '本章暂无正文', englishLibraryLoadFailed: '书籍内容加载失败', englishLibraryLight: '明亮', englishLibrarySepia: '羊皮纸', englishLibraryGreen: '护眼', englishLibraryDark: '夜读',
     wordsStudied: '已学单词', wrongWords: '错题单词', totalViews: '累计学习', searchEnglishWord: '搜索单词、释义或例句', allModes: '全部模式',
     seenTimes: '学习 {count} 次', wrongTimes: '答错 {count} 次', lastStudied: '最近学习', lastAnswer: '上次答案', correctAnswerLabel: '正确答案',
     noEnglishWords: '单词本还是空的，点击“精简学习”开始刷词。', noEnglishWrongWords: '还没有错题，继续保持。', filterMode: '学习模式',
@@ -192,8 +194,10 @@ const translations = {
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
     incomingShake: '{name} shook your window', incomingFlash: '{name} flashed your window', stopWindowEffect: 'Stop window interaction',
     shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
-    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', compactEnglishStudy: 'Compact Study',
-    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.',
+    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', compactEnglishStudy: 'Compact Study',
+    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.',
+    textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon',
+    englishLibraryTitle: 'Immersive English Reading', englishLibraryLoginRequired: 'Sign in with a Plus or higher account to open the library.', englishLibraryUpgradeHint: 'English books are available to Plus, Pro, and Ultra members only.', englishLibraryLoading: 'Organising your English shelf…', englishLibraryEmpty: 'The bookshelf is empty for now.', englishLibrarySearch: 'Search title, author, or summary', englishLibraryAllLanguages: 'All languages', englishLibraryRead: 'Start Reading', englishLibraryContinue: 'Continue Reading', englishLibraryChapters: 'chapters', englishLibraryProgress: 'Reading progress', englishLibraryContents: 'Contents', englishLibraryBackShelf: 'Back to shelf', englishLibraryPrevious: 'Previous', englishLibraryNext: 'Next', englishLibraryPage: 'Page {page} / {pages}', englishLibraryFont: 'Font', englishLibraryTheme: 'Theme', englishLibraryLineHeight: 'Spacing', englishLibraryNoContent: 'No text in this chapter', englishLibraryLoadFailed: 'Unable to load book content', englishLibraryLight: 'Light', englishLibrarySepia: 'Sepia', englishLibraryGreen: 'Eye care', englishLibraryDark: 'Dark',
     wordsStudied: 'Words studied', wrongWords: 'Wrong words', totalViews: 'Total views', searchEnglishWord: 'Search word, meaning, or example', allModes: 'All modes',
     seenTimes: 'Studied {count} times', wrongTimes: '{count} wrong', lastStudied: 'Last studied', lastAnswer: 'Last answer', correctAnswerLabel: 'Correct answer',
     noEnglishWords: 'Your word book is empty. Start with Compact Study.', noEnglishWrongWords: 'No wrong answers yet. Keep it up.', filterMode: 'Study mode',
@@ -319,7 +323,7 @@ const state = {
   translatorOpen: false,
   translator: {tab: 'text', quota: {}, result: '', history: [], total: 0, page: 1, pageSize: 20, keyword: '', busy: false, historyBusy: false, selected: []},
   englishCenterOpen: false,
-  englishNotebook: {tab: 'words', words: [], wrongWords: [], keyword: '', mode: 'all', busy: false},
+  englishNotebook: {tab: 'words', memberReaderImmersive: true, words: [], wrongWords: [], keyword: '', mode: 'all', busy: false, textbook: {books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}, library: {mode:'shelf', books:[], keyword:'', language:'all', selectedBook:null, chapters:[], chapterId:0, paragraphs:[], page:1, pageSize:20, total:0, loading:false, readerLoading:false, error:'', theme:'sepia', fontSize:18, lineHeight:1.85}},
   englishOpen: false,
   english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
@@ -804,10 +808,14 @@ function bindEvents() {
   }, true);
   $('#open-english').addEventListener('click', openEnglishPage);
   $('#close-english-center').addEventListener('click', closeEnglishCenterPage);
+  $('#back-english-center-overview').addEventListener('click', returnToEnglishCenterOverview);
   $('#open-english-compact').addEventListener('click', openEnglishCompactPage);
   $('#english-center-tabs').addEventListener('click', changeEnglishNotebookTab);
   $('#english-center-search').addEventListener('input', filterEnglishNotebook);
   $('#english-center-mode').addEventListener('change', filterEnglishNotebook);
+  $('#english-center-list').addEventListener('click', handleEnglishTextbookAction);
+  $('#english-center-list').addEventListener('change', handleEnglishTextbookAction);
+  $('#english-center-list').addEventListener('submit', handleEnglishTextbookAction);
   $('#close-english').addEventListener('click', () => closeEnglishCompactPage(true));
   $('#minimize-english').addEventListener('click', minimiseWindow);
   $('#retry-english').addEventListener('click', loadEnglishBatch);
@@ -3720,6 +3728,7 @@ async function handleAccountTrialAction(event) {
     renderAccountSession();
     renderCloudSession();
     renderRealtime();
+    void refreshActiveEnglishMemberContent();
     showToast(t('trialClaimed', {role:trialRoleName(invitation)}));
   } catch (error) {
     showToast(readError(error), true);
@@ -3749,6 +3758,7 @@ async function refreshAccountProfile(force = false) {
     renderCloudSession();
     renderRealtime();
     if (currentMembership.tier !== previousMembership.tier) {
+      void refreshActiveEnglishMemberContent();
       showToast(t('membershipUpdated', {membership: currentMembership.label}));
     }
   } catch (error) {
@@ -4008,6 +4018,7 @@ async function submitAccountLogin(event) {
   try {
     const session = await api.LoginAccount(username, password);
     state.account = {loggedIn: Boolean(session?.loggedIn), user: session?.user || null};
+    resetEnglishMemberContent();
     lastAccountProfileRefreshAt = Date.now();
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
     state.notes.nodes = [];
@@ -4033,6 +4044,7 @@ async function submitAccountLogin(event) {
     await refreshNotificationUnread();
     if (state.notificationOpen) await loadUserNotices();
     if (state.shareManagementOpen) await loadNoteShares();
+    await refreshActiveEnglishMemberContent();
     showToast(t('loginSuccess'));
     // Membership may be granted asynchronously immediately after login.
     // Retry profile loading shortly afterwards without delaying the login UI.
@@ -4082,6 +4094,7 @@ async function logoutAccount() {
     state.aiChat.usage = {conversation_count:0,message_count:0,today_tokens:0,total_tokens:0};
     state.aiChat.usageLoaded = false;
     state.realtime = {...state.realtime, ...(session?.realtime || {}), identity: null, friends: [], friendRequests: []};
+    resetEnglishMemberContent();
     state.accountMode = 'login';
     renderNotificationSession();
     renderNotificationBadge();
@@ -5898,11 +5911,17 @@ async function openEnglishPage() {
   document.body.classList.add('english-center-open');
   $('#english-center-page').classList.remove('hidden');
   await refreshEnglishNotebook();
+  if (state.account.loggedIn && ['textbook', 'library'].includes(state.englishNotebook.tab)) {
+    await refreshAccountProfile(true);
+  }
+  await refreshActiveEnglishMemberContent();
 }
 
 function closeEnglishCenterPage() {
   state.englishCenterOpen = false;
   document.body.classList.remove('english-center-open');
+  $('#english-center-page').classList.remove('library-reader-mode');
+  $('#english-center-page').classList.remove('textbook-reader-mode');
   $('#english-center-page').classList.add('hidden');
 }
 
@@ -5946,6 +5965,7 @@ async function closeEnglishCompactPage(returnToCenter = true) {
     document.body.classList.add('english-center-open');
     $('#english-center-page').classList.remove('hidden');
     await refreshEnglishNotebook();
+    await refreshActiveEnglishMemberContent();
   }
 }
 
@@ -5969,13 +5989,66 @@ async function refreshEnglishNotebook() {
   }
 }
 
-function changeEnglishNotebookTab(event) {
+async function changeEnglishNotebookTab(event) {
   const button = event.target.closest('[data-english-book-tab]');
   if (!button) return;
-  state.englishNotebook.tab = button.dataset.englishBookTab === 'wrong' ? 'wrong' : 'words';
+  const tab = button.dataset.englishBookTab;
+  state.englishNotebook.tab = ['wrong', 'textbook', 'library'].includes(tab) ? tab : 'words';
+  state.englishNotebook.memberReaderImmersive = ['textbook', 'library'].includes(state.englishNotebook.tab);
   state.englishNotebook.mode = 'all';
   $('#english-center-mode').value = 'all';
+  if (state.englishNotebook.tab === 'textbook') {
+    if (state.account.loggedIn) await refreshAccountProfile(true);
+    if (accountMembershipRank() < 1) {
+      showToast(t(state.account.loggedIn ? 'textbookPlusRequired' : 'textbookLoginRequired'), true);
+    } else {
+      await loadEnglishTextbooks();
+    }
+  } else if (state.englishNotebook.tab === 'library') {
+    if (state.account.loggedIn) await refreshAccountProfile(true);
+    if (accountMembershipRank() < 1) {
+      showToast(t(state.account.loggedIn ? 'englishLibraryUpgradeHint' : 'englishLibraryLoginRequired'), true);
+    } else {
+      await loadEnglishBooks();
+    }
+  }
   renderEnglishNotebook();
+}
+
+function accountMembershipRank() {
+  return Number(resolveAccountMembership(state.account?.user).rank) || 0;
+}
+
+async function returnToEnglishCenterOverview() {
+  const notebook = state.englishNotebook;
+  if (notebook.tab === 'library' && notebook.library.mode === 'reader') {
+    await saveEnglishReadingProgress();
+    notebook.library.mode = 'shelf';
+    notebook.library.selectedBook = null;
+  }
+  notebook.memberReaderImmersive = false;
+  renderEnglishNotebook();
+}
+
+function resetEnglishMemberContent() {
+  const notebook = state.englishNotebook;
+  Object.assign(notebook.textbook, {
+    books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null,
+    directoryScrollTop: 0, loading: false, detailLoading: false, error: ''
+  });
+  Object.assign(notebook.library, {
+    mode: 'shelf', books: [], selectedBook: null, chapters: [], chapterId: 0,
+    paragraphs: [], page: 1, total: 0, loading: false, readerLoading: false, error: ''
+  });
+}
+
+async function refreshActiveEnglishMemberContent(force = false) {
+  if (!state.account.loggedIn || accountMembershipRank() < 1) return;
+  if (state.englishNotebook.tab === 'textbook') {
+    await loadEnglishTextbooks(force);
+  } else if (state.englishNotebook.tab === 'library') {
+    await loadEnglishBooks(force);
+  }
 }
 
 function filterEnglishNotebook() {
@@ -6017,6 +6090,32 @@ function renderEnglishNotebook() {
   $$('#english-center-tabs [data-english-book-tab]').forEach(button => {
     button.classList.toggle('active', button.dataset.englishBookTab === notebook.tab);
   });
+  const textbookActive = notebook.tab === 'textbook';
+  const libraryActive = notebook.tab === 'library';
+  const libraryReaderActive = libraryActive
+    && notebook.memberReaderImmersive
+    && notebook.library?.mode === 'reader'
+    && Boolean(notebook.library?.selectedBook);
+  const textbookReaderActive = textbookActive
+    && notebook.memberReaderImmersive
+    && accountMembershipRank() >= 1
+    && Boolean(notebook.textbook?.detail || notebook.textbook?.books?.length);
+  const readingActive = textbookActive || libraryActive;
+  $('#english-center-page').classList.toggle('library-reader-mode', libraryReaderActive);
+  $('#english-center-page').classList.toggle('textbook-reader-mode', textbookReaderActive);
+  $('.english-center-filters').classList.toggle('hidden', readingActive);
+  $('#english-center-list').classList.toggle('textbook-active', textbookActive);
+  $('#english-center-list').classList.toggle('library-active', libraryActive);
+  if (textbookActive) {
+    $('#english-center-description-text').textContent = t('englishTextbooksHint');
+    renderEnglishTextbooks();
+    return;
+  }
+  if (libraryActive) {
+    $('#english-center-description-text').textContent = t('englishBooksHint');
+    renderEnglishLibrary();
+    return;
+  }
   const wrongActive = notebook.tab === 'wrong';
   $('#english-center-description-text').textContent = t(wrongActive ? 'englishWrongBookHint' : 'englishNotebookHint');
   const allowedModes = wrongActive ? new Set(['all', 'quiz', 'chinese', 'spelling']) : new Set(['all', 'study', 'sentence', 'quiz', 'chinese', 'spelling']);
@@ -6052,6 +6151,495 @@ function renderEnglishNotebook() {
     return;
   }
   list.innerHTML = records.map(item => renderEnglishBookCard(item, wrongActive)).join('');
+}
+
+async function loadEnglishTextbooks(force = false) {
+  const textbook = state.englishNotebook.textbook;
+  if (textbook.loading || (!force && textbook.books.length)) return;
+  textbook.loading = true;
+  textbook.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishTextbooks();
+    textbook.books = Array.isArray(response?.list) ? response.list : [];
+    textbook.code = textbook.books.some(book => book.code === textbook.code) ? textbook.code : (textbook.books[0]?.code || '');
+    textbook.lessons = [];
+    textbook.selectedLessonNo = 0;
+    textbook.detail = null;
+    if (textbook.code) await loadEnglishTextbookLessons(textbook.code);
+  } catch (error) {
+    textbook.error = readError(error);
+  } finally {
+    textbook.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function loadEnglishTextbookLessons(code) {
+  const textbook = state.englishNotebook.textbook;
+  textbook.code = String(code || '');
+  textbook.lessons = [];
+  textbook.selectedLessonNo = 0;
+  textbook.detail = null;
+  textbook.directoryScrollTop = 0;
+  if (!textbook.code) return;
+  textbook.loading = true;
+  try {
+    const response = await api.ListEnglishTextbookLessons(textbook.code);
+    textbook.lessons = Array.isArray(response?.lessons) ? response.lessons : [];
+    if (textbook.lessons.length) await selectEnglishTextbookLesson(textbook.lessons[0].lesson_no);
+  } catch (error) {
+    textbook.error = readError(error);
+  } finally {
+    textbook.loading = false;
+  }
+}
+
+async function selectEnglishTextbookLesson(lessonNo) {
+  const textbook = state.englishNotebook.textbook;
+  const number = Number(lessonNo) || 0;
+  if (!textbook.code || number < 1) return;
+  state.englishNotebook.memberReaderImmersive = true;
+  textbook.selectedLessonNo = number;
+  textbook.detail = null;
+  textbook.detailLoading = true;
+  renderEnglishNotebook();
+  try {
+    textbook.detail = await api.GetEnglishTextbookLesson(textbook.code, number);
+  } catch (error) {
+    textbook.error = readError(error);
+  } finally {
+    textbook.detailLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function handleEnglishTextbookAction(event) {
+  if (state.englishNotebook.tab === 'library') {
+    await handleEnglishLibraryAction(event);
+    return;
+  }
+  if (state.englishNotebook.tab !== 'textbook') return;
+  const textbook = state.englishNotebook.textbook;
+  const select = event.target.closest('[data-english-textbook-select]');
+  if (select && event.type === 'change') {
+    await loadEnglishTextbookLessons(select.value);
+    renderEnglishNotebook();
+    return;
+  }
+  const lesson = event.target.closest('[data-english-textbook-lesson]');
+  if (lesson) {
+    textbook.directoryScrollTop = Math.max(0, Number(lesson.parentElement?.scrollTop) || 0);
+    await selectEnglishTextbookLesson(lesson.dataset.englishTextbookLesson);
+  }
+}
+
+function renderEnglishTextbooks() {
+  const list = $('#english-center-list');
+  const textbook = state.englishNotebook.textbook;
+  if (!state.account.loggedIn) {
+    list.innerHTML = `<section class="english-textbook-access"><span>＋</span><h2>${escapeHTML(t('englishTextbooks'))}</h2><p>${escapeHTML(t('textbookLoginRequired'))}</p><button type="button" class="primary-btn" data-open-account-login>${escapeHTML(t('goToAccountLogin'))}</button></section>`;
+    list.querySelector('[data-open-account-login]')?.addEventListener('click', () => openAccountPage('login'));
+    return;
+  }
+  if (accountMembershipRank() < 1) {
+    list.innerHTML = `<section class="english-textbook-access locked"><span>◆</span><h2>${escapeHTML(t('englishTextbooks'))}</h2><p>${escapeHTML(t('textbookUpgradeHint'))}</p><b>${escapeHTML(t('textbookPlusRequired'))}</b></section>`;
+    return;
+  }
+  if (textbook.loading && !textbook.books.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>`;
+    return;
+  }
+  if (textbook.error) {
+    list.innerHTML = `<section class="english-textbook-access locked"><span>!</span><h2>${escapeHTML(t('englishTextbooks'))}</h2><p>${escapeHTML(textbook.error)}</p><button type="button" class="primary-btn" data-retry-textbooks>${escapeHTML(t('retry'))}</button></section>`;
+    list.querySelector('[data-retry-textbooks]')?.addEventListener('click', () => void loadEnglishTextbooks(true));
+    return;
+  }
+  if (!textbook.books.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>▤</span><b>${escapeHTML(t('textbookEmpty'))}</b></div>`;
+    return;
+  }
+  const book = textbook.books.find(item => item.code === textbook.code) || textbook.books[0];
+  const detail = textbook.detail;
+  const lessonList = textbook.lessons.map(item => `<button type="button" class="english-textbook-lesson${Number(item.lesson_no) === textbook.selectedLessonNo ? ' active' : ''}" data-english-textbook-lesson="${Number(item.lesson_no)}"><b>${String(item.lesson_no).padStart(2, '0')}</b><span><strong>${escapeHTML(item.title_en)}</strong><small>${escapeHTML(item.title_cn || item.summary_cn || '')}</small></span></button>`).join('');
+  const article = detail ? `<article class="english-textbook-article">
+    <header><span>${escapeHTML(t('textbookReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title_en || '')}</h2><h3>${escapeHTML(detail.lesson?.title_cn || '')}</h3><small>${Number(detail.lesson?.word_count || 0).toLocaleString(locale())} ${escapeHTML(t('textbookWords'))} · ${Array.isArray(detail.paragraphs) ? detail.paragraphs.length : 0} ${escapeHTML(t('textbookParagraphs'))}${detail.lesson?.linked_lexicon ? ` · ${escapeHTML(t('textbookLinkedLexicon'))}` : ''}</small></header>
+    <div class="english-textbook-paragraphs">${(detail.paragraphs || []).map(item => `<section><b>${String(item.paragraph_no).padStart(2, '0')}</b><div><p>${escapeHTML(item.content_en)}</p><small>${escapeHTML(item.content_cn)}</small></div></section>`).join('')}</div>
+    ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => `<span><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`).join('')}</div></footer>` : ''}
+  </article>` : `<div class="english-center-empty"><span>▤</span><b>${escapeHTML(t('textbookSelectLesson'))}</b></div>`;
+  list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
+  const directory = list.querySelector('.english-textbook-layout > aside > div');
+  if (directory) {
+    const restoreScroll = () => { directory.scrollTop = Math.max(0, Number(textbook.directoryScrollTop) || 0); };
+    restoreScroll();
+    requestAnimationFrame(restoreScroll);
+    directory.addEventListener('scroll', () => {
+      textbook.directoryScrollTop = directory.scrollTop;
+    }, {passive: true});
+  }
+}
+
+async function loadEnglishBooksLegacy(force = false) {
+  const library = state.englishNotebook.library;
+  if (library.loading || (!force && library.books.length)) return;
+  library.loading = true;
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishBooks(library.keyword, library.language);
+    library.books = Array.isArray(response?.list) ? response.list : [];
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function openEnglishBookLegacy(bookID) {
+  const library = state.englishNotebook.library;
+  const id = Number(bookID) || 0;
+  if (!id) return;
+  library.mode = 'reader';
+  library.readerLoading = true;
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const [book, chapters] = await Promise.all([
+      api.OpenEnglishBook(id),
+      api.ListEnglishBookChapters(id)
+    ]);
+    library.selectedBook = book;
+    library.chapters = Array.isArray(chapters) ? chapters : [];
+    let progress = null;
+    try { progress = await api.GetEnglishBookProgress(id); } catch (_) { /* A new reader has no progress row yet. */ }
+    const savedChapter = Number(progress?.chapter_id || progress?.chapterId) || 0;
+    const firstChapter = library.chapters.find(item => Number(item.id) === savedChapter) || library.chapters[0];
+    library.chapterId = Number(firstChapter?.id) || 0;
+    library.page = Math.max(1, Math.ceil((Number(progress?.paragraph_no || progress?.paragraphNo) || 1) / library.pageSize));
+    if (library.chapterId) await loadEnglishBookPage(library.chapterId, library.page, false);
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.readerLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function loadEnglishBookPageLegacy(chapterID, page = 1, save = true) {
+  const library = state.englishNotebook.library;
+  const id = Number(chapterID) || 0;
+  if (!id) return;
+  if (save && library.chapterId && library.paragraphs.length) await saveEnglishReadingProgress();
+  library.chapterId = id;
+  library.page = Math.max(1, Number(page) || 1);
+  library.readerLoading = true;
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishBookParagraphs(id, library.page, library.pageSize);
+    library.paragraphs = Array.isArray(response?.list) ? response.list : [];
+    library.total = Math.max(0, Number(response?.total) || 0);
+    const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+    if (library.page > pages) {
+      library.page = pages;
+      const corrected = await api.ListEnglishBookParagraphs(id, pages, library.pageSize);
+      library.paragraphs = Array.isArray(corrected?.list) ? corrected.list : [];
+      library.total = Math.max(0, Number(corrected?.total) || 0);
+    }
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.readerLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function saveEnglishReadingProgressLegacy() {
+  const library = state.englishNotebook.library;
+  const bookID = Number(library.selectedBook?.id) || 0;
+  const chapterID = Number(library.chapterId) || 0;
+  if (!bookID || !chapterID) return;
+  const lastParagraph = library.paragraphs[library.paragraphs.length - 1];
+  const paragraphNo = Math.max(1, Number(lastParagraph?.paragraph_no) || ((library.page - 1) * library.pageSize + 1));
+  const progress = library.total ? Math.min(100, paragraphNo / library.total * 100) : 0;
+  try { await api.SaveEnglishBookProgress(bookID, chapterID, paragraphNo, progress); } catch (_) { /* Reading must remain uninterrupted if progress sync fails. */ }
+}
+
+async function moveEnglishBookPageLegacy(direction) {
+  const library = state.englishNotebook.library;
+  const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+  let page = library.page + direction;
+  let chapterIndex = library.chapters.findIndex(item => Number(item.id) === Number(library.chapterId));
+  if (page > pages && chapterIndex < library.chapters.length - 1) {
+    chapterIndex += 1;
+    await loadEnglishBookPage(library.chapters[chapterIndex].id, 1);
+    return;
+  }
+  if (page < 1 && chapterIndex > 0) {
+    chapterIndex -= 1;
+    await loadEnglishBookPage(library.chapters[chapterIndex].id, 1);
+    const previousPages = Math.max(1, Math.ceil(library.total / library.pageSize));
+    if (previousPages > 1) await loadEnglishBookPage(library.chapterId, previousPages, false);
+    return;
+  }
+  page = Math.min(pages, Math.max(1, page));
+  if (page !== library.page) await loadEnglishBookPage(library.chapterId, page);
+}
+
+async function handleEnglishLibraryActionLegacy(event) {
+  const library = state.englishNotebook.library;
+  const target = event.target;
+  const form = target.closest('[data-english-library-search]');
+  if (form && event.type === 'submit') {
+    event.preventDefault();
+    library.keyword = form.querySelector('input')?.value.trim() || '';
+    library.language = form.querySelector('select')?.value || 'all';
+    await loadEnglishBooks(true);
+    return;
+  }
+  const book = target.closest('[data-english-library-book]');
+  if (book && event.type === 'click') { await openEnglishBook(book.dataset.englishLibraryBook); return; }
+  const chapter = target.closest('[data-english-library-chapter]');
+  if (chapter && event.type === 'click') { await loadEnglishBookPage(chapter.dataset.englishLibraryChapter, 1); return; }
+  if (target.closest('[data-english-library-back]')) { await saveEnglishReadingProgress(); library.mode = 'shelf'; library.selectedBook = null; renderEnglishNotebook(); return; }
+  if (target.closest('[data-english-library-prev]')) { await moveEnglishBookPage(-1); return; }
+  if (target.closest('[data-english-library-next]')) { await moveEnglishBookPage(1); return; }
+  const setting = target.closest('[data-english-reader-setting]');
+  if (setting && event.type === 'change') {
+    const key = setting.dataset.englishReaderSetting;
+    library[key] = key === 'theme' ? setting.value : Number(setting.value);
+    renderEnglishNotebook();
+  }
+}
+
+function renderEnglishLibraryLegacy() {
+  const list = $('#english-center-list');
+  const library = state.englishNotebook.library;
+  if (!state.account.loggedIn) {
+    list.innerHTML = `<section class="english-textbook-access english-library-access"><span>▥</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2><p>${escapeHTML(t('englishLibraryLoginRequired'))}</p><button type="button" class="primary-btn" data-open-account-login>${escapeHTML(t('goToAccountLogin'))}</button></section>`;
+    list.querySelector('[data-open-account-login]')?.addEventListener('click', () => openAccountPage('login'));
+    return;
+  }
+  if (accountMembershipRank() < 1) {
+    list.innerHTML = `<section class="english-textbook-access english-library-access locked"><span>◆</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2><p>${escapeHTML(t('englishLibraryUpgradeHint'))}</p><b>PLUS · PRO · ULTRA</b></section>`;
+    return;
+  }
+  if (library.mode === 'reader' && library.selectedBook) {
+    renderEnglishBookReader();
+    return;
+  }
+  if (library.loading && !library.books.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('englishLibraryLoading'))}</b></div>`;
+    return;
+  }
+  if (library.error) {
+    list.innerHTML = `<section class="english-textbook-access locked"><span>!</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2><p>${escapeHTML(library.error)}</p><button type="button" class="primary-btn" data-retry-library>${escapeHTML(t('retry'))}</button></section>`;
+    list.querySelector('[data-retry-library]')?.addEventListener('click', () => void loadEnglishBooks(true));
+    return;
+  }
+  const cards = library.books.map((book, index) => {
+    const progress = Math.min(100, Math.max(0, Number(book.progress) || 0));
+    return `<button type="button" class="english-library-book" data-english-library-book="${Number(book.id)}"><span class="english-library-cover cover-${index % 5}"><small>WORKDAY<br>LIBRARY</small><b>${escapeHTML(String(book.title || 'BOOK').slice(0, 2).toUpperCase())}</b></span><span class="english-library-book-info"><small>${escapeHTML(book.language || 'ENGLISH')} · ${Number(book.total_chapters || 0)} ${escapeHTML(t('englishLibraryChapters'))}</small><strong>${escapeHTML(book.title || '')}</strong><em>${escapeHTML(book.author || '—')}</em><p>${escapeHTML(book.summary || '')}</p><span class="english-library-progress"><i style="width:${progress}%"></i></span><span class="english-library-book-foot"><small>${escapeHTML(t('englishLibraryProgress'))} ${progress.toFixed(1)}%</small><b>${escapeHTML(t(progress > 0 ? 'englishLibraryContinue' : 'englishLibraryRead'))} →</b></span></span></button>`;
+  }).join('');
+  list.innerHTML = `<section class="english-library-shelf"><header><div><span>IMMERSIVE READING</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2></div><form data-english-library-search><input type="search" value="${escapeHTML(library.keyword)}" placeholder="${escapeHTML(t('englishLibrarySearch'))}"><select><option value="all">${escapeHTML(t('englishLibraryAllLanguages'))}</option><option value="EN"${library.language === 'EN' ? ' selected' : ''}>English</option><option value="CN"${library.language === 'CN' ? ' selected' : ''}>中文</option><option value="BILINGUAL"${library.language === 'BILINGUAL' ? ' selected' : ''}>Bilingual</option></select><button type="submit">⌕</button></form></header><div class="english-library-grid">${cards || `<div class="english-center-empty"><span>▥</span><b>${escapeHTML(t('englishLibraryEmpty'))}</b></div>`}</div></section>`;
+}
+
+function renderEnglishBookReaderLegacy() {
+  const list = $('#english-center-list');
+  const library = state.englishNotebook.library;
+  const book = library.selectedBook;
+  const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+  const chapterIndex = library.chapters.findIndex(item => Number(item.id) === Number(library.chapterId));
+  const chapter = library.chapters[chapterIndex] || {};
+  const chapters = library.chapters.map(item => `<button type="button" class="english-library-chapter${Number(item.id) === Number(library.chapterId) ? ' active' : ''}" data-english-library-chapter="${Number(item.id)}"><b>${String(item.chapter_no || 0).padStart(2, '0')}</b><span>${escapeHTML(item.title || `Chapter ${item.chapter_no || ''}`)}</span><small>${Number(item.word_count || 0).toLocaleString(locale())}</small></button>`).join('');
+  const paragraphs = library.paragraphs.map(item => `<p data-paragraph="${Number(item.paragraph_no)}">${escapeHTML(item.content || '')}</p>`).join('');
+  list.innerHTML = `<section class="english-library-reader reader-${escapeHTML(library.theme)}"><header class="english-library-reader-toolbar"><button type="button" data-english-library-back>← ${escapeHTML(t('englishLibraryBackShelf'))}</button><div><small>${escapeHTML(book.author || '—')}</small><strong>${escapeHTML(book.title || '')}</strong></div><label>${escapeHTML(t('englishLibraryTheme'))}<select data-english-reader-setting="theme"><option value="light"${library.theme === 'light' ? ' selected' : ''}>${escapeHTML(t('englishLibraryLight'))}</option><option value="sepia"${library.theme === 'sepia' ? ' selected' : ''}>${escapeHTML(t('englishLibrarySepia'))}</option><option value="green"${library.theme === 'green' ? ' selected' : ''}>${escapeHTML(t('englishLibraryGreen'))}</option><option value="dark"${library.theme === 'dark' ? ' selected' : ''}>${escapeHTML(t('englishLibraryDark'))}</option></select></label><label>${escapeHTML(t('englishLibraryFont'))}<input type="range" min="14" max="28" step="1" value="${library.fontSize}" data-english-reader-setting="fontSize"></label><label>${escapeHTML(t('englishLibraryLineHeight'))}<input type="range" min="1.4" max="2.4" step="0.1" value="${library.lineHeight}" data-english-reader-setting="lineHeight"></label></header><div class="english-library-reader-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('englishLibraryContents'))}</b></header><div>${chapters}</div></aside><article style="--reader-font-size:${Number(library.fontSize)}px;--reader-line-height:${Number(library.lineHeight)}"><header><small>CHAPTER ${String(chapter.chapter_no || 0).padStart(2, '0')}</small><h2>${escapeHTML(chapter.title || `Chapter ${chapter.chapter_no || ''}`)}</h2></header>${library.readerLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('englishLibraryLoading'))}</b></div>` : (library.error ? `<div class="english-center-empty"><span>!</span><b>${escapeHTML(library.error)}</b></div>` : `<div class="english-library-reading-copy">${paragraphs || `<div class="english-center-empty"><span>▥</span><b>${escapeHTML(t('englishLibraryNoContent'))}</b></div>`}</div>`)}<footer><button type="button" data-english-library-prev${library.page <= 1 && chapterIndex <= 0 ? ' disabled' : ''}>← ${escapeHTML(t('englishLibraryPrevious'))}</button><span>${escapeHTML(t('englishLibraryPage', {page:library.page, pages}))}</span><button type="button" data-english-library-next${library.page >= pages && chapterIndex >= library.chapters.length - 1 ? ' disabled' : ''}>${escapeHTML(t('englishLibraryNext'))} →</button></footer></article></div></section>`;
+}
+
+async function loadEnglishBooks(force = false) {
+  const library = state.englishNotebook.library;
+  if (library.loading || (!force && library.books.length)) return;
+  library.loading = true;
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishBooks(library.keyword, library.language);
+    library.books = Array.isArray(response?.list) ? response.list : [];
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function openEnglishBook(bookID) {
+  const library = state.englishNotebook.library;
+  const id = Number(bookID) || 0;
+  if (!id || library.readerLoading) return;
+  state.englishNotebook.memberReaderImmersive = true;
+  library.readerLoading = true;
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const [book, chapters] = await Promise.all([api.OpenEnglishBook(id), api.ListEnglishBookChapters(id)]);
+    library.selectedBook = book;
+    library.chapters = Array.isArray(chapters) ? chapters : [];
+    library.mode = 'reader';
+    let progress = null;
+    try { progress = await api.GetEnglishBookProgress(id); } catch (_) { /* New reader: no progress row yet. */ }
+    const savedChapter = Number(progress?.chapter_id || progress?.chapterId) || 0;
+    const initial = library.chapters.find(item => Number(item.id) === savedChapter) || library.chapters[0];
+    library.chapterId = Number(initial?.id) || 0;
+    library.page = Math.max(1, Math.ceil((Number(progress?.paragraph_no || progress?.paragraphNo) || 1) / library.pageSize));
+    if (library.chapterId) await loadEnglishBookPage(library.chapterId, library.page, false);
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.readerLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function loadEnglishBookPage(chapterID, page = 1, save = true) {
+  const library = state.englishNotebook.library;
+  const id = Number(chapterID) || 0;
+  if (!id) return;
+  library.readerLoading = true;
+  library.chapterId = id;
+  library.page = Math.max(1, Number(page) || 1);
+  library.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishBookParagraphs(id, library.page, library.pageSize);
+    library.paragraphs = Array.isArray(response?.list) ? response.list : [];
+    library.total = Math.max(0, Number(response?.total) || 0);
+    const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+    if (library.page > pages) {
+      library.page = pages;
+      return await loadEnglishBookPage(id, pages, save);
+    }
+    if (save) await saveEnglishReadingProgress();
+  } catch (error) {
+    library.error = readError(error);
+  } finally {
+    library.readerLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function saveEnglishReadingProgress() {
+  const library = state.englishNotebook.library;
+  const bookID = Number(library.selectedBook?.id) || 0;
+  const chapterID = Number(library.chapterId) || 0;
+  if (!bookID || !chapterID) return;
+  const seen = Math.min(library.total, (library.page - 1) * library.pageSize + library.paragraphs.length);
+  const percent = library.total ? Math.min(100, Math.max(0, seen / library.total * 100)) : 0;
+  const paragraphNo = Number(library.paragraphs.at(-1)?.paragraph_no) || 0;
+  try {
+    await api.SaveEnglishBookProgress(bookID, chapterID, paragraphNo, percent);
+    const shelfBook = library.books.find(item => Number(item.id) === bookID);
+    if (shelfBook) {
+      const chapterIndex = Math.max(0, library.chapters.findIndex(item => Number(item.id) === chapterID));
+      shelfBook.progress = Math.min(100, ((chapterIndex + percent / 100) / Math.max(1, library.chapters.length)) * 100);
+    }
+  } catch (_) { /* Do not interrupt reading when progress sync is temporarily unavailable. */ }
+}
+
+async function turnEnglishBookPage(direction) {
+  const library = state.englishNotebook.library;
+  const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+  if (direction > 0 && library.page < pages) return loadEnglishBookPage(library.chapterId, library.page + 1);
+  if (direction < 0 && library.page > 1) return loadEnglishBookPage(library.chapterId, library.page - 1);
+  const chapterIndex = library.chapters.findIndex(item => Number(item.id) === Number(library.chapterId));
+  const nextChapter = library.chapters[chapterIndex + (direction > 0 ? 1 : -1)];
+  if (nextChapter) await loadEnglishBookPage(nextChapter.id, direction > 0 ? 1 : 999999);
+}
+
+async function handleEnglishLibraryAction(event) {
+  const library = state.englishNotebook.library;
+  const target = event.target;
+  const open = target.closest('[data-english-library-open]');
+  if (open) return openEnglishBook(open.dataset.englishLibraryOpen);
+  if (target.closest('[data-english-library-back]')) {
+    await saveEnglishReadingProgress();
+    library.mode = 'shelf';
+    library.selectedBook = null;
+    renderEnglishNotebook();
+    return;
+  }
+  const chapter = target.closest('[data-english-library-chapter]');
+  if (chapter) return loadEnglishBookPage(chapter.dataset.englishLibraryChapter, 1);
+  const page = target.closest('[data-english-library-page]');
+  if (page) return turnEnglishBookPage(Number(page.dataset.englishLibraryPage));
+  if (target.closest('[data-retry-english-library]')) return loadEnglishBooks(true);
+  const search = target.closest('[data-english-library-search]');
+  if (search && event.type === 'change') {
+    library.keyword = search.value.trim(); library.books = [];
+    return loadEnglishBooks(true);
+  }
+  const language = target.closest('[data-english-library-language]');
+  if (language && event.type === 'change') {
+    library.language = language.value || 'all'; library.books = [];
+    return loadEnglishBooks(true);
+  }
+  const theme = target.closest('[data-english-library-theme]');
+  if (theme && event.type === 'change') {
+    library.theme = theme.value || 'sepia'; renderEnglishNotebook(); return;
+  }
+  const font = target.closest('[data-english-library-font]');
+  if (font) {
+    library.fontSize = Math.min(26, Math.max(14, library.fontSize + Number(font.dataset.englishLibraryFont)));
+    renderEnglishNotebook(); return;
+  }
+  const spacing = target.closest('[data-english-library-spacing]');
+  if (spacing) {
+    library.lineHeight = Math.min(2.4, Math.max(1.4, library.lineHeight + Number(spacing.dataset.englishLibrarySpacing)));
+    renderEnglishNotebook();
+  }
+}
+
+function renderEnglishLibrary() {
+  const list = $('#english-center-list');
+  const library = state.englishNotebook.library;
+  if (!state.account.loggedIn) {
+    list.innerHTML = `<section class="english-textbook-access english-library-access"><span>▥</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2><p>${escapeHTML(t('englishLibraryLoginRequired'))}</p><button type="button" class="primary-btn" data-open-account-login>${escapeHTML(t('goToAccountLogin'))}</button></section>`;
+    list.querySelector('[data-open-account-login]')?.addEventListener('click', () => openAccountPage('login'));
+    return;
+  }
+  if (accountMembershipRank() < 1) {
+    list.innerHTML = `<section class="english-textbook-access english-library-access locked"><span>◆</span><h2>${escapeHTML(t('englishBooks'))}</h2><p>${escapeHTML(t('englishLibraryUpgradeHint'))}</p><b>PLUS · PRO · ULTRA</b></section>`;
+    return;
+  }
+  if (library.error) {
+    list.innerHTML = `<section class="english-textbook-access english-library-access locked"><span>!</span><h2>${escapeHTML(t('englishLibraryLoadFailed'))}</h2><p>${escapeHTML(library.error)}</p><button type="button" class="primary-btn" data-retry-english-library>${escapeHTML(t('retry'))}</button></section>`;
+    return;
+  }
+  if (library.mode === 'reader' && library.selectedBook) return renderEnglishBookReader();
+  if (library.loading && !library.books.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('englishLibraryLoading'))}</b></div>`; return;
+  }
+  const cards = library.books.map((book, index) => {
+    const progress = Math.min(100, Math.max(0, Number(book.progress) || 0));
+    const author = book.author || (currentLanguage() === 'zh' ? '佚名' : 'Unknown author');
+    return `<article class="english-library-card accent-${(index % 5) + 1}"><div class="english-library-cover"><span>READ</span><b>${escapeHTML(String(book.title || 'BOOK').slice(0, 1).toUpperCase())}</b><small>ENGLISH<br>LIBRARY</small></div><div class="english-library-card-body"><small>${escapeHTML(String(book.language || 'EN').toUpperCase())} · ${Number(book.total_chapters || 0)} ${escapeHTML(t('englishLibraryChapters'))}</small><h2>${escapeHTML(book.title || '')}</h2><h3>${escapeHTML(author)}</h3><p>${escapeHTML(book.summary || '')}</p><div class="english-library-card-progress"><span><i style="width:${progress}%"></i></span><small>${escapeHTML(t('englishLibraryProgress'))} ${progress.toFixed(0)}%</small></div><button type="button" data-english-library-open="${Number(book.id)}">${escapeHTML(t(progress > 0 ? 'englishLibraryContinue' : 'englishLibraryRead'))}<span>→</span></button></div></article>`;
+  }).join('');
+  list.innerHTML = `<section class="english-library-shelf"><header><div><span>IMMERSIVE READING</span><h2>${escapeHTML(t('englishLibraryTitle'))}</h2></div><div class="english-library-filters"><input type="search" value="${escapeHTML(library.keyword)}" placeholder="${escapeHTML(t('englishLibrarySearch'))}" data-english-library-search><select data-english-library-language><option value="all">${escapeHTML(t('englishLibraryAllLanguages'))}</option><option value="en"${library.language === 'en' ? ' selected' : ''}>English</option><option value="zh"${library.language === 'zh' ? ' selected' : ''}>中文</option><option value="bilingual"${library.language === 'bilingual' ? ' selected' : ''}>Bilingual</option></select></div></header><div class="english-library-grid">${cards || `<div class="english-center-empty"><span>▥</span><b>${escapeHTML(t('englishLibraryEmpty'))}</b></div>`}</div></section>`;
+}
+
+function renderEnglishBookReader() {
+  const list = $('#english-center-list');
+  const library = state.englishNotebook.library;
+  const book = library.selectedBook;
+  const chapter = library.chapters.find(item => Number(item.id) === Number(library.chapterId));
+  const pages = Math.max(1, Math.ceil(library.total / library.pageSize));
+  const chapterIndex = library.chapters.findIndex(item => Number(item.id) === Number(library.chapterId));
+  const canPrevious = library.page > 1 || chapterIndex > 0;
+  const canNext = library.page < pages || (chapterIndex >= 0 && chapterIndex < library.chapters.length - 1);
+  const contents = library.chapters.map(item => `<button type="button" class="english-library-chapter${Number(item.id) === Number(library.chapterId) ? ' active' : ''}" data-english-library-chapter="${Number(item.id)}"><b>${String(item.chapter_no || 0).padStart(2, '0')}</b><span>${escapeHTML(item.title || `${t('englishLibraryChapters')} ${item.chapter_no}`)}</span><small>${Number(item.word_count || 0).toLocaleString(locale())}</small></button>`).join('');
+  const paragraphs = library.paragraphs.map(item => `<p data-paragraph="${Number(item.paragraph_no)}">${escapeHTML(item.content || '')}</p>`).join('');
+  list.innerHTML = `<section class="english-library-reader"><header class="english-library-reader-head"><button type="button" data-english-library-back>← ${escapeHTML(t('englishLibraryBackShelf'))}</button><div><small>${escapeHTML(book.author || 'ENGLISH LIBRARY')}</small><h2>${escapeHTML(book.title || '')}</h2></div><div class="english-library-reader-tools"><label>${escapeHTML(t('englishLibraryTheme'))}<select data-english-library-theme><option value="light"${library.theme === 'light' ? ' selected' : ''}>${escapeHTML(t('englishLibraryLight'))}</option><option value="sepia"${library.theme === 'sepia' ? ' selected' : ''}>${escapeHTML(t('englishLibrarySepia'))}</option><option value="green"${library.theme === 'green' ? ' selected' : ''}>${escapeHTML(t('englishLibraryGreen'))}</option><option value="dark"${library.theme === 'dark' ? ' selected' : ''}>${escapeHTML(t('englishLibraryDark'))}</option></select></label><span>${escapeHTML(t('englishLibraryFont'))}<button type="button" data-english-library-font="-1">A−</button><button type="button" data-english-library-font="1">A+</button></span><span>${escapeHTML(t('englishLibraryLineHeight'))}<button type="button" data-english-library-spacing="-.1">−</button><button type="button" data-english-library-spacing=".1">＋</button></span></div></header><div class="english-library-reader-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('englishLibraryContents'))}</b></header><div>${contents}</div></aside><article class="english-library-paper theme-${escapeHTML(library.theme)}" style="--reader-font:${library.fontSize}px;--reader-line:${library.lineHeight}"><header><small>CHAPTER ${String(chapter?.chapter_no || 0).padStart(2, '0')}</small><h1>${escapeHTML(chapter?.title || book.title || '')}</h1><span>${Number(chapter?.word_count || 0).toLocaleString(locale())} WORDS</span></header><div class="english-library-prose">${library.readerLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('englishLibraryLoading'))}</b></div>` : (paragraphs || `<div class="english-center-empty"><span>¶</span><b>${escapeHTML(t('englishLibraryNoContent'))}</b></div>`)}</div><footer><button type="button" data-english-library-page="-1"${canPrevious ? '' : ' disabled'}>← ${escapeHTML(t('englishLibraryPrevious'))}</button><b>${escapeHTML(t('englishLibraryPage', {page:library.page, pages}))}</b><button type="button" data-english-library-page="1"${canNext ? '' : ' disabled'}>${escapeHTML(t('englishLibraryNext'))} →</button></footer></article></div></section>`;
 }
 
 function renderEnglishBookCard(item, wrong) {
@@ -7586,6 +8174,15 @@ function createPreviewAPI() {
       const expected = state.english.mode === 'quiz' ? question.translation : question.word;
       return {correct:answer.toLowerCase()===expected.toLowerCase(),correctAnswer:expected};
     },
+    async ListEnglishTextbooks(){ return {list:[{code:'nce2',title_en:'New Concept English 2',title_cn:'新概念英语第二册',edition:'新版',total_lessons:96,total_paragraphs:480,total_words:32200}]}; },
+    async ListEnglishTextbookLessons(){ return {lessons:[{lesson_no:1,title_en:'A private conversation',title_cn:'私人谈话',word_count:112,paragraph_count:4,linked_lexicon:true},{lesson_no:2,title_en:'Breakfast or lunch?',title_cn:'早餐还是午餐？',word_count:137,paragraph_count:5,linked_lexicon:true}]}; },
+    async GetEnglishTextbookLesson(code,lessonNo){ return {lesson:{lesson_no:Number(lessonNo),title_en:Number(lessonNo)===2?'Breakfast or lunch?':'A private conversation',title_cn:Number(lessonNo)===2?'早餐还是午餐？':'私人谈话',word_count:112,linked_lexicon:true},paragraphs:[{paragraph_no:1,content_en:'Last week I went to the theatre. I had a very good seat.',content_cn:'上星期我去看戏，座位很好。'},{paragraph_no:2,content_en:'A young man and a young woman were sitting behind me.',content_cn:'一青年男子与一青年女子坐在我身后。'}],entries:[{word:'private',phonetic:'/ˈpraɪvət/',part_of_speech:'adj.',meaning_cn:'私人的'},{word:'conversation',phonetic:'/ˌkɒnvəˈseɪʃn/',part_of_speech:'n.',meaning_cn:'谈话'}]}; },
+    async ListEnglishBooks(){ return {list:[{id:1,title:"Alice's Adventures in Wonderland",author:'Lewis Carroll',summary:'Alice follows a white rabbit into a strange and wonderful world.',language:'en',total_chapters:12,progress:18.4},{id:2,title:'The Old Man and the Sea',author:'Ernest Hemingway',summary:'An old fisherman faces the greatest catch of his life.',language:'en',total_chapters:5,progress:0}],total:2,page:1,pageSize:100}; },
+    async OpenEnglishBook(id){ return (await this.ListEnglishBooks()).list.find(item=>Number(item.id)===Number(id)); },
+    async ListEnglishBookChapters(bookId){ return [{id:Number(bookId)*100+1,book_id:Number(bookId),chapter_no:1,title:'Down the Rabbit-Hole',word_count:2350},{id:Number(bookId)*100+2,book_id:Number(bookId),chapter_no:2,title:'The Pool of Tears',word_count:2680}]; },
+    async ListEnglishBookParagraphs(chapterId,page,pageSize){ const content=['Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do.','Suddenly a White Rabbit with pink eyes ran close by her.','There was nothing so very remarkable in that; nor did Alice think it so very much out of the way.']; return {list:content.map((text,index)=>({id:index+1,chapter_id:Number(chapterId),paragraph_no:index+1,content:text,word_count:text.split(' ').length})),total:content.length,page,pageSize}; },
+    async GetEnglishBookProgress(){ throw new Error('Progress not found'); },
+    async SaveEnglishBookProgress(){ return true; },
     async PreviewWindowOpacity(){ return true; },
     async RestoreWindowOpacity(){ return true; },
     async GetWeather(city){ return {queryCity:city,city,temperature:23.6,apparentTemperature:24.1,weatherCode:2,description:'多云',icon:'⛅',updatedAt:new Date().toISOString(),stale:false}; },

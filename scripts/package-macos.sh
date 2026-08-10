@@ -14,7 +14,7 @@ trap cleanup EXIT
 cp -R "$app_bundle" "$stage_dir/Workday Island.app"
 ln -s /Applications "$stage_dir/Applications"
 hdiutil create \
-  -volname "Workday Island" \
+  -volname "Workday Island ${version}" \
   -srcfolder "$stage_dir" \
   -ov \
   -format UDZO \

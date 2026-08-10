@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0b101b">
   <title>工位岛 · Workday Island</title>
   <link rel="icon" href="./logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=60">
+  <link rel="stylesheet" href="./style.css?v=65">
 </head>
 <body>
   <div id="app" class="app-shell">
@@ -18,7 +18,7 @@
         </span>
         <span data-i18n="appName">工位岛</span>
         <span class="brand-en">WORKDAY ISLAND</span>
-        <span id="app-version-badge" class="version-badge">v0.16.5</span>
+        <span id="app-version-badge" class="version-badge">v0.16.6</span>
       </div>
       <div class="top-actions no-drag">
         <div id="focus-mini" class="focus-mini" aria-live="polite"><span></span><b data-i18n="focusing">专注中</b><strong id="focus-mini-time">50:00</strong></div>
@@ -936,6 +936,7 @@
 
     <section id="english-center-page" class="english-center-page hidden" aria-labelledby="english-center-title">
       <div class="english-center-head">
+        <button id="back-english-center-overview" type="button" class="chat-back-btn english-center-overview-back"><span>←</span><b data-i18n="backToEnglishCenter">返回英语学习中心</b></button>
         <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
         <div class="english-center-title-group">
           <div class="section-kicker">ENGLISH LEARNING</div>
@@ -955,6 +956,8 @@
           <nav id="english-center-tabs" class="english-center-tabs" aria-label="英语学习记录">
             <button type="button" class="active" data-english-book-tab="words"><span>Aa</span><b data-i18n="englishNotebook">单词本</b><small id="english-word-tab-count">0</small></button>
             <button type="button" data-english-book-tab="wrong"><span>×</span><b data-i18n="englishWrongBook">错题本</b><small id="english-wrong-tab-count">0</small></button>
+            <button type="button" data-english-book-tab="textbook"><span>▤</span><b data-i18n="englishTextbooks">教材课文</b><small>PLUS</small></button>
+            <button type="button" data-english-book-tab="library"><span>▥</span><b data-i18n="englishBooks">英文书籍</b><small>PLUS</small></button>
           </nav>
           <div class="english-center-filters">
             <label><span class="sr-only" data-i18n="searchEnglishWord">搜索单词、释义或例句</span><input id="english-center-search" type="search" maxlength="100" data-i18n-placeholder="searchEnglishWord" placeholder="搜索单词、释义或例句"></label>
@@ -1279,13 +1282,13 @@
       <div class="section-kicker">WORKDAY ISLAND</div>
       <h2 id="about-title" data-i18n="aboutTitle">关于工位岛</h2>
       <p class="about-description" data-i18n="aboutDescription">一座安静悬浮在桌面的工作小岛。</p>
-      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.5</strong></div>
+      <div class="about-meta"><span data-i18n="version">版本</span><strong id="about-version">0.16.6</strong></div>
       <div class="about-meta"><span data-i18n="author">作者</span><strong>Backlight Studio</strong></div>
       <button id="email-author" type="button" class="email-button"><span data-i18n="email">邮箱</span><strong>asbacklight@gmail.com</strong></button>
       <button id="open-web-app" type="button" class="email-button web-button"><span data-i18n="webApp">Web 端</span><strong>https://admin.asbacklight.cn/ <em>↗</em></strong></button>
       <button id="open-feedback" type="button" class="email-button feedback-button"><span data-i18n="feedback">意见反馈</span><strong><span data-i18n="feedbackEntryHint">告诉我们哪里可以做得更好</span> <em>→</em></strong></button>
       <section class="update-box" aria-labelledby="update-heading">
-        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.5</span></div>
+        <div class="update-heading"><div><span id="update-heading" data-i18n="updates">应用更新</span><small data-i18n="autoUpdateHint">每天自动检查一次</small></div><span id="update-version-chip">v0.16.6</span></div>
         <p id="update-status" data-i18n="updateIdle">可手动检查 GitHub Releases 中的新版本</p>
         <div id="update-details" class="update-details hidden">
           <pre id="update-notes"></pre>
@@ -1322,6 +1325,6 @@
     <em data-i18n="clickStop">点击停止</em>
   </button>
   <div id="toast-region" class="toast-region" aria-live="polite"></div>
-  <script src="./app.js?v=76" type="module"></script>
+  <script src="./app.js?v=84" type="module"></script>
 </body>
 </html>

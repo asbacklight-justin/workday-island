@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.5"
+const appVersion = "0.16.6"
 
 const (
 	defaultFullWindowWidth = 1100
@@ -515,6 +515,102 @@ func (a *App) TranslateEnglishExample(text string) (string, error) {
 
 func (a *App) GetEnglishNotebook() EnglishNotebook {
 	return a.store.EnglishNotebook()
+}
+
+// ListEnglishTextbooks returns the active textbook catalogue for signed-in
+// Plus, Pro, and Ultra members. The remote service repeats this role check;
+// keeping it here makes the Wails API safe even if the WebView is modified.
+func (a *App) ListEnglishTextbooks() (EnglishTextbookList, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishTextbookList{}, ErrEnglishTextbookPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.ListEnglishTextbooks(ctx)
+}
+
+func (a *App) ListEnglishTextbookLessons(code string) (EnglishTextbookLessons, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishTextbookLessons{}, ErrEnglishTextbookPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.ListEnglishTextbookLessons(ctx, code)
+}
+
+func (a *App) GetEnglishTextbookLesson(code string, lessonNo int) (EnglishTextbookLessonDetail, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishTextbookLessonDetail{}, ErrEnglishTextbookPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.GetEnglishTextbookLesson(ctx, code, lessonNo)
+}
+
+func (a *App) englishLibraryContext() (context.Context, error) {
+	if a.accountMembershipRank() < 1 {
+		return nil, ErrEnglishLibraryPlusRequired
+	}
+	if a.ctx != nil {
+		return a.ctx, nil
+	}
+	return context.Background(), nil
+}
+
+func (a *App) ListEnglishBooks(keyword, language string) (EnglishBookList, error) {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return EnglishBookList{}, err
+	}
+	return a.cloudDisk.ListEnglishBooks(ctx, keyword, language)
+}
+
+func (a *App) OpenEnglishBook(bookID uint64) (EnglishBook, error) {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return EnglishBook{}, err
+	}
+	return a.cloudDisk.GetEnglishBook(ctx, bookID)
+}
+
+func (a *App) ListEnglishBookChapters(bookID uint64) ([]EnglishBookChapter, error) {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return nil, err
+	}
+	return a.cloudDisk.ListEnglishBookChapters(ctx, bookID)
+}
+
+func (a *App) ListEnglishBookParagraphs(chapterID uint64, page, pageSize int) (EnglishBookParagraphPage, error) {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return EnglishBookParagraphPage{}, err
+	}
+	return a.cloudDisk.ListEnglishBookParagraphs(ctx, chapterID, page, pageSize)
+}
+
+func (a *App) GetEnglishBookProgress(bookID uint64) (EnglishBookProgress, error) {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return EnglishBookProgress{}, err
+	}
+	return a.cloudDisk.GetEnglishBookProgress(ctx, bookID)
+}
+
+func (a *App) SaveEnglishBookProgress(bookID, chapterID uint64, paragraphNo int, progressPercent float64) error {
+	ctx, err := a.englishLibraryContext()
+	if err != nil {
+		return err
+	}
+	return a.cloudDisk.SaveEnglishBookProgress(ctx, bookID, EnglishBookProgressUpdate{
+		ChapterID: chapterID, ParagraphNo: paragraphNo, ProgressPercent: progressPercent,
+	})
 }
 
 func (a *App) RecordEnglishWord(question EnglishQuestion, mode string) error {
