@@ -5,6 +5,20 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.6] - 2026-08-10
+
+### 新增 / Added
+
+- 英语学习中心新增会员专享“教材课文”：Plus、Pro、Ultra 可选择教材与课程，阅读双语段落、本课词汇及关联词库信息；客户端和服务端请求入口均执行会员等级校验。
+- 新增“英文书籍”书架：支持书名/作者搜索、语言筛选、章节目录、四种阅读主题、字号与行距调整，以及按账号同步章节、段落与阅读进度。
+
+### 修复与优化 / Fixed & improved
+
+- 教材课文与英文书籍进入正文后使用专用沉浸布局，收起学习中心统计区，扩大正文面积并优化目录宽度、段落行宽和小窗口适配。
+- 沉浸阅读同时提供返回英语学习中心与返回工作台；返回时保留当前教材、课程和阅读进度。
+- 修复先打开会员内容、再登录后返回时不自动请求数据的问题；会员身份延迟生效时也会补载，并隔离不同账号的阅读缓存。
+- 修复教材课程切换导致目录滚动到第一课的问题；目录位置在加载中和加载完成后保持不变，仅切换教材时重置。
+
 ## [0.16.5] - 2026-08-09
 
 ### 新增 / Added
@@ -416,8 +430,9 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
-[0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
+[0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6
 [0.16.5]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.5
+[0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
 [0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3
 [0.16.2]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.2
 [0.16.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.1
