@@ -936,8 +936,10 @@
 
     <section id="english-center-page" class="english-center-page hidden" aria-labelledby="english-center-title">
       <div class="english-center-head">
-        <button id="back-english-center-overview" type="button" class="chat-back-btn english-center-overview-back"><span>←</span><b data-i18n="backToEnglishCenter">返回英语学习中心</b></button>
-        <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="english-center-navigation">
+          <button id="back-english-center-overview" type="button" class="chat-back-btn english-center-overview-back"><span>←</span><b data-i18n="backToEnglishCenter">返回英语学习中心</b></button>
+          <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        </div>
         <div class="english-center-title-group">
           <div class="section-kicker">ENGLISH LEARNING</div>
           <h1 id="english-center-title" data-i18n="englishCenterTitle">英语学习中心</h1>
@@ -958,6 +960,7 @@
             <button type="button" data-english-book-tab="wrong"><span>×</span><b data-i18n="englishWrongBook">错题本</b><small id="english-wrong-tab-count">0</small></button>
             <button type="button" data-english-book-tab="textbook"><span>▤</span><b data-i18n="englishTextbooks">教材课文</b><small>PLUS</small></button>
             <button type="button" data-english-book-tab="library"><span>▥</span><b data-i18n="englishBooks">英文书籍</b><small>PLUS</small></button>
+            <button type="button" data-english-book-tab="lexicon"><span>▦</span><b data-i18n="englishLexicons">词库数据</b><small>PLUS</small></button>
           </nav>
           <div class="english-center-filters">
             <label><span class="sr-only" data-i18n="searchEnglishWord">搜索单词、释义或例句</span><input id="english-center-search" type="search" maxlength="100" data-i18n-placeholder="searchEnglishWord" placeholder="搜索单词、释义或例句"></label>

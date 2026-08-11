@@ -327,6 +327,7 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 .english-center-page { height: calc(100% - 58px); padding: 14px 22px 22px; display: flex; flex-direction: column; gap: 11px; }
 .english-center-head { flex: 0 0 43px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.english-center-navigation { min-width:0; display:flex; align-items:center; justify-self:start; gap:12px; }
 .english-center-overview-back { display: none; }
 .english-center-title-group { text-align: center; }
 .english-center-title-group .section-kicker { margin-bottom: 2px; }
@@ -342,14 +343,16 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-center-summary strong { color: #e6edf7; font-size: 22px; font-variant-numeric: tabular-nums; }
 .english-center-content { flex: 1 1 auto; min-height: 0; padding: 0; overflow: hidden; display: flex; flex-direction: column; }
 .english-center-content-head { flex: 0 0 58px; padding: 10px 13px; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.english-center-tabs { height: 38px; padding: 3px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; display: flex; gap: 3px; background: rgba(8,14,25,.32); }
-.english-center-tabs button { min-width: 126px; height: 30px; padding: 0 10px; border: 0; border-radius: 7px; display: flex; align-items: center; justify-content: center; gap: 6px; color: #77859a; background: transparent; cursor: pointer; font-size: 11px; }
+.english-center-tabs { flex:1 1 auto; min-width:0; height: 38px; max-width:100%; padding: 3px; border: 1px solid rgba(255,255,255,.07); border-radius: 10px; display: flex; gap: 3px; overflow-x:auto; overflow-y:hidden; scrollbar-width:none; background: rgba(8,14,25,.32); }
+.english-center-tabs::-webkit-scrollbar { display:none; }
+.english-center-tabs button { min-width: 126px; height: 30px; padding: 0 10px; border: 0; border-radius: 7px; display: flex; flex:0 0 auto; align-items: center; justify-content: center; gap: 6px; color: #77859a; background: transparent; cursor: pointer; font-size: 11px; white-space:nowrap; }
+.english-center-tabs button b, .english-center-tabs button small { white-space:nowrap; }
 .english-center-tabs button > span { color: #72dfc5; font-weight: 800; }
 .english-center-tabs button:nth-child(2) > span { color: #ff9bab; }
 .english-center-tabs button small { min-width: 18px; padding: 2px 5px; border-radius: 99px; color: #8795aa; background: rgba(255,255,255,.05); font-size: 9px; font-variant-numeric: tabular-nums; }
 .english-center-tabs button.active { color: #dff8f1; background: rgba(62,230,189,.09); box-shadow: inset 0 0 0 1px rgba(62,230,189,.12); }
 .english-center-tabs button:nth-child(2).active { color: #ffd9df; background: rgba(255,135,152,.08); box-shadow: inset 0 0 0 1px rgba(255,135,152,.12); }
-.english-center-filters { width: min(430px, 48%); display: grid; grid-template-columns: minmax(160px,1fr) 150px; gap: 7px; }
+.english-center-filters { flex:0 1 min(390px,33%); width:auto; min-width:300px; display: grid; grid-template-columns: minmax(150px,1fr) 128px; gap: 7px; }
 .english-center-filters label { min-width: 0; }
 .english-center-filters input, .english-center-filters select { width: 100%; height: 36px; padding: 0 10px; border: 1px solid rgba(255,255,255,.08); border-radius: 8px; outline: 0; color: #cfd9e7; background: rgba(7,13,23,.35); font-size: 11px; }
 .english-center-filters input:focus, .english-center-filters select:focus { border-color: rgba(62,230,189,.30); }
@@ -387,8 +390,11 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-center-tabs button:nth-child(3).active { color: #dce8ff; background: rgba(104,151,255,.11); box-shadow: inset 0 0 0 1px rgba(104,151,255,.18); }
 .english-center-tabs button:nth-child(4) > span { color: #d6ae72; }
 .english-center-tabs button:nth-child(4).active { color: #ffe8c2; background: rgba(211,164,94,.11); box-shadow: inset 0 0 0 1px rgba(211,164,94,.2); }
+.english-center-tabs button:nth-child(5) > span { color: #c38dff; }
+.english-center-tabs button:nth-child(5).active { color: #f0dcff; background: rgba(188,126,255,.11); box-shadow: inset 0 0 0 1px rgba(188,126,255,.2); }
 .english-center-list.textbook-active { display: block; padding: 10px; }
 .english-center-list.library-active { display: block; padding: 10px; overflow: hidden; }
+.english-center-list.lexicon-active { display: block; padding: 10px; overflow: hidden; }
 .english-textbook-access { min-height: 250px; padding: 26px; border: 1px dashed rgba(103,157,255,.25); border-radius: 13px; display: grid; place-items: center; align-content: center; gap: 9px; text-align: center; background: rgba(75,119,216,.045); }
 .english-textbook-access > span { width: 45px; height: 45px; border: 1px solid rgba(109,157,255,.28); border-radius: 14px; display: grid; place-items: center; color: #9dbdff; background: rgba(83,126,224,.09); font-size: 18px; }
 .english-textbook-access h2, .english-textbook-access p { margin: 0; }
@@ -397,6 +403,7 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-textbook-access > b { color: #bdcbe1; font-size: 11px; }
 .english-textbook-access .primary-btn { min-width: 130px; height: 34px; font-size: 11px; }
 .english-textbook-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 9px; }
+.english-lexicon-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 9px; }
 .english-textbook-summary { min-height: 70px; padding: 11px 14px; border: 1px solid rgba(130,163,220,.13); border-radius: 11px; display: grid; grid-template-columns: minmax(0,1fr) minmax(140px,.45fr) auto; align-items: center; gap: 13px; background: linear-gradient(105deg, rgba(62,104,181,.13), rgba(13,25,45,.16)); }
 .english-textbook-summary > div:first-child { min-width: 0; }
 .english-textbook-summary > div:first-child > span, .english-textbook-layout aside > header > span, .english-textbook-article > header > span { color: #86a9f4; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
@@ -473,6 +480,19 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-library-reader-head { flex:0 0 54px;padding:7px 9px;border:1px solid rgba(214,174,114,.13);border-radius:10px;display:grid;grid-template-columns:auto minmax(160px,1fr) auto;align-items:center;gap:10px;background:rgba(5,12,22,.16); }.english-library-reader-head > button { height:32px;padding:0 10px;border:1px solid rgba(214,174,114,.16);border-radius:8px;color:#c7a779;background:transparent;cursor:pointer;font-size:9px; }.english-library-reader-head > div:nth-child(2) { min-width:0; }.english-library-reader-head h2 { margin:2px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#e7edf6;font-family:Georgia,serif;font-size:13px; }.english-library-reader-head small { color:#7d899b;font-size:8px; }
 .english-library-reader-tools { display:flex;align-items:center;gap:6px; }.english-library-reader-tools label,.english-library-reader-tools > span { min-height:31px;padding:0 6px;border:1px solid rgba(214,174,114,.09);border-radius:7px;display:flex;align-items:center;gap:4px;color:#78869a;font-size:7px; }.english-library-reader-tools select { height:24px;border:0;outline:0;color:#cad3df;background:transparent;font-size:8px; }.english-library-reader-tools button { width:25px;height:22px;padding:0;border:0;border-radius:5px;color:#c7a779;background:rgba(203,157,91,.08);cursor:pointer;font-size:8px; }
 .english-library-paper { min-height:0;overflow:hidden;display:flex!important;flex-direction:column;background:#f7f3e9!important;color:#332e28!important; }.english-library-paper.theme-light { background:#fbfbf8!important;color:#252b31!important; }.english-library-paper.theme-green { background:#e8f0e4!important;color:#29382d!important; }.english-library-paper.theme-dark { background:#171b22!important;color:#cbd1d8!important; }.english-library-paper > header h1 { margin:4px 0;color:inherit;font-family:Georgia,serif;font-size:19px; }.english-library-paper > header span { color:inherit;opacity:.5;font-size:7px; }.english-library-prose { min-height:0;flex:1;padding:5px 10% 16px;overflow-y:auto; }.english-library-prose > p { margin:0 0 1em;color:inherit;font-family:Georgia,"Times New Roman",serif;font-size:var(--reader-font);line-height:var(--reader-line);text-indent:2em;text-wrap:pretty; }
+
+/* Lexicon data reuses the immersive reader shell, with a denser word-data surface. */
+.english-lexicon-access { border-color: rgba(188,126,255,.25); background: radial-gradient(circle at 50% 10%,rgba(188,126,255,.08),transparent 52%),rgba(18,10,34,.14); }
+.english-lexicon-detail { min-width:0; min-height:0; border:1px solid rgba(188,126,255,.16); border-radius:11px; overflow:hidden; display:flex; flex-direction:column; background:rgba(9,14,29,.2); }
+.english-lexicon-detail > header { flex:0 0 auto; padding:12px 16px; border-bottom:1px solid rgba(188,126,255,.12); display:flex; align-items:center; justify-content:space-between; gap:13px; }
+.english-lexicon-detail > header > div { min-width:0; }.english-lexicon-detail > header > div > span { color:#c99fff; font-size:9px; font-weight:800; letter-spacing:.13em; }.english-lexicon-detail h2 { margin:4px 0 2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#f0e8ff; font-size:19px; }.english-lexicon-detail > header small { color:#8a7da0; font-size:10px; }
+.english-lexicon-detail label { min-width:min(340px,42%); position:relative; }.english-lexicon-detail input { width:100%; height:32px; padding:0 28px 0 10px; border:1px solid rgba(188,126,255,.18); border-radius:8px; outline:0; color:#e8e2f5; background:rgba(4,8,21,.32); font-size:10px; }.english-lexicon-detail input:focus { border-color:rgba(200,153,255,.55); }.english-lexicon-detail label > span { position:absolute; top:7px; right:10px; color:#c69aff; font-size:14px; }
+.english-lexicon-legend { flex:0 0 31px; padding:0 16px; border-bottom:1px solid rgba(188,126,255,.08); display:flex; align-items:center; justify-content:space-between; color:#82758f; font-size:9px; }
+.english-lexicon-entry-list { min-height:0; flex:1; padding:7px 10px; overflow-y:auto; display:grid; align-content:start; gap:6px; }
+.english-lexicon-entry { min-width:0; padding:9px 10px; border:1px solid rgba(188,126,255,.10); border-radius:9px; display:grid; grid-template-columns:29px minmax(120px,.35fr) minmax(155px,.45fr) minmax(250px,1fr); align-items:start; gap:10px; background:linear-gradient(105deg,rgba(255,255,255,.025),rgba(188,126,255,.025)); }
+.english-lexicon-index { width:25px; height:25px; border-radius:7px; display:grid; place-items:center; color:#c49cff; background:rgba(188,126,255,.10); font-size:8px; }.english-lexicon-word { min-width:0; display:grid; gap:3px; }.english-lexicon-word strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#ebedf9; font-size:14px; }.english-lexicon-word small { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#77859c; font-size:9px; }
+.english-lexicon-meaning { min-width:0; display:flex; align-items:baseline; flex-wrap:wrap; gap:5px; }.english-lexicon-meaning > span { padding:2px 5px; border-radius:4px; color:#a991cf; background:rgba(188,126,255,.08); font-size:8px; }.english-lexicon-meaning > b { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#d9caf0; font-size:11px; }.english-lexicon-difficulty { display:inline-flex; gap:2px; }.english-lexicon-difficulty i { width:4px; height:4px; border-radius:50%; background:#3e4659; }.english-lexicon-difficulty i.on { background:#d39bff; box-shadow:0 0 5px rgba(211,155,255,.7); }
+.english-lexicon-example { min-width:0; }.english-lexicon-example p,.english-lexicon-example small { margin:0; display:block; }.english-lexicon-example p { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#b7bfd0; font-size:10px; line-height:1.45; }.english-lexicon-example small { margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:#77869a; font-size:9px; }
 
 /* The open-book state is a true reading surface, not another dashboard card. */
 .english-center-page.library-reader-mode {
@@ -647,6 +667,33 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
   .english-center-page.textbook-reader-mode .english-textbook-layout {
     grid-template-columns: 150px minmax(0, 1fr);
   }
+}
+
+/* Lexicon data uses the same full-height work area as the other member readers. */
+.english-center-page.lexicon-reader-mode { padding:8px 14px 14px; gap:7px; }
+.english-center-page.lexicon-reader-mode .english-center-head { flex:0 0 38px; display:flex; justify-content:flex-start; gap:8px; }
+.english-center-page.lexicon-reader-mode .english-center-overview-back { display:flex; }
+.english-center-page.lexicon-reader-mode .english-center-title-group,
+.english-center-page.lexicon-reader-mode .english-compact-launch,
+.english-center-page.lexicon-reader-mode .english-center-summary,
+.english-center-page.lexicon-reader-mode .english-center-content-head,
+.english-center-page.lexicon-reader-mode .english-center-description { display:none; }
+.english-center-page.lexicon-reader-mode .english-center-content { border:0; border-radius:12px; background:transparent; box-shadow:none; }
+.english-center-page.lexicon-reader-mode .english-center-list.lexicon-active { height:100%; padding:0; }
+.english-center-page.lexicon-reader-mode .english-lexicon-reader { gap:7px; }
+.english-center-page.lexicon-reader-mode .english-textbook-summary { min-height:58px; padding:7px 11px; grid-template-columns:minmax(230px,1fr) minmax(220px,.55fr) auto; gap:10px; }
+.english-center-page.lexicon-reader-mode .english-textbook-layout { grid-template-columns:clamp(165px,15vw,210px) minmax(0,1fr); gap:7px; }
+.english-center-page.lexicon-reader-mode .english-textbook-layout > aside > header { flex-basis:40px; padding:6px 9px; }
+.english-center-page.lexicon-reader-mode .english-textbook-lesson { padding:6px; }
+.english-center-page.lexicon-reader-mode .english-lexicon-detail > header { padding:11px 14px; }
+.english-center-page.lexicon-reader-mode .english-lexicon-entry-list { padding:8px 14px 14px; gap:8px; }
+.english-center-page.lexicon-reader-mode .english-lexicon-entry { grid-template-columns:29px minmax(135px,.3fr) minmax(190px,.42fr) minmax(300px,1fr); padding:10px; }
+@media (max-width:980px) {
+  .english-center-page.lexicon-reader-mode .english-textbook-summary { min-height:92px; grid-template-columns:minmax(0,1fr) minmax(180px,.6fr); }
+  .english-center-page.lexicon-reader-mode .english-textbook-stats { grid-column:1 / -1; }
+  .english-center-page.lexicon-reader-mode .english-textbook-layout { grid-template-columns:145px minmax(0,1fr); }
+  .english-center-page.lexicon-reader-mode .english-lexicon-entry { grid-template-columns:29px minmax(110px,.4fr) minmax(0,.6fr); }
+  .english-center-page.lexicon-reader-mode .english-lexicon-example { grid-column:2 / -1; }
 }
 .english-page { width: 100%; height: 100%; padding: 3px; }
 .english-strip {
@@ -2418,6 +2465,7 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-theme="light"] .english-center-tabs button:nth-child(2).active { color: #c25569; background: rgba(220,85,110,.08); box-shadow: inset 0 0 0 1px rgba(220,85,110,.12); }
 :root[data-theme="light"] .english-center-tabs button:nth-child(3).active { color: #356fc8; background: rgba(75,132,225,.09); box-shadow: inset 0 0 0 1px rgba(75,132,225,.14); }
 :root[data-theme="light"] .english-center-tabs button:nth-child(4).active { color: #936026; background: rgba(196,139,69,.1); box-shadow: inset 0 0 0 1px rgba(196,139,69,.16); }
+:root[data-theme="light"] .english-center-tabs button:nth-child(5).active { color:#7045ac; background:rgba(170,105,238,.1); box-shadow:inset 0 0 0 1px rgba(170,105,238,.17); }
 :root[data-theme="light"] .english-center-content-head, :root[data-theme="light"] .english-center-description, :root[data-theme="light"] .english-wrong-answer { border-color: rgba(35,55,85,.08); }
 :root[data-theme="light"] .english-book-meaning { color: #167b68; }
 :root[data-theme="light"] .english-book-card.wrong { border-color: rgba(220,85,110,.14); background: rgba(255,255,255,.50); }
@@ -2432,6 +2480,23 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-theme="light"] .english-library-card-body h2, :root[data-theme="light"] .english-library-reader-head h2 { color:#27364c; }
 :root[data-theme="light"] .english-library-card, :root[data-theme="light"] .english-library-reader-head, :root[data-theme="light"] .english-library-reader-layout > aside { border-color:rgba(138,94,39,.14);background:rgba(255,255,255,.5); }
 :root[data-theme="light"] .english-library-filters input, :root[data-theme="light"] .english-library-filters select, :root[data-theme="light"] .english-library-reader-tools select { color-scheme:light;color:#43516a;background:rgba(255,255,255,.68);border-color:rgba(138,94,39,.14); }
+:root[data-theme="light"] .english-lexicon-access, :root[data-theme="light"] .english-lexicon-detail { border-color:rgba(117,76,181,.18); background:rgba(255,255,255,.68); box-shadow:0 12px 30px rgba(43,56,89,.06); }
+:root[data-theme="light"] .english-lexicon-detail > header, :root[data-theme="light"] .english-lexicon-legend { border-color:rgba(92,63,145,.12); }
+:root[data-theme="light"] .english-lexicon-detail > header > div > span { color:#7651b7; }
+:root[data-theme="light"] .english-lexicon-detail h2 { color:#1f2e45; }
+:root[data-theme="light"] .english-lexicon-detail > header small, :root[data-theme="light"] .english-lexicon-legend { color:#62738c; }
+:root[data-theme="light"] .english-lexicon-detail input { color:#263751; border-color:rgba(110,74,169,.2); background:rgba(255,255,255,.9); }
+:root[data-theme="light"] .english-lexicon-detail label > span { color:#865bc4; }
+:root[data-theme="light"] .english-lexicon-entry { border-color:rgba(93,66,145,.13); background:linear-gradient(105deg,rgba(255,255,255,.92),rgba(244,238,255,.68)); }
+:root[data-theme="light"] .english-lexicon-index { color:#7044ad; background:rgba(170,105,238,.13); }
+:root[data-theme="light"] .english-lexicon-word strong { color:#21334e; }
+:root[data-theme="light"] .english-lexicon-word small { color:#657891; }
+:root[data-theme="light"] .english-lexicon-meaning > span { color:#7044ad; background:rgba(170,105,238,.11); }
+:root[data-theme="light"] .english-lexicon-meaning > b { color:#2d405b; }
+:root[data-theme="light"] .english-lexicon-difficulty i { background:#c8d1df; }
+:root[data-theme="light"] .english-lexicon-difficulty i.on { background:#9b68dc; box-shadow:0 0 5px rgba(155,104,220,.42); }
+:root[data-theme="light"] .english-lexicon-example p { color:#354964; }
+:root[data-theme="light"] .english-lexicon-example small { color:#6c7e96; }
 :root[data-theme="light"] .english-library-book { border-color: rgba(138,94,39,.13); background: rgba(255,255,255,.47); }
 :root[data-theme="light"] .cloud-account-chip, :root[data-theme="light"] .cloud-search-form, :root[data-theme="light"] .cloud-file-actions button, :root[data-theme="light"] .cloud-pagination button { color: #647389; background: rgba(255,255,255,.55); border-color: rgba(35,55,85,.11); }
 :root[data-theme="light"] .cloud-storage-ring::before { background: #f7faff; }

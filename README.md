@@ -12,8 +12,8 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.6-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.16.6-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.16.7-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.16.7-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
@@ -108,7 +108,7 @@
 12. 点击顶部云盘按钮浏览工作云盘，可新建目录并上传、下载、重命名、移动或删除文件。
 13. 点击顶部笔记按钮进入云笔记；编辑内容会自动保存，可在更多菜单中管理历史版本、阅读密码、导出和删除，并通过分享按钮创建链接。
 14. 点击顶部分享按钮进入分享管理，查看、修改、撤销、重新生成或删除当前账号创建的笔记分享。
-15. 点击顶部 `EN` 按钮进入英语学习中心查看本机单词本与错题本；Plus 及以上会员还可阅读教材课文和英文书籍。点击“精简学习”打开五种学习模式，并可在设置中选择所用词库。学习记录从安装此功能的版本开始生成。
+15. 点击顶部 `EN` 按钮进入英语学习中心查看本机单词本与错题本；Plus 及以上会员还可阅读教材课文、英文书籍和词库数据。词库数据按教材课程展示单词、音标、释义、双语例句与难度。点击“精简学习”打开五种学习模式，并可在设置中选择所用词库。学习记录从安装此功能的版本开始生成。
 16. 点击顶部 `译` 按钮进入全能翻译；可查看每日额度、自动识别源语言、复制译文，并管理或导出当前账号的翻译历史。
 
 ## 技术栈与架构
@@ -167,7 +167,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.16.6`
+- 当前版本：`v0.16.7`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

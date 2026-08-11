@@ -88,10 +88,11 @@ const translations = {
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
     incomingShake: '{name} 抖了抖你的窗口', incomingFlash: '{name} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
     shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
-    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', compactEnglishStudy: '精简学习',
-    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。',
+    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', englishLexicons: '词库数据', compactEnglishStudy: '精简学习',
+    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。', englishLexiconsHint: '按词库与课程查看音标、释义、双语例句和难度，Plus 及以上会员可使用。',
     textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库',
     englishLibraryTitle: '英文沉浸阅读', englishLibraryLoginRequired: '请先登录 Plus 及以上会员账号，再进入英文书架。', englishLibraryUpgradeHint: '英文书籍仅限 Plus、Pro 或 Ultra 会员使用。', englishLibraryLoading: '正在整理英文书架…', englishLibraryEmpty: '书架暂时还是空的。', englishLibrarySearch: '搜索书名、作者或简介', englishLibraryAllLanguages: '全部语言', englishLibraryRead: '开始阅读', englishLibraryContinue: '继续阅读', englishLibraryChapters: '章', englishLibraryProgress: '阅读进度', englishLibraryContents: '目录', englishLibraryBackShelf: '返回书架', englishLibraryPrevious: '上一页', englishLibraryNext: '下一页', englishLibraryPage: '第 {page} / {pages} 页', englishLibraryFont: '字号', englishLibraryTheme: '阅读主题', englishLibraryLineHeight: '行距', englishLibraryNoContent: '本章暂无正文', englishLibraryLoadFailed: '书籍内容加载失败', englishLibraryLight: '明亮', englishLibrarySepia: '羊皮纸', englishLibraryGreen: '护眼', englishLibraryDark: '夜读',
+    lexiconLoginRequired: '请先登录 Plus 及以上会员账号，再查看词库数据。', lexiconUpgradeHint: '词库数据仅限 Plus、Pro 或 Ultra 会员使用。', lexiconLoading: '正在整理词库数据…', lexiconEmpty: '暂时没有可浏览的词库。', lexiconSelectLesson: '从左侧目录选择一课查看词条。', lexiconCurrent: '当前词库', lexiconCatalog: '课程目录', lexiconLessons: '课程', lexiconEntries: '词条', lexiconEntryDetail: '词条明细', lexiconSearch: '搜索单词或释义', lexiconNoMatch: '没有匹配的词条', lexiconMeaning: '中文释义', lexiconExample: '教材例句', lexiconDifficulty: '难度', lexiconReadOnly: '只读词库', lexiconLoadFailed: '词库数据加载失败',
     wordsStudied: '已学单词', wrongWords: '错题单词', totalViews: '累计学习', searchEnglishWord: '搜索单词、释义或例句', allModes: '全部模式',
     seenTimes: '学习 {count} 次', wrongTimes: '答错 {count} 次', lastStudied: '最近学习', lastAnswer: '上次答案', correctAnswerLabel: '正确答案',
     noEnglishWords: '单词本还是空的，点击“精简学习”开始刷词。', noEnglishWrongWords: '还没有错题，继续保持。', filterMode: '学习模式',
@@ -194,10 +195,11 @@ const translations = {
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
     incomingShake: '{name} shook your window', incomingFlash: '{name} flashed your window', stopWindowEffect: 'Stop window interaction',
     shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
-    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', compactEnglishStudy: 'Compact Study',
-    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.',
+    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', englishLexicons: 'Lexicon Data', compactEnglishStudy: 'Compact Study',
+    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.', englishLexiconsHint: 'Browse phonetics, meanings, bilingual examples, and difficulty by lexicon and lesson. Plus and above.',
     textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon',
     englishLibraryTitle: 'Immersive English Reading', englishLibraryLoginRequired: 'Sign in with a Plus or higher account to open the library.', englishLibraryUpgradeHint: 'English books are available to Plus, Pro, and Ultra members only.', englishLibraryLoading: 'Organising your English shelf…', englishLibraryEmpty: 'The bookshelf is empty for now.', englishLibrarySearch: 'Search title, author, or summary', englishLibraryAllLanguages: 'All languages', englishLibraryRead: 'Start Reading', englishLibraryContinue: 'Continue Reading', englishLibraryChapters: 'chapters', englishLibraryProgress: 'Reading progress', englishLibraryContents: 'Contents', englishLibraryBackShelf: 'Back to shelf', englishLibraryPrevious: 'Previous', englishLibraryNext: 'Next', englishLibraryPage: 'Page {page} / {pages}', englishLibraryFont: 'Font', englishLibraryTheme: 'Theme', englishLibraryLineHeight: 'Spacing', englishLibraryNoContent: 'No text in this chapter', englishLibraryLoadFailed: 'Unable to load book content', englishLibraryLight: 'Light', englishLibrarySepia: 'Sepia', englishLibraryGreen: 'Eye care', englishLibraryDark: 'Dark',
+    lexiconLoginRequired: 'Sign in with a Plus or higher account to browse lexicon data.', lexiconUpgradeHint: 'Lexicon data is available to Plus, Pro, and Ultra members only.', lexiconLoading: 'Loading lexicon data…', lexiconEmpty: 'No lexicons are available yet.', lexiconSelectLesson: 'Choose a lesson from the catalogue to view its entries.', lexiconCurrent: 'Current lexicon', lexiconCatalog: 'Lessons', lexiconLessons: 'Lessons', lexiconEntries: 'Entries', lexiconEntryDetail: 'Entry details', lexiconSearch: 'Search a word or meaning', lexiconNoMatch: 'No matching entries', lexiconMeaning: 'Chinese meaning', lexiconExample: 'Textbook example', lexiconDifficulty: 'Difficulty', lexiconReadOnly: 'Read-only lexicon', lexiconLoadFailed: 'Unable to load lexicon data',
     wordsStudied: 'Words studied', wrongWords: 'Wrong words', totalViews: 'Total views', searchEnglishWord: 'Search word, meaning, or example', allModes: 'All modes',
     seenTimes: 'Studied {count} times', wrongTimes: '{count} wrong', lastStudied: 'Last studied', lastAnswer: 'Last answer', correctAnswerLabel: 'Correct answer',
     noEnglishWords: 'Your word book is empty. Start with Compact Study.', noEnglishWrongWords: 'No wrong answers yet. Keep it up.', filterMode: 'Study mode',
@@ -323,7 +325,7 @@ const state = {
   translatorOpen: false,
   translator: {tab: 'text', quota: {}, result: '', history: [], total: 0, page: 1, pageSize: 20, keyword: '', busy: false, historyBusy: false, selected: []},
   englishCenterOpen: false,
-  englishNotebook: {tab: 'words', memberReaderImmersive: true, words: [], wrongWords: [], keyword: '', mode: 'all', busy: false, textbook: {books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}, library: {mode:'shelf', books:[], keyword:'', language:'all', selectedBook:null, chapters:[], chapterId:0, paragraphs:[], page:1, pageSize:20, total:0, loading:false, readerLoading:false, error:'', theme:'sepia', fontSize:18, lineHeight:1.85}},
+  englishNotebook: {tab: 'words', memberReaderImmersive: true, words: [], wrongWords: [], keyword: '', mode: 'all', busy: false, textbook: {books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}, library: {mode:'shelf', books:[], keyword:'', language:'all', selectedBook:null, chapters:[], chapterId:0, paragraphs:[], page:1, pageSize:20, total:0, loading:false, readerLoading:false, error:'', theme:'sepia', fontSize:18, lineHeight:1.85}, lexicon: {lexicons: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, entryKeyword: '', directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}},
   englishOpen: false,
   english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
@@ -5911,7 +5913,7 @@ async function openEnglishPage() {
   document.body.classList.add('english-center-open');
   $('#english-center-page').classList.remove('hidden');
   await refreshEnglishNotebook();
-  if (state.account.loggedIn && ['textbook', 'library'].includes(state.englishNotebook.tab)) {
+  if (state.account.loggedIn && ['textbook', 'library', 'lexicon'].includes(state.englishNotebook.tab)) {
     await refreshAccountProfile(true);
   }
   await refreshActiveEnglishMemberContent();
@@ -5993,8 +5995,8 @@ async function changeEnglishNotebookTab(event) {
   const button = event.target.closest('[data-english-book-tab]');
   if (!button) return;
   const tab = button.dataset.englishBookTab;
-  state.englishNotebook.tab = ['wrong', 'textbook', 'library'].includes(tab) ? tab : 'words';
-  state.englishNotebook.memberReaderImmersive = ['textbook', 'library'].includes(state.englishNotebook.tab);
+  state.englishNotebook.tab = ['wrong', 'textbook', 'library', 'lexicon'].includes(tab) ? tab : 'words';
+  state.englishNotebook.memberReaderImmersive = ['textbook', 'library', 'lexicon'].includes(state.englishNotebook.tab);
   state.englishNotebook.mode = 'all';
   $('#english-center-mode').value = 'all';
   if (state.englishNotebook.tab === 'textbook') {
@@ -6010,6 +6012,13 @@ async function changeEnglishNotebookTab(event) {
       showToast(t(state.account.loggedIn ? 'englishLibraryUpgradeHint' : 'englishLibraryLoginRequired'), true);
     } else {
       await loadEnglishBooks();
+    }
+  } else if (state.englishNotebook.tab === 'lexicon') {
+    if (state.account.loggedIn) await refreshAccountProfile(true);
+    if (accountMembershipRank() < 1) {
+      showToast(t(state.account.loggedIn ? 'lexiconUpgradeHint' : 'lexiconLoginRequired'), true);
+    } else {
+      await loadEnglishLexicons();
     }
   }
   renderEnglishNotebook();
@@ -6040,6 +6049,10 @@ function resetEnglishMemberContent() {
     mode: 'shelf', books: [], selectedBook: null, chapters: [], chapterId: 0,
     paragraphs: [], page: 1, total: 0, loading: false, readerLoading: false, error: ''
   });
+  Object.assign(notebook.lexicon, {
+    lexicons: [], code: '', lessons: [], selectedLessonNo: 0, detail: null,
+    entryKeyword: '', directoryScrollTop: 0, loading: false, detailLoading: false, error: ''
+  });
 }
 
 async function refreshActiveEnglishMemberContent(force = false) {
@@ -6048,6 +6061,8 @@ async function refreshActiveEnglishMemberContent(force = false) {
     await loadEnglishTextbooks(force);
   } else if (state.englishNotebook.tab === 'library') {
     await loadEnglishBooks(force);
+  } else if (state.englishNotebook.tab === 'lexicon') {
+    await loadEnglishLexicons(force);
   }
 }
 
@@ -6092,6 +6107,7 @@ function renderEnglishNotebook() {
   });
   const textbookActive = notebook.tab === 'textbook';
   const libraryActive = notebook.tab === 'library';
+  const lexiconActive = notebook.tab === 'lexicon';
   const libraryReaderActive = libraryActive
     && notebook.memberReaderImmersive
     && notebook.library?.mode === 'reader'
@@ -6100,12 +6116,14 @@ function renderEnglishNotebook() {
     && notebook.memberReaderImmersive
     && accountMembershipRank() >= 1
     && Boolean(notebook.textbook?.detail || notebook.textbook?.books?.length);
-  const readingActive = textbookActive || libraryActive;
+  const readingActive = textbookActive || libraryActive || lexiconActive;
   $('#english-center-page').classList.toggle('library-reader-mode', libraryReaderActive);
   $('#english-center-page').classList.toggle('textbook-reader-mode', textbookReaderActive);
+  $('#english-center-page').classList.toggle('lexicon-reader-mode', lexiconActive && notebook.memberReaderImmersive && accountMembershipRank() >= 1 && Boolean(notebook.lexicon?.detail || notebook.lexicon?.lexicons?.length));
   $('.english-center-filters').classList.toggle('hidden', readingActive);
   $('#english-center-list').classList.toggle('textbook-active', textbookActive);
   $('#english-center-list').classList.toggle('library-active', libraryActive);
+  $('#english-center-list').classList.toggle('lexicon-active', lexiconActive);
   if (textbookActive) {
     $('#english-center-description-text').textContent = t('englishTextbooksHint');
     renderEnglishTextbooks();
@@ -6114,6 +6132,11 @@ function renderEnglishNotebook() {
   if (libraryActive) {
     $('#english-center-description-text').textContent = t('englishBooksHint');
     renderEnglishLibrary();
+    return;
+  }
+  if (lexiconActive) {
+    $('#english-center-description-text').textContent = t('englishLexiconsHint');
+    renderEnglishLexicons();
     return;
   }
   const wrongActive = notebook.tab === 'wrong';
@@ -6151,6 +6174,131 @@ function renderEnglishNotebook() {
     return;
   }
   list.innerHTML = records.map(item => renderEnglishBookCard(item, wrongActive)).join('');
+}
+
+async function loadEnglishLexicons(force = false) {
+  const lexicon = state.englishNotebook.lexicon;
+  if (lexicon.loading || (!force && lexicon.lexicons.length)) return;
+  lexicon.loading = true;
+  lexicon.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishLexicons();
+    lexicon.lexicons = Array.isArray(response?.list) ? response.list : [];
+    lexicon.code = lexicon.lexicons.some(item => item.code === lexicon.code) ? lexicon.code : (lexicon.lexicons[0]?.code || '');
+    lexicon.lessons = [];
+    lexicon.selectedLessonNo = 0;
+    lexicon.detail = null;
+    if (lexicon.code) await loadEnglishLexiconLessons(lexicon.code);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function loadEnglishLexiconLessons(code) {
+  const lexicon = state.englishNotebook.lexicon;
+  lexicon.code = String(code || '');
+  lexicon.lessons = [];
+  lexicon.selectedLessonNo = 0;
+  lexicon.detail = null;
+  lexicon.entryKeyword = '';
+  lexicon.directoryScrollTop = 0;
+  if (!lexicon.code) return;
+  lexicon.loading = true;
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishLexiconLessons(lexicon.code);
+    lexicon.lessons = Array.isArray(response?.lessons) ? response.lessons : [];
+    if (lexicon.lessons.length) await selectEnglishLexiconLesson(lexicon.lessons[0].lesson_no);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function selectEnglishLexiconLesson(lessonNo) {
+  const lexicon = state.englishNotebook.lexicon;
+  const number = Number(lessonNo) || 0;
+  if (!lexicon.code || number < 1 || lexicon.detailLoading) return;
+  state.englishNotebook.memberReaderImmersive = true;
+  lexicon.selectedLessonNo = number;
+  lexicon.detail = null;
+  lexicon.detailLoading = true;
+  lexicon.error = '';
+  renderEnglishNotebook();
+  try {
+    lexicon.detail = await api.GetEnglishLexiconLesson(lexicon.code, number);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.detailLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function handleEnglishLexiconAction(event) {
+  const lexicon = state.englishNotebook.lexicon;
+  const target = event.target;
+  const select = target.closest('[data-english-lexicon-select]');
+  if (select && event.type === 'change') return loadEnglishLexiconLessons(select.value);
+  const lesson = target.closest('[data-english-lexicon-lesson]');
+  if (lesson && event.type === 'click') {
+    lexicon.directoryScrollTop = Math.max(0, Number(lesson.parentElement?.scrollTop) || 0);
+    return selectEnglishLexiconLesson(lesson.dataset.englishLexiconLesson);
+  }
+  const search = target.closest('[data-english-lexicon-search]');
+  if (search && event.type === 'input') {
+    lexicon.entryKeyword = search.value.trim().toLowerCase();
+    renderEnglishNotebook();
+    return;
+  }
+  if (target.closest('[data-retry-english-lexicon]')) return loadEnglishLexicons(true);
+}
+
+function renderEnglishLexicons() {
+  const list = $('#english-center-list');
+  const lexicon = state.englishNotebook.lexicon;
+  if (!state.account.loggedIn) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access"><span>▦</span><h2>${escapeHTML(t('englishLexicons'))}</h2><p>${escapeHTML(t('lexiconLoginRequired'))}</p><button type="button" class="primary-btn" data-open-account-login>${escapeHTML(t('goToAccountLogin'))}</button></section>`;
+    list.querySelector('[data-open-account-login]')?.addEventListener('click', () => openAccountPage('login'));
+    return;
+  }
+  if (accountMembershipRank() < 1) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access locked"><span>◆</span><h2>${escapeHTML(t('englishLexicons'))}</h2><p>${escapeHTML(t('lexiconUpgradeHint'))}</p><b>PLUS · PRO · ULTRA</b></section>`;
+    return;
+  }
+  if (lexicon.error) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access locked"><span>!</span><h2>${escapeHTML(t('lexiconLoadFailed'))}</h2><p>${escapeHTML(lexicon.error)}</p><button type="button" class="primary-btn" data-retry-english-lexicon>${escapeHTML(t('retry'))}</button></section>`;
+    return;
+  }
+  if (lexicon.loading && !lexicon.lexicons.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('lexiconLoading'))}</b></div>`;
+    return;
+  }
+  if (!lexicon.lexicons.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>▦</span><b>${escapeHTML(t('lexiconEmpty'))}</b></div>`;
+    return;
+  }
+  const current = lexicon.lexicons.find(item => item.code === lexicon.code) || lexicon.lexicons[0];
+  const detail = lexicon.detail;
+  const keyword = lexicon.entryKeyword;
+  const entries = (detail?.entries || []).filter(item => !keyword || [item.word, item.normalized_word, item.meaning_cn, item.part_of_speech].some(value => String(value || '').toLowerCase().includes(keyword)));
+  const lessons = lexicon.lessons.map(item => `<button type="button" class="english-textbook-lesson${Number(item.lesson_no) === lexicon.selectedLessonNo ? ' active' : ''}" data-english-lexicon-lesson="${Number(item.lesson_no)}"><b>${String(item.lesson_no).padStart(2, '0')}</b><span><strong>${escapeHTML(item.title || `${t('lexiconLessons')} ${item.lesson_no}`)}</strong><small>${Number(item.entry_count || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))}</small></span></button>`).join('');
+  const difficulty = value => `<span class="english-lexicon-difficulty" aria-label="${escapeHTML(t('lexiconDifficulty'))}">${[1, 2, 3].map(level => `<i class="${level <= Number(value || 0) ? 'on' : ''}"></i>`).join('')}</span>`;
+  const rows = entries.map(item => `<article class="english-lexicon-entry"><b class="english-lexicon-index">${String(item.sort_no || 0).padStart(2, '0')}</b><div class="english-lexicon-word"><strong>${escapeHTML(item.word || '')}</strong><small>${escapeHTML(item.phonetic || '—')}</small></div><div class="english-lexicon-meaning"><span>${escapeHTML(item.part_of_speech || '—')}</span><b>${escapeHTML(item.meaning_cn || '—')}</b>${difficulty(item.difficulty)}</div><div class="english-lexicon-example"><p>${escapeHTML(item.example_en || '—')}</p><small>${escapeHTML(item.example_cn || '')}</small></div></article>`).join('');
+  const article = detail ? `<article class="english-lexicon-detail"><header><div><span>${escapeHTML(t('lexiconReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title || '')}</h2><small>${Number(detail.entries?.length || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))} · ${escapeHTML(t('lexiconEntryDetail'))}</small></div><label><input type="search" value="${escapeHTML(lexicon.entryKeyword)}" data-english-lexicon-search placeholder="${escapeHTML(t('lexiconSearch'))}"><span>⌕</span></label></header><div class="english-lexicon-legend"><span>${escapeHTML(t('lexiconMeaning'))}</span><span>${escapeHTML(t('lexiconExample'))}</span></div><div class="english-lexicon-entry-list">${rows || `<div class="english-center-empty"><span>⌕</span><b>${escapeHTML(t('lexiconNoMatch'))}</b></div>`}</div></article>` : `<div class="english-center-empty"><span>▦</span><b>${escapeHTML(t('lexiconSelectLesson'))}</b></div>`;
+  list.innerHTML = `<section class="english-lexicon-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('lexiconCurrent'))}</span><h2>${escapeHTML(current.name || current.code)}</h2><small>${escapeHTML(current.edition || '')} · ${Number(current.total_entries || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))}</small></div><label><span class="sr-only">${escapeHTML(t('lexiconCurrent'))}</span><select data-english-lexicon-select>${lexicon.lexicons.map(item => `<option value="${escapeHTML(item.code)}"${item.code === lexicon.code ? ' selected' : ''}>${escapeHTML(item.name || item.code)}</option>`).join('')}</select></label><div class="english-textbook-stats"><b>${Number(current.total_lessons || 0)}</b><small>${escapeHTML(t('lexiconLessons'))}</small><b>${Number(current.total_entries || 0)}</b><small>${escapeHTML(t('lexiconEntries'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>LEXICON</span><b>${escapeHTML(t('lexiconCatalog'))}</b></header><div>${lessons || `<small>${escapeHTML(t('lexiconEmpty'))}</small>`}</div></aside>${lexicon.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('lexiconLoading'))}</b></div>` : article}</div></section>`;
+  const directory = list.querySelector('.english-textbook-layout > aside > div');
+  if (directory) {
+    const restore = () => { directory.scrollTop = Math.max(0, Number(lexicon.directoryScrollTop) || 0); };
+    restore(); requestAnimationFrame(restore);
+    directory.addEventListener('scroll', () => { lexicon.directoryScrollTop = directory.scrollTop; }, {passive: true});
+  }
 }
 
 async function loadEnglishTextbooks(force = false) {
@@ -6217,6 +6365,10 @@ async function selectEnglishTextbookLesson(lessonNo) {
 async function handleEnglishTextbookAction(event) {
   if (state.englishNotebook.tab === 'library') {
     await handleEnglishLibraryAction(event);
+    return;
+  }
+  if (state.englishNotebook.tab === 'lexicon') {
+    await handleEnglishLexiconAction(event);
     return;
   }
   if (state.englishNotebook.tab !== 'textbook') return;

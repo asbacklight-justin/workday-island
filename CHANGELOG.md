@@ -5,6 +5,22 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.7] - 2026-08-11
+
+### 中文
+
+- 英语学习中心新增 Plus、Pro、Ultra 会员专享“词库数据”页：按词库与课程浏览单词、音标、词性释义、教材双语例句与难度标识，并支持按单词或释义搜索。
+- 客户端新增受保护词库接口，并兼容旧服务的公共只读接口回退；登录、会员身份变化和页面返回后都会自动重新加载当前词库数据。
+- 重排英语学习中心顶部导航：返回英语学习中心与返回工作台在左侧并列、主标题始终居中、精简学习固定靠右同一行。
+- 修复亮色及亮色会员主题下词库阅读器对比度不足的问题；标签标题保持单行，空间不足时横向滚动而不截断或折行。
+
+### English
+
+- Added the Plus/Pro/Ultra-only **Lexicon Data** page to English Learning. Browse entries by lexicon and lesson, including phonetics, parts of speech, definitions, bilingual textbook examples, difficulty markers, and word/meaning search.
+- Added protected desktop lexicon APIs with a read-only public-endpoint fallback for older services. The active lexicon reloads after sign-in, membership changes, and returning to the page.
+- Reworked the English Learning header: Back to English Learning and Back to Dashboard stay together on the left, the title remains centered, and Compact Study stays on the right on the same line.
+- Fixed inadequate contrast in the lexicon reader under light and light member themes. Tab titles now stay on one line and scroll horizontally instead of clipping or wrapping when space is limited.
+
 ## [0.16.6] - 2026-08-10
 
 ### 新增 / Added
@@ -431,6 +447,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
 [0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6
+[0.16.7]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.7
 [0.16.5]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.5
 [0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
 [0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3
