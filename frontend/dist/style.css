@@ -1919,7 +1919,7 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 
 /* AI Chat: compact desktop adaptation of the Backlight admin AIChat experience. */
 .ai-chat-page {
-  height: calc(100% - 58px); padding: 10px 14px 14px; color: #172033;
+  height: calc(100% - 58px); padding: 10px 14px 14px; color: var(--ai-text);
   --ai-bg: #f6f7fb; --ai-panel: #fff; --ai-panel-soft: #f4f5f9; --ai-text: #172033;
   --ai-muted: #7d8597; --ai-line: #e7e9f0; --ai-accent: #635bff; --ai-accent-2: #8b5cf6;
 }
@@ -2180,21 +2180,43 @@ body:not(.compact):not(.english-open):not(.stock-open) .share-dialog header smal
 body:not(.compact):not(.english-open):not(.stock-open) .ai-usage-card small,
 body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { font-size: 10px !important; }
 
+/* AI must use the active dark palette too.  Membership themes are stored as
+   plus/pro/ultra-theme rather than "dark", so they need the same surface
+   treatment instead of falling back to the light AI defaults. */
 :root[data-theme="dark"] .ai-chat-page { --ai-bg:#101116; --ai-panel:#191a20; --ai-panel-soft:#22242c; --ai-text:#eef0f6; --ai-muted:#9299a8; --ai-line:#2d2f37; }
-:root[data-theme="dark"] .ai-conversation-panel,:root[data-theme="dark"] .ai-chat-header { background: rgba(25,26,32,.95); }
-:root[data-theme="dark"] .ai-conversation-tabs button.active,:root[data-theme="dark"] .ai-conversation-item:hover,:root[data-theme="dark"] .ai-suggestion-grid button,:root[data-theme="dark"] .ai-composer,:root[data-theme="dark"] .ai-login-required { background:#1f2128; }
-:root[data-theme="dark"] .ai-conversation-item.active { background:#29283d; }
-:root[data-theme="dark"] .ai-conversation-icon,:root[data-theme="dark"] .ai-user-message { background:#24262e; }
-:root[data-theme="dark"] .ai-usage-card { background:#20212b; }
-:root[data-theme="dark"] .ai-usage-track { background:#343249; }
-:root[data-theme="dark"] .ai-thinking-toggle.active,:root[data-theme="dark"] .ai-settings-models button.active { background:#28263d; }
-:root[data-theme="dark"] .ai-suggestion-grid button { border-color:#30323b; }
-:root[data-theme="dark"] .ai-reasoning-box { background:#201f2a; border-color:#302e45; }
-:root[data-theme="dark"] .ai-answer blockquote { background:#232231; }
-:root[data-theme="dark"] .ai-answer :not(pre) > code,:root[data-theme="dark"] .ai-message-tools button:hover,:root[data-theme="dark"] .ai-message-tools button.selected { background:#282638; }
-:root[data-theme="dark"] .ai-composer-zone { background:linear-gradient(transparent,rgba(25,26,32,.97) 22%); }
-:root[data-theme="dark"] .ai-composer textarea,:root[data-theme="dark"] .ai-header-actions select { color:#eef0f6; }
-:root[data-theme="dark"] .ai-settings-content > label:not(.ai-settings-switch) { color:#d8dbe4; }
+:root[data-theme="aurora"] .ai-chat-page { --ai-bg:#081822; --ai-panel:#102531; --ai-panel-soft:#16313e; --ai-text:#e9fbf8; --ai-muted:#9cb7c3; --ai-line:rgba(116,227,211,.18); }
+:root[data-theme="plus-theme"] .ai-chat-page { --ai-bg:#170f22; --ai-panel:#21172d; --ai-panel-soft:#2d2039; --ai-text:#fff0f8; --ai-muted:#c6a8bc; --ai-line:rgba(241,163,203,.20); }
+:root[data-theme="pro-theme"] .ai-chat-page { --ai-bg:#071923; --ai-panel:#0e2633; --ai-panel-soft:#153544; --ai-text:#e9fbff; --ai-muted:#9dc0ca; --ai-line:rgba(104,215,240,.19); }
+:root[data-theme="ultra-theme"] .ai-chat-page { --ai-bg:#090b18; --ai-panel:#13172a; --ai-panel-soft:#1c2138; --ai-text:#f6f5ff; --ai-muted:#b5b8d1; --ai-line:rgba(160,174,255,.23); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-conversation-panel,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-chat-header { background:color-mix(in srgb,var(--ai-panel) 95%,transparent); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-conversation-tabs button.active,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-conversation-item:hover,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-composer,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-login-required { background:var(--ai-panel-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-conversation-item.active { background:color-mix(in srgb,var(--ai-accent) 18%,var(--ai-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-conversation-icon,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-user-message { background:color-mix(in srgb,var(--ai-panel-soft) 82%,#000); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-usage-card { background:color-mix(in srgb,var(--ai-panel-soft) 88%,#000); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-usage-track { background:color-mix(in srgb,var(--ai-accent) 20%,var(--ai-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-thinking-toggle.active,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-settings-models button.active { background:color-mix(in srgb,var(--ai-accent) 16%,var(--ai-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid button { border-color:var(--ai-line); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid .indigo { background:rgba(99,91,255,.17); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid .mint { background:rgba(52,211,153,.15); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid .amber { background:rgba(245,158,11,.15); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-suggestion-grid .pink { background:rgba(236,72,153,.14); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-reasoning-box { background:color-mix(in srgb,var(--ai-panel-soft) 82%,#000); border-color:var(--ai-line); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-answer blockquote { background:color-mix(in srgb,var(--ai-accent) 12%,var(--ai-panel)); color:var(--ai-muted); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-answer :not(pre) > code,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-message-tools button:hover,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-message-tools button.selected { background:color-mix(in srgb,var(--ai-accent) 16%,var(--ai-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-composer-zone { background:linear-gradient(transparent,color-mix(in srgb,var(--ai-panel) 97%,transparent) 22%); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-composer.disabled { background:var(--ai-panel-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-composer textarea,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-header-actions select { color:var(--ai-text); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .ai-settings-content > label:not(.ai-settings-switch) { color:var(--ai-text); }
 
 @media (max-width: 1120px) {
   .brand-en { display: none; }
@@ -3248,7 +3270,10 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 @keyframes fishing-catch-pop { 0%{opacity:0;transform:translate(-50%,35%) scale(.25) rotate(-22deg)} 28%{opacity:1;transform:translate(-50%,-50%) scale(1.22) rotate(10deg)} 64%{opacity:1;transform:translate(-50%,-70%) scale(1) rotate(-4deg)} 100%{opacity:0;transform:translate(-50%,-142%) scale(.75) rotate(12deg)} }
 @keyframes fishing-escape { 0%{width:12px;height:5px;opacity:.9} 100%{width:156px;height:62px;opacity:0} }
 @keyframes fishing-flee { 0%{opacity:.65;transform:translate(-50%,-50%) scale(.55) rotate(-20deg)} 100%{opacity:0;transform:translate(185%,-6%) scale(.82) rotate(22deg)} }
-@keyframes bruce-frames{0%,12.49%{background-position:0 var(--bruce-row)}12.5%,24.99%{background-position:-96px var(--bruce-row)}25%,37.49%{background-position:-192px var(--bruce-row)}37.5%,49.99%{background-position:-288px var(--bruce-row)}50%,62.49%{background-position:-384px var(--bruce-row)}62.5%,74.99%{background-position:-480px var(--bruce-row)}75%,87.49%{background-position:-576px var(--bruce-row)}87.5%,100%{background-position:-672px var(--bruce-row)}}
+/* Every supplied pet sheet has seven usable frames in its first action row.
+   The old eighth frame pointed into transparent padding, which made a pet
+   disappear once per animation loop. */
+@keyframes bruce-frames{0%,14.27%{background-position:0 var(--bruce-row)}14.28%,28.56%{background-position:-96px var(--bruce-row)}28.57%,42.84%{background-position:-192px var(--bruce-row)}42.85%,57.13%{background-position:-288px var(--bruce-row)}57.14%,71.41%{background-position:-384px var(--bruce-row)}71.42%,85.70%{background-position:-480px var(--bruce-row)}85.71%,100%{background-position:-576px var(--bruce-row)}}
 @keyframes pet-food-bob{to{transform:translate(-9px,-7px) rotate(-12deg)}}
 @keyframes pet-float{0%,100%{transform:translate(-50%,-50%) rotate(-3deg)}50%{transform:translate(-50%,calc(-50% - 10px)) rotate(3deg)}}
 @keyframes pet-bubble{0%{opacity:0;transform:translateY(0) scale(.7)}20%{opacity:.7}100%{opacity:0;transform:translateY(-128px) translateX(12px) scale(1.25)}}

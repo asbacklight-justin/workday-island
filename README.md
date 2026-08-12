@@ -12,8 +12,8 @@
 
 | 平台 | 安装包 | 支持范围 |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.7-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
-| Windows | `Workday-Island-v0.16.7-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
+| macOS | `Workday-Island-v0.16.8-macOS-universal.dmg` | macOS 12+，Apple Silicon（M 系列）与 Intel |
+| Windows | `Workday-Island-v0.16.8-windows-x64-Setup.exe` | Windows 10/11 x64，依赖 Microsoft Edge WebView2 |
 
 当前公开安装包未使用商业代码签名证书：macOS 首次运行时可在 Finder 中右键应用并选择“打开”；Windows 可能显示 SmartScreen 提示，请确认文件来自本项目的 GitHub Release。请不要从未知转载站点下载安装。
 
@@ -167,7 +167,7 @@ go run .
 
 ## 版本、作者与许可
 
-- 当前版本：`v0.16.7`
+- 当前版本：`v0.16.8`
 - 作者：Backlight Studio
 - 联系邮箱：[asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - 开源许可：[MIT License](LICENSE)

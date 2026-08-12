@@ -5,6 +5,20 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.8] - 2026-08-12
+
+### 中文
+
+- 修复 Windows 系统托盘图标悬浮提示为空：托盘图标现在显式请求显示应用提示文字。
+- 修复摸鱼小宠动画循环时偶发消失：精灵图仅播放有效帧，不再绘制到透明补白区域。
+- 修复 AI 对话在普通深色、极光和 Plus/Pro/Ultra 深色会员主题中仍出现白色侧栏、顶部、建议卡片及输入区的问题；所有 AI 表面现在跟随当前深色调色板。
+
+### English
+
+- Fixed the empty hover tooltip for the Windows system-tray icon by explicitly requesting its visible tooltip.
+- Fixed Fishing Island pets occasionally disappearing during animation loops by limiting sprite playback to valid frames.
+- Fixed AI Chat surfaces that remained white under standard dark, Aurora, and Plus/Pro/Ultra dark member themes. The sidebar, header, suggestion cards, and composer now follow the active dark palette.
+
 ## [0.16.7] - 2026-08-11
 
 ### 中文
@@ -446,6 +460,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.8]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.8
 [0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6
 [0.16.7]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.7
 [0.16.5]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.5

@@ -43,3 +43,11 @@ func TestNormaliseTrayLanguageDefaultsToChinese(t *testing.T) {
 		}
 	}
 }
+
+func TestWindowsTrayNotifyFlagsRequestVisibleTooltip(t *testing.T) {
+	t.Parallel()
+	flags := windowsTrayNotifyFlags()
+	if flags&trayNIFTip == 0 || flags&trayNIFShowTip == 0 {
+		t.Fatalf("tray flags must include tip and show-tip: %#x", flags)
+	}
+}

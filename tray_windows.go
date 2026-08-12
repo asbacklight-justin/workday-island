@@ -13,22 +13,26 @@ import (
 )
 
 const (
-	trayWMApp          = 0x8000
-	trayCallback       = trayWMApp + 42
-	trayWMClose        = 0x0010
-	trayWMDestroy      = 0x0002
-	trayWMNull         = 0x0000
-	trayWMContextMenu  = 0x007B
-	trayWMLButtonUp    = 0x0202
-	trayWMLButtonDbl   = 0x0203
-	trayWMRButtonUp    = 0x0205
-	trayNIMAdd         = 0x00000000
-	trayNIMModify      = 0x00000001
-	trayNIMDelete      = 0x00000002
-	trayNIMSetVersion  = 0x00000004
-	trayNIFMessage     = 0x00000001
-	trayNIFIcon        = 0x00000002
-	trayNIFTip         = 0x00000004
+	trayWMApp         = 0x8000
+	trayCallback      = trayWMApp + 42
+	trayWMClose       = 0x0010
+	trayWMDestroy     = 0x0002
+	trayWMNull        = 0x0000
+	trayWMContextMenu = 0x007B
+	trayWMLButtonUp   = 0x0202
+	trayWMLButtonDbl  = 0x0203
+	trayWMRButtonUp   = 0x0205
+	trayNIMAdd        = 0x00000000
+	trayNIMModify     = 0x00000001
+	trayNIMDelete     = 0x00000002
+	trayNIMSetVersion = 0x00000004
+	trayNIFMessage    = 0x00000001
+	trayNIFIcon       = 0x00000002
+	trayNIFTip        = 0x00000004
+	// Windows 7+ suppresses a regular tooltip for version-4 tray icons unless
+	// NIF_SHOWTIP is requested explicitly. Without it, the icon is visible but
+	// hovering it shows an empty bubble.
+	trayNIFShowTip     = 0x00000080
 	trayIconVersion    = 4
 	trayMFString       = 0x00000000
 	trayMFSeparator    = 0x00000800
@@ -198,7 +202,7 @@ func runTrayMessageLoop() {
 		CbSize:          uint32(unsafe.Sizeof(trayNotifyIconData{})),
 		Window:          window,
 		ID:              1,
-		Flags:           trayNIFMessage | trayNIFIcon | trayNIFTip,
+		Flags:           windowsTrayNotifyFlags(),
 		CallbackMessage: trayCallback,
 		Icon:            icon,
 	}
@@ -224,6 +228,10 @@ func runTrayMessageLoop() {
 		trayDispatchMessage.Call(uintptr(unsafe.Pointer(&message)))
 	}
 	clearWindowsTrayState()
+}
+
+func windowsTrayNotifyFlags() uint32 {
+	return trayNIFMessage | trayNIFIcon | trayNIFTip | trayNIFShowTip
 }
 
 func trayWindowProcedure(window windows.Handle, message uint32, wParam, lParam uintptr) uintptr {
