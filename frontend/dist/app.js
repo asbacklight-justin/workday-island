@@ -82,7 +82,7 @@ const translations = {
     friends: '好友', refreshFriends: '刷新', friendTargetPlaceholder: '精确用户名或用户 ID', friendRequestMessagePlaceholder: '申请留言（可选）', sendFriendRequest: '发送申请',
     pendingFriendRequests: '收到的申请', friendList: '好友列表', noPendingFriendRequests: '暂无待处理申请', noFriends: '暂无好友', acceptFriend: '同意', rejectFriend: '拒绝',
     removeFriend: '删除好友', removeFriendConfirm: '确定删除好友“{name}”吗？', friendRequestSent: '好友申请已发送', friendRequestReceived: '收到 {name} 的好友申请', friendAccepted: '已添加好友', friendRejected: '已拒绝好友申请', friendRemoved: '好友已删除',
-    peerUserId: '对方用户 ID', peerHint: '输入对方分享的用户 ID，即可聊天和发送窗口互动。', effectMessage: '互动提示语（可选）', effectMessagePlaceholder: '窗口互动提示语（可选，例如：起来活动一下啦）', shakeWindow: '抖一抖', flashWindow: '闪一闪',
+    peerUserId: '对方用户 ID', peerHint: '输入对方分享的用户 ID，即可聊天和发送窗口互动。', effectMessage: '互动提示语（可选）', effectMessagePlaceholder: '窗口互动提示语（可选，例如：起来活动一下啦）', effectEmoji: '互动表情', shakeWindow: '抖一抖', flashWindow: '闪一闪',
     conversation: '会话', offlineDeliveryHint: '对方离线时消息会在其下次上线后送达', choosePeer: '从左侧选择好友开始聊天', noMessages: '和 {name} 还没有消息', chatPrivacy: '消息经远程实时服务传输，并保存在本机聊天记录中。',
     chatPlaceholder: '输入消息，Enter 发送，Shift+Enter 换行', send: '发送', idCopied: '用户 ID 已复制', identityReset: '实时身份已重置', connectedRealtime: '实时服务已上线', disconnectedRealtime: '已从实时服务下线',
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
@@ -90,7 +90,7 @@ const translations = {
     shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
     englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', englishLexicons: '词库数据', compactEnglishStudy: '精简学习',
     englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。', englishLexiconsHint: '按词库与课程查看音标、释义、双语例句和难度，Plus 及以上会员可使用。',
-    textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库',
+    textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库', textbookFontSize: '正文字号', textbookFontSmall: '小', textbookFontMedium: '中', textbookFontLarge: '大',
     englishLibraryTitle: '英文沉浸阅读', englishLibraryLoginRequired: '请先登录 Plus 及以上会员账号，再进入英文书架。', englishLibraryUpgradeHint: '英文书籍仅限 Plus、Pro 或 Ultra 会员使用。', englishLibraryLoading: '正在整理英文书架…', englishLibraryEmpty: '书架暂时还是空的。', englishLibrarySearch: '搜索书名、作者或简介', englishLibraryAllLanguages: '全部语言', englishLibraryRead: '开始阅读', englishLibraryContinue: '继续阅读', englishLibraryChapters: '章', englishLibraryProgress: '阅读进度', englishLibraryContents: '目录', englishLibraryBackShelf: '返回书架', englishLibraryPrevious: '上一页', englishLibraryNext: '下一页', englishLibraryPage: '第 {page} / {pages} 页', englishLibraryFont: '字号', englishLibraryTheme: '阅读主题', englishLibraryLineHeight: '行距', englishLibraryNoContent: '本章暂无正文', englishLibraryLoadFailed: '书籍内容加载失败', englishLibraryLight: '明亮', englishLibrarySepia: '羊皮纸', englishLibraryGreen: '护眼', englishLibraryDark: '夜读',
     lexiconLoginRequired: '请先登录 Plus 及以上会员账号，再查看词库数据。', lexiconUpgradeHint: '词库数据仅限 Plus、Pro 或 Ultra 会员使用。', lexiconLoading: '正在整理词库数据…', lexiconEmpty: '暂时没有可浏览的词库。', lexiconSelectLesson: '从左侧目录选择一课查看词条。', lexiconCurrent: '当前词库', lexiconCatalog: '课程目录', lexiconLessons: '课程', lexiconEntries: '词条', lexiconEntryDetail: '词条明细', lexiconSearch: '搜索单词或释义', lexiconNoMatch: '没有匹配的词条', lexiconMeaning: '中文释义', lexiconExample: '教材例句', lexiconDifficulty: '难度', lexiconReadOnly: '只读词库', lexiconLoadFailed: '词库数据加载失败',
     wordsStudied: '已学单词', wrongWords: '错题单词', totalViews: '累计学习', searchEnglishWord: '搜索单词、释义或例句', allModes: '全部模式',
@@ -189,7 +189,7 @@ const translations = {
     friends: 'Friends', refreshFriends: 'Refresh', friendTargetPlaceholder: 'Exact username or user ID', friendRequestMessagePlaceholder: 'Request message (optional)', sendFriendRequest: 'Send Request',
     pendingFriendRequests: 'Incoming requests', friendList: 'Friend list', noPendingFriendRequests: 'No pending requests', noFriends: 'No friends yet', acceptFriend: 'Accept', rejectFriend: 'Reject',
     removeFriend: 'Remove friend', removeFriendConfirm: 'Remove “{name}” from your friends?', friendRequestSent: 'Friend request sent', friendRequestReceived: 'Friend request from {name}', friendAccepted: 'Friend added', friendRejected: 'Friend request rejected', friendRemoved: 'Friend removed',
-    peerUserId: 'Peer user ID', peerHint: 'Enter the user ID shared by the other person to chat or send a window interaction.', effectMessage: 'Interaction message (optional)', effectMessagePlaceholder: 'Window interaction message (optional)', shakeWindow: 'Shake', flashWindow: 'Flash',
+    peerUserId: 'Peer user ID', peerHint: 'Enter the user ID shared by the other person to chat or send a window interaction.', effectMessage: 'Interaction message (optional)', effectMessagePlaceholder: 'Window interaction message (optional)', effectEmoji: 'Interaction emoji', shakeWindow: 'Shake', flashWindow: 'Flash',
     conversation: 'Conversation', offlineDeliveryHint: 'Offline messages are delivered the next time the other person connects', choosePeer: 'Choose a friend on the left to start chatting', noMessages: 'No messages with {name} yet', chatPrivacy: 'Messages pass through the remote realtime service and are kept in local chat history.',
     chatPlaceholder: 'Type a message. Enter to send; Shift+Enter for a new line', send: 'Send', idCopied: 'User ID copied', identityReset: 'Realtime identity reset', connectedRealtime: 'Realtime service is online', disconnectedRealtime: 'Realtime service is offline',
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
@@ -197,7 +197,7 @@ const translations = {
     shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
     englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', englishLexicons: 'Lexicon Data', compactEnglishStudy: 'Compact Study',
     englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.', englishLexiconsHint: 'Browse phonetics, meanings, bilingual examples, and difficulty by lexicon and lesson. Plus and above.',
-    textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon',
+    textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon', textbookFontSize: 'Text size', textbookFontSmall: 'Small', textbookFontMedium: 'Medium', textbookFontLarge: 'Large',
     englishLibraryTitle: 'Immersive English Reading', englishLibraryLoginRequired: 'Sign in with a Plus or higher account to open the library.', englishLibraryUpgradeHint: 'English books are available to Plus, Pro, and Ultra members only.', englishLibraryLoading: 'Organising your English shelf…', englishLibraryEmpty: 'The bookshelf is empty for now.', englishLibrarySearch: 'Search title, author, or summary', englishLibraryAllLanguages: 'All languages', englishLibraryRead: 'Start Reading', englishLibraryContinue: 'Continue Reading', englishLibraryChapters: 'chapters', englishLibraryProgress: 'Reading progress', englishLibraryContents: 'Contents', englishLibraryBackShelf: 'Back to shelf', englishLibraryPrevious: 'Previous', englishLibraryNext: 'Next', englishLibraryPage: 'Page {page} / {pages}', englishLibraryFont: 'Font', englishLibraryTheme: 'Theme', englishLibraryLineHeight: 'Spacing', englishLibraryNoContent: 'No text in this chapter', englishLibraryLoadFailed: 'Unable to load book content', englishLibraryLight: 'Light', englishLibrarySepia: 'Sepia', englishLibraryGreen: 'Eye care', englishLibraryDark: 'Dark',
     lexiconLoginRequired: 'Sign in with a Plus or higher account to browse lexicon data.', lexiconUpgradeHint: 'Lexicon data is available to Plus, Pro, and Ultra members only.', lexiconLoading: 'Loading lexicon data…', lexiconEmpty: 'No lexicons are available yet.', lexiconSelectLesson: 'Choose a lesson from the catalogue to view its entries.', lexiconCurrent: 'Current lexicon', lexiconCatalog: 'Lessons', lexiconLessons: 'Lessons', lexiconEntries: 'Entries', lexiconEntryDetail: 'Entry details', lexiconSearch: 'Search a word or meaning', lexiconNoMatch: 'No matching entries', lexiconMeaning: 'Chinese meaning', lexiconExample: 'Textbook example', lexiconDifficulty: 'Difficulty', lexiconReadOnly: 'Read-only lexicon', lexiconLoadFailed: 'Unable to load lexicon data',
     wordsStudied: 'Words studied', wrongWords: 'Wrong words', totalViews: 'Total views', searchEnglishWord: 'Search word, meaning, or example', allModes: 'All modes',
@@ -242,6 +242,7 @@ const chatEmojiCatalog = [
   ['🌈', '彩虹', 'Rainbow', 'sparkle'], ['⭐', '星星', 'Star', 'sparkle'], ['🌙', '晚安', 'Good night', 'float'], ['☀️', '晴天', 'Sunny', 'bounce'], ['🐱', '猫猫', 'Cat', 'wave']
 ].map(([emoji, zh, en, motion]) => ({emoji, zh, en, motion}));
 let chatEmojiPickerOpen = false;
+let effectEmojiPickerOpen = false;
 
 function syncHeaderPageEntryState() {
   headerPageEntryDefinitions.forEach(([pageClass, selector]) => {
@@ -273,8 +274,8 @@ const petNapCooldown = 10 * 60 * 1000;
 
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.4', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
+  appInfo: {name: 'Workday Island', version: '0.16.9', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -843,6 +844,7 @@ function bindEvents() {
   $('#send-shake').addEventListener('click', () => sendWindowEffect('shake'));
   $('#send-flash').addEventListener('click', () => sendWindowEffect('flash'));
   initialiseChatEmojiPicker();
+  initialiseEffectEmojiPicker();
   $('#chat-form').addEventListener('submit', submitChatMessage);
   $('#chat-input').addEventListener('keydown', event => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -6373,6 +6375,11 @@ async function handleEnglishTextbookAction(event) {
   }
   if (state.englishNotebook.tab !== 'textbook') return;
   const textbook = state.englishNotebook.textbook;
+  const fontSize = event.target.closest('[data-english-textbook-font-size]');
+  if (fontSize && event.type === 'change') {
+    await setEnglishTextbookFontSize(fontSize.value);
+    return;
+  }
   const select = event.target.closest('[data-english-textbook-select]');
   if (select && event.type === 'change') {
     await loadEnglishTextbookLessons(select.value);
@@ -6383,6 +6390,24 @@ async function handleEnglishTextbookAction(event) {
   if (lesson) {
     textbook.directoryScrollTop = Math.max(0, Number(lesson.parentElement?.scrollTop) || 0);
     await selectEnglishTextbookLesson(lesson.dataset.englishTextbookLesson);
+  }
+}
+
+function normaliseEnglishTextbookFontSize(value) {
+  return ['small', 'medium', 'large'].includes(value) ? value : 'medium';
+}
+
+async function setEnglishTextbookFontSize(value) {
+  const fontSize = normaliseEnglishTextbookFontSize(value);
+  const previous = normaliseEnglishTextbookFontSize(state.settings.textbookFontSize);
+  if (fontSize === previous) return;
+  state.settings = {...state.settings, textbookFontSize: fontSize};
+  try {
+    await saveSettings();
+  } catch (error) {
+    state.settings = {...state.settings, textbookFontSize: previous};
+    renderEnglishNotebook();
+    showToast(readError(error), true);
   }
 }
 
@@ -6414,12 +6439,13 @@ function renderEnglishTextbooks() {
   const book = textbook.books.find(item => item.code === textbook.code) || textbook.books[0];
   const detail = textbook.detail;
   const lessonList = textbook.lessons.map(item => `<button type="button" class="english-textbook-lesson${Number(item.lesson_no) === textbook.selectedLessonNo ? ' active' : ''}" data-english-textbook-lesson="${Number(item.lesson_no)}"><b>${String(item.lesson_no).padStart(2, '0')}</b><span><strong>${escapeHTML(item.title_en)}</strong><small>${escapeHTML(item.title_cn || item.summary_cn || '')}</small></span></button>`).join('');
-  const article = detail ? `<article class="english-textbook-article">
+  const fontSize = normaliseEnglishTextbookFontSize(state.settings.textbookFontSize);
+  const article = detail ? `<article class="english-textbook-article textbook-font-${fontSize}">
     <header><span>${escapeHTML(t('textbookReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title_en || '')}</h2><h3>${escapeHTML(detail.lesson?.title_cn || '')}</h3><small>${Number(detail.lesson?.word_count || 0).toLocaleString(locale())} ${escapeHTML(t('textbookWords'))} · ${Array.isArray(detail.paragraphs) ? detail.paragraphs.length : 0} ${escapeHTML(t('textbookParagraphs'))}${detail.lesson?.linked_lexicon ? ` · ${escapeHTML(t('textbookLinkedLexicon'))}` : ''}</small></header>
     <div class="english-textbook-paragraphs">${(detail.paragraphs || []).map(item => `<section><b>${String(item.paragraph_no).padStart(2, '0')}</b><div><p>${escapeHTML(item.content_en)}</p><small>${escapeHTML(item.content_cn)}</small></div></section>`).join('')}</div>
     ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => `<span><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`).join('')}</div></footer>` : ''}
   </article>` : `<div class="english-center-empty"><span>▤</span><b>${escapeHTML(t('textbookSelectLesson'))}</b></div>`;
-  list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
+  list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><div class="english-textbook-summary-controls"><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><label class="english-textbook-font-control"><span>${escapeHTML(t('textbookFontSize'))}</span><select data-english-textbook-font-size aria-label="${escapeHTML(t('textbookFontSize'))}"><option value="small"${fontSize === 'small' ? ' selected' : ''}>${escapeHTML(t('textbookFontSmall'))}</option><option value="medium"${fontSize === 'medium' ? ' selected' : ''}>${escapeHTML(t('textbookFontMedium'))}</option><option value="large"${fontSize === 'large' ? ' selected' : ''}>${escapeHTML(t('textbookFontLarge'))}</option></select></label></div><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
   const directory = list.querySelector('.english-textbook-layout > aside > div');
   if (directory) {
     const restoreScroll = () => { directory.scrollTop = Math.max(0, Number(textbook.directoryScrollTop) || 0); };
@@ -7210,6 +7236,12 @@ function renderRealtime() {
   if (!chatAvailable) chatEmojiPickerOpen = false;
   $('#chat-emoji-picker').classList.toggle('hidden', !chatEmojiPickerOpen);
   $('#chat-emoji-toggle').setAttribute('aria-expanded', String(chatEmojiPickerOpen));
+  $('#effect-emoji-toggle').disabled = !chatAvailable;
+  if (!chatAvailable) effectEmojiPickerOpen = false;
+  $('#effect-emoji-picker').classList.toggle('hidden', !effectEmojiPickerOpen);
+  $('#effect-emoji-toggle').setAttribute('aria-expanded', String(effectEmojiPickerOpen));
+  $('#effect-emoji-toggle').setAttribute('aria-label', t('effectEmoji'));
+  $('#effect-emoji-toggle').title = t('effectEmoji');
   $('#send-shake').disabled = !online || !validPeer || realtimeBusy;
   $('#send-flash').disabled = !online || !validPeer || realtimeBusy;
   $('#send-friend-request').disabled = !online || realtimeBusy;
@@ -7357,6 +7389,21 @@ function renderRealtimeUnread() {
   badge.classList.toggle('hidden', unread < 1);
 }
 
+function formatChatMessageTime(value) {
+  const created = new Date(value);
+  if (Number.isNaN(created.getTime())) return '';
+  const now = new Date();
+  const time = created.toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit', hour12: false});
+  const isToday = created.getFullYear() === now.getFullYear()
+    && created.getMonth() === now.getMonth()
+    && created.getDate() === now.getDate();
+  if (isToday) return time;
+  const year = created.getFullYear();
+  const month = String(created.getMonth() + 1).padStart(2, '0');
+  const day = String(created.getDate()).padStart(2, '0');
+  return locale().startsWith('zh') ? `${year}年${month}月${day}日 ${time}` : `${year}-${month}-${day} ${time}`;
+}
+
 function renderChatMessages(peerID) {
   const list = $('#chat-messages');
   if (!peerID) {
@@ -7372,8 +7419,7 @@ function renderChatMessages(peerID) {
     return;
   }
   list.innerHTML = messages.map(message => {
-    const created = new Date(message.createdAt);
-    const time = Number.isNaN(created.getTime()) ? '' : created.toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit', hour12: false});
+    const time = formatChatMessageTime(message.createdAt);
     const delivery = message.outgoing
       ? `<span class="${Number(message.onlineDeliveries) > 0 ? 'online' : ''}">${escapeHTML(t(Number(message.onlineDeliveries) > 0 ? 'sentOnline' : 'savedOffline'))}</span>`
       : '';
@@ -7415,6 +7461,32 @@ function initialiseChatEmojiPicker() {
     $('#chat-emoji-picker').classList.add('hidden');
     $('#chat-emoji-toggle').setAttribute('aria-expanded', 'false');
     $('#chat-form').requestSubmit();
+  });
+}
+
+function initialiseEffectEmojiPicker() {
+  const grid = $('#effect-emoji-grid');
+  const effectEmojis = chatEmojiCatalog.slice(0, 20);
+  grid.innerHTML = effectEmojis.map(item => `<button type="button" role="listitem" data-effect-emoji="${item.emoji}" class="emoji-motion-${item.motion}" title="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}" aria-label="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}">${item.emoji}</button>`).join('');
+  $('#effect-emoji-toggle').addEventListener('click', () => {
+    if ($('#effect-emoji-toggle').disabled) return;
+    effectEmojiPickerOpen = !effectEmojiPickerOpen;
+    $('#effect-emoji-picker').classList.toggle('hidden', !effectEmojiPickerOpen);
+    $('#effect-emoji-toggle').setAttribute('aria-expanded', String(effectEmojiPickerOpen));
+  });
+  grid.addEventListener('click', event => {
+    const button = event.target.closest('[data-effect-emoji]');
+    if (!button || button.disabled) return;
+    const input = $('#effect-message');
+    const start = Number.isInteger(input.selectionStart) ? input.selectionStart : input.value.length;
+    const end = Number.isInteger(input.selectionEnd) ? input.selectionEnd : start;
+    input.value = `${input.value.slice(0, start)}${button.dataset.effectEmoji}${input.value.slice(end)}`;
+    const cursor = start + button.dataset.effectEmoji.length;
+    input.focus();
+    input.setSelectionRange(cursor, cursor);
+    effectEmojiPickerOpen = false;
+    $('#effect-emoji-picker').classList.add('hidden');
+    $('#effect-emoji-toggle').setAttribute('aria-expanded', 'false');
   });
 }
 
@@ -7781,6 +7853,7 @@ async function submitSettings(event) {
     theme: $('#theme-select').value,
     englishMode: state.settings.englishMode || 'study',
     englishSource: $('#english-source-select').value || 'nce2',
+    textbookFontSize: normaliseEnglishTextbookFontSize(state.settings.textbookFontSize),
     showCompactTodos: $('#show-compact-todos').checked,
     compactOpacity: normaliseCompactOpacity($('#compact-opacity').value),
     compactWidth: state.settings.compactWidth || 520,
@@ -8347,7 +8420,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.4',latestVersion:'0.16.4',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增个人中心免费试用领取，并优化钓鱼小岛的抛竿、咬钩、命中与收获动效。\nAdded one-time trial claiming in Account Center and richer Fishing Island cast, bite, timing, and catch effects.'} : {currentVersion:'0.16.4',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.9',latestVersion:'0.16.9',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'优化教材字号、云笔记深色主题，以及聊天互动表情与历史时间显示。\nImproved textbook sizes, Cloud Notes dark themes, and chat interaction emoji and history timestamps.'} : {currentVersion:'0.16.9',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

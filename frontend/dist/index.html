@@ -882,8 +882,12 @@
           </div>
           <div class="conversation-effects">
             <input id="effect-message" maxlength="120" data-i18n-placeholder="effectMessagePlaceholder" placeholder="窗口互动提示语（可选）">
+            <button id="effect-emoji-toggle" type="button" class="effect-emoji-toggle" aria-label="互动表情" title="互动表情" aria-expanded="false" disabled>☺</button>
             <button id="send-shake" type="button" disabled title="抖一抖"><span>〰</span><b data-i18n="shakeWindow">抖一抖</b></button>
             <button id="send-flash" type="button" disabled title="闪一闪"><span>✦</span><b data-i18n="flashWindow">闪一闪</b></button>
+            <div id="effect-emoji-picker" class="effect-emoji-picker hidden" role="dialog" aria-label="互动表情面板">
+              <div id="effect-emoji-grid" class="effect-emoji-grid" role="list"></div>
+            </div>
           </div>
           <form id="chat-form" class="chat-compose">
             <button id="chat-emoji-toggle" type="button" class="chat-emoji-toggle" aria-label="表情" title="表情" aria-expanded="false" disabled>☺</button>

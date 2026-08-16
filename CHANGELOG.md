@@ -5,6 +5,22 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.9] - 2026-08-16
+
+### 中文
+
+- 云笔记完整适配普通深色、极光与 Plus/Pro/Ultra 深色会员主题；导航、空状态、富文本/Markdown/表格编辑器、标题输入框和工具按钮均使用协调的深色表面与可读文字。
+- 教材课文新增小、中、大正文档位，默认中号并本机记忆；字号同时影响双语课文与本课词汇，三档差异明确。
+- 实时聊天的抖一抖和闪一闪新增互动表情面板，可发送表情、文案或两者组合；完整内容会写入聊天记录并显示在接收方窗口互动提示中。
+- 聊天记录时间优化：今日消息保留时分，非今日消息显示完整年月日与时分；普通消息与窗口互动记录一致。
+
+### English
+
+- Cloud Notes now fully follows the standard dark, Aurora, and Plus/Pro/Ultra dark member palettes, including navigation, empty states, rich-text/Markdown/spreadsheet editors, title fields, and toolbar actions.
+- Textbooks now offer persistent Small, Medium, and Large reading sizes. Medium is the default, and the setting visibly scales bilingual text and lesson vocabulary together.
+- Shake and Flash interactions in Realtime Chat now include an emoji picker and support emoji, copy, or both. The same content is retained in history and shown in the receiving window interaction prompt.
+- Chat timestamps now show time for today and a complete date plus time for older messages, consistently for normal and interaction records.
+
 ## [0.16.8] - 2026-08-12
 
 ### 中文
@@ -460,6 +476,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9
 [0.16.8]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.8
 [0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6
 [0.16.7]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.7

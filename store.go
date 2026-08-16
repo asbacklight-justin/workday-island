@@ -30,7 +30,7 @@ func defaultSettings() Settings {
 		AlwaysOnTop: true, CompactOpacity: 100, CompactWidth: 520, CompactHeight: 350,
 		WorkStart: "09:00", WorkEnd: "18:00", Workdays: []int{1, 2, 3, 4, 5},
 		SalaryWorkdays: 21.75, Currency: "¥", WeatherCity: "上海", Language: "system", Theme: "system",
-		EnglishMode: "study", EnglishSource: "nce2",
+		EnglishMode: "study", EnglishSource: "nce2", TextbookFontSize: "medium",
 		HeaderEntries: defaultHeaderEntries(),
 	}
 }
@@ -444,6 +444,9 @@ func normaliseSettings(settings Settings) Settings {
 	}
 	if !validEnglishSource(settings.EnglishSource) {
 		settings.EnglishSource = "nce2"
+	}
+	if settings.TextbookFontSize != "small" && settings.TextbookFontSize != "medium" && settings.TextbookFontSize != "large" {
+		settings.TextbookFontSize = "medium"
 	}
 	seen := map[int]bool{}
 	var workdays []int

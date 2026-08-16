@@ -31,6 +31,7 @@ type Settings struct {
 	Theme            string          `json:"theme"`
 	EnglishMode      string          `json:"englishMode"`
 	EnglishSource    string          `json:"englishSource"`
+	TextbookFontSize string          `json:"textbookFontSize"`
 	HeaderEntries    map[string]bool `json:"headerEntries"`
 }
 

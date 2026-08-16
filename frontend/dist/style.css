@@ -404,12 +404,16 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-textbook-access .primary-btn { min-width: 130px; height: 34px; font-size: 11px; }
 .english-textbook-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 9px; }
 .english-lexicon-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; gap: 9px; }
-.english-textbook-summary { min-height: 70px; padding: 11px 14px; border: 1px solid rgba(130,163,220,.13); border-radius: 11px; display: grid; grid-template-columns: minmax(0,1fr) minmax(140px,.45fr) auto; align-items: center; gap: 13px; background: linear-gradient(105deg, rgba(62,104,181,.13), rgba(13,25,45,.16)); }
+.english-textbook-summary { min-height: 70px; padding: 11px 14px; border: 1px solid rgba(130,163,220,.13); border-radius: 11px; display: grid; grid-template-columns: minmax(0,1fr) minmax(240px,.62fr) auto; align-items: center; gap: 13px; background: linear-gradient(105deg, rgba(62,104,181,.13), rgba(13,25,45,.16)); }
 .english-textbook-summary > div:first-child { min-width: 0; }
 .english-textbook-summary > div:first-child > span, .english-textbook-layout aside > header > span, .english-textbook-article > header > span { color: #86a9f4; font-size: 9px; font-weight: 800; letter-spacing: .13em; }
 .english-textbook-summary h2 { margin: 3px 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #e8f0ff; font-size: 15px; }
 .english-textbook-summary small { color: #7b8ca5; font-size: 10px; }
 .english-textbook-summary select { width: 100%; height: 32px; padding: 0 8px; border: 1px solid rgba(130,163,220,.18); border-radius: 8px; outline: 0; color: #d9e5f8; background: rgba(5,14,29,.36); font-size: 11px; }
+.english-textbook-summary-controls { min-width: 0; display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 7px; align-items: center; }
+.english-textbook-font-control { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.english-textbook-font-control > span { color: #7b8ca5; font-size: 10px; font-weight: 700; }
+.english-textbook-summary .english-textbook-font-control select { width: 64px; padding-inline: 6px; }
 .english-textbook-stats { display: grid; grid-template-columns: auto auto; column-gap: 5px; align-items: baseline; }
 .english-textbook-stats b { color: #9abaff; font-size: 17px; font-variant-numeric: tabular-nums; }
 .english-textbook-stats small { padding-right: 5px; font-size: 9px; }
@@ -427,7 +431,10 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-textbook-lesson strong, .english-textbook-lesson small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .english-textbook-lesson strong { color: #cdd8e8; font-size: 11px; }
 .english-textbook-lesson small { color: #697a91; font-size: 9px; }
-.english-textbook-article { overflow-y: auto; }
+.english-textbook-article { --textbook-en-font-size: 18px; --textbook-cn-font-size: 16px; --textbook-en-line-height: 1.76; --textbook-cn-line-height: 1.7; --textbook-vocabulary-word-size:16px; --textbook-vocabulary-phonetic-size:12px; --textbook-vocabulary-meaning-size:13px; overflow-y: auto; }
+.english-textbook-article.textbook-font-small { --textbook-en-font-size: 14px; --textbook-cn-font-size: 12px; --textbook-en-line-height: 1.65; --textbook-cn-line-height: 1.55; --textbook-vocabulary-word-size:12px; --textbook-vocabulary-phonetic-size:10px; --textbook-vocabulary-meaning-size:11px; }
+.english-textbook-article.textbook-font-medium { --textbook-en-font-size: 18px; --textbook-cn-font-size: 16px; --textbook-en-line-height: 1.76; --textbook-cn-line-height: 1.7; --textbook-vocabulary-word-size:16px; --textbook-vocabulary-phonetic-size:12px; --textbook-vocabulary-meaning-size:13px; }
+.english-textbook-article.textbook-font-large { --textbook-en-font-size: 24px; --textbook-cn-font-size: 21px; --textbook-en-line-height: 1.84; --textbook-cn-line-height: 1.78; --textbook-vocabulary-word-size:22px; --textbook-vocabulary-phonetic-size:16px; --textbook-vocabulary-meaning-size:18px; }
 .english-textbook-article > header { padding: 16px 18px 11px; border-bottom: 1px solid rgba(130,163,220,.1); }
 .english-textbook-article h2 { margin: 5px 0 2px; color: #edf4ff; font-size: 18px; }
 .english-textbook-article h3 { margin: 0 0 6px; color: #a9b9d0; font-size: 12px; font-weight: 600; }
@@ -436,13 +443,13 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-textbook-paragraphs section { display: grid; grid-template-columns: 23px minmax(0,1fr); gap: 10px; }
 .english-textbook-paragraphs section > b { width: 21px; height: 21px; border-radius: 7px; display: grid; place-items: center; color: #87a8e8; background: rgba(101,149,235,.09); font-size: 8px; }
 .english-textbook-paragraphs p, .english-textbook-paragraphs small { margin: 0; display: block; }
-.english-textbook-paragraphs p { color: #d3ddea; font-size: 12px; line-height: 1.65; }
-.english-textbook-paragraphs small { margin-top: 3px; color: #8291a5; font-size: 11px; line-height: 1.55; }
+.english-textbook-paragraphs p { color: #d3ddea; font-size: var(--textbook-en-font-size); line-height: var(--textbook-en-line-height); }
+.english-textbook-paragraphs small { margin-top: 4px; color: #8291a5; font-size: var(--textbook-cn-font-size); line-height: var(--textbook-cn-line-height); }
 .english-textbook-article footer { padding: 12px 18px 17px; border-top: 1px solid rgba(130,163,220,.1); }
 .english-textbook-article footer h3 { margin: 0 0 8px; color: #cbd9ef; font-size: 12px; }
 .english-textbook-vocabulary { display: flex; flex-wrap: wrap; gap: 6px; }
 .english-textbook-vocabulary span { max-width: 240px; padding: 5px 7px; border: 1px solid rgba(130,163,220,.11); border-radius: 7px; display: flex; gap: 5px; align-items: baseline; background: rgba(255,255,255,.025); }
-.english-textbook-vocabulary b { color: #b9d1ff; font-size: 10px; }.english-textbook-vocabulary em { color: #71829b; font-size: 9px; font-style: normal; }.english-textbook-vocabulary small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #9dabc0; font-size: 9px; }
+.english-textbook-vocabulary b { color: #b9d1ff; font-size:var(--textbook-vocabulary-word-size); }.english-textbook-vocabulary em { color: #71829b; font-size:var(--textbook-vocabulary-phonetic-size); font-style: normal; }.english-textbook-vocabulary small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #9dabc0; font-size:var(--textbook-vocabulary-meaning-size); }
 .english-library-shelf, .english-library-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; }
 .english-library-shelf > header { flex: 0 0 61px; padding: 7px 12px 11px; border-bottom: 1px solid rgba(214,174,114,.12); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .english-library-shelf > header > div span { color: #cfaa75; font-size: 8px; font-weight: 900; letter-spacing: .16em; }
@@ -608,7 +615,7 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-center-page.textbook-reader-mode .english-textbook-summary {
   min-height: 58px;
   padding: 7px 11px;
-  grid-template-columns: minmax(230px, 1fr) minmax(220px, .55fr) auto;
+  grid-template-columns: minmax(230px, 1fr) minmax(285px, .72fr) auto;
   gap: 10px;
 }
 .english-center-page.textbook-reader-mode .english-textbook-summary h2 {
@@ -643,14 +650,6 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
   width: 100%;
   margin: 0 auto;
 }
-.english-center-page.textbook-reader-mode .english-textbook-paragraphs p {
-  font-size: 13px;
-  line-height: 1.72;
-}
-.english-center-page.textbook-reader-mode .english-textbook-paragraphs small {
-  font-size: 11px;
-  line-height: 1.68;
-}
 .english-center-page.textbook-reader-mode .english-textbook-article footer {
   padding: 12px 7% 18px;
 }
@@ -658,7 +657,7 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 @media (max-width: 980px) {
   .english-center-page.textbook-reader-mode .english-textbook-summary {
     min-height: 92px;
-    grid-template-columns: minmax(0, 1fr) minmax(190px, .7fr);
+    grid-template-columns: minmax(0, 1fr) minmax(245px, .7fr);
   }
   .english-center-page.textbook-reader-mode .english-textbook-stats {
     grid-column: 1 / -1;
@@ -1457,7 +1456,7 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .chat-interaction-label > span { color: #ba9cff; font-size: 13px; line-height: 1; }
 .chat-interaction-label > b { color: #b6a9d9; font-weight: 700; }
 .chat-interaction-label > em { max-width: 360px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #7f8ca0; font-style: normal; }
-.conversation-effects { flex: 0 0 auto; padding: 8px 14px; border-top: 1px solid rgba(255,255,255,.055); display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 7px; align-items: center; background: rgba(7,12,22,.11); }
+.conversation-effects { position:relative; flex: 0 0 auto; padding: 8px 14px; border-top: 1px solid rgba(255,255,255,.055); display: grid; grid-template-columns: minmax(0,1fr) auto auto auto; gap: 7px; align-items: center; background: rgba(7,12,22,.11); }
 .conversation-effects input { min-width: 0; height: 31px; padding: 0 10px; border: 1px solid rgba(255,255,255,.075); border-radius: 9px; outline: 0; color: #cfd9e7; background: rgba(8,14,25,.42); font-size: 9px; }
 .conversation-effects input:focus { border-color: rgba(173,140,255,.28); }
 .conversation-effects button { height: 31px; padding: 0 10px; border: 1px solid rgba(255,255,255,.075); border-radius: 9px; display: flex; align-items: center; gap: 5px; color: #96a3b7; background: rgba(255,255,255,.025); cursor: pointer; }
@@ -1465,6 +1464,12 @@ h1, h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
 .conversation-effects button:disabled { cursor: not-allowed; opacity: .36; }
 .conversation-effects button span { color: #b89bfa; font-size: 13px; }
 .conversation-effects button b { font-size: 9px; }
+.conversation-effects .effect-emoji-toggle { width:31px; padding:0; justify-content:center; color:#c5abff; font-size:17px; }
+.conversation-effects .effect-emoji-toggle[aria-expanded="true"] { border-color:rgba(173,140,255,.48); background:rgba(173,140,255,.16); }
+.effect-emoji-picker { position:absolute; z-index:9; right:118px; bottom:calc(100% - 5px); width:242px; padding:8px; border:1px solid rgba(173,140,255,.27); border-radius:12px; background:rgba(15,22,38,.97); box-shadow:0 14px 34px rgba(2,7,18,.35), 0 0 0 1px rgba(255,255,255,.025) inset; animation:pop-in .18s ease both; }
+.effect-emoji-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; }
+.effect-emoji-grid button { height:32px; border:1px solid transparent; border-radius:8px; background:rgba(255,255,255,.035); cursor:pointer; font-size:18px; line-height:1; transition:background .15s ease, border-color .15s ease, transform .15s ease; }
+.effect-emoji-grid button:hover { border-color:rgba(173,140,255,.35); background:rgba(173,140,255,.11); transform:scale(1.1); }
 .chat-compose { position:relative; flex: 0 0 auto; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr auto; gap: 9px; border-top: 1px solid rgba(255,255,255,.06); background: rgba(7,12,22,.16); }
 .chat-compose textarea { min-height: 48px; max-height: 94px; resize: none; line-height: 1.45; }
 .chat-compose textarea:disabled { opacity: .48; cursor: not-allowed; }
@@ -1595,7 +1600,7 @@ body.compact .reminder-alert em { right: 14rem; bottom: 10rem; font-size: 7rem; 
 
 /* Cloud Notes: folders and notes share one compact navigation tree. */
 .notes-page {
-  height: calc(100% - 58px); padding: 10px 14px 14px; color: #20283a;
+  height: calc(100% - 58px); padding: 10px 14px 14px; color: var(--note-text);
   --note-bg:#f5f7fb; --note-panel:#fff; --note-soft:#f3f5f9; --note-line:#e5e9f1;
   --note-text:#20283a; --note-muted:#8b95a8; --note-blue:#4c91f5; --note-gold:#efa72a;
 }
@@ -2168,6 +2173,25 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-user-message,
 body:not(.compact):not(.english-open):not(.stock-open) .ai-answer,
 body:not(.compact):not(.english-open):not(.stock-open) .ai-reasoning-box div { font-size: 13px; }
 body:not(.compact):not(.english-open):not(.stock-open) .note-content-editor { font-size: 14px; line-height: 1.75; }
+
+/* The global readability pass intentionally normalises ordinary paragraphs.
+   Textbook reading is an explicit exception: its three user-selected sizes
+   must stay visibly distinct in the full reader. */
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-small .english-textbook-paragraphs p { font-size: 14px !important; line-height: 1.65; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-small .english-textbook-paragraphs small { font-size: 12px !important; line-height: 1.55; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-medium .english-textbook-paragraphs p { font-size: 18px !important; line-height: 1.76; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-medium .english-textbook-paragraphs small { font-size: 16px !important; line-height: 1.7; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-large .english-textbook-paragraphs p { font-size: 24px !important; line-height: 1.84; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-large .english-textbook-paragraphs small { font-size: 21px !important; line-height: 1.78; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-small .english-textbook-vocabulary b { font-size:12px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-small .english-textbook-vocabulary em { font-size:10px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-small .english-textbook-vocabulary small { font-size:11px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-medium .english-textbook-vocabulary b { font-size:16px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-medium .english-textbook-vocabulary em { font-size:12px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-medium .english-textbook-vocabulary small { font-size:13px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-large .english-textbook-vocabulary b { font-size:22px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-large .english-textbook-vocabulary em { font-size:16px !important; }
+body:not(.compact) .english-center-page.textbook-reader-mode .english-textbook-article.textbook-font-large .english-textbook-vocabulary small { font-size:18px !important; }
 
 body:not(.compact):not(.english-open):not(.stock-open) .calendar-tile span,
 body:not(.compact):not(.english-open):not(.stock-open) .focus-presets button small,
@@ -2890,6 +2914,66 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-theme="plus-theme"] .ai-chat-page { --ai-bg:#140d20; --ai-panel:#21172f; --ai-panel-soft:#2b1d3c; --ai-text:#fff7ff; --ai-muted:#b4a2c2; --ai-line:rgba(222,174,255,.16); }
 :root[data-theme="pro-theme"] .ai-chat-page { --ai-bg:#06151e; --ai-panel:#0e2732; --ai-panel-soft:#173542; --ai-text:#f0ffff; --ai-muted:#93adba; --ai-line:rgba(100,232,222,.17); }
 :root[data-theme="ultra-theme"] .ai-chat-page { --ai-bg:#050711; --ai-panel:#0d1220; --ai-panel-soft:#161d2e; --ai-text:#fbfdff; --ai-muted:#9da9bd; --ai-line:rgba(190,218,255,.17); }
+
+/* Like AI Chat, member dark themes use their own theme names instead of
+   `dark`. Apply the complete Cloud Notes surface palette to all dark themes
+   so the navigation and editor never fall back to the light-note defaults. */
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-sidebar { background:color-mix(in srgb,var(--note-panel) 95%,transparent); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-square-button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-create-row button:not(:first-child),
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-empty-state button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-folder-state button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-locked-state button { border-color:var(--note-line); color:#8db9ff; background:var(--note-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-smart-nav button.active,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-tree-row.active { color:#8db9ff; border-color:color-mix(in srgb,var(--note-blue) 36%,var(--note-line)); background:color-mix(in srgb,var(--note-blue) 17%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-tree-row:hover { background:color-mix(in srgb,var(--note-soft) 80%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-tree-icon { background:color-mix(in srgb,var(--note-blue) 15%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-tree-row.folder .note-tree-icon { background:color-mix(in srgb,var(--note-gold) 14%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-tree-more:hover,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-tree-caption button:hover { background:color-mix(in srgb,var(--note-blue) 15%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-empty-icon { background:color-mix(in srgb,var(--note-blue) 16%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-empty-icon.folder { background:color-mix(in srgb,var(--note-gold) 15%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-empty-icon.locked { background:color-mix(in srgb,#8d72ef 16%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-create-dialog,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-context-menu,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-more-menu,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-dialog,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-content-editor,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-markdown-editor,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-markdown-editor textarea,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-markdown-preview,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-spreadsheet-editor { color:var(--note-text); background:var(--note-panel); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-create-options > button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-history-item,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-info-dialog dl > div { color:var(--note-text); background:var(--note-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-create-options > button:hover,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-create-options > button:focus-visible { background:color-mix(in srgb,var(--note-blue) 15%,var(--note-soft)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-format-toolbar,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-markdown-tabs,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-bar,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-tabs,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid thead th,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid tbody th { color:var(--note-muted); background:var(--note-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-bar input,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-bar > span,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-bar button,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-tabs button.active,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid { color:var(--note-text); background:var(--note-panel); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid th,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid td,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-bar,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-tabs { border-color:var(--note-line); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-sheet-grid input,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-dialog input,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .note-dialog select { color:var(--note-text); background:var(--note-bg); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-title-wrap input,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-title-wrap input:focus { color-scheme:dark; color:var(--note-text); border-color:var(--note-line); background:var(--note-soft); box-shadow:inset 0 1px 0 rgba(255,255,255,.035); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-title-wrap em { color:#a8c8ff; background:color-mix(in srgb,var(--note-blue) 16%,var(--note-panel)); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-editor-actions .note-action-labeled,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-editor-actions .note-share-action { color:var(--note-text); border-color:var(--note-line); background:var(--note-soft); }
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-editor-actions .note-action-labeled:hover,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-editor-actions .note-action-labeled.active,
+:root:is([data-theme="dark"],[data-theme="aurora"],[data-theme="plus-theme"],[data-theme="pro-theme"],[data-theme="ultra-theme"]) .notes-editor-actions .note-share-action:hover { color:#a9cbff; border-color:color-mix(in srgb,var(--note-blue) 40%,var(--note-line)); background:color-mix(in srgb,var(--note-blue) 17%,var(--note-soft)); }
 
 /* Bright member themes build on the complete light-theme component palette. */
 :root[data-theme="light"][data-member-theme="plus-light"] {

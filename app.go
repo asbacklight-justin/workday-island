@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.8"
+const appVersion = "0.16.9"
 
 const (
 	defaultFullWindowWidth = 1100
