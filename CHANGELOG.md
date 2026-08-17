@@ -5,6 +5,20 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.10] - 2026-08-17
+
+### 中文
+
+- 教材原文词汇标签改为始终单行显示；较长的单词、音标或释义会以省略号截断，鼠标悬浮可查看完整内容。
+- 实时聊天会合并相邻且时间完全一致的记录，隐藏后一条的重复时间；投递状态仍会正常显示。
+- 账号未登录时，好友、好友申请、会话和未读角标不再展示缓存内容，仅保留清晰的登录引导，避免在线聊天记录意外暴露。
+
+### English
+
+- Textbook vocabulary chips now stay on one line. Long words, phonetics, and meanings truncate gracefully, with the full value available on hover.
+- Realtime Chat now collapses duplicate timestamps on consecutive messages with the same displayed time while keeping delivery status visible.
+- When signed out, cached friends, requests, conversations, and unread badges are hidden and replaced with a clear sign-in prompt.
+
 ## [0.16.9] - 2026-08-16
 
 ### 中文
@@ -476,6 +490,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.10]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10
 [0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9
 [0.16.8]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.8
 [0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6

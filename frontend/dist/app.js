@@ -275,7 +275,7 @@ const petNapCooldown = 10 * 60 * 1000;
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.9', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.10', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -6443,7 +6443,7 @@ function renderEnglishTextbooks() {
   const article = detail ? `<article class="english-textbook-article textbook-font-${fontSize}">
     <header><span>${escapeHTML(t('textbookReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title_en || '')}</h2><h3>${escapeHTML(detail.lesson?.title_cn || '')}</h3><small>${Number(detail.lesson?.word_count || 0).toLocaleString(locale())} ${escapeHTML(t('textbookWords'))} · ${Array.isArray(detail.paragraphs) ? detail.paragraphs.length : 0} ${escapeHTML(t('textbookParagraphs'))}${detail.lesson?.linked_lexicon ? ` · ${escapeHTML(t('textbookLinkedLexicon'))}` : ''}</small></header>
     <div class="english-textbook-paragraphs">${(detail.paragraphs || []).map(item => `<section><b>${String(item.paragraph_no).padStart(2, '0')}</b><div><p>${escapeHTML(item.content_en)}</p><small>${escapeHTML(item.content_cn)}</small></div></section>`).join('')}</div>
-    ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => `<span><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`).join('')}</div></footer>` : ''}
+    ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => { const tooltip = [item.word, item.phonetic, item.part_of_speech, item.meaning_cn].filter(Boolean).join(' '); return `<span title="${escapeHTML(tooltip)}"><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`; }).join('')}</div></footer>` : ''}
   </article>` : `<div class="english-center-empty"><span>▤</span><b>${escapeHTML(t('textbookSelectLesson'))}</b></div>`;
   list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><div class="english-textbook-summary-controls"><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><label class="english-textbook-font-control"><span>${escapeHTML(t('textbookFontSize'))}</span><select data-english-textbook-font-size aria-label="${escapeHTML(t('textbookFontSize'))}"><option value="small"${fontSize === 'small' ? ' selected' : ''}>${escapeHTML(t('textbookFontSmall'))}</option><option value="medium"${fontSize === 'medium' ? ' selected' : ''}>${escapeHTML(t('textbookFontMedium'))}</option><option value="large"${fontSize === 'large' ? ' selected' : ''}>${escapeHTML(t('textbookFontLarge'))}</option></select></label></div><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
   const directory = list.querySelector('.english-textbook-layout > aside > div');
@@ -7200,17 +7200,19 @@ function latestIncomingChatPeer() {
 function renderRealtime() {
   const realtime = state.realtime || {};
   const status = realtime.status || 'offline';
+  const loggedIn = Boolean(state.account?.loggedIn);
   const identity = realtime.identity || null;
   const accountUser = state.account?.user || null;
-  const displayIdentity = state.account?.loggedIn ? (identity || {
+  const displayIdentity = loggedIn ? (identity || {
     userId: accountUser?.id,
     username: accountUser?.username,
     displayName: accountUser?.nickname
   }) : null;
   const statusElement = $('#realtime-status');
-  statusElement.className = `realtime-status ${status}`;
-  statusElement.querySelector('b').textContent = realtimeStatusLabel(status);
-  statusElement.title = realtime.lastError || realtimeStatusLabel(status);
+  const visibleStatus = loggedIn ? status : 'offline';
+  statusElement.className = `realtime-status ${visibleStatus}`;
+  statusElement.querySelector('b').textContent = realtimeStatusLabel(visibleStatus);
+  statusElement.title = loggedIn ? (realtime.lastError || realtimeStatusLabel(status)) : t('chatLoginRequired');
 
   $('#identity-empty').classList.toggle('hidden', Boolean(displayIdentity));
   $('#identity-card').classList.toggle('hidden', !displayIdentity);
@@ -7221,11 +7223,11 @@ function renderRealtime() {
     $('#identity-user-id').textContent = String(displayIdentity.userId || '--');
   }
 
-  const online = status === 'online';
+  const online = loggedIn && status === 'online';
   if (online && !currentPeerUserID() && (realtime.friends || []).length) {
     setActiveRealtimePeer(realtime.friends[0].user.userId);
   }
-  const peerID = currentPeerUserID();
+  const peerID = loggedIn ? currentPeerUserID() : 0;
   const validPeer = Boolean(peerID && (!identity || peerID !== Number(identity.userId)));
   const peerFriend = friendByUserID(peerID);
   $('#conversation-peer').textContent = validPeer ? (peerFriend ? friendDisplayName(peerFriend.user) : `#${peerID}`) : '—';
@@ -7319,6 +7321,16 @@ function friendByUserID(userID) {
 }
 
 function renderRealtimeFriends() {
+  if (!state.account?.loggedIn) {
+    $('#friend-request-count').textContent = '0';
+    $('#friend-count').textContent = '0';
+    $('#friend-tab-badge').textContent = '0';
+    $('#friend-tab-badge').classList.add('hidden');
+    $('#friend-requests').innerHTML = `<div class="friend-list-empty">${escapeHTML(t('chatLoginRequired'))}</div>`;
+    $('#friend-list').innerHTML = `<div class="friend-list-empty">${escapeHTML(t('chatLoginRequired'))}</div>`;
+    renderChatFriendList([]);
+    return;
+  }
   const identityID = Number(state.realtime.identity?.userId) || 0;
   const requests = (state.realtime.friendRequests || []).filter(request =>
     request?.status === 'pending' && Number(request?.addressee?.userId) === identityID
@@ -7357,6 +7369,10 @@ function renderRealtimeFriends() {
 
 function renderChatFriendList(friends) {
   const list = $('#chat-friend-list');
+  if (!state.account?.loggedIn) {
+    list.innerHTML = `<div class="chat-friends-empty"><span>◎</span><p>${escapeHTML(t('chatLoginRequired'))}</p></div>`;
+    return;
+  }
   const peerID = currentPeerUserID();
   if (state.realtime.status !== 'online') {
     list.innerHTML = `<div class="chat-friends-empty"><span>◌</span><p>${escapeHTML(t('friendsRequireOnline'))}</p></div>`;
@@ -7380,6 +7396,11 @@ function renderChatFriendList(friends) {
 
 function renderRealtimeUnread() {
   const badge = $('#chat-unread');
+  if (!state.account?.loggedIn) {
+    badge.textContent = '0';
+    badge.classList.add('hidden');
+    return;
+  }
   const identityID = Number(state.realtime.identity?.userId) || 0;
   const pendingFriends = (state.realtime.friendRequests || []).filter(request =>
     request.status === 'pending' && Number(request.addressee?.userId) === identityID
@@ -7406,6 +7427,10 @@ function formatChatMessageTime(value) {
 
 function renderChatMessages(peerID) {
   const list = $('#chat-messages');
+  if (!state.account?.loggedIn) {
+    list.innerHTML = `<div class="chat-empty"><span>🔒</span><strong>${escapeHTML(t('chatLoginRequired'))}</strong><p>${escapeHTML(t('goToAccountLogin'))}</p></div>`;
+    return;
+  }
   if (!peerID) {
     list.innerHTML = `<div class="chat-empty"><span>💬</span><strong>${escapeHTML(t('choosePeer'))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
     return;
@@ -7418,11 +7443,16 @@ function renderChatMessages(peerID) {
     list.innerHTML = `<div class="chat-empty"><span>✉️</span><strong>${escapeHTML(t('noMessages', {name: friend ? friendDisplayName(friend.user) : `#${peerID}`}))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
     return;
   }
-  list.innerHTML = messages.map(message => {
+  list.innerHTML = messages.map((message, index) => {
     const time = formatChatMessageTime(message.createdAt);
+    const previousTime = index > 0 ? formatChatMessageTime(messages[index - 1].createdAt) : '';
+    const hideRepeatedTime = Boolean(time && time === previousTime);
     const delivery = message.outgoing
       ? `<span class="${Number(message.onlineDeliveries) > 0 ? 'online' : ''}">${escapeHTML(t(Number(message.onlineDeliveries) > 0 ? 'sentOnline' : 'savedOffline'))}</span>`
       : '';
+    const messageMeta = hideRepeatedTime
+      ? delivery
+      : `${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}`;
     if (message.eventType === 'window.shake' || message.eventType === 'window.flash') {
       const effect = t(message.eventType === 'window.shake' ? 'shakeRecord' : 'flashRecord');
       const senderName = realtimeMessageSenderName(message);
@@ -7432,13 +7462,13 @@ function renderChatMessages(peerID) {
       const detail = String(message.text || '').trim();
       return `<article class="chat-interaction ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
         <div class="chat-interaction-label"><span>${message.eventType === 'window.shake' ? '〰' : '✦'}</span><b>${escapeHTML(label)}</b>${detail ? `<em>${escapeHTML(detail)}</em>` : ''}</div>
-        <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+        ${messageMeta ? `<div class="chat-message-meta">${messageMeta}</div>` : ''}
       </article>`;
     }
     const emoji = findChatEmoji(message.text);
     return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''} ${emoji ? 'emoji-only' : ''}" data-message-id="${escapeHTML(message.messageId)}">
       <div class="chat-bubble">${emoji ? `<span class="chat-message-emoji emoji-motion-${emoji.motion}" role="img" aria-label="${escapeHTML(locale().startsWith('zh') ? emoji.zh : emoji.en)}">${emoji.emoji}</span>` : escapeHTML(message.text)}</div>
-      <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+      ${messageMeta ? `<div class="chat-message-meta">${messageMeta}</div>` : ''}
     </article>`;
   }).join('');
   requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
@@ -8420,7 +8450,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.9',latestVersion:'0.16.9',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'优化教材字号、云笔记深色主题，以及聊天互动表情与历史时间显示。\nImproved textbook sizes, Cloud Notes dark themes, and chat interaction emoji and history timestamps.'} : {currentVersion:'0.16.9',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.10',latestVersion:'0.16.10',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'优化教材词汇展示、聊天时间与登录隐私。\nImproved textbook vocabulary display, chat timestamps, and signed-out privacy.'} : {currentVersion:'0.16.10',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

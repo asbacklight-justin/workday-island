@@ -448,8 +448,9 @@ body.stock-open:not(.stock-compact) .stock-footer small { font-size: 9px; }
 .english-textbook-article footer { padding: 12px 18px 17px; border-top: 1px solid rgba(130,163,220,.1); }
 .english-textbook-article footer h3 { margin: 0 0 8px; color: #cbd9ef; font-size: 12px; }
 .english-textbook-vocabulary { display: flex; flex-wrap: wrap; gap: 6px; }
-.english-textbook-vocabulary span { max-width: 240px; padding: 5px 7px; border: 1px solid rgba(130,163,220,.11); border-radius: 7px; display: flex; gap: 5px; align-items: baseline; background: rgba(255,255,255,.025); }
-.english-textbook-vocabulary b { color: #b9d1ff; font-size:var(--textbook-vocabulary-word-size); }.english-textbook-vocabulary em { color: #71829b; font-size:var(--textbook-vocabulary-phonetic-size); font-style: normal; }.english-textbook-vocabulary small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #9dabc0; font-size:var(--textbook-vocabulary-meaning-size); }
+.english-textbook-vocabulary span { max-width: 260px; min-width: 0; padding: 5px 7px; border: 1px solid rgba(130,163,220,.11); border-radius: 7px; display: flex; flex-wrap: nowrap; gap: 5px; align-items: baseline; overflow: hidden; white-space: nowrap; background: rgba(255,255,255,.025); cursor: default; }
+.english-textbook-vocabulary b, .english-textbook-vocabulary em, .english-textbook-vocabulary small { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.english-textbook-vocabulary b { flex: 0 1 auto; color: #b9d1ff; font-size:var(--textbook-vocabulary-word-size); }.english-textbook-vocabulary em { flex: 0 1 auto; color: #71829b; font-size:var(--textbook-vocabulary-phonetic-size); font-style: normal; }.english-textbook-vocabulary small { flex: 1 1 auto; color: #9dabc0; font-size:var(--textbook-vocabulary-meaning-size); }
 .english-library-shelf, .english-library-reader { height: 100%; min-height: 0; display: flex; flex-direction: column; }
 .english-library-shelf > header { flex: 0 0 61px; padding: 7px 12px 11px; border-bottom: 1px solid rgba(214,174,114,.12); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .english-library-shelf > header > div span { color: #cfaa75; font-size: 8px; font-weight: 900; letter-spacing: .16em; }
