@@ -245,10 +245,13 @@ let chatEmojiPickerOpen = false;
 let effectEmojiPickerOpen = false;
 
 function syncHeaderPageEntryState() {
+  const entries = new Map();
   headerPageEntryDefinitions.forEach(([pageClass, selector]) => {
+    entries.set(selector, Boolean(entries.get(selector)) || document.body.classList.contains(pageClass));
+  });
+  entries.forEach((active, selector) => {
     const button = $(selector);
     if (!button) return;
-    const active = document.body.classList.contains(pageClass);
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current', 'page');
     else button.removeAttribute('aria-current');
@@ -266,6 +269,12 @@ const deskPets = [
   {id:'luna', nameKey:'petLuna'},
   {id:'cape', nameKey:'petCape'}
 ];
+const farmCrops = [
+  {id:'radish', emoji:'🥬', zh:'水灵萝卜', en:'Crisp Radish', duration:60, cost:0, reward:2, tone:'green'},
+  {id:'tomato', emoji:'🍅', zh:'番茄', en:'Sunny Tomato', duration:180, cost:2, reward:5, tone:'red'},
+  {id:'corn', emoji:'🌽', zh:'甜玉米', en:'Sweet Corn', duration:360, cost:5, reward:10, tone:'gold'},
+  {id:'pumpkin', emoji:'🎃', zh:'小南瓜', en:'Little Pumpkin', duration:600, cost:9, reward:17, tone:'violet'}
+];
 // These are read while restoring the local fishing journal during state
 // construction, so they must be available before `loadFishingJournal()` runs.
 const petPlayChargeMax = 3;
@@ -275,7 +284,7 @@ const petNapCooldown = 10 * 60 * 1000;
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.10', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.16.11', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -320,7 +329,7 @@ const state = {
   stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   fishingOpen: false,
-  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, petCandidate: '', journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
+  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, petCandidate: '', farm:{selectedCrop:'radish'}, journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   translatorOpen: false,
@@ -357,6 +366,7 @@ let slackingAnimationFrame = 0;
 let petMotionTimer = 0;
 let petActivityTimer = 0;
 let petStatusTimer = 0;
+let farmStatusTimer = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
@@ -806,6 +816,7 @@ function bindEvents() {
   $('#pet-picker').addEventListener('click', changeActivePet);
   $('#pet-food-select').addEventListener('change', changePetFood);
   $('#pet-actions').addEventListener('click', handlePetAction);
+  $('#farm-panel').addEventListener('click', handleFarmAction);
   $('.top-actions').addEventListener('click', event => {
     if (state.fishingOpen && !event.target.closest('#open-fishing')) closeFishingPage();
   }, true);
@@ -4897,6 +4908,22 @@ function deskPetName(id) {
   return t(deskPetDefinition(id).nameKey);
 }
 
+function createFarmState(value = {}) {
+  const source = value && typeof value === 'object' ? value : {};
+  const savedPlots = Array.isArray(source.plots) ? source.plots : [];
+  const plots = Array.from({length: 6}, (_, index) => {
+    const saved = savedPlots.find(item => Number(item?.id) === index + 1) || savedPlots[index] || {};
+    const cropId = farmCrops.some(crop => crop.id === saved.cropId) ? saved.cropId : '';
+    const plantedAt = cropId && Number.isFinite(Date.parse(saved.plantedAt)) ? String(saved.plantedAt) : '';
+    return {id: index + 1, unlocked: index < 2 || Boolean(saved.unlocked), cropId, plantedAt};
+  });
+  return {
+    plots,
+    coins: Math.max(0, Math.floor(Number(source.coins) || 0)),
+    totalHarvested: Math.max(0, Math.floor(Number(source.totalHarvested) || 0))
+  };
+}
+
 function loadFishingJournal() {
   try {
     const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
@@ -4915,10 +4942,11 @@ function loadFishingJournal() {
       ownedRods,
       equippedRod,
       activePetId,
-      pets
+      pets,
+      farm: createFarmState(value.farm)
     };
   } catch (_) {
-    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()]))};
+    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
   }
 }
 
@@ -5001,6 +5029,130 @@ function tryUnlockFishingRod() {
   return rod;
 }
 
+function farmText(zh, en) {
+  return currentLanguage() === 'zh' ? zh : en;
+}
+
+function farmCropName(crop) {
+  return farmText(crop?.zh || '', crop?.en || '');
+}
+
+function currentFarm() {
+  const journal = state.fishing.journal;
+  journal.farm = createFarmState(journal.farm);
+  return journal.farm;
+}
+
+function farmCrop(id) {
+  return farmCrops.find(crop => crop.id === id) || farmCrops[0];
+}
+
+function farmPlotInfo(plot, now = Date.now()) {
+  const crop = farmCrops.find(item => item.id === plot.cropId);
+  if (!crop) return {state:'empty', crop:null, progress:0, remaining:0};
+  const plantedAt = Date.parse(plot.plantedAt);
+  const elapsed = Number.isFinite(plantedAt) ? Math.max(0, now - plantedAt) : 0;
+  const duration = crop.duration * 1000;
+  const progress = Math.max(0, Math.min(100, elapsed / duration * 100));
+  return {state: progress >= 100 ? 'mature' : 'growing', crop, progress, remaining: Math.max(0, Math.ceil((duration - elapsed) / 1000))};
+}
+
+function farmTime(seconds) {
+  const value = Math.max(0, Math.floor(seconds || 0));
+  return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+}
+
+function farmUnlockCost(plot) {
+  return 6 + Math.max(0, Number(plot?.id || 1) - 2) * 4;
+}
+
+function renderFishingFarm() {
+  if (!$('#farm-panel')) return;
+  const farm = currentFarm();
+  const selected = farmCrop(state.fishing.farm?.selectedCrop);
+  const now = Date.now();
+  $('#farm-coins').textContent = String(farm.coins);
+  $('#farm-harvested').textContent = String(farm.totalHarvested);
+  $('#farm-crop-picker').innerHTML = farmCrops.map(crop => `<button type="button" class="farm-crop ${crop.id === selected.id ? 'active' : ''}" data-farm-action="select-crop" data-crop-id="${crop.id}"><span>${crop.emoji}</span><b>${escapeHTML(farmCropName(crop))}</b><small>${crop.cost ? `${crop.cost} ${farmText('币', 'coins')}` : farmText('免费', 'Free')} · ${farmTime(crop.duration)}</small></button>`).join('');
+  $('#farm-status').textContent = farmText(`当前种子：${farmCropName(selected)}。成熟后可获得 ${selected.reward} 农场币。`, `Selected: ${farmCropName(selected)}. Harvest to earn ${selected.reward} farm coins.`);
+  $('#farm-plots').innerHTML = farm.plots.map(plot => {
+    if (!plot.unlocked) {
+      const cost = farmUnlockCost(plot);
+      return `<button type="button" class="farm-plot locked" data-farm-action="unlock" data-plot-id="${plot.id}"><span>🔒</span><b>${farmText('开垦土地', 'Unlock plot')}</b><small>${cost} ${farmText('农场币', 'farm coins')}</small></button>`;
+    }
+    const info = farmPlotInfo(plot, now);
+    if (info.state === 'empty') {
+      return `<button type="button" class="farm-plot empty" data-farm-action="plant" data-plot-id="${plot.id}"><span>＋</span><b>${farmText('种下', 'Plant')} ${escapeHTML(farmCropName(selected))}</b><small>${selected.cost ? `${selected.cost} ${farmText('农场币', 'farm coins')}` : farmText('免费种植', 'Free to plant')}</small></button>`;
+    }
+    if (info.state === 'mature') {
+      return `<button type="button" class="farm-plot mature ${info.crop.tone}" data-farm-action="harvest" data-plot-id="${plot.id}"><span>${info.crop.emoji}</span><b>${escapeHTML(farmCropName(info.crop))}</b><small>${farmText('成熟啦，点击收获', 'Ready — harvest now')}</small><i>+${info.crop.reward}</i></button>`;
+    }
+    return `<button type="button" class="farm-plot growing ${info.crop.tone}" data-farm-action="inspect" data-plot-id="${plot.id}"><span>${info.crop.emoji}</span><b>${escapeHTML(farmCropName(info.crop))}</b><small>${farmText('生长中', 'Growing')} · ${farmTime(info.remaining)}</small><i><em style="width:${info.progress}%"></em></i></button>`;
+  }).join('');
+  const stock = farmCrops.map(crop => `${crop.emoji} ${farmCropName(crop)} ${farm.plots.filter(plot => farmPlotInfo(plot, now).crop?.id === crop.id && farmPlotInfo(plot, now).state === 'mature').length}`).join(' · ');
+  $('#farm-inventory').textContent = `${farmText('待收成', 'Ready crops')} · ${stock}`;
+}
+
+function startFarmClock() {
+  window.clearInterval(farmStatusTimer);
+  renderFishingFarm();
+  farmStatusTimer = window.setInterval(() => {
+    if (state.fishingOpen && state.fishing.tab === 'farm') renderFishingFarm();
+  }, 1000);
+}
+
+function stopFarmClock() {
+  window.clearInterval(farmStatusTimer);
+  farmStatusTimer = 0;
+}
+
+function handleFarmAction(event) {
+  const action = event.target.closest('[data-farm-action]')?.dataset.farmAction;
+  const target = event.target.closest('[data-farm-action]');
+  if (!action || !target) return;
+  const farm = currentFarm();
+  if (action === 'select-crop') {
+    state.fishing.farm.selectedCrop = target.dataset.cropId;
+    renderFishingFarm();
+    return;
+  }
+  const plot = farm.plots.find(item => item.id === Number(target.dataset.plotId));
+  if (!plot) return;
+  if (action === 'unlock') {
+    const cost = farmUnlockCost(plot);
+    if (farm.coins < cost) { showToast(farmText(`还差 ${cost - farm.coins} 农场币`, `Need ${cost - farm.coins} more farm coins`), true); return; }
+    farm.coins -= cost;
+    plot.unlocked = true;
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(farmText('新土地已开垦，可以种菜啦！', 'New plot unlocked — start planting!'));
+    return;
+  }
+  const info = farmPlotInfo(plot);
+  if (action === 'plant') {
+    const crop = farmCrop(state.fishing.farm.selectedCrop);
+    if (farm.coins < crop.cost) { showToast(farmText(`农场币不足，还差 ${crop.cost - farm.coins} 个`, `Need ${crop.cost - farm.coins} more farm coins`), true); return; }
+    farm.coins -= crop.cost;
+    plot.cropId = crop.id;
+    plot.plantedAt = new Date().toISOString();
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(`${crop.emoji} ${farmText('已种下', 'Planted')} ${farmCropName(crop)}`);
+    return;
+  }
+  if (action === 'harvest' && info.state === 'mature') {
+    farm.coins += info.crop.reward;
+    farm.totalHarvested += 1;
+    plot.cropId = '';
+    plot.plantedAt = '';
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(`${info.crop.emoji} ${farmText('收获成功', 'Harvested')} +${info.crop.reward} ${farmText('农场币', 'farm coins')}`);
+    return;
+  }
+  if (action === 'inspect') showToast(`${info.crop.emoji} ${farmCropName(info.crop)} · ${farmText('还需', 'ready in')} ${farmTime(info.remaining)}`);
+}
+
 function changeFishingTab(event) {
   const button = event.target.closest('[data-fishing-tab]');
   const tab = button?.dataset.fishingTab;
@@ -5013,21 +5165,25 @@ function changeFishingTab(event) {
   slackingAnimationFrame = 0;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
-  state.fishing.tab = ['slacking', 'pet'].includes(tab) ? tab : 'fishing';
+  state.fishing.tab = ['slacking', 'pet', 'farm'].includes(tab) ? tab : 'fishing';
   renderFishingTabs();
 }
 
 function renderFishingTabs() {
   const slacking = state.fishing.tab === 'slacking';
   const pet = state.fishing.tab === 'pet';
-  $('#fishing-layout').classList.toggle('slacking-active', slacking || pet);
+  const farm = state.fishing.tab === 'farm';
+  $('#fishing-layout').classList.toggle('slacking-active', slacking || pet || farm);
   $('#fishing-layout').classList.toggle('pet-active', pet);
   $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => button.classList.toggle('active', button.dataset.fishingTab === state.fishing.tab));
-  $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet);
+  $('#fishing-layout').classList.toggle('farm-active', farm);
+  $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet || farm);
   $('#slacking-panel').classList.toggle('hidden', !slacking);
   $('#pet-panel').classList.toggle('hidden', !pet);
-  $('.fishing-guide-panel').classList.toggle('hidden', slacking || pet);
-  if (slacking) renderSlackingIdle(); else if (pet) renderFishingPet(); else renderFishingIdle();
+  $('#farm-panel').classList.toggle('hidden', !farm);
+  $('.fishing-guide-panel').classList.toggle('hidden', slacking || pet || farm);
+  if (farm) startFarmClock(); else stopFarmClock();
+  if (slacking) renderSlackingIdle(); else if (pet) renderFishingPet(); else if (!farm) renderFishingIdle();
 }
 
 function fishingPet() {
@@ -5485,7 +5641,7 @@ function renderFishingJournal() {
   list.innerHTML = journal.catches.map(caught => {
     const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
     const time = new Date(caught.caughtAt || Date.now()).toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit'});
-    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em>${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
+    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em class="fish-rarity-tag ${escapeHTML(fish.rarity || 'common')}">${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
   }).join('');
 }
 
@@ -5567,6 +5723,7 @@ function closeFishingPage() {
   slackingAnimationFrame = 0;
   window.clearInterval(petStatusTimer);
   petStatusTimer = 0;
+  stopFarmClock();
   state.fishingOpen = false;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
@@ -5877,7 +6034,7 @@ function renderStocks() {
       const sign = Number(quote.changePercent) > 0 ? '+' : '';
       return `<article class="stock-row">
         <div class="stock-symbol"><strong>${escapeHTML(quote.name)}</strong><small>${escapeHTML(quote.code)}</small></div>
-        <div class="stock-price"><strong>${formatStockNumber(quote.price)}</strong><small>${sign}${formatStockNumber(quote.change)}</small></div>
+        <div class="stock-price"><strong>${formatStockNumber(quote.price, stockQuoteFractionDigits(quote))}</strong><small>${sign}${formatStockNumber(quote.change, stockQuoteFractionDigits(quote))}</small></div>
         <div class="stock-change ${direction}">${sign}${Number(quote.changePercent || 0).toFixed(2)}%</div>
         <button type="button" class="stock-remove" data-stock-symbol="${escapeHTML(quote.symbol)}" title="${escapeHTML(t('removeStock'))}">×</button>
       </article>`;
@@ -5894,9 +6051,16 @@ function renderStocks() {
   status.classList.toggle('error', Boolean(state.stocks?.error));
 }
 
-function formatStockNumber(value) {
+function stockQuoteFractionDigits(quote) {
+  const code = String(quote?.code || quote?.symbol || '').replace(/[^0-9]/g, '');
+  // Mainland ETFs use the 15/16/18/50/51/52/56/58 prefixes and are quoted to
+  // three decimals; ordinary stocks and indices continue to use two.
+  return /^(?:15|16|18|50|51|52|56|58)\d{4}$/.test(code) ? 3 : 2;
+}
+
+function formatStockNumber(value, fractionDigits = 2) {
   const number = Number(value);
-  return Number.isFinite(number) ? number.toLocaleString(locale(), {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '--';
+  return Number.isFinite(number) ? number.toLocaleString(locale(), {minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits}) : '--';
 }
 
 async function openEnglishPage() {
@@ -8450,7 +8614,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.10',latestVersion:'0.16.10',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'优化教材词汇展示、聊天时间与登录隐私。\nImproved textbook vocabulary display, chat timestamps, and signed-out privacy.'} : {currentVersion:'0.16.10',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.11',latestVersion:'0.16.11',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增摸鱼农场，并优化英语学习、股市、云笔记分享和鱼获品质展示。\nAdded Slack Farm and improved English Learning, stock quotes, note sharing, and catch rarity labels.'} : {currentVersion:'0.16.11',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

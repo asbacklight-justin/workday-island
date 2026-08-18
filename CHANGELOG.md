@@ -5,6 +5,26 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.11] - 2026-08-18
+
+### 中文
+
+- 英语学习与教材/英文书籍阅读页中的 `EN` 顶部入口现在会正确显示页面选中状态。
+- 教材原文词汇卡片会在空间不足时整体换到下一行，完整保留单词、音标与释义，不会把一条词汇拆成两行。
+- 股市行情会保留 ETF 等证券所需的三位小数精度。
+- 云笔记分享设置弹窗提升字体、控件与操作区尺寸，修复确认按钮异常显示为横线的问题。
+- 摸鱼鱼获按常见、珍稀、史诗、传说显示青绿、蓝色、紫色、金色品质标签。
+- 新增会员内测“摸鱼农场”：可选种子、种植、成长倒计时、收获农场币与开垦土地；进度仅保存在本机。
+
+### English
+
+- The `EN` header entry now correctly remains selected across English Learning, Textbooks, and English Books.
+- Textbook vocabulary chips wrap as whole chips when space is tight, preserving the full word, phonetics, and definition without splitting an entry across lines.
+- Stock quotes now preserve three decimal places where ETFs and other securities require them.
+- Cloud Notes share settings now use larger, clearer typography and controls, and the malformed confirmation button has been fixed.
+- Fishing catches now use green, blue, purple, and gold quality labels for common, rare, epic, and legendary fish.
+- Added the member-beta **Slack Farm** with seed selection, planting, growth timers, farm-coin harvesting, and plot unlocking. Progress is stored locally only.
+
 ## [0.16.10] - 2026-08-17
 
 ### 中文
@@ -490,6 +510,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.11]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11
 [0.16.10]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10
 [0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9
 [0.16.8]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.8

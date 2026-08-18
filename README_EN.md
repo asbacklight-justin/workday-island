@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.10-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.16.10-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.16.11-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.16.11-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -34,7 +34,7 @@ The public packages are not currently signed with commercial distribution certif
 - **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
 - **English Learning centre:** The `EN` button opens a full learning centre. Word Book keeps a cross-day history from all five modes and Wrong Book records EN → CN, CN → EN, and spelling mistakes. Plus members and above can read bilingual lesson text and vocabulary in **Textbooks**, or search original works, filter languages, browse chapters, and synchronise page progress in **English Books**. Textbooks offer Small, Medium, and Large text sizing for both article copy and vocabulary, defaulting to Medium and saved locally. Both readers use spacious immersive layouts, return cleanly to the Learning centre, and preserve content and catalogue position. The compact trainer still opens only from **Compact Study**.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
-- **Member Fishing Break beta:** The fish-shaped header shortcut opens Fishing Island. Its first mini-game asks you to wait for a bite, reel inside a moving glowing zone, chain accurate hits to fill catch progress, and manage line tension and an escape timer. Fish and rarity are random; the catch journal and best streak stay local. Bruce, Tangerine, Luna, and Cape are now independently tracked switchable pets, each with its own growth, energy, affinity, play charges, and nap cooldown. Feeding consumes catches; play restores one charge per minute (up to three), and naps have a ten-minute cooldown. During beta, entry is limited to Plus, Pro, and Ultra members.
+- **Member Slack Island beta:** The fish-shaped header shortcut opens Slack Island. Fishing Island includes timing-based catches, rod equipment, and green/blue/purple/gold rarity labels; Slack Island turns catches into lightweight desk challenges; the Pet Cabin contains independently tracked Bruce, Tangerine, Luna, and Cape pets. New **Slack Farm** lets members plant a free radish, harvest farm coins, unlock plots, then grow tomatoes, corn, and pumpkins. Farm and catch data remain local. During beta, entry is limited to Plus, Pro, and Ultra members.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
@@ -71,6 +71,12 @@ Configure header shortcuts, work hours, salary, paid days, weather city, workday
 Use DeepSeek models directly from the desktop while managing conversations, thinking mode, usage, and personal settings.
 
 ![Desktop AI Chat in the Chinese interface](docs/screenshots/zh-ai.png)
+
+### Cloud Notes
+
+Manage rich-text, Markdown, and spreadsheet notes across devices after sign-in, with autosave, favourites, pinning, sharing, AI organisation, and full-screen editing.
+
+![Cloud Notes in the Chinese interface](docs/screenshots/zh-notes.png)
 
 ### English Learning
 
@@ -167,7 +173,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.16.6`
+- Current version: `v0.16.11`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

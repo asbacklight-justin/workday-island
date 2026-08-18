@@ -1049,6 +1049,7 @@
         <button type="button" class="active" data-fishing-tab="fishing"><span>🎣</span><b data-i18n="fishingIsland">钓鱼小岛</b></button>
         <button type="button" data-fishing-tab="slacking"><span>🐟</span><b data-i18n="slackingIsland">摸鱼小岛</b></button>
         <button type="button" data-fishing-tab="pet"><span>🐾</span><b data-i18n="petIsland">摸鱼小宠</b></button>
+        <button type="button" data-fishing-tab="farm"><span>🌱</span><b>摸鱼农场</b></button>
       </nav>
       <div id="fishing-layout" class="fishing-layout">
         <aside class="panel fishing-side-panel">
@@ -1130,6 +1131,19 @@
               <button type="button" data-pet-action="play"><span>🫧</span><b data-i18n="petPlay">陪玩</b><small id="pet-play-charge">3/3</small></button>
               <button type="button" data-pet-action="nap"><span>💤</span><b data-i18n="petNap">打盹</b><small id="pet-nap-cooldown" class="hidden"></small></button>
             </div>
+          </div>
+        </section>
+        <section id="farm-panel" class="panel farm-panel hidden" aria-labelledby="farm-title">
+          <div class="farm-scene" aria-hidden="true"><i></i><i></i><b>☀</b></div>
+          <div class="farm-card">
+            <header class="farm-heading">
+              <div><small>SLACK FARM</small><h2 id="farm-title">摸鱼农场</h2><p>开垦一小块工位田，种下蔬菜，等它们悄悄成熟。</p></div>
+              <div class="farm-stats"><span><b id="farm-coins">0</b><small>农场币</small></span><span><b id="farm-harvested">0</b><small>已收获</small></span></div>
+            </header>
+            <div id="farm-crop-picker" class="farm-crop-picker" aria-label="选择种子"></div>
+            <p id="farm-status" class="farm-status" aria-live="polite"></p>
+            <div id="farm-plots" class="farm-plots" aria-label="农场土地"></div>
+            <footer class="farm-footer"><span id="farm-inventory">收成仓库</span><small>点击成熟作物即可收获；闲置土地会种下当前选中的种子。</small></footer>
           </div>
         </section>
         <aside class="panel fishing-guide-panel">
