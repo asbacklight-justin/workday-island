@@ -882,8 +882,12 @@
           </div>
           <div class="conversation-effects">
             <input id="effect-message" maxlength="120" data-i18n-placeholder="effectMessagePlaceholder" placeholder="窗口互动提示语（可选）">
+            <button id="effect-emoji-toggle" type="button" class="effect-emoji-toggle" aria-label="互动表情" title="互动表情" aria-expanded="false" disabled>☺</button>
             <button id="send-shake" type="button" disabled title="抖一抖"><span>〰</span><b data-i18n="shakeWindow">抖一抖</b></button>
             <button id="send-flash" type="button" disabled title="闪一闪"><span>✦</span><b data-i18n="flashWindow">闪一闪</b></button>
+            <div id="effect-emoji-picker" class="effect-emoji-picker hidden" role="dialog" aria-label="互动表情面板">
+              <div id="effect-emoji-grid" class="effect-emoji-grid" role="list"></div>
+            </div>
           </div>
           <form id="chat-form" class="chat-compose">
             <button id="chat-emoji-toggle" type="button" class="chat-emoji-toggle" aria-label="表情" title="表情" aria-expanded="false" disabled>☺</button>
@@ -936,8 +940,10 @@
 
     <section id="english-center-page" class="english-center-page hidden" aria-labelledby="english-center-title">
       <div class="english-center-head">
-        <button id="back-english-center-overview" type="button" class="chat-back-btn english-center-overview-back"><span>←</span><b data-i18n="backToEnglishCenter">返回英语学习中心</b></button>
-        <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        <div class="english-center-navigation">
+          <button id="back-english-center-overview" type="button" class="chat-back-btn english-center-overview-back"><span>←</span><b data-i18n="backToEnglishCenter">返回英语学习中心</b></button>
+          <button id="close-english-center" type="button" class="chat-back-btn"><span>←</span><b data-i18n="backToDashboard">返回工作台</b></button>
+        </div>
         <div class="english-center-title-group">
           <div class="section-kicker">ENGLISH LEARNING</div>
           <h1 id="english-center-title" data-i18n="englishCenterTitle">英语学习中心</h1>
@@ -958,6 +964,7 @@
             <button type="button" data-english-book-tab="wrong"><span>×</span><b data-i18n="englishWrongBook">错题本</b><small id="english-wrong-tab-count">0</small></button>
             <button type="button" data-english-book-tab="textbook"><span>▤</span><b data-i18n="englishTextbooks">教材课文</b><small>PLUS</small></button>
             <button type="button" data-english-book-tab="library"><span>▥</span><b data-i18n="englishBooks">英文书籍</b><small>PLUS</small></button>
+            <button type="button" data-english-book-tab="lexicon"><span>▦</span><b data-i18n="englishLexicons">词库数据</b><small>PLUS</small></button>
           </nav>
           <div class="english-center-filters">
             <label><span class="sr-only" data-i18n="searchEnglishWord">搜索单词、释义或例句</span><input id="english-center-search" type="search" maxlength="100" data-i18n-placeholder="searchEnglishWord" placeholder="搜索单词、释义或例句"></label>
@@ -1042,6 +1049,7 @@
         <button type="button" class="active" data-fishing-tab="fishing"><span>🎣</span><b data-i18n="fishingIsland">钓鱼小岛</b></button>
         <button type="button" data-fishing-tab="slacking"><span>🐟</span><b data-i18n="slackingIsland">摸鱼小岛</b></button>
         <button type="button" data-fishing-tab="pet"><span>🐾</span><b data-i18n="petIsland">摸鱼小宠</b></button>
+        <button type="button" data-fishing-tab="farm"><span>🌱</span><b>摸鱼农场</b></button>
       </nav>
       <div id="fishing-layout" class="fishing-layout">
         <aside class="panel fishing-side-panel">
@@ -1123,6 +1131,19 @@
               <button type="button" data-pet-action="play"><span>🫧</span><b data-i18n="petPlay">陪玩</b><small id="pet-play-charge">3/3</small></button>
               <button type="button" data-pet-action="nap"><span>💤</span><b data-i18n="petNap">打盹</b><small id="pet-nap-cooldown" class="hidden"></small></button>
             </div>
+          </div>
+        </section>
+        <section id="farm-panel" class="panel farm-panel hidden" aria-labelledby="farm-title">
+          <div class="farm-scene" aria-hidden="true"><i></i><i></i><b>☀</b></div>
+          <div class="farm-card">
+            <header class="farm-heading">
+              <div><small>SLACK FARM</small><h2 id="farm-title">摸鱼农场</h2><p>开垦一小块工位田，种下蔬菜，等它们悄悄成熟。</p></div>
+              <div class="farm-stats"><span><b id="farm-coins">0</b><small>农场币</small></span><span><b id="farm-harvested">0</b><small>已收获</small></span></div>
+            </header>
+            <div id="farm-crop-picker" class="farm-crop-picker" aria-label="选择种子"></div>
+            <p id="farm-status" class="farm-status" aria-live="polite"></p>
+            <div id="farm-plots" class="farm-plots" aria-label="农场土地"></div>
+            <footer class="farm-footer"><span id="farm-inventory">收成仓库</span><small>点击成熟作物即可收获；闲置土地会种下当前选中的种子。</small></footer>
           </div>
         </section>
         <aside class="panel fishing-guide-panel">

@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.6-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.16.6-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.16.11-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.16.11-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -32,16 +32,16 @@ The public packages are not currently signed with commercial distribution certif
 - **Bilingual interface:** Follow the operating system language or explicitly select Simplified Chinese or English.
 - **Configurable header shortcuts:** The first section in Settings independently controls visibility for AI, Chat, Stocks, Fishing Break, Work Cloud, Cloud Notes, Sharing, Translator, English Learning, and Notification Center. All remain visible by default, including after upgrading an older installation.
 - **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
-- **English Learning centre:** The `EN` button opens a full learning centre. Word Book keeps a cross-day history from all five modes and Wrong Book records EN → CN, CN → EN, and spelling mistakes. Plus members and above can read bilingual lesson text and vocabulary in **Textbooks**, or search original works, filter languages, browse chapters, and synchronise page progress in **English Books**. Both readers use spacious immersive layouts, return cleanly to the Learning centre, and preserve content and catalogue position. The compact trainer still opens only from **Compact Study**.
+- **English Learning centre:** The `EN` button opens a full learning centre. Word Book keeps a cross-day history from all five modes and Wrong Book records EN → CN, CN → EN, and spelling mistakes. Plus members and above can read bilingual lesson text and vocabulary in **Textbooks**, or search original works, filter languages, browse chapters, and synchronise page progress in **English Books**. Textbooks offer Small, Medium, and Large text sizing for both article copy and vocabulary, defaulting to Medium and saved locally. Both readers use spacious immersive layouts, return cleanly to the Learning centre, and preserve content and catalogue position. The compact trainer still opens only from **Compact Study**.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
-- **Member Fishing Break beta:** The fish-shaped header shortcut opens Fishing Island. Its first mini-game asks you to wait for a bite, reel inside a moving glowing zone, chain accurate hits to fill catch progress, and manage line tension and an escape timer. Fish and rarity are random; the catch journal and best streak stay local. Bruce, Tangerine, Luna, and Cape are now independently tracked switchable pets, each with its own growth, energy, affinity, play charges, and nap cooldown. Feeding consumes catches; play restores one charge per minute (up to three), and naps have a ten-minute cooldown. During beta, entry is limited to Plus, Pro, and Ultra members.
+- **Member Slack Island beta:** The fish-shaped header shortcut opens Slack Island. Fishing Island includes timing-based catches, rod equipment, and green/blue/purple/gold rarity labels; Slack Island turns catches into lightweight desk challenges; the Pet Cabin contains independently tracked Bruce, Tangerine, Luna, and Cape pets. New **Slack Farm** lets members plant a free radish, harvest farm coins, unlock plots, then grow tomatoes, corn, and pumpkins. Farm and catch data remain local. During beta, entry is limited to Plus, Pro, and Ultra members.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
 - **Desktop AI Chat:** Create, search, pin, archive, rename, and delete account conversations from the desktop. Select an allowed model and thinking mode, stream responses, stop generation, copy code blocks, render Markdown, inspect usage, and configure a personal system prompt.
 - **Cloud Notes:** Access notes and folders across devices and create rich-text, Markdown, or Web-compatible spreadsheet documents, with autosave, search, favourites, pinning, move, recycle bin, version history, reading passwords, AI organisation, translation, and export. Pinned content always sorts first inside its folder.
 - **Link Sharing:** Publish a Cloud Note as a snapshot or live share with optional password, validity period, copy, and comment policies. A dedicated management page supports search, edit, revoke, regenerate, open, and delete actions plus quota and view counts.
-- **Realtime chat, friends, and window interactions:** Add friends by exact username/user ID, process requests, see presence, and send text, shake, or flash events. Shake and flash events appear in conversation history and prefer the sender's nickname.
+- **Realtime chat, friends, and window interactions:** Add friends by exact username/user ID, process requests, see presence, and send text, shake, or flash events. Window interactions accept emoji-plus-text prompts, are retained in conversation history, and non-today records show the full date and time.
 - **Work Cloud:** Browse and search folders, create directories, rename, move, delete, upload, and download files while viewing the account's live storage quota.
 - **Universal Translator:** After sign-in, auto-detect source text and translate among Chinese, English, Japanese, Korean, French, German, Spanish, Russian, Portuguese, and Arabic. View the daily account quota, search history, delete individual or selected records, and export history to Excel.
 - **Local-first storage:** Settings, todos, salary, and focus state stay on the device. Account passwords and access tokens remain only in the current process and are never written to the local data file.
@@ -71,6 +71,12 @@ Configure header shortcuts, work hours, salary, paid days, weather city, workday
 Use DeepSeek models directly from the desktop while managing conversations, thinking mode, usage, and personal settings.
 
 ![Desktop AI Chat in the Chinese interface](docs/screenshots/zh-ai.png)
+
+### Cloud Notes
+
+Manage rich-text, Markdown, and spreadsheet notes across devices after sign-in, with autosave, favourites, pinning, sharing, AI organisation, and full-screen editing.
+
+![Cloud Notes in the Chinese interface](docs/screenshots/zh-notes.png)
 
 ### English Learning
 
@@ -167,7 +173,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.16.6`
+- Current version: `v0.16.11`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)

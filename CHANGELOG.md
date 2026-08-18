@@ -5,6 +5,86 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.11] - 2026-08-18
+
+### 中文
+
+- 英语学习与教材/英文书籍阅读页中的 `EN` 顶部入口现在会正确显示页面选中状态。
+- 教材原文词汇卡片会在空间不足时整体换到下一行，完整保留单词、音标与释义，不会把一条词汇拆成两行。
+- 股市行情会保留 ETF 等证券所需的三位小数精度。
+- 云笔记分享设置弹窗提升字体、控件与操作区尺寸，修复确认按钮异常显示为横线的问题。
+- 摸鱼鱼获按常见、珍稀、史诗、传说显示青绿、蓝色、紫色、金色品质标签。
+- 新增会员内测“摸鱼农场”：可选种子、种植、成长倒计时、收获农场币与开垦土地；进度仅保存在本机。
+
+### English
+
+- The `EN` header entry now correctly remains selected across English Learning, Textbooks, and English Books.
+- Textbook vocabulary chips wrap as whole chips when space is tight, preserving the full word, phonetics, and definition without splitting an entry across lines.
+- Stock quotes now preserve three decimal places where ETFs and other securities require them.
+- Cloud Notes share settings now use larger, clearer typography and controls, and the malformed confirmation button has been fixed.
+- Fishing catches now use green, blue, purple, and gold quality labels for common, rare, epic, and legendary fish.
+- Added the member-beta **Slack Farm** with seed selection, planting, growth timers, farm-coin harvesting, and plot unlocking. Progress is stored locally only.
+
+## [0.16.10] - 2026-08-17
+
+### 中文
+
+- 教材原文词汇标签改为始终单行显示；较长的单词、音标或释义会以省略号截断，鼠标悬浮可查看完整内容。
+- 实时聊天会合并相邻且时间完全一致的记录，隐藏后一条的重复时间；投递状态仍会正常显示。
+- 账号未登录时，好友、好友申请、会话和未读角标不再展示缓存内容，仅保留清晰的登录引导，避免在线聊天记录意外暴露。
+
+### English
+
+- Textbook vocabulary chips now stay on one line. Long words, phonetics, and meanings truncate gracefully, with the full value available on hover.
+- Realtime Chat now collapses duplicate timestamps on consecutive messages with the same displayed time while keeping delivery status visible.
+- When signed out, cached friends, requests, conversations, and unread badges are hidden and replaced with a clear sign-in prompt.
+
+## [0.16.9] - 2026-08-16
+
+### 中文
+
+- 云笔记完整适配普通深色、极光与 Plus/Pro/Ultra 深色会员主题；导航、空状态、富文本/Markdown/表格编辑器、标题输入框和工具按钮均使用协调的深色表面与可读文字。
+- 教材课文新增小、中、大正文档位，默认中号并本机记忆；字号同时影响双语课文与本课词汇，三档差异明确。
+- 实时聊天的抖一抖和闪一闪新增互动表情面板，可发送表情、文案或两者组合；完整内容会写入聊天记录并显示在接收方窗口互动提示中。
+- 聊天记录时间优化：今日消息保留时分，非今日消息显示完整年月日与时分；普通消息与窗口互动记录一致。
+
+### English
+
+- Cloud Notes now fully follows the standard dark, Aurora, and Plus/Pro/Ultra dark member palettes, including navigation, empty states, rich-text/Markdown/spreadsheet editors, title fields, and toolbar actions.
+- Textbooks now offer persistent Small, Medium, and Large reading sizes. Medium is the default, and the setting visibly scales bilingual text and lesson vocabulary together.
+- Shake and Flash interactions in Realtime Chat now include an emoji picker and support emoji, copy, or both. The same content is retained in history and shown in the receiving window interaction prompt.
+- Chat timestamps now show time for today and a complete date plus time for older messages, consistently for normal and interaction records.
+
+## [0.16.8] - 2026-08-12
+
+### 中文
+
+- 修复 Windows 系统托盘图标悬浮提示为空：托盘图标现在显式请求显示应用提示文字。
+- 修复摸鱼小宠动画循环时偶发消失：精灵图仅播放有效帧，不再绘制到透明补白区域。
+- 修复 AI 对话在普通深色、极光和 Plus/Pro/Ultra 深色会员主题中仍出现白色侧栏、顶部、建议卡片及输入区的问题；所有 AI 表面现在跟随当前深色调色板。
+
+### English
+
+- Fixed the empty hover tooltip for the Windows system-tray icon by explicitly requesting its visible tooltip.
+- Fixed Fishing Island pets occasionally disappearing during animation loops by limiting sprite playback to valid frames.
+- Fixed AI Chat surfaces that remained white under standard dark, Aurora, and Plus/Pro/Ultra dark member themes. The sidebar, header, suggestion cards, and composer now follow the active dark palette.
+
+## [0.16.7] - 2026-08-11
+
+### 中文
+
+- 英语学习中心新增 Plus、Pro、Ultra 会员专享“词库数据”页：按词库与课程浏览单词、音标、词性释义、教材双语例句与难度标识，并支持按单词或释义搜索。
+- 客户端新增受保护词库接口，并兼容旧服务的公共只读接口回退；登录、会员身份变化和页面返回后都会自动重新加载当前词库数据。
+- 重排英语学习中心顶部导航：返回英语学习中心与返回工作台在左侧并列、主标题始终居中、精简学习固定靠右同一行。
+- 修复亮色及亮色会员主题下词库阅读器对比度不足的问题；标签标题保持单行，空间不足时横向滚动而不截断或折行。
+
+### English
+
+- Added the Plus/Pro/Ultra-only **Lexicon Data** page to English Learning. Browse entries by lexicon and lesson, including phonetics, parts of speech, definitions, bilingual textbook examples, difficulty markers, and word/meaning search.
+- Added protected desktop lexicon APIs with a read-only public-endpoint fallback for older services. The active lexicon reloads after sign-in, membership changes, and returning to the page.
+- Reworked the English Learning header: Back to English Learning and Back to Dashboard stay together on the left, the title remains centered, and Compact Study stays on the right on the same line.
+- Fixed inadequate contrast in the lexicon reader under light and light member themes. Tab titles now stay on one line and scroll horizontally instead of clipping or wrapping when space is limited.
+
 ## [0.16.6] - 2026-08-10
 
 ### 新增 / Added
@@ -430,7 +510,12 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.16.11]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11
+[0.16.10]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10
+[0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9
+[0.16.8]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.8
 [0.16.6]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.6
+[0.16.7]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.7
 [0.16.5]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.5
 [0.16.4]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4
 [0.16.3]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.3

@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.6"
+const appVersion = "0.16.11"
 
 const (
 	defaultFullWindowWidth = 1100
@@ -551,6 +551,42 @@ func (a *App) GetEnglishTextbookLesson(code string, lessonNo int) (EnglishTextbo
 		ctx = context.Background()
 	}
 	return a.cloudDisk.GetEnglishTextbookLesson(ctx, code, lessonNo)
+}
+
+// ListEnglishLexicons exposes the read-only word-data catalogue to Plus and
+// higher membership tiers. It intentionally shares the same account session
+// and access boundary as textbooks and immersive books.
+func (a *App) ListEnglishLexicons() (EnglishLexiconList, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishLexiconList{}, ErrEnglishLexiconPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.ListEnglishLexicons(ctx)
+}
+
+func (a *App) ListEnglishLexiconLessons(code string) (EnglishLexiconLessons, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishLexiconLessons{}, ErrEnglishLexiconPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.ListEnglishLexiconLessons(ctx, code)
+}
+
+func (a *App) GetEnglishLexiconLesson(code string, lessonNo int) (EnglishLexiconLessonDetail, error) {
+	if a.accountMembershipRank() < 1 {
+		return EnglishLexiconLessonDetail{}, ErrEnglishLexiconPlusRequired
+	}
+	ctx := a.ctx
+	if ctx == nil {
+		ctx = context.Background()
+	}
+	return a.cloudDisk.GetEnglishLexiconLesson(ctx, code, lessonNo)
 }
 
 func (a *App) englishLibraryContext() (context.Context, error) {

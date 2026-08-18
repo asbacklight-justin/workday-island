@@ -63,7 +63,7 @@ chmod +x scripts/build-macos.sh scripts/package-macos.sh
 流程会分别为 `amd64/x86_64` 和 `arm64` 编译，再通过 `lipo` 合并为 Universal Binary，生成 App Bundle、ICNS 图标、临时签名和 DMG。产物：
 
 ```text
-build/bin/Workday-Island-v0.16.6-macOS-universal.dmg
+build/bin/Workday-Island-v0.16.11-macOS-universal.dmg
 ```
 
 验证架构和签名：
@@ -95,7 +95,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 产物：
 
 ```text
-build/bin/Workday-Island-v0.16.6-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.16.11-windows-x64-Setup.exe
 ```
 
 正式分发建议在生成 Setup 后使用组织的 Authenticode 证书签名应用 EXE 和安装包，并通过 `Get-AuthenticodeSignature` 验证。
@@ -114,7 +114,7 @@ build/bin/Workday-Island-v0.16.6-windows-x64-Setup.exe
 ```bash
 git status --short
 go test ./...
-git tag v0.16.6
+git tag v0.16.11
 git push origin main --tags
 ```
 

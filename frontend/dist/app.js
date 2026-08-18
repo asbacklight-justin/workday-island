@@ -82,16 +82,17 @@ const translations = {
     friends: '好友', refreshFriends: '刷新', friendTargetPlaceholder: '精确用户名或用户 ID', friendRequestMessagePlaceholder: '申请留言（可选）', sendFriendRequest: '发送申请',
     pendingFriendRequests: '收到的申请', friendList: '好友列表', noPendingFriendRequests: '暂无待处理申请', noFriends: '暂无好友', acceptFriend: '同意', rejectFriend: '拒绝',
     removeFriend: '删除好友', removeFriendConfirm: '确定删除好友“{name}”吗？', friendRequestSent: '好友申请已发送', friendRequestReceived: '收到 {name} 的好友申请', friendAccepted: '已添加好友', friendRejected: '已拒绝好友申请', friendRemoved: '好友已删除',
-    peerUserId: '对方用户 ID', peerHint: '输入对方分享的用户 ID，即可聊天和发送窗口互动。', effectMessage: '互动提示语（可选）', effectMessagePlaceholder: '窗口互动提示语（可选，例如：起来活动一下啦）', shakeWindow: '抖一抖', flashWindow: '闪一闪',
+    peerUserId: '对方用户 ID', peerHint: '输入对方分享的用户 ID，即可聊天和发送窗口互动。', effectMessage: '互动提示语（可选）', effectMessagePlaceholder: '窗口互动提示语（可选，例如：起来活动一下啦）', effectEmoji: '互动表情', shakeWindow: '抖一抖', flashWindow: '闪一闪',
     conversation: '会话', offlineDeliveryHint: '对方离线时消息会在其下次上线后送达', choosePeer: '从左侧选择好友开始聊天', noMessages: '和 {name} 还没有消息', chatPrivacy: '消息经远程实时服务传输，并保存在本机聊天记录中。',
     chatPlaceholder: '输入消息，Enter 发送，Shift+Enter 换行', send: '发送', idCopied: '用户 ID 已复制', identityReset: '实时身份已重置', connectedRealtime: '实时服务已上线', disconnectedRealtime: '已从实时服务下线',
     invalidPeer: '请输入有效的对方用户 ID', effectSent: '窗口互动已发送', queuedForPeer: '对方当前离线，消息将在其上线后送达', sentOnline: '已在线送达', savedOffline: '已保存待送达',
     incomingShake: '{name} 抖了抖你的窗口', incomingFlash: '{name} 闪了闪你的窗口', stopWindowEffect: '停止窗口互动',
     shakeRecord: '抖一抖', flashRecord: '闪一闪', youSentEffect: '你发送了{effect}', peerSentEffect: '{name}发送了{effect}',
-    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', compactEnglishStudy: '精简学习',
-    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。',
-    textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库',
+    englishLearning: '偷偷学英语', englishCenterTitle: '英语学习中心', backToEnglishCenter: '返回英语学习中心', englishNotebook: '单词本', englishWrongBook: '错题本', englishTextbooks: '教材课文', englishBooks: '英文书籍', englishLexicons: '词库数据', compactEnglishStudy: '精简学习',
+    englishNotebookHint: '五种学习模式中已经刷过的单词都会保存在这里。', englishWrongBookHint: '英译中、中译英和拼写模式答错的单词会自动记录。', englishTextbooksHint: '新版教材中的双语正文与本课词汇，Plus 及以上会员可阅读。', englishBooksHint: '沉浸式阅读英文原著，自动保存章节与页码进度，Plus 及以上会员可使用。', englishLexiconsHint: '按词库与课程查看音标、释义、双语例句和难度，Plus 及以上会员可使用。',
+    textbookPlusRequired: '教材课文仅限 Plus、Pro 或 Ultra 会员使用。', textbookLoginRequired: '登录 Plus 或更高等级会员账号后即可阅读教材课文。', textbookUpgradeHint: '该内容处于会员专享内测阶段，请使用 Plus、Pro 或 Ultra 账号进入。', textbookReadOnly: '只读教材', textbookLoading: '正在读取教材课文…', textbookEmpty: '暂时没有可阅读的教材。', textbookSelectLesson: '从左侧目录选择一课开始阅读。', textbookCatalog: '课文目录', textbookCurrent: '当前教材', textbookLessons: '课程', textbookParagraphs: '双语段落', textbookWords: '英文词数', textbookVocabulary: '本课词汇', textbookLinkedLexicon: '已关联同课词库', textbookFontSize: '正文字号', textbookFontSmall: '小', textbookFontMedium: '中', textbookFontLarge: '大',
     englishLibraryTitle: '英文沉浸阅读', englishLibraryLoginRequired: '请先登录 Plus 及以上会员账号，再进入英文书架。', englishLibraryUpgradeHint: '英文书籍仅限 Plus、Pro 或 Ultra 会员使用。', englishLibraryLoading: '正在整理英文书架…', englishLibraryEmpty: '书架暂时还是空的。', englishLibrarySearch: '搜索书名、作者或简介', englishLibraryAllLanguages: '全部语言', englishLibraryRead: '开始阅读', englishLibraryContinue: '继续阅读', englishLibraryChapters: '章', englishLibraryProgress: '阅读进度', englishLibraryContents: '目录', englishLibraryBackShelf: '返回书架', englishLibraryPrevious: '上一页', englishLibraryNext: '下一页', englishLibraryPage: '第 {page} / {pages} 页', englishLibraryFont: '字号', englishLibraryTheme: '阅读主题', englishLibraryLineHeight: '行距', englishLibraryNoContent: '本章暂无正文', englishLibraryLoadFailed: '书籍内容加载失败', englishLibraryLight: '明亮', englishLibrarySepia: '羊皮纸', englishLibraryGreen: '护眼', englishLibraryDark: '夜读',
+    lexiconLoginRequired: '请先登录 Plus 及以上会员账号，再查看词库数据。', lexiconUpgradeHint: '词库数据仅限 Plus、Pro 或 Ultra 会员使用。', lexiconLoading: '正在整理词库数据…', lexiconEmpty: '暂时没有可浏览的词库。', lexiconSelectLesson: '从左侧目录选择一课查看词条。', lexiconCurrent: '当前词库', lexiconCatalog: '课程目录', lexiconLessons: '课程', lexiconEntries: '词条', lexiconEntryDetail: '词条明细', lexiconSearch: '搜索单词或释义', lexiconNoMatch: '没有匹配的词条', lexiconMeaning: '中文释义', lexiconExample: '教材例句', lexiconDifficulty: '难度', lexiconReadOnly: '只读词库', lexiconLoadFailed: '词库数据加载失败',
     wordsStudied: '已学单词', wrongWords: '错题单词', totalViews: '累计学习', searchEnglishWord: '搜索单词、释义或例句', allModes: '全部模式',
     seenTimes: '学习 {count} 次', wrongTimes: '答错 {count} 次', lastStudied: '最近学习', lastAnswer: '上次答案', correctAnswerLabel: '正确答案',
     noEnglishWords: '单词本还是空的，点击“精简学习”开始刷词。', noEnglishWrongWords: '还没有错题，继续保持。', filterMode: '学习模式',
@@ -188,16 +189,17 @@ const translations = {
     friends: 'Friends', refreshFriends: 'Refresh', friendTargetPlaceholder: 'Exact username or user ID', friendRequestMessagePlaceholder: 'Request message (optional)', sendFriendRequest: 'Send Request',
     pendingFriendRequests: 'Incoming requests', friendList: 'Friend list', noPendingFriendRequests: 'No pending requests', noFriends: 'No friends yet', acceptFriend: 'Accept', rejectFriend: 'Reject',
     removeFriend: 'Remove friend', removeFriendConfirm: 'Remove “{name}” from your friends?', friendRequestSent: 'Friend request sent', friendRequestReceived: 'Friend request from {name}', friendAccepted: 'Friend added', friendRejected: 'Friend request rejected', friendRemoved: 'Friend removed',
-    peerUserId: 'Peer user ID', peerHint: 'Enter the user ID shared by the other person to chat or send a window interaction.', effectMessage: 'Interaction message (optional)', effectMessagePlaceholder: 'Window interaction message (optional)', shakeWindow: 'Shake', flashWindow: 'Flash',
+    peerUserId: 'Peer user ID', peerHint: 'Enter the user ID shared by the other person to chat or send a window interaction.', effectMessage: 'Interaction message (optional)', effectMessagePlaceholder: 'Window interaction message (optional)', effectEmoji: 'Interaction emoji', shakeWindow: 'Shake', flashWindow: 'Flash',
     conversation: 'Conversation', offlineDeliveryHint: 'Offline messages are delivered the next time the other person connects', choosePeer: 'Choose a friend on the left to start chatting', noMessages: 'No messages with {name} yet', chatPrivacy: 'Messages pass through the remote realtime service and are kept in local chat history.',
     chatPlaceholder: 'Type a message. Enter to send; Shift+Enter for a new line', send: 'Send', idCopied: 'User ID copied', identityReset: 'Realtime identity reset', connectedRealtime: 'Realtime service is online', disconnectedRealtime: 'Realtime service is offline',
     invalidPeer: 'Enter a valid peer user ID', effectSent: 'Window interaction sent', queuedForPeer: 'The peer is offline; this will be delivered when they reconnect', sentOnline: 'Delivered online', savedOffline: 'Saved for delivery',
     incomingShake: '{name} shook your window', incomingFlash: '{name} flashed your window', stopWindowEffect: 'Stop window interaction',
     shakeRecord: 'Shake', flashRecord: 'Flash', youSentEffect: 'You sent {effect}', peerSentEffect: '{name} sent {effect}',
-    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', compactEnglishStudy: 'Compact Study',
-    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.',
-    textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon',
+    englishLearning: 'Quiet English', englishCenterTitle: 'English Learning', backToEnglishCenter: 'Back to English Learning', englishNotebook: 'Word Book', englishWrongBook: 'Wrong Answers', englishTextbooks: 'Textbooks', englishBooks: 'English Books', englishLexicons: 'Lexicon Data', compactEnglishStudy: 'Compact Study',
+    englishNotebookHint: 'Words viewed in any of the five study modes are collected here.', englishWrongBookHint: 'Wrong answers from EN → CN, CN → EN, and spelling are recorded automatically.', englishTextbooksHint: 'Read bilingual textbook text and lesson vocabulary. Available to Plus members and above.', englishBooksHint: 'Read English books in an immersive reader with saved chapter and page progress. Plus and above.', englishLexiconsHint: 'Browse phonetics, meanings, bilingual examples, and difficulty by lexicon and lesson. Plus and above.',
+    textbookPlusRequired: 'Textbooks are available to Plus, Pro, and Ultra members only.', textbookLoginRequired: 'Sign in with a Plus or higher account to read textbook lessons.', textbookUpgradeHint: 'This member-preview feature requires a Plus, Pro, or Ultra account.', textbookReadOnly: 'Read-only text', textbookLoading: 'Loading textbook lessons…', textbookEmpty: 'No textbooks are available yet.', textbookSelectLesson: 'Choose a lesson from the catalogue to start reading.', textbookCatalog: 'Contents', textbookCurrent: 'Current textbook', textbookLessons: 'Lessons', textbookParagraphs: 'Bilingual paragraphs', textbookWords: 'English words', textbookVocabulary: 'Lesson vocabulary', textbookLinkedLexicon: 'Linked lesson lexicon', textbookFontSize: 'Text size', textbookFontSmall: 'Small', textbookFontMedium: 'Medium', textbookFontLarge: 'Large',
     englishLibraryTitle: 'Immersive English Reading', englishLibraryLoginRequired: 'Sign in with a Plus or higher account to open the library.', englishLibraryUpgradeHint: 'English books are available to Plus, Pro, and Ultra members only.', englishLibraryLoading: 'Organising your English shelf…', englishLibraryEmpty: 'The bookshelf is empty for now.', englishLibrarySearch: 'Search title, author, or summary', englishLibraryAllLanguages: 'All languages', englishLibraryRead: 'Start Reading', englishLibraryContinue: 'Continue Reading', englishLibraryChapters: 'chapters', englishLibraryProgress: 'Reading progress', englishLibraryContents: 'Contents', englishLibraryBackShelf: 'Back to shelf', englishLibraryPrevious: 'Previous', englishLibraryNext: 'Next', englishLibraryPage: 'Page {page} / {pages}', englishLibraryFont: 'Font', englishLibraryTheme: 'Theme', englishLibraryLineHeight: 'Spacing', englishLibraryNoContent: 'No text in this chapter', englishLibraryLoadFailed: 'Unable to load book content', englishLibraryLight: 'Light', englishLibrarySepia: 'Sepia', englishLibraryGreen: 'Eye care', englishLibraryDark: 'Dark',
+    lexiconLoginRequired: 'Sign in with a Plus or higher account to browse lexicon data.', lexiconUpgradeHint: 'Lexicon data is available to Plus, Pro, and Ultra members only.', lexiconLoading: 'Loading lexicon data…', lexiconEmpty: 'No lexicons are available yet.', lexiconSelectLesson: 'Choose a lesson from the catalogue to view its entries.', lexiconCurrent: 'Current lexicon', lexiconCatalog: 'Lessons', lexiconLessons: 'Lessons', lexiconEntries: 'Entries', lexiconEntryDetail: 'Entry details', lexiconSearch: 'Search a word or meaning', lexiconNoMatch: 'No matching entries', lexiconMeaning: 'Chinese meaning', lexiconExample: 'Textbook example', lexiconDifficulty: 'Difficulty', lexiconReadOnly: 'Read-only lexicon', lexiconLoadFailed: 'Unable to load lexicon data',
     wordsStudied: 'Words studied', wrongWords: 'Wrong words', totalViews: 'Total views', searchEnglishWord: 'Search word, meaning, or example', allModes: 'All modes',
     seenTimes: 'Studied {count} times', wrongTimes: '{count} wrong', lastStudied: 'Last studied', lastAnswer: 'Last answer', correctAnswerLabel: 'Correct answer',
     noEnglishWords: 'Your word book is empty. Start with Compact Study.', noEnglishWrongWords: 'No wrong answers yet. Keep it up.', filterMode: 'Study mode',
@@ -240,12 +242,16 @@ const chatEmojiCatalog = [
   ['🌈', '彩虹', 'Rainbow', 'sparkle'], ['⭐', '星星', 'Star', 'sparkle'], ['🌙', '晚安', 'Good night', 'float'], ['☀️', '晴天', 'Sunny', 'bounce'], ['🐱', '猫猫', 'Cat', 'wave']
 ].map(([emoji, zh, en, motion]) => ({emoji, zh, en, motion}));
 let chatEmojiPickerOpen = false;
+let effectEmojiPickerOpen = false;
 
 function syncHeaderPageEntryState() {
+  const entries = new Map();
   headerPageEntryDefinitions.forEach(([pageClass, selector]) => {
+    entries.set(selector, Boolean(entries.get(selector)) || document.body.classList.contains(pageClass));
+  });
+  entries.forEach((active, selector) => {
     const button = $(selector);
     if (!button) return;
-    const active = document.body.classList.contains(pageClass);
     button.classList.toggle('active', active);
     if (active) button.setAttribute('aria-current', 'page');
     else button.removeAttribute('aria-current');
@@ -263,6 +269,12 @@ const deskPets = [
   {id:'luna', nameKey:'petLuna'},
   {id:'cape', nameKey:'petCape'}
 ];
+const farmCrops = [
+  {id:'radish', emoji:'🥬', zh:'水灵萝卜', en:'Crisp Radish', duration:60, cost:0, reward:2, tone:'green'},
+  {id:'tomato', emoji:'🍅', zh:'番茄', en:'Sunny Tomato', duration:180, cost:2, reward:5, tone:'red'},
+  {id:'corn', emoji:'🌽', zh:'甜玉米', en:'Sweet Corn', duration:360, cost:5, reward:10, tone:'gold'},
+  {id:'pumpkin', emoji:'🎃', zh:'小南瓜', en:'Little Pumpkin', duration:600, cost:9, reward:17, tone:'violet'}
+];
 // These are read while restoring the local fishing journal during state
 // construction, so they must be available before `loadFishingJournal()` runs.
 const petPlayChargeMax = 3;
@@ -271,8 +283,8 @@ const petNapCooldown = 10 * 60 * 1000;
 
 const state = {
   todos: [],
-  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.4', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
+  appInfo: {name: 'Workday Island', version: '0.16.11', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -317,13 +329,13 @@ const state = {
   stockCompact: false,
   stocks: {quotes: [], updatedAt: null, source: '东方财富', stale: false, error: ''},
   fishingOpen: false,
-  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, petCandidate: '', journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
+  fishing: {tab:'fishing', phase: 'idle', fish: null, progress: 0, tension: 0, streak: 0, marker: 0, targetStart: 40, targetWidth: 20, startedAt: 0, deadline: 0, petCandidate: '', farm:{selectedCrop:'radish'}, journal: loadFishingJournal(), slack:{phase:'idle', selectedCatch:0, progress:0, exposure:0, marker:0, targetStart:42, targetWidth:22, startedAt:0, deadline:0, streak:0}},
   cloudOpen: false,
   cloud: {session: {loggedIn: false, user: null}, quota: {}, items: [], total: 0, page: 1, pageSize: 50, folders: [], keyword: '', busy: false, editorMode: 'create', editorTarget: null, deleteTarget: null},
   translatorOpen: false,
   translator: {tab: 'text', quota: {}, result: '', history: [], total: 0, page: 1, pageSize: 20, keyword: '', busy: false, historyBusy: false, selected: []},
   englishCenterOpen: false,
-  englishNotebook: {tab: 'words', memberReaderImmersive: true, words: [], wrongWords: [], keyword: '', mode: 'all', busy: false, textbook: {books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}, library: {mode:'shelf', books:[], keyword:'', language:'all', selectedBook:null, chapters:[], chapterId:0, paragraphs:[], page:1, pageSize:20, total:0, loading:false, readerLoading:false, error:'', theme:'sepia', fontSize:18, lineHeight:1.85}},
+  englishNotebook: {tab: 'words', memberReaderImmersive: true, words: [], wrongWords: [], keyword: '', mode: 'all', busy: false, textbook: {books: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}, library: {mode:'shelf', books:[], keyword:'', language:'all', selectedBook:null, chapters:[], chapterId:0, paragraphs:[], page:1, pageSize:20, total:0, loading:false, readerLoading:false, error:'', theme:'sepia', fontSize:18, lineHeight:1.85}, lexicon: {lexicons: [], code: '', lessons: [], selectedLessonNo: 0, detail: null, entryKeyword: '', directoryScrollTop: 0, loading: false, detailLoading: false, error: ''}},
   englishOpen: false,
   english: {mode: 'study', sessionId: 0, questions: [], index: 0, shownAt: 0, busy: false, answered: 0, correct: 0, previous: null}
 };
@@ -354,6 +366,7 @@ let slackingAnimationFrame = 0;
 let petMotionTimer = 0;
 let petActivityTimer = 0;
 let petStatusTimer = 0;
+let farmStatusTimer = 0;
 const receivedRealtimePushIDs = new Set();
 let stockBusy = false;
 let stockRefreshTimer = 0;
@@ -803,6 +816,7 @@ function bindEvents() {
   $('#pet-picker').addEventListener('click', changeActivePet);
   $('#pet-food-select').addEventListener('change', changePetFood);
   $('#pet-actions').addEventListener('click', handlePetAction);
+  $('#farm-panel').addEventListener('click', handleFarmAction);
   $('.top-actions').addEventListener('click', event => {
     if (state.fishingOpen && !event.target.closest('#open-fishing')) closeFishingPage();
   }, true);
@@ -841,6 +855,7 @@ function bindEvents() {
   $('#send-shake').addEventListener('click', () => sendWindowEffect('shake'));
   $('#send-flash').addEventListener('click', () => sendWindowEffect('flash'));
   initialiseChatEmojiPicker();
+  initialiseEffectEmojiPicker();
   $('#chat-form').addEventListener('submit', submitChatMessage);
   $('#chat-input').addEventListener('keydown', event => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -4893,6 +4908,22 @@ function deskPetName(id) {
   return t(deskPetDefinition(id).nameKey);
 }
 
+function createFarmState(value = {}) {
+  const source = value && typeof value === 'object' ? value : {};
+  const savedPlots = Array.isArray(source.plots) ? source.plots : [];
+  const plots = Array.from({length: 6}, (_, index) => {
+    const saved = savedPlots.find(item => Number(item?.id) === index + 1) || savedPlots[index] || {};
+    const cropId = farmCrops.some(crop => crop.id === saved.cropId) ? saved.cropId : '';
+    const plantedAt = cropId && Number.isFinite(Date.parse(saved.plantedAt)) ? String(saved.plantedAt) : '';
+    return {id: index + 1, unlocked: index < 2 || Boolean(saved.unlocked), cropId, plantedAt};
+  });
+  return {
+    plots,
+    coins: Math.max(0, Math.floor(Number(source.coins) || 0)),
+    totalHarvested: Math.max(0, Math.floor(Number(source.totalHarvested) || 0))
+  };
+}
+
 function loadFishingJournal() {
   try {
     const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
@@ -4911,10 +4942,11 @@ function loadFishingJournal() {
       ownedRods,
       equippedRod,
       activePetId,
-      pets
+      pets,
+      farm: createFarmState(value.farm)
     };
   } catch (_) {
-    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()]))};
+    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
   }
 }
 
@@ -4997,6 +5029,130 @@ function tryUnlockFishingRod() {
   return rod;
 }
 
+function farmText(zh, en) {
+  return currentLanguage() === 'zh' ? zh : en;
+}
+
+function farmCropName(crop) {
+  return farmText(crop?.zh || '', crop?.en || '');
+}
+
+function currentFarm() {
+  const journal = state.fishing.journal;
+  journal.farm = createFarmState(journal.farm);
+  return journal.farm;
+}
+
+function farmCrop(id) {
+  return farmCrops.find(crop => crop.id === id) || farmCrops[0];
+}
+
+function farmPlotInfo(plot, now = Date.now()) {
+  const crop = farmCrops.find(item => item.id === plot.cropId);
+  if (!crop) return {state:'empty', crop:null, progress:0, remaining:0};
+  const plantedAt = Date.parse(plot.plantedAt);
+  const elapsed = Number.isFinite(plantedAt) ? Math.max(0, now - plantedAt) : 0;
+  const duration = crop.duration * 1000;
+  const progress = Math.max(0, Math.min(100, elapsed / duration * 100));
+  return {state: progress >= 100 ? 'mature' : 'growing', crop, progress, remaining: Math.max(0, Math.ceil((duration - elapsed) / 1000))};
+}
+
+function farmTime(seconds) {
+  const value = Math.max(0, Math.floor(seconds || 0));
+  return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+}
+
+function farmUnlockCost(plot) {
+  return 6 + Math.max(0, Number(plot?.id || 1) - 2) * 4;
+}
+
+function renderFishingFarm() {
+  if (!$('#farm-panel')) return;
+  const farm = currentFarm();
+  const selected = farmCrop(state.fishing.farm?.selectedCrop);
+  const now = Date.now();
+  $('#farm-coins').textContent = String(farm.coins);
+  $('#farm-harvested').textContent = String(farm.totalHarvested);
+  $('#farm-crop-picker').innerHTML = farmCrops.map(crop => `<button type="button" class="farm-crop ${crop.id === selected.id ? 'active' : ''}" data-farm-action="select-crop" data-crop-id="${crop.id}"><span>${crop.emoji}</span><b>${escapeHTML(farmCropName(crop))}</b><small>${crop.cost ? `${crop.cost} ${farmText('币', 'coins')}` : farmText('免费', 'Free')} · ${farmTime(crop.duration)}</small></button>`).join('');
+  $('#farm-status').textContent = farmText(`当前种子：${farmCropName(selected)}。成熟后可获得 ${selected.reward} 农场币。`, `Selected: ${farmCropName(selected)}. Harvest to earn ${selected.reward} farm coins.`);
+  $('#farm-plots').innerHTML = farm.plots.map(plot => {
+    if (!plot.unlocked) {
+      const cost = farmUnlockCost(plot);
+      return `<button type="button" class="farm-plot locked" data-farm-action="unlock" data-plot-id="${plot.id}"><span>🔒</span><b>${farmText('开垦土地', 'Unlock plot')}</b><small>${cost} ${farmText('农场币', 'farm coins')}</small></button>`;
+    }
+    const info = farmPlotInfo(plot, now);
+    if (info.state === 'empty') {
+      return `<button type="button" class="farm-plot empty" data-farm-action="plant" data-plot-id="${plot.id}"><span>＋</span><b>${farmText('种下', 'Plant')} ${escapeHTML(farmCropName(selected))}</b><small>${selected.cost ? `${selected.cost} ${farmText('农场币', 'farm coins')}` : farmText('免费种植', 'Free to plant')}</small></button>`;
+    }
+    if (info.state === 'mature') {
+      return `<button type="button" class="farm-plot mature ${info.crop.tone}" data-farm-action="harvest" data-plot-id="${plot.id}"><span>${info.crop.emoji}</span><b>${escapeHTML(farmCropName(info.crop))}</b><small>${farmText('成熟啦，点击收获', 'Ready — harvest now')}</small><i>+${info.crop.reward}</i></button>`;
+    }
+    return `<button type="button" class="farm-plot growing ${info.crop.tone}" data-farm-action="inspect" data-plot-id="${plot.id}"><span>${info.crop.emoji}</span><b>${escapeHTML(farmCropName(info.crop))}</b><small>${farmText('生长中', 'Growing')} · ${farmTime(info.remaining)}</small><i><em style="width:${info.progress}%"></em></i></button>`;
+  }).join('');
+  const stock = farmCrops.map(crop => `${crop.emoji} ${farmCropName(crop)} ${farm.plots.filter(plot => farmPlotInfo(plot, now).crop?.id === crop.id && farmPlotInfo(plot, now).state === 'mature').length}`).join(' · ');
+  $('#farm-inventory').textContent = `${farmText('待收成', 'Ready crops')} · ${stock}`;
+}
+
+function startFarmClock() {
+  window.clearInterval(farmStatusTimer);
+  renderFishingFarm();
+  farmStatusTimer = window.setInterval(() => {
+    if (state.fishingOpen && state.fishing.tab === 'farm') renderFishingFarm();
+  }, 1000);
+}
+
+function stopFarmClock() {
+  window.clearInterval(farmStatusTimer);
+  farmStatusTimer = 0;
+}
+
+function handleFarmAction(event) {
+  const action = event.target.closest('[data-farm-action]')?.dataset.farmAction;
+  const target = event.target.closest('[data-farm-action]');
+  if (!action || !target) return;
+  const farm = currentFarm();
+  if (action === 'select-crop') {
+    state.fishing.farm.selectedCrop = target.dataset.cropId;
+    renderFishingFarm();
+    return;
+  }
+  const plot = farm.plots.find(item => item.id === Number(target.dataset.plotId));
+  if (!plot) return;
+  if (action === 'unlock') {
+    const cost = farmUnlockCost(plot);
+    if (farm.coins < cost) { showToast(farmText(`还差 ${cost - farm.coins} 农场币`, `Need ${cost - farm.coins} more farm coins`), true); return; }
+    farm.coins -= cost;
+    plot.unlocked = true;
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(farmText('新土地已开垦，可以种菜啦！', 'New plot unlocked — start planting!'));
+    return;
+  }
+  const info = farmPlotInfo(plot);
+  if (action === 'plant') {
+    const crop = farmCrop(state.fishing.farm.selectedCrop);
+    if (farm.coins < crop.cost) { showToast(farmText(`农场币不足，还差 ${crop.cost - farm.coins} 个`, `Need ${crop.cost - farm.coins} more farm coins`), true); return; }
+    farm.coins -= crop.cost;
+    plot.cropId = crop.id;
+    plot.plantedAt = new Date().toISOString();
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(`${crop.emoji} ${farmText('已种下', 'Planted')} ${farmCropName(crop)}`);
+    return;
+  }
+  if (action === 'harvest' && info.state === 'mature') {
+    farm.coins += info.crop.reward;
+    farm.totalHarvested += 1;
+    plot.cropId = '';
+    plot.plantedAt = '';
+    saveFishingJournal();
+    renderFishingFarm();
+    showToast(`${info.crop.emoji} ${farmText('收获成功', 'Harvested')} +${info.crop.reward} ${farmText('农场币', 'farm coins')}`);
+    return;
+  }
+  if (action === 'inspect') showToast(`${info.crop.emoji} ${farmCropName(info.crop)} · ${farmText('还需', 'ready in')} ${farmTime(info.remaining)}`);
+}
+
 function changeFishingTab(event) {
   const button = event.target.closest('[data-fishing-tab]');
   const tab = button?.dataset.fishingTab;
@@ -5009,21 +5165,25 @@ function changeFishingTab(event) {
   slackingAnimationFrame = 0;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
-  state.fishing.tab = ['slacking', 'pet'].includes(tab) ? tab : 'fishing';
+  state.fishing.tab = ['slacking', 'pet', 'farm'].includes(tab) ? tab : 'fishing';
   renderFishingTabs();
 }
 
 function renderFishingTabs() {
   const slacking = state.fishing.tab === 'slacking';
   const pet = state.fishing.tab === 'pet';
-  $('#fishing-layout').classList.toggle('slacking-active', slacking || pet);
+  const farm = state.fishing.tab === 'farm';
+  $('#fishing-layout').classList.toggle('slacking-active', slacking || pet || farm);
   $('#fishing-layout').classList.toggle('pet-active', pet);
   $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => button.classList.toggle('active', button.dataset.fishingTab === state.fishing.tab));
-  $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet);
+  $('#fishing-layout').classList.toggle('farm-active', farm);
+  $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet || farm);
   $('#slacking-panel').classList.toggle('hidden', !slacking);
   $('#pet-panel').classList.toggle('hidden', !pet);
-  $('.fishing-guide-panel').classList.toggle('hidden', slacking || pet);
-  if (slacking) renderSlackingIdle(); else if (pet) renderFishingPet(); else renderFishingIdle();
+  $('#farm-panel').classList.toggle('hidden', !farm);
+  $('.fishing-guide-panel').classList.toggle('hidden', slacking || pet || farm);
+  if (farm) startFarmClock(); else stopFarmClock();
+  if (slacking) renderSlackingIdle(); else if (pet) renderFishingPet(); else if (!farm) renderFishingIdle();
 }
 
 function fishingPet() {
@@ -5481,7 +5641,7 @@ function renderFishingJournal() {
   list.innerHTML = journal.catches.map(caught => {
     const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
     const time = new Date(caught.caughtAt || Date.now()).toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit'});
-    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em>${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
+    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em class="fish-rarity-tag ${escapeHTML(fish.rarity || 'common')}">${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
   }).join('');
 }
 
@@ -5563,6 +5723,7 @@ function closeFishingPage() {
   slackingAnimationFrame = 0;
   window.clearInterval(petStatusTimer);
   petStatusTimer = 0;
+  stopFarmClock();
   state.fishingOpen = false;
   state.fishing.phase = 'idle';
   state.fishing.slack.phase = 'idle';
@@ -5873,7 +6034,7 @@ function renderStocks() {
       const sign = Number(quote.changePercent) > 0 ? '+' : '';
       return `<article class="stock-row">
         <div class="stock-symbol"><strong>${escapeHTML(quote.name)}</strong><small>${escapeHTML(quote.code)}</small></div>
-        <div class="stock-price"><strong>${formatStockNumber(quote.price)}</strong><small>${sign}${formatStockNumber(quote.change)}</small></div>
+        <div class="stock-price"><strong>${formatStockNumber(quote.price, stockQuoteFractionDigits(quote))}</strong><small>${sign}${formatStockNumber(quote.change, stockQuoteFractionDigits(quote))}</small></div>
         <div class="stock-change ${direction}">${sign}${Number(quote.changePercent || 0).toFixed(2)}%</div>
         <button type="button" class="stock-remove" data-stock-symbol="${escapeHTML(quote.symbol)}" title="${escapeHTML(t('removeStock'))}">×</button>
       </article>`;
@@ -5890,9 +6051,16 @@ function renderStocks() {
   status.classList.toggle('error', Boolean(state.stocks?.error));
 }
 
-function formatStockNumber(value) {
+function stockQuoteFractionDigits(quote) {
+  const code = String(quote?.code || quote?.symbol || '').replace(/[^0-9]/g, '');
+  // Mainland ETFs use the 15/16/18/50/51/52/56/58 prefixes and are quoted to
+  // three decimals; ordinary stocks and indices continue to use two.
+  return /^(?:15|16|18|50|51|52|56|58)\d{4}$/.test(code) ? 3 : 2;
+}
+
+function formatStockNumber(value, fractionDigits = 2) {
   const number = Number(value);
-  return Number.isFinite(number) ? number.toLocaleString(locale(), {minimumFractionDigits: 2, maximumFractionDigits: 2}) : '--';
+  return Number.isFinite(number) ? number.toLocaleString(locale(), {minimumFractionDigits: fractionDigits, maximumFractionDigits: fractionDigits}) : '--';
 }
 
 async function openEnglishPage() {
@@ -5911,7 +6079,7 @@ async function openEnglishPage() {
   document.body.classList.add('english-center-open');
   $('#english-center-page').classList.remove('hidden');
   await refreshEnglishNotebook();
-  if (state.account.loggedIn && ['textbook', 'library'].includes(state.englishNotebook.tab)) {
+  if (state.account.loggedIn && ['textbook', 'library', 'lexicon'].includes(state.englishNotebook.tab)) {
     await refreshAccountProfile(true);
   }
   await refreshActiveEnglishMemberContent();
@@ -5993,8 +6161,8 @@ async function changeEnglishNotebookTab(event) {
   const button = event.target.closest('[data-english-book-tab]');
   if (!button) return;
   const tab = button.dataset.englishBookTab;
-  state.englishNotebook.tab = ['wrong', 'textbook', 'library'].includes(tab) ? tab : 'words';
-  state.englishNotebook.memberReaderImmersive = ['textbook', 'library'].includes(state.englishNotebook.tab);
+  state.englishNotebook.tab = ['wrong', 'textbook', 'library', 'lexicon'].includes(tab) ? tab : 'words';
+  state.englishNotebook.memberReaderImmersive = ['textbook', 'library', 'lexicon'].includes(state.englishNotebook.tab);
   state.englishNotebook.mode = 'all';
   $('#english-center-mode').value = 'all';
   if (state.englishNotebook.tab === 'textbook') {
@@ -6010,6 +6178,13 @@ async function changeEnglishNotebookTab(event) {
       showToast(t(state.account.loggedIn ? 'englishLibraryUpgradeHint' : 'englishLibraryLoginRequired'), true);
     } else {
       await loadEnglishBooks();
+    }
+  } else if (state.englishNotebook.tab === 'lexicon') {
+    if (state.account.loggedIn) await refreshAccountProfile(true);
+    if (accountMembershipRank() < 1) {
+      showToast(t(state.account.loggedIn ? 'lexiconUpgradeHint' : 'lexiconLoginRequired'), true);
+    } else {
+      await loadEnglishLexicons();
     }
   }
   renderEnglishNotebook();
@@ -6040,6 +6215,10 @@ function resetEnglishMemberContent() {
     mode: 'shelf', books: [], selectedBook: null, chapters: [], chapterId: 0,
     paragraphs: [], page: 1, total: 0, loading: false, readerLoading: false, error: ''
   });
+  Object.assign(notebook.lexicon, {
+    lexicons: [], code: '', lessons: [], selectedLessonNo: 0, detail: null,
+    entryKeyword: '', directoryScrollTop: 0, loading: false, detailLoading: false, error: ''
+  });
 }
 
 async function refreshActiveEnglishMemberContent(force = false) {
@@ -6048,6 +6227,8 @@ async function refreshActiveEnglishMemberContent(force = false) {
     await loadEnglishTextbooks(force);
   } else if (state.englishNotebook.tab === 'library') {
     await loadEnglishBooks(force);
+  } else if (state.englishNotebook.tab === 'lexicon') {
+    await loadEnglishLexicons(force);
   }
 }
 
@@ -6092,6 +6273,7 @@ function renderEnglishNotebook() {
   });
   const textbookActive = notebook.tab === 'textbook';
   const libraryActive = notebook.tab === 'library';
+  const lexiconActive = notebook.tab === 'lexicon';
   const libraryReaderActive = libraryActive
     && notebook.memberReaderImmersive
     && notebook.library?.mode === 'reader'
@@ -6100,12 +6282,14 @@ function renderEnglishNotebook() {
     && notebook.memberReaderImmersive
     && accountMembershipRank() >= 1
     && Boolean(notebook.textbook?.detail || notebook.textbook?.books?.length);
-  const readingActive = textbookActive || libraryActive;
+  const readingActive = textbookActive || libraryActive || lexiconActive;
   $('#english-center-page').classList.toggle('library-reader-mode', libraryReaderActive);
   $('#english-center-page').classList.toggle('textbook-reader-mode', textbookReaderActive);
+  $('#english-center-page').classList.toggle('lexicon-reader-mode', lexiconActive && notebook.memberReaderImmersive && accountMembershipRank() >= 1 && Boolean(notebook.lexicon?.detail || notebook.lexicon?.lexicons?.length));
   $('.english-center-filters').classList.toggle('hidden', readingActive);
   $('#english-center-list').classList.toggle('textbook-active', textbookActive);
   $('#english-center-list').classList.toggle('library-active', libraryActive);
+  $('#english-center-list').classList.toggle('lexicon-active', lexiconActive);
   if (textbookActive) {
     $('#english-center-description-text').textContent = t('englishTextbooksHint');
     renderEnglishTextbooks();
@@ -6114,6 +6298,11 @@ function renderEnglishNotebook() {
   if (libraryActive) {
     $('#english-center-description-text').textContent = t('englishBooksHint');
     renderEnglishLibrary();
+    return;
+  }
+  if (lexiconActive) {
+    $('#english-center-description-text').textContent = t('englishLexiconsHint');
+    renderEnglishLexicons();
     return;
   }
   const wrongActive = notebook.tab === 'wrong';
@@ -6151,6 +6340,131 @@ function renderEnglishNotebook() {
     return;
   }
   list.innerHTML = records.map(item => renderEnglishBookCard(item, wrongActive)).join('');
+}
+
+async function loadEnglishLexicons(force = false) {
+  const lexicon = state.englishNotebook.lexicon;
+  if (lexicon.loading || (!force && lexicon.lexicons.length)) return;
+  lexicon.loading = true;
+  lexicon.error = '';
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishLexicons();
+    lexicon.lexicons = Array.isArray(response?.list) ? response.list : [];
+    lexicon.code = lexicon.lexicons.some(item => item.code === lexicon.code) ? lexicon.code : (lexicon.lexicons[0]?.code || '');
+    lexicon.lessons = [];
+    lexicon.selectedLessonNo = 0;
+    lexicon.detail = null;
+    if (lexicon.code) await loadEnglishLexiconLessons(lexicon.code);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function loadEnglishLexiconLessons(code) {
+  const lexicon = state.englishNotebook.lexicon;
+  lexicon.code = String(code || '');
+  lexicon.lessons = [];
+  lexicon.selectedLessonNo = 0;
+  lexicon.detail = null;
+  lexicon.entryKeyword = '';
+  lexicon.directoryScrollTop = 0;
+  if (!lexicon.code) return;
+  lexicon.loading = true;
+  renderEnglishNotebook();
+  try {
+    const response = await api.ListEnglishLexiconLessons(lexicon.code);
+    lexicon.lessons = Array.isArray(response?.lessons) ? response.lessons : [];
+    if (lexicon.lessons.length) await selectEnglishLexiconLesson(lexicon.lessons[0].lesson_no);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.loading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function selectEnglishLexiconLesson(lessonNo) {
+  const lexicon = state.englishNotebook.lexicon;
+  const number = Number(lessonNo) || 0;
+  if (!lexicon.code || number < 1 || lexicon.detailLoading) return;
+  state.englishNotebook.memberReaderImmersive = true;
+  lexicon.selectedLessonNo = number;
+  lexicon.detail = null;
+  lexicon.detailLoading = true;
+  lexicon.error = '';
+  renderEnglishNotebook();
+  try {
+    lexicon.detail = await api.GetEnglishLexiconLesson(lexicon.code, number);
+  } catch (error) {
+    lexicon.error = readError(error);
+  } finally {
+    lexicon.detailLoading = false;
+    renderEnglishNotebook();
+  }
+}
+
+async function handleEnglishLexiconAction(event) {
+  const lexicon = state.englishNotebook.lexicon;
+  const target = event.target;
+  const select = target.closest('[data-english-lexicon-select]');
+  if (select && event.type === 'change') return loadEnglishLexiconLessons(select.value);
+  const lesson = target.closest('[data-english-lexicon-lesson]');
+  if (lesson && event.type === 'click') {
+    lexicon.directoryScrollTop = Math.max(0, Number(lesson.parentElement?.scrollTop) || 0);
+    return selectEnglishLexiconLesson(lesson.dataset.englishLexiconLesson);
+  }
+  const search = target.closest('[data-english-lexicon-search]');
+  if (search && event.type === 'input') {
+    lexicon.entryKeyword = search.value.trim().toLowerCase();
+    renderEnglishNotebook();
+    return;
+  }
+  if (target.closest('[data-retry-english-lexicon]')) return loadEnglishLexicons(true);
+}
+
+function renderEnglishLexicons() {
+  const list = $('#english-center-list');
+  const lexicon = state.englishNotebook.lexicon;
+  if (!state.account.loggedIn) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access"><span>▦</span><h2>${escapeHTML(t('englishLexicons'))}</h2><p>${escapeHTML(t('lexiconLoginRequired'))}</p><button type="button" class="primary-btn" data-open-account-login>${escapeHTML(t('goToAccountLogin'))}</button></section>`;
+    list.querySelector('[data-open-account-login]')?.addEventListener('click', () => openAccountPage('login'));
+    return;
+  }
+  if (accountMembershipRank() < 1) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access locked"><span>◆</span><h2>${escapeHTML(t('englishLexicons'))}</h2><p>${escapeHTML(t('lexiconUpgradeHint'))}</p><b>PLUS · PRO · ULTRA</b></section>`;
+    return;
+  }
+  if (lexicon.error) {
+    list.innerHTML = `<section class="english-textbook-access english-lexicon-access locked"><span>!</span><h2>${escapeHTML(t('lexiconLoadFailed'))}</h2><p>${escapeHTML(lexicon.error)}</p><button type="button" class="primary-btn" data-retry-english-lexicon>${escapeHTML(t('retry'))}</button></section>`;
+    return;
+  }
+  if (lexicon.loading && !lexicon.lexicons.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('lexiconLoading'))}</b></div>`;
+    return;
+  }
+  if (!lexicon.lexicons.length) {
+    list.innerHTML = `<div class="english-center-empty"><span>▦</span><b>${escapeHTML(t('lexiconEmpty'))}</b></div>`;
+    return;
+  }
+  const current = lexicon.lexicons.find(item => item.code === lexicon.code) || lexicon.lexicons[0];
+  const detail = lexicon.detail;
+  const keyword = lexicon.entryKeyword;
+  const entries = (detail?.entries || []).filter(item => !keyword || [item.word, item.normalized_word, item.meaning_cn, item.part_of_speech].some(value => String(value || '').toLowerCase().includes(keyword)));
+  const lessons = lexicon.lessons.map(item => `<button type="button" class="english-textbook-lesson${Number(item.lesson_no) === lexicon.selectedLessonNo ? ' active' : ''}" data-english-lexicon-lesson="${Number(item.lesson_no)}"><b>${String(item.lesson_no).padStart(2, '0')}</b><span><strong>${escapeHTML(item.title || `${t('lexiconLessons')} ${item.lesson_no}`)}</strong><small>${Number(item.entry_count || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))}</small></span></button>`).join('');
+  const difficulty = value => `<span class="english-lexicon-difficulty" aria-label="${escapeHTML(t('lexiconDifficulty'))}">${[1, 2, 3].map(level => `<i class="${level <= Number(value || 0) ? 'on' : ''}"></i>`).join('')}</span>`;
+  const rows = entries.map(item => `<article class="english-lexicon-entry"><b class="english-lexicon-index">${String(item.sort_no || 0).padStart(2, '0')}</b><div class="english-lexicon-word"><strong>${escapeHTML(item.word || '')}</strong><small>${escapeHTML(item.phonetic || '—')}</small></div><div class="english-lexicon-meaning"><span>${escapeHTML(item.part_of_speech || '—')}</span><b>${escapeHTML(item.meaning_cn || '—')}</b>${difficulty(item.difficulty)}</div><div class="english-lexicon-example"><p>${escapeHTML(item.example_en || '—')}</p><small>${escapeHTML(item.example_cn || '')}</small></div></article>`).join('');
+  const article = detail ? `<article class="english-lexicon-detail"><header><div><span>${escapeHTML(t('lexiconReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title || '')}</h2><small>${Number(detail.entries?.length || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))} · ${escapeHTML(t('lexiconEntryDetail'))}</small></div><label><input type="search" value="${escapeHTML(lexicon.entryKeyword)}" data-english-lexicon-search placeholder="${escapeHTML(t('lexiconSearch'))}"><span>⌕</span></label></header><div class="english-lexicon-legend"><span>${escapeHTML(t('lexiconMeaning'))}</span><span>${escapeHTML(t('lexiconExample'))}</span></div><div class="english-lexicon-entry-list">${rows || `<div class="english-center-empty"><span>⌕</span><b>${escapeHTML(t('lexiconNoMatch'))}</b></div>`}</div></article>` : `<div class="english-center-empty"><span>▦</span><b>${escapeHTML(t('lexiconSelectLesson'))}</b></div>`;
+  list.innerHTML = `<section class="english-lexicon-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('lexiconCurrent'))}</span><h2>${escapeHTML(current.name || current.code)}</h2><small>${escapeHTML(current.edition || '')} · ${Number(current.total_entries || 0).toLocaleString(locale())} ${escapeHTML(t('lexiconEntries'))}</small></div><label><span class="sr-only">${escapeHTML(t('lexiconCurrent'))}</span><select data-english-lexicon-select>${lexicon.lexicons.map(item => `<option value="${escapeHTML(item.code)}"${item.code === lexicon.code ? ' selected' : ''}>${escapeHTML(item.name || item.code)}</option>`).join('')}</select></label><div class="english-textbook-stats"><b>${Number(current.total_lessons || 0)}</b><small>${escapeHTML(t('lexiconLessons'))}</small><b>${Number(current.total_entries || 0)}</b><small>${escapeHTML(t('lexiconEntries'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>LEXICON</span><b>${escapeHTML(t('lexiconCatalog'))}</b></header><div>${lessons || `<small>${escapeHTML(t('lexiconEmpty'))}</small>`}</div></aside>${lexicon.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('lexiconLoading'))}</b></div>` : article}</div></section>`;
+  const directory = list.querySelector('.english-textbook-layout > aside > div');
+  if (directory) {
+    const restore = () => { directory.scrollTop = Math.max(0, Number(lexicon.directoryScrollTop) || 0); };
+    restore(); requestAnimationFrame(restore);
+    directory.addEventListener('scroll', () => { lexicon.directoryScrollTop = directory.scrollTop; }, {passive: true});
+  }
 }
 
 async function loadEnglishTextbooks(force = false) {
@@ -6219,8 +6533,17 @@ async function handleEnglishTextbookAction(event) {
     await handleEnglishLibraryAction(event);
     return;
   }
+  if (state.englishNotebook.tab === 'lexicon') {
+    await handleEnglishLexiconAction(event);
+    return;
+  }
   if (state.englishNotebook.tab !== 'textbook') return;
   const textbook = state.englishNotebook.textbook;
+  const fontSize = event.target.closest('[data-english-textbook-font-size]');
+  if (fontSize && event.type === 'change') {
+    await setEnglishTextbookFontSize(fontSize.value);
+    return;
+  }
   const select = event.target.closest('[data-english-textbook-select]');
   if (select && event.type === 'change') {
     await loadEnglishTextbookLessons(select.value);
@@ -6231,6 +6554,24 @@ async function handleEnglishTextbookAction(event) {
   if (lesson) {
     textbook.directoryScrollTop = Math.max(0, Number(lesson.parentElement?.scrollTop) || 0);
     await selectEnglishTextbookLesson(lesson.dataset.englishTextbookLesson);
+  }
+}
+
+function normaliseEnglishTextbookFontSize(value) {
+  return ['small', 'medium', 'large'].includes(value) ? value : 'medium';
+}
+
+async function setEnglishTextbookFontSize(value) {
+  const fontSize = normaliseEnglishTextbookFontSize(value);
+  const previous = normaliseEnglishTextbookFontSize(state.settings.textbookFontSize);
+  if (fontSize === previous) return;
+  state.settings = {...state.settings, textbookFontSize: fontSize};
+  try {
+    await saveSettings();
+  } catch (error) {
+    state.settings = {...state.settings, textbookFontSize: previous};
+    renderEnglishNotebook();
+    showToast(readError(error), true);
   }
 }
 
@@ -6262,12 +6603,13 @@ function renderEnglishTextbooks() {
   const book = textbook.books.find(item => item.code === textbook.code) || textbook.books[0];
   const detail = textbook.detail;
   const lessonList = textbook.lessons.map(item => `<button type="button" class="english-textbook-lesson${Number(item.lesson_no) === textbook.selectedLessonNo ? ' active' : ''}" data-english-textbook-lesson="${Number(item.lesson_no)}"><b>${String(item.lesson_no).padStart(2, '0')}</b><span><strong>${escapeHTML(item.title_en)}</strong><small>${escapeHTML(item.title_cn || item.summary_cn || '')}</small></span></button>`).join('');
-  const article = detail ? `<article class="english-textbook-article">
+  const fontSize = normaliseEnglishTextbookFontSize(state.settings.textbookFontSize);
+  const article = detail ? `<article class="english-textbook-article textbook-font-${fontSize}">
     <header><span>${escapeHTML(t('textbookReadOnly'))} · LESSON ${String(detail.lesson?.lesson_no || 0).padStart(2, '0')}</span><h2>${escapeHTML(detail.lesson?.title_en || '')}</h2><h3>${escapeHTML(detail.lesson?.title_cn || '')}</h3><small>${Number(detail.lesson?.word_count || 0).toLocaleString(locale())} ${escapeHTML(t('textbookWords'))} · ${Array.isArray(detail.paragraphs) ? detail.paragraphs.length : 0} ${escapeHTML(t('textbookParagraphs'))}${detail.lesson?.linked_lexicon ? ` · ${escapeHTML(t('textbookLinkedLexicon'))}` : ''}</small></header>
     <div class="english-textbook-paragraphs">${(detail.paragraphs || []).map(item => `<section><b>${String(item.paragraph_no).padStart(2, '0')}</b><div><p>${escapeHTML(item.content_en)}</p><small>${escapeHTML(item.content_cn)}</small></div></section>`).join('')}</div>
-    ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => `<span><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`).join('')}</div></footer>` : ''}
+    ${(detail.entries || []).length ? `<footer><h3>${escapeHTML(t('textbookVocabulary'))}</h3><div class="english-textbook-vocabulary">${detail.entries.map(item => { const tooltip = [item.word, item.phonetic, item.part_of_speech, item.meaning_cn].filter(Boolean).join(' '); return `<span title="${escapeHTML(tooltip)}"><b>${escapeHTML(item.word)}</b><em>${escapeHTML(item.phonetic || '')}</em><small>${escapeHTML(item.part_of_speech || '')} ${escapeHTML(item.meaning_cn || '')}</small></span>`; }).join('')}</div></footer>` : ''}
   </article>` : `<div class="english-center-empty"><span>▤</span><b>${escapeHTML(t('textbookSelectLesson'))}</b></div>`;
-  list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
+  list.innerHTML = `<section class="english-textbook-reader"><header class="english-textbook-summary"><div><span>${escapeHTML(t('textbookCurrent'))}</span><h2>${escapeHTML(book.title_cn || book.title_en)}</h2><small>${escapeHTML(book.title_en || '')} · ${escapeHTML(book.edition || '')}</small></div><div class="english-textbook-summary-controls"><label><span class="sr-only">${escapeHTML(t('textbookCurrent'))}</span><select data-english-textbook-select>${textbook.books.map(item => `<option value="${escapeHTML(item.code)}"${item.code === textbook.code ? ' selected' : ''}>${escapeHTML(item.title_cn || item.title_en)}</option>`).join('')}</select></label><label class="english-textbook-font-control"><span>${escapeHTML(t('textbookFontSize'))}</span><select data-english-textbook-font-size aria-label="${escapeHTML(t('textbookFontSize'))}"><option value="small"${fontSize === 'small' ? ' selected' : ''}>${escapeHTML(t('textbookFontSmall'))}</option><option value="medium"${fontSize === 'medium' ? ' selected' : ''}>${escapeHTML(t('textbookFontMedium'))}</option><option value="large"${fontSize === 'large' ? ' selected' : ''}>${escapeHTML(t('textbookFontLarge'))}</option></select></label></div><div class="english-textbook-stats"><b>${Number(book.total_lessons || 0)}</b><small>${escapeHTML(t('textbookLessons'))}</small><b>${Number(book.total_paragraphs || 0)}</b><small>${escapeHTML(t('textbookParagraphs'))}</small></div></header><div class="english-textbook-layout"><aside><header><span>CONTENTS</span><b>${escapeHTML(t('textbookCatalog'))}</b></header><div>${lessonList || `<small>${escapeHTML(t('textbookEmpty'))}</small>`}</div></aside>${textbook.detailLoading ? `<div class="english-center-empty"><span>◌</span><b>${escapeHTML(t('textbookLoading'))}</b></div>` : article}</div></section>`;
   const directory = list.querySelector('.english-textbook-layout > aside > div');
   if (directory) {
     const restoreScroll = () => { directory.scrollTop = Math.max(0, Number(textbook.directoryScrollTop) || 0); };
@@ -7022,17 +7364,19 @@ function latestIncomingChatPeer() {
 function renderRealtime() {
   const realtime = state.realtime || {};
   const status = realtime.status || 'offline';
+  const loggedIn = Boolean(state.account?.loggedIn);
   const identity = realtime.identity || null;
   const accountUser = state.account?.user || null;
-  const displayIdentity = state.account?.loggedIn ? (identity || {
+  const displayIdentity = loggedIn ? (identity || {
     userId: accountUser?.id,
     username: accountUser?.username,
     displayName: accountUser?.nickname
   }) : null;
   const statusElement = $('#realtime-status');
-  statusElement.className = `realtime-status ${status}`;
-  statusElement.querySelector('b').textContent = realtimeStatusLabel(status);
-  statusElement.title = realtime.lastError || realtimeStatusLabel(status);
+  const visibleStatus = loggedIn ? status : 'offline';
+  statusElement.className = `realtime-status ${visibleStatus}`;
+  statusElement.querySelector('b').textContent = realtimeStatusLabel(visibleStatus);
+  statusElement.title = loggedIn ? (realtime.lastError || realtimeStatusLabel(status)) : t('chatLoginRequired');
 
   $('#identity-empty').classList.toggle('hidden', Boolean(displayIdentity));
   $('#identity-card').classList.toggle('hidden', !displayIdentity);
@@ -7043,11 +7387,11 @@ function renderRealtime() {
     $('#identity-user-id').textContent = String(displayIdentity.userId || '--');
   }
 
-  const online = status === 'online';
+  const online = loggedIn && status === 'online';
   if (online && !currentPeerUserID() && (realtime.friends || []).length) {
     setActiveRealtimePeer(realtime.friends[0].user.userId);
   }
-  const peerID = currentPeerUserID();
+  const peerID = loggedIn ? currentPeerUserID() : 0;
   const validPeer = Boolean(peerID && (!identity || peerID !== Number(identity.userId)));
   const peerFriend = friendByUserID(peerID);
   $('#conversation-peer').textContent = validPeer ? (peerFriend ? friendDisplayName(peerFriend.user) : `#${peerID}`) : '—';
@@ -7058,6 +7402,12 @@ function renderRealtime() {
   if (!chatAvailable) chatEmojiPickerOpen = false;
   $('#chat-emoji-picker').classList.toggle('hidden', !chatEmojiPickerOpen);
   $('#chat-emoji-toggle').setAttribute('aria-expanded', String(chatEmojiPickerOpen));
+  $('#effect-emoji-toggle').disabled = !chatAvailable;
+  if (!chatAvailable) effectEmojiPickerOpen = false;
+  $('#effect-emoji-picker').classList.toggle('hidden', !effectEmojiPickerOpen);
+  $('#effect-emoji-toggle').setAttribute('aria-expanded', String(effectEmojiPickerOpen));
+  $('#effect-emoji-toggle').setAttribute('aria-label', t('effectEmoji'));
+  $('#effect-emoji-toggle').title = t('effectEmoji');
   $('#send-shake').disabled = !online || !validPeer || realtimeBusy;
   $('#send-flash').disabled = !online || !validPeer || realtimeBusy;
   $('#send-friend-request').disabled = !online || realtimeBusy;
@@ -7135,6 +7485,16 @@ function friendByUserID(userID) {
 }
 
 function renderRealtimeFriends() {
+  if (!state.account?.loggedIn) {
+    $('#friend-request-count').textContent = '0';
+    $('#friend-count').textContent = '0';
+    $('#friend-tab-badge').textContent = '0';
+    $('#friend-tab-badge').classList.add('hidden');
+    $('#friend-requests').innerHTML = `<div class="friend-list-empty">${escapeHTML(t('chatLoginRequired'))}</div>`;
+    $('#friend-list').innerHTML = `<div class="friend-list-empty">${escapeHTML(t('chatLoginRequired'))}</div>`;
+    renderChatFriendList([]);
+    return;
+  }
   const identityID = Number(state.realtime.identity?.userId) || 0;
   const requests = (state.realtime.friendRequests || []).filter(request =>
     request?.status === 'pending' && Number(request?.addressee?.userId) === identityID
@@ -7173,6 +7533,10 @@ function renderRealtimeFriends() {
 
 function renderChatFriendList(friends) {
   const list = $('#chat-friend-list');
+  if (!state.account?.loggedIn) {
+    list.innerHTML = `<div class="chat-friends-empty"><span>◎</span><p>${escapeHTML(t('chatLoginRequired'))}</p></div>`;
+    return;
+  }
   const peerID = currentPeerUserID();
   if (state.realtime.status !== 'online') {
     list.innerHTML = `<div class="chat-friends-empty"><span>◌</span><p>${escapeHTML(t('friendsRequireOnline'))}</p></div>`;
@@ -7196,6 +7560,11 @@ function renderChatFriendList(friends) {
 
 function renderRealtimeUnread() {
   const badge = $('#chat-unread');
+  if (!state.account?.loggedIn) {
+    badge.textContent = '0';
+    badge.classList.add('hidden');
+    return;
+  }
   const identityID = Number(state.realtime.identity?.userId) || 0;
   const pendingFriends = (state.realtime.friendRequests || []).filter(request =>
     request.status === 'pending' && Number(request.addressee?.userId) === identityID
@@ -7205,8 +7574,27 @@ function renderRealtimeUnread() {
   badge.classList.toggle('hidden', unread < 1);
 }
 
+function formatChatMessageTime(value) {
+  const created = new Date(value);
+  if (Number.isNaN(created.getTime())) return '';
+  const now = new Date();
+  const time = created.toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit', hour12: false});
+  const isToday = created.getFullYear() === now.getFullYear()
+    && created.getMonth() === now.getMonth()
+    && created.getDate() === now.getDate();
+  if (isToday) return time;
+  const year = created.getFullYear();
+  const month = String(created.getMonth() + 1).padStart(2, '0');
+  const day = String(created.getDate()).padStart(2, '0');
+  return locale().startsWith('zh') ? `${year}年${month}月${day}日 ${time}` : `${year}-${month}-${day} ${time}`;
+}
+
 function renderChatMessages(peerID) {
   const list = $('#chat-messages');
+  if (!state.account?.loggedIn) {
+    list.innerHTML = `<div class="chat-empty"><span>🔒</span><strong>${escapeHTML(t('chatLoginRequired'))}</strong><p>${escapeHTML(t('goToAccountLogin'))}</p></div>`;
+    return;
+  }
   if (!peerID) {
     list.innerHTML = `<div class="chat-empty"><span>💬</span><strong>${escapeHTML(t('choosePeer'))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
     return;
@@ -7219,12 +7607,16 @@ function renderChatMessages(peerID) {
     list.innerHTML = `<div class="chat-empty"><span>✉️</span><strong>${escapeHTML(t('noMessages', {name: friend ? friendDisplayName(friend.user) : `#${peerID}`}))}</strong><p>${escapeHTML(t('chatPrivacy'))}</p></div>`;
     return;
   }
-  list.innerHTML = messages.map(message => {
-    const created = new Date(message.createdAt);
-    const time = Number.isNaN(created.getTime()) ? '' : created.toLocaleTimeString(locale(), {hour: '2-digit', minute: '2-digit', hour12: false});
+  list.innerHTML = messages.map((message, index) => {
+    const time = formatChatMessageTime(message.createdAt);
+    const previousTime = index > 0 ? formatChatMessageTime(messages[index - 1].createdAt) : '';
+    const hideRepeatedTime = Boolean(time && time === previousTime);
     const delivery = message.outgoing
       ? `<span class="${Number(message.onlineDeliveries) > 0 ? 'online' : ''}">${escapeHTML(t(Number(message.onlineDeliveries) > 0 ? 'sentOnline' : 'savedOffline'))}</span>`
       : '';
+    const messageMeta = hideRepeatedTime
+      ? delivery
+      : `${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}`;
     if (message.eventType === 'window.shake' || message.eventType === 'window.flash') {
       const effect = t(message.eventType === 'window.shake' ? 'shakeRecord' : 'flashRecord');
       const senderName = realtimeMessageSenderName(message);
@@ -7234,13 +7626,13 @@ function renderChatMessages(peerID) {
       const detail = String(message.text || '').trim();
       return `<article class="chat-interaction ${message.outgoing ? 'outgoing' : ''}" data-message-id="${escapeHTML(message.messageId)}">
         <div class="chat-interaction-label"><span>${message.eventType === 'window.shake' ? '〰' : '✦'}</span><b>${escapeHTML(label)}</b>${detail ? `<em>${escapeHTML(detail)}</em>` : ''}</div>
-        <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+        ${messageMeta ? `<div class="chat-message-meta">${messageMeta}</div>` : ''}
       </article>`;
     }
     const emoji = findChatEmoji(message.text);
     return `<article class="chat-message ${message.outgoing ? 'outgoing' : ''} ${emoji ? 'emoji-only' : ''}" data-message-id="${escapeHTML(message.messageId)}">
       <div class="chat-bubble">${emoji ? `<span class="chat-message-emoji emoji-motion-${emoji.motion}" role="img" aria-label="${escapeHTML(locale().startsWith('zh') ? emoji.zh : emoji.en)}">${emoji.emoji}</span>` : escapeHTML(message.text)}</div>
-      <div class="chat-message-meta">${escapeHTML(time)}${delivery ? ` · ${delivery}` : ''}</div>
+      ${messageMeta ? `<div class="chat-message-meta">${messageMeta}</div>` : ''}
     </article>`;
   }).join('');
   requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
@@ -7263,6 +7655,32 @@ function initialiseChatEmojiPicker() {
     $('#chat-emoji-picker').classList.add('hidden');
     $('#chat-emoji-toggle').setAttribute('aria-expanded', 'false');
     $('#chat-form').requestSubmit();
+  });
+}
+
+function initialiseEffectEmojiPicker() {
+  const grid = $('#effect-emoji-grid');
+  const effectEmojis = chatEmojiCatalog.slice(0, 20);
+  grid.innerHTML = effectEmojis.map(item => `<button type="button" role="listitem" data-effect-emoji="${item.emoji}" class="emoji-motion-${item.motion}" title="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}" aria-label="${escapeHTML(locale().startsWith('zh') ? item.zh : item.en)}">${item.emoji}</button>`).join('');
+  $('#effect-emoji-toggle').addEventListener('click', () => {
+    if ($('#effect-emoji-toggle').disabled) return;
+    effectEmojiPickerOpen = !effectEmojiPickerOpen;
+    $('#effect-emoji-picker').classList.toggle('hidden', !effectEmojiPickerOpen);
+    $('#effect-emoji-toggle').setAttribute('aria-expanded', String(effectEmojiPickerOpen));
+  });
+  grid.addEventListener('click', event => {
+    const button = event.target.closest('[data-effect-emoji]');
+    if (!button || button.disabled) return;
+    const input = $('#effect-message');
+    const start = Number.isInteger(input.selectionStart) ? input.selectionStart : input.value.length;
+    const end = Number.isInteger(input.selectionEnd) ? input.selectionEnd : start;
+    input.value = `${input.value.slice(0, start)}${button.dataset.effectEmoji}${input.value.slice(end)}`;
+    const cursor = start + button.dataset.effectEmoji.length;
+    input.focus();
+    input.setSelectionRange(cursor, cursor);
+    effectEmojiPickerOpen = false;
+    $('#effect-emoji-picker').classList.add('hidden');
+    $('#effect-emoji-toggle').setAttribute('aria-expanded', 'false');
   });
 }
 
@@ -7629,6 +8047,7 @@ async function submitSettings(event) {
     theme: $('#theme-select').value,
     englishMode: state.settings.englishMode || 'study',
     englishSource: $('#english-source-select').value || 'nce2',
+    textbookFontSize: normaliseEnglishTextbookFontSize(state.settings.textbookFontSize),
     showCompactTodos: $('#show-compact-todos').checked,
     compactOpacity: normaliseCompactOpacity($('#compact-opacity').value),
     compactWidth: state.settings.compactWidth || 520,
@@ -8195,7 +8614,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.4',latestVersion:'0.16.4',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.4',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增个人中心免费试用领取，并优化钓鱼小岛的抛竿、咬钩、命中与收获动效。\nAdded one-time trial claiming in Account Center and richer Fishing Island cast, bite, timing, and catch effects.'} : {currentVersion:'0.16.4',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.11',latestVersion:'0.16.11',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增摸鱼农场，并优化英语学习、股市、云笔记分享和鱼获品质展示。\nAdded Slack Farm and improved English Learning, stock quotes, note sharing, and catch rarity labels.'} : {currentVersion:'0.16.11',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }
