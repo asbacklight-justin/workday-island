@@ -5,6 +5,20 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.16.12] - 2026-08-18
+
+### 中文
+
+- 钓鱼小岛将鱼类图鉴收进钓鱼桌：顶部标签改为湖面内图鉴按钮，点击以独立弹窗展示 20 种鱼的解锁进度与图鉴详情。
+- 鱼获侧栏升级为背包：相同鱼类自动折叠并显示持有数量；喂食小宠和摸鱼小游戏使用鱼获后，数量会即时减少。
+- 调整钓鱼桌布局，将背包与鱼竿/指南面板分别固定在两侧，湖面保持居中，减少重复鱼获占用的空间。
+
+### English
+
+- Moved the fish collection into Fishing Island itself: the header tab is now an in-lake button that opens a dedicated modal with progress and details for all 20 fish.
+- Upgraded the catch sidebar into an inventory. Duplicate fish stack with visible quantities, which decrease immediately after feeding pets or using a fish in the Slack mini-game.
+- Rebalanced the fishing desk layout by placing the inventory and the rod/guide panels on opposite sides while keeping the lake centred.
+
 ## [0.16.11] - 2026-08-18
 
 ### 中文

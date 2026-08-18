@@ -42,7 +42,7 @@ const translations = {
     englishSourceCET4: '大学英语四级', englishSourceCET6: '大学英语六级', englishSourceIELTS: '雅思核心词汇',
     stockMarket: '股市', stockWatchlist: '自选行情', stockCodePlaceholder: '股票代码，如 600519', addStock: '添加', stockLoading: '正在刷新行情…',
     stockUpdated: '{time} 更新', stockCached: '缓存于 {time}', stockNoData: '暂无自选股票', stockDisclaimer: '东方财富 · 数据仅供参考', removeStock: '删除自选股', stockAdded: '已添加自选股',
-    fishing: '摸鱼', fishingTitle: '摸鱼岛', fishingIsland: '钓鱼小岛', slackingIsland: '摸鱼小岛', petIsland: '摸鱼小宠', petTitle: '桌面小宠舱', petHint: '把钓到的鱼留在身边，它会陪你度过摸鱼间隙。', petAdopt: '领养为小宠', petCompanionActive: '已在陪伴', petSwitch: '选择鱼获', petNeedFish: '先去钓鱼小岛钓到一条鱼，再来领养小宠。', petReadyToAdopt: '挑一条鱼，带它回到工位吧', petGrowth: '成长', petEnergy: '精力', petAffection: '亲密度', petFeed: '喂食', petPlay: '陪玩', petNap: '打盹', petActionCooldown: '小宠正在回味刚才的互动，稍等一下。', petAdopted: '{name} 已成为你的摸鱼小宠！', petFed: '{name} 开心地吃掉了小零食。', petPlayed: '{name} 转了一个漂亮的圈圈。', petNapped: '{name} 在工位旁打了个舒服的盹。', petMoodSleepy: '有点困', petMoodCalm: '很放松', petMoodHappy: '心情不错', petMoodDelighted: '超级开心', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获', fishingRods: '鱼竿装备', fishingRodsHint: '每一根鱼竿只强化一个钓鱼方面', equipFishingRod: '装备鱼竿', rodCollection: '已收集 {owned}/{total} 根', rodDropRates: '优 1% · 精 .35% · 史 .1% · 传 .03%', rodNoBonus: '无额外加成', rodUnlocked: '获得 {rarity} 鱼竿「{name}」！可在装备栏切换', rodAlreadyOwned: '获得了重复鱼竿「{name}」', rodOrdinary: '普通', rodExcellent: '优秀', rodFine: '精良', rodEpic: '史诗', rodLegendary: '传说', slackingTitle: '工位摸鱼计划', slackingHint: '带上一条鱼，在老板视线外完成几次完美偷闲。', slackingCompanion: '选择摸鱼搭子', slackingSafeWindow: '安全空档', slackingProgress: '摸鱼进度', slackingExposure: '老板警觉', startSlacking: '开始摸鱼', slackingNow: '趁现在摸一下', slackingNeedFish: '先在钓鱼小岛钓到一条鱼，再来开启摸鱼计划。', slackingPerfect: '完美偷闲，老板完全没有察觉。', slackingGood: '安全通过，继续保持。', slackingMiss: '动作太明显，老板警觉上升！', slackingSuccess: '摸鱼成功！今天也要保持从容。', slackingCaught: '老板发现了，先认真工作一会儿吧。', slackingTimeout: '安全空档结束，收起你的摸鱼搭子。',
+    fishing: '摸鱼', fishingTitle: '摸鱼岛', fishingIsland: '钓鱼小岛', slackingIsland: '摸鱼小岛', petIsland: '摸鱼小宠', fishCollection: '鱼类图鉴', fishCollectionHint: '钓到的鱼会点亮图鉴，未发现的鱼影仍保持神秘。', fishCollectionProgress: '已解锁', fishLocked: '未解锁', fishCaughtTimes: '钓获 {count} 次', fishBackpack: '鱼获背包', fishBackpackHint: '重复鱼获会自动折叠，喂食会消耗库存。', fishBackpackItems: '背包鱼获', fishSpecies: '鱼种', petTitle: '桌面小宠舱', petHint: '把钓到的鱼留在身边，它会陪你度过摸鱼间隙。', petAdopt: '领养为小宠', petCompanionActive: '已在陪伴', petSwitch: '选择鱼获', petNeedFish: '先去钓鱼小岛钓到一条鱼，再来领养小宠。', petReadyToAdopt: '挑一条鱼，带它回到工位吧', petGrowth: '成长', petEnergy: '精力', petAffection: '亲密度', petFeed: '喂食', petPlay: '陪玩', petNap: '打盹', petActionCooldown: '小宠正在回味刚才的互动，稍等一下。', petAdopted: '{name} 已成为你的摸鱼小宠！', petFed: '{name} 开心地吃掉了小零食。', petPlayed: '{name} 转了一个漂亮的圈圈。', petNapped: '{name} 在工位旁打了个舒服的盹。', petMoodSleepy: '有点困', petMoodCalm: '很放松', petMoodHappy: '心情不错', petMoodDelighted: '超级开心', memberBeta: '会员内测', fishingMembersOnly: '摸鱼功能内测阶段仅会员可测试', fishingJournal: '摸鱼图鉴', fishingJournalHint: '今日也要有点收获', fishCaught: '钓获', bestStreak: '最佳连击', recentCatch: '最近鱼获', fishingRods: '鱼竿装备', fishingRodsHint: '每一根鱼竿只强化一个钓鱼方面', equipFishingRod: '装备鱼竿', rodCollection: '已收集 {owned}/{total} 根', rodDropRates: '优 1% · 精 .35% · 史 .1% · 传 .03%', rodNoBonus: '无额外加成', rodUnlocked: '获得 {rarity} 鱼竿「{name}」！可在装备栏切换', rodAlreadyOwned: '获得了重复鱼竿「{name}」', rodOrdinary: '普通', rodExcellent: '优秀', rodFine: '精良', rodEpic: '史诗', rodLegendary: '传说', slackingTitle: '工位摸鱼计划', slackingHint: '带上一条鱼，在老板视线外完成几次完美偷闲。', slackingCompanion: '选择摸鱼搭子', slackingSafeWindow: '安全空档', slackingProgress: '摸鱼进度', slackingExposure: '老板警觉', startSlacking: '开始摸鱼', slackingNow: '趁现在摸一下', slackingNeedFish: '先在钓鱼小岛钓到一条鱼，再来开启摸鱼计划。', slackingPerfect: '完美偷闲，老板完全没有察觉。', slackingGood: '安全通过，继续保持。', slackingMiss: '动作太明显，老板警觉上升！', slackingSuccess: '摸鱼成功！今天也要保持从容。', slackingCaught: '老板发现了，先认真工作一会儿吧。', slackingTimeout: '安全空档结束，收起你的摸鱼搭子。',
     petTitle: '布鲁斯的小宠舱', petHint: '布鲁斯会陪你度过摸鱼间隙，吃掉你钓到的鱼。', petOnline: '陪伴中', petFood: '选择鱼获', petNeedFish: '先去钓鱼小岛钓到一条鱼，布鲁斯已经饿啦。', petReadyToAdopt: '布鲁斯正在等一条新鲜的小鱼', petFed: '布鲁斯开心地吃掉了 {name}。', petPlayed: '布鲁斯追着气泡跑了一圈。', petNapped: '布鲁斯蜷在工位旁打了个舒服的盹。',
     petBruce: '布鲁斯', petTangerine: '橘小福', petLuna: '月白', petCape: '披风', petPlaying: '小宠正在陪玩，还要 {seconds} 秒', petNapping: '小宠正在打盹，还要 {seconds} 秒', petEnergyLow: '小宠精力不足，先喂食或休息一下吧。', petTooRested: '小宠现在精力很充足，先陪它玩一会吧。', petPlayCharge: '充能 {current}/{max}', petPlayChargeNext: '下一次充能 {time}', petPlayChargeFull: '陪玩充能已满', petNapCooldown: '睡觉冷却 {time}', petNapReady: '可以睡觉',
     fishingReady: '湖面很安静', fishingReadyHint: '抛下鱼竿，等一条有缘鱼', startFishing: '开始钓鱼', waitingForFish: '等待鱼儿咬钩…', waitingHint: '保持安静，浮标下沉时准备收线', fishBiting: '鱼儿咬钩了！', fishBitingHint: '游标进入发光区时点击收线', reelNow: '收线', catchProgress: '捕获进度', lineTension: '鱼线张力', spaceShortcut: '空格键',
@@ -149,7 +149,7 @@ const translations = {
     englishSourceCET4: 'CET-4', englishSourceCET6: 'CET-6', englishSourceIELTS: 'IELTS core vocabulary',
     stockMarket: 'Stocks', stockWatchlist: 'Watchlist', stockCodePlaceholder: 'A-share code, e.g. 600519', addStock: 'Add', stockLoading: 'Refreshing quotes…',
     stockUpdated: 'Updated {time}', stockCached: 'Cached at {time}', stockNoData: 'No watched stocks', stockDisclaimer: 'Eastmoney · For reference only', removeStock: 'Remove from watchlist', stockAdded: 'Stock added',
-    fishing: 'Fishing Break', fishingTitle: 'Slack Island', fishingIsland: 'Fishing Island', slackingIsland: 'Slack Island', petIsland: 'Desk Pet', petTitle: 'Desk Pet Cabin', petHint: 'Keep one of your catches nearby for a tiny companion between breaks.', petAdopt: 'Adopt as pet', petCompanionActive: 'Already together', petSwitch: 'Choose a catch', petNeedFish: 'Catch a fish in Fishing Island before adopting a desk pet.', petReadyToAdopt: 'Pick a fish and bring it back to your desk', petGrowth: 'Growth', petEnergy: 'Energy', petAffection: 'Bond', petFeed: 'Feed', petPlay: 'Play', petNap: 'Nap', petActionCooldown: 'Your pet is still enjoying the last interaction. Give it a moment.', petAdopted: '{name} is now your desk pet!', petFed: '{name} happily finished a tiny snack.', petPlayed: '{name} made a beautiful little circle.', petNapped: '{name} took a comfortable nap by your desk.', petMoodSleepy: 'Sleepy', petMoodCalm: 'Relaxed', petMoodHappy: 'Happy', petMoodDelighted: 'Delighted', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches', fishingRods: 'Rod Loadout', fishingRodsHint: 'Each rod improves one fishing aspect', equipFishingRod: 'Equip rod', rodCollection: '{owned}/{total} rods collected', rodDropRates: 'Ex 1% · Fine .35% · Epic .1% · Leg .03%', rodNoBonus: 'No bonus', rodUnlocked: 'Unlocked a {rarity} rod: {name}. Equip it in your loadout.', rodAlreadyOwned: 'You found a duplicate {name}', rodOrdinary: 'Ordinary', rodExcellent: 'Excellent', rodFine: 'Fine', rodEpic: 'Epic', rodLegendary: 'Legendary', slackingTitle: 'Desk-side Slack Plan', slackingHint: 'Bring a caught fish and use safe windows for a few perfect breaks.', slackingCompanion: 'Choose your fish buddy', slackingSafeWindow: 'Safe window', slackingProgress: 'Slack progress', slackingExposure: 'Boss alert', startSlacking: 'Start slacking', slackingNow: 'Take a quick break', slackingNeedFish: 'Catch a fish in Fishing Island before starting your slack plan.', slackingPerfect: 'Perfect break. Nobody noticed.', slackingGood: 'Safe pass. Keep it subtle.', slackingMiss: 'Too obvious—the boss alert rose!', slackingSuccess: 'Slack success! Stay effortlessly calm.', slackingCaught: 'Busted. Time to look busy for a moment.', slackingTimeout: 'The safe window closed. Hide your fish buddy.',
+    fishing: 'Fishing Break', fishingTitle: 'Slack Island', fishingIsland: 'Fishing Island', slackingIsland: 'Slack Island', petIsland: 'Desk Pet', fishCollection: 'Fish Compendium', fishCollectionHint: 'Every catch lights up the compendium. Unseen fish remain a mystery.', fishCollectionProgress: 'unlocked', fishLocked: 'Locked', fishCaughtTimes: 'Caught {count} times', fishBackpack: 'Catch Backpack', fishBackpackHint: 'Duplicate catches stack here; feeding uses one from your bag.', fishBackpackItems: 'Bag contents', fishSpecies: 'Species', petTitle: 'Desk Pet Cabin', petHint: 'Keep one of your catches nearby for a tiny companion between breaks.', petAdopt: 'Adopt as pet', petCompanionActive: 'Already together', petSwitch: 'Choose a catch', petNeedFish: 'Catch a fish in Fishing Island before adopting a desk pet.', petReadyToAdopt: 'Pick a fish and bring it back to your desk', petGrowth: 'Growth', petEnergy: 'Energy', petAffection: 'Bond', petFeed: 'Feed', petPlay: 'Play', petNap: 'Nap', petActionCooldown: 'Your pet is still enjoying the last interaction. Give it a moment.', petAdopted: '{name} is now your desk pet!', petFed: '{name} happily finished a tiny snack.', petPlayed: '{name} made a beautiful little circle.', petNapped: '{name} took a comfortable nap by your desk.', petMoodSleepy: 'Sleepy', petMoodCalm: 'Relaxed', petMoodHappy: 'Happy', petMoodDelighted: 'Delighted', memberBeta: 'Member Beta', fishingMembersOnly: 'Fishing Break is available to members only during beta', fishingJournal: 'Catch Journal', fishingJournalHint: 'A tiny catch makes the day better', fishCaught: 'Caught', bestStreak: 'Best streak', recentCatch: 'Recent catches', fishingRods: 'Rod Loadout', fishingRodsHint: 'Each rod improves one fishing aspect', equipFishingRod: 'Equip rod', rodCollection: '{owned}/{total} rods collected', rodDropRates: 'Ex 1% · Fine .35% · Epic .1% · Leg .03%', rodNoBonus: 'No bonus', rodUnlocked: 'Unlocked a {rarity} rod: {name}. Equip it in your loadout.', rodAlreadyOwned: 'You found a duplicate {name}', rodOrdinary: 'Ordinary', rodExcellent: 'Excellent', rodFine: 'Fine', rodEpic: 'Epic', rodLegendary: 'Legendary', slackingTitle: 'Desk-side Slack Plan', slackingHint: 'Bring a caught fish and use safe windows for a few perfect breaks.', slackingCompanion: 'Choose your fish buddy', slackingSafeWindow: 'Safe window', slackingProgress: 'Slack progress', slackingExposure: 'Boss alert', startSlacking: 'Start slacking', slackingNow: 'Take a quick break', slackingNeedFish: 'Catch a fish in Fishing Island before starting your slack plan.', slackingPerfect: 'Perfect break. Nobody noticed.', slackingGood: 'Safe pass. Keep it subtle.', slackingMiss: 'Too obvious—the boss alert rose!', slackingSuccess: 'Slack success! Stay effortlessly calm.', slackingCaught: 'Busted. Time to look busy for a moment.', slackingTimeout: 'The safe window closed. Hide your fish buddy.',
     petTitle: 'Bruce’s Pet Cabin', petHint: 'Bruce keeps you company between breaks and enjoys the fish you catch.', petOnline: 'Keeping you company', petFood: 'Choose a catch', petNeedFish: 'Catch a fish in Fishing Island—Bruce is hungry.', petReadyToAdopt: 'Bruce is waiting for a fresh fish', petFed: 'Bruce happily ate {name}.', petPlayed: 'Bruce chased bubbles in a little circle.', petNapped: 'Bruce took a comfortable nap by your desk.',
     petBruce: 'Bruce', petTangerine: 'Tangerine', petLuna: 'Luna', petCape: 'Cape', petPlaying: 'Your pet is playing. {seconds}s remaining', petNapping: 'Your pet is napping. {seconds}s remaining', petEnergyLow: 'Your pet needs energy first—feed or let it rest.', petTooRested: 'Your pet is well rested. Play together first.', petPlayCharge: 'Charge {current}/{max}', petPlayChargeNext: 'Next charge {time}', petPlayChargeFull: 'Play charges are full', petNapCooldown: 'Nap cooldown {time}', petNapReady: 'Ready to nap',
     fishingReady: 'The lake is quiet', fishingReadyHint: 'Cast the line and wait for your lucky fish', startFishing: 'Start fishing', waitingForFish: 'Waiting for a bite…', waitingHint: 'Stay quiet and get ready when the float sinks', fishBiting: 'A fish is biting!', fishBitingHint: 'Reel when the marker enters the glowing zone', reelNow: 'Reel now', catchProgress: 'Catch progress', lineTension: 'Line tension', spaceShortcut: 'Space',
@@ -809,6 +809,7 @@ function bindEvents() {
   $('#close-fishing').addEventListener('click', closeFishingPage);
   $('#fishing-action').addEventListener('click', handleFishingAction);
   $('#clear-fishing-log').addEventListener('click', clearFishingJournal);
+  $('#open-fish-collection').addEventListener('click', () => { renderFishCollection(); openModal('fish-collection-modal'); });
   $('#fishing-rod-select').addEventListener('change', equipFishingRod);
   $('#fishing-tabs').addEventListener('click', changeFishingTab);
   $('#slacking-fish-select').addEventListener('change', changeSlackingCompanion);
@@ -4862,11 +4863,24 @@ function renderCloudTransferProgress(payload = {}) {
 const fishingFish = [
   {id:'crucian', emoji:'🐟', zh:'小鲫鱼', en:'Crucian Carp', rarity:'common', weight:34, difficulty:1, duration:22, zone:28},
   {id:'carp', emoji:'🐠', zh:'锦鲤', en:'Koi', rarity:'common', weight:25, difficulty:1, duration:21, zone:27},
+  {id:'catfish', emoji:'🐟', zh:'胡子鲶', en:'Whisker Catfish', rarity:'common', weight:18, difficulty:1, duration:22, zone:27},
+  {id:'tilapia', emoji:'🐠', zh:'罗非鱼', en:'Blue Tilapia', rarity:'common', weight:16, difficulty:1, duration:21, zone:26},
+  {id:'sardine', emoji:'🐟', zh:'银沙丁', en:'Silver Sardine', rarity:'common', weight:14, difficulty:1, duration:20, zone:26},
+  {id:'goby', emoji:'🐡', zh:'石斑虾虎', en:'Pebble Goby', rarity:'common', weight:12, difficulty:1, duration:20, zone:25},
   {id:'perch', emoji:'🐟', zh:'河鲈', en:'River Perch', rarity:'rare', weight:17, difficulty:2, duration:19, zone:22},
   {id:'salmon', emoji:'🐡', zh:'银鳞鲑', en:'Silver Salmon', rarity:'rare', weight:12, difficulty:2, duration:18, zone:21},
+  {id:'trout', emoji:'🐟', zh:'彩虹鳟', en:'Rainbow Trout', rarity:'rare', weight:11, difficulty:2, duration:19, zone:21},
+  {id:'golden-bass', emoji:'🐠', zh:'金鳍鲈', en:'Golden Bass', rarity:'rare', weight:9, difficulty:2, duration:18, zone:20},
+  {id:'archerfish', emoji:'🐡', zh:'射水鱼', en:'Archerfish', rarity:'rare', weight:8, difficulty:2, duration:17, zone:20},
+  {id:'snapper', emoji:'🐠', zh:'珊瑚笛鲷', en:'Coral Snapper', rarity:'rare', weight:7, difficulty:2, duration:17, zone:19},
   {id:'moonfish', emoji:'🐠', zh:'月光蝶鱼', en:'Moonlit Butterflyfish', rarity:'epic', weight:7, difficulty:3, duration:16, zone:17},
+  {id:'anglerfish', emoji:'🐡', zh:'灯笼鮟鱇', en:'Lantern Anglerfish', rarity:'epic', weight:5, difficulty:3, duration:16, zone:16},
+  {id:'mandarin-fish', emoji:'🐠', zh:'翡翠鳜鱼', en:'Jade Mandarin Fish', rarity:'epic', weight:4, difficulty:3, duration:15, zone:16},
+  {id:'lionfish', emoji:'🐡', zh:'流焰狮子鱼', en:'Flame Lionfish', rarity:'epic', weight:3, difficulty:3, duration:15, zone:15},
+  {id:'pearl-ray', emoji:'🦈', zh:'珍珠鳐', en:'Pearl Ray', rarity:'epic', weight:2, difficulty:3, duration:14, zone:15},
   {id:'koi-king', emoji:'🐉', zh:'赤焰龙鲤', en:'Crimson Dragon Koi', rarity:'legendary', weight:3, difficulty:4, duration:14, zone:13},
-  {id:'star-whale', emoji:'🐋', zh:'星海幼鲸', en:'Starlight Calf', rarity:'legendary', weight:2, difficulty:4, duration:13, zone:12}
+  {id:'star-whale', emoji:'🐋', zh:'星海幼鲸', en:'Starlight Calf', rarity:'legendary', weight:2, difficulty:4, duration:13, zone:12},
+  {id:'azure-dragon', emoji:'🐲', zh:'沧澜灵龙', en:'Azure Lake Dragon', rarity:'legendary', weight:1, difficulty:4, duration:12, zone:11}
 ];
 
 const fishingRods = [
@@ -5553,6 +5567,15 @@ function relocateSlackingWindow(perk) {
 function startSlackingRound() {
   const data = renderSlackingCompanion();
   if (!data) { showToast(t('slackingNeedFish'), true); return; }
+  // A fish buddy is a consumable: reserve one from the backpack for this round.
+  // Keep the resolved fish/perk in `data` so the active round remains stable.
+  const catches = state.fishing.journal.catches || [];
+  const catchIndex = catches.indexOf(data.companion.caught);
+  if (catchIndex >= 0) catches.splice(catchIndex, 1);
+  state.fishing.slack.selectedCatch = 0;
+  saveFishingJournal();
+  renderFishingJournal();
+  renderFishCollection();
   const game = state.fishing.slack;
   game.phase = 'active';
   game.progress = 0;
@@ -5565,7 +5588,7 @@ function startSlackingRound() {
   $('#slacking-result').classList.add('hidden');
   $('#slacking-timer').classList.remove('hidden');
   $('#slacking-action').querySelector('b').textContent = t('slackingNow');
-  renderSlackingCompanion();
+  $('#slacking-fish-select').disabled = true;
   relocateSlackingWindow(data.perk);
   renderSlackingMeters();
   slackingAnimationFrame = window.requestAnimationFrame(updateSlackingFrame);
@@ -5632,16 +5655,39 @@ function renderFishingJournal() {
   const journal = state.fishing?.journal;
   if (!journal || !$('#fishing-catch-list')) return;
   $('#fishing-total-caught').textContent = String(journal.totalCaught || 0);
-  $('#fishing-best-streak').textContent = String(journal.bestStreak || 0);
+  const inventory = (journal.catches || []).reduce((items, caught) => {
+    const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
+    const existing = items.get(fish.id) || {fish, count: 0, caughtAt: 0};
+    existing.count += 1;
+    existing.caughtAt = Math.max(existing.caughtAt, new Date(caught.caughtAt || 0).getTime() || 0);
+    items.set(fish.id, existing);
+    return items;
+  }, new Map());
+  $('#fishing-best-streak').textContent = String(inventory.size);
   const list = $('#fishing-catch-list');
-  if (!journal.catches.length) {
+  if (!inventory.size) {
     list.innerHTML = `<div class="fishing-catch-empty">${escapeHTML(t('noFishingCatch')).replace(/\n/g, '<br>')}</div>`;
     return;
   }
-  list.innerHTML = journal.catches.map(caught => {
-    const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
-    const time = new Date(caught.caughtAt || Date.now()).toLocaleTimeString(locale(), {hour:'2-digit', minute:'2-digit'});
-    return `<article class="fishing-catch-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(time)}</small></div><em class="fish-rarity-tag ${escapeHTML(fish.rarity || 'common')}">${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
+  list.innerHTML = [...inventory.values()].sort((a, b) => b.caughtAt - a.caughtAt).map(({fish, count}) => {
+    return `<article class="fishing-catch-item fishing-backpack-item"><span>${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(fishingRarityLabel(fish.rarity))}</small></div><b class="fishing-backpack-count">×${count}</b><em class="fish-rarity-tag ${escapeHTML(fish.rarity || 'common')}">${escapeHTML(fishingRarityLabel(fish.rarity))}</em></article>`;
+  }).join('');
+}
+
+function renderFishCollection() {
+  const journal = state.fishing?.journal;
+  const grid = $('#fish-collection-grid');
+  if (!journal || !grid) return;
+  const catchesByFish = (journal.catches || []).reduce((result, caught) => {
+    result[caught.fishId] = (result[caught.fishId] || 0) + 1;
+    return result;
+  }, {});
+  const unlocked = fishingFish.filter(fish => catchesByFish[fish.id]).length;
+  $('#fish-collection-count').textContent = `${unlocked} / ${fishingFish.length}`;
+  grid.innerHTML = fishingFish.map((fish, index) => {
+    const count = catchesByFish[fish.id] || 0;
+    if (!count) return `<article class="fish-collection-card locked"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-shadow">?</span><div><strong>${escapeHTML(t('fishLocked'))}</strong><small>🔒</small></div></article>`;
+    return `<article class="fish-collection-card ${escapeHTML(fish.rarity)}"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-emoji">${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(fishingRarityLabel(fish.rarity))} · ${escapeHTML(t('fishCaughtTimes', {count}))}</small></div></article>`;
   }).join('');
 }
 
@@ -5879,6 +5925,7 @@ function finishFishingRound(caught, reason = 'escaped') {
     const rodDrop = tryUnlockFishingRod();
     saveFishingJournal();
     renderFishingJournal();
+    renderFishCollection();
     renderFishingRods();
     $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
     $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
@@ -5904,6 +5951,7 @@ function clearFishingJournal() {
   state.fishing.petCandidate = '';
   saveFishingJournal();
   renderFishingJournal();
+  renderFishCollection();
   if (state.fishing.tab === 'pet') renderFishingPet();
   showToast(t('fishingLogCleared'));
 }
