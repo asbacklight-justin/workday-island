@@ -15,7 +15,7 @@ import (
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
-const appVersion = "0.16.12"
+const appVersion = "0.17.0"
 
 const (
 	defaultFullWindowWidth = 1100
@@ -23,25 +23,26 @@ const (
 )
 
 type App struct {
-	ctx          context.Context
-	store        *Store
-	cancel       context.CancelFunc
-	startupMu    sync.Mutex
-	alertSeq     atomic.Uint64
-	alertMu      sync.RWMutex
-	activeAlert  *ReminderAlert
-	weatherMu    sync.Mutex
-	weatherCache weatherCache
-	httpClient   *http.Client
-	realtime     *RealtimeClient
-	cloudDisk    *CloudDiskClient
-	aiChat       *AIChatClient
-	translator   *TranslationClient
-	english      *EnglishClient
-	englishMode  atomic.Bool
-	stockMode    atomic.Bool
-	stockMu      sync.Mutex
-	stockCache   StockSnapshot
+	ctx           context.Context
+	store         *Store
+	cancel        context.CancelFunc
+	startupMu     sync.Mutex
+	alertSeq      atomic.Uint64
+	alertMu       sync.RWMutex
+	activeAlert   *ReminderAlert
+	weatherMu     sync.Mutex
+	weatherCache  weatherCache
+	httpClient    *http.Client
+	realtime      *RealtimeClient
+	cloudDisk     *CloudDiskClient
+	workdayIsland *WorkdayIslandClient
+	aiChat        *AIChatClient
+	translator    *TranslationClient
+	english       *EnglishClient
+	englishMode   atomic.Bool
+	stockMode     atomic.Bool
+	stockMu       sync.Mutex
+	stockCache    StockSnapshot
 }
 
 func NewApp() *App {
@@ -64,6 +65,7 @@ func NewApp() *App {
 	}
 	app.realtime = NewRealtimeClient(app)
 	app.cloudDisk = NewCloudDiskClient(app, cloudDiskAPIBaseURL)
+	app.workdayIsland = NewWorkdayIslandClient(app.cloudDisk)
 	app.aiChat = NewAIChatClient(app, app.cloudDisk, cloudDiskAPIBaseURL)
 	app.translator = NewTranslationClient(app.cloudDisk)
 	app.english = NewEnglishClient(app.httpClient, englishAPIBaseURL)
@@ -443,6 +445,30 @@ func (a *App) RefreshRealtimeFriends() (RealtimeSnapshot, error) {
 
 func (a *App) GetCloudDiskSession() CloudDiskSession {
 	return a.cloudDisk.Session()
+}
+
+func (a *App) GetWorkdayIslandState() (WorkdayIslandState, error) {
+	return a.workdayIsland.GetState(context.Background())
+}
+
+func (a *App) MigrateWorkdayIslandLegacy(legacy WorkdayIslandLegacyState) (WorkdayIslandState, error) {
+	return a.workdayIsland.MigrateLegacy(context.Background(), legacy)
+}
+
+func (a *App) CatchWorkdayIslandFish(fishID string, streak uint) (WorkdayIslandCatchResult, error) {
+	return a.workdayIsland.Catch(context.Background(), fishID, streak)
+}
+
+func (a *App) ConsumeWorkdayIslandFish(fishID string) (WorkdayIslandState, error) {
+	return a.workdayIsland.ConsumeFish(context.Background(), fishID)
+}
+
+func (a *App) EquipWorkdayIslandRod(rodID string) (WorkdayIslandState, error) {
+	return a.workdayIsland.EquipRod(context.Background(), rodID)
+}
+
+func (a *App) SaveWorkdayIslandAuxiliaryState(input WorkdayIslandAuxiliaryState) (WorkdayIslandState, error) {
+	return a.workdayIsland.SaveAuxiliaryState(context.Background(), input)
 }
 
 func (a *App) ListCloudDiskItems(parentID uint64, page, pageSize int, keyword string) (CloudDiskPage, error) {

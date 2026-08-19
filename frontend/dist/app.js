@@ -215,6 +215,25 @@ const translations = {
   }
 };
 
+Object.assign(translations.zh, {
+  farmIsland: '摸鱼农场',
+  fishingLevel: '等级',
+  fishingExperience: '经验',
+  fishingCoins: '摸鱼币',
+  fishingAccountSync: '登录同步',
+  fishingLoginRequired: '登录账号后即可进入摸鱼岛',
+  fishingPlusRequired: '「{feature}」内测期间需 Plus 会员才可访问'
+});
+Object.assign(translations.en, {
+  farmIsland: 'Slack Farm',
+  fishingLevel: 'Level',
+  fishingExperience: 'XP',
+  fishingCoins: 'Slack coins',
+  fishingAccountSync: 'Account sync',
+  fishingLoginRequired: 'Sign in to enter Slack Island',
+  fishingPlusRequired: '“{feature}” requires Plus membership during beta'
+});
+
 const headerEntryDefinitions = [
   ['ai', '#open-ai-chat'], ['chat', '#open-chat'], ['stocks', '#open-stocks'], ['fishing', '#open-fishing'], ['cloud', '#open-cloud'],
   ['notes', '#open-notes'], ['sharing', '#open-share-management'], ['translator', '#open-translator'], ['english', '#open-english'],
@@ -284,7 +303,7 @@ const petNapCooldown = 10 * 60 * 1000;
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.16.11', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.17.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -4061,6 +4080,10 @@ async function submitAccountLogin(event) {
     if (state.notificationOpen) await loadUserNotices();
     if (state.shareManagementOpen) await loadNoteShares();
     await refreshActiveEnglishMemberContent();
+    // The fishing inventory is an account asset as well. Synchronise it as
+    // soon as sign-in completes so an existing local journal is migrated once
+    // and the current server state wins on every later sign-in.
+    try { await syncWorkdayIslandState(); } catch (_) { /* It will retry when the island opens. */ }
     showToast(t('loginSuccess'));
     // Membership may be granted asynchronously immediately after login.
     // Retry profile loading shortly afterwards without delaying the login UI.
@@ -4934,7 +4957,10 @@ function createFarmState(value = {}) {
   return {
     plots,
     coins: Math.max(0, Math.floor(Number(source.coins) || 0)),
-    totalHarvested: Math.max(0, Math.floor(Number(source.totalHarvested) || 0))
+    totalHarvested: Math.max(0, Math.floor(Number(source.totalHarvested) || 0)),
+    // Seed selection is part of the farm session as well. Keeping it in the
+    // server-synced payload makes a device switch restore the exact farm UI.
+    selectedCrop: farmCrops.some(crop => crop.id === source.selectedCrop) ? source.selectedCrop : 'radish'
   };
 }
 
@@ -4949,8 +4975,17 @@ function loadFishingJournal() {
     const legacyPet = value.pet && typeof value.pet === 'object' ? value.pet : {};
     const pets = Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState(savedPets[definition.id] || (definition.id === 'bruce' ? legacyPet : {}))]));
     const activePetId = deskPets.some(pet => pet.id === value.activePetId) ? value.activePetId : 'bruce';
+    const catches = Array.isArray(value.catches) ? value.catches.slice(0, 30) : [];
+    // The compendium is permanent. Migrate older local journals from their
+    // remaining backpack entries, then keep discoveries independent of items
+    // that are consumed by the pet or a slacking round.
+    const discoveredFishIds = [...new Set([
+      ...(Array.isArray(value.discoveredFishIds) ? value.discoveredFishIds : []),
+      ...catches.map(caught => caught?.fishId)
+    ].filter(id => fishingFish.some(fish => fish.id === id)))];
     return {
-      catches: Array.isArray(value.catches) ? value.catches.slice(0, 30) : [],
+      catches,
+      discoveredFishIds,
       totalCaught: Math.max(0, Number(value.totalCaught) || 0),
       bestStreak: Math.max(0, Number(value.bestStreak) || 0),
       ownedRods,
@@ -4960,12 +4995,133 @@ function loadFishingJournal() {
       farm: createFarmState(value.farm)
     };
   } catch (_) {
-    return {catches: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
+    return {catches: [], discoveredFishIds: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
   }
 }
 
 function saveFishingJournal() {
   try { localStorage.setItem('workdayIsland.fishingJournal', JSON.stringify(state.fishing.journal)); } catch (_) { /* Local journal is optional. */ }
+}
+
+function fishingLegacyPayload(journal = state.fishing?.journal || {}) {
+  return {
+    fish_ids: (journal.catches || []).map(item => item?.fishId).filter(Boolean),
+    discovered_fish_ids: Array.isArray(journal.discoveredFishIds) ? journal.discoveredFishIds : [],
+    owned_rod_ids: Array.isArray(journal.ownedRods) ? journal.ownedRods : ['bamboo'],
+    equipped_rod_id: journal.equippedRod || 'bamboo',
+    pet_state: {
+      activePetId: journal.activePetId || 'bruce',
+      pets: journal.pets || {}
+    },
+    farm_state: journal.farm || createFarmState()
+  };
+}
+
+let workdayIslandAuxiliarySyncTimer = 0;
+
+function workdayIslandAuxiliaryPayload(journal = state.fishing?.journal || {}) {
+  return {
+    pet_state: {
+      activePetId: journal.activePetId || 'bruce',
+      pets: journal.pets || {}
+    },
+    farm_state: {
+      ...(journal.farm || createFarmState()),
+      selectedCrop: state.fishing?.farm?.selectedCrop || journal.farm?.selectedCrop || 'radish'
+    }
+  };
+}
+
+function scheduleWorkdayIslandAuxiliarySync() {
+  saveFishingJournal();
+  if (!state.account?.loggedIn || !api.SaveWorkdayIslandAuxiliaryState) return;
+  window.clearTimeout(workdayIslandAuxiliarySyncTimer);
+  workdayIslandAuxiliarySyncTimer = window.setTimeout(() => {
+    api.SaveWorkdayIslandAuxiliaryState(workdayIslandAuxiliaryPayload()).catch(() => {
+      // The local journal remains intact and sync is retried on the next
+      // state-changing action or when the user reopens the island.
+    });
+  }, 180);
+}
+
+function catchesFromIslandInventory(inventory = []) {
+  const items = [];
+  inventory.forEach((entry, fishIndex) => {
+    const fishId = entry?.fish_id || entry?.fishId;
+    const quantity = Math.max(0, Math.min(999, Number(entry?.quantity) || 0));
+    if (!fishingFish.some(fish => fish.id === fishId)) return;
+    const baseTime = new Date(entry?.last_caught_at || entry?.lastCaughtAt || Date.now()).getTime() || Date.now();
+    for (let index = 0; index < quantity; index += 1) {
+      items.push({fishId, caughtAt:new Date(baseTime - (fishIndex * 1000 + index)).toISOString(), serverInventory:true});
+    }
+  });
+  return items;
+}
+
+function applyWorkdayIslandState(remoteState) {
+  if (!remoteState || !remoteState.profile) return;
+  const journal = state.fishing.journal || loadFishingJournal();
+  const profile = remoteState.profile || {};
+  journal.catches = catchesFromIslandInventory(remoteState.inventory || []);
+  journal.discoveredFishIds = [...new Set((remoteState.discovered_fish_ids || remoteState.discoveredFishIds || []).filter(id => fishingFish.some(fish => fish.id === id)))];
+  journal.totalCaught = Math.max(0, Number(profile.total_caught ?? profile.totalCaught) || 0);
+  journal.bestStreak = Math.max(0, Number(profile.best_streak ?? profile.bestStreak) || 0);
+  journal.ownedRods = [...new Set((remoteState.owned_rod_ids || remoteState.ownedRodIds || ['bamboo']).filter(id => fishingRods.some(rod => rod.id === id)))];
+  if (!journal.ownedRods.includes('bamboo')) journal.ownedRods.unshift('bamboo');
+  journal.equippedRod = journal.ownedRods.includes(profile.equipped_rod_id || profile.equippedRodId) ? (profile.equipped_rod_id || profile.equippedRodId) : 'bamboo';
+  journal.islandProfile = {
+    level: Math.max(1, Number(profile.level) || 1),
+    experience: Math.max(0, Number(profile.experience) || 0),
+    nextExperience: Math.max(100, Number(profile.next_experience ?? profile.nextExperience) || 100),
+    slackCoins: Math.max(0, Number(profile.slack_coins ?? profile.slackCoins) || 0),
+    legacyMigrated: Boolean(profile.legacy_migrated ?? profile.legacyMigrated)
+  };
+  const remotePetState = remoteState.pet_state ?? remoteState.petState;
+  if (remotePetState && typeof remotePetState === 'object') {
+    const savedPets = remotePetState.pets && typeof remotePetState.pets === 'object' ? remotePetState.pets : {};
+    journal.pets = Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState(savedPets[definition.id] || {})]));
+    journal.activePetId = deskPets.some(pet => pet.id === remotePetState.activePetId) ? remotePetState.activePetId : 'bruce';
+  }
+  const remoteFarmState = remoteState.farm_state ?? remoteState.farmState;
+  if (remoteFarmState && typeof remoteFarmState === 'object') {
+    journal.farm = createFarmState(remoteFarmState);
+    state.fishing.farm.selectedCrop = journal.farm.selectedCrop;
+  }
+  state.fishing.journal = journal;
+  saveFishingJournal();
+}
+
+async function syncWorkdayIslandState({migrateLegacy = true} = {}) {
+  if (!state.account?.loggedIn || !api.GetWorkdayIslandState) throw new Error(t('fishingLoginRequired'));
+  let remoteState = await api.GetWorkdayIslandState();
+  const profile = remoteState?.profile || {};
+  if (migrateLegacy && !Boolean(profile.legacy_migrated ?? profile.legacyMigrated) && api.MigrateWorkdayIslandLegacy) {
+    remoteState = await api.MigrateWorkdayIslandLegacy(fishingLegacyPayload(state.fishing.journal));
+  }
+  applyWorkdayIslandState(remoteState);
+  // Profiles created before pet/farm cloud persistence may already have
+  // completed the one-time migration. Seed their auxiliary state once so a
+  // pre-existing account does not remain half local forever.
+  const hasPetState = remoteState?.pet_state && typeof remoteState.pet_state === 'object';
+  const hasFarmState = remoteState?.farm_state && typeof remoteState.farm_state === 'object';
+  if ((!hasPetState || !hasFarmState) && api.SaveWorkdayIslandAuxiliaryState) {
+    remoteState = await api.SaveWorkdayIslandAuxiliaryState(workdayIslandAuxiliaryPayload());
+    applyWorkdayIslandState(remoteState);
+  }
+  return remoteState;
+}
+
+function discoveredFishingFish(journal) {
+  if (!journal) return new Set();
+  const discovered = Array.isArray(journal.discoveredFishIds) ? journal.discoveredFishIds : [];
+  return new Set(discovered.filter(id => fishingFish.some(fish => fish.id === id)));
+}
+
+function discoverFishingFish(journal, fishId) {
+  if (!journal || !fishingFish.some(fish => fish.id === fishId)) return;
+  const discovered = discoveredFishingFish(journal);
+  discovered.add(fishId);
+  journal.discoveredFishIds = [...discovered];
 }
 
 function fishingFishName(fish) {
@@ -5019,29 +5175,24 @@ function renderFishingRods() {
   $('#fishing-rod-progress').textContent = `${t('rodCollection', {owned:owned.size, total:fishingRods.length})} · ${t('rodDropRates')}`;
 }
 
-function equipFishingRod(event) {
+async function equipFishingRod(event) {
   const id = event.target.value;
   const journal = state.fishing.journal;
   if (!journal.ownedRods.includes(id) || ['waiting', 'reeling'].includes(state.fishing.phase)) {
     renderFishingRods();
     return;
   }
-  journal.equippedRod = id;
-  saveFishingJournal();
-  renderFishingRods();
-  showToast(`${fishingRodName(equippedFishingRod())} · ${fishingRodStat(equippedFishingRod())}`);
+  try {
+    const remoteState = await api.EquipWorkdayIslandRod(id);
+    applyWorkdayIslandState(remoteState);
+    renderFishingRods();
+    showToast(`${fishingRodName(equippedFishingRod())} · ${fishingRodStat(equippedFishingRod())}`);
+  } catch (error) {
+    renderFishingRods();
+    showToast(error?.message || String(error), true);
+  }
 }
 
-function tryUnlockFishingRod() {
-  const roll = Math.random();
-  const rarity = roll < .0003 ? 'legendary' : roll < .0013 ? 'epic' : roll < .0048 ? 'fine' : roll < .0148 ? 'excellent' : roll < .0748 ? 'ordinary' : '';
-  if (!rarity) return null;
-  const pool = fishingRods.filter(rod => rod.rarity === rarity && !state.fishing.journal.ownedRods.includes(rod.id));
-  if (!pool.length) return null;
-  const rod = pool[Math.floor(Math.random() * pool.length)];
-  state.fishing.journal.ownedRods.push(rod.id);
-  return rod;
-}
 
 function farmText(zh, en) {
   return currentLanguage() === 'zh' ? zh : en;
@@ -5127,6 +5278,8 @@ function handleFarmAction(event) {
   const farm = currentFarm();
   if (action === 'select-crop') {
     state.fishing.farm.selectedCrop = target.dataset.cropId;
+    farm.selectedCrop = target.dataset.cropId;
+    scheduleWorkdayIslandAuxiliarySync();
     renderFishingFarm();
     return;
   }
@@ -5137,7 +5290,7 @@ function handleFarmAction(event) {
     if (farm.coins < cost) { showToast(farmText(`还差 ${cost - farm.coins} 农场币`, `Need ${cost - farm.coins} more farm coins`), true); return; }
     farm.coins -= cost;
     plot.unlocked = true;
-    saveFishingJournal();
+    scheduleWorkdayIslandAuxiliarySync();
     renderFishingFarm();
     showToast(farmText('新土地已开垦，可以种菜啦！', 'New plot unlocked — start planting!'));
     return;
@@ -5149,7 +5302,7 @@ function handleFarmAction(event) {
     farm.coins -= crop.cost;
     plot.cropId = crop.id;
     plot.plantedAt = new Date().toISOString();
-    saveFishingJournal();
+    scheduleWorkdayIslandAuxiliarySync();
     renderFishingFarm();
     showToast(`${crop.emoji} ${farmText('已种下', 'Planted')} ${farmCropName(crop)}`);
     return;
@@ -5159,7 +5312,7 @@ function handleFarmAction(event) {
     farm.totalHarvested += 1;
     plot.cropId = '';
     plot.plantedAt = '';
-    saveFishingJournal();
+    scheduleWorkdayIslandAuxiliarySync();
     renderFishingFarm();
     showToast(`${info.crop.emoji} ${farmText('收获成功', 'Harvested')} +${info.crop.reward} ${farmText('农场币', 'farm coins')}`);
     return;
@@ -5171,6 +5324,11 @@ function changeFishingTab(event) {
   const button = event.target.closest('[data-fishing-tab]');
   const tab = button?.dataset.fishingTab;
   if (!tab || tab === state.fishing.tab) return;
+  const premiumTabs = {slacking: 'slackingIsland', pet: 'petIsland', farm: 'farmIsland'};
+  if (premiumTabs[tab] && resolveAccountMembership(state.account?.user).rank < 1) {
+    showToast(t('fishingPlusRequired', {feature: t(premiumTabs[tab])}), true);
+    return;
+  }
   window.clearTimeout(fishingWaitTimer);
   window.cancelAnimationFrame(fishingAnimationFrame);
   window.cancelAnimationFrame(slackingAnimationFrame);
@@ -5187,9 +5345,16 @@ function renderFishingTabs() {
   const slacking = state.fishing.tab === 'slacking';
   const pet = state.fishing.tab === 'pet';
   const farm = state.fishing.tab === 'farm';
+  const membership = resolveAccountMembership(state.account?.user);
   $('#fishing-layout').classList.toggle('slacking-active', slacking || pet || farm);
   $('#fishing-layout').classList.toggle('pet-active', pet);
-  $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => button.classList.toggle('active', button.dataset.fishingTab === state.fishing.tab));
+  $('#fishing-tabs').querySelectorAll('[data-fishing-tab]').forEach(button => {
+    const tab = button.dataset.fishingTab;
+    const premium = ['slacking', 'pet', 'farm'].includes(tab);
+    button.classList.toggle('active', tab === state.fishing.tab);
+    button.classList.toggle('membership-locked', premium && membership.rank < 1);
+    button.title = premium && membership.rank < 1 ? t('fishingPlusRequired', {feature: t({slacking:'slackingIsland', pet:'petIsland', farm:'farmIsland'}[tab])}) : '';
+  });
   $('#fishing-layout').classList.toggle('farm-active', farm);
   $('.fishing-lake-panel').classList.toggle('hidden', slacking || pet || farm);
   $('#slacking-panel').classList.toggle('hidden', !slacking);
@@ -5301,7 +5466,7 @@ function finishPetActivity() {
   if (activity === 'nap') pet.napCooldownUntil = Date.now() + petNapCooldown;
   pet.lastActionAt = Date.now();
   clearPetActivityTimer();
-  saveFishingJournal();
+  scheduleWorkdayIslandAuxiliarySync();
   setPetMotion('idle', false);
   renderFishingPet(t(rewards.key));
   showToast(t(rewards.key));
@@ -5312,7 +5477,7 @@ function startPetActivity(activity) {
   const pet = fishingPet();
   pet.activity = activity;
   pet.activityUntil = Date.now() + (activity === 'play' ? 15000 : 24000);
-  saveFishingJournal();
+  scheduleWorkdayIslandAuxiliarySync();
   setPetMotion(activity, false);
   clearPetActivityTimer();
   petActivityTimer = window.setInterval(() => {
@@ -5332,7 +5497,7 @@ function renderFishingPet(message = '') {
   const definition = deskPetDefinition(petID);
   ensurePetStatusTimer();
   const playChargeChanged = replenishPetPlayCharges(pet, now);
-  if (playChargeChanged) saveFishingJournal();
+  if (playChargeChanged) scheduleWorkdayIslandAuxiliarySync();
   if (pet.activity && Date.now() >= pet.activityUntil) {
     finishPetActivity();
     return;
@@ -5400,7 +5565,7 @@ function changeActivePet(event) {
   clearPetActivityTimer();
   state.fishing.journal.activePetId = id;
   state.fishing.petCandidate = '';
-  saveFishingJournal();
+  scheduleWorkdayIslandAuxiliarySync();
   setPetMotion('idle', false);
   renderFishingPet();
 }
@@ -5427,7 +5592,7 @@ function setPetMotion(motion = 'idle', reset = true) {
   }
 }
 
-function handlePetAction(event) {
+async function handlePetAction(event) {
   const button = event.target.closest('[data-pet-action]');
   if (!button || button.disabled) return;
   const pet = fishingPet();
@@ -5457,20 +5622,25 @@ function handlePetAction(event) {
   if (button.dataset.petAction === 'feed') {
     food = petSelectedFood();
     if (!food) { showToast(t('petNeedFish'), true); return; }
+    try {
+      const remoteState = await api.ConsumeWorkdayIslandFish(food.fishId);
+      applyWorkdayIslandState(remoteState);
+    } catch (error) {
+      showToast(error?.message || String(error), true);
+      return;
+    }
     const fish = fishingFish.find(item => item.id === food.fishId) || fishingFish[0];
     const nutrition = {common:0, rare:4, epic:8, legendary:14}[fish.rarity] || 0;
     rewards.energy += nutrition;
     rewards.affection += Math.max(1, Math.ceil(nutrition / 3));
     rewards.exp += Math.max(0, Math.ceil(nutrition / 2));
-    const index = state.fishing.journal.catches.findIndex(item => item.caughtAt === food.caughtAt);
-    if (index >= 0) state.fishing.journal.catches.splice(index, 1);
     state.fishing.petCandidate = '';
   }
   pet.energy = Math.max(0, Math.min(100, (Number(pet.energy) || 0) + rewards.energy));
   pet.affection = Math.max(0, Math.min(100, (Number(pet.affection) || 0) + rewards.affection));
   pet.exp = Math.max(0, (Number(pet.exp) || 0) + rewards.exp);
   pet.lastActionAt = Date.now();
-  saveFishingJournal();
+  scheduleWorkdayIslandAuxiliarySync();
   renderFishingJournal();
   setPetMotion(rewards.motion);
   renderFishingPet(t(rewards.key, {name:food ? fishingFishName(fishingFish.find(item => item.id === food.fishId) || fishingFish[0]) : pet.name}));
@@ -5564,16 +5734,19 @@ function relocateSlackingWindow(perk) {
   $('#slacking-safe-zone').style.width = `${width}%`;
 }
 
-function startSlackingRound() {
+async function startSlackingRound() {
   const data = renderSlackingCompanion();
   if (!data) { showToast(t('slackingNeedFish'), true); return; }
-  // A fish buddy is a consumable: reserve one from the backpack for this round.
-  // Keep the resolved fish/perk in `data` so the active round remains stable.
-  const catches = state.fishing.journal.catches || [];
-  const catchIndex = catches.indexOf(data.companion.caught);
-  if (catchIndex >= 0) catches.splice(catchIndex, 1);
+  // A fish buddy is a consumable. The service decrements inventory first;
+  // permanent compendium discovery is intentionally unaffected.
+  try {
+    const remoteState = await api.ConsumeWorkdayIslandFish(data.companion.fish.id);
+    applyWorkdayIslandState(remoteState);
+  } catch (error) {
+    showToast(error?.message || String(error), true);
+    return;
+  }
   state.fishing.slack.selectedCatch = 0;
-  saveFishingJournal();
   renderFishingJournal();
   renderFishCollection();
   const game = state.fishing.slack;
@@ -5647,7 +5820,7 @@ function finishSlackingRound(success, reason = 'caught') {
   $('#slacking-result').className = `slacking-result ${success ? 'success' : 'danger'}`;
   $('#slacking-action').querySelector('b').textContent = t('startSlacking');
   state.fishing.journal.lastSlackingAt = new Date().toISOString();
-  saveFishingJournal();
+  scheduleWorkdayIslandAuxiliarySync();
   renderSlackingCompanion();
 }
 
@@ -5655,6 +5828,10 @@ function renderFishingJournal() {
   const journal = state.fishing?.journal;
   if (!journal || !$('#fishing-catch-list')) return;
   $('#fishing-total-caught').textContent = String(journal.totalCaught || 0);
+  const profile = journal.islandProfile || {level:1, experience:0, nextExperience:100, slackCoins:0};
+  if ($('#fishing-level')) $('#fishing-level').textContent = `Lv. ${profile.level || 1}`;
+  if ($('#fishing-experience')) $('#fishing-experience').textContent = `${Math.max(0, Number(profile.experience) || 0)} / ${Math.max(100, Number(profile.nextExperience) || 100)} XP`;
+  if ($('#fishing-slack-coins')) $('#fishing-slack-coins').textContent = String(Math.max(0, Number(profile.slackCoins) || 0));
   const inventory = (journal.catches || []).reduce((items, caught) => {
     const fish = fishingFish.find(item => item.id === caught.fishId) || fishingFish[0];
     const existing = items.get(fish.id) || {fish, count: 0, caughtAt: 0};
@@ -5678,16 +5855,12 @@ function renderFishCollection() {
   const journal = state.fishing?.journal;
   const grid = $('#fish-collection-grid');
   if (!journal || !grid) return;
-  const catchesByFish = (journal.catches || []).reduce((result, caught) => {
-    result[caught.fishId] = (result[caught.fishId] || 0) + 1;
-    return result;
-  }, {});
-  const unlocked = fishingFish.filter(fish => catchesByFish[fish.id]).length;
+  const discovered = discoveredFishingFish(journal);
+  const unlocked = fishingFish.filter(fish => discovered.has(fish.id)).length;
   $('#fish-collection-count').textContent = `${unlocked} / ${fishingFish.length}`;
   grid.innerHTML = fishingFish.map((fish, index) => {
-    const count = catchesByFish[fish.id] || 0;
-    if (!count) return `<article class="fish-collection-card locked"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-shadow">?</span><div><strong>${escapeHTML(t('fishLocked'))}</strong><small>🔒</small></div></article>`;
-    return `<article class="fish-collection-card ${escapeHTML(fish.rarity)}"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-emoji">${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(fishingRarityLabel(fish.rarity))} · ${escapeHTML(t('fishCaughtTimes', {count}))}</small></div></article>`;
+    if (!discovered.has(fish.id)) return `<article class="fish-collection-card locked"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-shadow">?</span><div><strong>${escapeHTML(t('fishLocked'))}</strong><small>🔒</small></div></article>`;
+    return `<article class="fish-collection-card ${escapeHTML(fish.rarity)}"><span class="fish-collection-index">${String(index + 1).padStart(2, '0')}</span><span class="fish-collection-emoji">${fish.emoji}</span><div><strong>${escapeHTML(fishingFishName(fish))}</strong><small>${escapeHTML(fishingRarityLabel(fish.rarity))} · ${escapeHTML(t('fishCollectionProgress'))}</small></div></article>`;
   }).join('');
 }
 
@@ -5735,9 +5908,14 @@ function playFishingFx(effect, fish = state.fishing.fish) {
 }
 
 async function openFishingPage() {
-  const membership = resolveAccountMembership(state.account?.user);
-  if (!state.account?.loggedIn || membership.rank < 1) {
-    showToast(t('fishingMembersOnly'), true);
+  if (!state.account?.loggedIn) {
+    showToast(t('fishingLoginRequired'), true);
+    return;
+  }
+  try {
+    await syncWorkdayIslandState();
+  } catch (error) {
+    showToast(error?.message || String(error), true);
     return;
   }
   if (state.notificationOpen) closeNotificationPage();
@@ -5907,7 +6085,7 @@ function handleFishingAction() {
   relocateFishingTarget();
 }
 
-function finishFishingRound(caught, reason = 'escaped') {
+async function finishFishingRound(caught, reason = 'escaped') {
   const game = state.fishing;
   window.cancelAnimationFrame(fishingAnimationFrame);
   fishingAnimationFrame = 0;
@@ -5916,21 +6094,26 @@ function finishFishingRound(caught, reason = 'escaped') {
   $('#fishing-float').className = 'fishing-float';
   $('#fishing-shadow').classList.remove('active');
   if (caught) {
-    game.phase = 'caught';
-    game.progress = 100;
-    game.journal.totalCaught += 1;
-    game.journal.bestStreak = Math.max(game.journal.bestStreak, game.streak);
-    game.journal.catches.unshift({fishId:game.fish.id, caughtAt:new Date().toISOString(), streak:game.streak});
-    game.journal.catches = game.journal.catches.slice(0, 30);
-    const rodDrop = tryUnlockFishingRod();
-    saveFishingJournal();
-    renderFishingJournal();
-    renderFishCollection();
-    renderFishingRods();
-    $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
-    $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
-    showFishingResult(`${t('fishingCaught', {name:fishingFishName(game.fish)})}${rodDrop ? `\n${t('rodUnlocked', {rarity:fishingRodRarityLabel(rodDrop.rarity), name:fishingRodName(rodDrop)})}` : ''}`, 'caught');
-    playFishingFx('caught', game.fish);
+    try {
+      const result = await api.CatchWorkdayIslandFish(game.fish.id, Math.max(0, Number(game.streak) || 0));
+      applyWorkdayIslandState(result?.state);
+      const rodDrop = fishingRods.find(rod => rod.id === (result?.unlocked_rod || result?.unlockedRod));
+      game.phase = 'caught';
+      game.progress = 100;
+      renderFishingJournal();
+      renderFishCollection();
+      renderFishingRods();
+      $('#fishing-phase-label').textContent = t('fishingCaught', {name:fishingFishName(game.fish)});
+      $('#fishing-status-text').textContent = `${game.fish.emoji} ${fishingFishName(game.fish)} · ${fishingRarityLabel(game.fish.rarity)}`;
+      const reward = `${Number(result?.experience_gained || result?.experienceGained || 0)} XP · 🪙 ${Number(result?.slack_coins_gained || result?.slackCoinsGained || 0)}`;
+      showFishingResult(`${t('fishingCaught', {name:fishingFishName(game.fish)})}\n${reward}${rodDrop ? `\n${t('rodUnlocked', {rarity:fishingRodRarityLabel(rodDrop.rarity), name:fishingRodName(rodDrop)})}` : ''}`, 'caught');
+      playFishingFx('caught', game.fish);
+    } catch (error) {
+      game.phase = 'escaped';
+      $('#fishing-phase-label').textContent = t('fishingReady');
+      $('#fishing-status-text').textContent = t('fishingReadyHint');
+      showFishingResult(error?.message || String(error), 'escaped');
+    }
   } else {
     game.phase = 'escaped';
     const key = reason === 'timeout' ? 'fishingTimeout' : 'fishingEscaped';
@@ -5945,15 +6128,7 @@ function finishFishingRound(caught, reason = 'escaped') {
 }
 
 function clearFishingJournal() {
-  if (!state.fishing.journal.catches.length) return;
-  if (!window.confirm(t('clearFishingLogConfirm'))) return;
-  state.fishing.journal = {...state.fishing.journal, catches:[], totalCaught:0, bestStreak:0};
-  state.fishing.petCandidate = '';
-  saveFishingJournal();
-  renderFishingJournal();
-  renderFishCollection();
-  if (state.fishing.tab === 'pet') renderFishingPet();
-  showToast(t('fishingLogCleared'));
+  showToast('鱼获、图鉴和成长已同步到账号，不能在本地清空。', true);
 }
 
 async function openStockPage() {
@@ -8450,6 +8625,19 @@ function createPreviewAPI() {
     {symbol:'0.399001',code:'399001',name:'深证成指',price:14148.73,change:374.05,changePercent:2.72,updatedAt:now.toISOString()},
     {symbol:'0.399006',code:'399006',name:'创业板指',price:3590.79,change:109.92,changePercent:3.16,updatedAt:now.toISOString()}
   ],updatedAt:now.toISOString(),source:'东方财富',stale:false,error:''};
+  const previewIsland = {
+    profile:{level:1,experience:0,next_experience:100,slack_coins:0,total_caught:0,best_streak:0,equipped_rod_id:'bamboo',legacy_migrated:true},
+    inventory:[], discovered_fish_ids:[], owned_rod_ids:['bamboo'], pet_state:null, farm_state:null
+  };
+  const previewIslandState = () => structuredClone(previewIsland);
+  const previewIslandReward = fishId => ({common:1,rare:2,epic:3,legendary:4}[fishingFish.find(fish => fish.id === fishId)?.rarity] || 1);
+  const levelPreviewIsland = () => {
+    while (previewIsland.profile.experience >= previewIsland.profile.next_experience) {
+      previewIsland.profile.experience -= previewIsland.profile.next_experience;
+      previewIsland.profile.level += 1;
+      previewIsland.profile.next_experience = previewIsland.profile.level * 100;
+    }
+  };
   const previewCloud = {
     session:{loggedIn:false,user:null},
     quota:{used_bytes:186646528,total_storage_limit:5368709120,storage_remaining:5182062592,source_type:'default',source_name:'5GB Pro'},
@@ -8592,6 +8780,42 @@ function createPreviewAPI() {
     async AddStock(code){ previewStocks.quotes.push({symbol:`1.${code}`,code,name:'模拟自选股',price:1888.88,change:-12.34,changePercent:-0.65,updatedAt:new Date().toISOString()}); return structuredClone(previewStocks); },
     async RemoveStock(symbol){ previewStocks.quotes=previewStocks.quotes.filter(item=>item.symbol!==symbol); return structuredClone(previewStocks); },
     async SetStockWindow(){ return true; },
+    async GetWorkdayIslandState(){ if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号'); return previewIslandState(); },
+    async MigrateWorkdayIslandLegacy(legacy){
+      if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号');
+      if(!previewIsland.profile.legacy_migrated){
+        (legacy?.fish_ids || []).forEach(fishId => { const item=previewIsland.inventory.find(entry=>entry.fish_id===fishId); if(item)item.quantity+=1; else previewIsland.inventory.push({fish_id:fishId,quantity:1,last_caught_at:new Date().toISOString()}); });
+        previewIsland.discovered_fish_ids=[...new Set([...(legacy?.discovered_fish_ids || []), ...(legacy?.fish_ids || [])])];
+        previewIsland.owned_rod_ids=[...new Set(['bamboo', ...(legacy?.owned_rod_ids || [])])];
+        previewIsland.profile.equipped_rod_id=previewIsland.owned_rod_ids.includes(legacy?.equipped_rod_id)?legacy.equipped_rod_id:'bamboo';
+        previewIsland.pet_state=legacy?.pet_state || null;
+        previewIsland.farm_state=legacy?.farm_state || null;
+        previewIsland.profile.legacy_migrated=true;
+      }
+      return previewIslandState();
+    },
+    async CatchWorkdayIslandFish(fishId,streak){
+      if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号');
+      if(!fishingFish.some(fish=>fish.id===fishId)) throw new Error('未知鱼种');
+      const item=previewIsland.inventory.find(entry=>entry.fish_id===fishId);
+      if(item){item.quantity+=1; item.last_caught_at=new Date().toISOString();} else previewIsland.inventory.push({fish_id:fishId,quantity:1,last_caught_at:new Date().toISOString()});
+      previewIsland.discovered_fish_ids=[...new Set([...previewIsland.discovered_fish_ids,fishId])];
+      const reward=previewIslandReward(fishId); previewIsland.profile.experience+=reward; previewIsland.profile.slack_coins+=reward; previewIsland.profile.total_caught+=1; previewIsland.profile.best_streak=Math.max(previewIsland.profile.best_streak,Number(streak)||0); levelPreviewIsland();
+      return {state:previewIslandState(),experience_gained:reward,slack_coins_gained:reward};
+    },
+    async ConsumeWorkdayIslandFish(fishId){
+      if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号');
+      const index=previewIsland.inventory.findIndex(entry=>entry.fish_id===fishId); if(index<0) throw new Error('背包中没有这条鱼');
+      if(previewIsland.inventory[index].quantity<=1) previewIsland.inventory.splice(index,1); else previewIsland.inventory[index].quantity-=1;
+      return previewIslandState();
+    },
+    async EquipWorkdayIslandRod(rodId){ if(!previewIsland.owned_rod_ids.includes(rodId)) throw new Error('该鱼竿尚未解锁'); previewIsland.profile.equipped_rod_id=rodId; return previewIslandState(); },
+    async SaveWorkdayIslandAuxiliaryState(input){
+      if(!previewCloud.session.loggedIn) throw new Error('请先登录工位岛账号');
+      previewIsland.pet_state=input?.pet_state || null;
+      previewIsland.farm_state=input?.farm_state || null;
+      return previewIslandState();
+    },
     async AddTodo(input){ previewState.todos.push({id:crypto.randomUUID(),...input,dueAt:input.dueAt||null,completed:false,createdAt:new Date().toISOString()}); },
     async UpdateTodo(id,input){ Object.assign(previewState.todos.find(todo=>todo.id===id),input,{dueAt:input.dueAt||null}); },
     async ToggleTodo(id,value){ previewState.todos.find(todo=>todo.id===id).completed=value; },
@@ -8662,7 +8886,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.16.11',latestVersion:'0.16.11',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'新增摸鱼农场，并优化英语学习、股市、云笔记分享和鱼获品质展示。\nAdded Slack Farm and improved English Learning, stock quotes, note sharing, and catch rarity labels.'} : {currentVersion:'0.16.11',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.17.0',latestVersion:'0.17.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'开放登录用户使用钓鱼小岛，并同步鱼获背包、图鉴、鱼竿与等级资产。\nFishing Island is now open to signed-in users with account-synced inventory, collection, rods, and progression.'} : {currentVersion:'0.17.0',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

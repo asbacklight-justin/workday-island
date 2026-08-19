@@ -1043,13 +1043,20 @@
           <div class="section-kicker">SLACK ISLAND</div>
           <h1 id="fishing-title" data-i18n="fishingTitle">摸鱼岛</h1>
         </div>
-        <span class="fishing-member-chip"><span>✦</span><b data-i18n="memberBeta">会员内测</b></span>
+        <div class="fishing-head-side">
+          <div class="fishing-island-stats" aria-label="摸鱼岛成长数据">
+            <span><small data-i18n="fishingLevel">等级</small><b id="fishing-level">Lv. 1</b></span>
+            <span><small data-i18n="fishingExperience">经验</small><b id="fishing-experience">0 / 100 XP</b></span>
+            <span><small data-i18n="fishingCoins">摸鱼币</small><b id="fishing-slack-coins">0</b></span>
+          </div>
+          <span class="fishing-member-chip"><span>✦</span><b data-i18n="fishingAccountSync">登录同步</b></span>
+        </div>
       </header>
       <nav id="fishing-tabs" class="fishing-tabs" aria-label="摸鱼玩法">
         <button type="button" class="active" data-fishing-tab="fishing"><span>🎣</span><b data-i18n="fishingIsland">钓鱼小岛</b></button>
         <button type="button" data-fishing-tab="slacking"><span>🐟</span><b data-i18n="slackingIsland">摸鱼小岛</b></button>
         <button type="button" data-fishing-tab="pet"><span>🐾</span><b data-i18n="petIsland">摸鱼小宠</b></button>
-        <button type="button" data-fishing-tab="farm"><span>🌱</span><b>摸鱼农场</b></button>
+        <button type="button" data-fishing-tab="farm"><span>🌱</span><b data-i18n="farmIsland">摸鱼农场</b></button>
       </nav>
       <div id="fishing-layout" class="fishing-layout">
         <aside class="panel fishing-side-panel">

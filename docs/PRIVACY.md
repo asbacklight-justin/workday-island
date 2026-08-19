@@ -21,7 +21,7 @@ The following data is stored in `WorkdayIsland/data.json` under the user's confi
 - the realtime user ID, username, display nickname, and up to 500 recent realtime messages and window-interaction records.
 - the last entered account username may be stored by the embedded WebView; account passwords and Work Cloud access tokens are never persisted.
 
-Fishing Island stores recent catches, total catches, and the best streak in the embedded WebView's local storage. This data is used only for the on-device catch journal and is never sent to the server. Clearing WebView site data or clearing the journal in the game removes these records.
+When signed in, Fishing Island syncs the catch-backpack quantities, permanent fish compendium, rods, level/XP, slack coins, pets, and farm progress to Workday Island services so game assets can be restored across devices. Consuming a fish reduces only its backpack quantity and never deletes an unlocked compendium record. Embedded WebView storage is retained only for first-time migration and offline recovery.
 
 The app never uploads todos, salary, work schedules, or focus records. The uninstaller does not delete the data file so a reinstall can continue where you left off. To erase it completely, quit the app and remove the `WorkdayIsland` configuration directory.
 

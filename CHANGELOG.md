@@ -5,6 +5,20 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.17.0] - 2026-08-19
+
+### 中文
+
+- 摸鱼岛调整为登录用户即可进入，开放「钓鱼小岛」：可体验时机钓鱼、20 种鱼的永久图鉴、鱼获背包、鱼竿装备与品质标签。
+- 鱼获背包、永久图鉴、鱼竿、等级/经验和摸鱼币升级为账号资产，支持首次从本机迁移并在设备间恢复；消耗鱼获不会再删除已解锁图鉴。
+- 「摸鱼小岛」「摸鱼小宠」「摸鱼农场」保留 Plus、Pro、Ultra 会员内测权限；未满足条件时会给出清晰的 Plus 提示。
+
+### English
+
+- Slack Island is now available after sign-in, with an open **Fishing Island** featuring timing catches, a permanent 20-fish compendium, stacked inventory, rod equipment, and rarity labels.
+- Catch inventory, the permanent collection, rods, level/XP, and slack coins are now account assets. They migrate from local storage once and restore across devices; consuming a fish no longer removes its collection discovery.
+- **Slack Island**, **Pet Cabin**, and **Slack Farm** remain Plus/Pro/Ultra member-beta features, with a clear Plus requirement prompt for locked tabs.
+
 ## [0.16.12] - 2026-08-18
 
 ### 中文
@@ -524,6 +538,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added Chinese/English UI, system-language detection, About details, version, author email, and app icons.
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
+[0.17.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.0
 [0.16.11]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11
 [0.16.10]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10
 [0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9

@@ -3175,15 +3175,21 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 
 /* Fishing break beta */
 .fishing-page { height: calc(100% - 58px); padding: 14px 22px 22px; display: flex; flex-direction: column; gap: 12px; }
-.fishing-page-head { flex: 0 0 46px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; }
+.fishing-page-head { flex:0 0 46px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; }
 .fishing-title-group { text-align: center; }
 .fishing-title-group .section-kicker { margin-bottom: 2px; color: #5edee0; }
 .fishing-title-group h1 { margin: 0; color: #e8f2f7; font-size: 20px; }
-.fishing-member-chip { justify-self: end; height: 32px; padding: 0 12px; border: 1px solid rgba(91,225,227,.20); border-radius: 99px; display: flex; align-items: center; gap: 7px; color: #8be8e1; background: rgba(55,202,196,.07); font-size: 10px; }
+.fishing-head-side { justify-self:end; display:flex; align-items:center; gap:9px; }
+.fishing-island-stats { display:flex; align-items:stretch; overflow:hidden; border:1px solid rgba(91,225,227,.19); border-radius:10px; background:rgba(7,30,45,.38); box-shadow:inset 0 1px rgba(255,255,255,.035); }
+.fishing-island-stats > span { min-width:62px; padding:4px 8px 5px; display:flex; flex-direction:column; justify-content:center; gap:1px; border-right:1px solid rgba(91,225,227,.12); }
+.fishing-island-stats > span:last-child { border-right:0; }
+.fishing-island-stats small { color:#829caf; font-size:7px; font-weight:700; white-space:nowrap; }
+.fishing-island-stats b { color:#79e7dd; font-size:11px; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.fishing-member-chip { height:32px; padding:0 12px; border:1px solid rgba(91,225,227,.20); border-radius:99px; display:flex; align-items:center; gap:7px; color:#8be8e1; background:rgba(55,202,196,.07); font-size:10px; }
 .fishing-member-chip > span { color: #ffd873; filter: drop-shadow(0 0 5px rgba(255,216,115,.4)); }
 .fishing-tabs { align-self:center; height:34px; padding:3px; border:1px solid rgba(112,224,217,.14); border-radius:11px; display:flex; gap:3px; background:rgba(10,28,42,.36); }
 .fishing-tabs button { min-width:96px; border:0; border-radius:8px; display:flex; align-items:center; justify-content:center; gap:6px; color:#8297a9; background:transparent; cursor:pointer; font-size:10px; transition:.18s; }
-.fishing-tabs button span { font-size:13px; filter:grayscale(.35); }.fishing-tabs button.active { color:#9cf1e5; background:linear-gradient(135deg,rgba(61,211,194,.19),rgba(88,155,242,.14)); box-shadow:inset 0 0 0 1px rgba(91,229,217,.17),0 4px 12px rgba(0,0,0,.11); }.fishing-tabs button.active span { filter:none; }
+.fishing-tabs button span { font-size:13px; filter:grayscale(.35); }.fishing-tabs button.active { color:#9cf1e5; background:linear-gradient(135deg,rgba(61,211,194,.19),rgba(88,155,242,.14)); box-shadow:inset 0 0 0 1px rgba(91,229,217,.17),0 4px 12px rgba(0,0,0,.11); }.fishing-tabs button.active span { filter:none; }.fishing-tabs button.membership-locked::after{content:'PLUS';margin-left:-2px;padding:1px 3px;border:1px solid rgba(255,214,114,.32);border-radius:4px;color:#e8bf70;font-size:6px;font-weight:800;letter-spacing:.05em}.fishing-tabs button.membership-locked{color:#96a3ae;}
 .fishing-layout { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: 215px minmax(390px,1fr) 230px; grid-template-areas: "guide lake bag"; gap: 12px; }
 .fishing-layout.slacking-active { grid-template-columns:230px minmax(390px,1fr); grid-template-areas:"bag lake"; }
 .fishing-layout > .panel { min-height: 0; padding: 15px; overflow: hidden; }
@@ -3327,6 +3333,18 @@ body:not(.compact):not(.english-open):not(.stock-open) .ai-composer-zone > p { f
 :root[data-member-theme="plus-light"] .fishing-title-group h1,
 :root[data-member-theme="pro-light"] .fishing-title-group h1,
 :root[data-member-theme="ultra-light"] .fishing-title-group h1 { color:#1a3348; }
+:root[data-theme="light"] .fishing-tabs,
+:root[data-member-theme="plus-light"] .fishing-tabs,
+:root[data-member-theme="pro-light"] .fishing-tabs,
+:root[data-member-theme="ultra-light"] .fishing-tabs { border-color:rgba(37,89,107,.22); background:rgba(255,255,255,.68); }
+:root[data-theme="light"] .fishing-tabs button,
+:root[data-member-theme="plus-light"] .fishing-tabs button,
+:root[data-member-theme="pro-light"] .fishing-tabs button,
+:root[data-member-theme="ultra-light"] .fishing-tabs button { color:#294d62 !important; opacity:1; font-weight:800; text-shadow:0 1px 0 rgba(255,255,255,.9); }
+:root[data-theme="light"] .fishing-tabs button.active,
+:root[data-member-theme="plus-light"] .fishing-tabs button.active,
+:root[data-member-theme="pro-light"] .fishing-tabs button.active,
+:root[data-member-theme="ultra-light"] .fishing-tabs button.active { color:#075f69 !important; opacity:1; background:linear-gradient(135deg,rgba(64,216,195,.34),rgba(94,158,247,.26)); box-shadow:inset 0 0 0 1px rgba(20,124,129,.38),0 4px 12px rgba(43,102,117,.16); }
 :root[data-theme="light"] .fishing-panel-heading div > span,
 :root[data-theme="light"] .fishing-guide-list b,
 :root[data-member-theme="plus-light"] .fishing-panel-heading div > span,

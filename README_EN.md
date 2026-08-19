@@ -12,8 +12,8 @@ Download the latest build from [GitHub Releases](https://github.com/asbacklight-
 
 | Platform | Package | Supported systems |
 | --- | --- | --- |
-| macOS | `Workday-Island-v0.16.12-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
-| Windows | `Workday-Island-v0.16.12-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
+| macOS | `Workday-Island-v0.17.0-macOS-universal.dmg` | macOS 12+, Apple Silicon (M-series) and Intel |
+| Windows | `Workday-Island-v0.17.0-windows-x64-Setup.exe` | Windows 10/11 x64; Microsoft Edge WebView2 is required |
 
 The public packages are not currently signed with commercial distribution certificates. On macOS, right-click the app in Finder and choose **Open** on first launch. Windows may display a SmartScreen prompt; verify that the file came from this project's GitHub Release. Do not install copies from unofficial download sites.
 
@@ -34,7 +34,7 @@ The public packages are not currently signed with commercial distribution certif
 - **In-app notifications:** Once signed in, the header shows an unread badge for system, business, security, and announcement messages. Notification Center supports filtering, pagination, marking one or all as read, deletion, and detail links.
 - **English Learning centre:** The `EN` button opens a full learning centre. Word Book keeps a cross-day history from all five modes and Wrong Book records EN → CN, CN → EN, and spelling mistakes. Plus members and above can read bilingual lesson text and vocabulary in **Textbooks**, or search original works, filter languages, browse chapters, and synchronise page progress in **English Books**. Textbooks offer Small, Medium, and Large text sizing for both article copy and vocabulary, defaulting to Medium and saved locally. Both readers use spacious immersive layouts, return cleanly to the Learning centre, and preserve content and catalogue position. The compact trainer still opens only from **Compact Study**.
 - **Selectable word libraries:** English learning defaults to New Concept English 2 and can switch to NCE 3, CET-4, CET-6, IELTS, or all public words in Settings.
-- **Member Slack Island beta:** The fish-shaped header shortcut opens Slack Island. Fishing Island includes timing-based catches, rod equipment, and green/blue/purple/gold rarity labels; Slack Island turns catches into lightweight desk challenges; the Pet Cabin contains independently tracked Bruce, Tangerine, Luna, and Cape pets. New **Slack Farm** lets members plant a free radish, harvest farm coins, unlock plots, then grow tomatoes, corn, and pumpkins. Farm and catch data remain local. During beta, entry is limited to Plus, Pro, and Ultra members.
+- **Slack Island and member beta:** Sign in to enter Slack Island and use the open **Fishing Island**: timing-based catches, a permanent 20-fish collection, stacked catch inventory, rod equipment, and green/blue/purple/gold rarity labels. The catch backpack, permanent collection, rods, level/XP, and slack coins sync to the Workday Island account. Slack Island challenges, the Pet Cabin, and **Slack Farm** remain a member beta for Plus, Pro, and Ultra members; pet growth, energy, affinity, play charges, nap cooldowns, and farm progress also sync by account, with local storage retained only for migration and offline cache.
 - **Floating stock ticker:** Starts with the SSE Composite, Shenzhen Component, and ChiNext indices, supports up to 12 watched A-share codes, refreshes every five seconds, inherits floating-window opacity, and keeps the latest quotes when offline.
 - **Updates, Web App, and feedback:** Query GitHub Releases at most once per day, or use About to check manually, open the matching platform package, visit the [Backlight Web App](https://admin.asbacklight.cn/), or send a bug report or suggestion without signing in.
 - **Unified account centre:** Sign-in and registration live in a dedicated account centre. One session unlocks AI Chat, friends, realtime chat, Work Cloud, Cloud Notes, Link Sharing, and Universal Translator; signing out disconnects them together and the dashboard shows the account nickname.
@@ -150,7 +150,7 @@ See the [build and release guide](docs/BUILD.md) for complete packaging instruct
 
 ## Privacy and network access
 
-Todos, reminders, salary, work schedules, focus sessions, the English Word Book, the Wrong Book, and Fishing Break catches are stored locally only. Weather uses Open-Meteo, quotes use Eastmoney's public endpoint, and update checks use GitHub. When the user uses accounts, AI Chat, chat, Cloud Notes, Link Sharing, translation, English learning, or Work Cloud, the corresponding data is sent to Backlight services. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
+Todos, reminders, salary, work schedules, focus sessions, the English Word Book, and the Wrong Book are stored locally only. Weather uses Open-Meteo, quotes use Eastmoney's public endpoint, and update checks use GitHub. When the user uses accounts, AI Chat, chat, Cloud Notes, Link Sharing, translation, English learning, Work Cloud, or signed-in Fishing Break, the corresponding data is sent to Backlight services. The app contains no telemetry or advertising SDK. Read the full [privacy note](docs/PRIVACY.md).
 
 ## Contributing
 
@@ -173,7 +173,7 @@ The roadmap describes direction, not a release commitment.
 
 ## Version, author, and licence
 
-- Current version: `v0.16.12`
+- Current version: `v0.17.0`
 - Author: Backlight Studio
 - Contact: [asbacklight@gmail.com](mailto:asbacklight@gmail.com)
 - Licence: [MIT License](LICENSE)
