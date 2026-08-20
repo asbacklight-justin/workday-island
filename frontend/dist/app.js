@@ -305,7 +305,7 @@ const petNapCooldown = 10 * 60 * 1000;
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.17.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.17.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -8968,7 +8968,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.17.0',latestVersion:'0.17.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'开放登录用户使用钓鱼小岛，并同步鱼获背包、图鉴、鱼竿与等级资产。\nFishing Island is now open to signed-in users with account-synced inventory, collection, rods, and progression.'} : {currentVersion:'0.17.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.17.1',latestVersion:'0.17.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'完善摸鱼岛账号隔离、访客预览、用户中心入口、浅色对比度与 AI 模型名称展示。\nImproves Fishing Island account isolation, guest preview, Account Centre navigation, light-theme contrast, and AI model-name visibility.'} : {currentVersion:'0.17.1',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

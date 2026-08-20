@@ -5,6 +5,24 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 
 ## [Unreleased]
 
+## [0.17.1] - 2026-08-20
+
+### 中文
+
+- 修复账号切换后错误保留前一账号鱼获的问题；摸鱼岛的背包、图鉴、鱼竿与等级资产现按账号严格隔离。
+- 未登录点击摸鱼岛会进入可浏览的钓鱼小岛；涉及钓鱼、背包和会员内测功能的实际操作会引导登录，且不再重复弹出提示。
+- 账号中心服务入口调整为 3×3 布局，新增第 7 个「钓鱼小岛」入口，文字保持单行清晰展示。
+- 提升浅色及浅色会员主题下摸鱼岛的等级、经验、摸鱼币、侧栏说明与辅助标签对比度。
+- AI 对话模型选择框加宽并提升字号，完整展示 DeepSeek V4 Flash 与 DeepSeek V4 Pro。
+
+### English
+
+- Fixed fishing assets leaking across account switches. Fishing inventory, discoveries, rods, and progression are now strictly isolated per account.
+- Guests can open Fishing Island for browsing; fishing, inventory, and member-beta actions guide users to sign in without repeated prompts.
+- Updated Account Centre services to a 3×3 grid and added Fishing Island as the seventh single-line entry.
+- Improved contrast for level, XP, slack coins, side-panel descriptions, and helper labels in light and light member themes.
+- Widened and enlarged the AI model selector so DeepSeek V4 Flash and DeepSeek V4 Pro display in full.
+
 ## [0.17.0] - 2026-08-19
 
 ### 中文
@@ -539,6 +557,7 @@ This project follows [Semantic Versioning](https://semver.org/); Chinese and Eng
 - Added universal Apple Silicon + Intel macOS builds and a Windows x64 installer workflow.
 
 [0.17.0]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.0
+[0.17.1]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.1
 [0.16.11]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.11
 [0.16.10]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.10
 [0.16.9]: https://github.com/asbacklight-justin/workday-island/releases/tag/v0.16.9

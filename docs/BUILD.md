@@ -95,7 +95,7 @@ The script:
 Output:
 
 ```text
-build/bin/Workday-Island-v0.17.0-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.17.1-windows-x64-Setup.exe
 ```
 
 For production distribution, sign both the application EXE and Setup package with the organisation's Authenticode certificate and validate them with `Get-AuthenticodeSignature`.
