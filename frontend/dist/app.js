@@ -4053,6 +4053,10 @@ async function submitAccountLogin(event) {
   try {
     const session = await api.LoginAccount(username, password);
     state.account = {loggedIn: Boolean(session?.loggedIn), user: session?.user || null};
+    // Fishing data is account-scoped. Never let the previous account's local
+    // cache participate in migration or rendering for the account that has
+    // just signed in.
+    activateFishingJournalForAccount(state.account.user);
     resetEnglishMemberContent();
     lastAccountProfileRefreshAt = Date.now();
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
@@ -4106,6 +4110,7 @@ async function logoutAccount() {
   button.textContent = t('signingOut');
   try {
     const session = await api.LogoutAccount();
+    resetFishingJournalForSignedOutSession();
     state.account = {loggedIn: false, user: null};
     state.cloud.session = {loggedIn: false, user: null};
     state.cloud.items = [];
@@ -4964,9 +4969,26 @@ function createFarmState(value = {}) {
   };
 }
 
+const fishingJournalStorageKey = 'workdayIsland.fishingJournal';
+const fishingJournalOwnerStorageKey = 'workdayIsland.fishingJournalOwner';
+
+function createEmptyFishingJournal() {
+  return {
+    catches: [],
+    discoveredFishIds: [],
+    totalCaught: 0,
+    bestStreak: 0,
+    ownedRods:['bamboo'],
+    equippedRod:'bamboo',
+    activePetId:'bruce',
+    pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])),
+    farm:createFarmState()
+  };
+}
+
 function loadFishingJournal() {
   try {
-    const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
+    const value = JSON.parse(localStorage.getItem(fishingJournalStorageKey) || '{}');
     const rodIDs = ['bamboo', 'stream', 'jade', 'sail', 'frost', 'crystal', 'galaxy', 'tide', 'dragon', 'sky'];
     const ownedRods = Array.isArray(value.ownedRods) ? value.ownedRods.filter(id => rodIDs.includes(id)) : ['bamboo'];
     if (!ownedRods.includes('bamboo')) ownedRods.unshift('bamboo');
@@ -4995,12 +5017,53 @@ function loadFishingJournal() {
       farm: createFarmState(value.farm)
     };
   } catch (_) {
-    return {catches: [], discoveredFishIds: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
+    return createEmptyFishingJournal();
   }
 }
 
+function fishingAccountKey(user = state.account?.user) {
+  const id = Number(user?.id || user?.ID || 0);
+  if (id > 0) return `user:${id}`;
+  const username = String(user?.username || user?.Username || '').trim().toLowerCase();
+  return username ? `username:${username}` : '';
+}
+
+function resetFishingJournalForSignedOutSession() {
+  window.clearTimeout(workdayIslandAuxiliarySyncTimer);
+  state.fishing.journal = createEmptyFishingJournal();
+  state.fishing.farm.selectedCrop = 'radish';
+  state.fishing.petCandidate = '';
+  state.fishing.slack.selectedCatch = 0;
+}
+
+function activateFishingJournalForAccount(user) {
+  const accountKey = fishingAccountKey(user);
+  if (!accountKey) {
+    resetFishingJournalForSignedOutSession();
+    return;
+  }
+  const cachedOwner = localStorage.getItem(fishingJournalOwnerStorageKey) || '';
+  if (cachedOwner && cachedOwner !== accountKey) {
+    // This generic cache belongs to a different account. Server data is the
+    // source of truth, so discard it before the first state request rather
+    // than accidentally migrating it into the newly signed-in account.
+    localStorage.removeItem(fishingJournalStorageKey);
+    state.fishing.journal = createEmptyFishingJournal();
+  } else {
+    state.fishing.journal = loadFishingJournal();
+  }
+  localStorage.setItem(fishingJournalOwnerStorageKey, accountKey);
+  state.fishing.farm.selectedCrop = state.fishing.journal.farm?.selectedCrop || 'radish';
+  state.fishing.petCandidate = '';
+  state.fishing.slack.selectedCatch = 0;
+}
+
 function saveFishingJournal() {
-  try { localStorage.setItem('workdayIsland.fishingJournal', JSON.stringify(state.fishing.journal)); } catch (_) { /* Local journal is optional. */ }
+  try {
+    const accountKey = fishingAccountKey();
+    if (accountKey) localStorage.setItem(fishingJournalOwnerStorageKey, accountKey);
+    localStorage.setItem(fishingJournalStorageKey, JSON.stringify(state.fishing.journal));
+  } catch (_) { /* Local journal is optional. */ }
 }
 
 function fishingLegacyPayload(journal = state.fishing?.journal || {}) {
