@@ -222,6 +222,7 @@ Object.assign(translations.zh, {
   fishingCoins: '摸鱼币',
   fishingAccountSync: '登录同步',
   fishingLoginRequired: '登录账号后即可进入摸鱼岛',
+  fishingSignInToStart: '登录后开始钓鱼',
   fishingPlusRequired: '「{feature}」内测期间需 Plus 会员才可访问'
 });
 Object.assign(translations.en, {
@@ -231,6 +232,7 @@ Object.assign(translations.en, {
   fishingCoins: 'Slack coins',
   fishingAccountSync: 'Account sync',
   fishingLoginRequired: 'Sign in to enter Slack Island',
+  fishingSignInToStart: 'Sign in to start fishing',
   fishingPlusRequired: '“{feature}” requires Plus membership during beta'
 });
 
@@ -303,7 +305,7 @@ const petNapCooldown = 10 * 60 * 1000;
 const state = {
   todos: [],
   settings: { alwaysOnTop: true, compactMode: false, showCompactTodos: false, compactOpacity: 100, compactWidth: 520, compactHeight: 350, workStart: '09:00', workEnd: '18:00', workdays: [1, 2, 3, 4, 5], monthlySalary: 0, salaryWorkdays: 21.75, currency: '¥', weatherCity: '上海', language: 'system', theme: 'system', englishMode: 'study', englishSource: 'nce2', textbookFontSize: 'medium', headerEntries: normaliseHeaderEntries() },
-  appInfo: {name: 'Workday Island', version: '0.17.0', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
+  appInfo: {name: 'Workday Island', version: '0.17.1', author: 'Backlight Studio', email: 'asbacklight@gmail.com'},
   focus: {active: false, durationMinutes: 50, startedAt: null, endsAt: null, completedAt: null},
   weather: null,
   filter: 'pending',
@@ -4053,6 +4055,10 @@ async function submitAccountLogin(event) {
   try {
     const session = await api.LoginAccount(username, password);
     state.account = {loggedIn: Boolean(session?.loggedIn), user: session?.user || null};
+    // Fishing data is account-scoped. Never let the previous account's local
+    // cache participate in migration or rendering for the account that has
+    // just signed in.
+    activateFishingJournalForAccount(state.account.user);
     resetEnglishMemberContent();
     lastAccountProfileRefreshAt = Date.now();
     state.cloud.session = {loggedIn: state.account.loggedIn, user: state.account.user};
@@ -4106,6 +4112,7 @@ async function logoutAccount() {
   button.textContent = t('signingOut');
   try {
     const session = await api.LogoutAccount();
+    resetFishingJournalForSignedOutSession();
     state.account = {loggedIn: false, user: null};
     state.cloud.session = {loggedIn: false, user: null};
     state.cloud.items = [];
@@ -4192,7 +4199,8 @@ function openAccountService(event) {
     notes: openNotesPage,
     sharing: openShareManagementPage,
     translator: openTranslatorPage,
-    ai: openAIChatPage
+    ai: openAIChatPage,
+    fishing: openFishingPage
   };
   const destination = destinations[card.dataset.accountService];
   if (destination) void destination();
@@ -4964,9 +4972,26 @@ function createFarmState(value = {}) {
   };
 }
 
+const fishingJournalStorageKey = 'workdayIsland.fishingJournal';
+const fishingJournalOwnerStorageKey = 'workdayIsland.fishingJournalOwner';
+
+function createEmptyFishingJournal() {
+  return {
+    catches: [],
+    discoveredFishIds: [],
+    totalCaught: 0,
+    bestStreak: 0,
+    ownedRods:['bamboo'],
+    equippedRod:'bamboo',
+    activePetId:'bruce',
+    pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])),
+    farm:createFarmState()
+  };
+}
+
 function loadFishingJournal() {
   try {
-    const value = JSON.parse(localStorage.getItem('workdayIsland.fishingJournal') || '{}');
+    const value = JSON.parse(localStorage.getItem(fishingJournalStorageKey) || '{}');
     const rodIDs = ['bamboo', 'stream', 'jade', 'sail', 'frost', 'crystal', 'galaxy', 'tide', 'dragon', 'sky'];
     const ownedRods = Array.isArray(value.ownedRods) ? value.ownedRods.filter(id => rodIDs.includes(id)) : ['bamboo'];
     if (!ownedRods.includes('bamboo')) ownedRods.unshift('bamboo');
@@ -4995,12 +5020,53 @@ function loadFishingJournal() {
       farm: createFarmState(value.farm)
     };
   } catch (_) {
-    return {catches: [], discoveredFishIds: [], totalCaught: 0, bestStreak: 0, ownedRods:['bamboo'], equippedRod:'bamboo', activePetId:'bruce', pets:Object.fromEntries(deskPets.map(definition => [definition.id, createDeskPetState()])), farm:createFarmState()};
+    return createEmptyFishingJournal();
   }
 }
 
+function fishingAccountKey(user = state.account?.user) {
+  const id = Number(user?.id || user?.ID || 0);
+  if (id > 0) return `user:${id}`;
+  const username = String(user?.username || user?.Username || '').trim().toLowerCase();
+  return username ? `username:${username}` : '';
+}
+
+function resetFishingJournalForSignedOutSession() {
+  window.clearTimeout(workdayIslandAuxiliarySyncTimer);
+  state.fishing.journal = createEmptyFishingJournal();
+  state.fishing.farm.selectedCrop = 'radish';
+  state.fishing.petCandidate = '';
+  state.fishing.slack.selectedCatch = 0;
+}
+
+function activateFishingJournalForAccount(user) {
+  const accountKey = fishingAccountKey(user);
+  if (!accountKey) {
+    resetFishingJournalForSignedOutSession();
+    return;
+  }
+  const cachedOwner = localStorage.getItem(fishingJournalOwnerStorageKey) || '';
+  if (cachedOwner && cachedOwner !== accountKey) {
+    // This generic cache belongs to a different account. Server data is the
+    // source of truth, so discard it before the first state request rather
+    // than accidentally migrating it into the newly signed-in account.
+    localStorage.removeItem(fishingJournalStorageKey);
+    state.fishing.journal = createEmptyFishingJournal();
+  } else {
+    state.fishing.journal = loadFishingJournal();
+  }
+  localStorage.setItem(fishingJournalOwnerStorageKey, accountKey);
+  state.fishing.farm.selectedCrop = state.fishing.journal.farm?.selectedCrop || 'radish';
+  state.fishing.petCandidate = '';
+  state.fishing.slack.selectedCatch = 0;
+}
+
 function saveFishingJournal() {
-  try { localStorage.setItem('workdayIsland.fishingJournal', JSON.stringify(state.fishing.journal)); } catch (_) { /* Local journal is optional. */ }
+  try {
+    const accountKey = fishingAccountKey();
+    if (accountKey) localStorage.setItem(fishingJournalOwnerStorageKey, accountKey);
+    localStorage.setItem(fishingJournalStorageKey, JSON.stringify(state.fishing.journal));
+  } catch (_) { /* Local journal is optional. */ }
 }
 
 function fishingLegacyPayload(journal = state.fishing?.journal || {}) {
@@ -5171,11 +5237,12 @@ function renderFishingRods() {
   const select = $('#fishing-rod-select');
   select.innerHTML = fishingRods.map(item => `<option value="${item.id}" ${owned.has(item.id) ? '' : 'disabled'}>${item.emoji} ${fishingRodName(item)} · ${owned.has(item.id) ? fishingRodRarityLabel(item.rarity) : '🔒'}</option>`).join('');
   select.value = rod.id;
-  select.disabled = ['waiting', 'reeling'].includes(state.fishing.phase);
+  select.disabled = !state.account?.loggedIn || ['waiting', 'reeling'].includes(state.fishing.phase);
   $('#fishing-rod-progress').textContent = `${t('rodCollection', {owned:owned.size, total:fishingRods.length})} · ${t('rodDropRates')}`;
 }
 
 async function equipFishingRod(event) {
+  if (!requireFishingAccount()) return;
   const id = event.target.value;
   const journal = state.fishing.journal;
   if (!journal.ownedRods.includes(id) || ['waiting', 'reeling'].includes(state.fishing.phase)) {
@@ -5272,6 +5339,7 @@ function stopFarmClock() {
 }
 
 function handleFarmAction(event) {
+  if (!requireFishingAccount()) return;
   const action = event.target.closest('[data-farm-action]')?.dataset.farmAction;
   const target = event.target.closest('[data-farm-action]');
   if (!action || !target) return;
@@ -5325,6 +5393,10 @@ function changeFishingTab(event) {
   const tab = button?.dataset.fishingTab;
   if (!tab || tab === state.fishing.tab) return;
   const premiumTabs = {slacking: 'slackingIsland', pet: 'petIsland', farm: 'farmIsland'};
+  if (premiumTabs[tab] && !state.account?.loggedIn) {
+    requireFishingAccount();
+    return;
+  }
   if (premiumTabs[tab] && resolveAccountMembership(state.account?.user).rank < 1) {
     showToast(t('fishingPlusRequired', {feature: t(premiumTabs[tab])}), true);
     return;
@@ -5593,6 +5665,7 @@ function setPetMotion(motion = 'idle', reset = true) {
 }
 
 async function handlePetAction(event) {
+  if (!requireFishingAccount()) return;
   const button = event.target.closest('[data-pet-action]');
   if (!button || button.disabled) return;
   const pet = fishingPet();
@@ -5780,6 +5853,7 @@ function updateSlackingFrame(now) {
 }
 
 function handleSlackingAction() {
+  if (!requireFishingAccount()) return;
   const game = state.fishing.slack;
   if (game.phase !== 'active') { startSlackingRound(); return; }
   const start = game.targetStart;
@@ -5908,15 +5982,13 @@ function playFishingFx(effect, fish = state.fishing.fish) {
 }
 
 async function openFishingPage() {
-  if (!state.account?.loggedIn) {
-    showToast(t('fishingLoginRequired'), true);
-    return;
-  }
-  try {
-    await syncWorkdayIslandState();
-  } catch (error) {
-    showToast(error?.message || String(error), true);
-    return;
+  if (state.account?.loggedIn) {
+    try {
+      await syncWorkdayIslandState();
+    } catch (error) {
+      showToast(error?.message || String(error), true);
+      return;
+    }
   }
   if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
@@ -5935,6 +6007,13 @@ async function openFishingPage() {
   renderFishingJournal();
   renderFishingRods();
   renderFishingTabs();
+}
+
+function requireFishingAccount() {
+  if (state.account?.loggedIn) return true;
+  closeFishingPage();
+  openAccountPage('login');
+  return false;
 }
 
 function closeFishingPage() {
@@ -5958,14 +6037,15 @@ function closeFishingPage() {
 
 function renderFishingIdle() {
   const game = state.fishing;
+  const signedIn = Boolean(state.account?.loggedIn);
   game.phase = 'idle';
   game.fish = null;
   game.progress = 0;
   game.tension = 0;
   game.streak = 0;
   game.rod = equippedFishingRod();
-  $('#fishing-phase-label').textContent = t('fishingReady');
-  $('#fishing-status-text').textContent = t('fishingReadyHint');
+  $('#fishing-phase-label').textContent = signedIn ? t('fishingReady') : t('accountLogin');
+  $('#fishing-status-text').textContent = signedIn ? t('fishingReadyHint') : t('fishingLoginRequired');
   $('#fishing-timer').classList.add('hidden');
   $('#fishing-target-card').classList.add('hidden');
   $('#fishing-result').classList.add('hidden');
@@ -5974,11 +6054,12 @@ function renderFishingIdle() {
   $('#fishing-fx').className = 'fishing-fx';
   renderFishingMeters();
   renderFishingRods();
-  setFishingAction('startFishing');
+  setFishingAction(signedIn ? 'startFishing' : 'fishingSignInToStart');
 }
 
 function startFishingRound() {
   if (!state.fishingOpen) return;
+  if (!requireFishingAccount()) return;
   window.clearTimeout(fishingWaitTimer);
   window.cancelAnimationFrame(fishingAnimationFrame);
   const game = state.fishing;
@@ -6044,6 +6125,7 @@ function updateFishingFrame(now) {
 
 function handleFishingAction() {
   if (!state.fishingOpen) return;
+  if (!requireFishingAccount()) return;
   const game = state.fishing;
   if (game.phase === 'idle' || game.phase === 'caught' || game.phase === 'escaped') {
     startFishingRound();
@@ -8886,7 +8968,7 @@ function createPreviewAPI() {
     async SetWindowFullscreen(fullscreen){ state.windowFullscreen=Boolean(fullscreen); return state.windowFullscreen; },
     async IsWindowFullscreen(){ return Boolean(state.windowFullscreen); },
     async QuitApp(){ return true; },
-    async CheckForUpdates(force){ return force ? {currentVersion:'0.17.0',latestVersion:'0.17.0',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.0',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'开放登录用户使用钓鱼小岛，并同步鱼获背包、图鉴、鱼竿与等级资产。\nFishing Island is now open to signed-in users with account-synced inventory, collection, rods, and progression.'} : {currentVersion:'0.17.0',skipped:true}; },
+    async CheckForUpdates(force){ return force ? {currentVersion:'0.17.1',latestVersion:'0.17.1',available:false,skipped:false,releaseURL:'https://github.com/asbacklight-justin/workday-island/releases/tag/v0.17.1',downloadURL:'',assetName:'',assetSize:0,digest:'',releaseNotes:'完善摸鱼岛账号隔离、访客预览、用户中心入口、浅色对比度与 AI 模型名称展示。\nImproves Fishing Island account isolation, guest preview, Account Centre navigation, light-theme contrast, and AI model-name visibility.'} : {currentVersion:'0.17.1',skipped:true}; },
     async OpenUpdateURL(){ return true; },
     async OpenWebApp(){ return true; },
     async SubmitPublicFeedback(){ return {id:1001}; }

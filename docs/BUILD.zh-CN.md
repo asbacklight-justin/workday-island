@@ -95,7 +95,7 @@ Set-ExecutionPolicy -Scope Process Bypass
 产物：
 
 ```text
-build/bin/Workday-Island-v0.17.0-windows-x64-Setup.exe
+build/bin/Workday-Island-v0.17.1-windows-x64-Setup.exe
 ```
 
 正式分发建议在生成 Setup 后使用组织的 Authenticode 证书签名应用 EXE 和安装包，并通过 `Get-AuthenticodeSignature` 验证。

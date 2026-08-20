@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -76,7 +77,7 @@ func TestCloudNotesListAndDetailAlwaysComeFromServer(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	nodes, err := client.ListNoteNodes(t.Context())
+	nodes, err := client.ListNoteNodes(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -87,11 +88,11 @@ func TestCloudNotesListAndDetailAlwaysComeFromServer(t *testing.T) {
 		t.Fatalf("note summary = %+v", nodes[1])
 	}
 
-	first, err := client.GetNoteNode(t.Context(), "note:9")
+	first, err := client.GetNoteNode(context.Background(), "note:9")
 	if err != nil {
 		t.Fatal(err)
 	}
-	second, err := client.GetNoteNode(t.Context(), "note:9")
+	second, err := client.GetNoteNode(context.Background(), "note:9")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -133,7 +134,7 @@ func TestCloudNotesUseCurrentAccountTokenWithoutLocalLeak(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	accountA, err := client.GetNoteNode(t.Context(), "note:1")
+	accountA, err := client.GetNoteNode(context.Background(), "note:1")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -142,7 +143,7 @@ func TestCloudNotesUseCurrentAccountTokenWithoutLocalLeak(t *testing.T) {
 	client.user = &CloudDiskUser{ID: 8, Username: "other"}
 	client.noteUnlockTokens = make(map[uint64]string)
 	client.mu.Unlock()
-	accountB, err := client.GetNoteNode(t.Context(), "note:1")
+	accountB, err := client.GetNoteNode(context.Background(), "note:1")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -176,7 +177,7 @@ func TestCloudNoteUpdateSendsRevisionAndUsesCloudResponse(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	updated, err := client.UpdateNoteNode(t.Context(), "note:4", NoteUpdateInput{
+	updated, err := client.UpdateNoteNode(context.Background(), "note:4", NoteUpdateInput{
 		Title: "云端已保存", Content: "<p>新内容</p>", Revision: 12,
 	})
 	if err != nil {
@@ -208,7 +209,7 @@ func TestCloudNoteCreateAcceptsLegacyNumericIDAndFetchesDetail(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	created, err := client.CreateNoteNode(t.Context(), NoteNodeInput{Kind: noteKindNote, Title: "无标题笔记"})
+	created, err := client.CreateNoteNode(context.Background(), NoteNodeInput{Kind: noteKindNote, Title: "无标题笔记"})
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -242,7 +243,7 @@ func TestCloudNoteCreateUsesProductionDetailShape(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	created, err := client.CreateNoteNode(t.Context(), NoteNodeInput{
+	created, err := client.CreateNoteNode(context.Background(), NoteNodeInput{
 		Kind: noteKindNote, Title: "无标题笔记",
 	})
 	if err != nil {
@@ -286,7 +287,7 @@ func TestCloudNoteCreatePreservesMarkdownAndSpreadsheetTypes(t *testing.T) {
 			defer server.Close()
 
 			client := authenticatedCloudNoteClient(server, "account-a")
-			created, err := client.CreateNoteNode(t.Context(), NoteNodeInput{
+			created, err := client.CreateNoteNode(context.Background(), NoteNodeInput{
 				Kind: noteKindNote, Title: test.title, Content: test.content, ContentType: test.contentType,
 			})
 			if err != nil {
@@ -301,7 +302,7 @@ func TestCloudNoteCreatePreservesMarkdownAndSpreadsheetTypes(t *testing.T) {
 
 func TestCloudNoteCreateRejectsUnsupportedContentType(t *testing.T) {
 	client := authenticatedCloudNoteClient(&httptest.Server{}, "account-a")
-	_, err := client.CreateNoteNode(t.Context(), NoteNodeInput{Kind: noteKindNote, ContentType: "binary"})
+	_, err := client.CreateNoteNode(context.Background(), NoteNodeInput{Kind: noteKindNote, ContentType: "binary"})
 	if err == nil || !strings.Contains(err.Error(), "文档类型") {
 		t.Fatalf("error = %v", err)
 	}
