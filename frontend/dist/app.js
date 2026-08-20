@@ -222,6 +222,7 @@ Object.assign(translations.zh, {
   fishingCoins: '摸鱼币',
   fishingAccountSync: '登录同步',
   fishingLoginRequired: '登录账号后即可进入摸鱼岛',
+  fishingSignInToStart: '登录后开始钓鱼',
   fishingPlusRequired: '「{feature}」内测期间需 Plus 会员才可访问'
 });
 Object.assign(translations.en, {
@@ -231,6 +232,7 @@ Object.assign(translations.en, {
   fishingCoins: 'Slack coins',
   fishingAccountSync: 'Account sync',
   fishingLoginRequired: 'Sign in to enter Slack Island',
+  fishingSignInToStart: 'Sign in to start fishing',
   fishingPlusRequired: '“{feature}” requires Plus membership during beta'
 });
 
@@ -5234,11 +5236,12 @@ function renderFishingRods() {
   const select = $('#fishing-rod-select');
   select.innerHTML = fishingRods.map(item => `<option value="${item.id}" ${owned.has(item.id) ? '' : 'disabled'}>${item.emoji} ${fishingRodName(item)} · ${owned.has(item.id) ? fishingRodRarityLabel(item.rarity) : '🔒'}</option>`).join('');
   select.value = rod.id;
-  select.disabled = ['waiting', 'reeling'].includes(state.fishing.phase);
+  select.disabled = !state.account?.loggedIn || ['waiting', 'reeling'].includes(state.fishing.phase);
   $('#fishing-rod-progress').textContent = `${t('rodCollection', {owned:owned.size, total:fishingRods.length})} · ${t('rodDropRates')}`;
 }
 
 async function equipFishingRod(event) {
+  if (!requireFishingAccount()) return;
   const id = event.target.value;
   const journal = state.fishing.journal;
   if (!journal.ownedRods.includes(id) || ['waiting', 'reeling'].includes(state.fishing.phase)) {
@@ -5335,6 +5338,7 @@ function stopFarmClock() {
 }
 
 function handleFarmAction(event) {
+  if (!requireFishingAccount()) return;
   const action = event.target.closest('[data-farm-action]')?.dataset.farmAction;
   const target = event.target.closest('[data-farm-action]');
   if (!action || !target) return;
@@ -5388,6 +5392,10 @@ function changeFishingTab(event) {
   const tab = button?.dataset.fishingTab;
   if (!tab || tab === state.fishing.tab) return;
   const premiumTabs = {slacking: 'slackingIsland', pet: 'petIsland', farm: 'farmIsland'};
+  if (premiumTabs[tab] && !state.account?.loggedIn) {
+    requireFishingAccount();
+    return;
+  }
   if (premiumTabs[tab] && resolveAccountMembership(state.account?.user).rank < 1) {
     showToast(t('fishingPlusRequired', {feature: t(premiumTabs[tab])}), true);
     return;
@@ -5656,6 +5664,7 @@ function setPetMotion(motion = 'idle', reset = true) {
 }
 
 async function handlePetAction(event) {
+  if (!requireFishingAccount()) return;
   const button = event.target.closest('[data-pet-action]');
   if (!button || button.disabled) return;
   const pet = fishingPet();
@@ -5843,6 +5852,7 @@ function updateSlackingFrame(now) {
 }
 
 function handleSlackingAction() {
+  if (!requireFishingAccount()) return;
   const game = state.fishing.slack;
   if (game.phase !== 'active') { startSlackingRound(); return; }
   const start = game.targetStart;
@@ -5971,15 +5981,13 @@ function playFishingFx(effect, fish = state.fishing.fish) {
 }
 
 async function openFishingPage() {
-  if (!state.account?.loggedIn) {
-    showToast(t('fishingLoginRequired'), true);
-    return;
-  }
-  try {
-    await syncWorkdayIslandState();
-  } catch (error) {
-    showToast(error?.message || String(error), true);
-    return;
+  if (state.account?.loggedIn) {
+    try {
+      await syncWorkdayIslandState();
+    } catch (error) {
+      showToast(error?.message || String(error), true);
+      return;
+    }
   }
   if (state.notificationOpen) closeNotificationPage();
   if (state.shareManagementOpen) closeShareManagementPage();
@@ -5998,6 +6006,13 @@ async function openFishingPage() {
   renderFishingJournal();
   renderFishingRods();
   renderFishingTabs();
+}
+
+function requireFishingAccount() {
+  if (state.account?.loggedIn) return true;
+  closeFishingPage();
+  openAccountPage('login');
+  return false;
 }
 
 function closeFishingPage() {
@@ -6021,14 +6036,15 @@ function closeFishingPage() {
 
 function renderFishingIdle() {
   const game = state.fishing;
+  const signedIn = Boolean(state.account?.loggedIn);
   game.phase = 'idle';
   game.fish = null;
   game.progress = 0;
   game.tension = 0;
   game.streak = 0;
   game.rod = equippedFishingRod();
-  $('#fishing-phase-label').textContent = t('fishingReady');
-  $('#fishing-status-text').textContent = t('fishingReadyHint');
+  $('#fishing-phase-label').textContent = signedIn ? t('fishingReady') : t('accountLogin');
+  $('#fishing-status-text').textContent = signedIn ? t('fishingReadyHint') : t('fishingLoginRequired');
   $('#fishing-timer').classList.add('hidden');
   $('#fishing-target-card').classList.add('hidden');
   $('#fishing-result').classList.add('hidden');
@@ -6037,11 +6053,12 @@ function renderFishingIdle() {
   $('#fishing-fx').className = 'fishing-fx';
   renderFishingMeters();
   renderFishingRods();
-  setFishingAction('startFishing');
+  setFishingAction(signedIn ? 'startFishing' : 'fishingSignInToStart');
 }
 
 function startFishingRound() {
   if (!state.fishingOpen) return;
+  if (!requireFishingAccount()) return;
   window.clearTimeout(fishingWaitTimer);
   window.cancelAnimationFrame(fishingAnimationFrame);
   const game = state.fishing;
@@ -6107,6 +6124,7 @@ function updateFishingFrame(now) {
 
 function handleFishingAction() {
   if (!state.fishingOpen) return;
+  if (!requireFishingAccount()) return;
   const game = state.fishing;
   if (game.phase === 'idle' || game.phase === 'caught' || game.phase === 'escaped') {
     startFishingRound();
