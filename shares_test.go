@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"io"
@@ -74,7 +75,7 @@ func TestCreateNoteShareUsesCloudNoteReferenceAndCurrentAccount(t *testing.T) {
 
 	client := authenticatedCloudNoteClient(server, "current-account")
 	client.setCloudNoteUnlockToken(42, "unlock-42")
-	record, err := client.CreateNoteShare(t.Context(), CreateNoteShareInput{
+	record, err := client.CreateNoteShare(context.Background(), CreateNoteShareInput{
 		NoteID: "note:42", Title: "周报", ContentMode: "live",
 		AllowCopy: true, AllowComment: true, Source: "Workday Island",
 		ShowSource: true, ShowCreator: true,
@@ -109,7 +110,7 @@ func TestListNoteSharesAlwaysFiltersToNotesAndBuildsPublicURL(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	page, err := client.ListNoteShares(t.Context(), 2, 10, "周报", "active")
+	page, err := client.ListNoteShares(context.Background(), 2, 10, "周报", "active")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -130,7 +131,7 @@ func TestNoteShareQuotaAcceptsLegacyTopLevelNumber(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	quota, err := client.GetNoteShareQuota(t.Context())
+	quota, err := client.GetNoteShareQuota(context.Background())
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -163,19 +164,19 @@ func TestNoteShareManagementActionsReuseShareEndpoints(t *testing.T) {
 	defer server.Close()
 
 	client := authenticatedCloudNoteClient(server, "account-a")
-	if _, err := client.UpdateNoteShare(t.Context(), 15, UpdateNoteShareInput{
+	if _, err := client.UpdateNoteShare(context.Background(), 15, UpdateNoteShareInput{
 		Title: "共享笔记", ContentMode: "snapshot", AllowCopy: true, Status: 1,
 		ShowSource: true, ShowCreator: true,
 	}); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := client.RevokeNoteShare(t.Context(), 15); err != nil {
+	if _, err := client.RevokeNoteShare(context.Background(), 15); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := client.RegenerateNoteShare(t.Context(), 15); err != nil {
+	if _, err := client.RegenerateNoteShare(context.Background(), 15); err != nil {
 		t.Fatal(err)
 	}
-	if err := client.DeleteNoteShare(t.Context(), 15); err != nil {
+	if err := client.DeleteNoteShare(context.Background(), 15); err != nil {
 		t.Fatal(err)
 	}
 	expected := []string{
