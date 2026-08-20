@@ -4199,7 +4199,8 @@ function openAccountService(event) {
     notes: openNotesPage,
     sharing: openShareManagementPage,
     translator: openTranslatorPage,
-    ai: openAIChatPage
+    ai: openAIChatPage,
+    fishing: openFishingPage
   };
   const destination = destinations[card.dataset.accountService];
   if (destination) void destination();
